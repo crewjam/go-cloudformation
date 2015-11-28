@@ -60,6 +60,6 @@ func (x *StringListExpr) UnmarshalJSON(data []byte) error {
 }
 
 // StringList returns a new StringListExpr representing the literal value v.
-func StringList(v ...StringExpr) StringListExpr {
-	return StringListExpr{Literal: v}
+func StringList(v ...StringExpr) *StringListExpr {
+	return &StringListExpr{Literal: v}
 }
