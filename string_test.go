@@ -1,7 +1,6 @@
 package cloudformation
 
 import (
-	"encoding/json"
 	"testing"
 
 	. "gopkg.in/check.v1"
@@ -10,6 +9,7 @@ import (
 // Hook up gocheck into the "go test" runner.
 func Test(t *testing.T) { TestingT(t) }
 
+/*
 type StringTest struct{}
 
 var _ = Suite(&StringTest{})
@@ -155,7 +155,7 @@ func (testSuite *StringTest) TestListIf(c *C) {
 		NoValue())
 	c.Assert(je, DeepEquals, expected)
 }
-
+*/
 /*
 func (testSuite *StringTest) TestThing(c *C) {
 	inputBuf := `{

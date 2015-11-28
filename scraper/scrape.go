@@ -66,31 +66,44 @@ func (tr *TemplateReference) WriteGo(w io.Writer) {
 		}
 		fmt.Fprintf(w, "}\n")
 		fmt.Fprintf(w, "\n")
-		fmt.Fprintf(w, "type %sList []%s\n", resource.GoName(), resource.GoName())
-		fmt.Fprintf(w, "\n")
-		fmt.Fprintf(w, "func (l *%sList) UnmarshalJSON(buf []byte) error {\n", resource.GoName())
-		fmt.Fprintf(w, "	// Cloudformation allows a single object when a list of objects is expected\n")
-		fmt.Fprintf(w, "	item := %s{}\n", resource.GoName())
-		fmt.Fprintf(w, "	if err := json.Unmarshal(buf, &item); err == nil {\n")
-		fmt.Fprintf(w, "		*l = %sList{item}\n", resource.GoName())
-		fmt.Fprintf(w, "		return nil\n")
-		fmt.Fprintf(w, "	}\n")
-		fmt.Fprintf(w, "	list := []%s{}\n", resource.GoName())
-		fmt.Fprintf(w, "	err := json.Unmarshal(buf, &list)\n")
-		fmt.Fprintf(w, "	if err == nil {\n")
-		fmt.Fprintf(w, "		*l = %sList(list)\n", resource.GoName())
-		fmt.Fprintf(w, "		return nil\n")
-		fmt.Fprintf(w, "	}\n")
-		fmt.Fprintf(w, "	return err\n")
-		fmt.Fprintf(w, "}\n")
-		fmt.Fprintf(w, "\n")
+		if resource.IsTopLevelResource() {
+			fmt.Fprintf(w, "func (s %s) ResourceType() string {\n", resource.GoName())
+			fmt.Fprintf(w, "	return %q\n", resource.Name)
+			fmt.Fprintf(w, "}\n")
+			fmt.Fprintf(w, "\n")
+		}
+
+		// Cloudformation allows a single object when a list of objects is expected. To
+		// handle this we need to generate a *List type. This applies mostly only to
+		// non-top-level objects. (The only exception is AWS::Route53::RecordSet which is
+		// both a top level resource and a child element of AWS::Route53::RecordSetGroup
+		if !resource.IsTopLevelResource() || resource.GoName() == "AWSRoute53RecordSet" {
+			fmt.Fprintf(w, "type %sList []%s\n", resource.GoName(), resource.GoName())
+			fmt.Fprintf(w, "\n")
+			fmt.Fprintf(w, "func (l *%sList) UnmarshalJSON(buf []byte) error {\n", resource.GoName())
+			fmt.Fprintf(w, "	// Cloudformation allows a single object when a list of objects is expected\n")
+			fmt.Fprintf(w, "	item := %s{}\n", resource.GoName())
+			fmt.Fprintf(w, "	if err := json.Unmarshal(buf, &item); err == nil {\n")
+			fmt.Fprintf(w, "		*l = %sList{item}\n", resource.GoName())
+			fmt.Fprintf(w, "		return nil\n")
+			fmt.Fprintf(w, "	}\n")
+			fmt.Fprintf(w, "	list := []%s{}\n", resource.GoName())
+			fmt.Fprintf(w, "	err := json.Unmarshal(buf, &list)\n")
+			fmt.Fprintf(w, "	if err == nil {\n")
+			fmt.Fprintf(w, "		*l = %sList(list)\n", resource.GoName())
+			fmt.Fprintf(w, "		return nil\n")
+			fmt.Fprintf(w, "	}\n")
+			fmt.Fprintf(w, "	return err\n")
+			fmt.Fprintf(w, "}\n")
+			fmt.Fprintf(w, "\n")
+		}
 	}
 
-	fmt.Fprintf(w, "func NewResourceByType(typeName string) interface{} {\n")
+	fmt.Fprintf(w, "func NewResourceByType(typeName string) ResourceProperties {\n")
 	fmt.Fprintf(w, "	switch typeName {\n")
 
 	for _, resource := range tr.Resources {
-		if !strings.HasPrefix(resource.Name, "AWS::") {
+		if !resource.IsTopLevelResource() {
 			continue
 		}
 		fmt.Fprintf(w, "		case %q:\n", resource.Name)
@@ -105,6 +118,10 @@ type Resource struct {
 	Name       string
 	Href       string
 	Properties []Property
+}
+
+func (r *Resource) IsTopLevelResource() bool {
+	return strings.HasPrefix(r.Name, "AWS::")
 }
 
 func (r *Resource) Load() error {
@@ -258,26 +275,26 @@ func (p *Property) GoType(tr *TemplateReference) string {
 
 	switch p.Type {
 	case "String":
-		return "*StringExpression"
+		return "*StringExpr"
 	case "List of strings":
-		return "*StringListExpression"
+		return "*StringListExpr"
 	case "String list":
-		return "*StringListExpression"
+		return "*StringListExpr"
 	case "Boolean":
-		return "*Bool"
+		return "*BoolExpr"
 	case "Integer":
-		return "*Integer"
+		return "*IntegerExpr"
 	case "Number":
-		return "*Integer"
+		return "*IntegerExpr"
 	case "Time stamp":
 		return "time.Time"
 	}
 
 	if strings.HasPrefix(p.Type, "Number") {
-		return "Integer"
+		return "*IntegerExpr"
 	}
 	if strings.HasPrefix(p.Type, "String") {
-		return "*StringExpression"
+		return "*StringExpr"
 	}
 
 	return "interface{}"
