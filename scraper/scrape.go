@@ -1,3 +1,5 @@
+// This program scrapes the cloudformation documentation to determine the schema
+// and produces a go program to the file specified by the `-out` flag.
 package main
 
 import (
@@ -48,19 +50,55 @@ func (tr *TemplateReference) Load() error {
 }
 
 func (tr *TemplateReference) WriteGo(w io.Writer) {
-	fmt.Fprintf(w, "//go:generate go run ./scraper/scrape.go -format=go -out=schema.go\n")
-	fmt.Fprintf(w, "\n")
 	fmt.Fprintf(w, "package cloudformation\n")
 	fmt.Fprintf(w, "\n")
 	fmt.Fprintf(w, "import \"time\"\n")
+	fmt.Fprintf(w, "import \"encoding/json\"\n")
 	for _, resource := range tr.Resources {
 		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "type %s struct {\n", resource.GoName())
 		for _, p := range resource.Properties {
-			fmt.Fprintf(w, "  %s %s `json:\"%s\"`\n", p.GoName(), p.GoType(tr), p.Name)
+			omitempty := ",omitempty"
+			if strings.HasPrefix(p.GoType(tr), "map[") {
+				omitempty = ""
+			}
+			fmt.Fprintf(w, "  %s %s `json:\"%s%s\"`  // %s\n", p.GoName(), p.GoType(tr), p.Name, omitempty, p.Type)
 		}
 		fmt.Fprintf(w, "}\n")
+		fmt.Fprintf(w, "\n")
+		fmt.Fprintf(w, "type %sList []%s\n", resource.GoName(), resource.GoName())
+		fmt.Fprintf(w, "\n")
+		fmt.Fprintf(w, "func (l *%sList) UnmarshalJSON(buf []byte) error {\n", resource.GoName())
+		fmt.Fprintf(w, "	// Cloudformation allows a single object when a list of objects is expected\n")
+		fmt.Fprintf(w, "	item := %s{}\n", resource.GoName())
+		fmt.Fprintf(w, "	if err := json.Unmarshal(buf, &item); err == nil {\n")
+		fmt.Fprintf(w, "		*l = %sList{item}\n", resource.GoName())
+		fmt.Fprintf(w, "		return nil\n")
+		fmt.Fprintf(w, "	}\n")
+		fmt.Fprintf(w, "	list := []%s{}\n", resource.GoName())
+		fmt.Fprintf(w, "	err := json.Unmarshal(buf, &list)\n")
+		fmt.Fprintf(w, "	if err == nil {\n")
+		fmt.Fprintf(w, "		*l = %sList(list)\n", resource.GoName())
+		fmt.Fprintf(w, "		return nil\n")
+		fmt.Fprintf(w, "	}\n")
+		fmt.Fprintf(w, "	return err\n")
+		fmt.Fprintf(w, "}\n")
+		fmt.Fprintf(w, "\n")
 	}
+
+	fmt.Fprintf(w, "func NewResourceByType(typeName string) interface{} {\n")
+	fmt.Fprintf(w, "	switch typeName {\n")
+
+	for _, resource := range tr.Resources {
+		if !strings.HasPrefix(resource.Name, "AWS::") {
+			continue
+		}
+		fmt.Fprintf(w, "		case %q:\n", resource.Name)
+		fmt.Fprintf(w, "			return &%s{}\n", resource.GoName())
+	}
+	fmt.Fprintf(w, "	}\n")
+	fmt.Fprintf(w, "	return nil\n")
+	fmt.Fprintf(w, "}\n")
 }
 
 type Resource struct {
@@ -83,8 +121,7 @@ func (r *Resource) Load() error {
 	// An element with the class 'variablelist' immediately preceeded by an
 	// element with the text "Properties" is what we're looking for.
 	doc.Find(".variablelist").Each(func(i int, varList *goquery.Selection) {
-		if varList.Prev().Text() != "Properties" {
-			fmt.Fprintf(os.Stderr, "%s: ignoring variablelist %q\n", r.Name, varList.Prev().Text())
+		if varList.Parent().Find(".titlepage").First().Text() != "Properties" {
 			return
 		}
 
@@ -134,6 +171,10 @@ func (r *Resource) GoName() string {
 	rv = regexp.MustCompile("\\W").ReplaceAllString(rv, "")
 	rv = strings.TrimSuffix(rv, "PropertyType")
 	rv = strings.TrimSuffix(rv, "Type")
+
+	if rv == "AWSCloudFormationResourceTags" {
+		rv = "ResourceTag"
+	}
 	return rv
 }
 
@@ -185,7 +226,7 @@ func (p *Property) GoType(tr *TemplateReference) string {
 	if p.TypeHref != "" {
 		for _, res := range tr.Resources {
 			if res.Href == p.TypeHref {
-				p.TypeName = res.GoName()
+				p.TypeName = "*" + res.GoName()
 			}
 		}
 		if p.TypeName == "" {
@@ -196,33 +237,47 @@ func (p *Property) GoType(tr *TemplateReference) string {
 		if strings.HasPrefix(p.Type, "A list of") ||
 			strings.HasPrefix(p.Type, "List of") ||
 			strings.HasPrefix(p.Type, "list of") {
-			return "[]" + p.TypeName
+			return p.TypeName + "List"
 		}
+		// In various places the documentation omit the "list of"
+		// when describing types, but include the phrase "list" in the
+		// docstring. For example SecurityGroupEgress and SecurityGroupIngress in
+		// AWS::EC2::SecurityGroup as "EC2 Security Group Rule" when
+		// it should be "list of EC2 Security Group Rule"
+		// c.f. http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress
+		if strings.HasPrefix(p.DocString, "A list") {
+			return p.TypeName + "List"
+		}
+
+		if p.Type == "AWS CloudFormation Resource Tags" {
+			return "[]ResourceTag"
+		}
+
 		return p.TypeName
 	}
 
 	switch p.Type {
 	case "String":
-		return "string"
+		return "*StringExpression"
 	case "List of strings":
-		return "[]string"
+		return "*StringListExpression"
 	case "String list":
-		return "[]string"
+		return "*StringListExpression"
 	case "Boolean":
-		return "bool"
+		return "*Bool"
 	case "Integer":
-		return "int"
+		return "*Integer"
 	case "Number":
-		return "int"
+		return "*Integer"
 	case "Time stamp":
 		return "time.Time"
 	}
 
 	if strings.HasPrefix(p.Type, "Number") {
-		return "int"
+		return "Integer"
 	}
 	if strings.HasPrefix(p.Type, "String") {
-		return "string"
+		return "*StringExpression"
 	}
 
 	return "interface{}"
