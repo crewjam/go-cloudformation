@@ -543,6 +543,82 @@ func (s CloudWatchAlarm) ResourceType() string {
 	return "AWS::CloudWatch::Alarm"
 }
 
+// CodeDeployApplication represents AWS::CodeDeploy::Application
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html
+type CodeDeployApplication struct {
+}
+
+// ResourceType returns AWS::CodeDeploy::Application to implement the ResourceProperties interface
+func (s CodeDeployApplication) ResourceType() string {
+	return "AWS::CodeDeploy::Application"
+}
+
+// CodeDeployDeploymentConfig represents AWS::CodeDeploy::DeploymentConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html
+type CodeDeployDeploymentConfig struct {
+	// The minimum number of healthy instances that must be available at any
+	// time during an AWS CodeDeploy deployment. For example, for a fleet of
+	// nine instances, if you specify a minimum of six healthy instances, AWS
+	// CodeDeploy deploys your application up to three instances at a time so
+	// that you always have six healthy instances. The deployment succeeds if
+	// your application successfully deploys to six or more instances;
+	// otherwise, the deployment fails.
+	MinimumHealthyHosts *CodeDeployDeploymentConfigMinimumHealthyHosts `json:"MinimumHealthyHosts,omitempty"`
+}
+
+// ResourceType returns AWS::CodeDeploy::DeploymentConfig to implement the ResourceProperties interface
+func (s CodeDeployDeploymentConfig) ResourceType() string {
+	return "AWS::CodeDeploy::DeploymentConfig"
+}
+
+// CodeDeployDeploymentGroup represents AWS::CodeDeploy::DeploymentGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html
+type CodeDeployDeploymentGroup struct {
+	// The name of an AWS CodeDeploy application for this deployment group.
+	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
+
+	// A list of associated Auto Scaling groups that AWS CodeDeploy
+	// automatically deploys revisions to when new instances are created.
+	AutoScalingGroups *StringListExpr `json:"AutoScalingGroups,omitempty"`
+
+	// The application revision that will be deployed to this deployment
+	// group.
+	Deployment *CodeDeployDeploymentGroupDeployment `json:"Deployment,omitempty"`
+
+	// A deployment configuration name or a predefined configuration name.
+	// With predefined configurations, you can deploy application revisions
+	// to one instance at a time, half of the instances at a time, or all the
+	// instances at once. For more information and valid values, see the
+	// DeploymentConfigName parameter for the CreateDeploymentGroup action in
+	// the AWS CodeDeploy API Reference.
+	DeploymentConfigName *StringExpr `json:"DeploymentConfigName,omitempty"`
+
+	// The Amazon EC2 tags to filter on. AWS CodeDeploy includes all
+	// instances that match the tag filter with this deployment group.
+	Ec2TagFilters *CodeDeployDeploymentGroupEc2TagFilters `json:"Ec2TagFilters,omitempty"`
+
+	// The on-premises instance tags to filter on. AWS CodeDeploy includes
+	// all on-premises instances that match the tag filter with this
+	// deployment group. To register on-premises instances with AWS
+	// CodeDeploy, see Configure Existing On-Premises Instances by Using AWS
+	// CodeDeploy in the AWS CodeDeploy User Guide.
+	OnPremisesInstanceTagFilters *CodeDeployDeploymentGroupOnPremisesInstanceTagFilters `json:"OnPremisesInstanceTagFilters,omitempty"`
+
+	// A service role Amazon Resource Name (ARN) that grants AWS CodeDeploy
+	// permission to make calls to AWS services on your behalf. For more
+	// information, see Create a Service Role for AWS CodeDeploy in the AWS
+	// CodeDeploy User Guide.
+	ServiceRoleArn *StringExpr `json:"ServiceRoleArn,omitempty"`
+}
+
+// ResourceType returns AWS::CodeDeploy::DeploymentGroup to implement the ResourceProperties interface
+func (s CodeDeployDeploymentGroup) ResourceType() string {
+	return "AWS::CodeDeploy::DeploymentGroup"
+}
+
 // DataPipelinePipeline represents AWS::DataPipeline::Pipeline
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html
@@ -586,6 +662,48 @@ type DataPipelinePipeline struct {
 // ResourceType returns AWS::DataPipeline::Pipeline to implement the ResourceProperties interface
 func (s DataPipelinePipeline) ResourceType() string {
 	return "AWS::DataPipeline::Pipeline"
+}
+
+// DirectoryServiceSimpleAD represents AWS::DirectoryService::SimpleAD
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html
+type DirectoryServiceSimpleAD struct {
+	// Creates an alias for a directory and assigns the alias to the
+	// directory. AWS Directory Service uses the alias to construct the
+	// access URL for the directory, such as http://alias.awsapps.com. By
+	// default, AWS CloudFormation does not create an alias.
+	CreateAlias *BoolExpr `json:"CreateAlias,omitempty"`
+
+	// A description of the directory.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Whether to enable single-sign on for a directory. If you don't specify
+	// a value, AWS CloudFormation specifies disable single sign on by
+	// default.
+	EnableSso *BoolExpr `json:"EnableSso,omitempty"`
+
+	// The fully qualified name for the directory, such as corp.example.com.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The password for the directory administrator. AWS Directory Service
+	// creates a directory administrator account with the user name
+	// Administrator and this password.
+	Password *StringExpr `json:"Password,omitempty"`
+
+	// The short name of the directory, such as CORP.
+	ShortName *StringExpr `json:"ShortName,omitempty"`
+
+	// The size of the directory. For valid values, see CreateDirectory in
+	// the AWS Directory Service Developer Guide.
+	Size *StringExpr `json:"Size,omitempty"`
+
+	// Specifies the VPC settings of the directory server.
+	VpcSettings *DirectoryServiceSimpleADVpcSettings `json:"VpcSettings,omitempty"`
+}
+
+// ResourceType returns AWS::DirectoryService::SimpleAD to implement the ResourceProperties interface
+func (s DirectoryServiceSimpleAD) ResourceType() string {
+	return "AWS::DirectoryService::SimpleAD"
 }
 
 // DynamoDBTable represents AWS::DynamoDB::Table
@@ -839,6 +957,9 @@ type EC2Instance struct {
 
 	// The Amazon EBS volumes to attach to the instance.
 	Volumes *EC2MountPointList `json:"Volumes,omitempty"`
+
+	// Reserved.
+	AdditionalInfo *StringExpr `json:"AdditionalInfo,omitempty"`
 }
 
 // ResourceType returns AWS::EC2::Instance to implement the ResourceProperties interface
@@ -983,6 +1104,24 @@ type EC2NetworkInterfaceAttachment struct {
 // ResourceType returns AWS::EC2::NetworkInterfaceAttachment to implement the ResourceProperties interface
 func (s EC2NetworkInterfaceAttachment) ResourceType() string {
 	return "AWS::EC2::NetworkInterfaceAttachment"
+}
+
+// EC2PlacementGroup represents AWS::EC2::PlacementGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html
+type EC2PlacementGroup struct {
+	// The placement strategy, which relates to the instance types that can
+	// be added to the placement group. For example, for the cluster
+	// strategy, you can cluster C4 instance types but not T2 instance types.
+	// For valid values, see CreatePlacementGroup in the Amazon EC2 API
+	// Reference. By default, AWS CloudFormation sets the value of this
+	// property to cluster.
+	Strategy *StringExpr `json:"Strategy,omitempty"`
+}
+
+// ResourceType returns AWS::EC2::PlacementGroup to implement the ResourceProperties interface
+func (s EC2PlacementGroup) ResourceType() string {
+	return "AWS::EC2::PlacementGroup"
 }
 
 // EC2Route represents AWS::EC2::Route
@@ -1143,6 +1282,19 @@ func (s EC2SecurityGroupIngress) ResourceType() string {
 	return "AWS::EC2::SecurityGroupIngress"
 }
 
+// EC2SpotFleet represents AWS::EC2::SpotFleet
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html
+type EC2SpotFleet struct {
+	// The configuration for a Spot fleet request.
+	SpotFleetRequestConfigData *ElasticComputeCloudSpotFleetSpotFleetRequestConfigData `json:"SpotFleetRequestConfigData,omitempty"`
+}
+
+// ResourceType returns AWS::EC2::SpotFleet to implement the ResourceProperties interface
+func (s EC2SpotFleet) ResourceType() string {
+	return "AWS::EC2::SpotFleet"
+}
+
 // EC2Subnet represents AWS::EC2::Subnet
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
@@ -1212,6 +1364,16 @@ func (s EC2SubnetRouteTableAssociation) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html
 type EC2Volume struct {
+	// Indicates whether the volume is auto-enabled for I/O operations. By
+	// default, Amazon EBS disables I/O to the volume from attached EC2
+	// instances when it determines that a volume's data is potentially
+	// inconsistent. If the consistency of the volume is not a concern, and
+	// you prefer that the volume be made available immediately if it's
+	// impaired, you can configure the volume to automatically enable I/O.
+	// For more information, see Working with the AutoEnableIO Volume
+	// Attribute in the Amazon EC2 User Guide for Linux Instances.
+	AutoEnableIO *BoolExpr `json:"AutoEnableIO,omitempty"`
+
 	// The Availability Zone in which to create the new volume.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 
@@ -1236,8 +1398,9 @@ type EC2Volume struct {
 	// default master key is used.
 	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
 
-	// The size of the volume, in gibibytes (GiBs). This can be any value
-	// from 10–1024.
+	// The size of the volume, in gibibytes (GiBs). For more information
+	// about the valid sizes for each volume type, see the CreateVolume Size
+	// parameter in the Amazon EC2 API Reference.
 	Size *StringExpr `json:"Size,omitempty"`
 
 	// The snapshot from which to create the new volume.
@@ -1329,6 +1492,33 @@ type EC2VPCDHCPOptionsAssociation struct {
 // ResourceType returns AWS::EC2::VPCDHCPOptionsAssociation to implement the ResourceProperties interface
 func (s EC2VPCDHCPOptionsAssociation) ResourceType() string {
 	return "AWS::EC2::VPCDHCPOptionsAssociation"
+}
+
+// EC2VPCEndpoint represents AWS::EC2::VPCEndpoint
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html
+type EC2VPCEndpoint struct {
+	// A policy to attach to the endpoint that controls access to the
+	// service. The policy must be valid JSON. The default policy allows full
+	// access to the AWS service. For more information, see Controlling
+	// Access to Services in the Amazon VPC User Guide.
+	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
+
+	// One or more route table IDs that are used by the VPC to reach the
+	// endpoint.
+	RouteTableIds *StringListExpr `json:"RouteTableIds,omitempty"`
+
+	// The AWS service to which you want to establish a connection. Specify
+	// the service name in the form of com.amazonaws.region.service.
+	ServiceName *StringExpr `json:"ServiceName,omitempty"`
+
+	// The ID of the VPC in which the endpoint is used.
+	VpcId *StringExpr `json:"VpcId,omitempty"`
+}
+
+// ResourceType returns AWS::EC2::VPCEndpoint to implement the ResourceProperties interface
+func (s EC2VPCEndpoint) ResourceType() string {
+	return "AWS::EC2::VPCEndpoint"
 }
 
 // EC2VPCGatewayAttachment represents AWS::EC2::VPCGatewayAttachment
@@ -1511,6 +1701,48 @@ func (s ECSTaskDefinition) ResourceType() string {
 	return "AWS::ECS::TaskDefinition"
 }
 
+// EFSFileSystem represents AWS::EFS::FileSystem
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html
+type EFSFileSystem struct {
+	// Tags to associate with the file system.
+	FileSystemTags *ElasticFileSystemFileSystemFileSystemTags `json:"FileSystemTags,omitempty"`
+}
+
+// ResourceType returns AWS::EFS::FileSystem to implement the ResourceProperties interface
+func (s EFSFileSystem) ResourceType() string {
+	return "AWS::EFS::FileSystem"
+}
+
+// EFSMountTarget represents AWS::EFS::MountTarget
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html
+type EFSMountTarget struct {
+	// The ID of the file system for which you want to create the mount
+	// target.
+	FileSystemId *StringExpr `json:"FileSystemId,omitempty"`
+
+	// An IPv4 address that is within the address range of the subnet that is
+	// specified in the SubnetId property. If you don't specify an IP
+	// address, Amazon EFS automatically assigns an address that is within
+	// the range of the subnet.
+	IpAddress *StringExpr `json:"IpAddress,omitempty"`
+
+	// A maximum of five VPC security group IDs that are in the same VPC as
+	// the subnet that is specified in the SubnetId property. For more
+	// information about security groups and mount targets, see Security in
+	// the Amazon Elastic File System User Guide.
+	SecurityGroups *StringListExpr `json:"SecurityGroups,omitempty"`
+
+	// The ID of the subnet in which you want to add the mount target.
+	SubnetId *StringExpr `json:"SubnetId,omitempty"`
+}
+
+// ResourceType returns AWS::EFS::MountTarget to implement the ResourceProperties interface
+func (s EFSMountTarget) ResourceType() string {
+	return "AWS::EFS::MountTarget"
+}
+
 // ElastiCacheCacheCluster represents AWS::ElastiCache::CacheCluster
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html
@@ -1521,7 +1753,8 @@ type ElastiCacheCacheCluster struct {
 
 	// For Memcached cache clusters, indicates whether the nodes are created
 	// in a single Availability Zone or across multiple Availability Zones in
-	// the cluster's region.
+	// the cluster's region. For valid values, see CreateCacheCluster in the
+	// Amazon ElastiCache API Reference.
 	AZMode *StringExpr `json:"AZMode,omitempty"`
 
 	// The compute and memory capacity of nodes in a cache cluster.
@@ -1838,6 +2071,9 @@ type ElasticBeanstalkEnvironment struct {
 	// this parameter or an Elastic Beanstalk configuration template name.
 	SolutionStackName *StringExpr `json:"SolutionStackName,omitempty"`
 
+	// An arbitrary set of tags (key–value pairs) for this environment.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
 	// The name of the Elastic Beanstalk configuration template to use with
 	// the environment. You must specify either this parameter or a solution
 	// stack name.
@@ -1929,8 +2165,9 @@ type ElasticLoadBalancingLoadBalancer struct {
 	SecurityGroups interface{} `json:"SecurityGroups,omitempty"`
 
 	// A list of subnet IDs in your virtual private cloud (VPC) to attach to
-	// your load balancer. You can specify the AvailabilityZones or Subnets
-	// property, but not both.
+	// your load balancer. Do not specify multiple subnets that are in the
+	// same Availability Zone. You can specify the AvailabilityZones or
+	// Subnets property, but not both.
 	Subnets *StringListExpr `json:"Subnets,omitempty"`
 
 	// An arbitrary set of tags (key-value pairs) for this load balancer.
@@ -2015,10 +2252,12 @@ type IAMManagedPolicy struct {
 	Groups *StringListExpr `json:"Groups,omitempty"`
 
 	// The path for the policy. By default, the path is /. For more
-	// information, see IAM Identifiers in the Using IAM guide.
+	// information, see IAM Identifiers in the IAM User Guide guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
-	// Policies that define the permissions for this managed policy.
+	// Policies that define the permissions for this managed policy. For more
+	// information about policy syntax, see IAM Policy Elements Reference in
+	// IAM User Guide.
 	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
 
 	// The names of roles to attach to this policy.
@@ -2044,7 +2283,9 @@ type IAMPolicy struct {
 	// users or groups.
 	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
 
-	// The name of the policy.
+	// The name of the policy. If you specify multiple policies for an
+	// entity, specify unique names. For example, if you specify a list of
+	// policies for an IAM role, each policy must have a unique name.
 	PolicyName *StringExpr `json:"PolicyName,omitempty"`
 
 	// The names of AWS::IAM::Roles to attach to this policy.
@@ -2070,7 +2311,7 @@ type IAMRole struct {
 	ManagedPolicyArns *StringListExpr `json:"ManagedPolicyArns,omitempty"`
 
 	// The path associated with this role. For information about IAM paths,
-	// see Friendly Names and Paths in Using IAM.
+	// see Friendly Names and Paths in IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
 	// The policies to associate with this role. Policies can also be
@@ -2143,36 +2384,71 @@ func (s KinesisStream) ResourceType() string {
 	return "AWS::Kinesis::Stream"
 }
 
+// LambdaEventSourceMapping represents AWS::Lambda::EventSourceMapping
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html
+type LambdaEventSourceMapping struct {
+	// The largest number of records that Lambda retrieves from your event
+	// source when invoking your function. Your function receives an event
+	// with all the retrieved records. For the default and valid values, see
+	// CreateEventSourceMapping in the AWS Lambda Developer Guide.
+	BatchSize *IntegerExpr `json:"BatchSize,omitempty"`
+
+	// Indicates whether Lambda begins polling the event source.
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB
+	// stream that is the source of events. Any record added to this stream
+	// can invoke the Lambda function. For more information, see
+	// CreateEventSourceMapping in the AWS Lambda Developer Guide.
+	EventSourceArn *StringExpr `json:"EventSourceArn,omitempty"`
+
+	// The name or ARN of a Lambda function to invoke when Lambda detects an
+	// event on the stream.
+	FunctionName *StringExpr `json:"FunctionName,omitempty"`
+
+	// The position in the stream where Lambda starts reading. For valid
+	// values, see CreateEventSourceMapping in the AWS Lambda Developer
+	// Guide.
+	StartingPosition *StringExpr `json:"StartingPosition,omitempty"`
+}
+
+// ResourceType returns AWS::Lambda::EventSourceMapping to implement the ResourceProperties interface
+func (s LambdaEventSourceMapping) ResourceType() string {
+	return "AWS::Lambda::EventSourceMapping"
+}
+
 // LambdaFunction represents AWS::Lambda::Function
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
 type LambdaFunction struct {
-	// The source code of your Lambda function.
+	// The source code of your Lambda function. You can point to a file in an
+	// Amazon Simple Storage Service (Amazon S3) bucket or specify your
+	// source code as inline text.
 	Code *LambdaFunctionCode `json:"Code,omitempty"`
 
 	// A description of the function.
 	Description *StringExpr `json:"Description,omitempty"`
 
-	// The name of the function within your code that Lambda calls to start
-	// running the code.
+	// The name of the function (within your source code) that Lambda calls
+	// to start running your code. For more information, see the Handler
+	// property in the AWS Lambda Developer Guide.
 	Handler *StringExpr `json:"Handler,omitempty"`
 
 	// The amount of memory, in MB, that is allocated to your Lambda
-	// function. Lambda uses this value to infer the amount of CPU and memory
-	// that is allocated to your function. Your function use case determines
-	// your CPU and memory requirements. For example, a database operation
-	// might need less memory than an image processing function. The default
-	// value is 128 MB, and you must specify a value that is greater than or
-	// equal to 128.
+	// function. Lambda uses this value to proportionally allocate the amount
+	// of CPU power. For more information, see Resource Model in the AWS
+	// Lambda Developer Guide.
 	MemorySize *IntegerExpr `json:"MemorySize,omitempty"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access
-	// Management (IAM) role that Lambda assumes when it runs your code to
-	// access AWS.
+	// Management (IAM) execution role that Lambda assumes when it runs your
+	// code to access AWS services.
 	Role *StringExpr `json:"Role,omitempty"`
 
 	// The runtime environment for the Lambda function that you are
-	// uploading. Currently, Lambda supports only nodejs.
+	// uploading. For valid values, see the Runtime property in the AWS
+	// Lambda Developer Guide.
 	Runtime *StringExpr `json:"Runtime,omitempty"`
 
 	// The function execution time (in seconds) after which Lambda terminates
@@ -2185,6 +2461,50 @@ type LambdaFunction struct {
 // ResourceType returns AWS::Lambda::Function to implement the ResourceProperties interface
 func (s LambdaFunction) ResourceType() string {
 	return "AWS::Lambda::Function"
+}
+
+// LambdaPermission represents AWS::Lambda::Permission
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html
+type LambdaPermission struct {
+	// The Lambda actions that you want to allow in this statement. For
+	// example, you can specify lambda:CreateFunction to specify a certain
+	// action, or use a wildcard (lambda:*) to grant permission to all Lambda
+	// actions. For a list of actions, see Actions in the AWS Lambda
+	// Developer Guide.
+	Action *StringExpr `json:"Action,omitempty"`
+
+	// The name (physical ID) or Amazon Resource Name (ARN) of the Lambda
+	// function that you want to associate with this statement. Lambda adds
+	// this statement to the function's access policy.
+	FunctionName *StringExpr `json:"FunctionName,omitempty"`
+
+	// The entity for which you are granting permission to invoke the Lambda
+	// function. This entity can be any valid AWS service principal, such as
+	// s3.amazonaws.com or sns.amazonaws.com, or, if you are granting
+	// cross-account permission, an AWS account ID. For example, you might
+	// want to allow a custom application in another AWS account to push
+	// events to Lambda by invoking your function.
+	Principal *StringExpr `json:"Principal,omitempty"`
+
+	// The AWS account ID (without hyphens) of the source owner. For example,
+	// if you specify an S3 bucket in the SourceArn property, this value is
+	// the bucket owner's account ID. You can use this property to ensure
+	// that all source principals are owned by a specific account.
+	SourceAccount *StringExpr `json:"SourceAccount,omitempty"`
+
+	// The ARN of a resource that is invoking your function. When granting
+	// Amazon Simple Storage Service (Amazon S3) permission to invoke your
+	// function, specify this property with the bucket ARN as its value. This
+	// ensures that events generated only from the specified bucket, not just
+	// any bucket from any AWS account that creates a mapping to your
+	// function, can invoke the function.
+	SourceArn *StringExpr `json:"SourceArn,omitempty"`
+}
+
+// ResourceType returns AWS::Lambda::Permission to implement the ResourceProperties interface
+func (s LambdaPermission) ResourceType() string {
+	return "AWS::Lambda::Permission"
 }
 
 // LogsLogGroup represents AWS::Logs::LogGroup
@@ -2229,6 +2549,36 @@ func (s LogsMetricFilter) ResourceType() string {
 	return "AWS::Logs::MetricFilter"
 }
 
+// LogsSubscriptionFilter represents AWS::Logs::SubscriptionFilter
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
+type LogsSubscriptionFilter struct {
+	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream that you
+	// want to use as the subscription feed destination.
+	DestinationArn *StringExpr `json:"DestinationArn,omitempty"`
+
+	// The filtering expressions that restrict what gets delivered to the
+	// destination Amazon Kinesis stream. For more information about the
+	// filter pattern syntax, see Filter and Pattern Syntax in the Amazon
+	// CloudWatch Developer Guide.
+	FilterPattern *StringExpr `json:"FilterPattern,omitempty"`
+
+	// The log group to associate with the subscription filter. All log
+	// events that are uploaded to this log group are filtered and delivered
+	// to the specified Amazon Kinesis stream if the filter pattern matches
+	// the log events.
+	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
+
+	// An IAM role that grants CloudWatch Logs permission to put data into
+	// the specified Amazon Kinesis stream.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+}
+
+// ResourceType returns AWS::Logs::SubscriptionFilter to implement the ResourceProperties interface
+func (s LogsSubscriptionFilter) ResourceType() string {
+	return "AWS::Logs::SubscriptionFilter"
+}
+
 // OpsWorksApp represents AWS::OpsWorks::App
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html
@@ -2250,6 +2600,9 @@ type OpsWorksApp struct {
 
 	// Whether to enable SSL for this app.
 	EnableSsl *BoolExpr `json:"EnableSsl,omitempty"`
+
+	// The environment variables to associate with the AWS OpsWorks app.
+	Environment *OpsWorksAppEnvironmentList `json:"Environment,omitempty"`
 
 	// The AWS OpsWorks app name.
 	Name *StringExpr `json:"Name,omitempty"`
@@ -2296,8 +2649,9 @@ func (s OpsWorksElasticLoadBalancerAttachment) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html
 type OpsWorksInstance struct {
-	// The ID of the custom AMI to be used to create the instance. The AMI
-	// should be based on one of the standard AWS OpsWorks APIs.
+	// The ID of the custom Amazon Machine Image (AMI) to be used to create
+	// the instance. The AMI should be based on one of the standard AWS
+	// OpsWorks APIs.
 	AmiId *StringExpr `json:"AmiId,omitempty"`
 
 	// The instance architecture.
@@ -2311,6 +2665,13 @@ type OpsWorksInstance struct {
 	// The instance Availability Zone.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 
+	// Whether the instance is optimized for Amazon Elastic Block Store
+	// (Amazon EBS) I/O. If you specify an Amazon EBS-optimized instance
+	// type, AWS OpsWorks enables EBS optimization by default. For more
+	// information, see Amazon EBS–Optimized Instances in the Amazon EC2
+	// User Guide for Linux Instances.
+	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
+
 	// Whether to install operating system and package updates when the
 	// instance boots.
 	InstallUpdatesOnBoot *BoolExpr `json:"InstallUpdatesOnBoot,omitempty"`
@@ -2319,18 +2680,17 @@ type OpsWorksInstance struct {
 	// information, see CreateInstance in the AWS OpsWorks API Reference.
 	InstanceType *StringExpr `json:"InstanceType,omitempty"`
 
-	// The IDs of the AWS OpsWorks layers that will be associated with this
-	// instance.
+	// The IDs of the AWS OpsWorks layers to associate with this instance.
 	LayerIds *StringListExpr `json:"LayerIds,omitempty"`
 
 	// The instance operating system. For more information, see
 	// CreateInstance in the AWS OpsWorks API Reference.
 	Os *StringExpr `json:"Os,omitempty"`
 
-	// The instance root device type.
+	// The root device type of the instance.
 	RootDeviceType *StringExpr `json:"RootDeviceType,omitempty"`
 
-	// The instance SSH key name.
+	// The SSH key name of the instance.
 	SshKeyName *StringExpr `json:"SshKeyName,omitempty"`
 
 	// The ID of the AWS OpsWorks stack that this instance will be associated
@@ -2408,7 +2768,8 @@ type OpsWorksLayer struct {
 	StackId *StringExpr `json:"StackId,omitempty"`
 
 	// The layer type. A stack cannot have more than one layer of the same
-	// type. For more information, see CreateLayer in the AWS OpsWorks API
+	// type, except for the custom type. You can have any number of custom
+	// types. For more information, see CreateLayer in the AWS OpsWorks API
 	// Reference.
 	Type *StringExpr `json:"Type,omitempty"`
 
@@ -2425,6 +2786,13 @@ func (s OpsWorksLayer) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html
 type OpsWorksStack struct {
+	// The AWS OpsWorks agent version that you want to use. The agent
+	// communicates with the service and handles tasks such as initiating
+	// Chef runs in response to lifecycle events. For valid values, see the
+	// AgentVersion parameter for the CreateStack action in the AWS OpsWorks
+	// API Reference.
+	AgentVersion *StringExpr `json:"AgentVersion,omitempty"`
+
 	// One or more user-defined key-value pairs to be added to the stack
 	// attributes bag.
 	Attributes interface{} `json:"Attributes,omitempty"`
@@ -2506,6 +2874,412 @@ type OpsWorksStack struct {
 // ResourceType returns AWS::OpsWorks::Stack to implement the ResourceProperties interface
 func (s OpsWorksStack) ResourceType() string {
 	return "AWS::OpsWorks::Stack"
+}
+
+// RDSDBCluster represents AWS::RDS::DBCluster
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html
+type RDSDBCluster struct {
+	// A list of Availability Zones (AZs) in which DB instances in the
+	// cluster can be created.
+	AvailabilityZones *StringExpr `json:"AvailabilityZones,omitempty"`
+
+	// The number of days for which automatic backups are retained. For more
+	// information, see CreateDBCluster in the Amazon Relational Database
+	// Service API Reference.
+	BackupRetentionPeriod *IntegerExpr `json:"BackupRetentionPeriod,omitempty"`
+
+	// The name of your database. You can specify a name of up to eight
+	// alpha-numeric characters. If you do not provide a name, Amazon
+	// Relational Database Service (Amazon RDS) won't create a database in
+	// this DB cluster.
+	DatabaseName *StringExpr `json:"DatabaseName,omitempty"`
+
+	// The name of the DB cluster parameter group to associate with this DB
+	// cluster. For the default value, see the DBClusterParameterGroupName
+	// parameter of the CreateDBCluster action in the Amazon Relational
+	// Database Service API Reference.
+	DBClusterParameterGroupName *StringExpr `json:"DBClusterParameterGroupName,omitempty"`
+
+	// A DB subnet group that you want to associate with this DB cluster.
+	DBSubnetGroupName *StringExpr `json:"DBSubnetGroupName,omitempty"`
+
+	// The name of the database engine that you want to use for this DB
+	// cluster.
+	Engine *StringExpr `json:"Engine,omitempty"`
+
+	// The version number of the database engine that you want to use.
+	EngineVersion *StringExpr `json:"EngineVersion,omitempty"`
+
+	// The master user name for the DB instance.
+	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
+
+	// The password for the master database user.
+	MasterUserPassword *StringExpr `json:"MasterUserPassword,omitempty"`
+
+	// The port number on which the DB instances in the cluster can accept
+	// connections.
+	Port *IntegerExpr `json:"Port,omitempty"`
+
+	// if automated backups are enabled (see the BackupRetentionPeriod
+	// property), the daily time range in UTC during which you want to create
+	// automated backups.
+	PreferredBackupWindow *StringExpr `json:"PreferredBackupWindow,omitempty"`
+
+	// The weekly time range (in UTC) during which system maintenance can
+	// occur.
+	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
+
+	// The identifier for the DB cluster snapshot from which you want to
+	// restore.
+	SnapshotIdentifier *StringExpr `json:"SnapshotIdentifier,omitempty"`
+
+	// The tags that you want to attach to this DB cluster.
+	Tags *ResourceTagList `json:"Tags,omitempty"`
+
+	// A list of VPC security groups to associate with this DB cluster.
+	VpcSecurityGroupIds *StringListExpr `json:"VpcSecurityGroupIds,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBCluster to implement the ResourceProperties interface
+func (s RDSDBCluster) ResourceType() string {
+	return "AWS::RDS::DBCluster"
+}
+
+// RDSDBClusterParameterGroup represents AWS::RDS::DBClusterParameterGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html
+type RDSDBClusterParameterGroup struct {
+	// A friendly description for this DB cluster parameter group.
+	Description interface{} `json:"Description,omitempty"`
+
+	// The database family of this DB cluster parameter group, such as
+	// aurora5.6.
+	Family interface{} `json:"Family,omitempty"`
+
+	// The parameters to set for this DB cluster parameter group. For a list
+	// of parameter keys, see Appendix: DB Cluster and DB Instance Parameters
+	// in the Amazon Relational Database Service User Guide.
+	Parameters interface{} `json:"Parameters,omitempty"`
+
+	// The tags that you want to attach to this parameter group.
+	Tags *ResourceTagList `json:"Tags,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBClusterParameterGroup to implement the ResourceProperties interface
+func (s RDSDBClusterParameterGroup) ResourceType() string {
+	return "AWS::RDS::DBClusterParameterGroup"
+}
+
+// RDSDBInstance represents AWS::RDS::DBInstance
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
+type RDSDBInstance struct {
+	// The allocated storage size specified in gigabytes (GB).
+	AllocatedStorage *StringExpr `json:"AllocatedStorage,omitempty"`
+
+	// Indicates whether major version upgrades are allowed. Changing this
+	// parameter does not result in an outage, and the change is applied
+	// asynchronously as soon as possible.
+	AllowMajorVersionUpgrade *BoolExpr `json:"AllowMajorVersionUpgrade,omitempty"`
+
+	// Indicates that minor engine upgrades will be applied automatically to
+	// the DB instance during the maintenance window. The default value is
+	// true.
+	AutoMinorVersionUpgrade *BoolExpr `json:"AutoMinorVersionUpgrade,omitempty"`
+
+	// The name of the Availability Zone where the DB instance is located.
+	// You cannot set the AvailabilityZone parameter if the MultiAZ parameter
+	// is set to true.
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
+
+	// The number of days for which automatic DB snapshots are retained.
+	BackupRetentionPeriod *StringExpr `json:"BackupRetentionPeriod,omitempty"`
+
+	// For supported engines, specifies the character set to associate with
+	// the database instance. For more information, see Appendix: Oracle
+	// Character Sets Supported in Amazon RDS in the Amazon Relational
+	// Database Service User Guide.
+	CharacterSetName *StringExpr `json:"CharacterSetName,omitempty"`
+
+	// The identifier of an existing DB cluster that this instance will be
+	// associated with. If you specify this property, specify aurora for the
+	// Engine property and do not specify any of the following properties:
+	// AllocatedStorage, CharacterSetName, DBSecurityGroups,
+	// SourceDBInstanceIdentifier, and StorageType.
+	DBClusterIdentifier *StringExpr `json:"DBClusterIdentifier,omitempty"`
+
+	// The name of the compute and memory capacity class of the DB instance.
+	DBInstanceClass *StringExpr `json:"DBInstanceClass,omitempty"`
+
+	// A name for the DB instance. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// DB instance. For more information, see Name Type.
+	DBInstanceIdentifier *StringExpr `json:"DBInstanceIdentifier,omitempty"`
+
+	// The name of the initial database of this instance that was provided at
+	// create time, if one was specified. This same name is returned for the
+	// life of the DB instance.
+	DBName *StringExpr `json:"DBName,omitempty"`
+
+	// The name of an existing DB parameter group or a reference to an
+	// AWS::RDS::DBParameterGroup resource created in the template.
+	DBParameterGroupName *StringExpr `json:"DBParameterGroupName,omitempty"`
+
+	// A list of the DB security groups to assign to the Amazon RDS instance.
+	// The list can include both the name of existing DB security groups or
+	// references to AWS::RDS::DBSecurityGroup resources created in the
+	// template.
+	DBSecurityGroups *StringListExpr `json:"DBSecurityGroups,omitempty"`
+
+	// The identifier for the DB snapshot to restore from.
+	DBSnapshotIdentifier *StringExpr `json:"DBSnapshotIdentifier,omitempty"`
+
+	// A DB subnet group to associate with the DB instance.
+	DBSubnetGroupName *StringExpr `json:"DBSubnetGroupName,omitempty"`
+
+	// The name of the database engine that the DB instance uses. This
+	// property is optional when you specify the DBSnapshotIdentifier
+	// property to create DB instances.
+	Engine *StringExpr `json:"Engine,omitempty"`
+
+	// The version number of the database engine to use.
+	EngineVersion *StringExpr `json:"EngineVersion,omitempty"`
+
+	// The number of I/O operations per second (IOPS) that the database
+	// provisions. The value must be equal to or greater than 1000.
+	Iops *IntegerExpr `json:"Iops,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the AWS Key Management Service
+	// master key that is used to encrypt the database instance, such as
+	// arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// If you enable the StorageEncrypted property but don't specify this
+	// property, the default master key is used. If you specify this
+	// property, you must set the StorageEncrypted property to true.
+	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
+
+	// The license model information for the DB instance.
+	LicenseModel *StringExpr `json:"LicenseModel,omitempty"`
+
+	// The master user name for the database instance. This property is
+	// optional when you specify the DBSnapshotIdentifier or the
+	// DBClusterIdentifier property to create DB instances.
+	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
+
+	// The master password for the database instance. This property is
+	// optional when you specify the DBSnapshotIdentifier or the
+	// DBClusterIdentifier property to create DB instances.
+	MasterUserPassword *StringExpr `json:"MasterUserPassword,omitempty"`
+
+	// Specifies if the database instance is a multiple Availability Zone
+	// deployment. You cannot set the AvailabilityZone parameter if the
+	// MultiAZ parameter is set to true.
+	MultiAZ *BoolExpr `json:"MultiAZ,omitempty"`
+
+	// An option group that this database instance is associated with.
+	OptionGroupName *StringExpr `json:"OptionGroupName,omitempty"`
+
+	// The port for the instance.
+	Port *StringExpr `json:"Port,omitempty"`
+
+	// The daily time range during which automated backups are created if
+	// automated backups are enabled, as determined by the
+	// BackupRetentionPeriod.
+	PreferredBackupWindow *StringExpr `json:"PreferredBackupWindow,omitempty"`
+
+	// The weekly time range (in UTC) during which system maintenance can
+	// occur.
+	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
+
+	// Indicates whether the database instance is an Internet-facing
+	// instance. If you specify true, an instance is created with a publicly
+	// resolvable DNS name, which resolves to a public IP address. If you
+	// specify false, an internal instance is created with a DNS name that
+	// resolves to a private IP address.
+	PubliclyAccessible *BoolExpr `json:"PubliclyAccessible,omitempty"`
+
+	// If you want to create a read replica DB instance, specify the ID of
+	// the source database instance. Each database instance can have a
+	// certain number of read replicas. For more information, see Working
+	// with Read Replicas in the Amazon Relational Database Service Developer
+	// Guide.
+	SourceDBInstanceIdentifier *StringExpr `json:"SourceDBInstanceIdentifier,omitempty"`
+
+	// Indicates whether the database instance is encrypted.
+	StorageEncrypted *BoolExpr `json:"StorageEncrypted,omitempty"`
+
+	// The storage type associated with this database instance.
+	StorageType *StringExpr `json:"StorageType,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for this database
+	// instance.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
+	// A list of the VPC security groups to assign to the Amazon RDS
+	// instance. The list can include both the physical IDs of existing VPC
+	// security groups or references to AWS::EC2::SecurityGroup resources
+	// created in the template.
+	VPCSecurityGroups *StringListExpr `json:"VPCSecurityGroups,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBInstance to implement the ResourceProperties interface
+func (s RDSDBInstance) ResourceType() string {
+	return "AWS::RDS::DBInstance"
+}
+
+// RDSDBParameterGroup represents AWS::RDS::DBParameterGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html
+type RDSDBParameterGroup struct {
+	// A friendly description of the RDS parameter group. For example, "My
+	// Parameter Group".
+	Description interface{} `json:"Description,omitempty"`
+
+	// The database family of this RDS parameter group. For example,
+	// "MySQL5.1".
+	Family interface{} `json:"Family,omitempty"`
+
+	// The parameters to set for this RDS parameter group.
+	Parameters interface{} `json:"Parameters,omitempty"`
+
+	// The tags that you want to attach to the RDS parameter group.
+	Tags *ResourceTagList `json:"Tags,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBParameterGroup to implement the ResourceProperties interface
+func (s RDSDBParameterGroup) ResourceType() string {
+	return "AWS::RDS::DBParameterGroup"
+}
+
+// RDSDBSecurityGroup represents AWS::RDS::DBSecurityGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html
+type RDSDBSecurityGroup struct {
+	// The Id of VPC. Indicates which VPC this DB Security Group should
+	// belong to.
+	EC2VpcId *StringExpr `json:"EC2VpcId,omitempty"`
+
+	// Network ingress authorization for an Amazon EC2 security group or an
+	// IP address range.
+	DBSecurityGroupIngress *RDSSecurityGroupRuleList `json:"DBSecurityGroupIngress,omitempty"`
+
+	// Description of the security group.
+	GroupDescription *StringExpr `json:"GroupDescription,omitempty"`
+
+	// The tags that you want to attach to the Amazon RDS DB security group.
+	Tags *ResourceTagList `json:"Tags,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBSecurityGroup to implement the ResourceProperties interface
+func (s RDSDBSecurityGroup) ResourceType() string {
+	return "AWS::RDS::DBSecurityGroup"
+}
+
+// RDSDBSecurityGroupIngress represents AWS::RDS::DBSecurityGroupIngress
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html
+type RDSDBSecurityGroupIngress struct {
+	// The IP range to authorize.
+	CIDRIP *StringExpr `json:"CIDRIP,omitempty"`
+
+	// The name (ARN) of the AWS::RDS::DBSecurityGroup to which this ingress
+	// will be added.
+	DBSecurityGroupName *StringExpr `json:"DBSecurityGroupName,omitempty"`
+
+	// The ID of the VPC or EC2 security group to authorize.
+	EC2SecurityGroupId *StringExpr `json:"EC2SecurityGroupId,omitempty"`
+
+	// The name of the EC2 security group to authorize.
+	EC2SecurityGroupName *StringExpr `json:"EC2SecurityGroupName,omitempty"`
+
+	// The AWS Account Number of the owner of the EC2 security group
+	// specified in the EC2SecurityGroupName parameter. The AWS Access Key ID
+	// is not an acceptable value.
+	EC2SecurityGroupOwnerId *StringExpr `json:"EC2SecurityGroupOwnerId,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBSecurityGroupIngress to implement the ResourceProperties interface
+func (s RDSDBSecurityGroupIngress) ResourceType() string {
+	return "AWS::RDS::DBSecurityGroupIngress"
+}
+
+// RDSDBSubnetGroup represents AWS::RDS::DBSubnetGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html
+type RDSDBSubnetGroup struct {
+	// The description for the DB Subnet Group.
+	DBSubnetGroupDescription *StringExpr `json:"DBSubnetGroupDescription,omitempty"`
+
+	// The EC2 Subnet IDs for the DB Subnet Group.
+	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
+
+	// The tags that you want to attach to the RDS database subnet group.
+	Tags *ResourceTagList `json:"Tags,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::DBSubnetGroup to implement the ResourceProperties interface
+func (s RDSDBSubnetGroup) ResourceType() string {
+	return "AWS::RDS::DBSubnetGroup"
+}
+
+// RDSEventSubscription represents AWS::RDS::EventSubscription
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html
+type RDSEventSubscription struct {
+	// Indicates whether to activate the subscription. If you don't specify
+	// this property, AWS CloudFormation activates the subscription.
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+
+	// A list of event categories that you want to subscribe to for a given
+	// source type. If you don't specify this property, you are notified
+	// about all event categories.
+	EventCategories *StringListExpr `json:"EventCategories,omitempty"`
+
+	// The Amazon Resource Name (ARN) of an Amazon SNS topic that you want to
+	// send event notifications to.
+	SnsTopicArn *StringExpr `json:"SnsTopicArn,omitempty"`
+
+	// A list of identifiers for which Amazon RDS provides notification
+	// events.
+	SourceIds *StringListExpr `json:"SourceIds,omitempty"`
+
+	// The type of source for which Amazon RDS provides notification events.
+	// For example, if you want to be notified of events generated by a
+	// database instance, set this parameter to db-instance. If you don't
+	// specify a value, notifications are provided for all source types.
+	SourceType *StringExpr `json:"SourceType,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::EventSubscription to implement the ResourceProperties interface
+func (s RDSEventSubscription) ResourceType() string {
+	return "AWS::RDS::EventSubscription"
+}
+
+// RDSOptionGroup represents AWS::RDS::OptionGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html
+type RDSOptionGroup struct {
+	// The name of the database engine that this option group is associated
+	// with.
+	EngineName *StringExpr `json:"EngineName,omitempty"`
+
+	// The major version number of the database engine that this option group
+	// is associated with.
+	MajorEngineVersion *StringExpr `json:"MajorEngineVersion,omitempty"`
+
+	// A description of the option group.
+	OptionGroupDescription *StringExpr `json:"OptionGroupDescription,omitempty"`
+
+	// The configurations for this option group.
+	OptionConfigurations *RDSOptionGroupOptionConfigurations `json:"OptionConfigurations,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for this option group.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+}
+
+// ResourceType returns AWS::RDS::OptionGroup to implement the ResourceProperties interface
+func (s RDSOptionGroup) ResourceType() string {
+	return "AWS::RDS::OptionGroup"
 }
 
 // RedshiftCluster represents AWS::Redshift::Cluster
@@ -2692,310 +3466,6 @@ func (s RedshiftClusterSubnetGroup) ResourceType() string {
 	return "AWS::Redshift::ClusterSubnetGroup"
 }
 
-// RDSDBInstance represents AWS::RDS::DBInstance
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
-type RDSDBInstance struct {
-	// The allocated storage size specified in gigabytes (GB).
-	AllocatedStorage *StringExpr `json:"AllocatedStorage,omitempty"`
-
-	// Indicates whether major version upgrades are allowed. Changing this
-	// parameter does not result in an outage, and the change is applied
-	// asynchronously as soon as possible.
-	AllowMajorVersionUpgrade *BoolExpr `json:"AllowMajorVersionUpgrade,omitempty"`
-
-	// Indicates that minor engine upgrades will be applied automatically to
-	// the DB instance during the maintenance window. The default value is
-	// true.
-	AutoMinorVersionUpgrade *BoolExpr `json:"AutoMinorVersionUpgrade,omitempty"`
-
-	// The name of the Availability Zone where the DB instance is located.
-	// You cannot set the AvailabilityZone parameter if the MultiAZ parameter
-	// is set to true.
-	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
-
-	// The number of days for which automatic DB snapshots are retained.
-	BackupRetentionPeriod *StringExpr `json:"BackupRetentionPeriod,omitempty"`
-
-	// For supported engines, specifies the character set to associate with
-	// the database instance. For more information, see Appendix: Oracle
-	// Character Sets Supported in Amazon RDS in the Amazon Relational
-	// Database Service User Guide.
-	CharacterSetName *StringExpr `json:"CharacterSetName,omitempty"`
-
-	// The name of the compute and memory capacity class of the DB instance.
-	DBInstanceClass *StringExpr `json:"DBInstanceClass,omitempty"`
-
-	// A name for the DB instance. If you don't specify a name, AWS
-	// CloudFormation generates a unique physical ID and uses that ID for the
-	// DB instance. For more information, see Name Type.
-	DBInstanceIdentifier *StringExpr `json:"DBInstanceIdentifier,omitempty"`
-
-	// The name of the initial database of this instance that was provided at
-	// create time, if one was specified. This same name is returned for the
-	// life of the DB instance.
-	DBName *StringExpr `json:"DBName,omitempty"`
-
-	// The name of an existing DB parameter group or a reference to an
-	// AWS::RDS::DBParameterGroup resource created in the template.
-	DBParameterGroupName *StringExpr `json:"DBParameterGroupName,omitempty"`
-
-	// A list of the DB security groups to assign to the Amazon RDS instance.
-	// The list can include both the name of existing DB security groups or
-	// references to AWS::RDS::DBSecurityGroup resources created in the
-	// template.
-	DBSecurityGroups *StringListExpr `json:"DBSecurityGroups,omitempty"`
-
-	// The identifier for the DB snapshot to restore from.
-	DBSnapshotIdentifier *StringExpr `json:"DBSnapshotIdentifier,omitempty"`
-
-	// A DB subnet group to associate with the DB instance.
-	DBSubnetGroupName *StringExpr `json:"DBSubnetGroupName,omitempty"`
-
-	// The name of the database engine that the DB instance uses. This
-	// property is optional when you specify the DBSnapshotIdentifier
-	// property to create DB instances.
-	Engine *StringExpr `json:"Engine,omitempty"`
-
-	// The version number of the database engine to use.
-	EngineVersion *StringExpr `json:"EngineVersion,omitempty"`
-
-	// The number of I/O operations per second (IOPS) that the database
-	// should provision. This can be any integer value from 1000 to 10,000,
-	// in 1000 IOPS increments.
-	Iops *IntegerExpr `json:"Iops,omitempty"`
-
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service
-	// master key that is used to encrypt the database instance, such as
-	// arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
-	// If you enable the StorageEncrypted property but don't specify this
-	// property, the default master key is used.
-	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
-
-	// The license model information for the DB instance.
-	LicenseModel *StringExpr `json:"LicenseModel,omitempty"`
-
-	// The master user name for the database instance. This property is
-	// optional when you specify the DBSnapshotIdentifier property to create
-	// DB instances.
-	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
-
-	// The master password for the database instance. This property is
-	// optional when you specify the DBSnapshotIdentifier property to create
-	// DB instances.
-	MasterUserPassword *StringExpr `json:"MasterUserPassword,omitempty"`
-
-	// Specifies if the database instance is a multiple Availability Zone
-	// deployment. You cannot set the AvailabilityZone parameter if the
-	// MultiAZ parameter is set to true.
-	MultiAZ *BoolExpr `json:"MultiAZ,omitempty"`
-
-	// An option group that this database instance is associated with.
-	OptionGroupName *StringExpr `json:"OptionGroupName,omitempty"`
-
-	// The port for the instance.
-	Port *StringExpr `json:"Port,omitempty"`
-
-	// The daily time range during which automated backups are created if
-	// automated backups are enabled, as determined by the
-	// BackupRetentionPeriod.
-	PreferredBackupWindow *StringExpr `json:"PreferredBackupWindow,omitempty"`
-
-	// The weekly time range (in UTC) during which system maintenance can
-	// occur.
-	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
-
-	// Indicates whether the database instance is an Internet-facing
-	// instance. If you specify true, an instance is created with a publicly
-	// resolvable DNS name, which resolves to a public IP address. If you
-	// specify false, an internal instance is created with a DNS name that
-	// resolves to a private IP address.
-	PubliclyAccessible *BoolExpr `json:"PubliclyAccessible,omitempty"`
-
-	// If you want to create a read replica DB instance, specify the ID of
-	// the source database instance. Each database instance can have a
-	// certain number of read replicas. For more information, see Working
-	// with Read Replicas in the Amazon Relational Database Service Developer
-	// Guide.
-	SourceDBInstanceIdentifier *StringExpr `json:"SourceDBInstanceIdentifier,omitempty"`
-
-	// Indicates whether the database instance is encrypted.
-	StorageEncrypted *BoolExpr `json:"StorageEncrypted,omitempty"`
-
-	// The storage type associated with this database instance.
-	StorageType *StringExpr `json:"StorageType,omitempty"`
-
-	// An arbitrary set of tags (key–value pairs) for this database
-	// instance.
-	Tags []ResourceTag `json:"Tags,omitempty"`
-
-	// A list of the VPC security groups to assign to the Amazon RDS
-	// instance. The list can include both the physical IDs of existing VPC
-	// security groups or references to AWS::EC2::SecurityGroup resources
-	// created in the template.
-	VPCSecurityGroups *StringListExpr `json:"VPCSecurityGroups,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::DBInstance to implement the ResourceProperties interface
-func (s RDSDBInstance) ResourceType() string {
-	return "AWS::RDS::DBInstance"
-}
-
-// RDSDBParameterGroup represents AWS::RDS::DBParameterGroup
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html
-type RDSDBParameterGroup struct {
-	// A friendly description of the RDS parameter group. For example, "My
-	// Parameter Group".
-	Description interface{} `json:"Description,omitempty"`
-
-	// The database family of this RDS parameter group. For example,
-	// "MySQL5.1".
-	Family interface{} `json:"Family,omitempty"`
-
-	// The parameters to set for this RDS parameter group.
-	Parameters interface{} `json:"Parameters,omitempty"`
-
-	// The tags that you want to attach to the RDS parameter group.
-	Tags *ResourceTagList `json:"Tags,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::DBParameterGroup to implement the ResourceProperties interface
-func (s RDSDBParameterGroup) ResourceType() string {
-	return "AWS::RDS::DBParameterGroup"
-}
-
-// RDSDBSubnetGroup represents AWS::RDS::DBSubnetGroup
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html
-type RDSDBSubnetGroup struct {
-	// The description for the DB Subnet Group.
-	DBSubnetGroupDescription *StringExpr `json:"DBSubnetGroupDescription,omitempty"`
-
-	// The EC2 Subnet IDs for the DB Subnet Group.
-	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
-
-	// The tags that you want to attach to the RDS database subnet group.
-	Tags *ResourceTagList `json:"Tags,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::DBSubnetGroup to implement the ResourceProperties interface
-func (s RDSDBSubnetGroup) ResourceType() string {
-	return "AWS::RDS::DBSubnetGroup"
-}
-
-// RDSDBSecurityGroup represents AWS::RDS::DBSecurityGroup
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html
-type RDSDBSecurityGroup struct {
-	// The Id of VPC. Indicates which VPC this DB Security Group should
-	// belong to.
-	EC2VpcId *StringExpr `json:"EC2VpcId,omitempty"`
-
-	// Network ingress authorization for an Amazon EC2 security group or an
-	// IP address range.
-	DBSecurityGroupIngress *RDSSecurityGroupRuleList `json:"DBSecurityGroupIngress,omitempty"`
-
-	// Description of the security group.
-	GroupDescription *StringExpr `json:"GroupDescription,omitempty"`
-
-	// The tags that you want to attach to the Amazon RDS DB security group.
-	Tags *ResourceTagList `json:"Tags,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::DBSecurityGroup to implement the ResourceProperties interface
-func (s RDSDBSecurityGroup) ResourceType() string {
-	return "AWS::RDS::DBSecurityGroup"
-}
-
-// RDSDBSecurityGroupIngress represents AWS::RDS::DBSecurityGroupIngress
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html
-type RDSDBSecurityGroupIngress struct {
-	// The IP range to authorize.
-	CIDRIP *StringExpr `json:"CIDRIP,omitempty"`
-
-	// The name (ARN) of the AWS::RDS::DBSecurityGroup to which this ingress
-	// will be added.
-	DBSecurityGroupName *StringExpr `json:"DBSecurityGroupName,omitempty"`
-
-	// The ID of the VPC or EC2 security group to authorize.
-	EC2SecurityGroupId *StringExpr `json:"EC2SecurityGroupId,omitempty"`
-
-	// The name of the EC2 security group to authorize.
-	EC2SecurityGroupName *StringExpr `json:"EC2SecurityGroupName,omitempty"`
-
-	// The AWS Account Number of the owner of the EC2 security group
-	// specified in the EC2SecurityGroupName parameter. The AWS Access Key ID
-	// is not an acceptable value.
-	EC2SecurityGroupOwnerId *StringExpr `json:"EC2SecurityGroupOwnerId,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::DBSecurityGroupIngress to implement the ResourceProperties interface
-func (s RDSDBSecurityGroupIngress) ResourceType() string {
-	return "AWS::RDS::DBSecurityGroupIngress"
-}
-
-// RDSEventSubscription represents AWS::RDS::EventSubscription
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html
-type RDSEventSubscription struct {
-	// Indicates whether to activate the subscription. If you don't specify
-	// this property, AWS CloudFormation activates the subscription.
-	Enabled *BoolExpr `json:"Enabled,omitempty"`
-
-	// A list of event categories that you want to subscribe to for a given
-	// source type. If you don't specify this property, you are notified
-	// about all event categories.
-	EventCategories *StringListExpr `json:"EventCategories,omitempty"`
-
-	// The Amazon Resource Name (ARN) of an Amazon SNS topic that you want to
-	// send event notifications to.
-	SnsTopicArn *StringExpr `json:"SnsTopicArn,omitempty"`
-
-	// A list of identifiers for which Amazon RDS provides notification
-	// events.
-	SourceIds *StringListExpr `json:"SourceIds,omitempty"`
-
-	// The type of source for which Amazon RDS provides notification events.
-	// For example, if you want to be notified of events generated by a
-	// database instance, set this parameter to db-instance. If you don't
-	// specify a value, notifications are provided for all source types.
-	SourceTypeX *StringExpr `json:"SourceType ,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::EventSubscription to implement the ResourceProperties interface
-func (s RDSEventSubscription) ResourceType() string {
-	return "AWS::RDS::EventSubscription"
-}
-
-// RDSOptionGroup represents AWS::RDS::OptionGroup
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html
-type RDSOptionGroup struct {
-	// The name of the database engine that this option group is associated
-	// with.
-	EngineName *StringExpr `json:"EngineName,omitempty"`
-
-	// The major version number of the database engine that this option group
-	// is associated with.
-	MajorEngineVersion *StringExpr `json:"MajorEngineVersion,omitempty"`
-
-	// A description of the option group.
-	OptionGroupDescription *StringExpr `json:"OptionGroupDescription,omitempty"`
-
-	// The configurations for this option group.
-	OptionConfigurations *RDSOptionGroupOptionConfigurations `json:"OptionConfigurations,omitempty"`
-
-	// An arbitrary set of tags (key–value pairs) for this option group.
-	Tags []ResourceTag `json:"Tags,omitempty"`
-}
-
-// ResourceType returns AWS::RDS::OptionGroup to implement the ResourceProperties interface
-func (s RDSOptionGroup) ResourceType() string {
-	return "AWS::RDS::OptionGroup"
-}
-
 // Route53HealthCheck represents AWS::Route53::HealthCheck
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html
@@ -3075,9 +3545,9 @@ type Route53RecordSet struct {
 	// record set.
 	HostedZoneName *StringExpr `json:"HostedZoneName,omitempty"`
 
-	// The name of the domain. This must be a fully specified domain, ending
-	// with a period as the last label indication. If you omit the final
-	// period, Amazon Route 53 assumes the domain is relative to the root.
+	// The name of the domain. You must specify a fully qualified domain name
+	// that ends with a period as the last label indication. If you omit the
+	// final period, AWS CloudFormation adds it.
 	Name *StringExpr `json:"Name,omitempty"`
 
 	// Latency resource record sets only: The Amazon EC2 region where the
@@ -3220,7 +3690,8 @@ type S3BucketPolicy struct {
 	Bucket *StringExpr `json:"Bucket,omitempty"`
 
 	// A policy document containing permissions to add to the specified
-	// bucket.
+	// bucket. For more information, see Access Policy Language Overview in
+	// the Amazon Simple Storage Service Developer Guide.
 	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
 }
 
@@ -3346,6 +3817,33 @@ type SQSQueuePolicy struct {
 // ResourceType returns AWS::SQS::QueuePolicy to implement the ResourceProperties interface
 func (s SQSQueuePolicy) ResourceType() string {
 	return "AWS::SQS::QueuePolicy"
+}
+
+// WorkSpacesWorkspace represents AWS::WorkSpaces::Workspace
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html
+type WorkSpacesWorkspace struct {
+	// The identifier of the bundle from which you want to create the
+	// workspace. A bundle specifies the details of the workspace, such as
+	// the installed applications and the size of CPU, memory, and storage.
+	// Use the DescribeWorkspaceBundles action to list the bundles that AWS
+	// offers.
+	BundleId *StringExpr `json:"BundleId,omitempty"`
+
+	// The identifier of the AWS Directory Service directory in which you
+	// want to create the workspace. The directory must already be registered
+	// with Amazon WorkSpaces. Use the DescribeWorkspaceDirectories action to
+	// list the directories that are available.
+	DirectoryId *StringExpr `json:"DirectoryId,omitempty"`
+
+	// The name of the user to which the workspace is assigned. This user
+	// name must exist in the specified AWS Directory Service directory.
+	UserName *StringExpr `json:"UserName,omitempty"`
+}
+
+// ResourceType returns AWS::WorkSpaces::Workspace to implement the ResourceProperties interface
+func (s WorkSpacesWorkspace) ResourceType() string {
+	return "AWS::WorkSpaces::Workspace"
 }
 
 // AutoScalingBlockDeviceMapping represents AWS CloudFormation AutoScaling Block Device Mapping Property Type
@@ -3689,7 +4187,10 @@ type CloudFrontDistributionConfigCacheBehavior struct {
 
 	// The protocol that users can use to access the files in the origin that
 	// you specified in the TargetOriginId property when a request matches
-	// the value of the PathPattern property.
+	// the value of the PathPattern property. For more information about the
+	// valid values, see the ViewerProtocolPolicy elements in the
+	// DistributionConfig Complex Type topic in the Amazon CloudFront API
+	// Reference.
 	ViewerProtocolPolicy *StringExpr `json:"ViewerProtocolPolicy,omitempty"`
 }
 
@@ -4225,6 +4726,266 @@ func (l *CloudWatchLogsMetricFilterMetricTransformationPropertyList) UnmarshalJS
 	return err
 }
 
+// CodeDeployDeploymentConfigMinimumHealthyHosts represents AWS CodeDeploy DeploymentConfig MinimumHealthyHosts
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html
+type CodeDeployDeploymentConfigMinimumHealthyHosts struct {
+	// The type of count to use, such as an absolute value or a percentage of
+	// the total number of instances in the deployment. For valid values, see
+	// MinimumHealthyHosts in the AWS CodeDeploy API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+
+	// The minimum number of healthy instances.
+	Value *IntegerExpr `json:"Value,omitempty"`
+}
+
+// CodeDeployDeploymentConfigMinimumHealthyHostsList represents a list of CodeDeployDeploymentConfigMinimumHealthyHosts
+type CodeDeployDeploymentConfigMinimumHealthyHostsList []CodeDeployDeploymentConfigMinimumHealthyHosts
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentConfigMinimumHealthyHostsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentConfigMinimumHealthyHosts{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentConfigMinimumHealthyHostsList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentConfigMinimumHealthyHosts{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentConfigMinimumHealthyHostsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeDeployDeploymentGroupDeployment represents AWS CodeDeploy DeploymentGroup Deployment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html
+type CodeDeployDeploymentGroupDeployment struct {
+	// A description about this deployment.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Whether to continue the deployment if the ApplicationStop deployment
+	// lifecycle event fails. If you want AWS CodeDeploy to continue the
+	// deployment lifecycle even if the ApplicationStop event fails on an
+	// instance, specify true. The deployment continues to the BeforeInstall
+	// deployment lifecycle event. If you want AWS CodeDeploy to stop
+	// deployment on the instance if the ApplicationStop event fails, specify
+	// false or do not specify a value.
+	IgnoreApplicationStopFailures *BoolExpr `json:"IgnoreApplicationStopFailures,omitempty"`
+
+	// The location of the application revision to deploy.
+	Revision *CodeDeployDeploymentGroupDeploymentRevision `json:"Revision,omitempty"`
+}
+
+// CodeDeployDeploymentGroupDeploymentList represents a list of CodeDeployDeploymentGroupDeployment
+type CodeDeployDeploymentGroupDeploymentList []CodeDeployDeploymentGroupDeployment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupDeploymentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupDeployment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupDeployment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeDeployDeploymentGroupDeploymentRevision represents AWS CodeDeploy DeploymentGroup Deployment Revision
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html
+type CodeDeployDeploymentGroupDeploymentRevision struct {
+	// If your application revision is stored in GitHub, information about
+	// the location where it is stored.
+	GitHubLocation *CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation `json:"GitHubLocation,omitempty"`
+
+	// The application revision's location, such as in an S3 bucket or GitHub
+	// repository. For valid values, see RevisionLocation in the AWS
+	// CodeDeploy API Reference.
+	RevisionType *StringExpr `json:"RevisionType,omitempty"`
+
+	// If the application revision is stored in an S3 bucket, information
+	// about the location.
+	S3Location *CodeDeployDeploymentGroupDeploymentRevisionS3Location `json:"S3Location,omitempty"`
+}
+
+// CodeDeployDeploymentGroupDeploymentRevisionList represents a list of CodeDeployDeploymentGroupDeploymentRevision
+type CodeDeployDeploymentGroupDeploymentRevisionList []CodeDeployDeploymentGroupDeploymentRevision
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupDeploymentRevisionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupDeploymentRevision{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentRevisionList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupDeploymentRevision{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentRevisionList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation represents AWS CodeDeploy DeploymentGroup Deployment Revision GitHubLocation
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html
+type CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation struct {
+	// The SHA1 commit ID of the GitHub commit to use as your application
+	// revision.
+	CommitId *StringExpr `json:"CommitId,omitempty"`
+
+	// The GitHub account and repository name that includes the application
+	// revision. Specify the value as account/repository_name.
+	Repository *StringExpr `json:"Repository,omitempty"`
+}
+
+// CodeDeployDeploymentGroupDeploymentRevisionGitHubLocationList represents a list of CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation
+type CodeDeployDeploymentGroupDeploymentRevisionGitHubLocationList []CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupDeploymentRevisionGitHubLocationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentRevisionGitHubLocationList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupDeploymentRevisionGitHubLocation{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentRevisionGitHubLocationList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeDeployDeploymentGroupDeploymentRevisionS3Location represents AWS CodeDeploy DeploymentGroup Deployment Revision S3Location
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html
+type CodeDeployDeploymentGroupDeploymentRevisionS3Location struct {
+	// The name of the S3 bucket where the application revision is stored.
+	Bucket *StringExpr `json:"Bucket,omitempty"`
+
+	// The file type of the application revision, such as tar, tgz, or zip.
+	// For valid values, see S3Location in the AWS CodeDeploy API Reference.
+	BundleType *StringExpr `json:"BundleType,omitempty"`
+
+	// The Amazon S3 ETag (a file checksum) of the application revision. If
+	// you don't specify a value, AWS CodeDeploy skips the ETag validation of
+	// your application revision.
+	ETag *StringExpr `json:"ETag,omitempty"`
+
+	// The file name of the application revision (Amazon S3 object name).
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// For versioning-enabled buckets, a specific version of the application
+	// revision.
+	Version *StringExpr `json:"Version,omitempty"`
+}
+
+// CodeDeployDeploymentGroupDeploymentRevisionS3LocationList represents a list of CodeDeployDeploymentGroupDeploymentRevisionS3Location
+type CodeDeployDeploymentGroupDeploymentRevisionS3LocationList []CodeDeployDeploymentGroupDeploymentRevisionS3Location
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupDeploymentRevisionS3LocationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupDeploymentRevisionS3Location{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentRevisionS3LocationList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupDeploymentRevisionS3Location{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentRevisionS3LocationList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeDeployDeploymentGroupEc2TagFilters represents AWS CodeDeploy DeploymentGroup Ec2TagFilters
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html
+type CodeDeployDeploymentGroupEc2TagFilters struct {
+	// Filter instances with this key.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The filter type. For example, you can filter instances by the key, tag
+	// value, or both. For valid values, see EC2TagFilter in the AWS
+	// CodeDeploy API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+
+	// Filter instances with this tag value.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// CodeDeployDeploymentGroupEc2TagFiltersList represents a list of CodeDeployDeploymentGroupEc2TagFilters
+type CodeDeployDeploymentGroupEc2TagFiltersList []CodeDeployDeploymentGroupEc2TagFilters
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupEc2TagFiltersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupEc2TagFilters{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupEc2TagFiltersList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupEc2TagFilters{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupEc2TagFiltersList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeDeployDeploymentGroupOnPremisesInstanceTagFilters represents AWS CodeDeploy DeploymentGroup OnPremisesInstanceTagFilters
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html
+type CodeDeployDeploymentGroupOnPremisesInstanceTagFilters struct {
+	// Filter on-premises instances with this key.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The filter type. For example, you can filter on-premises instances by
+	// the key, tag value, or both. For valid values, see EC2TagFilter in the
+	// AWS CodeDeploy API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+
+	// Filter on-premises instances with this tag value.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList represents a list of CodeDeployDeploymentGroupOnPremisesInstanceTagFilters
+type CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList []CodeDeployDeploymentGroupOnPremisesInstanceTagFilters
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupOnPremisesInstanceTagFilters{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupOnPremisesInstanceTagFilters{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList(list)
+		return nil
+	}
+	return err
+}
+
 // DataPipelinePipelineParameterObjects represents AWS Data Pipeline Pipeline ParameterObjects
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html
@@ -4419,6 +5180,39 @@ func (l *DataPipelinePipelinePipelineTagsList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = DataPipelinePipelinePipelineTagsList(list)
+		return nil
+	}
+	return err
+}
+
+// DirectoryServiceSimpleADVpcSettings represents AWS Directory Service SimpleAD VpcSettings
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html
+type DirectoryServiceSimpleADVpcSettings struct {
+	// A list of at least two subnet IDs for the directory servers. Each
+	// subnet must be in different Availability Zones (AZ). AWS Directory
+	// Service creates a directory server and a DNS server in each subnet.
+	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
+
+	// The VPC ID in which to create the Simple AD directory.
+	VpcId *StringExpr `json:"VpcId,omitempty"`
+}
+
+// DirectoryServiceSimpleADVpcSettingsList represents a list of DirectoryServiceSimpleADVpcSettings
+type DirectoryServiceSimpleADVpcSettingsList []DirectoryServiceSimpleADVpcSettings
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *DirectoryServiceSimpleADVpcSettingsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := DirectoryServiceSimpleADVpcSettings{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = DirectoryServiceSimpleADVpcSettingsList{item}
+		return nil
+	}
+	list := []DirectoryServiceSimpleADVpcSettings{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = DirectoryServiceSimpleADVpcSettingsList(list)
 		return nil
 	}
 	return err
@@ -5083,6 +5877,452 @@ func (l *EC2SecurityGroupRuleList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigData represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigData struct {
+	// The Amazon Resource Name (ARN) of an AWS Identity and Access
+	// Management (IAM) role that grants the Spot fleet the ability to bid
+	// on, launch, and terminate instances on your behalf. For more
+	// information, see Spot Fleet Prerequisites in the Amazon EC2 User Guide
+	// for Linux Instances.
+	IamFleetRole *StringExpr `json:"IamFleetRole,omitempty"`
+
+	// Information about the launch specifications for the Spot fleet
+	// request.
+	LaunchSpecifications *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList `json:"LaunchSpecifications,omitempty"`
+
+	// The bid price per unit hour. For more information, see How Spot Fleet
+	// Works in the Amazon EC2 User Guide for Linux Instances.
+	SpotPrice *StringExpr `json:"SpotPrice,omitempty"`
+
+	// The number of units to request. You can choose to set the target
+	// capacity as instances or a performance characteristic that is
+	// important to your application workload, such as vCPUs, memory, or I/O.
+	// For more information, see How Spot Fleet Works in the Amazon EC2 User
+	// Guide for Linux Instances.
+	TargetCapacity *IntegerExpr `json:"TargetCapacity,omitempty"`
+
+	// Indicates whether running Spot instances are terminated when the Spot
+	// fleet request expires.
+	TerminateInstancesWithExpiration *BoolExpr `json:"TerminateInstancesWithExpiration,omitempty"`
+
+	// The start date and time of the request, in UTC format
+	// (YYYY-MM-DDTHH:MM:SSZ). By default, Amazon EC2 starts fulfilling the
+	// request immediately.
+	ValidFrom *StringExpr `json:"ValidFrom,omitempty"`
+
+	// The end date and time of the request, in UTC format
+	// (YYYY-MM-DDTHH:MM:SSZ). After the end date and time, Amazon EC2
+	// doesn't request new Spot instances or enable them to fulfill the
+	// request.
+	ValidUntil *StringExpr `json:"ValidUntil,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigData
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigData
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigData{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigData{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications struct {
+	// Defines the block devices that are mapped to the Spot instances.
+	BlockDeviceMappings *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsList `json:"BlockDeviceMappings,omitempty"`
+
+	// Indicates whether the instances are optimized for Amazon Elastic Block
+	// Store (Amazon EBS) I/O. This optimization provides dedicated
+	// throughput to Amazon EBS and an optimized configuration stack to
+	// provide optimal EBS I/O performance. This optimization isn't available
+	// with all instance types. Additional usage charges apply when you use
+	// an Amazon EBS-optimized instance.
+	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
+
+	// Defines the AWS Identity and Access Management (IAM) instance profile
+	// to associate with the instances.
+	IamInstanceProfile *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile `json:"IamInstanceProfile,omitempty"`
+
+	// The unique ID of the Amazon Machine Image (AMI) to launch on the
+	// instances.
+	ImageId *StringExpr `json:"ImageId,omitempty"`
+
+	// Specifies the instance type of the EC2 instances.
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+
+	// The ID of the kernel that is associated with the Amazon Elastic
+	// Compute Cloud (Amazon EC2) AMI.
+	KernelId *StringExpr `json:"KernelId,omitempty"`
+
+	// An Amazon EC2 key pair to associate with the instances.
+	KeyName *StringExpr `json:"KeyName,omitempty"`
+
+	// Enable or disable monitoring for the instances.
+	Monitoring *EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring `json:"Monitoring,omitempty"`
+
+	// The network interfaces to associate with the instances.
+	NetworkInterfaces *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesList `json:"NetworkInterfaces,omitempty"`
+
+	// Defines a placement group, which is a logical grouping of instances
+	// within a single Availability Zone (AZ).
+	Placement *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement `json:"Placement,omitempty"`
+
+	// The ID of the RAM disk to select. Some kernels require additional
+	// drivers at launch. Check the kernel requirements for information about
+	// whether you need to specify a RAM disk. To find kernel requirements,
+	// refer to the AWS Resource Center and search for the kernel ID.
+	RamdiskId *StringExpr `json:"RamdiskId,omitempty"`
+
+	// One or more security group IDs to associate with the instances.
+	SecurityGroups *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList `json:"SecurityGroups,omitempty"`
+
+	// The ID of the subnet in which to launch the instances.
+	SubnetId *StringExpr `json:"SubnetId,omitempty"`
+
+	// Base64-encoded MIME user data that instances use when starting up.
+	UserData *StringExpr `json:"UserData,omitempty"`
+
+	// The number of units provided by the specified instance type. These
+	// units are the same units that you chose to set the target capacity in
+	// terms of instances or a performance characteristic, such as vCPUs,
+	// memory, or I/O. For more information, see How Spot Fleet Works in the
+	// Amazon EC2 User Guide for Linux Instances.
+	WeightedCapacity *IntegerExpr `json:"WeightedCapacity,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications BlockDeviceMappings
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings struct {
+	// The name of the device within the EC2 instance, such as /dev/dsh or
+	// xvdh.
+	DeviceName *StringExpr `json:"DeviceName,omitempty"`
+
+	// The Amazon Elastic Block Store (Amazon EBS) volume information.
+	Ebs *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs `json:"Ebs,omitempty"`
+
+	// Suppresses the specified device that is included in the block device
+	// mapping of the Amazon Machine Image (AMI).
+	NoDevice *BoolExpr `json:"NoDevice,omitempty"`
+
+	// The name of the virtual device. The name must be in the form
+	// ephemeralX where X is a number equal to or greater than zero (0), for
+	// example, ephemeral0.
+	VirtualName *StringExpr `json:"VirtualName,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications BlockDeviceMappings Ebs
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs struct {
+	// Indicates whether to delete the volume when the instance is
+	// terminated.
+	DeleteOnTermination *BoolExpr `json:"DeleteOnTermination,omitempty"`
+
+	// Indicates whether the EBS volume is encrypted. Encrypted Amazon EBS
+	// volumes can be attached only to instances that support Amazon EBS
+	// encryption.
+	Encrypted *BoolExpr `json:"Encrypted,omitempty"`
+
+	// The number of I/O operations per second (IOPS) that the volume
+	// supports. For more information, see Iops for the EbsBlockDevice action
+	// in the Amazon EC2 API Reference.
+	Iops *IntegerExpr `json:"Iops,omitempty"`
+
+	// The snapshot ID of the volume that you want to use.
+	SnapshotId *StringExpr `json:"SnapshotId,omitempty"`
+
+	// The volume size, in Gibibytes (GiB). For more information about
+	// specifying the volume size, see VolumeSize for the EbsBlockDevice
+	// action in the Amazon EC2 API Reference.
+	VolumeSize *IntegerExpr `json:"VolumeSize,omitempty"`
+
+	// The volume type. For more information about specifying the volume
+	// type, see VolumeType for the EbsBlockDevice action in the Amazon EC2
+	// API Reference.
+	VolumeType *StringExpr `json:"VolumeType,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbsList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbsList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbsList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbs{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappingsEbsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications IamInstanceProfile
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile struct {
+	// The Amazon Resource Name (ARN) of the instance profile to associate
+	// with the instances. The instance profile contains the IAM role that is
+	// associated with the instances.
+	Arn *StringExpr `json:"Arn,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfileList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfileList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfileList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfileList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfileList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring represents Amazon EC2 SpotFleet SpotFleetRequestConfigData LaunchSpecifications Monitoring
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html
+type EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring struct {
+	// Indicates whether monitoring is enabled for the instances.
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+}
+
+// EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringList represents a list of EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring
+type EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringList []EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringList{item}
+		return nil
+	}
+	list := []EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications NetworkInterfaces
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces struct {
+	// Indicates whether monitoring is enabled for the instances.
+	AssociatePublicIpAddress *BoolExpr `json:"AssociatePublicIpAddress,omitempty"`
+
+	// Indicates whether to delete the network interface when the instance
+	// terminates.
+	DeleteOnTermination *BoolExpr `json:"DeleteOnTermination,omitempty"`
+
+	// The description of this network interface.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The network interface's position in the attachment order.
+	DeviceIndex *IntegerExpr `json:"DeviceIndex,omitempty"`
+
+	// A list of security group IDs to associate with this network interface.
+	Groups *StringListExpr `json:"Groups,omitempty"`
+
+	// A network interface ID.
+	NetworkInterfaceId *StringExpr `json:"NetworkInterfaceId,omitempty"`
+
+	// One or more private IP addresses to assign to the network interface.
+	// You can designate only one private IP address as primary.
+	PrivateIpAddresses *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList `json:"PrivateIpAddresses,omitempty"`
+
+	// The number of secondary private IP addresses that Amazon Elastic
+	// Compute Cloud (Amazon EC2) automatically assigns to the network
+	// interface.
+	SecondaryPrivateIpAddressCount *IntegerExpr `json:"SecondaryPrivateIpAddressCount,omitempty"`
+
+	// The ID of the subnet to associate with the network interface.
+	SubnetId *StringExpr `json:"SubnetId,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications NetworkInterfaces PrivateIpAddresses
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses struct {
+	// Indicates whether the private IP address is the primary private IP
+	// address. You can designate only one IP address as primary.
+	Primary *BoolExpr `json:"Primary,omitempty"`
+
+	// The private IP address.
+	PrivateIpAddress *StringExpr `json:"PrivateIpAddress,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications Placement
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement struct {
+	// The Availability Zone (AZ) of the placement group.
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
+
+	// The name of the placement group (for cluster instances).
+	GroupName *StringExpr `json:"GroupName,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacementList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacementList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacementList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacementList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacementList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications SecurityGroups
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups struct {
+	// The ID of a security group.
+	GroupId *StringExpr `json:"GroupId,omitempty"`
+}
+
+// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups
+type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList{item}
+		return nil
+	}
+	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList(list)
+		return nil
+	}
+	return err
+}
+
 // EC2ContainerServiceServiceLoadBalancers represents Amazon EC2 Container Service Service LoadBalancers
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html
@@ -5391,6 +6631,39 @@ func (l *EC2ContainerServiceTaskDefinitionVolumesHostList) UnmarshalJSON(buf []b
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2ContainerServiceTaskDefinitionVolumesHostList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticFileSystemFileSystemFileSystemTags represents Amazon Elastic File System FileSystem FileSystemTags
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemtags.html
+type ElasticFileSystemFileSystemFileSystemTags struct {
+	// The key name of the tag. You can specify a value that is from 1 to 128
+	// Unicode characters in length, but you cannot use the prefix aws:.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The value of the tag key. You can specify a value that is from 0 to
+	// 128 Unicode characters in length.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// ElasticFileSystemFileSystemFileSystemTagsList represents a list of ElasticFileSystemFileSystemFileSystemTags
+type ElasticFileSystemFileSystemFileSystemTagsList []ElasticFileSystemFileSystemFileSystemTags
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticFileSystemFileSystemFileSystemTagsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticFileSystemFileSystemFileSystemTags{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticFileSystemFileSystemFileSystemTagsList{item}
+		return nil
+	}
+	list := []ElasticFileSystemFileSystemFileSystemTags{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticFileSystemFileSystemFileSystemTagsList(list)
 		return nil
 	}
 	return err
@@ -5879,17 +7152,24 @@ func (l *IAMUserLoginProfileList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
 type LambdaFunctionCode struct {
-	// The name of the Amazon Simple Storage Service (Amazon S3) bucket that
-	// contains the source code of your Lambda function. The S3 bucket must
-	// be in the same region in which the stack is created.
+	// The name of the S3 bucket that contains the source code of your Lambda
+	// function. The S3 bucket must be in the same region in which the stack
+	// is created.
 	S3Bucket *StringExpr `json:"S3Bucket,omitempty"`
 
-	// The location and name of your packaged source code (.zip file).
+	// The location and name of your source code .zip file. If you specify
+	// this property, you must also specify the S3Bucket property.
 	S3Key *StringExpr `json:"S3Key,omitempty"`
 
-	// If you have versioning enabled, the version ID of your packaged source
-	// code.
+	// If you have S3 versioning enabled, the version ID of your source code
+	// .zip file. You can specify this property only if you specify a bucket
+	// location.
 	S3ObjectVersion *StringExpr `json:"S3ObjectVersion,omitempty"`
+
+	// For nodejs runtime environments, the source code of your Lambda
+	// function. You cannot use this property with other runtime
+	// environments.
+	ZipFile *StringExpr `json:"ZipFile,omitempty"`
 }
 
 // LambdaFunctionCodeList represents a list of LambdaFunctionCode
@@ -6184,7 +7464,8 @@ type OpsWorksSource struct {
 	// versions that can potentially be deployed.
 	Revision *StringExpr `json:"Revision,omitempty"`
 
-	// The repository's SSH key.
+	// The repository's SSH key. For more information, see Using Git
+	// Repository SSH Keys in the AWS OpsWorks User Guide.
 	SshKey *StringExpr `json:"SshKey,omitempty"`
 
 	// The repository type.
@@ -6215,6 +7496,45 @@ func (l *OpsWorksSourceList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = OpsWorksSourceList(list)
+		return nil
+	}
+	return err
+}
+
+// OpsWorksAppEnvironment represents AWS OpsWorks App Environment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html
+type OpsWorksAppEnvironment struct {
+	// The name of the environment variable, which can consist of up to 64
+	// characters. You can use upper and lowercase letters, numbers, and
+	// underscores (_), but the name must start with a letter or underscore.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// Indicates whether the value of the environment variable is concealed,
+	// such as with a DescribeApps response. To conceal an environment
+	// variable's value, set the value to true.
+	Secure *BoolExpr `json:"Secure,omitempty"`
+
+	// The value of the environment variable, which can be empty. You can
+	// specify a value of up to 256 characters.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// OpsWorksAppEnvironmentList represents a list of OpsWorksAppEnvironment
+type OpsWorksAppEnvironmentList []OpsWorksAppEnvironment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *OpsWorksAppEnvironmentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := OpsWorksAppEnvironment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = OpsWorksAppEnvironmentList{item}
+		return nil
+	}
+	list := []OpsWorksAppEnvironment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = OpsWorksAppEnvironmentList(list)
 		return nil
 	}
 	return err
@@ -6567,8 +7887,8 @@ func (l *RDSSecurityGroupRuleList) UnmarshalJSON(buf []byte) error {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
 type Route53AliasTargetProperty struct {
 	// The DNS name of the load balancer, the domain name of the CloudFront
-	// distribution, or the website endpoint of the Amazon S3 bucket that is
-	// the target of the alias.
+	// distribution, the website endpoint of the Amazon S3 bucket, or another
+	// record set in the same hosted zone that is the target of the alias.
 	DNSName *StringExpr `json:"DNSName,omitempty"`
 
 	// Whether Amazon Route 53 checks the health of the resource record sets
@@ -6679,7 +7999,8 @@ type Route53HealthCheckConfig struct {
 	// The number of seconds between the time that Amazon Route 53 gets a
 	// response from your endpoint and the time that it sends the next
 	// health-check request. Each Amazon Route 53 health checker makes
-	// requests at this interval.
+	// requests at this interval. For valid values, see the RequestInterval
+	// element in the Amazon Route 53 API Reference.
 	RequestInterval *IntegerExpr `json:"RequestInterval,omitempty"`
 
 	// The path that you want Amazon Route 53 to request when performing
@@ -6688,10 +8009,11 @@ type Route53HealthCheckConfig struct {
 	// healthy, such as /docs/route53-health-check.html.
 	ResourcePath *StringExpr `json:"ResourcePath,omitempty"`
 
-	// If the value of the Type property is HTTP_STR_MATCH or HTTP_STR_MATCH,
-	// the string that you want Amazon Route 53 to search for in the
-	// response body from the specified resource. If the string appears in
-	// the response body, Amazon Route 53 considers the resource healthy.
+	// If the value of the Type property is HTTP_STR_MATCH or
+	// HTTPS_STR_MATCH, the string that you want Amazon Route 53 to search
+	// for in the response body from the specified resource. If the string
+	// appears in the response body, Amazon Route 53 considers the resource
+	// healthy.
 	SearchString *StringExpr `json:"SearchString,omitempty"`
 
 	// The type of health check that you want to create, which indicates how
@@ -7131,13 +8453,21 @@ func (l *S3LoggingConfigurationList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// S3NotificationConfiguration represents Amazon S3 Notification Configuration
+// S3NotificationConfiguration represents Amazon S3 NotificationConfiguration
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html
 type S3NotificationConfiguration struct {
+	// The AWS Lambda functions to invoke and the events for which to invoke
+	// the functions.
+	LambdaConfigurations *SimpleStorageServiceNotificationConfigurationLambdaConfigurations `json:"LambdaConfigurations,omitempty"`
+
+	// The Amazon Simple Queue Service queues to publish messages to and the
+	// events for which to publish messages.
+	QueueConfigurations *SimpleStorageServiceNotificationConfigurationQueueConfigurations `json:"QueueConfigurations,omitempty"`
+
 	// The topic to which notifications are sent and the events for which
 	// notification are generated.
-	TopicConfigurations *S3NotificationTopicConfigurations `json:"TopicConfigurations,omitempty"`
+	TopicConfigurations *S3NotificationConfigurationTopicConfigurations `json:"TopicConfigurations,omitempty"`
 }
 
 // S3NotificationConfigurationList represents a list of S3NotificationConfiguration
@@ -7160,34 +8490,103 @@ func (l *S3NotificationConfigurationList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// S3NotificationTopicConfigurations represents Amazon S3 Notification Topic Configurations
+// SimpleStorageServiceNotificationConfigurationLambdaConfigurations represents Amazon Simple Storage Service NotificationConfiguration LambdaConfigurations
 //
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-topicconfig.html
-type S3NotificationTopicConfigurations struct {
-	// The Amazon S3 bucket event about which to send notifications. For more
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-lambdaconfig.html
+type SimpleStorageServiceNotificationConfigurationLambdaConfigurations struct {
+	// The S3 bucket event for which to invoke the Lambda function. For more
 	// information, see Supported Event Types in the Amazon Simple Storage
 	// Service Developer Guide.
+	Event *StringExpr `json:"Event,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function that Amazon S3
+	// invokes when the specified event type occurs.
+	Function *StringExpr `json:"Function,omitempty"`
+}
+
+// SimpleStorageServiceNotificationConfigurationLambdaConfigurationsList represents a list of SimpleStorageServiceNotificationConfigurationLambdaConfigurations
+type SimpleStorageServiceNotificationConfigurationLambdaConfigurationsList []SimpleStorageServiceNotificationConfigurationLambdaConfigurations
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *SimpleStorageServiceNotificationConfigurationLambdaConfigurationsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := SimpleStorageServiceNotificationConfigurationLambdaConfigurations{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = SimpleStorageServiceNotificationConfigurationLambdaConfigurationsList{item}
+		return nil
+	}
+	list := []SimpleStorageServiceNotificationConfigurationLambdaConfigurations{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = SimpleStorageServiceNotificationConfigurationLambdaConfigurationsList(list)
+		return nil
+	}
+	return err
+}
+
+// SimpleStorageServiceNotificationConfigurationQueueConfigurations represents Amazon Simple Storage Service NotificationConfiguration QueueConfigurations
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-queueconfig.html
+type SimpleStorageServiceNotificationConfigurationQueueConfigurations struct {
+	// The S3 bucket event about which you want to publish messages to Amazon
+	// Simple Queue Service ( Amazon SQS). For more information, see
+	// Supported Event Types in the Amazon Simple Storage Service Developer
+	// Guide.
+	Event *StringExpr `json:"Event,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the Amazon SQS queue that Amazon S3
+	// publishes messages to when the specified event type occurs.
+	Queue *StringExpr `json:"Queue,omitempty"`
+}
+
+// SimpleStorageServiceNotificationConfigurationQueueConfigurationsList represents a list of SimpleStorageServiceNotificationConfigurationQueueConfigurations
+type SimpleStorageServiceNotificationConfigurationQueueConfigurationsList []SimpleStorageServiceNotificationConfigurationQueueConfigurations
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *SimpleStorageServiceNotificationConfigurationQueueConfigurationsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := SimpleStorageServiceNotificationConfigurationQueueConfigurations{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = SimpleStorageServiceNotificationConfigurationQueueConfigurationsList{item}
+		return nil
+	}
+	list := []SimpleStorageServiceNotificationConfigurationQueueConfigurations{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = SimpleStorageServiceNotificationConfigurationQueueConfigurationsList(list)
+		return nil
+	}
+	return err
+}
+
+// S3NotificationConfigurationTopicConfigurations represents Amazon S3 NotificationConfiguration TopicConfigurations
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-topicconfig.html
+type S3NotificationConfigurationTopicConfigurations struct {
+	// The Amazon Simple Storage Service (Amazon S3) bucket event about which
+	// to send notifications. For more information, see Supported Event Types
+	// in the Amazon Simple Storage Service Developer Guide.
 	Event *StringExpr `json:"Event,omitempty"`
 
 	// The Amazon SNS topic to which Amazon S3 reports the specified events.
 	Topic *StringExpr `json:"Topic,omitempty"`
 }
 
-// S3NotificationTopicConfigurationsList represents a list of S3NotificationTopicConfigurations
-type S3NotificationTopicConfigurationsList []S3NotificationTopicConfigurations
+// S3NotificationConfigurationTopicConfigurationsList represents a list of S3NotificationConfigurationTopicConfigurations
+type S3NotificationConfigurationTopicConfigurationsList []S3NotificationConfigurationTopicConfigurations
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *S3NotificationTopicConfigurationsList) UnmarshalJSON(buf []byte) error {
+func (l *S3NotificationConfigurationTopicConfigurationsList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := S3NotificationTopicConfigurations{}
+	item := S3NotificationConfigurationTopicConfigurations{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = S3NotificationTopicConfigurationsList{item}
+		*l = S3NotificationConfigurationTopicConfigurationsList{item}
 		return nil
 	}
-	list := []S3NotificationTopicConfigurations{}
+	list := []S3NotificationConfigurationTopicConfigurations{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = S3NotificationTopicConfigurationsList(list)
+		*l = S3NotificationConfigurationTopicConfigurationsList(list)
 		return nil
 	}
 	return err
@@ -7506,8 +8905,16 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &CloudTrailTrail{}
 	case "AWS::CloudWatch::Alarm":
 		return &CloudWatchAlarm{}
+	case "AWS::CodeDeploy::Application":
+		return &CodeDeployApplication{}
+	case "AWS::CodeDeploy::DeploymentConfig":
+		return &CodeDeployDeploymentConfig{}
+	case "AWS::CodeDeploy::DeploymentGroup":
+		return &CodeDeployDeploymentGroup{}
 	case "AWS::DataPipeline::Pipeline":
 		return &DataPipelinePipeline{}
+	case "AWS::DirectoryService::SimpleAD":
+		return &DirectoryServiceSimpleAD{}
 	case "AWS::DynamoDB::Table":
 		return &DynamoDBTable{}
 	case "AWS::EC2::CustomerGateway":
@@ -7530,6 +8937,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2NetworkInterface{}
 	case "AWS::EC2::NetworkInterfaceAttachment":
 		return &EC2NetworkInterfaceAttachment{}
+	case "AWS::EC2::PlacementGroup":
+		return &EC2PlacementGroup{}
 	case "AWS::EC2::Route":
 		return &EC2Route{}
 	case "AWS::EC2::RouteTable":
@@ -7540,6 +8949,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2SecurityGroupEgress{}
 	case "AWS::EC2::SecurityGroupIngress":
 		return &EC2SecurityGroupIngress{}
+	case "AWS::EC2::SpotFleet":
+		return &EC2SpotFleet{}
 	case "AWS::EC2::Subnet":
 		return &EC2Subnet{}
 	case "AWS::EC2::SubnetNetworkAclAssociation":
@@ -7554,6 +8965,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2VPC{}
 	case "AWS::EC2::VPCDHCPOptionsAssociation":
 		return &EC2VPCDHCPOptionsAssociation{}
+	case "AWS::EC2::VPCEndpoint":
+		return &EC2VPCEndpoint{}
 	case "AWS::EC2::VPCGatewayAttachment":
 		return &EC2VPCGatewayAttachment{}
 	case "AWS::EC2::VPCPeeringConnection":
@@ -7572,6 +8985,10 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ECSService{}
 	case "AWS::ECS::TaskDefinition":
 		return &ECSTaskDefinition{}
+	case "AWS::EFS::FileSystem":
+		return &EFSFileSystem{}
+	case "AWS::EFS::MountTarget":
+		return &EFSMountTarget{}
 	case "AWS::ElastiCache::CacheCluster":
 		return &ElastiCacheCacheCluster{}
 	case "AWS::ElastiCache::ParameterGroup":
@@ -7612,12 +9029,18 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &IAMUserToGroupAddition{}
 	case "AWS::Kinesis::Stream":
 		return &KinesisStream{}
+	case "AWS::Lambda::EventSourceMapping":
+		return &LambdaEventSourceMapping{}
 	case "AWS::Lambda::Function":
 		return &LambdaFunction{}
+	case "AWS::Lambda::Permission":
+		return &LambdaPermission{}
 	case "AWS::Logs::LogGroup":
 		return &LogsLogGroup{}
 	case "AWS::Logs::MetricFilter":
 		return &LogsMetricFilter{}
+	case "AWS::Logs::SubscriptionFilter":
+		return &LogsSubscriptionFilter{}
 	case "AWS::OpsWorks::App":
 		return &OpsWorksApp{}
 	case "AWS::OpsWorks::ElasticLoadBalancerAttachment":
@@ -7628,6 +9051,24 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &OpsWorksLayer{}
 	case "AWS::OpsWorks::Stack":
 		return &OpsWorksStack{}
+	case "AWS::RDS::DBCluster":
+		return &RDSDBCluster{}
+	case "AWS::RDS::DBClusterParameterGroup":
+		return &RDSDBClusterParameterGroup{}
+	case "AWS::RDS::DBInstance":
+		return &RDSDBInstance{}
+	case "AWS::RDS::DBParameterGroup":
+		return &RDSDBParameterGroup{}
+	case "AWS::RDS::DBSecurityGroup":
+		return &RDSDBSecurityGroup{}
+	case "AWS::RDS::DBSecurityGroupIngress":
+		return &RDSDBSecurityGroupIngress{}
+	case "AWS::RDS::DBSubnetGroup":
+		return &RDSDBSubnetGroup{}
+	case "AWS::RDS::EventSubscription":
+		return &RDSEventSubscription{}
+	case "AWS::RDS::OptionGroup":
+		return &RDSOptionGroup{}
 	case "AWS::Redshift::Cluster":
 		return &RedshiftCluster{}
 	case "AWS::Redshift::ClusterParameterGroup":
@@ -7638,20 +9079,6 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &RedshiftClusterSecurityGroupIngress{}
 	case "AWS::Redshift::ClusterSubnetGroup":
 		return &RedshiftClusterSubnetGroup{}
-	case "AWS::RDS::DBInstance":
-		return &RDSDBInstance{}
-	case "AWS::RDS::DBParameterGroup":
-		return &RDSDBParameterGroup{}
-	case "AWS::RDS::DBSubnetGroup":
-		return &RDSDBSubnetGroup{}
-	case "AWS::RDS::DBSecurityGroup":
-		return &RDSDBSecurityGroup{}
-	case "AWS::RDS::DBSecurityGroupIngress":
-		return &RDSDBSecurityGroupIngress{}
-	case "AWS::RDS::EventSubscription":
-		return &RDSEventSubscription{}
-	case "AWS::RDS::OptionGroup":
-		return &RDSOptionGroup{}
 	case "AWS::Route53::HealthCheck":
 		return &Route53HealthCheck{}
 	case "AWS::Route53::HostedZone":
@@ -7674,6 +9101,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SQSQueue{}
 	case "AWS::SQS::QueuePolicy":
 		return &SQSQueuePolicy{}
+	case "AWS::WorkSpaces::Workspace":
+		return &WorkSpacesWorkspace{}
 	}
 	return nil
 }
