@@ -230,6 +230,8 @@ const rootURL = "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/"
 func getDoc(url string) (io.ReadCloser, error) {
 	_, cachePath := path.Split(url)
 	cachePath = path.Join("./.scraper-cache", cachePath)
+	os.MkdirAll(path.Dir(cachePath), 0755)
+
 	d, err := os.Open(cachePath)
 	if err == nil {
 		return d, nil
