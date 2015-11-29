@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/crewjam/go-cloudformation.svg?branch=master)](https://travis-ci.org/crewjam/go-cloudformation) [![](https://godoc.org/github.com/crewjam/go-cloudformation?status.png)](https://godoc.org/github.com/crewjam/go-cloudformation)
+
 
 This package provides a schema and related functions that allow you to reason about cloudformation template documents in golang.
 
