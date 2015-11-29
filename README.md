@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/crewjam/go-cloudformation.svg?branch=master)](https://travis-ci.org/crewjam/go-cloudformation) [![](https://godoc.org/github.com/crewjam/go-cloudformation?status.png)](https://godoc.org/github.com/crewjam/go-cloudformation)
 
-
-This package provides a schema and related functions that allow you to reason about cloudformation template documents in golang.
+This package provides a schema and related functions that allow you to reason about cloudformation template documents in golang. The package places an emphasis on type-safety so that templates is produces are a little more likely to be correct so you can avoid the endless cycle of `UPDATE_ROLLBACK_IN_PROGRESS`.
 
 Parsing example:
 
