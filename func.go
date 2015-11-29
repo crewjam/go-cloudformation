@@ -86,23 +86,3 @@ func unmarshalFunc(data []byte) (Func, error) {
 	}
 	return nil, fmt.Errorf("cannot decode function")
 }
-
-// Ref returns a new reference to another cloudformation resource
-func Ref(name string) RefFunc {
-	return RefFunc{Name: name}
-}
-
-// RefFunc is a reference to another cfn resource
-type RefFunc struct {
-	Name string `json:"Ref"`
-}
-
-func (r RefFunc) Bool() *BoolExpr {
-	return &BoolExpr{Func: r}
-}
-func (r RefFunc) String() *StringExpr {
-	return &StringExpr{Func: r}
-}
-
-var _ Func = RefFunc{}
-var _ BoolFunc = RefFunc{}
