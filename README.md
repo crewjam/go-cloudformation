@@ -1,11 +1,12 @@
 [![Build Status](https://travis-ci.org/crewjam/go-cloudformation.svg?branch=master)](https://travis-ci.org/crewjam/go-cloudformation) [![](https://godoc.org/github.com/crewjam/go-cloudformation?status.png)](https://godoc.org/github.com/crewjam/go-cloudformation)
 
-This package provides a schema and related functions that allow you to reason about cloudformation template documents in golang. The package places an emphasis on type-safety so that templates is produces are a little more likely to be correct so you can avoid the endless cycle of `UPDATE_ROLLBACK_IN_PROGRESS`.
+This package provides a schema and related functions that allow you to parse and serialize CloudFormation templates in golang. The package places an emphasis on type-safety so that the templates it produces (slightly) ore likely to be correct, and maybe you can avoid endless cycles of `UPDATE_ROLLBACK_IN_PROGRESS`.
 
 Parsing example:
 
     t := Template{}
     json.NewDecoder(os.Stdin).Decode(&t)
+    fmt.Printf("DNS name: %s\n", t.Parameters["DnsName"].Default)
 
 Producing Example:
 
@@ -26,7 +27,7 @@ cloudformation template from code.
 ## Producing the Schema
 
 As far as I can tell, AWS do not produce a structured document that
-describes the Cloudformation schema. The names and types for the
+describes the CloudFormation schema. The names and types for the
 various resources and objects are derived from scraping their HTML
 documentation (see scraper/). It is mostly, but not entirely,
 complete. I've noticed several inconsistencies in the documentation
@@ -35,36 +36,48 @@ problems, please submit a bug (or better yet, a pull request).
 
 ## Object Types
 
-Top level objects in Cloudformation are called resources. They have
-names like AWS::S3::Bucket and appear as values in the "Resources"
-mapping. We remove the punctuation from the name to derive a golang
-structure name like S3Bucket.
+Top level objects in CloudFormation are called resources. They have
+names like *AWS::S3::Bucket* and appear as values in the "Resources"
+mapping. We remove the punctuation and redundant words from the name
+to derive a golang structure name like *S3Bucket*.
 
-There other non-resource structures that are refered to either by
-resources or by other structures. These objects have names with
-spaces like "Amazon S3 Versioning Configuration". To derive a golang
-type name the non-letter characters are removed to get
-S3VersioningConfiguration.
+There are other non-resource structs that are refered to resources or other non-resource structs. These objects have names with
+spaces in them, like "Amazon S3 Versioning Configuration". To derive a golang
+type name the non-letter characters and redundant words are removed to get
+*S3VersioningConfiguration*.
 
 ## Type System
 
-Cloudformation uses three scalar types: string, int and bool. When
-they appear as properties we represent them as *StringExpr, *IntegerExpr,
-and *BoolExpr respectively. These types reflect that fact that a
-scalar type could be a literal string, int or bool, or could be a
-JSON dictionary representing a function call. (The *Expr structs have
-custom MarshalJSON and UnmarshalJSON that account for this)
+CloudFormation uses three scalar types: *string*, *int* and *bool*. When
+they appear as properties we represent them as `*StringExpr`, `*IntegerExpr`,
+and `*BoolExpr` respectively. 
+  
+    type StringExpr struct {
+      Func    StringFunc
+      Literal string
+    }
 
-Another vagary of the cloudformation language is that in cases where
-a list of objects is expects, a single object can provided. To account
-for this, whenever a list of objects appears, a custom type *WhateverList
-is used. This allows us to add a custom UnmarshalJSON which transforms
-an object into a list containing an object.
+    // StringFunc is an interface provided by objects that represent 
+    // CloudFormation functions that can return a string value.
+    type StringFunc interface {
+      Func
+      String() *StringExpr
+    }
+
+These types reflect that fact that a scalar type could be a literal value (`"us-east-1"`) or a JSON dictionary representing a function call (`{"Ref": "AWS::Region"`).
+
+Another vagary of the CloudFormation language is that in cases where
+a list of objects is expected, a single object can provided. For example, 
+`AutoScalingLaunchConfiguration` has a property `BlockDeviceMappings` which is a list of `AutoScalingBlockDeviceMapping`. Valid CloudFormation document can specify a single `AutoScalingBlockDeviceMapping` rather than a list. To model list, we use a custom type `AutoScalingBlockDeviceMappingList` which is just a `[]AutoScalingBlockDeviceMapping` with extra functions attached.
 
 ## Known Issues
 
-The `x.y = cloudformation.String("foo")` is cumbersome (but on balance, I think the best way to handle the vagaries of the CloudFormation syntax).
+The `cloudformation.String("foo")` is cumbersome for scalar literals. On balance, I think the best way to handle the vagaries of the CloudFormation syntax, but it doesn't make it terribly much easier. A similar approach is taken by aws-sdk-go (and is similarly cumbersome).
 
 There are some types that are not parsed fully and appear as `interface{}`.
 
-As I worked on this I worked through getting all the template files in examples/ to marshal & unmarshal correctly. This package works for our purposes, but I wouldn't be surprised if there are parts of CloudFormation we are not using that break. Please report them!
+I worked through public template files I could find, making sure the 
+library could accurately serialize and unserialize them. In this process
+I discovered some of the idiosyncracies described. This package works for our purposes, but I wouldn't be surprised if there are more idiosyncracies hidden in parts of CloudFormation we are not using. 
+
+Feedback, bug reports and pull requests are gratefully accepted.
