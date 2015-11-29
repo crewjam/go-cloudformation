@@ -4,7 +4,7 @@ go:
  - 1.5
 
 install:
- - go get ./...
+ - go get -t ./...
  - go generate .
 
 script:
