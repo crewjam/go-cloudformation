@@ -19,14 +19,15 @@ type StringExpr struct {
 	Literal string
 }
 
+// MarshalJSON returns a JSON representation of the object
 func (x StringExpr) MarshalJSON() ([]byte, error) {
 	if x.Func != nil {
 		return json.Marshal(x.Func)
-	} else {
-		return json.Marshal(x.Literal)
 	}
+	return json.Marshal(x.Literal)
 }
 
+// UnmarshalJSON sets the object from the provided JSON representation
 func (x *StringExpr) UnmarshalJSON(data []byte) error {
 	var v string
 	err := json.Unmarshal(data, &v)

@@ -2,6 +2,7 @@ package cloudformation
 
 import "encoding/json"
 
+// FindInMap returns a new instance of FindInMapFunc.
 func FindInMap(mapName string, topLevelKey StringExpr, secondLevelKey StringExpr) FindInMapFunc {
 	return FindInMapFunc{
 		MapName:        mapName,
@@ -10,18 +11,26 @@ func FindInMap(mapName string, topLevelKey StringExpr, secondLevelKey StringExpr
 	}
 }
 
+// FindInMapFunc represents an invocation of the Fn::FindInMap intrinsic.
+//
+// The intrinsic function Fn::FindInMap returns the value corresponding to
+// keys in a two-level map that is declared in the Mappings section.
+//
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html
 type FindInMapFunc struct {
 	MapName        string
 	TopLevelKey    StringExpr
 	SecondLevelKey StringExpr
 }
 
+// MarshalJSON returns a JSON representation of the object
 func (f FindInMapFunc) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
 		FnFindInMap []interface{} `json:"Fn::FindInMap"`
 	}{FnFindInMap: []interface{}{f.MapName, f.TopLevelKey, f.SecondLevelKey}})
 }
 
+// UnmarshalJSON sets the object from the provided JSON representation
 func (f *FindInMapFunc) UnmarshalJSON(buf []byte) error {
 	v := struct {
 		FnFindInMap [3]json.RawMessage `json:"Fn::FindInMap"`

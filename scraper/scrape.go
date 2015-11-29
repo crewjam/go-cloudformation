@@ -15,7 +15,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/jaytaylor/html2text"
+	"github.com/mitchellh/go-wordwrap"
 )
 
 // TemplateReference describes the CloudFormation template schema
@@ -35,6 +35,7 @@ func (tr *TemplateReference) Load() error {
 		}
 		doc.Find(".highlights li a").Each(func(i int, s *goquery.Selection) {
 			name := s.Text()
+			name = regexp.MustCompile("\\s+").ReplaceAllString(name, " ")
 			href, _ := s.Attr("href")
 			tr.Resources = append(tr.Resources, &Resource{Name: name, Href: href})
 
@@ -56,17 +57,22 @@ func (tr *TemplateReference) WriteGo(w io.Writer) {
 	fmt.Fprintf(w, "import \"encoding/json\"\n")
 	for _, resource := range tr.Resources {
 		fmt.Fprintf(w, "\n")
+		fmt.Fprintf(w, "// %s represents %s\n", resource.GoName(), resource.Name)
+		fmt.Fprintf(w, "//\n")
+		fmt.Fprintf(w, "// see %s%s\n", rootURL, resource.Href)
 		fmt.Fprintf(w, "type %s struct {\n", resource.GoName())
-		for _, p := range resource.Properties {
-			omitempty := ",omitempty"
-			if strings.HasPrefix(p.GoType(tr), "map[") {
-				omitempty = ""
+		for i, p := range resource.Properties {
+			if i > 0 {
+				fmt.Fprintf(w, "\n")
 			}
-			fmt.Fprintf(w, "  %s %s `json:\"%s%s\"`  // %s\n", p.GoName(), p.GoType(tr), p.Name, omitempty, p.Type)
+			fmt.Fprintf(w, "%s", p.Comment("  // "))
+			fmt.Fprintf(w, "  %s %s `json:\"%s,omitempty\"`\n", p.GoName(), p.GoType(tr), p.Name)
 		}
 		fmt.Fprintf(w, "}\n")
 		fmt.Fprintf(w, "\n")
 		if resource.IsTopLevelResource() {
+
+			fmt.Fprintf(w, "// ResourceType returns %s to implement the ResourceProperties interface\n", resource.Name)
 			fmt.Fprintf(w, "func (s %s) ResourceType() string {\n", resource.GoName())
 			fmt.Fprintf(w, "	return %q\n", resource.Name)
 			fmt.Fprintf(w, "}\n")
@@ -77,9 +83,11 @@ func (tr *TemplateReference) WriteGo(w io.Writer) {
 		// handle this we need to generate a *List type. This applies mostly only to
 		// non-top-level objects. (The only exception is AWS::Route53::RecordSet which is
 		// both a top level resource and a child element of AWS::Route53::RecordSetGroup
-		if !resource.IsTopLevelResource() || resource.GoName() == "AWSRoute53RecordSet" {
+		if !resource.IsTopLevelResource() || resource.GoName() == "Route53RecordSet" {
+			fmt.Fprintf(w, "// %sList represents a list of %s\n", resource.GoName(), resource.GoName())
 			fmt.Fprintf(w, "type %sList []%s\n", resource.GoName(), resource.GoName())
 			fmt.Fprintf(w, "\n")
+			fmt.Fprintf(w, "// UnmarshalJSON sets the object from the provided JSON representation\n")
 			fmt.Fprintf(w, "func (l *%sList) UnmarshalJSON(buf []byte) error {\n", resource.GoName())
 			fmt.Fprintf(w, "	// Cloudformation allows a single object when a list of objects is expected\n")
 			fmt.Fprintf(w, "	item := %s{}\n", resource.GoName())
@@ -99,6 +107,7 @@ func (tr *TemplateReference) WriteGo(w io.Writer) {
 		}
 	}
 
+	fmt.Fprintf(w, "// NewResourceByType returns a new resource object correspoding with the provided type\n")
 	fmt.Fprintf(w, "func NewResourceByType(typeName string) ResourceProperties {\n")
 	fmt.Fprintf(w, "	switch typeName {\n")
 
@@ -150,16 +159,20 @@ func (r *Resource) Load() error {
 
 			dd := dt.Next()
 
-			docString, err := dd.Html()
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "%s\n", err)
-				return
-			}
-			property.DocString, err = html2text.FromString(docString)
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "%s\n", err)
-				return
-			}
+			property.DocString = dd.Find("p").First().Text()
+			property.DocString = regexp.MustCompile("\\s+").ReplaceAllString(property.DocString, " ")
+			property.DocString = wordwrap.WrapString(property.DocString, 70)
+			/*
+				if err != nil {
+					fmt.Fprintf(os.Stderr, "%s\n", err)
+					return
+				}
+				property.DocString, err = html2text.FromString(docString)
+				if err != nil {
+					fmt.Fprintf(os.Stderr, "%s\n", err)
+					return
+				}
+			*/
 
 			// Somewhere inside the <DD> element there is a span that starts
 			// with `Type: ` which is our type. Grab it along with the href
@@ -184,16 +197,31 @@ func (r *Resource) Load() error {
 }
 
 func (r *Resource) GoName() string {
-	rv := strings.Replace(r.Name, "::", "", -1)
+	rv := r.Name
+	rv = strings.TrimPrefix(rv, "AWS CloudFormation ")
+	rv = strings.TrimPrefix(rv, "AWS ")
+	rv = strings.TrimPrefix(rv, "Amazon ")
+	rv = strings.TrimPrefix(rv, "AWS::")
+	rv = strings.Replace(rv, "::", "", -1)
 	rv = regexp.MustCompile("\\W").ReplaceAllString(rv, "")
 	rv = strings.TrimSuffix(rv, "PropertyType")
 	rv = strings.TrimSuffix(rv, "Type")
 
-	if rv == "AWSCloudFormationResourceTags" {
+	if rv == "ResourceTags" {
 		rv = "ResourceTag"
 	}
+
+	// There is an object names AWS::EC2::NetworkInterfaceAttachment and an
+	// object named EC2NetworkInterfaceAttachmentType. To avoid a duplicate
+	// definition, we have to deconflict them here.
+	if r.Name == "EC2 Network Interface Attachment" {
+		return "EC2NetworkInterfaceAttachmentType"
+	}
+
 	return rv
 }
+
+const rootURL = "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/"
 
 // http://godoc.org/golang.org/x/net/html
 // http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
@@ -209,7 +237,7 @@ func getDoc(url string) (io.ReadCloser, error) {
 	if !os.IsNotExist(err) {
 		return nil, err
 	}
-	res, err := http.Get("http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/" + url)
+	res, err := http.Get(rootURL + url)
 	if err != nil {
 		return nil, err
 	}
@@ -237,6 +265,15 @@ func (p *Property) GoName() string {
 	rv = strings.Replace(rv, ".", "", -1)
 	rv = regexp.MustCompile("[^A-Za-z0-9]").ReplaceAllString(rv, "X")
 	return rv
+}
+
+func (p *Property) Comment(prefix string) string {
+	c := p.DocString
+	c = strings.Replace(c, "\n\n: ", ": ", -1)
+	c = strings.Replace(c, "\n\n:\n", ": ", -1)
+	c = strings.Replace(c, "\n\n", "\n", -1)
+	c = strings.Replace(c, "\n", "\n"+prefix, -1)
+	return prefix + c + "\n"
 }
 
 func (p *Property) GoType(tr *TemplateReference) string {

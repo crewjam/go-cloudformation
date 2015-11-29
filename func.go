@@ -5,25 +5,42 @@ import (
 	"fmt"
 )
 
+// Func is an interface provided by objects that represent Cloudformation
+// function calls.
 type Func interface {
 }
 
+// BoolFunc is an interface provided by objects that represent Cloudformation
+// function that can return a boolean value.
 type BoolFunc interface {
+	Func
 	Bool() *BoolExpr
 }
 
+// IntegerFunc is an interface provided by objects that represent Cloudformation
+// function that can return an integer value.
 type IntegerFunc interface {
+	Func
 	Integer() *IntegerExpr
 }
 
+// StringFunc is an interface provided by objects that represent Cloudformation
+// function that can return a string value.
 type StringFunc interface {
+	Func
 	String() *StringExpr
 }
 
+// StringListFunc is an interface provided by objects that represent Cloudformation
+// function that can return a list of strings.
 type StringListFunc interface {
+	Func
 	StringList() *StringListExpr
 }
 
+// UnknownFunctionError is returned by various UnmarshalJSON
+// functions when they encounter a function that is not
+// implemented.
 type UnknownFunctionError struct {
 	Name string
 }
@@ -32,6 +49,8 @@ func (ufe UnknownFunctionError) Error() string {
 	return fmt.Sprintf("unkown function %s", ufe.Name)
 }
 
+// unmarshalFunc unmarshals data into a Func, or returns an error
+// if the function call is invalid.
 func unmarshalFunc(data []byte) (Func, error) {
 	rawDecode := map[string]json.RawMessage{}
 	err := json.Unmarshal(data, &rawDecode)

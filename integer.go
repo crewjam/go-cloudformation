@@ -5,31 +5,31 @@ import (
 	"strconv"
 )
 
-// IntegerExpr is a intean expression. If the value is computed then
-// Func will be non-nill. If it is a literal `true` or `false` then
+// IntegerExpr is a integer expression. If the value is computed then
+// Func will be non-nill. If it is a literal constant integer then
 // the Literal gives the value. Typically instances of this function
-// are created by Integer() or one of the function constructors. Ex:
+// are created by Integer() Ex:
 //
 //   type LocalBalancer struct {
-//     CrossZone *IntegerExpr
+//     Timeout *IntegerExpr
 //   }
 //
-//   lb := LocalBalancer{CrossZone: Integer(true)}
-//   lb2 := LocalBalancer{CrossZone: Ref("LoadBalancerCrossZone").Integer()}
+//   lb := LocalBalancer{Timeout: Integer(300)}
 //
 type IntegerExpr struct {
 	Func    IntegerFunc
 	Literal int
 }
 
+// MarshalJSON returns a JSON representation of the object
 func (x IntegerExpr) MarshalJSON() ([]byte, error) {
 	if x.Func != nil {
 		return json.Marshal(x.Func)
-	} else {
-		return json.Marshal(x.Literal)
 	}
+	return json.Marshal(x.Literal)
 }
 
+// UnmarshalJSON sets the object from the provided JSON representation
 func (x *IntegerExpr) UnmarshalJSON(data []byte) error {
 	var v int
 	err := json.Unmarshal(data, &v)

@@ -5,8 +5,8 @@ import (
 	"strconv"
 )
 
-// BoolExpr is a boolean expression. If the value is computed then
-// Func will be non-nill. If it is a literal `true` or `false` then
+// BoolExpr represents a boolean expression. If the value is computed then
+// Func will be non-nil. If it is a literal `true` or `false` then
 // the Literal gives the value. Typically instances of this function
 // are created by Bool() or one of the function constructors. Ex:
 //
@@ -22,14 +22,15 @@ type BoolExpr struct {
 	Literal bool
 }
 
+// MarshalJSON returns a JSON representation of the object
 func (x BoolExpr) MarshalJSON() ([]byte, error) {
 	if x.Func != nil {
 		return json.Marshal(x.Func)
-	} else {
-		return json.Marshal(x.Literal)
 	}
+	return json.Marshal(x.Literal)
 }
 
+// UnmarshalJSON sets the object from the provided JSON representation
 func (x *BoolExpr) UnmarshalJSON(data []byte) error {
 	var v bool
 	err := json.Unmarshal(data, &v)

@@ -3,6 +3,9 @@ package cloudformation
 import "encoding/json"
 import "reflect"
 
+// If returns a new instance of IfFunc for the provided string expressions.
+//
+// See also: IfList
 func If(condition string, valueIfTrue, valueIfFalse StringExpr) IfFunc {
 	return IfFunc{
 		list:         false,
@@ -12,6 +15,9 @@ func If(condition string, valueIfTrue, valueIfFalse StringExpr) IfFunc {
 	}
 }
 
+// IfList returns a new instance of IfFunc for the provided string list expressions.
+//
+// See also: If
 func IfList(condition string, valueIfTrue, valueIfFalse StringListExpr) IfFunc {
 	return IfFunc{
 		list:         true,
@@ -21,19 +27,24 @@ func IfList(condition string, valueIfTrue, valueIfFalse StringListExpr) IfFunc {
 	}
 }
 
+// IfFunc represents an invocation of the Fn::If intrinsic.
+//
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-conditions.html
 type IfFunc struct {
 	list         bool
 	Condition    string
-	ValueIfTrue  interface{}
-	ValueIfFalse interface{}
+	ValueIfTrue  interface{} // a StringExpr if list==false, otherwise a StringListExpr
+	ValueIfFalse interface{} // a StringExpr if list==false, otherwise a StringListExpr
 }
 
+// MarshalJSON returns a JSON representation of the object
 func (f IfFunc) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
 		FnIf []interface{} `json:"Fn::If"`
 	}{FnIf: []interface{}{f.Condition, f.ValueIfTrue, f.ValueIfFalse}})
 }
 
+// UnmarshalJSON sets the object from the provided JSON representation
 func (f *IfFunc) UnmarshalJSON(buf []byte) error {
 	v := struct {
 		FnIf [3]json.RawMessage `json:"Fn::If"`
@@ -89,6 +100,7 @@ func (f IfFunc) String() *StringExpr {
 	return &StringExpr{Func: f}
 }
 
+// StringList returns a new StringListExpr representing the literal value v.
 func (f IfFunc) StringList() *StringListExpr {
 	if !f.list {
 		panic("IfFunc is a scaler, but being treated as a list of strings.")
@@ -98,39 +110,3 @@ func (f IfFunc) StringList() *StringListExpr {
 
 var _ StringFunc = IfFunc{}     // IfFunc must implement StringFunc
 var _ StringListFunc = IfFunc{} // IfFunc must implement StringListFunc
-
-/*
-
-func If(condition, valueIfTrue, valueIfFalse StringExpression) StringExpression {
-	return StringExpression{If: &ifExpression{
-		Condition:    condition,
-		ValueIfTrue:  valueIfTrue,
-		ValueIfFalse: valueIfFalse,
-	}}
-}
-
-type ifExpression struct {
-	Condition    StringExpression
-	ValueIfTrue  StringExpression
-	ValueIfFalse StringExpression
-}
-
-func (se ifExpression) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		FnIf []StringExpression `json:"Fn::If"`
-	}{FnIf: []StringExpression{se.Condition, se.ValueIfTrue, se.ValueIfFalse}})
-}
-
-func (se *ifExpression) UnmarshalJSON(buf []byte) error {
-	v := struct {
-		FnIf [3]StringExpression `json:"Fn::If"`
-	}{}
-	if err := json.Unmarshal(buf, &v); err != nil {
-		return err
-	}
-	se.Condition = v.FnIf[0]
-	se.ValueIfTrue = v.FnIf[1]
-	se.ValueIfFalse = v.FnIf[2]
-	return nil
-}
-*/

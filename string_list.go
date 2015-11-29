@@ -22,14 +22,15 @@ type StringListExpr struct {
 	Literal []StringExpr
 }
 
+// MarshalJSON returns a JSON representation of the object
 func (x StringListExpr) MarshalJSON() ([]byte, error) {
 	if x.Func != nil {
 		return json.Marshal(x.Func)
-	} else {
-		return json.Marshal(x.Literal)
 	}
+	return json.Marshal(x.Literal)
 }
 
+// UnmarshalJSON sets the object from the provided JSON representation
 func (x *StringListExpr) UnmarshalJSON(data []byte) error {
 	var v []StringExpr
 	err := json.Unmarshal(data, &v)
@@ -49,9 +50,8 @@ func (x *StringListExpr) UnmarshalJSON(data []byte) error {
 		if ok {
 			x.Func = stringFunc
 			return nil
-		} else {
-			return fmt.Errorf("%#v is not a StringListFunc", funcCall)
 		}
+		return fmt.Errorf("%#v is not a StringListFunc", funcCall)
 	}
 
 	// Return the original error trying to unmarshal the literal expression,
