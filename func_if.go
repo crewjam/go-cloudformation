@@ -103,7 +103,7 @@ func (f IfFunc) String() *StringExpr {
 // StringList returns a new StringListExpr representing the literal value v.
 func (f IfFunc) StringList() *StringListExpr {
 	if !f.list {
-		panic("IfFunc is a scaler, but being treated as a list of strings.")
+		panic("IfFunc is a scalar, but being treated as a list of strings.")
 	}
 	return &StringListExpr{Func: f}
 }

@@ -46,7 +46,7 @@ type UnknownFunctionError struct {
 }
 
 func (ufe UnknownFunctionError) Error() string {
-	return fmt.Sprintf("unkown function %s", ufe.Name)
+	return fmt.Sprintf("unknown function %s", ufe.Name)
 }
 
 // unmarshalFunc unmarshals data into a Func, or returns an error

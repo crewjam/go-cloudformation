@@ -26,12 +26,15 @@ func (f GetAttFunc) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (f *GetAttFunc) UnmarshalJSON(buf []byte) error {
+func (f *GetAttFunc) UnmarshalJSON(data []byte) error {
 	v := struct {
-		FnGetAtt [2]string `json:"Fn::GetAtt"`
+		FnGetAtt []string `json:"Fn::GetAtt"`
 	}{}
-	if err := json.Unmarshal(buf, &v); err != nil {
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
+	}
+	if len(v.FnGetAtt) != 2 {
+		return &json.UnsupportedValueError{Str: string(data)}
 	}
 	f.Resource = v.FnGetAtt[0]
 	f.Name = v.FnGetAtt[1]

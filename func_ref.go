@@ -36,10 +36,23 @@ func (r RefFunc) Bool() *BoolExpr {
 	return &BoolExpr{Func: r}
 }
 
-// Bool returns this reference as a StringExpr
+// Integer returns this reference as a IntegerExpr
+func (r RefFunc) Integer() *IntegerExpr {
+	return &IntegerExpr{Func: r}
+}
+
+// String returns this reference as a StringExpr
 func (r RefFunc) String() *StringExpr {
 	return &StringExpr{Func: r}
 }
 
+// StringList returns this reference as a StringListExpr
+func (r RefFunc) StringList() *StringListExpr {
+	return &StringListExpr{Func: r}
+}
+
 var _ Func = RefFunc{}
 var _ BoolFunc = RefFunc{}
+var _ IntegerFunc = RefFunc{}
+var _ StringFunc = RefFunc{}
+var _ StringListFunc = RefFunc{}

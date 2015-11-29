@@ -26,12 +26,15 @@ func (f SelectFunc) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (f *SelectFunc) UnmarshalJSON(buf []byte) error {
+func (f *SelectFunc) UnmarshalJSON(data []byte) error {
 	v := struct {
-		FnSelect [2]json.RawMessage `json:"Fn::Select"`
+		FnSelect []json.RawMessage `json:"Fn::Select"`
 	}{}
-	if err := json.Unmarshal(buf, &v); err != nil {
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
+	}
+	if len(v.FnSelect) != 2 {
+		return &json.UnsupportedValueError{Str: string(data)}
 	}
 	if err := json.Unmarshal(v.FnSelect[0], &f.Selector); err != nil {
 		return err

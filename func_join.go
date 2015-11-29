@@ -27,12 +27,15 @@ func (f JoinFunc) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (f *JoinFunc) UnmarshalJSON(buf []byte) error {
+func (f *JoinFunc) UnmarshalJSON(data []byte) error {
 	v := struct {
-		FnJoin [2]json.RawMessage `json:"Fn::Join"`
+		FnJoin []json.RawMessage `json:"Fn::Join"`
 	}{}
-	if err := json.Unmarshal(buf, &v); err != nil {
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
+	}
+	if len(v.FnJoin) != 2 {
+		return &json.UnsupportedValueError{Str: string(data)}
 	}
 	if err := json.Unmarshal(v.FnJoin[0], &f.Separator); err != nil {
 		return err
