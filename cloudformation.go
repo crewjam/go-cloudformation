@@ -14,7 +14,7 @@
 // 		Default: "example.com",
 // 		Description: "the top level DNS name for the service"
 // 	}
-// 	t.AddResource("DataBucket", &AWSS3Bucket{
+// 	t.AddResource("DataBucket", &S3Bucket{
 // 		BucketName: Join("-", *String("data"), *Ref("DnsName").String())
 // 	})
 // 	json.NewEncoder(os.Stdout).Encoder(t)
@@ -37,13 +37,13 @@
 // Top level objects in Cloudformation are called resources. They have
 // names like AWS::S3::Bucket and appear as values in the "Resources"
 // mapping. We remove the punctuation from the name to derive a golang
-// structure name like AWSS3Bucket.
+// structure name like S3Bucket.
 //
 // There other non-resource structures that are refered to either by
 // resources or by other structures. These objects have names with
 // spaces like "Amazon S3 Versioning Configuration". To derive a golang
 // type name the non-letter characters are removed to get
-// AmazonS3VersioningConfiguration.
+// S3VersioningConfiguration.
 //
 // Type System
 //
