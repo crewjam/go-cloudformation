@@ -18,7 +18,7 @@ func makeTemplate() *cf.Template {
 		Default:     "preview.example.io",
 	}
 
-	t.AddResource("ServerLoadBalancer", cf.AWSElasticLoadBalancingLoadBalancer{
+	t.AddResource("ServerLoadBalancer", cf.ElasticLoadBalancingLoadBalancer{
 		ConnectionDrainingPolicy: &cf.ElasticLoadBalancingConnectionDrainingPolicy{
 			Enabled: cf.Bool(true),
 			Timeout: cf.Integer(30),
