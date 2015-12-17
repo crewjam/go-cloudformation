@@ -13,6 +13,7 @@ func NewTemplate() *Template {
 		Mappings:                 map[string]Mapping{},
 		Parameters:               map[string]Parameter{},
 		Resources:                map[string]Resource{},
+		Outputs:                  map[string]Output{},
 	}
 }
 
@@ -23,6 +24,7 @@ type Template struct {
 	Mappings                 map[string]Mapping   `json:",omitempty"`
 	Parameters               map[string]Parameter `json:",omitempty"`
 	Resources                map[string]Resource  `json:",omitempty"`
+	Outputs                  map[string]Output    `json:",omitempty"`
 }
 
 // AddResource adds the resource to the template as name, displacing
@@ -53,6 +55,18 @@ type Parameter struct {
 	Type        string `json:",omitempty"`
 	Description string `json:",omitempty"`
 	Default     string `json:",omitempty"`
+}
+
+// Output represents a template output
+//
+// The optional Outputs section declares output values that you want to view from the
+// AWS CloudFormation console or that you want to return in response to describe stack calls.
+// For example, you can output the Amazon S3 bucket name for a stack so that you can easily find it.
+//
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html
+type Output struct {
+	Description string      `json:",omitempty"`
+	Value       interface{} `json:",omitempty"`
 }
 
 // ResourceProperties is an interface that is implemented by resource objects.
