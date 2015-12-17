@@ -227,17 +227,40 @@ type AutoScalingScalingPolicy struct {
 	// before any further trigger-related scaling activities can start.
 	Cooldown *StringExpr `json:"Cooldown,omitempty"`
 
-	// The minmum number of instances that are added or removed when the Auto
-	// Scaling group scales up or down. You can use this property only when
-	// you specify PercentChangeInCapacity for the AdjustmentType property.
-	MinAdjustmentStep *IntegerExpr `json:"MinAdjustmentStep,omitempty"`
+	// The estimated time, in seconds, until a newly launched instance can
+	// send metrics to CloudWatch. By default, Auto Scaling uses the cooldown
+	// period, as specified in the Cooldown property.
+	EstimatedInstanceWarmup *IntegerExpr `json:"EstimatedInstanceWarmup,omitempty"`
 
-	// The number of instances by which to scale. AdjustmentType determines
-	// the interpretation of this number, such as an absolute number or as a
-	// percentage of the existing Auto Scaling group size. A positive
-	// increment adds to the current capacity and a negative value removes
-	// from the current capacity.
-	ScalingAdjustment *StringExpr `json:"ScalingAdjustment,omitempty"`
+	// The aggregation type for the CloudWatch metrics. You can specify
+	// Minimum, Maximum, or Average. By default, AWS CloudFormation specifies
+	// Average.
+	MetricAggregationType *StringExpr `json:"MetricAggregationType,omitempty"`
+
+	// For the PercentChangeInCapacity adjustment type, the minimum number of
+	// instances to scale. The scaling policy changes the desired capacity of
+	// the Auto Scaling group by a minimum of this many instances. This
+	// property replaces the MinAdjustmentStep property.
+	MinAdjustmentMagnitude *IntegerExpr `json:"MinAdjustmentMagnitude,omitempty"`
+
+	// An Auto Scaling policy type. You can specify SimpleScaling or
+	// StepScaling. By default, AWS CloudFormation specifies SimpleScaling.
+	// For more information, see Scaling Policy Types in the Auto Scaling
+	// Developer Guide.
+	PolicyType *StringExpr `json:"PolicyType,omitempty"`
+
+	// The number of instances by which to scale. The AdjustmentType property
+	// determines whether AWS CloudFormation interprets this number as an
+	// absolute number (when the ExactCapacityvalue is specified) or as a
+	// percentage of the existing Auto Scaling group size (when the
+	// PercentChangeInCapacity value is specified). A positive value adds to
+	// the current capacity and a negative value subtracts from the current
+	// capacity.
+	ScalingAdjustment *IntegerExpr `json:"ScalingAdjustment,omitempty"`
+
+	// A set of adjustments that enable you to scale based on the size of the
+	// alarm breach.
+	StepAdjustments *AutoScalingScalingPolicyStepAdjustmentsList `json:"StepAdjustments,omitempty"`
 }
 
 // ResourceType returns AWS::AutoScaling::ScalingPolicy to implement the ResourceProperties interface
@@ -349,6 +372,25 @@ func (s CloudFormationInit) ResourceType() string {
 	return "AWS::CloudFormation::Init"
 }
 
+// CloudFormationInterface represents AWS::CloudFormation::Interface
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html
+type CloudFormationInterface struct {
+	// A list of parameter group types, where you specify group names, the
+	// parameters in each group, and the order in which the parameters are
+	// shown.
+	ParameterGroups *InterfaceParameterGroupList `json:"ParameterGroups,omitempty"`
+
+	// A list of parameters and their friendly names that the AWS
+	// CloudFormation console shows when a stack is created or updated.
+	ParameterLabels *InterfaceParameterLabelList `json:"ParameterLabels,omitempty"`
+}
+
+// ResourceType returns AWS::CloudFormation::Interface to implement the ResourceProperties interface
+func (s CloudFormationInterface) ResourceType() string {
+	return "AWS::CloudFormation::Interface"
+}
+
 // CloudFormationStack represents AWS::CloudFormation::Stack
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html
@@ -442,6 +484,22 @@ func (s CloudFrontDistribution) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html
 type CloudTrailTrail struct {
+	// The Amazon Resource Name (ARN) of a log group to which CloudTrail logs
+	// will be delivered.
+	CloudWatchLogsLogGroupArn *StringExpr `json:"CloudWatchLogsLogGroupArn,omitempty"`
+
+	// The role ARN that Amazon CloudWatch Logs (CloudWatch Logs) assumes to
+	// write logs to a log group. For more information, see Role Policy
+	// Document for CloudTrail to Use CloudWatch Logs for Monitoring in the
+	// AWS CloudTrail User Guide.
+	CloudWatchLogsRoleArn *StringExpr `json:"CloudWatchLogsRoleArn,omitempty"`
+
+	// Indicates whether CloudTrail validates the integrity of log files.
+	// When you disable log file integrity validation, CloudTrail stops
+	// creating digest files. For more information, see CreateTrail in the
+	// AWS CloudTrail API Reference.
+	EnableLogFileValidation *BoolExpr `json:"EnableLogFileValidation,omitempty"`
+
 	// Indicates whether the trail is publishing events from global services,
 	// such as IAM, to the log files.
 	IncludeGlobalServiceEvents *BoolExpr `json:"IncludeGlobalServiceEvents,omitempty"`
@@ -449,6 +507,12 @@ type CloudTrailTrail struct {
 	// Indicates whether the CloudTrail trail is currently logging AWS API
 	// calls.
 	IsLogging *BoolExpr `json:"IsLogging,omitempty"`
+
+	// The AWS Key Management Service (AWS KMS) key ID that you want to use
+	// to encrypt CloudTrail logs. You can specify an alias name (prefixed
+	// with alias/), an alias ARN, a key ARN, or a globally unique
+	// identifier.
+	KMSKeyId *StringExpr `json:"KMSKeyId,omitempty"`
 
 	// The name of the Amazon S3 bucket where CloudTrail publishes log files.
 	S3BucketName *StringExpr `json:"S3BucketName,omitempty"`
@@ -460,6 +524,9 @@ type CloudTrailTrail struct {
 	// The name of an Amazon SNS topic that is notified when new log files
 	// are published.
 	SnsTopicName *StringExpr `json:"SnsTopicName,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for this trail.
+	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
 // ResourceType returns AWS::CloudTrail::Trail to implement the ResourceProperties interface
@@ -547,6 +614,10 @@ func (s CloudWatchAlarm) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html
 type CodeDeployApplication struct {
+	// A name for the application. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// application name. For more information, see Name Type.
+	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
 }
 
 // ResourceType returns AWS::CodeDeploy::Application to implement the ResourceProperties interface
@@ -558,6 +629,12 @@ func (s CodeDeployApplication) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html
 type CodeDeployDeploymentConfig struct {
+	// A name for the deployment configuration. If you don't specify a name,
+	// AWS CloudFormation generates a unique physical ID and uses that ID for
+	// the deployment configuration name. For more information, see Name
+	// Type.
+	DeploymentConfigName *StringExpr `json:"DeploymentConfigName,omitempty"`
+
 	// The minimum number of healthy instances that must be available at any
 	// time during an AWS CodeDeploy deployment. For example, for a fleet of
 	// nine instances, if you specify a minimum of six healthy instances, AWS
@@ -596,6 +673,11 @@ type CodeDeployDeploymentGroup struct {
 	// the AWS CodeDeploy API Reference.
 	DeploymentConfigName *StringExpr `json:"DeploymentConfigName,omitempty"`
 
+	// A name for the deployment group. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// deployment group name. For more information, see Name Type.
+	DeploymentGroupName *StringExpr `json:"DeploymentGroupName,omitempty"`
+
 	// The Amazon EC2 tags to filter on. AWS CodeDeploy includes all
 	// instances that match the tag filter with this deployment group.
 	Ec2TagFilters *CodeDeployDeploymentGroupEc2TagFilters `json:"Ec2TagFilters,omitempty"`
@@ -617,6 +699,172 @@ type CodeDeployDeploymentGroup struct {
 // ResourceType returns AWS::CodeDeploy::DeploymentGroup to implement the ResourceProperties interface
 func (s CodeDeployDeploymentGroup) ResourceType() string {
 	return "AWS::CodeDeploy::DeploymentGroup"
+}
+
+// CodePipelineCustomAction represents AWS::CodePipeline::CustomActionType
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html
+type CodePipelineCustomAction struct {
+	// The category of the custom action, such as a source action or a build
+	// action. For valid values, see CreateCustomActionType in the AWS
+	// CodePipeline API Reference.
+	Category *StringExpr `json:"Category,omitempty"`
+
+	// The configuration properties for the custom action.
+	ConfigurationProperties *CodePipelineCustomActionTypeConfigurationPropertiesList `json:"ConfigurationProperties,omitempty"`
+
+	// The input artifact details for this custom action.
+	InputArtifactDetails *CodePipelineCustomActionTypeArtifactDetails `json:"InputArtifactDetails,omitempty"`
+
+	// The output artifact details for this custom action.
+	OutputArtifactDetails *CodePipelineCustomActionTypeArtifactDetails `json:"OutputArtifactDetails,omitempty"`
+
+	// The name of the service provider that AWS CodePipeline uses for this
+	// custom action.
+	Provider *StringExpr `json:"Provider,omitempty"`
+
+	// URLs that provide users information about this custom action.
+	Settings *CodePipelineCustomActionTypeSettings `json:"Settings,omitempty"`
+
+	// The version number of this custom action.
+	Version *StringExpr `json:"Version,omitempty"`
+}
+
+// ResourceType returns AWS::CodePipeline::CustomActionType to implement the ResourceProperties interface
+func (s CodePipelineCustomAction) ResourceType() string {
+	return "AWS::CodePipeline::CustomActionType"
+}
+
+// CodePipelinePipeline represents AWS::CodePipeline::Pipeline
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
+type CodePipelinePipeline struct {
+	// The Amazon Simple Storage Service (Amazon S3) location where AWS
+	// CodePipeline stores pipeline artifacts. The S3 bucket must have
+	// versioning enabled. For more information, see Create an Amazon S3
+	// Bucket for Your Application in the AWS CodePipeline User Guide.
+	ArtifactStore *CodePipelinePipelineArtifactStore `json:"ArtifactStore,omitempty"`
+
+	// Prevents artifacts in a pipeline from transitioning to the stage that
+	// you specified. This enables you to manually control transitions.
+	DisableInboundStageTransitions *CodePipelinePipelineDisableInboundStageTransitionsList `json:"DisableInboundStageTransitions,omitempty"`
+
+	// The name of your AWS CodePipeline pipeline.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// Indicates whether to rerun the AWS CodePipeline pipeline after you
+	// update it.
+	RestartExecutionOnUpdate *BoolExpr `json:"RestartExecutionOnUpdate,omitempty"`
+
+	// A service role Amazon Resource Name (ARN) that grants AWS CodePipeline
+	// permission to make calls to AWS services on your behalf. For more
+	// information, see AWS CodePipeline Access Permissions Reference in the
+	// AWS CodePipeline User Guide.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// Defines the AWS CodePipeline pipeline stages.
+	Stages *CodePipelinePipelineStages `json:"Stages,omitempty"`
+}
+
+// ResourceType returns AWS::CodePipeline::Pipeline to implement the ResourceProperties interface
+func (s CodePipelinePipeline) ResourceType() string {
+	return "AWS::CodePipeline::Pipeline"
+}
+
+// ConfigConfigRule represents AWS::Config::ConfigRule
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html
+type ConfigConfigRule struct {
+	// A name for the AWS Config rule. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// rule name. For more information, see Name Type.
+	ConfigRuleName *StringExpr `json:"ConfigRuleName,omitempty"`
+
+	// A description about this AWS Config rule.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Input parameter values that are passed to the AWS Config rule (Lambda
+	// function).
+	InputParameters interface{} `json:"InputParameters,omitempty"`
+
+	// The maximum frequency at which the AWS Config rule runs evaluations.
+	// For valid values, see the ConfigRule data type in the AWS Config API
+	// Reference.
+	MaximumExecutionFrequency *StringExpr `json:"MaximumExecutionFrequency,omitempty"`
+
+	// Defines which AWS resources will trigger an evaluation when their
+	// configurations change. The scope can include one or more resource
+	// types, a combination of a tag key and value, or a combination of one
+	// resource type and one resource ID. Specify a scope to constrain the
+	// resources that are evaluated. If you don't specify a scope, the rule
+	// evaluates all resources in the recording group.
+	Scope *ConfigConfigRuleScope `json:"Scope,omitempty"`
+
+	// Specifies the rule owner, the rule identifier, and the events that
+	// cause the function to evaluate your AWS resources.
+	Source *ConfigConfigRuleSource `json:"Source,omitempty"`
+}
+
+// ResourceType returns AWS::Config::ConfigRule to implement the ResourceProperties interface
+func (s ConfigConfigRule) ResourceType() string {
+	return "AWS::Config::ConfigRule"
+}
+
+// ConfigConfigurationRecorder represents AWS::Config::ConfigurationRecorder
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html
+type ConfigConfigurationRecorder struct {
+	// A name for the configuration recorder. If you don't specify a name,
+	// AWS CloudFormation generates a unique physical ID and uses that ID for
+	// the configuration recorder name. For more information, see Name Type.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// Indicates whether to record configurations for all supported resources
+	// or for a list of resource types. The resource types that you list must
+	// be supported by AWS Config.
+	RecordingGroup *ConfigConfigurationRecorderRecordingGroup `json:"RecordingGroup,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access
+	// Management (IAM) role that is used to make read or write requests to
+	// the delivery channel that you specify and to get configuration details
+	// for supported AWS resources. For more information, see Permissions for
+	// the AWS Config IAM Role in the AWS Config Developer Guide.
+	RoleARN *StringExpr `json:"RoleARN,omitempty"`
+}
+
+// ResourceType returns AWS::Config::ConfigurationRecorder to implement the ResourceProperties interface
+func (s ConfigConfigurationRecorder) ResourceType() string {
+	return "AWS::Config::ConfigurationRecorder"
+}
+
+// ConfigDeliveryChannel represents AWS::Config::DeliveryChannel
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html
+type ConfigDeliveryChannel struct {
+	// Provides options for how AWS Config delivers configuration snapshots
+	// to the S3 bucket in your delivery channel.
+	ConfigSnapshotDeliveryProperties *ConfigDeliveryChannelConfigSnapshotDeliveryProperties `json:"ConfigSnapshotDeliveryProperties,omitempty"`
+
+	// A name for the delivery channel. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// delivery channel name. For more information, see Name Type.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The name of an S3 bucket where you want to store configuration history
+	// for the delivery channel.
+	S3BucketName *StringExpr `json:"S3BucketName,omitempty"`
+
+	// A key prefix (folder) for the specified S3 bucket.
+	S3KeyPrefix *StringExpr `json:"S3KeyPrefix,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Simple Notification
+	// Service (Amazon SNS) topic that AWS Config delivers notifications to.
+	SnsTopicARN *StringExpr `json:"SnsTopicARN,omitempty"`
+}
+
+// ResourceType returns AWS::Config::DeliveryChannel to implement the ResourceProperties interface
+func (s ConfigDeliveryChannel) ResourceType() string {
+	return "AWS::Config::DeliveryChannel"
 }
 
 // DataPipelinePipeline represents AWS::DataPipeline::Pipeline
@@ -727,6 +975,10 @@ type DynamoDBTable struct {
 	// to 5 local secondary indexes. Each index is scoped to a given hash key
 	// value. The size of each hash key can be up to 10 gigabytes.
 	LocalSecondaryIndexes *DynamoDBLocalSecondaryIndexes `json:"LocalSecondaryIndexes,omitempty"`
+
+	// The settings for the DynamoDB table stream, which capture changes to
+	// items stored in the table.
+	StreamSpecification *DynamoDBTableStreamSpecification `json:"StreamSpecification,omitempty"`
 
 	// Throughput for the specified table, consisting of values for
 	// ReadCapacityUnits and WriteCapacityUnits. For more information about
@@ -936,6 +1188,13 @@ type EC2Instance struct {
 	// instance. Also determines if an instance in a VPC will perform network
 	// address translation (NAT).
 	SourceDestCheck *BoolExpr `json:"SourceDestCheck,omitempty"`
+
+	// The Amazon EC2 Simple Systems Manager (SSM) document and parameter
+	// values to associate with this instance. To use this property, you must
+	// specify an IAM role for the instance. For more information, see
+	// Prerequisites for Remotely Running Commands on EC2 Instances in the
+	// Amazon EC2 User Guide for Microsoft Windows Instances.
+	SsmAssociations *EC2InstanceSsmAssociationsList `json:"SsmAssociations,omitempty"`
 
 	// If you're using Amazon VPC, this property specifies the ID of the
 	// subnet that you want to launch the instance into. If you specified the
@@ -1287,7 +1546,7 @@ func (s EC2SecurityGroupIngress) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html
 type EC2SpotFleet struct {
 	// The configuration for a Spot fleet request.
-	SpotFleetRequestConfigData *ElasticComputeCloudSpotFleetSpotFleetRequestConfigData `json:"SpotFleetRequestConfigData,omitempty"`
+	SpotFleetRequestConfigData *EC2SpotFleetSpotFleetRequestConfigData `json:"SpotFleetRequestConfigData,omitempty"`
 }
 
 // ResourceType returns AWS::EC2::SpotFleet to implement the ResourceProperties interface
@@ -1673,8 +1932,7 @@ type ECSService struct {
 	// balancer.
 	Role *StringExpr `json:"Role,omitempty"`
 
-	// The family, family and revision (family:revision), or ARN of the task
-	// definition that you want to run on the cluster.
+	// The ARN of the task definition that you want to run on the cluster.
 	TaskDefinition *StringExpr `json:"TaskDefinition,omitempty"`
 }
 
@@ -2382,6 +2640,34 @@ type KinesisStream struct {
 // ResourceType returns AWS::Kinesis::Stream to implement the ResourceProperties interface
 func (s KinesisStream) ResourceType() string {
 	return "AWS::Kinesis::Stream"
+}
+
+// KMSKey represents AWS::KMS::Key
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html
+type KMSKey struct {
+	// A description of the key. Use a description that helps your users
+	// decide whether the key is appropriate for a particular task.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Indicates whether the key is available for use. AWS CloudFormation
+	// sets this value to true by default.
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+
+	// Indicates whether AWS KMS rotates the key. AWS CloudFormation sets
+	// this value to false by default.
+	EnableKeyRotation *BoolExpr `json:"EnableKeyRotation,omitempty"`
+
+	// An AWS Identity and Access Management (IAM) policy to attach to the
+	// key. Use a policy to specify who has permission to use the key and
+	// which actions they can perform. For more information, see Key Policies
+	// in the AWS Key Management Service Developer Guide.
+	KeyPolicy *StringExpr `json:"KeyPolicy,omitempty"`
+}
+
+// ResourceType returns AWS::KMS::Key to implement the ResourceProperties interface
+func (s KMSKey) ResourceType() string {
+	return "AWS::KMS::Key"
 }
 
 // LambdaEventSourceMapping represents AWS::Lambda::EventSourceMapping
@@ -3341,6 +3627,10 @@ type RedshiftCluster struct {
 	// store keys in an HSM.
 	HsmConfigurationIdentifier *StringExpr `json:"HsmConfigurationIdentifier,omitempty"`
 
+	// The AWS Key Management Service (AWS KMS) key ID that you want to use
+	// to encrypt data in the cluster.
+	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
+
 	// The user name that is associated with the master user account for this
 	// cluster.
 	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
@@ -3516,9 +3806,6 @@ type Route53RecordSet struct {
 	// you are redirecting traffic.
 	AliasTarget *Route53AliasTargetProperty `json:"AliasTarget,omitempty"`
 
-	// Any comments you want to include about the hosted zone.
-	Comment *StringExpr `json:"Comment,omitempty"`
-
 	// Designates the record set as a PRIMARY or SECONDARY failover record
 	// set. When you have more than one resource performing the same
 	// function, you can configure Amazon Route 53 to check the health of
@@ -3612,6 +3899,9 @@ func (l *Route53RecordSetList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordsetgroup.html
 type Route53RecordSetGroup struct {
+	// Any comments you want to include about the hosted zone.
+	Comment *StringExpr `json:"Comment,omitempty"`
+
 	// The ID of the hosted zone.
 	HostedZoneId *StringExpr `json:"HostedZoneId,omitempty"`
 
@@ -3621,9 +3911,6 @@ type Route53RecordSetGroup struct {
 
 	// List of resource record sets to add.
 	RecordSets *Route53RecordSetList `json:"RecordSets,omitempty"`
-
-	// Any comments you want to include about the hosted zone.
-	Comment *StringExpr `json:"Comment,omitempty"`
 }
 
 // ResourceType returns AWS::Route53::RecordSetGroup to implement the ResourceProperties interface
@@ -3819,6 +4106,21 @@ func (s SQSQueuePolicy) ResourceType() string {
 	return "AWS::SQS::QueuePolicy"
 }
 
+// SSMDocument represents AWS::SSM::Document
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html
+type SSMDocument struct {
+	// A JSON object that describes an instance configuration. For more
+	// information, see SSM Documents in the Amazon EC2 Simple Systems
+	// Manager API Reference.
+	Content interface{} `json:"Content,omitempty"`
+}
+
+// ResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
+func (s SSMDocument) ResourceType() string {
+	return "AWS::SSM::Document"
+}
+
 // WorkSpacesWorkspace represents AWS::WorkSpaces::Workspace
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html
@@ -3839,6 +4141,18 @@ type WorkSpacesWorkspace struct {
 	// The name of the user to which the workspace is assigned. This user
 	// name must exist in the specified AWS Directory Service directory.
 	UserName *StringExpr `json:"UserName,omitempty"`
+
+	// Indicates whether Amazon WorkSpaces encrypts data stored on the root
+	// volume (C: drive).
+	RootVolumeEncryptionEnabled *BoolExpr `json:"RootVolumeEncryptionEnabled,omitempty"`
+
+	// Indicates whether Amazon WorkSpaces encrypts data stored on the user
+	// volume (D: drive).
+	UserVolumeEncryptionEnabled *BoolExpr `json:"UserVolumeEncryptionEnabled,omitempty"`
+
+	// The AWS Key Management Service (AWS KMS) key ID that Amazon WorkSpaces
+	// uses to encrypt data stored on your workspace.
+	VolumeEncryptionKey *StringExpr `json:"VolumeEncryptionKey,omitempty"`
 }
 
 // ResourceType returns AWS::WorkSpaces::Workspace to implement the ResourceProperties interface
@@ -3895,6 +4209,13 @@ type AutoScalingEBSBlockDevice struct {
 	// Indicates whether to delete the volume when the instance is
 	// terminated. By default, Auto Scaling uses true.
 	DeleteOnTermination *BoolExpr `json:"DeleteOnTermination,omitempty"`
+
+	// Indicates whether the volume is encrypted. Encrypted EBS volumes must
+	// be attached to instances that support Amazon EBS encryption. Volumes
+	// that you create from encrypted snapshots are automatically encrypted.
+	// You cannot create an encrypted volume from an unencrypted snapshot or
+	// an unencrypted volume from an encrypted snapshot.
+	Encrypted *BoolExpr `json:"Encrypted,omitempty"`
 
 	// The number of I/O operations per second (IOPS) that the volume
 	// supports. The maximum ratio of IOPS to volume size is 30.
@@ -4007,6 +4328,52 @@ func (l *AutoScalingNotificationConfigurationsList) UnmarshalJSON(buf []byte) er
 	return err
 }
 
+// AutoScalingScalingPolicyStepAdjustments represents Auto Scaling ScalingPolicy StepAdjustments
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html
+type AutoScalingScalingPolicyStepAdjustments struct {
+	// The lower bound for the difference between the breach threshold and
+	// the CloudWatch metric. If the metric value exceeds the breach
+	// threshold, the lower bound is inclusive (the metric must be greater
+	// than or equal to the threshold plus the lower bound). Otherwise, it is
+	// exclusive (the metric must be greater than the threshold plus the
+	// lower bound). A null value indicates negative infinity.
+	MetricIntervalLowerBound *IntegerExpr `json:"MetricIntervalLowerBound,omitempty"`
+
+	// The upper bound for the difference between the breach threshold and
+	// the CloudWatch metric. If the metric value exceeds the breach
+	// threshold, the upper bound is exclusive (the metric must be less than
+	// the threshold plus the upper bound). Otherwise, it is inclusive (the
+	// metric must be less than or equal to the threshold plus the upper
+	// bound). A null value indicates positive infinity.
+	MetricIntervalUpperBound *IntegerExpr `json:"MetricIntervalUpperBound,omitempty"`
+
+	// The amount by which to scale, based on the value that you specified in
+	// the AdjustmentType property. A positive value adds to the current
+	// capacity and a negative number subtracts from the current capacity.
+	ScalingAdjustment *IntegerExpr `json:"ScalingAdjustment,omitempty"`
+}
+
+// AutoScalingScalingPolicyStepAdjustmentsList represents a list of AutoScalingScalingPolicyStepAdjustments
+type AutoScalingScalingPolicyStepAdjustmentsList []AutoScalingScalingPolicyStepAdjustments
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingScalingPolicyStepAdjustmentsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingScalingPolicyStepAdjustments{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingScalingPolicyStepAdjustmentsList{item}
+		return nil
+	}
+	list := []AutoScalingScalingPolicyStepAdjustments{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingScalingPolicyStepAdjustmentsList(list)
+		return nil
+	}
+	return err
+}
+
 // AutoScalingTags represents Auto Scaling Tags Property Type
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html
@@ -4066,6 +4433,101 @@ func (l *CloudFormationStackParametersList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = CloudFormationStackParametersList(list)
+		return nil
+	}
+	return err
+}
+
+// InterfaceLabel represents AWS CloudFormation Interface Label
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-interface-label.html
+type InterfaceLabel struct {
+	// The default label that the AWS CloudFormation console uses to name a
+	// parameter group or parameter.
+	Default *StringExpr `json:"default,omitempty"`
+}
+
+// InterfaceLabelList represents a list of InterfaceLabel
+type InterfaceLabelList []InterfaceLabel
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *InterfaceLabelList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := InterfaceLabel{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = InterfaceLabelList{item}
+		return nil
+	}
+	list := []InterfaceLabel{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = InterfaceLabelList(list)
+		return nil
+	}
+	return err
+}
+
+// InterfaceParameterGroup represents AWS CloudFormation Interface ParameterGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-interface-parametergroup.html
+type InterfaceParameterGroup struct {
+	// A name for the parameter group.
+	Label *InterfaceLabel `json:"Label,omitempty"`
+
+	// A list of case-sensitive parameter logical IDs to include in the
+	// group. Parameters must already be defined in the Parameters section of
+	// the template. A parameter can be included in only one parameter group.
+	Parameters *StringListExpr `json:"Parameters,omitempty"`
+}
+
+// InterfaceParameterGroupList represents a list of InterfaceParameterGroup
+type InterfaceParameterGroupList []InterfaceParameterGroup
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *InterfaceParameterGroupList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := InterfaceParameterGroup{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = InterfaceParameterGroupList{item}
+		return nil
+	}
+	list := []InterfaceParameterGroup{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = InterfaceParameterGroupList(list)
+		return nil
+	}
+	return err
+}
+
+// InterfaceParameterLabel represents AWS CloudFormation Interface ParameterLabel
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-interface-parameterlabel.html
+type InterfaceParameterLabel struct {
+	// A label for a parameter. The label defines a friendly name or
+	// description that the AWS CloudFormation console shows on the Specify
+	// Parameters page when a stack is created or updated. The
+	// ParameterLogicalID key must be the case-sensitive logical ID of a
+	// valid parameter that has been declared in the Parameters section of
+	// the template.
+	ParameterLogicalID *InterfaceLabel `json:"ParameterLogicalID,omitempty"`
+}
+
+// InterfaceParameterLabelList represents a list of InterfaceParameterLabel
+type InterfaceParameterLabelList []InterfaceParameterLabel
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *InterfaceParameterLabelList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := InterfaceParameterLabel{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = InterfaceParameterLabelList{item}
+		return nil
+	}
+	list := []InterfaceParameterLabel{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = InterfaceParameterLabelList(list)
 		return nil
 	}
 	return err
@@ -4986,6 +5448,642 @@ func (l *CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList) UnmarshalJSO
 	return err
 }
 
+// CodePipelineCustomActionTypeArtifactDetails represents AWS CodePipeline CustomActionType ArtifactDetails
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype-artifactdetails.html
+type CodePipelineCustomActionTypeArtifactDetails struct {
+	// The maximum number of artifacts allowed for the action type.
+	MaximumCount *IntegerExpr `json:"MaximumCount,omitempty"`
+
+	// The minimum number of artifacts allowed for the action type.
+	MinimumCount *IntegerExpr `json:"MinimumCount,omitempty"`
+}
+
+// CodePipelineCustomActionTypeArtifactDetailsList represents a list of CodePipelineCustomActionTypeArtifactDetails
+type CodePipelineCustomActionTypeArtifactDetailsList []CodePipelineCustomActionTypeArtifactDetails
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelineCustomActionTypeArtifactDetailsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelineCustomActionTypeArtifactDetails{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelineCustomActionTypeArtifactDetailsList{item}
+		return nil
+	}
+	list := []CodePipelineCustomActionTypeArtifactDetails{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelineCustomActionTypeArtifactDetailsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelineCustomActionTypeConfigurationProperties represents AWS CodePipeline CustomActionType ConfigurationProperties
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype-configurationproperties.html
+type CodePipelineCustomActionTypeConfigurationProperties struct {
+	// A description of this configuration property that will be displayed to
+	// users.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Indicates whether the configuration property is a key.
+	Key *BoolExpr `json:"Key,omitempty"`
+
+	// A name for this configuration property.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// Indicates whether the configuration property will be used with the
+	// PollForJobs call. A custom action can have one queryable property. The
+	// queryable property must be required (see the Required property) and
+	// must not be secret (see the Secret property). For more information,
+	// see the queryable contents for the ActionConfigurationProperty data
+	// type in the AWS CodePipeline API Reference.
+	Queryable *BoolExpr `json:"Queryable,omitempty"`
+
+	// Indicates whether the configuration property is a required value.
+	Required *BoolExpr `json:"Required,omitempty"`
+
+	// Indicates whether the configuration property is secret. Secret
+	// configuration properties are hidden from all AWS CodePipeline calls
+	// except for GetJobDetails, GetThirdPartyJobDetails, PollForJobs, and
+	// PollForThirdPartyJobs.
+	Secret *BoolExpr `json:"Secret,omitempty"`
+
+	// The type of the configuration property, such as String, Number, or
+	// Boolean.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodePipelineCustomActionTypeConfigurationPropertiesList represents a list of CodePipelineCustomActionTypeConfigurationProperties
+type CodePipelineCustomActionTypeConfigurationPropertiesList []CodePipelineCustomActionTypeConfigurationProperties
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelineCustomActionTypeConfigurationPropertiesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelineCustomActionTypeConfigurationProperties{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelineCustomActionTypeConfigurationPropertiesList{item}
+		return nil
+	}
+	list := []CodePipelineCustomActionTypeConfigurationProperties{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelineCustomActionTypeConfigurationPropertiesList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelineCustomActionTypeSettings represents AWS CodePipeline CustomActionType Settings
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype-settings.html
+type CodePipelineCustomActionTypeSettings struct {
+	// The URL that is returned to the AWS CodePipeline console that links to
+	// the resources of the external system, such as the configuration page
+	// for an AWS CodeDeploy deployment group.
+	EntityUrlTemplate *StringExpr `json:"EntityUrlTemplate,omitempty"`
+
+	// The URL that is returned to the AWS CodePipeline console that links to
+	// the top-level landing page for the external system, such as the
+	// console page for AWS CodeDeploy.
+	ExecutionUrlTemplate *StringExpr `json:"ExecutionUrlTemplate,omitempty"`
+
+	// The URL that is returned to the AWS CodePipeline console that links to
+	// the page where customers can update or change the configuration of the
+	// external action.
+	RevisionUrlTemplate *StringExpr `json:"RevisionUrlTemplate,omitempty"`
+
+	// The URL of a sign-up page where users can sign up for an external
+	// service and specify the initial configurations for the service's
+	// action.
+	ThirdPartyConfigurationUrl *StringExpr `json:"ThirdPartyConfigurationUrl,omitempty"`
+}
+
+// CodePipelineCustomActionTypeSettingsList represents a list of CodePipelineCustomActionTypeSettings
+type CodePipelineCustomActionTypeSettingsList []CodePipelineCustomActionTypeSettings
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelineCustomActionTypeSettingsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelineCustomActionTypeSettings{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelineCustomActionTypeSettingsList{item}
+		return nil
+	}
+	list := []CodePipelineCustomActionTypeSettings{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelineCustomActionTypeSettingsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineArtifactStore represents AWS CodePipeline Pipeline ArtifactStore
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html
+type CodePipelinePipelineArtifactStore struct {
+	// The encryption key AWS CodePipeline uses to encrypt the data in the
+	// artifact store, such as an AWS Key Management Service (AWS KMS) key.
+	// If you don't specify a key, AWS CodePipeline uses the default key for
+	// Amazon Simple Storage Service (Amazon S3).
+	EncryptionKey *CodePipelinePipelineArtifactStoreEncryptionKey `json:"EncryptionKey,omitempty"`
+
+	// The location where AWS CodePipeline stores artifacts for a pipeline,
+	// such as an S3 bucket.
+	Location *StringExpr `json:"Location,omitempty"`
+
+	// The type of the artifact store, such as Amazon S3. For valid values,
+	// see ArtifactStore in the AWS CodePipeline API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodePipelinePipelineArtifactStoreList represents a list of CodePipelinePipelineArtifactStore
+type CodePipelinePipelineArtifactStoreList []CodePipelinePipelineArtifactStore
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineArtifactStoreList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineArtifactStore{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineArtifactStoreList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineArtifactStore{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineArtifactStoreList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineArtifactStoreEncryptionKey represents AWS CodePipeline Pipeline ArtifactStore EncryptionKey
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html
+type CodePipelinePipelineArtifactStoreEncryptionKey struct {
+	// The ID of the key. For an AWS KMS key, specify the key ID or key
+	// Amazon Resource Number (ARN).
+	Id *StringExpr `json:"Id,omitempty"`
+
+	// The type of encryption key, such as KMS. For valid values, see
+	// EncryptionKey in the AWS CodePipeline API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodePipelinePipelineArtifactStoreEncryptionKeyList represents a list of CodePipelinePipelineArtifactStoreEncryptionKey
+type CodePipelinePipelineArtifactStoreEncryptionKeyList []CodePipelinePipelineArtifactStoreEncryptionKey
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineArtifactStoreEncryptionKeyList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineArtifactStoreEncryptionKey{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineArtifactStoreEncryptionKeyList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineArtifactStoreEncryptionKey{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineArtifactStoreEncryptionKeyList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineDisableInboundStageTransitions represents AWS CodePipeline Pipeline DisableInboundStageTransitions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html
+type CodePipelinePipelineDisableInboundStageTransitions struct {
+	// An explanation of why the transition between two stages of a pipeline
+	// was disabled.
+	Reason *StringExpr `json:"Reason,omitempty"`
+
+	// The name of the stage to which transitions are disabled.
+	StageName *StringExpr `json:"StageName,omitempty"`
+}
+
+// CodePipelinePipelineDisableInboundStageTransitionsList represents a list of CodePipelinePipelineDisableInboundStageTransitions
+type CodePipelinePipelineDisableInboundStageTransitionsList []CodePipelinePipelineDisableInboundStageTransitions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineDisableInboundStageTransitionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineDisableInboundStageTransitions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineDisableInboundStageTransitionsList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineDisableInboundStageTransitions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineDisableInboundStageTransitionsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineStages represents AWS CodePipeline Pipeline Stages
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html
+type CodePipelinePipelineStages struct {
+	// The actions to include in this stage.
+	Actions *CodePipelinePipelineStagesActionsList `json:"Actions,omitempty"`
+
+	// The gates included in a stage.
+	Blockers *CodePipelinePipelineStagesBlockersList `json:"Blockers,omitempty"`
+
+	// A name for this stage.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// CodePipelinePipelineStagesList represents a list of CodePipelinePipelineStages
+type CodePipelinePipelineStagesList []CodePipelinePipelineStages
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineStagesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineStages{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineStagesList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineStages{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineStagesList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineStagesActions represents AWS CodePipeline Pipeline Stages Actions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html
+type CodePipelinePipelineStagesActions struct {
+	// Specifies the action type and the provider of the action.
+	ActionTypeId *CodePipelinePipelineStagesActionsActionTypeId `json:"ActionTypeId,omitempty"`
+
+	// The action's configuration. These are key-value pairs that specify
+	// input values for an action.
+	Configuration interface{} `json:"Configuration,omitempty"`
+
+	// The name or ID of the artifact that the action consumes, such as a
+	// test or build artifact.
+	InputArtifacts *CodePipelinePipelineStagesActionsInputArtifactsList `json:"InputArtifacts,omitempty"`
+
+	// The action name.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The artifact name or ID that is a result of the action, such as a test
+	// or build artifact.
+	OutputArtifacts *CodePipelinePipelineStagesActionsOutputArtifactsList `json:"OutputArtifacts,omitempty"`
+
+	// The Amazon Resource Name (ARN) of a service role that the action uses.
+	// The pipeline's role assumes this role.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The order in which AWS CodePipeline runs this action.
+	RunOrder *IntegerExpr `json:"RunOrder,omitempty"`
+}
+
+// CodePipelinePipelineStagesActionsList represents a list of CodePipelinePipelineStagesActions
+type CodePipelinePipelineStagesActionsList []CodePipelinePipelineStagesActions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineStagesActionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineStagesActions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineStagesActionsList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineStagesActions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineStagesActionsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineStagesActionsActionTypeId represents AWS CodePipeline Pipeline Stages Actions ActionTypeId
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html
+type CodePipelinePipelineStagesActionsActionTypeId struct {
+	// A category that defines which action type the owner (the entitiy that
+	// performs the action) performs. The category that you select determine
+	// the providers that you can specify for the Provider property. For
+	// valid values, see ActionTypeId in the AWS CodePipeline API Reference.
+	Category *StringExpr `json:"Category,omitempty"`
+
+	// The entity that performs the action. For valid values, see
+	// ActionTypeId in the AWS CodePipeline API Reference.
+	Owner *StringExpr `json:"Owner,omitempty"`
+
+	// The service provider that the action calls. The providers that you can
+	// specify are determined by the category that you select. For example, a
+	// valid provider for the Deploy category is AWS CodeDeploy, which you
+	// would specify as CodeDeploy.
+	Provider *StringExpr `json:"Provider,omitempty"`
+
+	// A version identifier for this action.
+	Version *StringExpr `json:"Version,omitempty"`
+}
+
+// CodePipelinePipelineStagesActionsActionTypeIdList represents a list of CodePipelinePipelineStagesActionsActionTypeId
+type CodePipelinePipelineStagesActionsActionTypeIdList []CodePipelinePipelineStagesActionsActionTypeId
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineStagesActionsActionTypeIdList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineStagesActionsActionTypeId{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineStagesActionsActionTypeIdList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineStagesActionsActionTypeId{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineStagesActionsActionTypeIdList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineStagesActionsInputArtifacts represents AWS CodePipeline Pipeline Stages Actions InputArtifacts
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html
+type CodePipelinePipelineStagesActionsInputArtifacts struct {
+	// The name of the artifact that the AWS CodePipeline action works on,
+	// such as My App.The input artifact of an action must match the output
+	// artifact from any preceding action.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// CodePipelinePipelineStagesActionsInputArtifactsList represents a list of CodePipelinePipelineStagesActionsInputArtifacts
+type CodePipelinePipelineStagesActionsInputArtifactsList []CodePipelinePipelineStagesActionsInputArtifacts
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineStagesActionsInputArtifactsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineStagesActionsInputArtifacts{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineStagesActionsInputArtifactsList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineStagesActionsInputArtifacts{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineStagesActionsInputArtifactsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineStagesActionsOutputArtifacts represents AWS CodePipeline Pipeline Stages Actions OutputArtifacts
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html
+type CodePipelinePipelineStagesActionsOutputArtifacts struct {
+	// The name of the artifact that is the result of an AWS CodePipeline
+	// action, such as My App. Output artifact names must be unique within a
+	// pipeline.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// CodePipelinePipelineStagesActionsOutputArtifactsList represents a list of CodePipelinePipelineStagesActionsOutputArtifacts
+type CodePipelinePipelineStagesActionsOutputArtifactsList []CodePipelinePipelineStagesActionsOutputArtifacts
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineStagesActionsOutputArtifactsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineStagesActionsOutputArtifacts{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineStagesActionsOutputArtifactsList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineStagesActionsOutputArtifacts{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineStagesActionsOutputArtifactsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodePipelinePipelineStagesBlockers represents AWS CodePipeline Pipeline Stages Blockers
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html
+type CodePipelinePipelineStagesBlockers struct {
+	// The name of the gate declaration.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The type of gate declaration. For valid values, see BlockerDeclaration
+	// in the AWS CodePipeline API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodePipelinePipelineStagesBlockersList represents a list of CodePipelinePipelineStagesBlockers
+type CodePipelinePipelineStagesBlockersList []CodePipelinePipelineStagesBlockers
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodePipelinePipelineStagesBlockersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodePipelinePipelineStagesBlockers{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodePipelinePipelineStagesBlockersList{item}
+		return nil
+	}
+	list := []CodePipelinePipelineStagesBlockers{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodePipelinePipelineStagesBlockersList(list)
+		return nil
+	}
+	return err
+}
+
+// ConfigConfigRuleScope represents AWS Config ConfigRule Scope
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html
+type ConfigConfigRuleScope struct {
+	// The ID of an AWS resource that you want AWS Config to evaluate against
+	// a rule. If you specify an ID, you must also specify a resource type
+	// for the ComplianceResourceTypes property.
+	ComplianceResourceId *StringExpr `json:"ComplianceResourceId,omitempty"`
+
+	// The types of AWS resources that you want AWS Config to evaluate
+	// against the rule. If you specify the ComplianceResourceId property,
+	// specify only one resource type.
+	ComplianceResourceTypes *StringListExpr `json:"ComplianceResourceTypes,omitempty"`
+
+	// The tag key that is applied to the AWS resources that you want AWS
+	// Config to evaluate against the rule.
+	TagKey *StringExpr `json:"TagKey,omitempty"`
+
+	// The tag value that is applied to the AWS resources that you want AWS
+	// Config to evaluate against the rule.
+	TagValue *StringExpr `json:"TagValue,omitempty"`
+}
+
+// ConfigConfigRuleScopeList represents a list of ConfigConfigRuleScope
+type ConfigConfigRuleScopeList []ConfigConfigRuleScope
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ConfigConfigRuleScopeList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ConfigConfigRuleScope{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ConfigConfigRuleScopeList{item}
+		return nil
+	}
+	list := []ConfigConfigRuleScope{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ConfigConfigRuleScopeList(list)
+		return nil
+	}
+	return err
+}
+
+// ConfigConfigRuleSource represents AWS Config ConfigRule Source
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html
+type ConfigConfigRuleSource struct {
+	// Indicates who owns and manages the AWS Config rule. For valid values,
+	// see the Source data type in the AWS Config API Reference.
+	Owner *StringExpr `json:"Owner,omitempty"`
+
+	// Provides the source and type of event that triggers AWS Config to
+	// evaluate your AWS resources.
+	SourceDetails *ConfigConfigRuleSourceSourceDetails `json:"SourceDetails,omitempty"`
+
+	// For AWS managed rules, the identifier of the rule. For a list of
+	// identifiers, see AWS Managed Rules in the AWS Config Developer Guide.
+	SourceIdentifier *StringExpr `json:"SourceIdentifier,omitempty"`
+}
+
+// ConfigConfigRuleSourceList represents a list of ConfigConfigRuleSource
+type ConfigConfigRuleSourceList []ConfigConfigRuleSource
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ConfigConfigRuleSourceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ConfigConfigRuleSource{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ConfigConfigRuleSourceList{item}
+		return nil
+	}
+	list := []ConfigConfigRuleSource{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ConfigConfigRuleSourceList(list)
+		return nil
+	}
+	return err
+}
+
+// ConfigConfigRuleSourceSourceDetails represents AWS Config ConfigRule Source SourceDetails
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html
+type ConfigConfigRuleSourceSourceDetails struct {
+	// The source, such as an AWS service, that generate events, triggering
+	// AWS Config to evaluate your AWS resources. For valid values, see the
+	// SourceDetail data type in the AWS Config API Reference.
+	EventSource *StringExpr `json:"EventSource,omitempty"`
+
+	// The type of Amazon Simple Notification Service (Amazon SNS) message
+	// that triggers AWS Config to run an evaluation.
+	MessageType *StringExpr `json:"MessageType,omitempty"`
+}
+
+// ConfigConfigRuleSourceSourceDetailsList represents a list of ConfigConfigRuleSourceSourceDetails
+type ConfigConfigRuleSourceSourceDetailsList []ConfigConfigRuleSourceSourceDetails
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ConfigConfigRuleSourceSourceDetailsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ConfigConfigRuleSourceSourceDetails{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ConfigConfigRuleSourceSourceDetailsList{item}
+		return nil
+	}
+	list := []ConfigConfigRuleSourceSourceDetails{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ConfigConfigRuleSourceSourceDetailsList(list)
+		return nil
+	}
+	return err
+}
+
+// ConfigConfigurationRecorderRecordingGroup represents AWS Config ConfigurationRecorder RecordingGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html
+type ConfigConfigurationRecorderRecordingGroup struct {
+	// Indicates whether to record all supported resource types. If you
+	// specify this property, do not specify the ResourceTypes property.
+	AllSupported *BoolExpr `json:"AllSupported,omitempty"`
+
+	// A list of valid AWS resource types to include in this recording group,
+	// such as AWS::EC2::Instance or AWS::CloudTrail::Trail. If you specify
+	// this property, do not specify the AllSupported property. For a list of
+	// supported resource types, see Supported resource types in the AWS
+	// Config Developer Guide.
+	ResourceTypes *StringListExpr `json:"ResourceTypes,omitempty"`
+}
+
+// ConfigConfigurationRecorderRecordingGroupList represents a list of ConfigConfigurationRecorderRecordingGroup
+type ConfigConfigurationRecorderRecordingGroupList []ConfigConfigurationRecorderRecordingGroup
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ConfigConfigurationRecorderRecordingGroupList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ConfigConfigurationRecorderRecordingGroup{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ConfigConfigurationRecorderRecordingGroupList{item}
+		return nil
+	}
+	list := []ConfigConfigurationRecorderRecordingGroup{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ConfigConfigurationRecorderRecordingGroupList(list)
+		return nil
+	}
+	return err
+}
+
+// ConfigDeliveryChannelConfigSnapshotDeliveryProperties represents AWS Config DeliveryChannel ConfigSnapshotDeliveryProperties
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html
+type ConfigDeliveryChannelConfigSnapshotDeliveryProperties struct {
+	// The frequency with which AWS Config delivers configuration snapshots.
+	// For valid values, see ConfigSnapshotDeliveryProperties in the AWS
+	// Config API Reference.
+	DeliveryFrequency *StringExpr `json:"DeliveryFrequency,omitempty"`
+}
+
+// ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList represents a list of ConfigDeliveryChannelConfigSnapshotDeliveryProperties
+type ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList []ConfigDeliveryChannelConfigSnapshotDeliveryProperties
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ConfigDeliveryChannelConfigSnapshotDeliveryProperties{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList{item}
+		return nil
+	}
+	list := []ConfigDeliveryChannelConfigSnapshotDeliveryProperties{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList(list)
+		return nil
+	}
+	return err
+}
+
 // DataPipelinePipelineParameterObjects represents AWS Data Pipeline Pipeline ParameterObjects
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html
@@ -5433,6 +6531,32 @@ func (l *DynamoDBProvisionedThroughputList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// DynamoDBTableStreamSpecification represents DynamoDB Table StreamSpecification
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html
+type DynamoDBTableStreamSpecification struct {
+}
+
+// DynamoDBTableStreamSpecificationList represents a list of DynamoDBTableStreamSpecification
+type DynamoDBTableStreamSpecificationList []DynamoDBTableStreamSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *DynamoDBTableStreamSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := DynamoDBTableStreamSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = DynamoDBTableStreamSpecificationList{item}
+		return nil
+	}
+	list := []DynamoDBTableStreamSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = DynamoDBTableStreamSpecificationList(list)
+		return nil
+	}
+	return err
+}
+
 // EC2BlockDeviceMappingProperty represents Amazon EC2 Block Device Mapping Property
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-mapping.html
@@ -5550,6 +6674,68 @@ func (l *EC2ICMPList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2ICMPList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2InstanceSsmAssociations represents Amazon EC2 Instance SsmAssociations
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html
+type EC2InstanceSsmAssociations struct {
+	// The input parameter values to use with the associated SSM document.
+	AssociationParameters *EC2InstanceSsmAssociationsAssociationParametersList `json:"AssociationParameters,omitempty"`
+
+	// The name of an SSM document to associate with the instance.
+	DocumentName *StringExpr `json:"DocumentName,omitempty"`
+}
+
+// EC2InstanceSsmAssociationsList represents a list of EC2InstanceSsmAssociations
+type EC2InstanceSsmAssociationsList []EC2InstanceSsmAssociations
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2InstanceSsmAssociationsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2InstanceSsmAssociations{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2InstanceSsmAssociationsList{item}
+		return nil
+	}
+	list := []EC2InstanceSsmAssociations{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2InstanceSsmAssociationsList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2InstanceSsmAssociationsAssociationParameters represents Amazon EC2 Instance SsmAssociations AssociationParameters
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations-associationparameters.html
+type EC2InstanceSsmAssociationsAssociationParameters struct {
+	// The name of an input parameter that is in the associated SSM document.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The value of an input parameter.
+	Value *StringListExpr `json:"Value,omitempty"`
+}
+
+// EC2InstanceSsmAssociationsAssociationParametersList represents a list of EC2InstanceSsmAssociationsAssociationParameters
+type EC2InstanceSsmAssociationsAssociationParametersList []EC2InstanceSsmAssociationsAssociationParameters
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2InstanceSsmAssociationsAssociationParametersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2InstanceSsmAssociationsAssociationParameters{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2InstanceSsmAssociationsAssociationParametersList{item}
+		return nil
+	}
+	list := []EC2InstanceSsmAssociationsAssociationParameters{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2InstanceSsmAssociationsAssociationParametersList(list)
 		return nil
 	}
 	return err
@@ -5877,10 +7063,21 @@ func (l *EC2SecurityGroupRuleList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// ElasticComputeCloudSpotFleetSpotFleetRequestConfigData represents Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData
+// EC2SpotFleetSpotFleetRequestConfigData represents Amazon EC2 SpotFleet SpotFleetRequestConfigData
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html
-type ElasticComputeCloudSpotFleetSpotFleetRequestConfigData struct {
+type EC2SpotFleetSpotFleetRequestConfigData struct {
+	// Indicates how to allocate the target capacity across the Spot pools
+	// that you specified in the Spot fleet request. For valid values, see
+	// SpotFleetRequestConfigData in the Amazon EC2 API Reference.
+	AllocationStrategy *StringExpr `json:"AllocationStrategy,omitempty"`
+
+	// Indicates whether running Spot instances are terminated if you
+	// decrease the target capacity of the Spot fleet request below the
+	// current size of the Spot fleet. For valid values, see
+	// SpotFleetRequestConfigData in the Amazon EC2 API Reference.
+	ExcessCapacityTerminationPolicy *StringExpr `json:"ExcessCapacityTerminationPolicy,omitempty"`
+
 	// The Amazon Resource Name (ARN) of an AWS Identity and Access
 	// Management (IAM) role that grants the Spot fleet the ability to bid
 	// on, launch, and terminate instances on your behalf. For more
@@ -5888,19 +7085,18 @@ type ElasticComputeCloudSpotFleetSpotFleetRequestConfigData struct {
 	// for Linux Instances.
 	IamFleetRole *StringExpr `json:"IamFleetRole,omitempty"`
 
-	// Information about the launch specifications for the Spot fleet
-	// request.
+	// The launch specifications for the Spot fleet request.
 	LaunchSpecifications *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsList `json:"LaunchSpecifications,omitempty"`
 
 	// The bid price per unit hour. For more information, see How Spot Fleet
 	// Works in the Amazon EC2 User Guide for Linux Instances.
 	SpotPrice *StringExpr `json:"SpotPrice,omitempty"`
 
-	// The number of units to request. You can choose to set the target
-	// capacity as instances or a performance characteristic that is
-	// important to your application workload, such as vCPUs, memory, or I/O.
-	// For more information, see How Spot Fleet Works in the Amazon EC2 User
-	// Guide for Linux Instances.
+	// The number of units to request for the spot fleet. You can choose to
+	// set the target capacity as the number of instances or as a performance
+	// characteristic that is important to your application workload, such as
+	// vCPUs, memory, or I/O. For more information, see How Spot Fleet Works
+	// in the Amazon EC2 User Guide for Linux Instances.
 	TargetCapacity *IntegerExpr `json:"TargetCapacity,omitempty"`
 
 	// Indicates whether running Spot instances are terminated when the Spot
@@ -5908,8 +7104,8 @@ type ElasticComputeCloudSpotFleetSpotFleetRequestConfigData struct {
 	TerminateInstancesWithExpiration *BoolExpr `json:"TerminateInstancesWithExpiration,omitempty"`
 
 	// The start date and time of the request, in UTC format
-	// (YYYY-MM-DDTHH:MM:SSZ). By default, Amazon EC2 starts fulfilling the
-	// request immediately.
+	// (YYYY-MM-DDTHH:MM:SSZ). By default, Amazon Elastic Compute Cloud
+	// (Amazon EC2 ) starts fulfilling the request immediately.
 	ValidFrom *StringExpr `json:"ValidFrom,omitempty"`
 
 	// The end date and time of the request, in UTC format
@@ -5919,21 +7115,21 @@ type ElasticComputeCloudSpotFleetSpotFleetRequestConfigData struct {
 	ValidUntil *StringExpr `json:"ValidUntil,omitempty"`
 }
 
-// ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList represents a list of ElasticComputeCloudSpotFleetSpotFleetRequestConfigData
-type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList []ElasticComputeCloudSpotFleetSpotFleetRequestConfigData
+// EC2SpotFleetSpotFleetRequestConfigDataList represents a list of EC2SpotFleetSpotFleetRequestConfigData
+type EC2SpotFleetSpotFleetRequestConfigDataList []EC2SpotFleetSpotFleetRequestConfigData
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList) UnmarshalJSON(buf []byte) error {
+func (l *EC2SpotFleetSpotFleetRequestConfigDataList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticComputeCloudSpotFleetSpotFleetRequestConfigData{}
+	item := EC2SpotFleetSpotFleetRequestConfigData{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList{item}
+		*l = EC2SpotFleetSpotFleetRequestConfigDataList{item}
 		return nil
 	}
-	list := []ElasticComputeCloudSpotFleetSpotFleetRequestConfigData{}
+	list := []EC2SpotFleetSpotFleetRequestConfigData{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataList(list)
+		*l = EC2SpotFleetSpotFleetRequestConfigDataList(list)
 		return nil
 	}
 	return err
@@ -8893,6 +10089,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &CloudFormationCustomResource{}
 	case "AWS::CloudFormation::Init":
 		return &CloudFormationInit{}
+	case "AWS::CloudFormation::Interface":
+		return &CloudFormationInterface{}
 	case "AWS::CloudFormation::Stack":
 		return &CloudFormationStack{}
 	case "AWS::CloudFormation::WaitCondition":
@@ -8911,6 +10109,16 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &CodeDeployDeploymentConfig{}
 	case "AWS::CodeDeploy::DeploymentGroup":
 		return &CodeDeployDeploymentGroup{}
+	case "AWS::CodePipeline::CustomActionType":
+		return &CodePipelineCustomAction{}
+	case "AWS::CodePipeline::Pipeline":
+		return &CodePipelinePipeline{}
+	case "AWS::Config::ConfigRule":
+		return &ConfigConfigRule{}
+	case "AWS::Config::ConfigurationRecorder":
+		return &ConfigConfigurationRecorder{}
+	case "AWS::Config::DeliveryChannel":
+		return &ConfigDeliveryChannel{}
 	case "AWS::DataPipeline::Pipeline":
 		return &DataPipelinePipeline{}
 	case "AWS::DirectoryService::SimpleAD":
@@ -9029,6 +10237,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &IAMUserToGroupAddition{}
 	case "AWS::Kinesis::Stream":
 		return &KinesisStream{}
+	case "AWS::KMS::Key":
+		return &KMSKey{}
 	case "AWS::Lambda::EventSourceMapping":
 		return &LambdaEventSourceMapping{}
 	case "AWS::Lambda::Function":
@@ -9101,6 +10311,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SQSQueue{}
 	case "AWS::SQS::QueuePolicy":
 		return &SQSQueuePolicy{}
+	case "AWS::SSM::Document":
+		return &SSMDocument{}
 	case "AWS::WorkSpaces::Workspace":
 		return &WorkSpacesWorkspace{}
 	}

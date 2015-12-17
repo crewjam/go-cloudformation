@@ -182,6 +182,7 @@ func (r *Resource) Load() error {
 				if span.Text() == "Type" {
 					property.Type = span.Parent().Text()
 					property.Type = strings.TrimPrefix(property.Type, "Type: ")
+					property.Type = strings.TrimPrefix(property.Type, "Type:: ") // a typo in AWS::Route53::RecordSetGroup
 					property.Type = regexp.MustCompile("\\s+").ReplaceAllString(property.Type, " ")
 					property.Type = strings.TrimSuffix(property.Type, ".")
 
