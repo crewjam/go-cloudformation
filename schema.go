@@ -942,7 +942,7 @@ type DirectoryServiceSimpleAD struct {
 	ShortName *StringExpr `json:"ShortName,omitempty"`
 
 	// The size of the directory. For valid values, see CreateDirectory in
-	// the AWS Directory Service Developer Guide.
+	// the AWS Directory Service API Reference.
 	Size *StringExpr `json:"Size,omitempty"`
 
 	// Specifies the VPC settings of the directory server.
@@ -2662,7 +2662,7 @@ type KMSKey struct {
 	// key. Use a policy to specify who has permission to use the key and
 	// which actions they can perform. For more information, see Key Policies
 	// in the AWS Key Management Service Developer Guide.
-	KeyPolicy *StringExpr `json:"KeyPolicy,omitempty"`
+	KeyPolicy interface{} `json:"KeyPolicy,omitempty"`
 }
 
 // ResourceType returns AWS::KMS::Key to implement the ResourceProperties interface
@@ -8241,7 +8241,8 @@ func (l *ElasticLoadBalancingListenerList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html
 type ElasticLoadBalancingPolicy struct {
-	// A list of arbitrary attributes for this policy.
+	// A list of arbitrary attributes for this policy. If you don't need to
+	// specify any policy attributes, specify an empty list ([]).
 	Attributes interface{} `json:"Attributes,omitempty"`
 
 	// A list of instance ports for the policy. These are the ports
