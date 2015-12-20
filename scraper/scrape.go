@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"path"
 	"regexp"
 	"strings"
@@ -50,7 +51,34 @@ func (tr *TemplateReference) Load() error {
 	return nil
 }
 
-func (tr *TemplateReference) WriteGo(w io.Writer) {
+func (tr *TemplateReference) WriteGo(w io.Writer) error {
+	cmd := exec.Command("gofmt")
+	writer, err := cmd.StdinPipe()
+	if err != nil {
+		return err
+	}
+	reader, err := cmd.StdoutPipe()
+	if err != nil {
+		return err
+	}
+	if err := cmd.Start(); err != nil {
+		return err
+	}
+	go func() {
+		tr.writeGo(writer)
+		writer.Close()
+	}()
+	_, err = io.Copy(w, reader)
+	if err != nil {
+		return err
+	}
+	if err := cmd.Wait(); err != nil {
+		return err
+	}
+	return err
+}
+
+func (tr *TemplateReference) writeGo(w io.Writer) {
 	fmt.Fprintf(w, "package cloudformation\n")
 	fmt.Fprintf(w, "\n")
 	fmt.Fprintf(w, "import \"time\"\n")
@@ -358,15 +386,19 @@ func main() {
 		var err error
 		out, err = os.OpenFile(*outPath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("%s: %s", *outPath, err)
 		}
 	}
 
 	switch *format {
 	case "go":
-		tr.WriteGo(out)
+		if err := tr.WriteGo(out); err != nil {
+			log.Fatalf("%s", err)
+		}
 	case "json":
-		json.NewEncoder(out).Encode(tr)
+		if err := json.NewEncoder(out).Encode(tr); err != nil {
+			log.Fatalf("%s", err)
+		}
 	default:
 		fmt.Fprintf(os.Stderr, "unrecognised output format: %q", *format)
 	}
