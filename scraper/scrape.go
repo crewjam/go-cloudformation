@@ -78,11 +78,37 @@ func (tr *TemplateReference) WriteGo(w io.Writer) error {
 	return err
 }
 
+const customResourceDefinitionBlock = `
+// CustomResourceProvider allows extend the NewResourceByType factory method
+// with their own resource types.
+type CustomResourceProvider func(customResourceType string) ResourceProperties
+
+var customResourceProviders []CustomResourceProvider
+
+// Register a CustomResourceProvider with go-cloudformation. Multiple
+// providers may be registered. The first provider that returns a non-nil
+// interface will be used and there is no check for a uniquely registered
+// resource type.
+func RegisterCustomResourceProvider(provider CustomResourceProvider) {
+	customResourceProviders = append(customResourceProviders, provider)
+}
+`
+const customResourceDefaultLabelBlock = `
+default:
+  for _, eachProvider := range customResourceProviders {
+    customType := eachProvider(typeName)
+    if nil != customType {
+      return customType
+    }
+  }
+`
+
 func (tr *TemplateReference) writeGo(w io.Writer) {
 	fmt.Fprintf(w, "package cloudformation\n")
 	fmt.Fprintf(w, "\n")
 	fmt.Fprintf(w, "import \"time\"\n")
 	fmt.Fprintf(w, "import \"encoding/json\"\n")
+	fmt.Fprint(w, customResourceDefinitionBlock)
 	for _, resource := range tr.Resources {
 		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "// %s represents %s\n", resource.GoName(), resource.Name)
@@ -146,6 +172,8 @@ func (tr *TemplateReference) writeGo(w io.Writer) {
 		fmt.Fprintf(w, "		case %q:\n", resource.Name)
 		fmt.Fprintf(w, "			return &%s{}\n", resource.GoName())
 	}
+	fmt.Fprint(w, customResourceDefaultLabelBlock)
+
 	fmt.Fprintf(w, "	}\n")
 	fmt.Fprintf(w, "	return nil\n")
 	fmt.Fprintf(w, "}\n")
