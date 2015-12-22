@@ -3,6 +3,14 @@ package cloudformation
 import "time"
 import "encoding/json"
 
+type CustomResourceProvider func(customResourceType string) ResourceProperties
+
+var customResourceProviders []CustomResourceProvider
+
+func RegisterCustomResourceProvider(provider CustomResourceProvider) {
+	customResourceProviders = append(customResourceProviders, provider)
+}
+
 // AutoScalingAutoScalingGroup represents AWS::AutoScaling::AutoScalingGroup
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html
@@ -10316,6 +10324,14 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SSMDocument{}
 	case "AWS::WorkSpaces::Workspace":
 		return &WorkSpacesWorkspace{}
+
+	default:
+		for _, eachProvider := range customResourceProviders {
+			customType := eachProvider(typeName)
+			if nil != customType {
+				return customType
+			}
+		}
 	}
 	return nil
 }
