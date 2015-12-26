@@ -3,10 +3,16 @@ package cloudformation
 import "time"
 import "encoding/json"
 
+// CustomResourceProvider allows extend the NewResourceByType factory method
+// with their own resource types.
 type CustomResourceProvider func(customResourceType string) ResourceProperties
 
 var customResourceProviders []CustomResourceProvider
 
+// Register a CustomResourceProvider with go-cloudformation. Multiple
+// providers may be registered. The first provider that returns a non-nil
+// interface will be used and there is no check for a uniquely registered
+// resource type.
 func RegisterCustomResourceProvider(provider CustomResourceProvider) {
 	customResourceProviders = append(customResourceProviders, provider)
 }
