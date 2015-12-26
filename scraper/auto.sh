@@ -3,8 +3,7 @@ set -e
 
 # make sure we have a clean checkout and the latest changes
 git diff --exit-code || (echo "cannot run $0 with pending changes"; exit 1)
-git fetch origin master -q
-git checkout FETCH_HEAD -q
+git pull --ff-only
 
 # re-run the code generator
 [ ! -d .scraper-cache ] || rm -rf .scraper-cache
@@ -20,5 +19,5 @@ go test ./...
 
 # commit and apply the changes
 git add -A
-git commit -m "schema: apply changes from AWS documentation updates"
+git commit -m "schema: apply changes from AWS documentation updates (auto commit)"
 git push
