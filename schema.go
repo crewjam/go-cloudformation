@@ -926,22 +926,63 @@ func (s DataPipelinePipeline) ResourceType() string {
 	return "AWS::DataPipeline::Pipeline"
 }
 
+// DirectoryServiceMicrosoftAD represents AWS::DirectoryService::MicrosoftAD
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html
+type DirectoryServiceMicrosoftAD struct {
+	// A unique alias to assign to the Microsoft Active Directory in AWS. AWS
+	// Directory Service uses the alias to construct the access URL for the
+	// directory, such as http://alias.awsapps.com. By default, AWS
+	// CloudFormation does not create an alias.
+	CreateAlias *BoolExpr `json:"CreateAlias,omitempty"`
+
+	// Whether to enable single sign-on for a Microsoft Active Directory in
+	// AWS. Single sign-on allows users in your directory to access certain
+	// AWS services from a computer joined to the directory without having to
+	// enter their credentials separately. If you don't specify a value, AWS
+	// CloudFormation disables single sign-on by default.
+	EnableSso *BoolExpr `json:"EnableSso,omitempty"`
+
+	// The fully qualified name for the Microsoft Active Directory in AWS,
+	// such as corp.example.com. The name doesn't need to be publicly
+	// resolvable; it will resolve inside your VPC only.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The password for the default administrative user, Admin.
+	Password *StringExpr `json:"Password,omitempty"`
+
+	// The NetBIOS name for your domain, such as CORP. If you don't specify a
+	// value, AWS Directory Service uses the first part of your directory DNS
+	// server name. For example, if your directory DNS server name is
+	// corp.example.com, AWS Directory Service specifies CORP for the NetBIOS
+	// name.
+	ShortName *StringExpr `json:"ShortName,omitempty"`
+
+	// Specifies the VPC settings of the Microsoft Active Directory server in
+	// AWS.
+	VpcSettings *DirectoryServiceMicrosoftADVpcSettings `json:"VpcSettings,omitempty"`
+}
+
+// ResourceType returns AWS::DirectoryService::MicrosoftAD to implement the ResourceProperties interface
+func (s DirectoryServiceMicrosoftAD) ResourceType() string {
+	return "AWS::DirectoryService::MicrosoftAD"
+}
+
 // DirectoryServiceSimpleAD represents AWS::DirectoryService::SimpleAD
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html
 type DirectoryServiceSimpleAD struct {
-	// Creates an alias for a directory and assigns the alias to the
-	// directory. AWS Directory Service uses the alias to construct the
-	// access URL for the directory, such as http://alias.awsapps.com. By
-	// default, AWS CloudFormation does not create an alias.
+	// A unique alias to assign to the directory. AWS Directory Service uses
+	// the alias to construct the access URL for the directory, such as
+	// http://alias.awsapps.com. By default, AWS CloudFormation does not
+	// create an alias.
 	CreateAlias *BoolExpr `json:"CreateAlias,omitempty"`
 
 	// A description of the directory.
 	Description *StringExpr `json:"Description,omitempty"`
 
-	// Whether to enable single-sign on for a directory. If you don't specify
-	// a value, AWS CloudFormation specifies disable single sign on by
-	// default.
+	// Whether to enable single sign-on for a directory. If you don't specify
+	// a value, AWS CloudFormation disables single sign-on by default.
 	EnableSso *BoolExpr `json:"EnableSso,omitempty"`
 
 	// The fully qualified name for the directory, such as corp.example.com.
@@ -996,7 +1037,7 @@ type DynamoDBTable struct {
 
 	// Throughput for the specified table, consisting of values for
 	// ReadCapacityUnits and WriteCapacityUnits. For more information about
-	// the contents of a Provisioned Throughput structure, see DynamoDB
+	// the contents of a provisioned throughput structure, see DynamoDB
 	// Provisioned Throughput.
 	ProvisionedThroughput *DynamoDBProvisionedThroughput `json:"ProvisionedThroughput,omitempty"`
 
@@ -2807,6 +2848,31 @@ func (s LambdaPermission) ResourceType() string {
 	return "AWS::Lambda::Permission"
 }
 
+// LogsDestination represents AWS::Logs::Destination
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html
+type LogsDestination struct {
+	// The name of the CloudWatch Logs destination.
+	DestinationName *StringExpr `json:"DestinationName,omitempty"`
+
+	// An AWS Identity and Access Management (IAM) policy that specifies who
+	// can write to your destination.
+	DestinationPolicy *StringExpr `json:"DestinationPolicy,omitempty"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that permits CloudWatch
+	// Logs to send data to the specified AWS resource (TargetArn).
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The ARN of the AWS resource that receives log events. Currently, you
+	// can specify only an Amazon Kinesis stream.
+	TargetArn *StringExpr `json:"TargetArn,omitempty"`
+}
+
+// ResourceType returns AWS::Logs::Destination to implement the ResourceProperties interface
+func (s LogsDestination) ResourceType() string {
+	return "AWS::Logs::Destination"
+}
+
 // LogsLogGroup represents AWS::Logs::LogGroup
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
@@ -2821,6 +2887,23 @@ type LogsLogGroup struct {
 // ResourceType returns AWS::Logs::LogGroup to implement the ResourceProperties interface
 func (s LogsLogGroup) ResourceType() string {
 	return "AWS::Logs::LogGroup"
+}
+
+// LogsLogStream represents AWS::Logs::LogStream
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html
+type LogsLogStream struct {
+	// The name of the log group where the log stream is created.
+	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
+
+	// The name of the log stream to create. The name must be unique within
+	// the log group.
+	LogStreamName *StringExpr `json:"LogStreamName,omitempty"`
+}
+
+// ResourceType returns AWS::Logs::LogStream to implement the ResourceProperties interface
+func (s LogsLogStream) ResourceType() string {
+	return "AWS::Logs::LogStream"
 }
 
 // LogsMetricFilter represents AWS::Logs::MetricFilter
@@ -3964,6 +4047,11 @@ type S3Bucket struct {
 	// and what events to report.
 	NotificationConfiguration *S3NotificationConfiguration `json:"NotificationConfiguration,omitempty"`
 
+	// Configuration for replicating objects in an S3 bucket. To enable
+	// replication, you must also enable versioning by using the
+	// VersioningConfiguration property.
+	ReplicationConfiguration *S3ReplicationConfiguration `json:"ReplicationConfiguration,omitempty"`
+
 	// An arbitrary set of tags (key-value pairs) for this Amazon S3 bucket.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
@@ -4133,6 +4221,116 @@ type SSMDocument struct {
 // ResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
 func (s SSMDocument) ResourceType() string {
 	return "AWS::SSM::Document"
+}
+
+// WAFByteMatchSet represents AWS::WAF::ByteMatchSet
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-bytematchset.html
+type WAFByteMatchSet struct {
+	// Settings for the ByteMatchSet, such as the bytes (typically a string
+	// that corresponds with ASCII characters) that you want AWS WAF to
+	// search for in web requests.
+	ByteMatchTuples *WAFByteMatchSetByteMatchTuplesList `json:"ByteMatchTuples,omitempty"`
+
+	// A friendly name or description of the ByteMatchSet.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// ResourceType returns AWS::WAF::ByteMatchSet to implement the ResourceProperties interface
+func (s WAFByteMatchSet) ResourceType() string {
+	return "AWS::WAF::ByteMatchSet"
+}
+
+// WAFIPSet represents AWS::WAF::IPSet
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-ipset.html
+type WAFIPSet struct {
+	// The IP address type and IP address range (in CIDR notation) from which
+	// web requests originate. If you associate the IPSet with a web ACL that
+	// is associated with a Amazon CloudFront (CloudFront) distribution, this
+	// descriptor is the value of one of the following fields in the
+	// CloudFront access logs:
+	IPSetDescriptors *WAFIPSetIPSetDescriptorsList `json:"IPSetDescriptors,omitempty"`
+
+	// If the viewer did not use an HTTP proxy or a load balancer to send the
+	// request
+	CXIp interface{} `json:"c-ip,omitempty"`
+
+	// If the viewer did use an HTTP proxy or a load balancer to send the
+	// request
+	XXForwardedXFor interface{} `json:"x-forwarded-for,omitempty"`
+
+	// A friendly name or description of the IPSet.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// ResourceType returns AWS::WAF::IPSet to implement the ResourceProperties interface
+func (s WAFIPSet) ResourceType() string {
+	return "AWS::WAF::IPSet"
+}
+
+// WAFRule represents AWS::WAF::Rule
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html
+type WAFRule struct {
+	// A friendly name or description for the metrics of this rule.
+	MetricName *StringExpr `json:"MetricName,omitempty"`
+
+	// A friendly name or description of the rule.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The ByteMatchSet, IPSet, or SqlInjectionMatchSet objects to include in
+	// a rule. If you add more than one predicate to a rule, a request must
+	// match all conditions for it to be allowed or blocked.
+	Predicates *WAFRulePredicatesList `json:"Predicates,omitempty"`
+}
+
+// ResourceType returns AWS::WAF::Rule to implement the ResourceProperties interface
+func (s WAFRule) ResourceType() string {
+	return "AWS::WAF::Rule"
+}
+
+// WAFSqlInjectionMatchSet represents AWS::WAF::SqlInjectionMatchSet
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sqlinjectionmatchset.html
+type WAFSqlInjectionMatchSet struct {
+	// A friendly name or description of the SqlInjectionMatchSet.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The parts of web requests that you want AWS WAF to inspect for
+	// malicious SQL code and, if you want AWS WAF to inspect a header, the
+	// name of the header.
+	SqlInjectionMatchTuples *WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList `json:"SqlInjectionMatchTuples,omitempty"`
+}
+
+// ResourceType returns AWS::WAF::SqlInjectionMatchSet to implement the ResourceProperties interface
+func (s WAFSqlInjectionMatchSet) ResourceType() string {
+	return "AWS::WAF::SqlInjectionMatchSet"
+}
+
+// WAFWebACL represents AWS::WAF::WebACL
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html
+type WAFWebACL struct {
+	// The action that you want AWS WAF to take when a request doesn't match
+	// the criteria in any of the rules that are associated with the web ACL.
+	DefaultAction *WAFWebACLAction `json:"DefaultAction,omitempty"`
+
+	// A friendly name or description for the Amazon CloudWatch metric of
+	// this web ACL.
+	MetricName *StringExpr `json:"MetricName,omitempty"`
+
+	// A friendly name or description of the web ACL.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The rules to associate with the web ACL and the settings for each
+	// rule.
+	Rules *WAFWebACLRulesList `json:"Rules,omitempty"`
+}
+
+// ResourceType returns AWS::WAF::WebACL to implement the ResourceProperties interface
+func (s WAFWebACL) ResourceType() string {
+	return "AWS::WAF::WebACL"
 }
 
 // WorkSpacesWorkspace represents AWS::WorkSpaces::Workspace
@@ -4597,6 +4795,14 @@ type CloudFrontDistributionConfig struct {
 
 	// The certificate to use when viewers use HTTPS to request objects.
 	ViewerCertificate *CloudFrontDistributionConfigurationViewerCertificate `json:"ViewerCertificate,omitempty"`
+
+	// The AWS WAF web ACL to associate with this distribution. AWS WAF is a
+	// web application firewall that enables you to monitor the HTTP and
+	// HTTPS requests that are forwarded to CloudFront and to control who can
+	// access your content. CloudFront permits or forbids requests based on
+	// conditions that you specify, such as the IP addresses from which
+	// requests originate or the values of query strings.
+	WebACLId *StringExpr `json:"WebACLId,omitempty"`
 }
 
 // CloudFrontDistributionConfigList represents a list of CloudFrontDistributionConfig
@@ -4635,13 +4841,27 @@ type CloudFrontDistributionConfigCacheBehavior struct {
 	// value, AWS CloudFormation specifies ["HEAD", "GET"].
 	CachedMethods *StringListExpr `json:"CachedMethods,omitempty"`
 
+	// The default time in seconds that objects stay in CloudFront caches
+	// before CloudFront forwards another request to your custom origin to
+	// determine whether the object has been updated. This value applies only
+	// when your custom origin does not add HTTP headers, such as
+	// Cache-Control max-age, Cache-Control s-maxage, and Expires to objects.
+	DefaultTTL *IntegerExpr `json:"DefaultTTL,omitempty"`
+
 	// Specifies how CloudFront handles query strings or cookies.
 	ForwardedValues *CloudFrontForwardedValues `json:"ForwardedValues,omitempty"`
+
+	// The maximum time in seconds that objects stay in CloudFront caches
+	// before CloudFront forwards another request to your custom origin to
+	// determine whether the object has been updated. This value applies only
+	// when your custom origin does not add HTTP headers, such as
+	// Cache-Control max-age, Cache-Control s-maxage, and Expires to objects.
+	MaxTTL *IntegerExpr `json:"MaxTTL,omitempty"`
 
 	// The minimum amount of time that you want objects to stay in the cache
 	// before CloudFront queries your origin to see whether the object has
 	// been updated.
-	MinTTL *StringExpr `json:"MinTTL,omitempty"`
+	MinTTL *IntegerExpr `json:"MinTTL,omitempty"`
 
 	// The pattern to which this cache behavior applies. For example, you can
 	// specify images/*.jpg.
@@ -4740,19 +4960,34 @@ func (l *CloudFrontDistributionConfigCustomErrorResponseList) UnmarshalJSON(buf 
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-defaultcachebehavior.html
 type CloudFrontDefaultCacheBehavior struct {
 	// HTTP methods that CloudFront processes and forwards to your Amazon S3
-	// bucket or your custom origin. You can specify ["HEAD", "GET"], ["GET",
-	// "HEAD", "OPTIONS"], or ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH",
-	// "POST", "PUT"]. If you don't specify a value, AWS CloudFormation
-	// specifies ["HEAD", "GET"].
+	// bucket or your custom origin. In AWS CloudFormation templates, you can
+	// specify ["HEAD", "GET"], ["GET", "HEAD", "OPTIONS"], or ["DELETE",
+	// "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]. If you don't
+	// specify a value, AWS CloudFormation specifies ["HEAD", "GET"].
 	AllowedMethods *StringListExpr `json:"AllowedMethods,omitempty"`
 
-	// HTTP methods for which CloudFront caches responses. You can specify
-	// ["HEAD", "GET"] or ["GET", "HEAD", "OPTIONS"]. If you don't specify a
-	// value, AWS CloudFormation specifies ["HEAD", "GET"].
+	// HTTP methods for which CloudFront caches responses. In AWS
+	// CloudFormation templates, you can specify ["HEAD", "GET"] or ["GET",
+	// "HEAD", "OPTIONS"]. If you don't specify a value, AWS CloudFormation
+	// specifies ["HEAD", "GET"].
 	CachedMethods *StringListExpr `json:"CachedMethods,omitempty"`
+
+	// The default time in seconds that objects stay in CloudFront caches
+	// before CloudFront forwards another request to your custom origin to
+	// determine whether the object has been updated. This value applies only
+	// when your custom origin does not add HTTP headers, such as
+	// Cache-Control max-age, Cache-Control s-maxage, and Expires to objects.
+	DefaultTTL *IntegerExpr `json:"DefaultTTL,omitempty"`
 
 	// Specifies how CloudFront handles query strings or cookies.
 	ForwardedValues *CloudFrontForwardedValues `json:"ForwardedValues,omitempty"`
+
+	// The maximum time in seconds that objects stay in CloudFront caches
+	// before CloudFront forwards another request to your custom origin to
+	// determine whether the object has been updated. This value applies only
+	// when your custom origin does not add HTTP headers, such as
+	// Cache-Control max-age, Cache-Control s-maxage, and Expires to objects.
+	MaxTTL *IntegerExpr `json:"MaxTTL,omitempty"`
 
 	// The minimum amount of time that you want objects to stay in the cache
 	// before CloudFront queries your origin to see whether the object has
@@ -4774,7 +5009,9 @@ type CloudFrontDefaultCacheBehavior struct {
 
 	// The protocol that users can use to access the files in the origin that
 	// you specified in the TargetOriginId property when the default cache
-	// behavior is applied to a request.
+	// behavior is applied to a request. For valid values, see the
+	// ViewerProtocolPolicy element of the DistributionConfig Complex Type in
+	// the Amazon CloudFront API Reference.
 	ViewerProtocolPolicy *StringExpr `json:"ViewerProtocolPolicy,omitempty"`
 }
 
@@ -6292,6 +6529,39 @@ func (l *DataPipelinePipelinePipelineTagsList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = DataPipelinePipelinePipelineTagsList(list)
+		return nil
+	}
+	return err
+}
+
+// DirectoryServiceMicrosoftADVpcSettings represents AWS Directory Service MicrosoftAD VpcSettings
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html
+type DirectoryServiceMicrosoftADVpcSettings struct {
+	// A list of at least two subnet IDs for the directory servers. Each
+	// subnet must be in different Availability Zones (AZs). AWS Directory
+	// Service creates a directory server and a DNS server in each subnet.
+	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
+
+	// The VPC ID in which to create the Microsoft Active Directory server.
+	VpcId *StringExpr `json:"VpcId,omitempty"`
+}
+
+// DirectoryServiceMicrosoftADVpcSettingsList represents a list of DirectoryServiceMicrosoftADVpcSettings
+type DirectoryServiceMicrosoftADVpcSettingsList []DirectoryServiceMicrosoftADVpcSettings
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *DirectoryServiceMicrosoftADVpcSettingsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := DirectoryServiceMicrosoftADVpcSettings{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = DirectoryServiceMicrosoftADVpcSettingsList{item}
+		return nil
+	}
+	list := []DirectoryServiceMicrosoftADVpcSettings{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = DirectoryServiceMicrosoftADVpcSettingsList(list)
 		return nil
 	}
 	return err
@@ -9560,8 +9830,10 @@ func (l *S3LifecycleRuleList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html
 type S3LifecycleRuleNoncurrentVersionTransition struct {
-	// The storage class to which you want the noncurrent objects to
-	// transition. Currently, you can specify only Glacier.
+	// The storage class to which you want the object to transition, such as
+	// GLACIER. For valid values, see the StorageClass request element of the
+	// PUT Bucket lifecycle action in the Amazon Simple Storage Service API
+	// Reference.
 	StorageClass *StringExpr `json:"StorageClass,omitempty"`
 
 	// The number of days between the time that a new version of the object
@@ -9594,8 +9866,10 @@ func (l *S3LifecycleRuleNoncurrentVersionTransitionList) UnmarshalJSON(buf []byt
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-transition.html
 type S3LifecycleRuleTransition struct {
-	// The storage class to which you want the object to transition.
-	// Currently, you can specify only Glacier.
+	// The storage class to which you want the object to transition, such as
+	// GLACIER. For valid values, see the StorageClass request element of the
+	// PUT Bucket lifecycle action in the Amazon Simple Storage Service API
+	// Reference.
 	StorageClass *StringExpr `json:"StorageClass,omitempty"`
 
 	// Indicates when objects are transitioned to the specified storage
@@ -9701,6 +9975,98 @@ func (l *S3NotificationConfigurationList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// S3NotificationConfigurationConfigFilter represents Amazon S3 NotificationConfiguration Config Filter
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter.html
+type S3NotificationConfigurationConfigFilter struct {
+	// Amazon S3 filtering rules that describe for which object key names to
+	// send notifications.
+	S3Key *S3NotificationConfigurationConfigFilterS3Key `json:"S3Key,omitempty"`
+}
+
+// S3NotificationConfigurationConfigFilterList represents a list of S3NotificationConfigurationConfigFilter
+type S3NotificationConfigurationConfigFilterList []S3NotificationConfigurationConfigFilter
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3NotificationConfigurationConfigFilterList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3NotificationConfigurationConfigFilter{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3NotificationConfigurationConfigFilterList{item}
+		return nil
+	}
+	list := []S3NotificationConfigurationConfigFilter{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3NotificationConfigurationConfigFilterList(list)
+		return nil
+	}
+	return err
+}
+
+// S3NotificationConfigurationConfigFilterS3Key represents Amazon S3 NotificationConfiguration Config Filter S3Key
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key.html
+type S3NotificationConfigurationConfigFilterS3Key struct {
+	// The object key name to filter on and whether to filter on the suffix
+	// or prefix of the key name.
+	Rules *S3NotificationConfigurationConfigFilterS3KeyRulesList `json:"Rules,omitempty"`
+}
+
+// S3NotificationConfigurationConfigFilterS3KeyList represents a list of S3NotificationConfigurationConfigFilterS3Key
+type S3NotificationConfigurationConfigFilterS3KeyList []S3NotificationConfigurationConfigFilterS3Key
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3NotificationConfigurationConfigFilterS3KeyList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3NotificationConfigurationConfigFilterS3Key{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3NotificationConfigurationConfigFilterS3KeyList{item}
+		return nil
+	}
+	list := []S3NotificationConfigurationConfigFilterS3Key{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3NotificationConfigurationConfigFilterS3KeyList(list)
+		return nil
+	}
+	return err
+}
+
+// S3NotificationConfigurationConfigFilterS3KeyRules represents Amazon S3 NotificationConfiguration Config Filter S3Key Rules
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html
+type S3NotificationConfigurationConfigFilterS3KeyRules struct {
+	// Whether the filter matches the prefix or suffix of object key names.
+	// For valid values, see the Name request element of the PUT Bucket
+	// notification action in the Amazon Simple Storage Service API
+	// Reference.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The value that the filter searches for in object key names.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// S3NotificationConfigurationConfigFilterS3KeyRulesList represents a list of S3NotificationConfigurationConfigFilterS3KeyRules
+type S3NotificationConfigurationConfigFilterS3KeyRulesList []S3NotificationConfigurationConfigFilterS3KeyRules
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3NotificationConfigurationConfigFilterS3KeyRulesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3NotificationConfigurationConfigFilterS3KeyRules{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3NotificationConfigurationConfigFilterS3KeyRulesList{item}
+		return nil
+	}
+	list := []S3NotificationConfigurationConfigFilterS3KeyRules{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3NotificationConfigurationConfigFilterS3KeyRulesList(list)
+		return nil
+	}
+	return err
+}
+
 // SimpleStorageServiceNotificationConfigurationLambdaConfigurations represents Amazon Simple Storage Service NotificationConfiguration LambdaConfigurations
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-lambdaconfig.html
@@ -9709,6 +10075,12 @@ type SimpleStorageServiceNotificationConfigurationLambdaConfigurations struct {
 	// information, see Supported Event Types in the Amazon Simple Storage
 	// Service Developer Guide.
 	Event *StringExpr `json:"Event,omitempty"`
+
+	// The filtering rules that determine which objects invoke the Lambda
+	// function. For example, you can create a filter so that only image
+	// files with a .jpg extension invoke the function when they are added to
+	// the S3 bucket.
+	Filter *S3NotificationConfigurationConfigFilter `json:"Filter,omitempty"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function that Amazon S3
 	// invokes when the specified event type occurs.
@@ -9745,6 +10117,12 @@ type SimpleStorageServiceNotificationConfigurationQueueConfigurations struct {
 	// Guide.
 	Event *StringExpr `json:"Event,omitempty"`
 
+	// The filtering rules that determine for which objects to send
+	// notifications. For example, you can create a filter so that Amazon
+	// Simple Storage Service (Amazon S3) sends notifications only when image
+	// files with a .jpg extension are added to the bucket.
+	Filter *S3NotificationConfigurationConfigFilter `json:"Filter,omitempty"`
+
 	// The Amazon Resource Name (ARN) of the Amazon SQS queue that Amazon S3
 	// publishes messages to when the specified event type occurs.
 	Queue *StringExpr `json:"Queue,omitempty"`
@@ -9779,6 +10157,12 @@ type S3NotificationConfigurationTopicConfigurations struct {
 	// in the Amazon Simple Storage Service Developer Guide.
 	Event *StringExpr `json:"Event,omitempty"`
 
+	// The filtering rules that determine for which objects to send
+	// notifications. For example, you can create a filter so that Amazon
+	// Simple Storage Service (Amazon S3) sends notifications only when image
+	// files with a .jpg extension are added to the bucket.
+	Filter *S3NotificationConfigurationConfigFilter `json:"Filter,omitempty"`
+
 	// The Amazon SNS topic to which Amazon S3 reports the specified events.
 	Topic *StringExpr `json:"Topic,omitempty"`
 }
@@ -9798,6 +10182,120 @@ func (l *S3NotificationConfigurationTopicConfigurationsList) UnmarshalJSON(buf [
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = S3NotificationConfigurationTopicConfigurationsList(list)
+		return nil
+	}
+	return err
+}
+
+// S3ReplicationConfiguration represents Amazon S3 ReplicationConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html
+type S3ReplicationConfiguration struct {
+	// The Amazon Resource Name (ARN) of an AWS Identity and Access
+	// Management (IAM) role that Amazon S3 assumes when replicating objects.
+	// For more information, see How to Set Up Cross-Region Replication in
+	// the Amazon Simple Storage Service Developer Guide.
+	Role *StringExpr `json:"Role,omitempty"`
+
+	// A replication rule that specifies which objects to replicate and where
+	// they are stored.
+	Rules *S3ReplicationConfigurationRulesList `json:"Rules,omitempty"`
+}
+
+// S3ReplicationConfigurationList represents a list of S3ReplicationConfiguration
+type S3ReplicationConfigurationList []S3ReplicationConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3ReplicationConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3ReplicationConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3ReplicationConfigurationList{item}
+		return nil
+	}
+	list := []S3ReplicationConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3ReplicationConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// S3ReplicationConfigurationRules represents Amazon S3 ReplicationConfiguration Rules
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html
+type S3ReplicationConfigurationRules struct {
+	// Defines the destination where Amazon S3 stores replicated objects.
+	Destination *S3ReplicationConfigurationRulesDestination `json:"Destination,omitempty"`
+
+	// A unique identifier for the rule. If you don't specify a value, AWS
+	// CloudFormation generates a random ID.
+	Id *StringExpr `json:"Id,omitempty"`
+
+	// An object prefix. This rule applies to all Amazon S3 objects with this
+	// prefix. To specify all objects in an S3 bucket, specify an empty
+	// string.
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+
+	// Whether the rule is enabled. For valid values, see the Status element
+	// of the PUT Bucket replication action in the Amazon Simple Storage
+	// Service API Reference.
+	Status *StringExpr `json:"Status,omitempty"`
+}
+
+// S3ReplicationConfigurationRulesList represents a list of S3ReplicationConfigurationRules
+type S3ReplicationConfigurationRulesList []S3ReplicationConfigurationRules
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3ReplicationConfigurationRulesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3ReplicationConfigurationRules{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3ReplicationConfigurationRulesList{item}
+		return nil
+	}
+	list := []S3ReplicationConfigurationRules{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3ReplicationConfigurationRulesList(list)
+		return nil
+	}
+	return err
+}
+
+// S3ReplicationConfigurationRulesDestination represents Amazon S3 ReplicationConfiguration Rules Destination
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html
+type S3ReplicationConfigurationRulesDestination struct {
+	// The Amazon resource name (ARN) of an S3 bucket where Amazon S3 stores
+	// replicated objects. This destination bucket must be in a different
+	// region than your source bucket.
+	Bucket *StringExpr `json:"Bucket,omitempty"`
+
+	// The storage class to use when replicating objects, such as standard or
+	// reduced redundancy. By default, Amazon S3 uses the storage class of
+	// the source object to create object replica. For valid values, see the
+	// StorageClass element of the PUT Bucket replication action in the
+	// Amazon Simple Storage Service API Reference.
+	StorageClass *StringExpr `json:"StorageClass,omitempty"`
+}
+
+// S3ReplicationConfigurationRulesDestinationList represents a list of S3ReplicationConfigurationRulesDestination
+type S3ReplicationConfigurationRulesDestinationList []S3ReplicationConfigurationRulesDestination
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3ReplicationConfigurationRulesDestinationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3ReplicationConfigurationRulesDestination{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3ReplicationConfigurationRulesDestinationList{item}
+		return nil
+	}
+	list := []S3ReplicationConfigurationRulesDestination{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3ReplicationConfigurationRulesDestinationList(list)
 		return nil
 	}
 	return err
@@ -10085,6 +10583,305 @@ func (l *SQSRedrivePolicyList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// WAFByteMatchSetByteMatchTuples represents AWS WAF ByteMatchSet ByteMatchTuples
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples.html
+type WAFByteMatchSetByteMatchTuples struct {
+	// The part of a web request that you want AWS WAF to search, such as a
+	// specific header or a query string.
+	FieldToMatch *WAFByteMatchSetByteMatchTuplesFieldToMatch `json:"FieldToMatch,omitempty"`
+
+	// How AWS WAF finds matches within the web request part in which you are
+	// searching. For valid values, see the PositionalConstraint content for
+	// the ByteMatchTuple data type in the AWS WAF API Reference.
+	PositionalConstraint *StringExpr `json:"PositionalConstraint,omitempty"`
+
+	// The value that AWS WAF searches for. AWS CloudFormation base64 encodes
+	// this value before sending it to AWS WAF.
+	TargetString *StringExpr `json:"TargetString,omitempty"`
+
+	// The base64-encoded value that AWS WAF searches for. AWS CloudFormation
+	// sends this value to AWS WAF without encoding it.
+	TargetStringBase64 *StringExpr `json:"TargetStringBase64,omitempty"`
+
+	// Specifies how AWS WAF processes the target string value. Text
+	// transformations eliminate some of the unusual formatting that
+	// attackers use in web requests in an effort to bypass AWS WAF. If you
+	// specify a transformation, AWS WAF transforms the target string value
+	// before inspecting a web request for a match.
+	TextTransformation *StringExpr `json:"TextTransformation,omitempty"`
+}
+
+// WAFByteMatchSetByteMatchTuplesList represents a list of WAFByteMatchSetByteMatchTuples
+type WAFByteMatchSetByteMatchTuplesList []WAFByteMatchSetByteMatchTuples
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFByteMatchSetByteMatchTuplesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFByteMatchSetByteMatchTuples{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFByteMatchSetByteMatchTuplesList{item}
+		return nil
+	}
+	list := []WAFByteMatchSetByteMatchTuples{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFByteMatchSetByteMatchTuplesList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFByteMatchSetByteMatchTuplesFieldToMatch represents AWS WAF ByteMatchSet ByteMatchTuples FieldToMatch
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html
+type WAFByteMatchSetByteMatchTuplesFieldToMatch struct {
+	// If you specify HEADER for the Type property, the name of the header
+	// that AWS WAF searches for, such as User-Agent or Referer. If you
+	// specify any other value for the Type property, do not specify this
+	// property.
+	Data *StringExpr `json:"Data,omitempty"`
+
+	// The part of the web request in which AWS WAF searches for the target
+	// string. For valid values, see FieldToMatch in the AWS WAF API
+	// Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// WAFByteMatchSetByteMatchTuplesFieldToMatchList represents a list of WAFByteMatchSetByteMatchTuplesFieldToMatch
+type WAFByteMatchSetByteMatchTuplesFieldToMatchList []WAFByteMatchSetByteMatchTuplesFieldToMatch
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFByteMatchSetByteMatchTuplesFieldToMatchList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFByteMatchSetByteMatchTuplesFieldToMatch{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFByteMatchSetByteMatchTuplesFieldToMatchList{item}
+		return nil
+	}
+	list := []WAFByteMatchSetByteMatchTuplesFieldToMatch{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFByteMatchSetByteMatchTuplesFieldToMatchList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFIPSetIPSetDescriptors represents AWS WAF IPSet IPSetDescriptors
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-ipset-ipsetdescriptors.html
+type WAFIPSetIPSetDescriptors struct {
+	// The IP address type, such as IPV4. For valid values, see the Type
+	// contents of the IPSetDescriptor data type in the AWS WAF API
+	// Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+
+	// An IP address (in CIDR notation) that AWS WAF permits, blocks, or
+	// counts. For example, to specify a single IP address such as
+	// 192.0.2.44, specify 192.0.2.44/32. To specify a range of IP addresses
+	// such as 192.0.2.0 to 192.0.2.255, specify 192.0.2.0/24.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// WAFIPSetIPSetDescriptorsList represents a list of WAFIPSetIPSetDescriptors
+type WAFIPSetIPSetDescriptorsList []WAFIPSetIPSetDescriptors
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFIPSetIPSetDescriptorsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFIPSetIPSetDescriptors{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFIPSetIPSetDescriptorsList{item}
+		return nil
+	}
+	list := []WAFIPSetIPSetDescriptors{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFIPSetIPSetDescriptorsList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFRulePredicates represents AWS WAF Rule Predicates
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-rule-predicates.html
+type WAFRulePredicates struct {
+	// A unique identifier for the predicate.
+	DataId *StringExpr `json:"DataId,omitempty"`
+
+	// Whether to use the settings or the negated settings that you specified
+	// in the ByteMatchSet, IPSet, or SqlInjectionMatchSet objects.
+	Negated *BoolExpr `json:"Negated,omitempty"`
+
+	// The type of predicate in a rule, such as an IPSet (IPMatch). For valid
+	// values, see the Type contents of the Predicate data type in the AWS
+	// WAF API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// WAFRulePredicatesList represents a list of WAFRulePredicates
+type WAFRulePredicatesList []WAFRulePredicates
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFRulePredicatesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFRulePredicates{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFRulePredicatesList{item}
+		return nil
+	}
+	list := []WAFRulePredicates{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFRulePredicatesList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFSqlInjectionMatchSetSqlInjectionMatchTuples represents AWS WAF SqlInjectionMatchSet SqlInjectionMatchTuples
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples.html
+type WAFSqlInjectionMatchSetSqlInjectionMatchTuples struct {
+	// The part of a web request that you want AWS WAF to search, such as a
+	// specific header or a query string.
+	FieldToMatch *WAFByteMatchSetByteMatchTuplesFieldToMatch `json:"FieldToMatch,omitempty"`
+
+	// Text transformations eliminate some of the unusual formatting that
+	// attackers use in web requests in an effort to bypass AWS WAF. If you
+	// specify a transformation, AWS WAF transforms the target string value
+	// before inspecting a web request for a match. For valid values, see the
+	// TextTransformation content for the SqlInjectionMatchTuple data type in
+	// the AWS WAF API Reference.
+	TextTransformation *StringExpr `json:"TextTransformation,omitempty"`
+}
+
+// WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList represents a list of WAFSqlInjectionMatchSetSqlInjectionMatchTuples
+type WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList []WAFSqlInjectionMatchSetSqlInjectionMatchTuples
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFSqlInjectionMatchSetSqlInjectionMatchTuples{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList{item}
+		return nil
+	}
+	list := []WAFSqlInjectionMatchSetSqlInjectionMatchTuples{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch represents AWS WAF SqlInjectionMatchSet SqlInjectionMatchTuples FieldToMatch
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples-fieldtomatch.html
+type WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch struct {
+	// If you specify HEADER for the Type property, the name of the header
+	// that AWS WAF searches for, such as User-Agent or Referer. If you
+	// specify any other value for the Type property, do not specify this
+	// property.
+	Data *StringExpr `json:"Data,omitempty"`
+
+	// The part of the web request in which AWS WAF searches for the target
+	// string. For valid values, see FieldToMatch in the AWS WAF API
+	// Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatchList represents a list of WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch
+type WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatchList []WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatchList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatchList{item}
+		return nil
+	}
+	list := []WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatchList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFWebACLAction represents AWS WAF WebACL Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-action.html
+type WAFWebACLAction struct {
+	// For actions that are associated with a rule, the action that AWS WAF
+	// takes when a web request matches all conditions in a rule.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// WAFWebACLActionList represents a list of WAFWebACLAction
+type WAFWebACLActionList []WAFWebACLAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFWebACLActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFWebACLAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFWebACLActionList{item}
+		return nil
+	}
+	list := []WAFWebACLAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFWebACLActionList(list)
+		return nil
+	}
+	return err
+}
+
+// WAFWebACLRules represents AWS WAF WebACL Rules
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-rules.html
+type WAFWebACLRules struct {
+	// The action that Amazon CloudFront (CloudFront) or AWS WAF takes when a
+	// web request matches all conditions in the rule, such as allow, block,
+	// or count the request.
+	Action *WAFWebACLAction `json:"Action,omitempty"`
+
+	// The order in which AWS WAF evaluates the rules in a web ACL. AWS WAF
+	// evaluates rules with a lower value before rules with a higher value.
+	// The value must be a unique integer. If you have multiple rules in a
+	// web ACL, the priority numbers do not need to be consecutive.
+	Priority *IntegerExpr `json:"Priority,omitempty"`
+
+	// The ID of an AWS WAF rule to associate with a web ACL.
+	RuleId *StringExpr `json:"RuleId,omitempty"`
+}
+
+// WAFWebACLRulesList represents a list of WAFWebACLRules
+type WAFWebACLRulesList []WAFWebACLRules
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *WAFWebACLRulesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := WAFWebACLRules{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = WAFWebACLRulesList{item}
+		return nil
+	}
+	list := []WAFWebACLRules{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = WAFWebACLRulesList(list)
+		return nil
+	}
+	return err
+}
+
 // NewResourceByType returns a new resource object correspoding with the provided type
 func NewResourceByType(typeName string) ResourceProperties {
 	switch typeName {
@@ -10136,6 +10933,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ConfigDeliveryChannel{}
 	case "AWS::DataPipeline::Pipeline":
 		return &DataPipelinePipeline{}
+	case "AWS::DirectoryService::MicrosoftAD":
+		return &DirectoryServiceMicrosoftAD{}
 	case "AWS::DirectoryService::SimpleAD":
 		return &DirectoryServiceSimpleAD{}
 	case "AWS::DynamoDB::Table":
@@ -10260,8 +11059,12 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &LambdaFunction{}
 	case "AWS::Lambda::Permission":
 		return &LambdaPermission{}
+	case "AWS::Logs::Destination":
+		return &LogsDestination{}
 	case "AWS::Logs::LogGroup":
 		return &LogsLogGroup{}
+	case "AWS::Logs::LogStream":
+		return &LogsLogStream{}
 	case "AWS::Logs::MetricFilter":
 		return &LogsMetricFilter{}
 	case "AWS::Logs::SubscriptionFilter":
@@ -10328,6 +11131,16 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SQSQueuePolicy{}
 	case "AWS::SSM::Document":
 		return &SSMDocument{}
+	case "AWS::WAF::ByteMatchSet":
+		return &WAFByteMatchSet{}
+	case "AWS::WAF::IPSet":
+		return &WAFIPSet{}
+	case "AWS::WAF::Rule":
+		return &WAFRule{}
+	case "AWS::WAF::SqlInjectionMatchSet":
+		return &WAFSqlInjectionMatchSet{}
+	case "AWS::WAF::WebACL":
+		return &WAFWebACL{}
 	case "AWS::WorkSpaces::Workspace":
 		return &WorkSpacesWorkspace{}
 
