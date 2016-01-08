@@ -78,7 +78,7 @@ type ResourceProperties interface {
 // metadata and, in Properties, a struct that implements ResourceProperties which
 // contains the properties of the resource.
 type Resource struct {
-	DependsOn  string
+	DependsOn  []string
 	Properties ResourceProperties
 }
 
@@ -86,7 +86,7 @@ type Resource struct {
 func (r Resource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
 		Type       string
-		DependsOn  string `json:",omitempty"`
+		DependsOn  []string `json:",omitempty"`
 		Properties ResourceProperties
 	}{
 		Type:       r.Properties.ResourceType(),
@@ -103,7 +103,7 @@ func (r *Resource) UnmarshalJSON(buf []byte) error {
 	}
 
 	typeName := m["Type"].(string)
-	r.DependsOn, _ = m["DependsOn"].(string)
+	r.DependsOn, _ = m["DependsOn"].([]string)
 
 	r.Properties = NewResourceByType(typeName)
 	if r.Properties == nil {
