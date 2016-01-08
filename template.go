@@ -14,17 +14,19 @@ func NewTemplate() *Template {
 		Parameters:               map[string]Parameter{},
 		Resources:                map[string]Resource{},
 		Outputs:                  map[string]Output{},
+		Conditions:               map[string]interface{}{},
 	}
 }
 
 // Template represents a cloudformation template.
 type Template struct {
-	AWSTemplateFormatVersion string               `json:",omitempty"`
-	Description              string               `json:",omitempty"`
-	Mappings                 map[string]Mapping   `json:",omitempty"`
-	Parameters               map[string]Parameter `json:",omitempty"`
-	Resources                map[string]Resource  `json:",omitempty"`
-	Outputs                  map[string]Output    `json:",omitempty"`
+	AWSTemplateFormatVersion string                 `json:",omitempty"`
+	Description              string                 `json:",omitempty"`
+	Mappings                 map[string]Mapping     `json:",omitempty"`
+	Parameters               map[string]Parameter   `json:",omitempty"`
+	Resources                map[string]Resource    `json:",omitempty"`
+	Outputs                  map[string]Output      `json:",omitempty"`
+	Conditions               map[string]interface{} `json:",omitempty"`
 }
 
 // AddResource adds the resource to the template as name, displacing
