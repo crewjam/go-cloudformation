@@ -52,9 +52,17 @@ type Mapping map[string]map[string]string
 //
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html
 type Parameter struct {
-	Type        string `json:",omitempty"`
-	Description string `json:",omitempty"`
-	Default     string `json:",omitempty"`
+	Type                  string       `json:",omitempty"`
+	Default               string       `json:",omitempty"`
+	NoEcho                *BoolExpr    `json:",omitempty"`
+	AllowedValues         []string     `json:",omitempty"`
+	AllowedPattern        string       `json:",omitempty"`
+	MinLength             *IntegerExpr `json:",omitempty"`
+	MaxLength             *IntegerExpr `json:",omitempty"`
+	MinValue              *IntegerExpr `json:",omitempty"`
+	MaxValue              *IntegerExpr `json:",omitempty"`
+	Description           string       `json:",omitempty"`
+	ConstraintDescription string       `json:",omitempty"`
 }
 
 // Output represents a template output
