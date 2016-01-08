@@ -17,7 +17,7 @@ Producing Example:
       Description: "the top level DNS name for the service"
     }
     t.AddResource("DataBucket", &S3Bucket{
-      BucketName: Join("-", *String("data"), *Ref("DnsName").String())
+      BucketName: Join("-", String("data"), Ref("DnsName"))
     })
     json.NewEncoder(os.Stdout).Encoder(t)
 
