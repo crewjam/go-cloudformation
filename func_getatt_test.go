@@ -15,6 +15,9 @@ func (testSuite *GetAttFuncTest) TestBasics(c *C) {
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
 	c.Assert(f.(StringFunc).String(), DeepEquals,
+		GetAtt("MySQLDatabase", "Endpoint.Address"))
+	// old way
+	c.Assert(f.(StringFunc).String(), DeepEquals,
 		GetAtt("MySQLDatabase", "Endpoint.Address").String())
 
 	// tidy the JSON input

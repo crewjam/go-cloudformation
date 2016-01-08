@@ -3,8 +3,8 @@ package cloudformation
 import "encoding/json"
 
 // GetAtt returns a new instance of GetAttFunc.
-func GetAtt(resource, name string) GetAttFunc {
-	return GetAttFunc{Resource: resource, Name: name}
+func GetAtt(resource, name string) *StringExpr {
+	return GetAttFunc{Resource: resource, Name: name}.String()
 }
 
 // GetAttFunc represents an invocation of the Fn::GetAtt intrinsic.

@@ -3,12 +3,12 @@ package cloudformation
 import "encoding/json"
 
 // FindInMap returns a new instance of FindInMapFunc.
-func FindInMap(mapName string, topLevelKey StringExpr, secondLevelKey StringExpr) FindInMapFunc {
+func FindInMap(mapName string, topLevelKey Stringable, secondLevelKey Stringable) *StringExpr {
 	return FindInMapFunc{
 		MapName:        mapName,
-		TopLevelKey:    topLevelKey,
-		SecondLevelKey: secondLevelKey,
-	}
+		TopLevelKey:    *topLevelKey.String(),
+		SecondLevelKey: *secondLevelKey.String(),
+	}.String()
 }
 
 // FindInMapFunc represents an invocation of the Fn::FindInMap intrinsic.
@@ -55,4 +55,5 @@ func (f FindInMapFunc) String() *StringExpr {
 	return &StringExpr{Func: f}
 }
 
+var _ Stringable = FindInMapFunc{} // FindInMapFunc must implement Stringable
 var _ StringFunc = FindInMapFunc{} // FindInMapFunc must implement StringFunc

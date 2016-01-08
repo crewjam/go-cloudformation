@@ -1,8 +1,8 @@
 package cloudformation
 
 // GetAZs returns a new instance of GetAZsFunc.
-func GetAZs(region StringExpr) GetAZsFunc {
-	return GetAZsFunc{Region: region}
+func GetAZs(region Stringable) *StringListExpr {
+	return GetAZsFunc{Region: *region.String()}.StringList()
 }
 
 // GetAZsFunc represents an invocation of the Fn::GetAZs intrinsic.

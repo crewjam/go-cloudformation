@@ -6,24 +6,24 @@ import "reflect"
 // If returns a new instance of IfFunc for the provided string expressions.
 //
 // See also: IfList
-func If(condition string, valueIfTrue, valueIfFalse StringExpr) IfFunc {
+func If(condition string, valueIfTrue, valueIfFalse Stringable) IfFunc {
 	return IfFunc{
 		list:         false,
 		Condition:    condition,
-		ValueIfTrue:  valueIfTrue,
-		ValueIfFalse: valueIfFalse,
+		ValueIfTrue:  *valueIfTrue.String(),
+		ValueIfFalse: *valueIfFalse.String(),
 	}
 }
 
 // IfList returns a new instance of IfFunc for the provided string list expressions.
 //
 // See also: If
-func IfList(condition string, valueIfTrue, valueIfFalse StringListExpr) IfFunc {
+func IfList(condition string, valueIfTrue, valueIfFalse StringListable) IfFunc {
 	return IfFunc{
 		list:         true,
 		Condition:    condition,
-		ValueIfTrue:  valueIfTrue,
-		ValueIfFalse: valueIfFalse,
+		ValueIfTrue:  *valueIfTrue.StringList(),
+		ValueIfFalse: *valueIfFalse.StringList(),
 	}
 }
 

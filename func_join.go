@@ -3,8 +3,8 @@ package cloudformation
 import "encoding/json"
 
 // Join returns a new instance of JoinFunc that joins items with separator.
-func Join(separator string, items ...StringExpr) JoinFunc {
-	return JoinFunc{Separator: separator, Items: items}
+func Join(separator string, items ...Stringable) *StringExpr {
+	return JoinFunc{Separator: separator, Items: *StringList(items...)}.String()
 }
 
 // JoinFunc represents an invocation of the Fn::Join intrinsic.
@@ -16,7 +16,7 @@ func Join(separator string, items ...StringExpr) JoinFunc {
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-join.html
 type JoinFunc struct {
 	Separator string
-	Items     []StringExpr
+	Items     StringListExpr
 }
 
 // MarshalJSON returns a JSON representation of the object

@@ -1,8 +1,8 @@
 package cloudformation
 
 // Base64 represents the Fn::Base64 function called over value.
-func Base64(value StringExpr) Base64Func {
-	return Base64Func{Value: value}
+func Base64(value Stringable) *StringExpr {
+	return Base64Func{Value: *value.String()}.String()
 }
 
 // Base64Func represents an invocation of Fn::Base64.
@@ -20,4 +20,5 @@ func (f Base64Func) String() *StringExpr {
 	return &StringExpr{Func: f}
 }
 
+var _ Stringable = Base64Func{} // Base64Func must implement Stringable
 var _ StringFunc = Base64Func{} // Base64Func must implement StringFunc

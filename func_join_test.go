@@ -15,6 +15,10 @@ func (testSuite *JoinFuncTest) TestRef(c *C) {
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
 	c.Assert(f.(StringFunc).String(), DeepEquals,
+		Join("x", String("y"), Ref("foo"), String("1")))
+
+	// old way
+	c.Assert(f.(StringFunc).String(), DeepEquals,
 		Join("x", *String("y"), *Ref("foo").String(), *String("1")).String())
 
 	buf, err := json.Marshal(f)

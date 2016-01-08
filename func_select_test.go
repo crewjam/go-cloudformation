@@ -15,6 +15,10 @@ func (testSuite *SelectFuncTest) TestRef(c *C) {
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
 	c.Assert(f.(StringFunc).String(), DeepEquals,
+		Select("2", GetAZs(Ref("AWS::Region"))))
+
+	// old way
+	c.Assert(f.(StringFunc).String(), DeepEquals,
 		SelectFunc{Selector: "2",
 			Items: *GetAZs(*Ref("AWS::Region").String()).StringList()}.String())
 

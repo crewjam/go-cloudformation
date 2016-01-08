@@ -2,9 +2,20 @@ package cloudformation
 
 import "encoding/json"
 
-// Select returns a new instance of SelectFunc chooses among items via selector.
-func Select(selector string, items ...StringExpr) SelectFunc {
-	return SelectFunc{Selector: selector, Items: StringListExpr{Literal: items}}
+type selectArg interface{}
+
+// Select returns a new instance of SelectFunc chooses among items via selector. If you
+func Select(selector string, items ...interface{}) *StringExpr {
+	if len(items) == 1 {
+		if itemList, ok := items[0].(StringListable); ok {
+			return SelectFunc{Selector: selector, Items: *itemList.StringList()}.String()
+		}
+	}
+	stringableItems := make([]Stringable, len(items))
+	for i, item := range items {
+		stringableItems[i] = item.(Stringable)
+	}
+	return SelectFunc{Selector: selector, Items: *StringList(stringableItems...)}.String()
 }
 
 // SelectFunc represents an invocation of the Fn::Select intrinsic.

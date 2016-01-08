@@ -23,6 +23,10 @@ func (testSuite *StringListTest) TestStringList(c *C) {
 	c.Assert(err, IsNil)
 
 	c.Assert(v.A, IsNil)
+	c.Assert(v.B, DeepEquals, StringList(String("one")))
+	c.Assert(v.C, DeepEquals, StringList(String("two"), Ref("foo")))
+
+	// old way still works
 	c.Assert(v.B, DeepEquals, StringList(*String("one")))
 	c.Assert(v.C, DeepEquals, StringList(*String("two"), *Ref("foo").String()))
 
@@ -35,7 +39,8 @@ func (testSuite *StringListTest) TestStringList(c *C) {
 	inputBuf = `{"A":{"Fn::GetAZs":""}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
 	c.Assert(err, IsNil)
-	c.Assert(v.A, DeepEquals, GetAZs(*String("")).StringList())
+	c.Assert(v.A, DeepEquals, GetAZs(String("")))
+	c.Assert(v.A, DeepEquals, GetAZs(*String("")).StringList()) // old way still works
 	buf, err = json.Marshal(v)
 	c.Assert(err, IsNil)
 	c.Assert(string(buf), Equals, inputBuf)
@@ -56,5 +61,4 @@ func (testSuite *StringListTest) TestStringList(c *C) {
 	inputBuf = `{"A": {"Fn::Base64": "hello"}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
 	c.Assert(err, ErrorMatches, ".* is not a StringListFunc")
-
 }

@@ -29,6 +29,22 @@ func (testSuite *Base64FuncTest) TestRef(c *C) {
 	]]}}`
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
+	c.Assert(f.(Stringable).String(), DeepEquals, Base64(Join("",
+		String("#!/bin/bash -xe\n"),
+		String("yum update -y aws-cfn-bootstrap\n"),
+		String("# Install the files and packages from the metadata\n"),
+		String("/opt/aws/bin/cfn-init -v "),
+		String("         --stack "), Ref("AWS::StackName").String(),
+		String("         --resource LaunchConfig "),
+		String("         --region "), Ref("AWS::Region").String(), String("\n"),
+		String("# Signal the status from cfn-init\n"),
+		String("/opt/aws/bin/cfn-signal -e $? "),
+		String("         --stack "), Ref("AWS::StackName").String(),
+		String("         --resource WebServerGroup "),
+		String("         --region "), Ref("AWS::Region").String(), String("\n"),
+	)))
+
+	// old way still compiles
 	c.Assert(f.(StringFunc).String(), DeepEquals, Base64(*Join("",
 		*String("#!/bin/bash -xe\n"),
 		*String("yum update -y aws-cfn-bootstrap\n"),

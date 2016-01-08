@@ -2,6 +2,12 @@ package cloudformation
 
 import "encoding/json"
 
+// Stringable is an interface that describes structures that are convertable
+// to a *StringExpr.
+type Stringable interface {
+	String() *StringExpr
+}
+
 // StringExpr is a string expression. If the value is computed then
 // Func will be non-nil. If it is a literal string then Literal gives
 // the value. Typically instances of this function are created by
@@ -17,6 +23,11 @@ import "encoding/json"
 type StringExpr struct {
 	Func    StringFunc
 	Literal string
+}
+
+// String implements Stringable
+func (x StringExpr) String() *StringExpr {
+	return &x
 }
 
 // MarshalJSON returns a JSON representation of the object
@@ -43,7 +54,7 @@ func (x *StringExpr) UnmarshalJSON(data []byte) error {
 	// function actually works in the boolean context
 	funcCall, err2 := unmarshalFunc(data)
 	if err2 == nil {
-		stringFunc, ok := funcCall.(StringFunc)
+		stringFunc, ok := funcCall.(Stringable)
 		if ok {
 			x.Func = stringFunc
 			return nil

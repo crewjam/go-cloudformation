@@ -5,6 +5,12 @@ import (
 	"fmt"
 )
 
+// StringListable is an interface that describes structures that are convertable
+// to a *StringListExpr.
+type StringListable interface {
+	StringList() *StringListExpr
+}
+
 // StringListExpr is a string expression. If the value is computed then
 // Func will be non-nil. If it is a literal string then Literal gives
 // the value. Typically instances of this function are created by
@@ -19,7 +25,12 @@ import (
 //
 type StringListExpr struct {
 	Func    StringListFunc
-	Literal []StringExpr
+	Literal []*StringExpr
+}
+
+// StringList implements StringListable
+func (x StringListExpr) StringList() *StringListExpr {
+	return &x
 }
 
 // MarshalJSON returns a JSON representation of the object
@@ -32,7 +43,7 @@ func (x StringListExpr) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON sets the object from the provided JSON representation
 func (x *StringListExpr) UnmarshalJSON(data []byte) error {
-	var v []StringExpr
+	var v []*StringExpr
 	err := json.Unmarshal(data, &v)
 	if err == nil {
 		x.Func = nil
@@ -60,6 +71,10 @@ func (x *StringListExpr) UnmarshalJSON(data []byte) error {
 }
 
 // StringList returns a new StringListExpr representing the literal value v.
-func StringList(v ...StringExpr) *StringListExpr {
-	return &StringListExpr{Literal: v}
+func StringList(v ...Stringable) *StringListExpr {
+	rv := &StringListExpr{Literal: []*StringExpr{}}
+	for _, item := range v {
+		rv.Literal = append(rv.Literal, item.String())
+	}
+	return rv
 }

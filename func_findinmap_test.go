@@ -16,6 +16,12 @@ func (testSuite *FindInMapFuncTest) TestBasics(c *C) {
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
 	c.Assert(f.(StringFunc).String(), DeepEquals, FindInMap(
+		"AWSRegionArch2AMI", Ref("AWS::Region"),
+		FindInMap("AWSInstanceType2Arch", Ref("InstanceType"),
+			String("Arch"))))
+
+	// old way
+	c.Assert(f.(StringFunc).String(), DeepEquals, FindInMap(
 		"AWSRegionArch2AMI", *Ref("AWS::Region").String(),
 		*FindInMap("AWSInstanceType2Arch", *Ref("InstanceType").String(),
 			*String("Arch")).String()).String())

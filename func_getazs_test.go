@@ -15,6 +15,10 @@ func (testSuite *GetAZsFuncTest) TestBasics(c *C) {
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
 	c.Assert(f.(StringListFunc).StringList(), DeepEquals,
+		GetAZs(Ref("AWS::Region")))
+
+	// old way
+	c.Assert(f.(StringListFunc).StringList(), DeepEquals,
 		GetAZs(*Ref("AWS::Region").String()).StringList())
 
 	// tidy the JSON input
