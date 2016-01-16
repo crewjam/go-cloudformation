@@ -89,6 +89,7 @@ type ResourceProperties interface {
 // contains the properties of the resource.
 type Resource struct {
 	DependsOn  []string
+	Metadata   map[string]interface{}
 	Properties ResourceProperties
 }
 
@@ -96,11 +97,13 @@ type Resource struct {
 func (r Resource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
 		Type       string
-		DependsOn  []string `json:",omitempty"`
+		DependsOn  []string               `json:",omitempty"`
+		Metadata   map[string]interface{} `json:",omitempty"`
 		Properties ResourceProperties
 	}{
 		Type:       r.Properties.ResourceType(),
 		DependsOn:  r.DependsOn,
+		Metadata:   r.Metadata,
 		Properties: r.Properties,
 	})
 }
@@ -114,7 +117,7 @@ func (r *Resource) UnmarshalJSON(buf []byte) error {
 
 	typeName := m["Type"].(string)
 	r.DependsOn, _ = m["DependsOn"].([]string)
-
+	r.Metadata, _ = m["Metadata"].(map[string]interface{})
 	r.Properties = NewResourceByType(typeName)
 	if r.Properties == nil {
 		return fmt.Errorf("unknown resource type: %s", typeName)
