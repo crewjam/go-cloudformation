@@ -70,16 +70,6 @@ func (x *IntegerExpr) UnmarshalJSON(data []byte) error {
 }
 
 // Integer returns a new IntegerExpr representing the literal value v.
-func Integer(v int) *IntegerExpr {
-	return &IntegerExpr{Literal: int64(v)}
-}
-
-// Integer32 returns a new IntegerExpr representing the literal value v.
-func Integer32(v int32) *IntegerExpr {
-	return &IntegerExpr{Literal: int64(v)}
-}
-
-// Integer64 returns a new IntegerExpr representing the literal value v.
-func Integer64(v int64) *IntegerExpr {
+func Integer(v int64) *IntegerExpr {
 	return &IntegerExpr{Literal: v}
 }
