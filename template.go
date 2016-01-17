@@ -123,7 +123,7 @@ func (r *Resource) UnmarshalJSON(buf []byte) error {
 	typeName := m["Type"].(string)
 	r.DependsOn, _ = m["DependsOn"].([]string)
 	r.Metadata, _ = m["Metadata"].(map[string]interface{})
-	r.DeletionPolicy = m["DeletionPolicy"].(string)
+	r.DeletionPolicy, _ = m["DeletionPolicy"].(string)
 	r.Properties = NewResourceByType(typeName)
 	if r.Properties == nil {
 		return fmt.Errorf("unknown resource type: %s", typeName)
