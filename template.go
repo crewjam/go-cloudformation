@@ -10,10 +10,10 @@ import (
 func NewTemplate() *Template {
 	return &Template{
 		AWSTemplateFormatVersion: "2010-09-09",
-		Mappings:                 map[string]Mapping{},
-		Parameters:               map[string]Parameter{},
-		Resources:                map[string]Resource{},
-		Outputs:                  map[string]Output{},
+		Mappings:                 map[string]*Mapping{},
+		Parameters:               map[string]*Parameter{},
+		Resources:                map[string]*Resource{},
+		Outputs:                  map[string]*Output{},
 		Conditions:               map[string]interface{}{},
 	}
 }
@@ -22,17 +22,19 @@ func NewTemplate() *Template {
 type Template struct {
 	AWSTemplateFormatVersion string                 `json:",omitempty"`
 	Description              string                 `json:",omitempty"`
-	Mappings                 map[string]Mapping     `json:",omitempty"`
-	Parameters               map[string]Parameter   `json:",omitempty"`
-	Resources                map[string]Resource    `json:",omitempty"`
-	Outputs                  map[string]Output      `json:",omitempty"`
+	Mappings                 map[string]*Mapping    `json:",omitempty"`
+	Parameters               map[string]*Parameter  `json:",omitempty"`
+	Resources                map[string]*Resource   `json:",omitempty"`
+	Outputs                  map[string]*Output     `json:",omitempty"`
 	Conditions               map[string]interface{} `json:",omitempty"`
 }
 
 // AddResource adds the resource to the template as name, displacing
 // any resource with the same name that already exists.
-func (t *Template) AddResource(name string, resource ResourceProperties) {
-	t.Resources[name] = Resource{Properties: resource}
+func (t *Template) AddResource(name string, resource ResourceProperties) *Resource {
+	templateResource := &Resource{Properties: resource}
+	t.Resources[name] = templateResource
+	return templateResource
 }
 
 // Mapping matches a key to a corresponding set of named values. For example,
@@ -88,23 +90,26 @@ type ResourceProperties interface {
 // metadata and, in Properties, a struct that implements ResourceProperties which
 // contains the properties of the resource.
 type Resource struct {
-	DependsOn  []string
-	Metadata   map[string]interface{}
-	Properties ResourceProperties
+	DependsOn      []string
+	Metadata       map[string]interface{}
+	DeletionPolicy string
+	Properties     ResourceProperties
 }
 
 // MarshalJSON returns a JSON representation of the object
 func (r Resource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		Type       string
-		DependsOn  []string               `json:",omitempty"`
-		Metadata   map[string]interface{} `json:",omitempty"`
-		Properties ResourceProperties
+		Type           string
+		DependsOn      []string               `json:",omitempty"`
+		DeletionPolicy string                 `json:",omitempty"`
+		Metadata       map[string]interface{} `json:",omitempty"`
+		Properties     ResourceProperties
 	}{
-		Type:       r.Properties.ResourceType(),
-		DependsOn:  r.DependsOn,
-		Metadata:   r.Metadata,
-		Properties: r.Properties,
+		Type:           r.Properties.ResourceType(),
+		DependsOn:      r.DependsOn,
+		DeletionPolicy: r.DeletionPolicy,
+		Metadata:       r.Metadata,
+		Properties:     r.Properties,
 	})
 }
 
@@ -118,6 +123,7 @@ func (r *Resource) UnmarshalJSON(buf []byte) error {
 	typeName := m["Type"].(string)
 	r.DependsOn, _ = m["DependsOn"].([]string)
 	r.Metadata, _ = m["Metadata"].(map[string]interface{})
+	r.DeletionPolicy = m["DeletionPolicy"].(string)
 	r.Properties = NewResourceByType(typeName)
 	if r.Properties == nil {
 		return fmt.Errorf("unknown resource type: %s", typeName)
