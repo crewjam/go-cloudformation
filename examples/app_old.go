@@ -9,7 +9,7 @@ import cf "github.com/crewjam/go-cloudformation"
 func makeTemplateTheOldWay() *cf.Template {
 	t := cf.NewTemplate()
 	t.Description = "example production infrastructure"
-	t.Parameters["DnsName"] = cf.Parameter{
+	t.Parameters["DnsName"] = &cf.Parameter{
 		Description: "The top level DNS name for the infrastructure",
 		Type:        "String",
 		Default:     "preview.example.io",
