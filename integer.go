@@ -18,7 +18,7 @@ import (
 //
 type IntegerExpr struct {
 	Func    IntegerFunc
-	Literal int
+	Literal int64
 }
 
 // MarshalJSON returns a JSON representation of the object
@@ -31,7 +31,7 @@ func (x IntegerExpr) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON sets the object from the provided JSON representation
 func (x *IntegerExpr) UnmarshalJSON(data []byte) error {
-	var v int
+	var v int64
 	err := json.Unmarshal(data, &v)
 	if err == nil {
 		x.Func = nil
@@ -44,7 +44,7 @@ func (x *IntegerExpr) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &strValue); err == nil {
 		if v, err := strconv.ParseInt(strValue, 10, 64); err == nil {
 			x.Func = nil
-			x.Literal = int(v)
+			x.Literal = v
 			return nil
 		}
 	}
@@ -70,6 +70,6 @@ func (x *IntegerExpr) UnmarshalJSON(data []byte) error {
 }
 
 // Integer returns a new IntegerExpr representing the literal value v.
-func Integer(v int) *IntegerExpr {
+func Integer(v int64) *IntegerExpr {
 	return &IntegerExpr{Literal: v}
 }
