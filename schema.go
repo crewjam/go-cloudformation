@@ -1318,8 +1318,9 @@ type EC2NetworkAclEntry struct {
 	// 172.16.0.0/24).
 	CidrBlock *StringExpr `json:"CidrBlock,omitempty"`
 
-	// Whether this rule applies to egress traffic from the subnet ("true")
-	// or ingress traffic to the subnet ("false").
+	// Whether this rule applies to egress traffic from the subnet (true) or
+	// ingress traffic to the subnet (false). By default, AWS CloudFormation
+	// specifies false.
 	Egress *BoolExpr `json:"Egress,omitempty"`
 
 	// The Internet Control Message Protocol (ICMP) code and type.
@@ -3033,8 +3034,8 @@ func (s OpsWorksElasticLoadBalancerAttachment) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html
 type OpsWorksInstance struct {
 	// The ID of the custom Amazon Machine Image (AMI) to be used to create
-	// the instance. The AMI should be based on one of the standard AWS
-	// OpsWorks APIs.
+	// the instance. For more information about custom AMIs, see Using Custom
+	// AMIs in the AWS OpsWorks User Guide.
 	AmiId *StringExpr `json:"AmiId,omitempty"`
 
 	// The instance architecture.
