@@ -2146,6 +2146,9 @@ type ElastiCacheCacheCluster struct {
 	// example, you can specify 05:00-09:00.
 	SnapshotWindow *StringExpr `json:"SnapshotWindow,omitempty"`
 
+	// An arbitrary set of tags (key–value pairs) for this cache cluster.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
 	// A list of VPC security group IDs. If your cache cluster isn't in a
 	// VPC, specify the CacheSecurityGroupNames property instead.
 	XVpcSecurityGroupIdsX *StringListExpr `json:" VpcSecurityGroupIds ,omitempty"`
