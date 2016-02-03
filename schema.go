@@ -3399,7 +3399,8 @@ type RDSDBInstance struct {
 	// The name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *StringExpr `json:"DBInstanceClass,omitempty"`
 
-	// A name for the DB instance. If you don't specify a name, AWS
+	// A name for the DB instance. If you specify a name, AWS CloudFormation
+	// converts it to lower case. If you don't specify a name, AWS
 	// CloudFormation generates a unique physical ID and uses that ID for the
 	// DB instance. For more information, see Name Type.
 	DBInstanceIdentifier *StringExpr `json:"DBInstanceIdentifier,omitempty"`
@@ -10350,7 +10351,7 @@ type S3WebsiteConfigurationProperty struct {
 
 	// Rules that define when a redirect is applied and the redirect
 	// behavior.
-	RoutingRules *S3WebsiteConfigurationRoutingRulesProperty `json:"RoutingRules,omitempty"`
+	RoutingRules *S3WebsiteConfigurationRoutingRulesPropertyList `json:"RoutingRules,omitempty"`
 }
 
 // S3WebsiteConfigurationPropertyList represents a list of S3WebsiteConfigurationProperty
