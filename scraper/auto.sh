@@ -3,7 +3,7 @@ set -e
 
 # make sure we have a clean checkout and the latest changes
 git diff --exit-code || (echo "cannot run $0 with pending changes"; exit 1)
-git pull --ff-only
+git pull --ff-only --quiet
 
 # re-run the code generator
 [ ! -d .scraper-cache ] || rm -rf .scraper-cache

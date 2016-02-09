@@ -1318,8 +1318,9 @@ type EC2NetworkAclEntry struct {
 	// 172.16.0.0/24).
 	CidrBlock *StringExpr `json:"CidrBlock,omitempty"`
 
-	// Whether this rule applies to egress traffic from the subnet ("true")
-	// or ingress traffic to the subnet ("false").
+	// Whether this rule applies to egress traffic from the subnet (true) or
+	// ingress traffic to the subnet (false). By default, AWS CloudFormation
+	// specifies false.
 	Egress *BoolExpr `json:"Egress,omitempty"`
 
 	// The Internet Control Message Protocol (ICMP) code and type.
@@ -2144,6 +2145,9 @@ type ElastiCacheCacheCluster struct {
 	// ElastiCache will begin taking a daily snapshot of your node group. For
 	// example, you can specify 05:00-09:00.
 	SnapshotWindow *StringExpr `json:"SnapshotWindow,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for this cache cluster.
+	Tags []ResourceTag `json:"Tags,omitempty"`
 
 	// A list of VPC security group IDs. If your cache cluster isn't in a
 	// VPC, specify the CacheSecurityGroupNames property instead.
@@ -3033,8 +3037,8 @@ func (s OpsWorksElasticLoadBalancerAttachment) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html
 type OpsWorksInstance struct {
 	// The ID of the custom Amazon Machine Image (AMI) to be used to create
-	// the instance. The AMI should be based on one of the standard AWS
-	// OpsWorks APIs.
+	// the instance. For more information about custom AMIs, see Using Custom
+	// AMIs in the AWS OpsWorks User Guide.
 	AmiId *StringExpr `json:"AmiId,omitempty"`
 
 	// The instance architecture.
@@ -3395,7 +3399,8 @@ type RDSDBInstance struct {
 	// The name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *StringExpr `json:"DBInstanceClass,omitempty"`
 
-	// A name for the DB instance. If you don't specify a name, AWS
+	// A name for the DB instance. If you specify a name, AWS CloudFormation
+	// converts it to lower case. If you don't specify a name, AWS
 	// CloudFormation generates a unique physical ID and uses that ID for the
 	// DB instance. For more information, see Name Type.
 	DBInstanceIdentifier *StringExpr `json:"DBInstanceIdentifier,omitempty"`
@@ -10346,7 +10351,7 @@ type S3WebsiteConfigurationProperty struct {
 
 	// Rules that define when a redirect is applied and the redirect
 	// behavior.
-	RoutingRules *S3WebsiteConfigurationRoutingRulesProperty `json:"RoutingRules,omitempty"`
+	RoutingRules *S3WebsiteConfigurationRoutingRulesPropertyList `json:"RoutingRules,omitempty"`
 }
 
 // S3WebsiteConfigurationPropertyList represents a list of S3WebsiteConfigurationProperty
