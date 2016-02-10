@@ -363,6 +363,10 @@ func (s CloudFormationAuthentication) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
 type CloudFormationCustomResource struct {
+	// The user-defined `Custom::*` name to use for the resource.  If empty,
+	// the default "AWS::CloudFormation::CustomResource" value will be used.
+	// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html
+	ResourceTypeName string
 	// The service token that was given to the template developer by the
 	// service provider to access the service, such as an Amazon SNS topic
 	// ARN or Lambda function ARN. The service token must be from the same
@@ -372,6 +376,9 @@ type CloudFormationCustomResource struct {
 
 // ResourceType returns AWS::CloudFormation::CustomResource to implement the ResourceProperties interface
 func (s CloudFormationCustomResource) ResourceType() string {
+	if "" != s.ResourceTypeName {
+		return s.ResourceTypeName
+	}
 	return "AWS::CloudFormation::CustomResource"
 }
 
