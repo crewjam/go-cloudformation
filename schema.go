@@ -6946,6 +6946,15 @@ func (l *ElasticBlockStoreBlockDevicePropertyList) UnmarshalJSON(buf []byte) err
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-icmp.html
 type EC2ICMP struct {
+	// The Internet Control Message Protocol (ICMP) code. You can use -1 to
+	// specify all ICMP codes for the given ICMP type.Condition: Required if
+	// specifying 1 (ICMP) for the CreateNetworkAclEntry protocol parameter.
+	Code *IntegerExpr `json:"Code,omitempty"`
+
+	// The Internet Control Message Protocol (ICMP) type. You can use -1 to
+	// specify all ICMP types.Condition: Required if specifying 1 (ICMP) for
+	// the CreateNetworkAclEntry protocol parameter.
+	Type *IntegerExpr `json:"Type,omitempty"`
 }
 
 // EC2ICMPList represents a list of EC2ICMP
@@ -7270,6 +7279,13 @@ func (l *EC2NetworkInterfacePrivateIPSpecificationList) UnmarshalJSON(buf []byte
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-port-range.html
 type EC2PortRange struct {
+	// The first port in the range.Condition: Required if specifying 6 (TCP)
+	// or 17 (UDP) for the CreateNetworkAclEntry protocol parameter.
+	From *IntegerExpr `json:"From,omitempty"`
+
+	// The last port in the range.Condition: Required if specifying 6 (TCP)
+	// or 17 (UDP) for the CreateNetworkAclEntry protocol parameter.
+	To *IntegerExpr `json:"To,omitempty"`
 }
 
 // EC2PortRangeList represents a list of EC2PortRange

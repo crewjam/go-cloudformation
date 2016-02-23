@@ -250,6 +250,32 @@ func (r *Resource) Load() error {
 			r.Properties = append(r.Properties, property)
 		})
 	})
+
+	// There is at least one document, aws-properties-ec2-port-range.html that uses
+	// a totally different format to describe object properties.
+	doc.Find(".informaltable").Each(func(i int, varList *goquery.Selection) {
+		if varList.Find("th").First().Text() != "Property" {
+			return
+		}
+
+		varList.Find("tbody tr").Each(func(i int, tr *goquery.Selection) {
+			property := Property{}
+			tr.Find("td").Each(func(i int, p *goquery.Selection) {
+				switch i {
+				case 0:
+					property.Name = p.Find("p").Text()
+				case 1:
+					property.Type = p.Find("p").Text()
+				case 3:
+					property.DocString = p.Find("p").Text()
+					property.DocString = regexp.MustCompile("\\s+").ReplaceAllString(property.DocString, " ")
+					property.DocString = wordwrap.WrapString(property.DocString, 70)
+				}
+			})
+			r.Properties = append(r.Properties, property)
+		})
+	})
+
 	return nil
 }
 
