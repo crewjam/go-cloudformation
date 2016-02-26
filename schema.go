@@ -508,19 +508,28 @@ type CloudTrailTrail struct {
 	// AWS CloudTrail User Guide.
 	CloudWatchLogsRoleArn *StringExpr `json:"CloudWatchLogsRoleArn,omitempty"`
 
-	// Indicates whether CloudTrail validates the integrity of log files.
-	// When you disable log file integrity validation, CloudTrail stops
-	// creating digest files. For more information, see CreateTrail in the
-	// AWS CloudTrail API Reference.
+	// Indicates whether CloudTrail validates the integrity of log files. By
+	// default, AWS CloudFormation sets this value to false. When you disable
+	// log file integrity validation, CloudTrail stops creating digest files.
+	// For more information, see CreateTrail in the AWS CloudTrail API
+	// Reference.
 	EnableLogFileValidation *BoolExpr `json:"EnableLogFileValidation,omitempty"`
 
 	// Indicates whether the trail is publishing events from global services,
-	// such as IAM, to the log files.
+	// such as IAM, to the log files. By default, AWS CloudFormation sets
+	// this value to false.
 	IncludeGlobalServiceEvents *BoolExpr `json:"IncludeGlobalServiceEvents,omitempty"`
 
 	// Indicates whether the CloudTrail trail is currently logging AWS API
 	// calls.
 	IsLogging *BoolExpr `json:"IsLogging,omitempty"`
+
+	// Indicates whether the CloudTrail trail is created in the region in
+	// which you create the stack (false) or in all regions (true). By
+	// default, AWS CloudFormation sets this value to false. For more
+	// information, see How Does CloudTrail Behave Regionally and Globally?
+	// in the AWS CloudTrail User Guide.
+	IsMultiRegionTrail *BoolExpr `json:"IsMultiRegionTrail,omitempty"`
 
 	// The AWS Key Management Service (AWS KMS) key ID that you want to use
 	// to encrypt CloudTrail logs. You can specify an alias name (prefixed
@@ -1294,6 +1303,24 @@ func (s EC2InternetGateway) ResourceType() string {
 	return "AWS::EC2::InternetGateway"
 }
 
+// EC2NatGateway represents AWS::EC2::NatGateway
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html
+type EC2NatGateway struct {
+	// The allocation ID of an Elastic IP address to associate with the NAT
+	// gateway. If the Elastic IP address is associated with another
+	// resource, you must first disassociate it.
+	AllocationId *StringExpr `json:"AllocationId,omitempty"`
+
+	// The subnet in which to create the NAT gateway.
+	SubnetId *StringExpr `json:"SubnetId,omitempty"`
+}
+
+// ResourceType returns AWS::EC2::NatGateway to implement the ResourceProperties interface
+func (s EC2NatGateway) ResourceType() string {
+	return "AWS::EC2::NatGateway"
+}
+
 // EC2NetworkAcl represents AWS::EC2::NetworkAcl
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl.html
@@ -1444,15 +1471,18 @@ func (s EC2PlacementGroup) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html
 type EC2Route struct {
 	// The CIDR address block used for the destination match. For example,
-	// "0.0.0.0/0". Routing decisions are based on the most specific match.
+	// 0.0.0.0/0. Routing decisions are based on the most specific match.
 	DestinationCidrBlock *StringExpr `json:"DestinationCidrBlock,omitempty"`
 
 	// The ID of an Internet gateway or virtual private gateway that is
-	// attached to your VPC. For example: "igw-eaad4883".
+	// attached to your VPC. For example: igw-eaad4883.
 	GatewayId *StringExpr `json:"GatewayId,omitempty"`
 
-	// The ID of a NAT instance in your VPC. For example, "i-1a2b3c4d".
+	// The ID of a NAT instance in your VPC. For example, i-1a2b3c4d.
 	InstanceId *StringExpr `json:"InstanceId,omitempty"`
+
+	// The ID of a NAT gateway. For example, nat-0a12bc456789de0fg.
+	NatGatewayId *StringExpr `json:"NatGatewayId,omitempty"`
 
 	// Allows the routing of network interface IDs.
 	NetworkInterfaceId *StringExpr `json:"NetworkInterfaceId,omitempty"`
@@ -1954,6 +1984,26 @@ type EC2VPNGatewayRoutePropagation struct {
 // ResourceType returns AWS::EC2::VPNGatewayRoutePropagation to implement the ResourceProperties interface
 func (s EC2VPNGatewayRoutePropagation) ResourceType() string {
 	return "AWS::EC2::VPNGatewayRoutePropagation"
+}
+
+// ECRRepository represents AWS::ECR::Repository
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html
+type ECRRepository struct {
+	// A name for the image repository. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// repository name. For more information, see Name Type.
+	RepositoryName *StringExpr `json:"RepositoryName,omitempty"`
+
+	// A policy that controls who has access to the repository and which
+	// actions they can perform on it. For more information, see Amazon ECR
+	// Repository Policies in the Amazon EC2 Container Registry User Guide.
+	RepositoryPolicyText interface{} `json:"RepositoryPolicyText,omitempty"`
+}
+
+// ResourceType returns AWS::ECR::Repository to implement the ResourceProperties interface
+func (s ECRRepository) ResourceType() string {
+	return "AWS::ECR::Repository"
 }
 
 // ECSCluster represents AWS::ECS::Cluster
@@ -2496,6 +2546,185 @@ func (s ElasticLoadBalancingLoadBalancer) ResourceType() string {
 	return "AWS::ElasticLoadBalancing::LoadBalancer"
 }
 
+// ElasticsearchDomain represents AWS::Elasticsearch::Domain
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
+type ElasticsearchDomain struct {
+	// An AWS Identity and Access Management (IAM) policy document that
+	// specifies who can access the Amazon ES domain and their permissions.
+	// For more information, see Configuring Access Policies in the Amazon
+	// Elasticsearch Service Developer Guide.
+	AccessPolicies interface{} `json:"AccessPolicies,omitempty"`
+
+	// Additional options to specify for the Amazon ES domain. For more
+	// information, see Configuring Advanced Options in the Amazon
+	// Elasticsearch Service Developer Guide.
+	AdvancedOptions interface{} `json:"AdvancedOptions,omitempty"`
+
+	// A name for the Amazon ES domain. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// domain name. For more information, see Name Type.
+	DomainName *StringExpr `json:"DomainName,omitempty"`
+
+	// The configurations of Amazon Elastic Block Store (Amazon EBS) volumes
+	// that are attached to data nodes in the Amazon ES domain. For more
+	// information, see Configuring EBS-based Storage in the Amazon
+	// Elasticsearch Service Developer Guide.
+	EBSOptions *ElasticsearchServiceDomainEBSOptions `json:"EBSOptions,omitempty"`
+
+	// The cluster configuration for the Amazon ES domain. You can specify
+	// options such as the instance type and the number of instances. For
+	// more information, see Configuring Amazon ES Domains in the Amazon
+	// Elasticsearch Service Developer Guide.
+	ElasticsearchClusterConfig *ElasticsearchServiceDomainElasticsearchClusterConfig `json:"ElasticsearchClusterConfig,omitempty"`
+
+	// The automated snapshot configuration for the Amazon ES domain indices.
+	SnapshotOptions *ElasticsearchServiceDomainSnapshotOptions `json:"SnapshotOptions,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) to associate with the
+	// Amazon ES domain.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+}
+
+// ResourceType returns AWS::Elasticsearch::Domain to implement the ResourceProperties interface
+func (s ElasticsearchDomain) ResourceType() string {
+	return "AWS::Elasticsearch::Domain"
+}
+
+// EMRCluster represents AWS::EMR::Cluster
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-cluster.html
+type EMRCluster struct {
+	// Additional features that you want to select.
+	AdditionalInfo interface{} `json:"AdditionalInfo,omitempty"`
+
+	// The software applications to deploy on the cluster, and the arguments
+	// that Amazon EMR passes to those applications.
+	Applications *ElasticMapReduceClusterApplicationList `json:"Applications,omitempty"`
+
+	// A list of bootstrap actions that Amazon EMR runs before starting
+	// applications on the cluster.
+	BootstrapActions *ElasticMapReduceClusterBootstrapActionConfigList `json:"BootstrapActions,omitempty"`
+
+	// The software configuration of the Amazon EMR cluster.
+	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+
+	// Configures the EC2 instances that will run jobs in the Amazon EMR
+	// cluster.
+	Instances *ElasticMapReduceClusterJobFlowInstancesConfig `json:"Instances,omitempty"`
+
+	// An AWS Identity and Access Management (IAM) role for an Amazon EMR
+	// cluster. All EC2 instances in the cluster assume this role, which
+	// instances use to access AWS services and resources to complete a job.
+	// For more information, see Configure IAM Roles for Amazon EMR in the
+	// Amazon Elastic MapReduce Management Guide.
+	JobFlowRole *StringExpr `json:"JobFlowRole,omitempty"`
+
+	// An S3 bucket location to which Amazon EMR writes logs files from a job
+	// flow. If you don't specify a value, Amazon EMR doesn't write any log
+	// files.
+	LogUri *StringExpr `json:"LogUri,omitempty"`
+
+	// A name for the Amazon EMR cluster.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The Amazon EMR software release label. A release is a set of software
+	// applications and components that you can install and configure on an
+	// Amazon EMR cluster. For more information, see About Amazon EMR
+	// Releases in the Amazon Elastic MapReduce Release Guide.
+	ReleaseLabel *StringExpr `json:"ReleaseLabel,omitempty"`
+
+	// The IAM role that Amazon EMR assumes to access AWS resources on your
+	// behalf. For more information, see Configure IAM Roles for Amazon EMR
+	// in the Amazon Elastic MapReduce Management Guide.
+	ServiceRole *StringExpr `json:"ServiceRole,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) to help you identify the
+	// Amazon EMR cluster.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
+	// Indicates whether the instances in the cluster are visible to all IAM
+	// users in the AWS account. If you specify true, all IAM users can view
+	// and (if they have permissions) manage the instances. If you specify
+	// false, only the IAM user that created the cluster can view and manage
+	// it. By default, AWS CloudFormation sets this property to false.
+	VisibleToAllUsers *BoolExpr `json:"VisibleToAllUsers,omitempty"`
+}
+
+// ResourceType returns AWS::EMR::Cluster to implement the ResourceProperties interface
+func (s EMRCluster) ResourceType() string {
+	return "AWS::EMR::Cluster"
+}
+
+// EMRInstanceGroupConfig represents AWS::EMR::InstanceGroupConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html
+type EMRInstanceGroupConfig struct {
+	// The bid price in USD for each EC2 instance in the instance group when
+	// launching instances (nodes) as Spot Instances.
+	BidPrice *StringExpr `json:"BidPrice,omitempty"`
+
+	// A list of configurations to apply to this instance group. For more
+	// information see, Configuring Applications in the Amazon Elastic
+	// MapReduce Release Guide.
+	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+
+	// The number of instances to launch in the instance group.
+	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
+
+	// The role of the servers in the Amazon EMR cluster, such as TASK. For
+	// more information, see Instance Groups in the Amazon Elastic MapReduce
+	// Management Guide.
+	InstanceRole *StringExpr `json:"InstanceRole,omitempty"`
+
+	// The EC2 instance type for all instances in the instance group. For
+	// more information, see Instance Configurations in the Amazon Elastic
+	// MapReduce Management Guide.
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+
+	// The ID of an Amazon EMR cluster that you want to associate this
+	// instance group with.
+	JobFlowId *StringExpr `json:"JobFlowId,omitempty"`
+
+	// The type of marketplace from which your instances are provisioned into
+	// this group, either ON_DEMAND or SPOT. For more information, see Amazon
+	// EC2 Purchasing Options.
+	Market *StringExpr `json:"Market,omitempty"`
+
+	// A name for the instance group.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// ResourceType returns AWS::EMR::InstanceGroupConfig to implement the ResourceProperties interface
+func (s EMRInstanceGroupConfig) ResourceType() string {
+	return "AWS::EMR::InstanceGroupConfig"
+}
+
+// EMRStep represents AWS::EMR::Step
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html
+type EMRStep struct {
+	// The action to take if the job flow step fails. Currently, AWS
+	// CloudFormation supports CONTINUE and CONTINUE_AND_WAIT. For more
+	// information, see Managing Cluster Termination in the Amazon Elastic
+	// MapReduce Management Guide.
+	ActionOnFailure *StringExpr `json:"ActionOnFailure,omitempty"`
+
+	// The JAR file that includes the main function that Amazon EMR executes.
+	HadoopJarStep *ElasticMapReduceStepHadoopJarStepConfig `json:"HadoopJarStep,omitempty"`
+
+	// The ID of a cluster in which you want to run this job flow step.
+	JobFlowId *StringExpr `json:"JobFlowId,omitempty"`
+
+	// A name for the job flow step.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// ResourceType returns AWS::EMR::Step to implement the ResourceProperties interface
+func (s EMRStep) ResourceType() string {
+	return "AWS::EMR::Step"
+}
+
 // IAMAccessKey represents AWS::IAM::AccessKey
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html
@@ -2940,24 +3169,26 @@ func (s LogsMetricFilter) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
 type LogsSubscriptionFilter struct {
-	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream that you
-	// want to use as the subscription feed destination.
+	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Lambda
+	// function that you want to use as the subscription feed destination.
 	DestinationArn *StringExpr `json:"DestinationArn,omitempty"`
 
 	// The filtering expressions that restrict what gets delivered to the
-	// destination Amazon Kinesis stream. For more information about the
-	// filter pattern syntax, see Filter and Pattern Syntax in the Amazon
-	// CloudWatch Developer Guide.
+	// destination AWS resource. For more information about the filter
+	// pattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch
+	// Developer Guide.
 	FilterPattern *StringExpr `json:"FilterPattern,omitempty"`
 
 	// The log group to associate with the subscription filter. All log
 	// events that are uploaded to this log group are filtered and delivered
-	// to the specified Amazon Kinesis stream if the filter pattern matches
-	// the log events.
+	// to the specified AWS resource if the filter pattern matches the log
+	// events.
 	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
 
 	// An IAM role that grants CloudWatch Logs permission to put data into
-	// the specified Amazon Kinesis stream.
+	// the specified Amazon Kinesis stream. For Lambda and CloudWatch Logs
+	// destinations, don't specify this property because CloudWatch Logs gets
+	// the necessary permissions from the destination resource.
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
 }
 
@@ -3298,6 +3529,15 @@ type RDSDBCluster struct {
 	// The version number of the database engine that you want to use.
 	EngineVersion *StringExpr `json:"EngineVersion,omitempty"`
 
+	// The Amazon Resource Name (ARN) of the AWS Key Management Service
+	// master key that is used to encrypt the database instances in the DB
+	// cluster, such as
+	// arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// If you enable the StorageEncrypted property but don't specify this
+	// property, the default master key is used. If you specify this
+	// property, you must set the StorageEncrypted property to true.
+	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
+
 	// The master user name for the DB instance.
 	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
 
@@ -3320,6 +3560,9 @@ type RDSDBCluster struct {
 	// The identifier for the DB cluster snapshot from which you want to
 	// restore.
 	SnapshotIdentifier *StringExpr `json:"SnapshotIdentifier,omitempty"`
+
+	// Indicates whether the DB instances in the cluster are encrypted.
+	StorageEncrypted *BoolExpr `json:"StorageEncrypted,omitempty"`
 
 	// The tags that you want to attach to this DB cluster.
 	Tags *ResourceTagList `json:"Tags,omitempty"`
@@ -6282,6 +6525,11 @@ type ConfigConfigurationRecorderRecordingGroup struct {
 	// specify this property, do not specify the ResourceTypes property.
 	AllSupported *BoolExpr `json:"AllSupported,omitempty"`
 
+	// Indicates whether AWS Config records all supported global resource
+	// types. When AWS Config supports new global resource types, AWS Config
+	// will automatically start recording them if you enable this property.
+	IncludeGlobalResourceTypes *BoolExpr `json:"IncludeGlobalResourceTypes,omitempty"`
+
 	// A list of valid AWS resource types to include in this recording group,
 	// such as AWS::EC2::Instance or AWS::CloudTrail::Trail. If you specify
 	// this property, do not specify the AllSupported property. For a list of
@@ -8586,6 +8834,520 @@ func (l *ElasticLoadBalancingPolicyList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// ElasticsearchServiceDomainEBSOptions represents Amazon Elasticsearch Service Domain EBSOptions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html
+type ElasticsearchServiceDomainEBSOptions struct {
+	// Specifies whether Amazon EBS volumes are attached to data nodes in the
+	// Amazon ES domain.
+	EBSEnabled *BoolExpr `json:"EBSEnabled,omitempty"`
+
+	// The number of I/O operations per second (IOPS) that the volume
+	// supports. This property applies only to the Provisioned IOPS (SSD) EBS
+	// volume type.
+	Iops *IntegerExpr `json:"Iops,omitempty"`
+
+	// The size of the EBS volume for each data node. The minimum and maximum
+	// size of an EBS volume depends on the EBS volume type and the instance
+	// type to which it is attached. For more information, see Configuring
+	// EBS-based Storage in the Amazon Elasticsearch Service Developer Guide.
+	VolumeSize *IntegerExpr `json:"VolumeSize,omitempty"`
+
+	// The EBS volume type to use with the Amazon ES domain, such as
+	// standard, gp2, or io1. For more information about each type, see
+	// Amazon EBS Volume Types in the Amazon EC2 User Guide for Linux
+	// Instances.
+	VolumeType *StringExpr `json:"VolumeType,omitempty"`
+}
+
+// ElasticsearchServiceDomainEBSOptionsList represents a list of ElasticsearchServiceDomainEBSOptions
+type ElasticsearchServiceDomainEBSOptionsList []ElasticsearchServiceDomainEBSOptions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticsearchServiceDomainEBSOptionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticsearchServiceDomainEBSOptions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticsearchServiceDomainEBSOptionsList{item}
+		return nil
+	}
+	list := []ElasticsearchServiceDomainEBSOptions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticsearchServiceDomainEBSOptionsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticsearchServiceDomainElasticsearchClusterConfig represents Amazon Elasticsearch Service Domain ElasticsearchClusterConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html
+type ElasticsearchServiceDomainElasticsearchClusterConfig struct {
+	// The number of instances to use for the master node.
+	DedicatedMasterCount *IntegerExpr `json:"DedicatedMasterCount,omitempty"`
+
+	// Indicates whether to use a dedicated master node for the Amazon ES
+	// domain. A dedicated master node is a cluster node that performs
+	// cluster management tasks, but doesn't hold data or respond to data
+	// upload requests. Dedicated master nodes offload cluster management
+	// tasks to increase the stability of your search clusters.
+	DedicatedMasterEnabled *BoolExpr `json:"DedicatedMasterEnabled,omitempty"`
+
+	// The hardware configuration of the computer that hosts the dedicated
+	// master node, such as m3.medium.elasticsearch. For valid values, see
+	// Configuring Amazon ES Domains in the Amazon Elasticsearch Service
+	// Developer Guide.
+	DedicatedMasterType *StringExpr `json:"DedicatedMasterType,omitempty"`
+
+	// The number of data nodes (instances) to use in the Amazon ES domain.
+	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
+
+	// The instance type for your data nodes, such as
+	// m3.medium.elasticsearch. For valid values, see Configuring Amazon ES
+	// Domains in the Amazon Elasticsearch Service Developer Guide.
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+
+	// Indicates whether to enable zone awareness for the Amazon ES domain.
+	// When you enable zone awareness, Amazon ES allocates the nodes and
+	// replica index shards that belong to a cluster across two Availability
+	// Zones (AZs) in the same region to prevent data loss and minimize
+	// downtime in the event of node or data center failure. Don't enable
+	// zone awareness if your cluster has no replica index shards or is a
+	// single-node cluster. For more information, see Enabling Zone Awareness
+	// in the Amazon Elasticsearch Service Developer Guide.
+	ZoneAwarenessEnabled *BoolExpr `json:"ZoneAwarenessEnabled,omitempty"`
+}
+
+// ElasticsearchServiceDomainElasticsearchClusterConfigList represents a list of ElasticsearchServiceDomainElasticsearchClusterConfig
+type ElasticsearchServiceDomainElasticsearchClusterConfigList []ElasticsearchServiceDomainElasticsearchClusterConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticsearchServiceDomainElasticsearchClusterConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticsearchServiceDomainElasticsearchClusterConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticsearchServiceDomainElasticsearchClusterConfigList{item}
+		return nil
+	}
+	list := []ElasticsearchServiceDomainElasticsearchClusterConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticsearchServiceDomainElasticsearchClusterConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticsearchServiceDomainSnapshotOptions represents Amazon Elasticsearch Service Domain SnapshotOptions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html
+type ElasticsearchServiceDomainSnapshotOptions struct {
+	// The hour in UTC during which the service takes an automated daily
+	// snapshot of the indices in the Amazon ES domain. For example, if you
+	// specify 0, Amazon ES takes an automated snapshot everyday between
+	// midnight and 1 am. You can specify a value between 0 and 23.
+	AutomatedSnapshotStartHour *IntegerExpr `json:"AutomatedSnapshotStartHour,omitempty"`
+}
+
+// ElasticsearchServiceDomainSnapshotOptionsList represents a list of ElasticsearchServiceDomainSnapshotOptions
+type ElasticsearchServiceDomainSnapshotOptionsList []ElasticsearchServiceDomainSnapshotOptions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticsearchServiceDomainSnapshotOptionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticsearchServiceDomainSnapshotOptions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticsearchServiceDomainSnapshotOptionsList{item}
+		return nil
+	}
+	list := []ElasticsearchServiceDomainSnapshotOptions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticsearchServiceDomainSnapshotOptionsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterApplication represents Amazon Elastic MapReduce Cluster Application
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-application.html
+type ElasticMapReduceClusterApplication struct {
+	// Metadata about third-party applications that third-party vendors use
+	// for testing purposes.
+	AdditionalInfo *StringExpr `json:"AdditionalInfo,omitempty"`
+
+	// Arguments that Amazon EMR passes to the application.
+	Args *StringListExpr `json:"Args,omitempty"`
+
+	// The name of the application to add to your cluster, such as Hadoop or
+	// Hive. For valid values, see the Applications parameter in the Amazon
+	// Elastic MapReduce API Reference.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The version of the application.
+	Version *StringExpr `json:"Version,omitempty"`
+}
+
+// ElasticMapReduceClusterApplicationList represents a list of ElasticMapReduceClusterApplication
+type ElasticMapReduceClusterApplicationList []ElasticMapReduceClusterApplication
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterApplicationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterApplication{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterApplicationList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterApplication{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterApplicationList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterBootstrapActionConfig represents Amazon Elastic MapReduce Cluster BootstrapActionConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig.html
+type ElasticMapReduceClusterBootstrapActionConfig struct {
+	// The name of the bootstrap action to add to your cluster.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The script that the bootstrap action runs.
+	ScriptBootstrapAction *ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig `json:"ScriptBootstrapAction,omitempty"`
+}
+
+// ElasticMapReduceClusterBootstrapActionConfigList represents a list of ElasticMapReduceClusterBootstrapActionConfig
+type ElasticMapReduceClusterBootstrapActionConfigList []ElasticMapReduceClusterBootstrapActionConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterBootstrapActionConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterBootstrapActionConfigList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterBootstrapActionConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterBootstrapActionConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig represents Amazon Elastic MapReduce Cluster BootstrapActionConfig ScriptBootstrapActionConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html
+type ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig struct {
+	// A list of command line arguments to pass to the bootstrap action
+	// script.
+	Args *StringListExpr `json:"Args,omitempty"`
+
+	// The location of the script that Amazon EMR runs during a bootstrap
+	// action. Specify a location in an S3 bucket or your local file system.
+	Path *StringExpr `json:"Path,omitempty"`
+}
+
+// ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList represents a list of ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig
+type ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList []ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterConfiguration represents Amazon Elastic MapReduce Cluster Configuration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html
+type ElasticMapReduceClusterConfiguration struct {
+	// The name of an application-specific configuration file. For more
+	// information see, Configuring Applications in the Amazon Elastic
+	// MapReduce Release Guide.
+	Classification *StringExpr `json:"Classification,omitempty"`
+
+	// The settings that you want to change in the application-specific
+	// configuration file. For more information see, Configuring Applications
+	// in the Amazon Elastic MapReduce Release Guide.
+	ConfigurationProperties *StringExpr `json:"ConfigurationProperties,omitempty"`
+
+	// A list of configurations to apply to this configuration. You can nest
+	// configurations so that a single configuration can have its own
+	// configurations. In other words, you can configure a configuration. For
+	// more information see, Configuring Applications in the Amazon Elastic
+	// MapReduce Release Guide.
+	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+}
+
+// ElasticMapReduceClusterConfigurationList represents a list of ElasticMapReduceClusterConfiguration
+type ElasticMapReduceClusterConfigurationList []ElasticMapReduceClusterConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterConfigurationList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterJobFlowInstancesConfig represents Amazon Elastic MapReduce Cluster JobFlowInstancesConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig.html
+type ElasticMapReduceClusterJobFlowInstancesConfig struct {
+	// A list of additional EC2 security group IDs to assign to the master
+	// instance (master node) in your Amazon EMR cluster. Use this property
+	// to supplement the rules specified by the Amazon EMR managed master
+	// security group.
+	AdditionalMasterSecurityGroups *StringListExpr `json:"AdditionalMasterSecurityGroups,omitempty"`
+
+	// A list of additional EC2 security group IDs to assign to the slave
+	// instances (slave nodes) in your Amazon EMR cluster. Use this property
+	// to supplement the rules specified by the Amazon EMR managed slave
+	// security group.
+	AdditionalSlaveSecurityGroups *StringListExpr `json:"AdditionalSlaveSecurityGroups,omitempty"`
+
+	// The settings for the core instances in your Amazon EMR cluster.
+	CoreInstanceGroup *ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig `json:"CoreInstanceGroup,omitempty"`
+
+	// The name of an Amazon Elastic Compute Cloud (Amazon EC2) key pair,
+	// which you can use to access the instances in your Amazon EMR cluster.
+	Ec2KeyName *StringExpr `json:"Ec2KeyName,omitempty"`
+
+	// The ID of an Amazon Virtual Private Cloud (Amazon VPC) virtual private
+	// cloud (VPC) where you want to launch your instances.
+	Ec2SubnetId *StringExpr `json:"Ec2SubnetId,omitempty"`
+
+	// The ID of an EC2 security group (managed by Amazon EMR) that is
+	// assigned to the master instance (master node) in your Amazon EMR
+	// cluster.
+	EmrManagedMasterSecurityGroup *StringExpr `json:"EmrManagedMasterSecurityGroup,omitempty"`
+
+	// The ID of an EC2 security group (managed by Amazon EMR) that is
+	// assigned to the slave instances (slave nodes) in your Amazon EMR
+	// cluster.
+	EmrManagedSlaveSecurityGroup *StringExpr `json:"EmrManagedSlaveSecurityGroup,omitempty"`
+
+	// The Hadoop version for the job flow. For valid values, see the
+	// HadoopVersion parameter in the Amazon Elastic MapReduce API Reference.
+	HadoopVersion *StringExpr `json:"HadoopVersion,omitempty"`
+
+	// The settings for the master instance (master node).
+	MasterInstanceGroup *ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig `json:"MasterInstanceGroup,omitempty"`
+
+	// The Availability Zone (AZ) in which the job flow runs.
+	Placement *ElasticMapReduceClusterJobFlowInstancesConfigPlacement `json:"Placement,omitempty"`
+
+	// The ID of an EC2 security group (managed by Amazon EMR) that services
+	// use to access clusters in private subnets.
+	ServiceAccessSecurityGroup *StringExpr `json:"ServiceAccessSecurityGroup,omitempty"`
+
+	// Indicates whether to prevent the EC2 instances from being terminated
+	// by an API call or user intervention. If you want to delete a stack
+	// with protected instances, update this value to false before you delete
+	// the stack. By default, AWS CloudFormation sets this property to false.
+	TerminationProtected *BoolExpr `json:"TerminationProtected,omitempty"`
+}
+
+// ElasticMapReduceClusterJobFlowInstancesConfigList represents a list of ElasticMapReduceClusterJobFlowInstancesConfig
+type ElasticMapReduceClusterJobFlowInstancesConfigList []ElasticMapReduceClusterJobFlowInstancesConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterJobFlowInstancesConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterJobFlowInstancesConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterJobFlowInstancesConfigList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterJobFlowInstancesConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterJobFlowInstancesConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig represents Amazon Elastic MapReduce Cluster JobFlowInstancesConfig InstanceGroupConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html
+type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig struct {
+	// When launching instances as Spot Instances, the bid price in USD for
+	// each EC2 instance in the instance group.
+	BidPrice *StringExpr `json:"BidPrice,omitempty"`
+
+	// A list of configurations to apply to this instance group. For more
+	// information see, Configuring Applications in the Amazon EMR Release
+	// Guide.
+	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+
+	// The number of instances to launch in the instance group.
+	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
+
+	// The EC2 instance type for all instances in the instance group. For
+	// more information, see Instance Configurations in the Amazon EMR
+	// Management Guide.
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+
+	// The type of marketplace from which your instances are provisioned into
+	// this group, either ON_DEMAND or SPOT. For more information, see Amazon
+	// EC2 Purchasing Options.
+	Market *StringExpr `json:"Market,omitempty"`
+
+	// A name for the instance group.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList represents a list of ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig
+type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList []ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceClusterJobFlowInstancesConfigPlacement represents Amazon Elastic MapReduce Cluster JobFlowInstancesConfig PlacementType
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-placementtype.html
+type ElasticMapReduceClusterJobFlowInstancesConfigPlacement struct {
+	// The Amazon Elastic Compute Cloud (Amazon EC2) AZ for the job flow. For
+	// more information, see
+	// http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+	// in the Amazon EC2 User Guide for Linux Instances.
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
+}
+
+// ElasticMapReduceClusterJobFlowInstancesConfigPlacementList represents a list of ElasticMapReduceClusterJobFlowInstancesConfigPlacement
+type ElasticMapReduceClusterJobFlowInstancesConfigPlacementList []ElasticMapReduceClusterJobFlowInstancesConfigPlacement
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceClusterJobFlowInstancesConfigPlacementList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceClusterJobFlowInstancesConfigPlacement{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceClusterJobFlowInstancesConfigPlacementList{item}
+		return nil
+	}
+	list := []ElasticMapReduceClusterJobFlowInstancesConfigPlacement{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceClusterJobFlowInstancesConfigPlacementList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceStepHadoopJarStepConfig represents Amazon Elastic MapReduce Step HadoopJarStepConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html
+type ElasticMapReduceStepHadoopJarStepConfig struct {
+	// A list of command line arguments passed to the JAR file's main
+	// function when the function is executed.
+	Args *StringExpr `json:"Args,omitempty"`
+
+	// A path to the JAR file that Amazon EMR runs for the job flow step.
+	Jar *StringExpr `json:"Jar,omitempty"`
+
+	// The name of the main class in the specified JAR file. If you don't
+	// specify a value, you must specify a main class in the JAR file's
+	// manifest file.
+	MainClass *StringExpr `json:"MainClass,omitempty"`
+
+	// A list of Java properties that are set when the job flow step runs.
+	// You can use these properties to pass key-value pairs to your main
+	// function in the JAR file.
+	StepProperties *ElasticMapReduceStepHadoopJarStepConfigKeyValueList `json:"StepProperties,omitempty"`
+}
+
+// ElasticMapReduceStepHadoopJarStepConfigList represents a list of ElasticMapReduceStepHadoopJarStepConfig
+type ElasticMapReduceStepHadoopJarStepConfigList []ElasticMapReduceStepHadoopJarStepConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceStepHadoopJarStepConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceStepHadoopJarStepConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceStepHadoopJarStepConfigList{item}
+		return nil
+	}
+	list := []ElasticMapReduceStepHadoopJarStepConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceStepHadoopJarStepConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceStepHadoopJarStepConfigKeyValue represents Amazon Elastic MapReduce Step HadoopJarStepConfig KeyValue
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig-keyvalue.html
+type ElasticMapReduceStepHadoopJarStepConfigKeyValue struct {
+	// The unique identifier of a key-value pair.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The value part of the identified key.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// ElasticMapReduceStepHadoopJarStepConfigKeyValueList represents a list of ElasticMapReduceStepHadoopJarStepConfigKeyValue
+type ElasticMapReduceStepHadoopJarStepConfigKeyValueList []ElasticMapReduceStepHadoopJarStepConfigKeyValue
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceStepHadoopJarStepConfigKeyValueList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceStepHadoopJarStepConfigKeyValue{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceStepHadoopJarStepConfigKeyValueList{item}
+		return nil
+	}
+	list := []ElasticMapReduceStepHadoopJarStepConfigKeyValue{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceStepHadoopJarStepConfigKeyValueList(list)
+		return nil
+	}
+	return err
+}
+
 // IAMPolicies represents IAM Policies
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html
@@ -10184,7 +10946,8 @@ type S3NotificationConfigurationTopicConfigurations struct {
 	// files with a .jpg extension are added to the bucket.
 	Filter *S3NotificationConfigurationConfigFilter `json:"Filter,omitempty"`
 
-	// The Amazon SNS topic to which Amazon S3 reports the specified events.
+	// The Amazon SNS topic Amazon Resource Name (ARN) to which Amazon S3
+	// reports the specified events.
 	Topic *StringExpr `json:"Topic,omitempty"`
 }
 
@@ -10972,6 +11735,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2Instance{}
 	case "AWS::EC2::InternetGateway":
 		return &EC2InternetGateway{}
+	case "AWS::EC2::NatGateway":
+		return &EC2NatGateway{}
 	case "AWS::EC2::NetworkAcl":
 		return &EC2NetworkAcl{}
 	case "AWS::EC2::NetworkAclEntry":
@@ -11022,6 +11787,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2VPNGateway{}
 	case "AWS::EC2::VPNGatewayRoutePropagation":
 		return &EC2VPNGatewayRoutePropagation{}
+	case "AWS::ECR::Repository":
+		return &ECRRepository{}
 	case "AWS::ECS::Cluster":
 		return &ECSCluster{}
 	case "AWS::ECS::Service":
@@ -11054,6 +11821,14 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ElasticBeanstalkEnvironment{}
 	case "AWS::ElasticLoadBalancing::LoadBalancer":
 		return &ElasticLoadBalancingLoadBalancer{}
+	case "AWS::Elasticsearch::Domain":
+		return &ElasticsearchDomain{}
+	case "AWS::EMR::Cluster":
+		return &EMRCluster{}
+	case "AWS::EMR::InstanceGroupConfig":
+		return &EMRInstanceGroupConfig{}
+	case "AWS::EMR::Step":
+		return &EMRStep{}
 	case "AWS::IAM::AccessKey":
 		return &IAMAccessKey{}
 	case "AWS::IAM::Group":
