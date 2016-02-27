@@ -397,7 +397,7 @@ type CloudFormationInterface struct {
 
 	// A list of parameters and their friendly names that the AWS
 	// CloudFormation console shows when a stack is created or updated.
-	ParameterLabels *InterfaceParameterLabelList `json:"ParameterLabels,omitempty"`
+	ParameterLabels *InterfaceParameterLabel `json:"ParameterLabels,omitempty"`
 }
 
 // ResourceType returns AWS::CloudFormation::Interface to implement the ResourceProperties interface
@@ -703,14 +703,14 @@ type CodeDeployDeploymentGroup struct {
 
 	// The Amazon EC2 tags to filter on. AWS CodeDeploy includes all
 	// instances that match the tag filter with this deployment group.
-	Ec2TagFilters *CodeDeployDeploymentGroupEc2TagFilters `json:"Ec2TagFilters,omitempty"`
+	Ec2TagFilters *CodeDeployDeploymentGroupEc2TagFiltersList `json:"Ec2TagFilters,omitempty"`
 
 	// The on-premises instance tags to filter on. AWS CodeDeploy includes
 	// all on-premises instances that match the tag filter with this
 	// deployment group. To register on-premises instances with AWS
 	// CodeDeploy, see Configure Existing On-Premises Instances by Using AWS
 	// CodeDeploy in the AWS CodeDeploy User Guide.
-	OnPremisesInstanceTagFilters *CodeDeployDeploymentGroupOnPremisesInstanceTagFilters `json:"OnPremisesInstanceTagFilters,omitempty"`
+	OnPremisesInstanceTagFilters *CodeDeployDeploymentGroupOnPremisesInstanceTagFiltersList `json:"OnPremisesInstanceTagFilters,omitempty"`
 
 	// A service role Amazon Resource Name (ARN) that grants AWS CodeDeploy
 	// permission to make calls to AWS services on your behalf. For more
@@ -786,7 +786,7 @@ type CodePipelinePipeline struct {
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
 
 	// Defines the AWS CodePipeline pipeline stages.
-	Stages *CodePipelinePipelineStages `json:"Stages,omitempty"`
+	Stages *CodePipelinePipelineStagesList `json:"Stages,omitempty"`
 }
 
 // ResourceType returns AWS::CodePipeline::Pipeline to implement the ResourceProperties interface
@@ -909,13 +909,13 @@ type DataPipelinePipeline struct {
 	// Defines the variables that are in the pipeline definition. For more
 	// information, see Creating a Pipeline Using Parameterized Templates in
 	// the AWS Data Pipeline Developer Guide.
-	ParameterObjects *DataPipelinePipelineParameterObjects `json:"ParameterObjects,omitempty"`
+	ParameterObjects *DataPipelinePipelineParameterObjectsList `json:"ParameterObjects,omitempty"`
 
 	// Defines the values for the parameters that are defined in the
 	// ParameterObjects property. For more information, see Creating a
 	// Pipeline Using Parameterized Templates in the AWS Data Pipeline
 	// Developer Guide.
-	ParameterValues *DataPipelinePipelineParameterValues `json:"ParameterValues,omitempty"`
+	ParameterValues *DataPipelinePipelineParameterValuesList `json:"ParameterValues,omitempty"`
 
 	// A list of pipeline objects that make up the pipeline. For more
 	// information about pipeline objects and a description of each object,
@@ -1028,17 +1028,17 @@ type DynamoDBTable struct {
 
 	// Global secondary indexes to be created on the table. You can create up
 	// to 5 global secondary indexes.
-	GlobalSecondaryIndexes *DynamoDBGlobalSecondaryIndexes `json:"GlobalSecondaryIndexes,omitempty"`
+	GlobalSecondaryIndexes *DynamoDBGlobalSecondaryIndexesList `json:"GlobalSecondaryIndexes,omitempty"`
 
 	// Specifies the attributes that make up the primary key for the table.
 	// The attributes in the KeySchema property must also be defined in the
 	// AttributeDefinitions property.
-	KeySchema *DynamoDBKeySchema `json:"KeySchema,omitempty"`
+	KeySchema *DynamoDBKeySchemaList `json:"KeySchema,omitempty"`
 
 	// Local secondary indexes to be created on the table. You can create up
 	// to 5 local secondary indexes. Each index is scoped to a given hash key
 	// value. The size of each hash key can be up to 10 gigabytes.
-	LocalSecondaryIndexes *DynamoDBLocalSecondaryIndexes `json:"LocalSecondaryIndexes,omitempty"`
+	LocalSecondaryIndexes *DynamoDBLocalSecondaryIndexesList `json:"LocalSecondaryIndexes,omitempty"`
 
 	// The settings for the DynamoDB table stream, which capture changes to
 	// items stored in the table.
@@ -2070,7 +2070,7 @@ func (s ECSTaskDefinition) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html
 type EFSFileSystem struct {
 	// Tags to associate with the file system.
-	FileSystemTags *ElasticFileSystemFileSystemFileSystemTags `json:"FileSystemTags,omitempty"`
+	FileSystemTags *ElasticFileSystemFileSystemFileSystemTagsList `json:"FileSystemTags,omitempty"`
 }
 
 // ResourceType returns AWS::EFS::FileSystem to implement the ResourceProperties interface
@@ -3902,7 +3902,7 @@ type RDSOptionGroup struct {
 	OptionGroupDescription *StringExpr `json:"OptionGroupDescription,omitempty"`
 
 	// The configurations for this option group.
-	OptionConfigurations *RDSOptionGroupOptionConfigurations `json:"OptionConfigurations,omitempty"`
+	OptionConfigurations *RDSOptionGroupOptionConfigurationsList `json:"OptionConfigurations,omitempty"`
 
 	// An arbitrary set of tags (key–value pairs) for this option group.
 	Tags []ResourceTag `json:"Tags,omitempty"`
@@ -5009,7 +5009,7 @@ type CloudFrontDistributionConfig struct {
 	// Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
 	// with custom error messages before returning the response to the
 	// viewer.
-	CustomErrorResponses *CloudFrontDistributionConfigCustomErrorResponse `json:"CustomErrorResponses,omitempty"`
+	CustomErrorResponses *CloudFrontDistributionConfigCustomErrorResponseList `json:"CustomErrorResponses,omitempty"`
 
 	// The default cache behavior that is triggered if you do not specify the
 	// CacheBehavior property or if files don't match any of the values of
@@ -6593,7 +6593,7 @@ func (l *ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList) UnmarshalJSO
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html
 type DataPipelinePipelineParameterObjects struct {
 	// Key-value pairs that define the attributes of the parameter object.
-	Attributes *DataPipelineParameterObjectsAttributes `json:"Attributes,omitempty"`
+	Attributes *DataPipelineParameterObjectsAttributesList `json:"Attributes,omitempty"`
 
 	// The identifier of the parameter object.
 	Id *StringExpr `json:"Id,omitempty"`
@@ -6688,7 +6688,7 @@ func (l *DataPipelinePipelineParameterValuesList) UnmarshalJSON(buf []byte) erro
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html
 type DataPipelinePipelineObjects struct {
 	// Key-value pairs that define the properties of the object.
-	Fields *DataPipelineDataPipelineObjectFields `json:"Fields,omitempty"`
+	Fields *DataPipelineDataPipelineObjectFieldsList `json:"Fields,omitempty"`
 
 	// Identifier of the object.
 	Id *StringExpr `json:"Id,omitempty"`
@@ -6896,7 +6896,7 @@ type DynamoDBGlobalSecondaryIndexes struct {
 
 	// The complete index key schema for the global secondary index, which
 	// consists of one or more pairs of attribute names and key types.
-	KeySchema *DynamoDBKeySchema `json:"KeySchema,omitempty"`
+	KeySchema *DynamoDBKeySchemaList `json:"KeySchema,omitempty"`
 
 	// Attributes that are copied (projected) from the source table into the
 	// index. These attributes are in addition to the primary key attributes
@@ -6973,7 +6973,7 @@ type DynamoDBLocalSecondaryIndexes struct {
 	// consists of one or more pairs of attribute names and key types. For
 	// local secondary indexes, the hash key must be the same as that of the
 	// source table.
-	KeySchema *DynamoDBKeySchema `json:"KeySchema,omitempty"`
+	KeySchema *DynamoDBKeySchemaList `json:"KeySchema,omitempty"`
 
 	// Attributes that are copied (projected) from the source table into the
 	// index. These attributes are additions to the primary key attributes
@@ -10044,7 +10044,7 @@ type RDSOptionGroupOptionConfigurations struct {
 	OptionName *StringExpr `json:"OptionName,omitempty"`
 
 	// The settings for this option.
-	OptionSettings *RDSOptionGroupOptionConfigurationsOptionSettings `json:"OptionSettings,omitempty"`
+	OptionSettings *RDSOptionGroupOptionConfigurationsOptionSettingsList `json:"OptionSettings,omitempty"`
 
 	// The port number that this option uses.
 	Port *IntegerExpr `json:"Port,omitempty"`
@@ -10436,7 +10436,7 @@ func (l *Route53HostedZoneVPCsList) UnmarshalJSON(buf []byte) error {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html
 type S3CorsConfiguration struct {
 	// A set of origins and methods that you allow.
-	CorsRules *S3CorsConfigurationRule `json:"CorsRules,omitempty"`
+	CorsRules *S3CorsConfigurationRuleList `json:"CorsRules,omitempty"`
 }
 
 // S3CorsConfigurationList represents a list of S3CorsConfiguration
@@ -10514,7 +10514,7 @@ func (l *S3CorsConfigurationRuleList) UnmarshalJSON(buf []byte) error {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig.html
 type S3LifecycleConfiguration struct {
 	// A lifecycle rule for individual objects in an S3 bucket.
-	Rules *S3LifecycleRule `json:"Rules,omitempty"`
+	Rules *S3LifecycleRuleList `json:"Rules,omitempty"`
 }
 
 // S3LifecycleConfigurationList represents a list of S3LifecycleConfiguration
@@ -10727,15 +10727,15 @@ func (l *S3LoggingConfigurationList) UnmarshalJSON(buf []byte) error {
 type S3NotificationConfiguration struct {
 	// The AWS Lambda functions to invoke and the events for which to invoke
 	// the functions.
-	LambdaConfigurations *SimpleStorageServiceNotificationConfigurationLambdaConfigurations `json:"LambdaConfigurations,omitempty"`
+	LambdaConfigurations *SimpleStorageServiceNotificationConfigurationLambdaConfigurationsList `json:"LambdaConfigurations,omitempty"`
 
 	// The Amazon Simple Queue Service queues to publish messages to and the
 	// events for which to publish messages.
-	QueueConfigurations *SimpleStorageServiceNotificationConfigurationQueueConfigurations `json:"QueueConfigurations,omitempty"`
+	QueueConfigurations *SimpleStorageServiceNotificationConfigurationQueueConfigurationsList `json:"QueueConfigurations,omitempty"`
 
 	// The topic to which notifications are sent and the events for which
 	// notification are generated.
-	TopicConfigurations *S3NotificationConfigurationTopicConfigurations `json:"TopicConfigurations,omitempty"`
+	TopicConfigurations *S3NotificationConfigurationTopicConfigurationsList `json:"TopicConfigurations,omitempty"`
 }
 
 // S3NotificationConfigurationList represents a list of S3NotificationConfiguration

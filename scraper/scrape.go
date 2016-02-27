@@ -182,7 +182,18 @@ func (tr *TemplateReference) writeGo(w io.Writer) {
 type Resource struct {
 	Name       string
 	Href       string
-	Properties []Property
+	Properties PropertyList
+}
+
+type PropertyList []*Property
+
+func (pl PropertyList) Get(name string) *Property {
+	for _, p := range pl {
+		if p.Name == name {
+			return p
+		}
+	}
+	return nil
 }
 
 func (r *Resource) IsTopLevelResource() bool {
@@ -218,17 +229,6 @@ func (r *Resource) Load() error {
 			property.DocString = dd.Find("p").First().Text()
 			property.DocString = regexp.MustCompile("\\s+").ReplaceAllString(property.DocString, " ")
 			property.DocString = wordwrap.WrapString(property.DocString, 70)
-			/*
-				if err != nil {
-					fmt.Fprintf(os.Stderr, "%s\n", err)
-					return
-				}
-				property.DocString, err = html2text.FromString(docString)
-				if err != nil {
-					fmt.Fprintf(os.Stderr, "%s\n", err)
-					return
-				}
-			*/
 
 			// Somewhere inside the <DD> element there is a span that starts
 			// with `Type: ` which is our type. Grab it along with the href
@@ -247,7 +247,7 @@ func (r *Resource) Load() error {
 					})
 				}
 			})
-			r.Properties = append(r.Properties, property)
+			r.Properties = append(r.Properties, &property)
 		})
 	})
 
@@ -272,8 +272,32 @@ func (r *Resource) Load() error {
 					property.DocString = wordwrap.WrapString(property.DocString, 70)
 				}
 			})
-			r.Properties = append(r.Properties, property)
+			r.Properties = append(r.Properties, &property)
 		})
+	})
+
+	// Some documents contain a "Syntax" block that contains clues as to the
+	// expected types of the various properties. Parse that block and capture
+	// the syntax of each property in the SyntaxExpression field of the corresponding
+	// property.
+	doc.Find(".programlisting").Each(func(i int, varList *goquery.Selection) {
+		if varList.Parent().Find(".titlepage").First().Text() != "Syntax" {
+			return
+		}
+		for _, line := range strings.Split(varList.Text(), "\n") {
+			if !strings.Contains(line, ":") {
+				continue
+			}
+			parts := strings.SplitN(line, ":", 2)
+			propertyName := strings.Trim(parts[0], " \"")
+			expression := strings.Trim(parts[1], " \",")
+
+			p := r.Properties.Get(propertyName)
+			if p == nil {
+				continue
+			}
+			p.SyntaxExpression = expression
+		}
 	})
 
 	return nil
@@ -338,11 +362,12 @@ func getDoc(url string) (io.ReadCloser, error) {
 }
 
 type Property struct {
-	Name      string
-	Type      string
-	TypeHref  string
-	TypeName  string
-	DocString string
+	Name             string
+	Type             string
+	TypeHref         string
+	TypeName         string
+	DocString        string
+	SyntaxExpression string
 }
 
 func (p *Property) GoName() string {
@@ -373,23 +398,15 @@ func (p *Property) GoType(tr *TemplateReference) string {
 		}
 	}
 	if p.TypeName != "" {
-		if strings.HasPrefix(p.Type, "A list of") ||
-			strings.HasPrefix(p.Type, "List of") ||
-			strings.HasPrefix(p.Type, "list of") {
-			return p.TypeName + "List"
-		}
-		// In various places the documentation omit the "list of"
-		// when describing types, but include the phrase "list" in the
-		// docstring. For example SecurityGroupEgress and SecurityGroupIngress in
-		// AWS::EC2::SecurityGroup as "EC2 Security Group Rule" when
-		// it should be "list of EC2 Security Group Rule"
-		// c.f. http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress
-		if strings.HasPrefix(p.DocString, "A list") {
-			return p.TypeName + "List"
-		}
-
 		if p.Type == "AWS CloudFormation Resource Tags" {
 			return "[]ResourceTag"
+		}
+
+		if strings.HasPrefix(p.Type, "A list of") ||
+			strings.HasPrefix(p.Type, "List of") ||
+			strings.HasPrefix(p.Type, "list of") ||
+			strings.HasPrefix(p.SyntaxExpression, "[") {
+			return p.TypeName + "List"
 		}
 
 		return p.TypeName
