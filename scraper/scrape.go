@@ -467,7 +467,12 @@ func main() {
 			log.Fatalf("%s", err)
 		}
 	case "json":
-		if err := json.NewEncoder(out).Encode(tr); err != nil {
+		buf, err := json.MarshalIndent(tr, "", "  ")
+		if err != nil {
+			log.Fatalf("%s", err)
+		}
+		_, err = out.Write(buf)
+		if err != nil {
 			log.Fatalf("%s", err)
 		}
 	default:
