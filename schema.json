@@ -1413,7 +1413,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The short name of the directory, such as CORP.",
+          "DocString": "The NetBIOS name of the on-premises directory, such as CORP.",
           "SyntaxExpression": "String"
         },
         {

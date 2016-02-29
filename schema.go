@@ -1002,7 +1002,7 @@ type DirectoryServiceSimpleAD struct {
 	// Administrator and this password.
 	Password *StringExpr `json:"Password,omitempty"`
 
-	// The short name of the directory, such as CORP.
+	// The NetBIOS name of the on-premises directory, such as CORP.
 	ShortName *StringExpr `json:"ShortName,omitempty"`
 
 	// The size of the directory. For valid values, see CreateDirectory in
