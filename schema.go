@@ -1312,7 +1312,7 @@ type EC2NatGateway struct {
 	// resource, you must first disassociate it.
 	AllocationId *StringExpr `json:"AllocationId,omitempty"`
 
-	// The subnet in which to create the NAT gateway.
+	// The public subnet in which to create the NAT gateway.
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
 }
 
