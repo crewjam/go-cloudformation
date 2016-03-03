@@ -417,6 +417,9 @@ type CloudFormationStack struct {
 	// stack is created.
 	Parameters *CloudFormationStackParameters `json:"Parameters,omitempty"`
 
+	// An arbitrary set of tags (key–value pairs) to describe this stack.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
 	// The URL of a template that specifies the stack that you want to create
 	// as a resource. The template must be stored on an Amazon S3 bucket, so
 	// the URL must have the form:

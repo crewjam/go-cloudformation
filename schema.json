@@ -610,6 +610,14 @@
           "SyntaxExpression": "{ CloudFormation Stack Parameters Property Type }"
         },
         {
+          "Name": "Tags",
+          "Type": "AWS CloudFormation Resource Tags",
+          "TypeHref": "aws-properties-resource-tags.html",
+          "TypeName": "",
+          "DocString": "An arbitrary set of tags (key–value pairs) to describe this stack.",
+          "SyntaxExpression": "[ Resource Tag, ... ]"
+        },
+        {
           "Name": "TemplateURL",
           "Type": "String",
           "TypeHref": "",
