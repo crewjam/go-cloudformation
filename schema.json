@@ -1448,7 +1448,7 @@
       "Properties": [
         {
           "Name": "AttributeDefinitions",
-          "Type": "DynamoDB Attribute Definitions",
+          "Type": "List of DynamoDB Attribute Definitions",
           "TypeHref": "aws-properties-dynamodb-attributedef.html",
           "TypeName": "",
           "DocString": "A list of AttributeName and AttributeType objects that describe the\nkey schema for the table and indexes.",
@@ -1456,7 +1456,7 @@
         },
         {
           "Name": "GlobalSecondaryIndexes",
-          "Type": "DynamoDB Global Secondary Indexes",
+          "Type": "List of DynamoDB Global Secondary Indexes",
           "TypeHref": "aws-properties-dynamodb-gsi.html",
           "TypeName": "",
           "DocString": "Global secondary indexes to be created on the table. You can create up\nto 5 global secondary indexes.",
@@ -1464,7 +1464,7 @@
         },
         {
           "Name": "KeySchema",
-          "Type": "DynamoDB Key Schema",
+          "Type": "List of DynamoDB Key Schema",
           "TypeHref": "aws-properties-dynamodb-keyschema.html",
           "TypeName": "",
           "DocString": "Specifies the attributes that make up the primary key for the table.\nThe attributes in the KeySchema property must also be defined in the\nAttributeDefinitions property.",
@@ -1472,7 +1472,7 @@
         },
         {
           "Name": "LocalSecondaryIndexes",
-          "Type": "DynamoDB Local Secondary Indexes",
+          "Type": "List of DynamoDB Local Secondary Indexes",
           "TypeHref": "aws-properties-dynamodb-lsi.html",
           "TypeName": "",
           "DocString": "Local secondary indexes to be created on the table. You can create up\nto 5 local secondary indexes. Each index is scoped to a given hash key\nvalue. The size of each hash key can be up to 10 gigabytes.",
@@ -3963,7 +3963,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The status of the access key.",
+          "DocString": "The status of the access key. By default, AWS CloudFormation sets this\nproperty value to Active.",
           "SyntaxExpression": "String"
         },
         {

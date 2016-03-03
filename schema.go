@@ -2738,7 +2738,8 @@ type IAMAccessKey struct {
 	// CloudFormation will replace the existing access key with a new key.
 	Serial *IntegerExpr `json:"Serial,omitempty"`
 
-	// The status of the access key.
+	// The status of the access key. By default, AWS CloudFormation sets this
+	// property value to Active.
 	Status *StringExpr `json:"Status,omitempty"`
 
 	// The name of the user that the new key will belong to.
