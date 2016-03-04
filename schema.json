@@ -6169,6 +6169,14 @@
           "SyntaxExpression": "AliasTarget"
         },
         {
+          "Name": "Comment",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Any comments that you want to include about the hosted zone.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "Failover",
           "Type": "String",
           "TypeHref": "",

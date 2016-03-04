@@ -4155,6 +4155,9 @@ type Route53RecordSet struct {
 	// you are redirecting traffic.
 	AliasTarget *Route53AliasTargetProperty `json:"AliasTarget,omitempty"`
 
+	// Any comments that you want to include about the hosted zone.
+	Comment *StringExpr `json:"Comment,omitempty"`
+
 	// Designates the record set as a PRIMARY or SECONDARY failover record
 	// set. When you have more than one resource performing the same
 	// function, you can configure Amazon Route 53 to check the health of
