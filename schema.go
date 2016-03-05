@@ -5096,6 +5096,11 @@ type CloudFrontDistributionConfigCacheBehavior struct {
 	// value, AWS CloudFormation specifies ["HEAD", "GET"].
 	CachedMethods *StringListExpr `json:"CachedMethods,omitempty"`
 
+	// Indicates whether CloudFront automatically compresses certain files
+	// for this cache behavior. For more information, see Serving Compressed
+	// Files in the Amazon CloudFront Developer Guide.
+	Compress *BoolExpr `json:"Compress,omitempty"`
+
 	// The default time in seconds that objects stay in CloudFront caches
 	// before CloudFront forwards another request to your custom origin to
 	// determine whether the object has been updated. This value applies only
@@ -5226,6 +5231,11 @@ type CloudFrontDefaultCacheBehavior struct {
 	// "HEAD", "OPTIONS"]. If you don't specify a value, AWS CloudFormation
 	// specifies ["HEAD", "GET"].
 	CachedMethods *StringListExpr `json:"CachedMethods,omitempty"`
+
+	// Indicates whether CloudFront automatically compresses certain files
+	// for this cache behavior. For more information, see Serving Compressed
+	// Files in the Amazon CloudFront Developer Guide.
+	Compress *BoolExpr `json:"Compress,omitempty"`
 
 	// The default time in seconds that objects stay in CloudFront caches
 	// before CloudFront forwards another request to your custom origin to

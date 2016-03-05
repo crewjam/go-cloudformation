@@ -7161,6 +7161,14 @@
           "SyntaxExpression": "[ String, ... ]"
         },
         {
+          "Name": "Compress",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether CloudFront automatically compresses certain files\nfor this cache behavior. For more information, see Serving Compressed\nFiles in the Amazon CloudFront Developer Guide.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
           "Name": "DefaultTTL",
           "Type": "Number",
           "TypeHref": "",
@@ -7291,6 +7299,14 @@
           "TypeName": "",
           "DocString": "HTTP methods for which CloudFront caches responses. In AWS\nCloudFormation templates, you can specify [\"HEAD\", \"GET\"] or [\"GET\",\n\"HEAD\", \"OPTIONS\"]. If you don't specify a value, AWS CloudFormation\nspecifies [\"HEAD\", \"GET\"].",
           "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "Compress",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether CloudFront automatically compresses certain files\nfor this cache behavior. For more information, see Serving Compressed\nFiles in the Amazon CloudFront Developer Guide.",
+          "SyntaxExpression": "Boolean"
         },
         {
           "Name": "DefaultTTL",
