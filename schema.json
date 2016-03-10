@@ -404,7 +404,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of instances by which to scale. The AdjustmentType property\ndetermines whether AWS CloudFormation interprets this number as an\nabsolute number (when the ExactCapacityvalue is specified) or as a\npercentage of the existing Auto Scaling group size (when the\nPercentChangeInCapacity value is specified). A positive value adds to\nthe current capacity and a negative value subtracts from the current\ncapacity.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "StepAdjustments",
@@ -1484,7 +1484,7 @@
           "TypeHref": "aws-properties-dynamodb-streamspecification.html",
           "TypeName": "",
           "DocString": "The settings for the DynamoDB table stream, which capture changes to\nitems stored in the table.",
-          "SyntaxExpression": "ProvisionedThroughput"
+          "SyntaxExpression": "StreamSpecification"
         },
         {
           "Name": "ProvisionedThroughput",
