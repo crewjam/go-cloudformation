@@ -8769,12 +8769,38 @@
     {
       "Name": "DynamoDB Provisioned Throughput",
       "Href": "aws-properties-dynamodb-provisionedthroughput.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "ReadCapacityUnits",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Sets the desired minimum number of consistent reads of items (up to\n1KB in size) per second for the specified table before Amazon DynamoDB\nbalances the load.",
+          "SyntaxExpression": "Number"
+        },
+        {
+          "Name": "WriteCapacityUnits",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Sets the desired minimum number of consistent writes of items (up to\n1KB in size) per second for the specified table before Amazon DynamoDB\nbalances the load.",
+          "SyntaxExpression": "Number"
+        }
+      ]
     },
     {
       "Name": "DynamoDB Table StreamSpecification",
       "Href": "aws-properties-dynamodb-streamspecification.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "StreamViewType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Determines the information that the stream captures when an item in\nthe table is modified. For valid values, see StreamSpecification in\nthe Amazon DynamoDB API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "Amazon EC2 Block Device Mapping Property",

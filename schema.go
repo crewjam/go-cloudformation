@@ -7063,6 +7063,15 @@ func (l *DynamoDBProjectionObjectList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html
 type DynamoDBProvisionedThroughput struct {
+	// Sets the desired minimum number of consistent reads of items (up to
+	// 1KB in size) per second for the specified table before Amazon DynamoDB
+	// balances the load.
+	ReadCapacityUnits *IntegerExpr `json:"ReadCapacityUnits,omitempty"`
+
+	// Sets the desired minimum number of consistent writes of items (up to
+	// 1KB in size) per second for the specified table before Amazon DynamoDB
+	// balances the load.
+	WriteCapacityUnits *IntegerExpr `json:"WriteCapacityUnits,omitempty"`
 }
 
 // DynamoDBProvisionedThroughputList represents a list of DynamoDBProvisionedThroughput
@@ -7089,6 +7098,10 @@ func (l *DynamoDBProvisionedThroughputList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html
 type DynamoDBTableStreamSpecification struct {
+	// Determines the information that the stream captures when an item in
+	// the table is modified. For valid values, see StreamSpecification in
+	// the Amazon DynamoDB API Reference.
+	StreamViewType *StringExpr `json:"StreamViewType,omitempty"`
 }
 
 // DynamoDBTableStreamSpecificationList represents a list of DynamoDBTableStreamSpecification
