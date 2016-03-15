@@ -90,9 +90,10 @@ type ResourceProperties interface {
 // metadata and, in Properties, a struct that implements ResourceProperties which
 // contains the properties of the resource.
 type Resource struct {
+	CreationPolicy *CreationPolicy
+	DeletionPolicy string
 	DependsOn      []string
 	Metadata       map[string]interface{}
-	DeletionPolicy string
 	UpdatePolicy   *UpdatePolicy
 	Properties     ResourceProperties
 }
@@ -101,15 +102,17 @@ type Resource struct {
 func (r Resource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
 		Type           string
-		DependsOn      []string               `json:",omitempty"`
+		CreationPolicy *CreationPolicy        `json:",omitempty"`
 		DeletionPolicy string                 `json:",omitempty"`
+		DependsOn      []string               `json:",omitempty"`
 		Metadata       map[string]interface{} `json:",omitempty"`
 		UpdatePolicy   *UpdatePolicy          `json:",omitempty"`
 		Properties     ResourceProperties
 	}{
 		Type:           r.Properties.ResourceType(),
-		DependsOn:      r.DependsOn,
+		CreationPolicy: r.CreationPolicy,
 		DeletionPolicy: r.DeletionPolicy,
+		DependsOn:      r.DependsOn,
 		Metadata:       r.Metadata,
 		UpdatePolicy:   r.UpdatePolicy,
 		Properties:     r.Properties,
