@@ -93,6 +93,7 @@ type Resource struct {
 	DependsOn      []string
 	Metadata       map[string]interface{}
 	DeletionPolicy string
+	UpdatePolicy   *UpdatePolicy
 	Properties     ResourceProperties
 }
 
@@ -103,12 +104,14 @@ func (r Resource) MarshalJSON() ([]byte, error) {
 		DependsOn      []string               `json:",omitempty"`
 		DeletionPolicy string                 `json:",omitempty"`
 		Metadata       map[string]interface{} `json:",omitempty"`
+		UpdatePolicy   *UpdatePolicy          `json:",omitempty"`
 		Properties     ResourceProperties
 	}{
 		Type:           r.Properties.ResourceType(),
 		DependsOn:      r.DependsOn,
 		DeletionPolicy: r.DeletionPolicy,
 		Metadata:       r.Metadata,
+		UpdatePolicy:   r.UpdatePolicy,
 		Properties:     r.Properties,
 	})
 }
