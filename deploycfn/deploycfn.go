@@ -2,17 +2,21 @@ package deploycfn
 
 import (
 	"encoding/json"
-	"fmt"
-	"log"
-	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudformation"
 	"github.com/crewjam/awsregion"
-	cf "github.com/crewjam/go-cloudformation"
+	cfn "github.com/crewjam/go-cloudformation"
 )
+
+type DeployInput struct {
+	Session    client.ConfigProvider
+	StackName  string
+	Template   *cfn.Template
+	Parameters map[string]string
+}
 
 // Deploy creates or updates the specified CloudFormation template to AWS.
 //
@@ -30,118 +34,101 @@ import (
 //   	}
 //   }
 //
-func Deploy(awsConfigProvider client.ConfigProvider, stackName string, template *cf.Template) error {
-	templateBody, err := json.Marshal(template)
+func Deploy(input DeployInput) error {
+	templateBody, err := json.Marshal(input.Template)
 	if err != nil {
 		return err
 	}
 
-	if awsConfigProvider == nil {
+	if input.Session == nil {
 		awsSession := session.New()
 		awsregion.GuessRegion(awsSession.Config)
-		awsConfigProvider = awsSession
+		input.Session = awsSession
 	}
-	cfn := cloudformation.New(awsConfigProvider)
+	cfnSvc := cloudformation.New(input.Session)
 
-	describeStacksResponse, err := cfn.DescribeStacks(&cloudformation.DescribeStacksInput{
-		StackName: aws.String(stackName),
+	describeStacksResponse, err := cfnSvc.DescribeStacks(&cloudformation.DescribeStacksInput{
+		StackName: aws.String(input.StackName),
 	})
 	doCreate := err != nil || len(describeStacksResponse.Stacks) == 0
 
-	// seenEvents maps the events that have already been printed. If the stack
-	// already exists, then we want to get all the existing events into this
-	// set so we don't re-print old events.
-	seenEvents := map[string]struct{}{}
+	watcher := &StackEventWatcher{}
 	if !doCreate {
-		cfn.DescribeStackEventsPages(&cloudformation.DescribeStackEventsInput{
-			StackName: aws.String(stackName),
-		}, func(p *cloudformation.DescribeStackEventsOutput, _ bool) bool {
-			for _, stackEvent := range p.StackEvents {
-				seenEvents[*stackEvent.EventId] = struct{}{}
-			}
-			return true
+		watcher, err = NewStackEventWatcher(input.Session, input.StackName)
+		if err != nil {
+			return err
+		}
+	}
+
+	needCapabilityIam := false
+	for _, resource := range input.Template.Resources {
+		switch resource.Properties.ResourceType() {
+		case "AWS::IAM::AccessKey":
+			needCapabilityIam = true
+		case "AWS::IAM::Group":
+			needCapabilityIam = true
+		case "AWS::IAM::InstanceProfile":
+			needCapabilityIam = true
+		case "AWS::IAM::Policy":
+			needCapabilityIam = true
+		case "AWS::IAM::Role":
+			needCapabilityIam = true
+		case "AWS::IAM::User":
+			needCapabilityIam = true
+		case "AWS::IAM::UserToGroupAddition":
+			needCapabilityIam = true
+		}
+	}
+
+	capabilities := []*string{}
+	if needCapabilityIam {
+		capabilities = append(capabilities, aws.String(cloudformation.CapabilityCapabilityIam))
+	}
+
+	parameters := []*cloudformation.Parameter{}
+	for key, value := range input.Parameters {
+		parameters = append(parameters, &cloudformation.Parameter{
+			ParameterKey:   aws.String(key),
+			ParameterValue: aws.String(value),
 		})
+	}
+	if !doCreate {
+		for key := range input.Template.Parameters {
+			if _, ok := input.Parameters[key]; ok {
+				continue
+			}
+			parameters = append(parameters, &cloudformation.Parameter{
+				ParameterKey:     aws.String(key),
+				UsePreviousValue: aws.Bool(true),
+			})
+		}
 	}
 
 	if doCreate {
-		_, err = cfn.CreateStack(&cloudformation.CreateStackInput{
-			StackName:    aws.String(stackName),
+		_, err = cfnSvc.CreateStack(&cloudformation.CreateStackInput{
+			StackName:    aws.String(input.StackName),
 			TemplateBody: aws.String(string(templateBody)),
+			Capabilities: capabilities,
+			Parameters:   parameters,
 		})
 		if err != nil {
 			return err
 		}
 	} else {
-		_, err = cfn.UpdateStack(&cloudformation.UpdateStackInput{
-			StackName:    aws.String(stackName),
+		_, err = cfnSvc.UpdateStack(&cloudformation.UpdateStackInput{
+			StackName:    aws.String(input.StackName),
 			TemplateBody: aws.String(string(templateBody)),
+			Capabilities: capabilities,
+			Parameters:   parameters,
 		})
 		if err != nil {
 			return err
 		}
 	}
 
-	lastStackStatus := ""
-	for {
-		// print the events for the stack
-		cfn.DescribeStackEventsPages(&cloudformation.DescribeStackEventsInput{
-			StackName: aws.String(stackName),
-		}, func(p *cloudformation.DescribeStackEventsOutput, _ bool) bool {
-			for _, stackEvent := range p.StackEvents {
-				if _, ok := seenEvents[*stackEvent.EventId]; ok {
-					continue
-				}
-				wrapStrPtr := func(s *string) string {
-					if s == nil {
-						return ""
-					}
-					return *s
-				}
-				log.Printf("%s\t%s\t%s\t%s\t%s\n",
-					wrapStrPtr(stackEvent.ResourceStatus),
-					wrapStrPtr(stackEvent.ResourceType),
-					wrapStrPtr(stackEvent.PhysicalResourceId),
-					wrapStrPtr(stackEvent.LogicalResourceId),
-					wrapStrPtr(stackEvent.ResourceStatusReason))
-				seenEvents[*stackEvent.EventId] = struct{}{}
-			}
-			return true
-		})
-
-		// monitor the status of the stack
-		describeStacksResponse, err := cfn.DescribeStacks(&cloudformation.DescribeStacksInput{
-			StackName: aws.String(stackName),
-		})
-		if err != nil {
-			// the stack might not exist yet
-			log.Printf("DescribeStacks: %s", err)
-			time.Sleep(time.Second)
-			continue
-		}
-
-		stackStatus := *describeStacksResponse.Stacks[0].StackStatus
-		if stackStatus != lastStackStatus {
-			log.Printf("Stack: %s\n", stackStatus)
-			lastStackStatus = stackStatus
-		}
-		switch stackStatus {
-		case cloudformation.StackStatusCreateComplete:
-			return nil
-		case cloudformation.StackStatusCreateFailed:
-			return fmt.Errorf("%s", stackStatus)
-		case cloudformation.StackStatusRollbackComplete:
-			return fmt.Errorf("%s", stackStatus)
-		case cloudformation.StackStatusUpdateRollbackComplete:
-			return fmt.Errorf("%s", stackStatus)
-		case cloudformation.StackStatusRollbackFailed:
-			return fmt.Errorf("%s", stackStatus)
-		case cloudformation.StackStatusUpdateComplete:
-			return nil
-		case cloudformation.StackStatusUpdateRollbackFailed:
-			return fmt.Errorf("%s", stackStatus)
-		default:
-			time.Sleep(time.Second * 5)
-			continue
-		}
+	if err := watcher.Watch(); err != nil {
+		return err
 	}
+
+	return nil
 }
