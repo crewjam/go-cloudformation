@@ -1043,15 +1043,15 @@ type DynamoDBTable struct {
 	// value. The size of each hash key can be up to 10 gigabytes.
 	LocalSecondaryIndexes *DynamoDBLocalSecondaryIndexesList `json:"LocalSecondaryIndexes,omitempty"`
 
-	// The settings for the DynamoDB table stream, which capture changes to
-	// items stored in the table.
-	StreamSpecification *DynamoDBTableStreamSpecification `json:"StreamSpecification,omitempty"`
-
 	// Throughput for the specified table, consisting of values for
 	// ReadCapacityUnits and WriteCapacityUnits. For more information about
 	// the contents of a provisioned throughput structure, see DynamoDB
 	// Provisioned Throughput.
 	ProvisionedThroughput *DynamoDBProvisionedThroughput `json:"ProvisionedThroughput,omitempty"`
+
+	// The settings for the DynamoDB table stream, which capture changes to
+	// items stored in the table.
+	StreamSpecification *DynamoDBTableStreamSpecification `json:"StreamSpecification,omitempty"`
 
 	// A name for the table. If you don't specify a name, AWS CloudFormation
 	// generates a unique physical ID and uses that ID for the table name.

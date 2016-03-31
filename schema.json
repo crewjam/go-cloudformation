@@ -1479,20 +1479,20 @@
           "SyntaxExpression": "[ LocalSecondaryIndexes, ... ]"
         },
         {
-          "Name": "StreamSpecification",
-          "Type": "DynamoDB Table StreamSpecification",
-          "TypeHref": "aws-properties-dynamodb-streamspecification.html",
-          "TypeName": "",
-          "DocString": "The settings for the DynamoDB table stream, which capture changes to\nitems stored in the table.",
-          "SyntaxExpression": "StreamSpecification"
-        },
-        {
           "Name": "ProvisionedThroughput",
           "Type": "DynamoDB Provisioned Throughput",
           "TypeHref": "aws-properties-dynamodb-provisionedthroughput.html",
           "TypeName": "",
           "DocString": "Throughput for the specified table, consisting of values for\nReadCapacityUnits and WriteCapacityUnits. For more information about\nthe contents of a provisioned throughput structure, see DynamoDB\nProvisioned Throughput.",
           "SyntaxExpression": "ProvisionedThroughput"
+        },
+        {
+          "Name": "StreamSpecification",
+          "Type": "DynamoDB Table StreamSpecification",
+          "TypeHref": "aws-properties-dynamodb-streamspecification.html",
+          "TypeName": "",
+          "DocString": "The settings for the DynamoDB table stream, which capture changes to\nitems stored in the table.",
+          "SyntaxExpression": "StreamSpecification"
         },
         {
           "Name": "TableName",
