@@ -1736,7 +1736,9 @@ type EC2Volume struct {
 	Encrypted *BoolExpr `json:"Encrypted,omitempty"`
 
 	// The number of I/O operations per second (IOPS) that the volume
-	// supports. This can be any integer value from 1–4000.
+	// supports. For more information about the valid sizes for each volume
+	// type, see the CreateVolume Iops parameter in the Amazon EC2 API
+	// Reference.
 	Iops *IntegerExpr `json:"Iops,omitempty"`
 
 	// The Amazon Resource Name (ARN) of the AWS Key Management Service
@@ -2612,6 +2614,10 @@ type EMRCluster struct {
 	// The software configuration of the Amazon EMR cluster.
 	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
 
+	// Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to
+	// attach to your instances.
+	EbsConfiguration *ElasticMapReduceEbsConfiguration `json:"EbsConfiguration,omitempty"`
+
 	// Configures the EC2 instances that will run jobs in the Amazon EMR
 	// cluster.
 	Instances *ElasticMapReduceClusterJobFlowInstancesConfig `json:"Instances,omitempty"`
@@ -2671,6 +2677,10 @@ type EMRInstanceGroupConfig struct {
 	// information see, Configuring Applications in the Amazon Elastic
 	// MapReduce Release Guide.
 	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+
+	// Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to
+	// attach to your instances.
+	EbsConfiguration *ElasticMapReduceEbsConfiguration `json:"EbsConfiguration,omitempty"`
 
 	// The number of instances to launch in the instance group.
 	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
@@ -3096,6 +3106,31 @@ func (s LambdaEventSourceMapping) ResourceType() string {
 	return "AWS::Lambda::EventSourceMapping"
 }
 
+// LambdaAlias represents AWS::Lambda::Alias
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html
+type LambdaAlias struct {
+	// Information that describes the alias, such as its purpose or the
+	// function that it's associated with.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The Lambda function that you want to associate with this alias. You
+	// can specify the function's name or its Amazon Resource Name (ARN).
+	FunctionName *StringExpr `json:"FunctionName,omitempty"`
+
+	// The version of the Lambda function that you want to associate with
+	// this alias.
+	FunctionVersion *StringExpr `json:"FunctionVersion,omitempty"`
+
+	// A name for the alias.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// ResourceType returns AWS::Lambda::Alias to implement the ResourceProperties interface
+func (s LambdaAlias) ResourceType() string {
+	return "AWS::Lambda::Alias"
+}
+
 // LambdaFunction represents AWS::Lambda::Function
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
@@ -3107,6 +3142,11 @@ type LambdaFunction struct {
 
 	// A description of the function.
 	Description *StringExpr `json:"Description,omitempty"`
+
+	// A name for the function. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// function's name. For more information, see Name Type.
+	FunctionName *StringExpr `json:"FunctionName,omitempty"`
 
 	// The name of the function (within your source code) that Lambda calls
 	// to start running your code. For more information, see the Handler
@@ -3134,6 +3174,17 @@ type LambdaFunction struct {
 	// based on the function's expected execution time. By default, Timeout
 	// is set to 3 seconds.
 	Timeout *IntegerExpr `json:"Timeout,omitempty"`
+
+	// If the Lambda function requires access to resources in a VPC, specify
+	// a VPC configuration that Lambda uses to set up an elastic network
+	// interface (ENI). The ENI enables your function to connect to other
+	// resources in your VPC, but it doesn't provide public Internet access.
+	// If your function requires Internet access (for example, to access AWS
+	// services that don't have VPC endpoints), configure a Network Address
+	// Translation (NAT) instance inside your VPC or use an Amazon Virtual
+	// Private Cloud (Amazon VPC) NAT gateway. For more information, see NAT
+	// Gateways in the Amazon VPC User Guide.
+	VpcConfig *LambdaFunctionVPCConfig `json:"VpcConfig,omitempty"`
 }
 
 // ResourceType returns AWS::Lambda::Function to implement the ResourceProperties interface
@@ -3183,6 +3234,31 @@ type LambdaPermission struct {
 // ResourceType returns AWS::Lambda::Permission to implement the ResourceProperties interface
 func (s LambdaPermission) ResourceType() string {
 	return "AWS::Lambda::Permission"
+}
+
+// LambdaVersion represents AWS::Lambda::Version
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html
+type LambdaVersion struct {
+	// The SHA-256 hash of the deployment package that you want to publish.
+	// This value must match the SHA-256 hash of the $LATEST version of the
+	// function. Specify this property to validate that you are publishing
+	// the correct package.
+	CodeSha256 *StringExpr `json:"CodeSha256,omitempty"`
+
+	// A description of the version you are publishing. If you don't specify
+	// a value, Lambda copies the description from the $LATEST version of the
+	// function.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The Lambda function for which you want to publish a version. You can
+	// specify the function's name or its Amazon Resource Name (ARN).
+	FunctionName *StringExpr `json:"FunctionName,omitempty"`
+}
+
+// ResourceType returns AWS::Lambda::Version to implement the ResourceProperties interface
+func (s LambdaVersion) ResourceType() string {
+	return "AWS::Lambda::Version"
 }
 
 // LogsDestination represents AWS::Logs::Destination
@@ -9405,6 +9481,115 @@ func (l *ElasticMapReduceClusterJobFlowInstancesConfigPlacementList) UnmarshalJS
 	return err
 }
 
+// ElasticMapReduceEbsConfiguration represents Amazon Elastic MapReduce EbsConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html
+type ElasticMapReduceEbsConfiguration struct {
+	// Configures the block storage devices that are associated with your EMR
+	// instances.
+	EbsBlockDeviceConfig *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList `json:"EbsBlockDeviceConfig,omitempty"`
+
+	// Indicates whether the instances are optimized for Amazon EBS I/O. This
+	// optimization provides dedicated throughput to Amazon EBS and an
+	// optimized configuration stack to provide optimal EBS I/O performance.
+	// For more information about fees and supported instance types, see
+	// EBS-Optimized Instances in the Amazon EC2 User Guide for Linux
+	// Instances.
+	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
+}
+
+// ElasticMapReduceEbsConfigurationList represents a list of ElasticMapReduceEbsConfiguration
+type ElasticMapReduceEbsConfigurationList []ElasticMapReduceEbsConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceEbsConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceEbsConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceEbsConfigurationList{item}
+		return nil
+	}
+	list := []ElasticMapReduceEbsConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceEbsConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig represents Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
+type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig struct {
+	// The settings for the Amazon EBS volumes.
+	VolumeSpecification *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification `json:"VolumeSpecification,omitempty"`
+
+	// The number of Amazon EBS volumes that you want to create for each
+	// instance in the EMR cluster or instance group.
+	VolumesPerInstance *IntegerExpr `json:"VolumesPerInstance,omitempty"`
+}
+
+// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList represents a list of ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig
+type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList{item}
+		return nil
+	}
+	list := []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification represents Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html
+type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification struct {
+	// The number of I/O operations per second (IOPS) that the volume
+	// supports. For more information, see Iops for the EbsBlockDevice action
+	// in the Amazon EC2 API Reference.
+	Iops *IntegerExpr `json:"Iops,omitempty"`
+
+	// The volume size, in Gibibytes (GiB). For more information about
+	// specifying the volume size, see VolumeSize for the EbsBlockDevice
+	// action in the Amazon EC2 API Reference.
+	SizeInGB *IntegerExpr `json:"SizeInGB,omitempty"`
+
+	// The volume type, such as standard or io1. For more information about
+	// specifying the volume type, see VolumeType for the EbsBlockDevice
+	// action in the Amazon EC2 API Reference.
+	VolumeType *StringExpr `json:"VolumeType,omitempty"`
+}
+
+// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList represents a list of ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification
+type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList{item}
+		return nil
+	}
+	list := []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList(list)
+		return nil
+	}
+	return err
+}
+
 // ElasticMapReduceStepHadoopJarStepConfig represents Amazon Elastic MapReduce Step HadoopJarStepConfig
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html
@@ -9696,6 +9881,39 @@ func (l *LambdaFunctionCodeList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = LambdaFunctionCodeList(list)
+		return nil
+	}
+	return err
+}
+
+// LambdaFunctionVPCConfig represents AWS Lambda Function VPCConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html
+type LambdaFunctionVPCConfig struct {
+	// A list of one or more security groups IDs in the VPC that includes the
+	// resources to which your Lambda function requires access.
+	SecurityGroupIds *StringListExpr `json:"SecurityGroupIds,omitempty"`
+
+	// A list of one or more subnet IDs in the VPC that includes the
+	// resources to which your Lambda function requires access.
+	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
+}
+
+// LambdaFunctionVPCConfigList represents a list of LambdaFunctionVPCConfig
+type LambdaFunctionVPCConfigList []LambdaFunctionVPCConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *LambdaFunctionVPCConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := LambdaFunctionVPCConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = LambdaFunctionVPCConfigList{item}
+		return nil
+	}
+	list := []LambdaFunctionVPCConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = LambdaFunctionVPCConfigList(list)
 		return nil
 	}
 	return err
@@ -10815,8 +11033,17 @@ type S3LifecycleRule struct {
 	// For buckets with versioning enabled (or suspended), specifies when
 	// non-current objects transition to a specified storage class. If you
 	// specify a transition and expiration time, the expiration time must be
-	// later than the transition time.
-	NoncurrentVersionTransition *S3LifecycleRuleNoncurrentVersionTransition `json:"NoncurrentVersionTransition,omitempty"`
+	// later than the transition time. If you specify this property, don't
+	// specify the NoncurrentVersionTransitions property.
+	NoncurrentVersionTransitionXXDeprecatedX *S3LifecycleRuleNoncurrentVersionTransition `json:"NoncurrentVersionTransition (deprecated),omitempty"`
+
+	// For buckets with versioning enabled (or suspended), one or more
+	// transition rules that specify when non-current objects transition to a
+	// specified storage class. If you specify a transition and expiration
+	// time, the expiration time must be later than the transition time. If
+	// you specify this property, don't specify the
+	// NoncurrentVersionTransition property.
+	NoncurrentVersionTransitions *S3LifecycleRuleNoncurrentVersionTransitionList `json:"NoncurrentVersionTransitions,omitempty"`
 
 	// Object key prefix that identifies one or more objects to which this
 	// rule applies.
@@ -10830,8 +11057,17 @@ type S3LifecycleRule struct {
 	// Specifies when an object transitions to a specified storage class. If
 	// you specify an expiration and transition time, you must use the same
 	// time unit for both properties (either in days or by date). The
-	// expiration time must also be later than the transition time.
-	Transition *S3LifecycleRuleTransition `json:"Transition,omitempty"`
+	// expiration time must also be later than the transition time. If you
+	// specify this property, don't specify the Transitions property.
+	TransitionXXDeprecatedX *S3LifecycleRuleTransition `json:"Transition (deprecated),omitempty"`
+
+	// One or more transition rules that specify when an object transitions
+	// to a specified storage class. If you specify an expiration and
+	// transition time, you must use the same time unit for both properties
+	// (either in days or by date). The expiration time must also be later
+	// than the transition time. If you specify this property, don't specify
+	// the Transition property.
+	Transitions *S3LifecycleRuleTransitionList `json:"Transitions,omitempty"`
 }
 
 // S3LifecycleRuleList represents a list of S3LifecycleRule
@@ -12102,10 +12338,14 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &KMSKey{}
 	case "AWS::Lambda::EventSourceMapping":
 		return &LambdaEventSourceMapping{}
+	case "AWS::Lambda::Alias":
+		return &LambdaAlias{}
 	case "AWS::Lambda::Function":
 		return &LambdaFunction{}
 	case "AWS::Lambda::Permission":
 		return &LambdaPermission{}
+	case "AWS::Lambda::Version":
+		return &LambdaVersion{}
 	case "AWS::Logs::Destination":
 		return &LogsDestination{}
 	case "AWS::Logs::LogGroup":

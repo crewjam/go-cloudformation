@@ -2519,7 +2519,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. This can be any integer value from 1–4000.",
+          "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. For more information about the valid sizes for each volume\ntype, see the CreateVolume Iops parameter in the Amazon EC2 API\nReference.",
           "SyntaxExpression": "Number"
         },
         {
@@ -3773,6 +3773,14 @@
           "SyntaxExpression": "[ Configurations, ... ]"
         },
         {
+          "Name": "EbsConfiguration",
+          "Type": "Amazon Elastic MapReduce EbsConfiguration",
+          "TypeHref": "aws-properties-emr-ebsconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to\nattach to your instances.",
+          "SyntaxExpression": "EBSConfiguration"
+        },
+        {
           "Name": "Instances",
           "Type": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig",
           "TypeHref": "aws-properties-emr-cluster-jobflowinstancesconfig.html",
@@ -3857,6 +3865,14 @@
           "TypeName": "",
           "DocString": "A list of configurations to apply to this instance group. For more\ninformation see, Configuring Applications in the Amazon Elastic\nMapReduce Release Guide.",
           "SyntaxExpression": "[ Configuration, ... ]"
+        },
+        {
+          "Name": "EbsConfiguration",
+          "Type": "Amazon Elastic MapReduce EbsConfiguration",
+          "TypeHref": "aws-properties-emr-ebsconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to\nattach to your instances.",
+          "SyntaxExpression": "EBSConfiguration"
         },
         {
           "Name": "InstanceCount",
@@ -4479,6 +4495,44 @@
       ]
     },
     {
+      "Name": "AWS::Lambda::Alias",
+      "Href": "aws-resource-lambda-alias.html",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Information that describes the alias, such as its purpose or the\nfunction that it's associated with.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "FunctionName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Lambda function that you want to associate with this alias. You\ncan specify the function's name or its Amazon Resource Name (ARN).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "FunctionVersion",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The version of the Lambda function that you want to associate with\nthis alias.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the alias.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS::Lambda::Function",
       "Href": "aws-resource-lambda-function.html",
       "Properties": [
@@ -4496,6 +4550,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the function.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "FunctionName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the function. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nfunction's name. For more information, see Name Type.",
           "SyntaxExpression": "String"
         },
         {
@@ -4537,6 +4599,14 @@
           "TypeName": "",
           "DocString": "The function execution time (in seconds) after which Lambda terminates\nthe function. Because the execution time affects cost, set this value\nbased on the function's expected execution time. By default, Timeout\nis set to 3 seconds. ",
           "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "VpcConfig",
+          "Type": "AWS Lambda Function VPCConfig",
+          "TypeHref": "aws-properties-lambda-function-vpcconfig.html",
+          "TypeName": "",
+          "DocString": "If the Lambda function requires access to resources in a VPC, specify\na VPC configuration that Lambda uses to set up an elastic network\ninterface (ENI). The ENI enables your function to connect to other\nresources in your VPC, but it doesn't provide public Internet access.\nIf your function requires Internet access (for example, to access AWS\nservices that don't have VPC endpoints), configure a Network Address\nTranslation (NAT) instance inside your VPC or use an Amazon Virtual\nPrivate Cloud (Amazon VPC) NAT gateway. For more information, see NAT\nGateways in the Amazon VPC User Guide.",
+          "SyntaxExpression": "VPCConfig"
         }
       ]
     },
@@ -4582,6 +4652,36 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ARN of a resource that is invoking your function. When granting\nAmazon Simple Storage Service (Amazon S3) permission to invoke your\nfunction, specify this property with the bucket ARN as its value. This\nensures that events generated only from the specified bucket, not just\nany bucket from any AWS account that creates a mapping to your\nfunction, can invoke the function.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::Lambda::Version",
+      "Href": "aws-resource-lambda-version.html",
+      "Properties": [
+        {
+          "Name": "CodeSha256",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The SHA-256 hash of the deployment package that you want to publish.\nThis value must match the SHA-256 hash of the $LATEST version of the\nfunction. Specify this property to validate that you are publishing\nthe correct package. ",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the version you are publishing. If you don't specify\na value, Lambda copies the description from the $LATEST version of the\nfunction.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "FunctionName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Lambda function for which you want to publish a version. You can\nspecify the function's name or its Amazon Resource Name (ARN).",
           "SyntaxExpression": "String"
         }
       ]
@@ -10829,6 +10929,80 @@
       ]
     },
     {
+      "Name": "Amazon Elastic MapReduce EbsConfiguration",
+      "Href": "aws-properties-emr-ebsconfiguration.html",
+      "Properties": [
+        {
+          "Name": "EbsBlockDeviceConfig",
+          "Type": "List of Amazon Elastic MapReduce EbsConfiguration",
+          "TypeHref": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
+          "TypeName": "",
+          "DocString": "Configures the block storage devices that are associated with your EMR\ninstances.",
+          "SyntaxExpression": "[ EbsBlockDeviceConfig, ... ]"
+        },
+        {
+          "Name": "EbsOptimized",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the instances are optimized for Amazon EBS I/O. This\noptimization provides dedicated throughput to Amazon EBS and an\noptimized configuration stack to provide optimal EBS I/O performance.\nFor more information about fees and supported instance types, see\nEBS-Optimized Instances in the Amazon EC2 User Guide for Linux\nInstances.",
+          "SyntaxExpression": "Boolean"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig",
+      "Href": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
+      "Properties": [
+        {
+          "Name": "VolumeSpecification",
+          "Type": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification",
+          "TypeHref": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html",
+          "TypeName": "",
+          "DocString": "The settings for the Amazon EBS volumes.",
+          "SyntaxExpression": "VolumeSpecification"
+        },
+        {
+          "Name": "VolumesPerInstance",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of Amazon EBS volumes that you want to create for each\ninstance in the EMR cluster or instance group.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification",
+      "Href": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html",
+      "Properties": [
+        {
+          "Name": "Iops",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. For more information, see Iops for the EbsBlockDevice action\nin the Amazon EC2 API Reference.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "SizeInGB",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The volume size, in Gibibytes (GiB). For more information about\nspecifying the volume size, see VolumeSize for the EbsBlockDevice\naction in the Amazon EC2 API Reference.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "VolumeType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The volume type, such as standard or io1. For more information about\nspecifying the volume type, see VolumeType for the EbsBlockDevice\naction in the Amazon EC2 API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "Amazon Elastic MapReduce Step HadoopJarStepConfig",
       "Href": "aws-properties-emr-step-hadoopjarstepconfig.html",
       "Properties": [
@@ -11065,6 +11239,28 @@
           "TypeName": "",
           "DocString": "For nodejs runtime environments, the source code of your Lambda\nfunction. You cannot use this property with other runtime\nenvironments.",
           "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS Lambda Function VPCConfig",
+      "Href": "aws-properties-lambda-function-vpcconfig.html",
+      "Properties": [
+        {
+          "Name": "SecurityGroupIds",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of one or more security groups IDs in the VPC that includes the\nresources to which your Lambda function requires access.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "SubnetIds",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of one or more subnet IDs in the VPC that includes the\nresources to which your Lambda function requires access.",
+          "SyntaxExpression": "[ String, ... ]"
         }
       ]
     },
@@ -11992,12 +12188,20 @@
           "SyntaxExpression": "Integer"
         },
         {
-          "Name": "NoncurrentVersionTransition",
+          "Name": "NoncurrentVersionTransition (deprecated)",
           "Type": "Amazon S3 Lifecycle Rule NoncurrentVersionTransition",
           "TypeHref": "aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html",
           "TypeName": "",
-          "DocString": "For buckets with versioning enabled (or suspended), specifies when\nnon-current objects transition to a specified storage class. If you\nspecify a transition and expiration time, the expiration time must be\nlater than the transition time.",
+          "DocString": "For buckets with versioning enabled (or suspended), specifies when\nnon-current objects transition to a specified storage class. If you\nspecify a transition and expiration time, the expiration time must be\nlater than the transition time. If you specify this property, don't\nspecify the NoncurrentVersionTransitions property.",
           "SyntaxExpression": "NoncurrentVersionTransition type"
+        },
+        {
+          "Name": "NoncurrentVersionTransitions",
+          "Type": "List of Amazon S3 Lifecycle Rule NoncurrentVersionTransition",
+          "TypeHref": "aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html",
+          "TypeName": "",
+          "DocString": "For buckets with versioning enabled (or suspended), one or more\ntransition rules that specify when non-current objects transition to a\nspecified storage class. If you specify a transition and expiration\ntime, the expiration time must be later than the transition time. If\nyou specify this property, don't specify the\nNoncurrentVersionTransition property.",
+          "SyntaxExpression": "[ NoncurrentVersionTransition type, ... ]"
         },
         {
           "Name": "Prefix",
@@ -12016,12 +12220,20 @@
           "SyntaxExpression": "String"
         },
         {
-          "Name": "Transition",
+          "Name": "Transition (deprecated)",
           "Type": "Amazon S3 Lifecycle Rule Transition",
           "TypeHref": "aws-properties-s3-bucket-lifecycleconfig-rule-transition.html",
           "TypeName": "",
-          "DocString": "Specifies when an object transitions to a specified storage class. If\nyou specify an expiration and transition time, you must use the same\ntime unit for both properties (either in days or by date). The\nexpiration time must also be later than the transition time.",
+          "DocString": "Specifies when an object transitions to a specified storage class. If\nyou specify an expiration and transition time, you must use the same\ntime unit for both properties (either in days or by date). The\nexpiration time must also be later than the transition time. If you\nspecify this property, don't specify the Transitions property.",
           "SyntaxExpression": "Transition type"
+        },
+        {
+          "Name": "Transitions",
+          "Type": "List of Amazon S3 Lifecycle Rule Transition",
+          "TypeHref": "aws-properties-s3-bucket-lifecycleconfig-rule-transition.html",
+          "TypeName": "",
+          "DocString": "One or more transition rules that specify when an object transitions\nto a specified storage class. If you specify an expiration and\ntransition time, you must use the same time unit for both properties\n(either in days or by date). The expiration time must also be later\nthan the transition time. If you specify this property, don't specify\nthe Transition property.",
+          "SyntaxExpression": "[ Transition type, ... ]"
         }
       ]
     },
