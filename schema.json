@@ -2519,7 +2519,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. For more information about the valid sizes for each volume\ntype, see the CreateVolume Iops parameter in the Amazon EC2 API\nReference.",
+          "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. For more information about the valid sizes for each volume\ntype, see the Iops parameter for the CreateVolume action in the Amazon\nEC2 API Reference.",
           "SyntaxExpression": "Number"
         },
         {
@@ -2535,7 +2535,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The size of the volume, in gibibytes (GiBs). For more information\nabout the valid sizes for each volume type, see the CreateVolume Size\nparameter in the Amazon EC2 API Reference.",
+          "DocString": "The size of the volume, in gibibytes (GiBs). For more information\nabout the valid sizes for each volume type, see the Size parameter for\nthe CreateVolume action in the Amazon EC2 API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -2559,7 +2559,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The volume type. You can specify standard, io1, or gp2. If you set the\ntype to io1, you must also set the Iops property. For more information\nabout these values and the default value, see CreateVolume in the\nAmazon EC2 API Reference.",
+          "DocString": "The volume type. You can specify standard, io1, or gp2. If you set the\ntype to io1, you must also set the Iops property. For more information\nabout these values and the default value, see the VolumeType parameter\nfor the CreateVolume action in the Amazon EC2 API Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -8819,7 +8819,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of at least two subnet IDs for the directory servers. Each\nsubnet must be in different Availability Zones (AZs). AWS Directory\nService creates a directory server and a DNS server in each subnet.",
+          "DocString": "A list of two subnet IDs for the directory servers. Each subnet must\nbe in different Availability Zones (AZs). AWS Directory Service\ncreates a directory server and a DNS server in each subnet.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -8841,7 +8841,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of at least two subnet IDs for the directory servers. Each\nsubnet must be in different Availability Zones (AZ). AWS Directory\nService creates a directory server and a DNS server in each subnet.",
+          "DocString": "A list of two subnet IDs for the directory servers. Each subnet must\nbe in different Availability Zones (AZ). AWS Directory Service creates\na directory server and a DNS server in each subnet.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {

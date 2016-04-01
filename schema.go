@@ -1737,8 +1737,8 @@ type EC2Volume struct {
 
 	// The number of I/O operations per second (IOPS) that the volume
 	// supports. For more information about the valid sizes for each volume
-	// type, see the CreateVolume Iops parameter in the Amazon EC2 API
-	// Reference.
+	// type, see the Iops parameter for the CreateVolume action in the Amazon
+	// EC2 API Reference.
 	Iops *IntegerExpr `json:"Iops,omitempty"`
 
 	// The Amazon Resource Name (ARN) of the AWS Key Management Service
@@ -1749,8 +1749,8 @@ type EC2Volume struct {
 	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
 
 	// The size of the volume, in gibibytes (GiBs). For more information
-	// about the valid sizes for each volume type, see the CreateVolume Size
-	// parameter in the Amazon EC2 API Reference.
+	// about the valid sizes for each volume type, see the Size parameter for
+	// the CreateVolume action in the Amazon EC2 API Reference.
 	Size *StringExpr `json:"Size,omitempty"`
 
 	// The snapshot from which to create the new volume.
@@ -1761,8 +1761,8 @@ type EC2Volume struct {
 
 	// The volume type. You can specify standard, io1, or gp2. If you set the
 	// type to io1, you must also set the Iops property. For more information
-	// about these values and the default value, see CreateVolume in the
-	// Amazon EC2 API Reference.
+	// about these values and the default value, see the VolumeType parameter
+	// for the CreateVolume action in the Amazon EC2 API Reference.
 	VolumeType *StringExpr `json:"VolumeType,omitempty"`
 }
 
@@ -6984,9 +6984,9 @@ func (l *DataPipelinePipelinePipelineTagsList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html
 type DirectoryServiceMicrosoftADVpcSettings struct {
-	// A list of at least two subnet IDs for the directory servers. Each
-	// subnet must be in different Availability Zones (AZs). AWS Directory
-	// Service creates a directory server and a DNS server in each subnet.
+	// A list of two subnet IDs for the directory servers. Each subnet must
+	// be in different Availability Zones (AZs). AWS Directory Service
+	// creates a directory server and a DNS server in each subnet.
 	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
 
 	// The VPC ID in which to create the Microsoft Active Directory server.
@@ -7017,9 +7017,9 @@ func (l *DirectoryServiceMicrosoftADVpcSettingsList) UnmarshalJSON(buf []byte) e
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html
 type DirectoryServiceSimpleADVpcSettings struct {
-	// A list of at least two subnet IDs for the directory servers. Each
-	// subnet must be in different Availability Zones (AZ). AWS Directory
-	// Service creates a directory server and a DNS server in each subnet.
+	// A list of two subnet IDs for the directory servers. Each subnet must
+	// be in different Availability Zones (AZ). AWS Directory Service creates
+	// a directory server and a DNS server in each subnet.
 	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
 
 	// The VPC ID in which to create the Simple AD directory.
