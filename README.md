@@ -4,7 +4,7 @@ This package provides a schema and related functions that allow you to parse and
 
 Parsing example:
 
-```golang
+```go
 t := Template{}
 json.NewDecoder(os.Stdin).Decode(&t)
 fmt.Printf("DNS name: %s\n", t.Parameters["DnsName"].Default) 
@@ -12,7 +12,7 @@ fmt.Printf("DNS name: %s\n", t.Parameters["DnsName"].Default)
 
 Producing Example:
 
-```golang
+```go
 t := NewTemplate()
 t.Parameters["DnsName"] = &Parameter{
   Type: "string",
@@ -56,7 +56,7 @@ CloudFormation uses three scalar types: *string*, *int* and *bool*. When
 they appear as properties we represent them as `*StringExpr`, `*IntegerExpr`,
 and `*BoolExpr` respectively. 
 
-```golang
+```go
 type StringExpr struct {
   Func    StringFunc
   Literal string
