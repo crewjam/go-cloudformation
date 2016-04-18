@@ -1,6 +1,520 @@
 {
   "Resources": [
     {
+      "Name": "AWS::ApiGateway::Account",
+      "Href": "aws-resource-apigateway-account.html",
+      "Properties": [
+        {
+          "Name": "CloudWatchRoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of an IAM role that has write access to\nCloudWatch Logs in your account.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::ApiKey",
+      "Href": "aws-resource-apigateway-apikey.html",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the purpose of the API key.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Enabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the API key can be used by clients.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the API key. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nAPI key name. For more information, see Name Type.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StageKeys",
+          "Type": "List of Amazon API Gateway ApiKey StageKey",
+          "TypeHref": "aws-properties-apitgateway-apikey-stagekey.html",
+          "TypeName": "",
+          "DocString": "A list of stages to associated with this API key.",
+          "SyntaxExpression": "[ StageKey, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::Authorizer",
+      "Href": "aws-resource-apigateway-authorizer.html",
+      "Properties": [
+        {
+          "Name": "AuthorizerCredentials",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The credentials required for the authorizer. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To use resource-based\npermissions on the AWS Lambda (Lambda) function, specify null.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "AuthorizerResultTtlInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The time-to-live (TTL) period, in seconds, that specifies how long API\nGateway caches authorizer results. If you specify a value greater than\n0, API Gateway caches the authorizer responses. By default, API\nGateway sets this property to 300. The maximum value is 3600, or 1\nhour.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "AuthorizerUri",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The authorizer's Uniform Resource Identifier (URI). If you specify\nTOKEN for the authorizer's Type property, specify a Lambda function\nURI, which has the form arn:aws:apigateway:region:lambda:path/path.\nThe path usually has the form\n/2015-03-31/functions/LambdaFunctionARN/invocations.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IdentitySource",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The source of the identity in an incoming request. If you specify\nTOKEN for the authorizer's Type property, specify a mapping\nexpression. The custom header mapping expression has the form\nmethod.request.header.name, where name is the name of a custom\nauthorization header that clients submit as part of their requests.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IdentityValidationExpression",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A validation expression for the incoming identity. If you specify\nTOKEN for the authorizer's Type property, specify a regular\nexpression. API Gateway uses the expression to attempt to match the\nincoming client token, and proceeds if the token matches. If the token\ndoesn't match, API Gateway responds with a 401 (unauthorized request)\nerror code.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name of the authorizer.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the RestApi resource in which API Gateway creates the\nauthorizer.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of the authorizer, such as TOKEN.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::BasePathMapping",
+      "Href": "aws-resource-apigateway-basepathmapping.html",
+      "Properties": [
+        {
+          "Name": "BasePath",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The base path name that callers of the API must provide in the URL\nafter the domain name.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DomainName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of a DomainName resource.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the API.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Stage",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the API's stage.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::ClientCertificate",
+      "Href": "aws-resource-apigateway-clientcertificate.html",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the client certificate.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::Deployment",
+      "Href": "aws-resource-apigateway-deployment.html",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the purpose of the API Gateway deployment.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the RestApi resource to deploy.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StageDescription",
+          "Type": "Amazon API Gateway Deployment StageDescription",
+          "TypeHref": "aws-properties-apitgateway-deployment-stagedescription.html",
+          "TypeName": "",
+          "DocString": "Configures the stage that API Gateway creates with this deployment.",
+          "SyntaxExpression": "StageDescription"
+        },
+        {
+          "Name": "StageName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the stage that API Gateway creates with this deployment.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::Method",
+      "Href": "aws-resource-apigateway-method.html",
+      "Properties": [
+        {
+          "Name": "ApiKeyRequired",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the method requires clients to submit a valid API\nkey.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "AuthorizationType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The method's authorization type.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "AuthorizerId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The identifier of the authorizer to use on this method. If you specify\nthis property, specify CUSTOM for the AuthorizationType property.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "HttpMethod",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The HTTP method that clients will use to call this method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Integration",
+          "Type": "Amazon API Gateway Method Integration",
+          "TypeHref": "aws-properties-apitgateway-method-integration.html",
+          "TypeName": "",
+          "DocString": "The back-end system that the method calls when it receives a request.",
+          "SyntaxExpression": "Integration"
+        },
+        {
+          "Name": "MethodResponses",
+          "Type": "List of Amazon API Gateway Method MethodResponse",
+          "TypeHref": "aws-properties-apitgateway-method-methodresponse.html",
+          "TypeName": "",
+          "DocString": "The responses that can be sent to the client who calls the method.",
+          "SyntaxExpression": "[ MethodResponse, ... ]"
+        },
+        {
+          "Name": "RequestModels",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The resources used for the response's content type. Specify response\nmodels as key-value pairs (string-to-string maps), with a content type\nas the key and a Model resource name as the value.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "RequestParameters",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Request parameters that API Gateway accepts. Specify request\nparameters as key-value pairs (string-to-Boolean maps), with a source\nas the key and a Boolean as the value. The Boolean specifies whether a\nparameter is required. A source must match the following format\nmethod.request.location.name, where the location is a query string,\npath, or header, and name is a valid, unique parameter name.",
+          "SyntaxExpression": "{ String:Boolean, ... }"
+        },
+        {
+          "Name": "ResourceId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of an API Gateway resource.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the RestApi resource in which API Gateway creates the\nmethod.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::Model",
+      "Href": "aws-resource-apigateway-model.html",
+      "Properties": [
+        {
+          "Name": "ContentType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The content type for the model.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description that identifies this model.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the mode. If you don't specify a name, AWS CloudFormation\ngenerates a unique physical ID and uses that ID for the model name.\nFor more information, see Name Type.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of a REST API with which to associate this model.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Schema",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The schema to use to transform data to one or more output formats.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::Resource",
+      "Href": "aws-resource-apigateway-resource.html",
+      "Properties": [
+        {
+          "Name": "ParentId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you want to create a child resource, the ID of the parent resource.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "PathPart",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A path name for the resource.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the RestApi resource in which you want to create this\nresource.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::RestApi",
+      "Href": "aws-resource-apigateway-restapi.html",
+      "Properties": [
+        {
+          "Name": "Body",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A Swagger specification that defines a set of RESTful APIs in JSON or\nYAML format.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "BodyS3Location",
+          "Type": "Amazon API Gateway RestApi S3Location",
+          "TypeHref": "aws-properties-apitgateway-restapi-bodys3location.html",
+          "TypeName": "",
+          "DocString": "The Amazon Simple Storage Service (Amazon S3) location that points to\na Swagger file, which defines a set of RESTful APIs in JSON or YAML\nformat.",
+          "SyntaxExpression": "S3Location"
+        },
+        {
+          "Name": "CloneFrom",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the API Gateway RestApi resource that you want to clone.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the purpose of this API Gateway RestApi resource.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "FailOnWarnings",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If a warning occurs while API Gateway is creating the RestApi\nresource, indicates whether to roll back the resource.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the API Gateway RestApi resource.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Parameters",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Custom header parameters for the request.",
+          "SyntaxExpression": "[ String, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::Stage",
+      "Href": "aws-resource-apigateway-stage.html",
+      "Properties": [
+        {
+          "Name": "CacheClusterEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether cache clustering is enabled for the stage.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "CacheClusterSize",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The stage's cache cluster size.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ClientCertificateId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The identifier of the client certificate that API Gateway uses to call\nyour integration endpoints in the stage.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DeploymentId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the deployment that the stage points to.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the stage's purpose.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MethodSettings",
+          "Type": "Amazon API Gateway Stage MethodSetting",
+          "TypeHref": "aws-properties-apitgateway-stage-methodsetting.html",
+          "TypeName": "",
+          "DocString": "Settings for all methods in the stage.",
+          "SyntaxExpression": "[ MethodSetting ]"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the RestApi resource that you're deploying with this stage.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StageName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the stage, which API Gateway uses as the first path\nsegment in the invoke Uniform Resource Identifier (URI).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Variables",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A map (string to string map) that defines the stage variables, where\nthe variable name is the key and the variable value is the value.\nVariable names are limited to alphanumeric characters. Values must\nmatch the following regular expression: [A-Za-z0-9-._~:/?#\u0026amp;=,]+.",
+          "SyntaxExpression": "{ String:String, ... }"
+        }
+      ]
+    },
+    {
       "Name": "AWS::AutoScaling::AutoScalingGroup",
       "Href": "aws-properties-as-group.html",
       "Properties": [
@@ -3963,6 +4477,68 @@
       ]
     },
     {
+      "Name": "AWS::Events::Rule",
+      "Href": "aws-resource-events-rule.html",
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the rule's purpose.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "EventPattern",
+          "Type": "JSON object",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Describes which events CloudWatch Events routes to the specified\ntarget. These routed events are matched events. For more information,\nsee Events and Event Patterns in the Amazon CloudWatch Developer\nGuide.",
+          "SyntaxExpression": "JSON object"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the rule. If you don't specify a name, AWS CloudFormation\ngenerates a unique physical ID and uses that ID for the rule name. For\nmore information, see Name Type.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the AWS Identity and Access\nManagement (IAM) role that grants CloudWatch Events permission to make\ncalls to target services, such as AWS Lambda (Lambda) or Amazon\nKinesis streams.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ScheduleExpression",
+          "Type": "",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The schedule or rate (frequency) that determines when CloudWatch\nEvents runs the rule. For more information, see Schedule Expression\nSyntax for Rules in the Amazon CloudWatch Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "State",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the rule is enabled. For valid values, see the State\nparameter for the PutRule action in the Amazon CloudWatch Events API\nReference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Targets",
+          "Type": "List of Amazon CloudWatch Events Rule Target",
+          "TypeHref": "aws-properties-events-rule-target.html",
+          "TypeName": "",
+          "DocString": "The resources, such as Lambda functions or Amazon Kinesis streams,\nthat CloudWatch Events routes events to and invokes when the rule is\ntriggered.",
+          "SyntaxExpression": "[ Target, ... ]"
+        }
+      ]
+    },
+    {
       "Name": "AWS::GameLift::Alias",
       "Href": "aws-resource-gamelift-alias.html",
       "Properties": [
@@ -6890,7 +7466,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A friendly name or description for the metrics of this rule.",
+          "DocString": "A friendly name or description for the metrics of the rule.",
           "SyntaxExpression": "String"
         },
         {
@@ -6906,8 +7482,30 @@
           "Type": "List of AWS WAF Rule Predicates",
           "TypeHref": "aws-properties-waf-rule-predicates.html",
           "TypeName": "",
-          "DocString": "The ByteMatchSet, IPSet, or SqlInjectionMatchSet objects to include in\na rule. If you add more than one predicate to a rule, a request must\nmatch all conditions for it to be allowed or blocked.",
+          "DocString": "The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or\nXssMatchSet objects to include in a rule. If you add more than one\npredicate to a rule, a request must match all conditions in order to\nbe allowed or blocked.",
           "SyntaxExpression": "[ Predicate, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::WAF::SizeConstraintSet",
+      "Href": "aws-resource-waf-sizeconstraintset.html",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A friendly name or description for the SizeConstraintSet.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SizeConstraints",
+          "Type": "List of AWS WAF SizeConstraintSet SizeConstraint",
+          "TypeHref": "aws-properties-waf-sizeconstraintset-sizeconstraint.html",
+          "TypeName": "",
+          "DocString": "The size constraint and the part of the web request to check.",
+          "SyntaxExpression": "[ SizeConstraint, ... ]"
         }
       ]
     },
@@ -6972,6 +7570,28 @@
       ]
     },
     {
+      "Name": "AWS::WAF::XssMatchSet",
+      "Href": "aws-resource-waf-xssmatchset.html",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A friendly name or description for the XssMatchSet.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "XssMatchTuples",
+          "Type": "List of AWS WAF XssMatchSet XssMatchTuple",
+          "TypeHref": "aws-properties-waf-xssmatchset-xssmatchtuple.html",
+          "TypeName": "",
+          "DocString": "The parts of web requests that you want to inspect for cross-site\nscripting attacks.",
+          "SyntaxExpression": "[ XssMatchTuple, ... ]"
+        }
+      ]
+    },
+    {
       "Name": "AWS::WorkSpaces::Workspace",
       "Href": "aws-resource-workspaces-workspace.html",
       "Properties": [
@@ -7022,6 +7642,462 @@
           "TypeName": "",
           "DocString": "The AWS Key Management Service (AWS KMS) key ID that Amazon WorkSpaces\nuses to encrypt data stored on your workspace.",
           "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway ApiKey StageKey",
+      "Href": "aws-properties-apitgateway-apikey-stagekey.html",
+      "Properties": [
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of a RestApi resource that includes the stage with which you\nwant to associate the API key.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StageName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the stage with which to associate the API key. The stage\nmust be included in the RestApi resource that you specified in the\nRestApiId property.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway Deployment StageDescription",
+      "Href": "aws-properties-apitgateway-deployment-stagedescription.html",
+      "Properties": [
+        {
+          "Name": "CacheClusterEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether cache clustering is enabled for the stage.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "CacheClusterSize",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The size of the stage's cache cluster.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ClientCertificateId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The identifier of the client certificate that API Gateway uses to call\nyour integration endpoints in the stage.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DeploymentId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the deployment that the stage points to.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the purpose of the stage.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MethodSettings",
+          "Type": "Amazon API Gateway Deployment StageDescription MethodSetting",
+          "TypeHref": "aws-properties-apitgateway-deployment-stagedescription-methodsetting.html",
+          "TypeName": "",
+          "DocString": "Configures settings for all of the stage's methods.",
+          "SyntaxExpression": "[ MethodSetting ]"
+        },
+        {
+          "Name": "RestApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of a RestApi resource that you're deploying with this stage.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StageName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the stage, which API Gateway uses as the first path\nsegment in the invoke Uniform Resource Identifier (URI).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Variables",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A map that defines the stage variables. Variable names must consist of\nalphanumeric characters, and the values must match the following\nregular expression: [A-Za-z0-9-._~:/?#\u0026amp;=,]+.",
+          "SyntaxExpression": "{ String:String, ... }"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway Deployment StageDescription MethodSetting",
+      "Href": "aws-properties-apitgateway-deployment-stagedescription-methodsetting.html",
+      "Properties": [
+        {
+          "Name": "CacheDataEncrypted",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the cached responses are encrypted.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "CacheTtlInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The time-to-live (TTL) period, in seconds, that specifies how long API\nGateway caches responses.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "CachingEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether responses are cached and returned for requests. You\nmust enable a cache cluster on the stage to cache responses.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "DataTraceEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether data trace logging is enabled for methods in the\nstage. API Gateway pushes these logs to Amazon CloudWatch Logs.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "HttpMethod",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The HTTP method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "LoggingLevel",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The logging level for this method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MetricsEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether Amazon CloudWatch metrics are enabled for methods in\nthe stage.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "ResourcePath",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The resource path for this method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ThrottlingBurstLimit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "ThrottlingRateLimit",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account.",
+          "SyntaxExpression": "Number"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway Method Integration",
+      "Href": "aws-properties-apitgateway-method-integration.html",
+      "Properties": [
+        {
+          "Name": "CacheKeyParameters",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of request parameters whose values API Gateway will cache.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "CacheNamespace",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An API-specific tag group of related cached parameters.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Credentials",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The credentials required for the integration. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To use resource-based\npermissions on the AWS Lambda (Lambda) function, specify null. To\nrequire that the caller's identity be passed through from the request,\nspecify arn:aws:iam::\\*:user/\\*.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IntegrationHttpMethod",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The integration's HTTP method type.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IntegrationResponses",
+          "Type": "List of Amazon API Gateway Method Integration IntegrationResponse",
+          "TypeHref": "aws-properties-apitgateway-method-integration-integrationresponse.html",
+          "TypeName": "",
+          "DocString": "The response that API Gateway provides after a method's back end\ncompletes processing a request. API Gateway intercepts the back end's\nresponse so that you can control how API Gateway surfaces back-end\nresponses. For example, you can map the back-end status codes to codes\nthat you define.",
+          "SyntaxExpression": "[ IntegrationResponse, ... ]"
+        },
+        {
+          "Name": "RequestParameters",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The request parameters that API Gateway sends with the back-end\nrequest. Specify request parameters as key-value pairs\n(string-to-string maps), with a destination as the key and a source as\nthe value.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "RequestTemplates",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The templates used to transform the method request body. Specify\ntemplates as key-value pairs (string-to-string maps), with a content\ntype as the key and a template as the value.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of back end your method is running, such as HTTP, AWS, or\nMOCK.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Uri",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The integration's Uniform Resource Identifier (URI). If you specify\nHTTP for the Type property, specify the API endpoint URL. If you\nspecify LAMBDA for the Type property, specify a Lambda function URI,\nwhich follows the form: arn:aws:apigateway:region:lambda:path/path.\nThe path is usually in the form\n/2015-03-31/functions/LambdaFunctionARN/invocations. If you specify\nAWS for the Type property, specify an AWS service. If you specify MOCK\nfor the Type property, don't specify this property.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway Method Integration IntegrationResponse",
+      "Href": "aws-properties-apitgateway-method-integration-integrationresponse.html",
+      "Properties": [
+        {
+          "Name": "ResponseParameters",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The response parameters from the back-end response that API Gateway\nsends to the method response. Specify response parameters as key-value\npairs (string-to-string maps), with a destination as the key and a\nsource as the value.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "ResponseTemplates",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The templates used to transform the integration response body. Specify\ntemplates as key-value pairs (string-to-string maps), with a content\ntype as the key and a template as the value.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "SelectionPattern",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A regular expression that specifies which error strings or status\ncodes from the back end map to the integration response.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StatusCode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The status code that API Gateway uses to map the integration response\nto a MethodResponse status code.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway Method MethodResponse",
+      "Href": "aws-properties-apitgateway-method-methodresponse.html",
+      "Properties": [
+        {
+          "Name": "ResponseModels",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The resources used for the response's content type. Specify response\nmodels as key-value pairs (string-to-string maps), with a content type\nas the key and a Model resource name as the value.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "ResponseParameters",
+          "Type": "List of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Response parameters that API Gateway sends to the client that called a\nmethod. Specify response parameters as key-value pairs\n(string-to-Boolean maps), with a destination as the key and a Boolean\nas the value. Specify the destination using the following pattern:\nmethod.response.header.name, where the name is a valid, unique header\nname. The Boolean specifies whether a parameter is required.",
+          "SyntaxExpression": "{ String:Boolean, ... }"
+        },
+        {
+          "Name": "StatusCode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The method response's status code, which you map to an\nIntegrationResponse.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway RestApi S3Location",
+      "Href": "aws-properties-apitgateway-restapi-bodys3location.html",
+      "Properties": [
+        {
+          "Name": "Bucket",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the S3 bucket where the Swagger file is stored.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ETag",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon S3 ETag (a file checksum) of the Swagger file. If you don't\nspecify a value, API Gateway skips ETag validation of your Swagger\nfile.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The file name of the application revision (Amazon S3 object name).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Version",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "For versioning-enabled buckets, a specific version of the Swagger\nfile.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway Stage MethodSetting",
+      "Href": "aws-properties-apitgateway-stage-methodsetting.html",
+      "Properties": [
+        {
+          "Name": "CacheDataEncrypted",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the cached responses are encrypted.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "CacheTtlInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The time-to-live (TTL) period, in seconds, that specifies how long API\nGateway caches responses.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "CachingEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether responses are cached and returned for requests. You\nmust enable a cache cluster on the stage to cache responses.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "DataTraceEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether data trace logging is enabled for methods in the\nstage. API Gateway pushes these logs to Amazon CloudWatch Logs.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "HttpMethod",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The HTTP method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "LoggingLevel",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The logging level for this method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MetricsEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether Amazon CloudWatch metrics are enabled for methods in\nthe stage.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "ResourcePath",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The resource path for this method.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ThrottlingBurstLimit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "ThrottlingRateLimit",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account.",
+          "SyntaxExpression": "Number"
         }
       ]
     },
@@ -7908,6 +8984,44 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The value representing the dimension measurement, from 1–255\ncharacters in length.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon CloudWatch Events Rule Target",
+      "Href": "aws-properties-events-rule-target.html",
+      "Properties": [
+        {
+          "Name": "Arn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the target.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Id",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A unique identifier for the target.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Input",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A JSON-formatted text string that is passed to the target. This value\noverrides the matched event.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "InputPath",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "When you don't want to pass the entire matched event, the JSONPath\nthat describes which part of the event to pass to the target.",
           "SyntaxExpression": "String"
         }
       ]
@@ -10746,7 +11860,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The settings that you want to change in the application-specific\nconfiguration file. For more information see, Configuring Applications\nin the Amazon Elastic MapReduce Release Guide.",
-          "SyntaxExpression": "[ String:String, ... ]"
+          "SyntaxExpression": "{ String:String, ... }"
         },
         {
           "Name": "Configurations",
@@ -12870,7 +13984,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A unique identifier for the predicate.",
+          "DocString": "The unique identifier of a predicate, such as the ID of a ByteMatchSet\nor IPSet.",
           "SyntaxExpression": "String"
         },
         {
@@ -12878,7 +13992,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Whether to use the settings or the negated settings that you specified\nin the ByteMatchSet, IPSet, or SqlInjectionMatchSet objects.",
+          "DocString": "Whether to use the settings or the negated settings that you specified\nin the ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet,\nor XssMatchSet objects.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -12887,6 +14001,66 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of predicate in a rule, such as an IPSet (IPMatch). For valid\nvalues, see the Type contents of the Predicate data type in the AWS\nWAF API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS WAF SizeConstraintSet SizeConstraint",
+      "Href": "aws-properties-waf-sizeconstraintset-sizeconstraint.html",
+      "Properties": [
+        {
+          "Name": "ComparisonOperator",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of comparison that you want AWS WAF to perform. AWS WAF uses\nthis value in combination with the Size and FieldToMatch property\nvalues to check if the size constraint is a match. For more\ninformation and valid values, see the ComparisonOperator content for\nthe SizeConstraint data type in the AWS WAF API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "FieldToMatch",
+          "Type": "AWS WAF SizeConstraintSet SizeConstraint FieldToMatch",
+          "TypeHref": "aws-properties-waf-sizeconstraintset-sizeconstraint-fieldtomatch.html",
+          "TypeName": "",
+          "DocString": "The part of a web request that you want AWS WAF to search, such as a\nspecific header or a query string.",
+          "SyntaxExpression": "Field to match"
+        },
+        {
+          "Name": "Size",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The size in bytes that you want AWS WAF to compare against the size of\nthe specified FieldToMatch. AWS WAF uses Size in combination with the\nComparisonOperator and FieldToMatch property values to check if the\nsize constraint of a web request is a match. For more information and\nvalid values, see the Size content for the SizeConstraint data type in\nthe AWS WAF API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TextTransformation",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies how AWS WAF processes the FieldToMatch property before\ninspecting a request for a match. Text transformations eliminate some\nof the unusual formatting that attackers use in web requests in an\neffort to bypass AWS WAF. If you specify a transformation, AWS WAF\ntransforms the FieldToMatch before inspecting a web request for a\nmatch.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS WAF SizeConstraintSet SizeConstraint FieldToMatch",
+      "Href": "aws-properties-waf-sizeconstraintset-sizeconstraint-fieldtomatch.html",
+      "Properties": [
+        {
+          "Name": "Data",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you specify HEADER for the Type property, the name of the header\nthat AWS WAF searches for, such as User-Agent or Referer. If you\nspecify any other value for the Type property, do not specify this\nproperty.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The part of the web request in which AWS WAF searches for the target\nstring. For valid values, see FieldToMatch in the AWS WAF API\nReference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -12916,6 +14090,50 @@
     {
       "Name": "AWS WAF SqlInjectionMatchSet SqlInjectionMatchTuples FieldToMatch",
       "Href": "aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples-fieldtomatch.html",
+      "Properties": [
+        {
+          "Name": "Data",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you specify HEADER for the Type property, the name of the header\nthat AWS WAF searches for, such as User-Agent or Referer. If you\nspecify any other value for the Type property, do not specify this\nproperty.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The part of the web request in which AWS WAF searches for the target\nstring. For valid values, see FieldToMatch in the AWS WAF API\nReference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS WAF XssMatchSet XssMatchTuple",
+      "Href": "aws-properties-waf-xssmatchset-xssmatchtuple.html",
+      "Properties": [
+        {
+          "Name": "FieldToMatch",
+          "Type": "AWS WAF XssMatchSet XssMatchTuple FieldToMatch",
+          "TypeHref": "aws-properties-waf-xssmatchset-xssmatchtuple-fieldtomatch.html",
+          "TypeName": "",
+          "DocString": "The part of a web request that you want AWS WAF to search, such as a\nspecific header or a query string.",
+          "SyntaxExpression": "Field to match"
+        },
+        {
+          "Name": "TextTransformation",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies how AWS WAF processes the FieldToMatch property before\ninspecting a request for a match. Text transformations eliminate some\nof the unusual formatting that attackers use in web requests in an\neffort to bypass AWS WAF. If you specify a transformation, AWS WAF\ntransforms theFieldToMatch parameter before inspecting a web request\nfor a match.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS WAF XssMatchSet XssMatchTuple FieldToMatch",
+      "Href": "aws-properties-waf-xssmatchset-xssmatchtuple-fieldtomatch.html",
       "Properties": [
         {
           "Name": "Data",
