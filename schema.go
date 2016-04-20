@@ -2531,7 +2531,7 @@ type ElastiCacheCacheCluster struct {
 
 	// A list of VPC security group IDs. If your cache cluster isn't in a
 	// VPC, specify the CacheSecurityGroupNames property instead.
-	XVpcSecurityGroupIdsX *StringListExpr `json:" VpcSecurityGroupIds ,omitempty"`
+	VpcSecurityGroupIds *StringListExpr `json:"VpcSecurityGroupIds,omitempty"`
 }
 
 // ResourceType returns AWS::ElastiCache::CacheCluster to implement the ResourceProperties interface
@@ -5403,12 +5403,15 @@ type APIGatewayMethodIntegration struct {
 
 	// The integration's Uniform Resource Identifier (URI). If you specify
 	// HTTP for the Type property, specify the API endpoint URL. If you
-	// specify LAMBDA for the Type property, specify a Lambda function URI,
-	// which follows the form: arn:aws:apigateway:region:lambda:path/path.
-	// The path is usually in the form
-	// /2015-03-31/functions/LambdaFunctionARN/invocations. If you specify
-	// AWS for the Type property, specify an AWS service. If you specify MOCK
-	// for the Type property, don't specify this property.
+	// specify MOCK for the Type property, don't specify this property. If
+	// you specify AWS for the Type property, specify an AWS service that
+	// follows the form:
+	// arn:aws:apigateway:region:subdomain.service|service:path|action/service_api.
+	// For example, a Lambda function URI follows the form:
+	// arn:aws:apigateway:region:lambda:path/path. The path is usually in the
+	// form /2015-03-31/functions/LambdaFunctionARN/invocations. For more
+	// information, see the uri property of the Integration resource in the
+	// Amazon API Gateway REST API Reference.
 	Uri *StringExpr `json:"Uri,omitempty"`
 }
 

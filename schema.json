@@ -3698,12 +3698,12 @@
           "SyntaxExpression": "[Resource Tag, ...]"
         },
         {
-          "Name": " VpcSecurityGroupIds ",
+          "Name": "VpcSecurityGroupIds",
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of VPC security group IDs. If your cache cluster isn't in a\nVPC, specify the CacheSecurityGroupNames property instead.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "[String, ...]"
         }
       ]
     },
@@ -7904,7 +7904,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The integration's Uniform Resource Identifier (URI). If you specify\nHTTP for the Type property, specify the API endpoint URL. If you\nspecify LAMBDA for the Type property, specify a Lambda function URI,\nwhich follows the form: arn:aws:apigateway:region:lambda:path/path.\nThe path is usually in the form\n/2015-03-31/functions/LambdaFunctionARN/invocations. If you specify\nAWS for the Type property, specify an AWS service. If you specify MOCK\nfor the Type property, don't specify this property.",
+          "DocString": "The integration's Uniform Resource Identifier (URI). If you specify\nHTTP for the Type property, specify the API endpoint URL. If you\nspecify MOCK for the Type property, don't specify this property. If\nyou specify AWS for the Type property, specify an AWS service that\nfollows the form:\narn:aws:apigateway:region:subdomain.service|service:path|action/service_api.\nFor example, a Lambda function URI follows the form:\narn:aws:apigateway:region:lambda:path/path. The path is usually in the\nform /2015-03-31/functions/LambdaFunctionARN/invocations. For more\ninformation, see the uri property of the Integration resource in the\nAmazon API Gateway REST API Reference.",
           "SyntaxExpression": "String"
         }
       ]
