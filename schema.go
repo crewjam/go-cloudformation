@@ -2848,7 +2848,9 @@ type ElasticLoadBalancingLoadBalancer struct {
 	Listeners *ElasticLoadBalancingListenerList `json:"Listeners,omitempty"`
 
 	// A list of elastic load balancing policies to apply to this elastic
-	// load balancer.
+	// load balancer. Specify only back-end server policies. For more
+	// information, see DescribeLoadBalancerPolicyTypes in the Elastic Load
+	// Balancing API Reference.
 	Policies *ElasticLoadBalancingPolicyList `json:"Policies,omitempty"`
 
 	// For load balancers attached to an Amazon VPC, this parameter can be
@@ -9820,7 +9822,9 @@ type ElasticLoadBalancingListener struct {
 	LoadBalancerPort *StringExpr `json:"LoadBalancerPort,omitempty"`
 
 	// A list of ElasticLoadBalancing policy names to associate with the
-	// listener.
+	// listener. Specify only policies that are compatible with listeners.
+	// For more information, see DescribeLoadBalancerPolicyTypes in the
+	// Elastic Load Balancing API Reference.
 	PolicyNames *StringListExpr `json:"PolicyNames,omitempty"`
 
 	// Specifies the load balancer transport protocol to use for routing —
