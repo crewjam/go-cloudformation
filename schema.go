@@ -1497,10 +1497,47 @@ func (s EC2EIPAssociation) ResourceType() string {
 	return "AWS::EC2::EIPAssociation"
 }
 
+// EC2Host represents AWS::EC2::Host
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html
+type EC2Host struct {
+	// Indicates if the host accepts EC2 instances with only matching
+	// configurations or if instances must also specify the host ID.
+	// Instances that don't specify a host ID can't launch onto a host with
+	// AutoPlacement set to off. By default, AWS CloudFormation sets this
+	// property to on. For more information, see Understanding Instance
+	// Placement and Host Affinity in the Amazon EC2 User Guide for Linux
+	// Instances.
+	AutoPlacement *StringExpr `json:"AutoPlacement,omitempty"`
+
+	// The Availability Zone (AZ) in which to launch the dedicated host.
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
+
+	// The instance type that the dedicated host accepts. Only instances of
+	// this type can be launched onto the host. For more information, see
+	// Supported Instance Types in the Amazon EC2 User Guide for Linux
+	// Instances.
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+}
+
+// ResourceType returns AWS::EC2::Host to implement the ResourceProperties interface
+func (s EC2Host) ResourceType() string {
+	return "AWS::EC2::Host"
+}
+
 // EC2Instance represents AWS::EC2::Instance
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html
 type EC2Instance struct {
+	// Indicates whether Amazon Elastic Compute Cloud (Amazon EC2) always
+	// associates the instance with a dedicated host. If you want Amazon EC2
+	// to always restart the instance (if it was stopped) onto the same host
+	// on which it was launched, specify host. If you want Amazon EC2 to
+	// restart the instance on any available host, but to try to launch the
+	// instance onto the last host it ran on (on a best-effort basis),
+	// specify default.
+	Affinity *StringExpr `json:"Affinity,omitempty"`
+
 	// Specifies the name of the Availability Zone in which the instance is
 	// located.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
@@ -1519,6 +1556,14 @@ type EC2Instance struct {
 	// EBS and an optimized configuration stack to provide optimal EBS I/O
 	// performance.
 	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
+
+	// If you specify host for the Affinity property, the ID of a dedicated
+	// host that the instance is associated with. If you don't specify an ID,
+	// Amazon EC2 launches the instance onto any available, compatible
+	// dedicated host in your account. This type of launch is called an
+	// untargeted launch. Note that for untargeted launches, you must have a
+	// compatible, dedicated host available to successfully launch instances.
+	HostId *StringExpr `json:"HostId,omitempty"`
 
 	// The physical ID (resource name) of an instance profile or a reference
 	// to an AWS::IAM::InstanceProfile resource.
@@ -1596,11 +1641,10 @@ type EC2Instance struct {
 	// An arbitrary set of tags (key–value pairs) for this instance.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
-	// The tenancy of the instance that you want to launch. This value can be
-	// either "default" or "dedicated". An instance that has a tenancy value
-	// of "dedicated" runs on single-tenant hardware and can be launched only
-	// into a VPC. For more information, see Using EC2 Dedicated Instances
-	// Within Your VPC in the Amazon VPC User Guide.
+	// The tenancy of the instance that you want to launch, such as default,
+	// dedicated, or host. If you specify a tenancy value of dedicated or
+	// host, you must launch the instance in a VPC. For more information, see
+	// Dedicated Instances in the Amazon VPC User Guide.
 	Tenancy *StringExpr `json:"Tenancy,omitempty"`
 
 	// Base64-encoded MIME user data that is made available to the instances.
@@ -2355,6 +2399,9 @@ type ECSService struct {
 	// run your service on. If you do not specify a cluster, Amazon ECS uses
 	// the default cluster.
 	Cluster *StringExpr `json:"Cluster,omitempty"`
+
+	// Configures how many tasks run during a deployment.
+	DeploymentConfiguration *EC2ContainerServiceServiceDeploymentConfiguration `json:"DeploymentConfiguration,omitempty"`
 
 	// The number of simultaneous tasks, which you specify by using the
 	// TaskDefinition property, that you want to run on the cluster.
@@ -3184,6 +3231,14 @@ type GameLiftFleet struct {
 	// server, with the slashes (\) escaped. After a game session has been
 	// terminated, GameLift captures and stores the logs in an S3 bucket.
 	LogPaths *StringListExpr `json:"LogPaths,omitempty"`
+
+	// The maximum number of EC2 instances that you want to allow in this
+	// fleet. By default, AWS CloudFormation, sets this property to 1.
+	MaxSize *IntegerExpr `json:"MaxSize,omitempty"`
+
+	// The minimum number of EC2 instances that you want to allow in this
+	// fleet. By default, AWS CloudFormation, sets this property to 0.
+	MinSize *IntegerExpr `json:"MinSize,omitempty"`
 
 	// An identifier to associate with this fleet. Fleet names don't need to
 	// be unique.
@@ -9138,6 +9193,46 @@ func (l *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificati
 	return err
 }
 
+// EC2ContainerServiceServiceDeploymentConfiguration represents Amazon EC2 Container Service Service DeploymentConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html
+type EC2ContainerServiceServiceDeploymentConfiguration struct {
+	// The maximum number of tasks, specified as a percentage of the Amazon
+	// ECS service's DesiredCount value, that can run in a service during a
+	// deployment. To calculate the maximum number of tasks, Amazon ECS uses
+	// this formula: the value of DesiredCount * (the value of the
+	// MaximumPercent/100), rounded down to the nearest integer value.
+	MaximumPercent *IntegerExpr `json:"MaximumPercent,omitempty"`
+
+	// The minimum number of tasks, specified as a percentage of the Amazon
+	// ECS service's DesiredCount value, that must continue to run and remain
+	// healthy during a deployment. To calculate the minimum number of tasks,
+	// Amazon ECS uses this formula: the value of DesiredCount * (the value
+	// of the MinimumHealthyPercent/100), rounded up to the nearest integer
+	// value.
+	MinimumHealthyPercent *IntegerExpr `json:"MinimumHealthyPercent,omitempty"`
+}
+
+// EC2ContainerServiceServiceDeploymentConfigurationList represents a list of EC2ContainerServiceServiceDeploymentConfiguration
+type EC2ContainerServiceServiceDeploymentConfigurationList []EC2ContainerServiceServiceDeploymentConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2ContainerServiceServiceDeploymentConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2ContainerServiceServiceDeploymentConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2ContainerServiceServiceDeploymentConfigurationList{item}
+		return nil
+	}
+	list := []EC2ContainerServiceServiceDeploymentConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2ContainerServiceServiceDeploymentConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
 // EC2ContainerServiceServiceLoadBalancers represents Amazon EC2 Container Service Service LoadBalancers
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html
@@ -9185,8 +9280,30 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 
 	// The minimum number of CPU units to reserve for the container.
 	// Containers share unallocated CPU units with other containers on the
-	// instance by using the same ratio as their allocated CPU units.
+	// instance by using the same ratio as their allocated CPU units. For
+	// more information, see the cpu content for the ContainerDefinition data
+	// type in the Amazon EC2 Container Service API Reference.
 	Cpu *IntegerExpr `json:"Cpu,omitempty"`
+
+	// Indicates whether networking is disabled within the container.
+	DisableNetworking *BoolExpr `json:"DisableNetworking,omitempty"`
+
+	// A list of DNS search domains that are provided to the container. The
+	// domain names that the DNS logic looks up when a process attempts to
+	// access a bare unqualified hostname.
+	DnsSearchDomains *StringListExpr `json:"DnsSearchDomains,omitempty"`
+
+	// A list of DNS servers that Amazon ECS provides to the container.
+	DnsServers *StringListExpr `json:"DnsServers,omitempty"`
+
+	// A key-value map of labels for the container.
+	DockerLabels interface{} `json:"DockerLabels,omitempty"`
+
+	// A list of custom labels for SELinux and AppArmor multi-level security
+	// systems. For more information, see the dockerSecurityOptions content
+	// for the ContainerDefinition data type in the Amazon EC2 Container
+	// Service API Reference.
+	DockerSecurityOptions *StringListExpr `json:"DockerSecurityOptions,omitempty"`
 
 	// The ENTRYPOINT value to pass to the container. For more information
 	// about the Docker ENTRYPOINT parameter, see
@@ -9199,8 +9316,15 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 	// Indicates whether the task stops if this container fails. If you
 	// specify true and the container fails, all other containers in the task
 	// stop. If you specify false and the container fails, none of the other
-	// containers in the task are affected. This value is true by default.
+	// containers in the task is affected. This value is true by default.
 	Essential *BoolExpr `json:"Essential,omitempty"`
+
+	// A list of hostnames and IP address mappings to append to the
+	// /etc/hosts file on the container.
+	ExtraHosts *EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntryList `json:"ExtraHosts,omitempty"`
+
+	// The name that Docker will use for the container's hostname.
+	Hostname *StringExpr `json:"Hostname,omitempty"`
 
 	// The image to use for a container, which is passed directly to the
 	// Docker daemon. You can use images in the Docker Hub registry or
@@ -9211,9 +9335,15 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 	// can communicate with each other without using port mappings.
 	Links *StringListExpr `json:"Links,omitempty"`
 
+	// Configures a custom log driver for the container. For more
+	// information, see the logConfiguration content for the
+	// ContainerDefinition data type in the Amazon EC2 Container Service API
+	// Reference.
+	LogConfiguration *EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration `json:"LogConfiguration,omitempty"`
+
 	// The number of MiB of memory to reserve for the container. If your
 	// container attempts to exceed the allocated memory, the container is
-	// killed.
+	// terminated.
 	Memory *IntegerExpr `json:"Memory,omitempty"`
 
 	// The mount points for data volumes in the container.
@@ -9227,8 +9357,27 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 	// receive traffic.
 	PortMappings *EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappingsList `json:"PortMappings,omitempty"`
 
-	// Data volumes to mount from another container.
+	// Indicates whether the container is given full access to the host
+	// container instance.
+	Privileged *BoolExpr `json:"Privileged,omitempty"`
+
+	// Indicates whether the container's root file system is mounted as read
+	// only.
+	ReadonlyRootFilesystem *BoolExpr `json:"ReadonlyRootFilesystem,omitempty"`
+
+	// A list of ulimits to set in the container. The ulimits set constraints
+	// on how much resources a container can consume so that it doesn't
+	// deplete all available resources on the host.
+	Ulimits *EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimitList `json:"Ulimits,omitempty"`
+
+	// The user name to use inside the container.
+	User *StringExpr `json:"User,omitempty"`
+
+	// The data volumes to mount from another container.
 	VolumesFrom *EC2ContainerServiceTaskDefinitionContainerDefinitionsVolumesFromList `json:"VolumesFrom,omitempty"`
+
+	// The working directory in the container in which to run commands.
+	WorkingDirectory *StringExpr `json:"WorkingDirectory,omitempty"`
 }
 
 // EC2ContainerServiceTaskDefinitionContainerDefinitionsList represents a list of EC2ContainerServiceTaskDefinitionContainerDefinitions
@@ -9277,6 +9426,74 @@ func (l *EC2ContainerServiceTaskDefinitionContainerDefinitionsEnvironmentList) U
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsEnvironmentList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry represents Amazon EC2 Container Service TaskDefinition ContainerDefinitions HostEntry
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html
+type EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry struct {
+	// The hostname to use in the /etc/hosts file.
+	Hostname *StringExpr `json:"Hostname,omitempty"`
+
+	// The IP address to use in the /etc/hosts file.
+	IpAddress *StringExpr `json:"IpAddress,omitempty"`
+}
+
+// EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntryList represents a list of EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry
+type EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntryList []EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntryList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntryList{item}
+		return nil
+	}
+	list := []EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntryList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration represents Amazon EC2 Container Service TaskDefinition ContainerDefinitions LogConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html
+type EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration struct {
+	// The log driver to use for the container. This parameter requires that
+	// your container instance uses Docker Remote API Version 1.18 or
+	// greater. For more information, see the logDriver content for the
+	// LogConfiguration data type in the Amazon EC2 Container Service API
+	// Reference.
+	LogDriver *StringExpr `json:"LogDriver,omitempty"`
+
+	// The configuration options to send to the log driver. This parameter
+	// requires that your container instance uses Docker Remote API Version
+	// 1.18 or greater.
+	Options interface{} `json:"Options,omitempty"`
+}
+
+// EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfigurationList represents a list of EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration
+type EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfigurationList []EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfigurationList{item}
+		return nil
+	}
+	list := []EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfigurationList(list)
 		return nil
 	}
 	return err
@@ -9351,6 +9568,41 @@ func (l *EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappingsList) 
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappingsList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimit represents Amazon EC2 Container Service TaskDefinition ContainerDefinitions Ulimit
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html
+type EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimit struct {
+	// The hard limit for the ulimit type.
+	HardLimit *IntegerExpr `json:"HardLimit,omitempty"`
+
+	// The type of ulimit. For valid values, see the name content for the
+	// Ulimit data type in the Amazon EC2 Container Service API Reference.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The soft limit for the ulimit type.
+	SoftLimit *IntegerExpr `json:"SoftLimit,omitempty"`
+}
+
+// EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimitList represents a list of EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimit
+type EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimitList []EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimit
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimitList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimit{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimitList{item}
+		return nil
+	}
+	list := []EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimit{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2ContainerServiceTaskDefinitionContainerDefinitionsUlimitList(list)
 		return nil
 	}
 	return err
@@ -10709,21 +10961,21 @@ func (l *IAMUserLoginProfileList) UnmarshalJSON(buf []byte) error {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
 type LambdaFunctionCode struct {
 	// The name of the S3 bucket that contains the source code of your Lambda
-	// function. The S3 bucket must be in the same region in which the stack
-	// is created.
+	// function. The S3 bucket must be in the same region as the stack.
 	S3Bucket *StringExpr `json:"S3Bucket,omitempty"`
 
-	// The location and name of your source code .zip file. If you specify
-	// this property, you must also specify the S3Bucket property.
+	// The location and name of the .zip file that contains your source code.
+	// If you specify this property, you must also specify the S3Bucket
+	// property.
 	S3Key *StringExpr `json:"S3Key,omitempty"`
 
-	// If you have S3 versioning enabled, the version ID of your source code
-	// .zip file. You can specify this property only if you specify a bucket
-	// location.
+	// If you have S3 versioning enabled, the version ID of the.zip file that
+	// contains your source code. You can specify this property only if you
+	// specify the S3Bucket and S3Key properties.
 	S3ObjectVersion *StringExpr `json:"S3ObjectVersion,omitempty"`
 
-	// For nodejs runtime environments, the source code of your Lambda
-	// function. You cannot use this property with other runtime
+	// For nodejs and python2.7 runtime environments, the source code of your
+	// Lambda function. You can't use this property with other runtime
 	// environments.
 	ZipFile *StringExpr `json:"ZipFile,omitempty"`
 }
@@ -13259,6 +13511,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2EIP{}
 	case "AWS::EC2::EIPAssociation":
 		return &EC2EIPAssociation{}
+	case "AWS::EC2::Host":
+		return &EC2Host{}
 	case "AWS::EC2::Instance":
 		return &EC2Instance{}
 	case "AWS::EC2::InternetGateway":

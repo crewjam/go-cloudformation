@@ -2179,9 +2179,47 @@
       ]
     },
     {
+      "Name": "AWS::EC2::Host",
+      "Href": "aws-resource-ec2-host.html",
+      "Properties": [
+        {
+          "Name": "AutoPlacement",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates if the host accepts EC2 instances with only matching\nconfigurations or if instances must also specify the host ID.\nInstances that don't specify a host ID can't launch onto a host with\nAutoPlacement set to off. By default, AWS CloudFormation sets this\nproperty to on. For more information, see Understanding Instance\nPlacement and Host Affinity in the Amazon EC2 User Guide for Linux\nInstances.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "AvailabilityZone",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Availability Zone (AZ) in which to launch the dedicated host.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "InstanceType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The instance type that the dedicated host accepts. Only instances of\nthis type can be launched onto the host. For more information, see\nSupported Instance Types in the Amazon EC2 User Guide for Linux\nInstances.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS::EC2::Instance",
       "Href": "aws-properties-ec2-instance.html",
       "Properties": [
+        {
+          "Name": "Affinity",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether Amazon Elastic Compute Cloud (Amazon EC2) always\nassociates the instance with a dedicated host. If you want Amazon EC2\nto always restart the instance (if it was stopped) onto the same host\non which it was launched, specify host. If you want Amazon EC2 to\nrestart the instance on any available host, but to try to launch the\ninstance onto the last host it ran on (on a best-effort basis),\nspecify default.",
+          "SyntaxExpression": "String"
+        },
         {
           "Name": "AvailabilityZone",
           "Type": "String",
@@ -2213,6 +2251,14 @@
           "TypeName": "",
           "DocString": "Specifies whether the instance is optimized for Amazon Elastic Block\nStore I/O. This optimization provides dedicated throughput to Amazon\nEBS and an optimized configuration stack to provide optimal EBS I/O\nperformance.",
           "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "HostId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you specify host for the Affinity property, the ID of a dedicated\nhost that the instance is associated with. If you don't specify an ID,\nAmazon EC2 launches the instance onto any available, compatible\ndedicated host in your account. This type of launch is called an\nuntargeted launch. Note that for untargeted launches, you must have a\ncompatible, dedicated host available to successfully launch instances.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "IamInstanceProfile",
@@ -2355,7 +2401,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The tenancy of the instance that you want to launch. This value can be\neither \"default\" or \"dedicated\". An instance that has a tenancy value\nof \"dedicated\" runs on single-tenant hardware and can be launched only\ninto a VPC. For more information, see Using EC2 Dedicated Instances\nWithin Your VPC in the Amazon VPC User Guide.",
+          "DocString": "The tenancy of the instance that you want to launch, such as default,\ndedicated, or host. If you specify a tenancy value of dedicated or\nhost, you must launch the instance in a VPC. For more information, see\nDedicated Instances in the Amazon VPC User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -3424,6 +3470,14 @@
           "TypeName": "",
           "DocString": "The name or Amazon Resource Name (ARN) of the cluster that you want to\nrun your service on. If you do not specify a cluster, Amazon ECS uses\nthe default cluster.",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DeploymentConfiguration",
+          "Type": "Amazon EC2 Container Service Service DeploymentConfiguration",
+          "TypeHref": "aws-properties-ecs-service-deploymentconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configures how many tasks run during a deployment.",
+          "SyntaxExpression": "DeploymentConfiguration"
         },
         {
           "Name": "DesiredCount",
@@ -4649,6 +4703,22 @@
           "TypeName": "",
           "DocString": "The path to game-session log files that are generated by your game\nserver, with the slashes (\\) escaped. After a game session has been\nterminated, GameLift captures and stores the logs in an S3 bucket.",
           "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "MaxSize",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The maximum number of EC2 instances that you want to allow in this\nfleet. By default, AWS CloudFormation, sets this property to 1.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "MinSize",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The minimum number of EC2 instances that you want to allow in this\nfleet. By default, AWS CloudFormation, sets this property to 0.",
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "Name",
@@ -11085,6 +11155,28 @@
       ]
     },
     {
+      "Name": "Amazon EC2 Container Service Service DeploymentConfiguration",
+      "Href": "aws-properties-ecs-service-deploymentconfiguration.html",
+      "Properties": [
+        {
+          "Name": "MaximumPercent",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The maximum number of tasks, specified as a percentage of the Amazon\nECS service's DesiredCount value, that can run in a service during a\ndeployment. To calculate the maximum number of tasks, Amazon ECS uses\nthis formula: the value of DesiredCount * (the value of the\nMaximumPercent/100), rounded down to the nearest integer value.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "MinimumHealthyPercent",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The minimum number of tasks, specified as a percentage of the Amazon\nECS service's DesiredCount value, that must continue to run and remain\nhealthy during a deployment. To calculate the minimum number of tasks,\nAmazon ECS uses this formula: the value of DesiredCount * (the value\nof the MinimumHealthyPercent/100), rounded up to the nearest integer\nvalue.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
       "Name": "Amazon EC2 Container Service Service LoadBalancers",
       "Href": "aws-properties-ecs-service-loadbalancers.html",
       "Properties": [
@@ -11131,8 +11223,48 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The minimum number of CPU units to reserve for the container.\nContainers share unallocated CPU units with other containers on the\ninstance by using the same ratio as their allocated CPU units.",
+          "DocString": "The minimum number of CPU units to reserve for the container.\nContainers share unallocated CPU units with other containers on the\ninstance by using the same ratio as their allocated CPU units. For\nmore information, see the cpu content for the ContainerDefinition data\ntype in the Amazon EC2 Container Service API Reference.",
           "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "DisableNetworking",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether networking is disabled within the container.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "DnsSearchDomains",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of DNS search domains that are provided to the container. The\ndomain names that the DNS logic looks up when a process attempts to\naccess a bare unqualified hostname.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "DnsServers",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of DNS servers that Amazon ECS provides to the container.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "DockerLabels",
+          "Type": "Key-value pairs, with the name of the label as the key and the label value as the value",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A key-value map of labels for the container.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "DockerSecurityOptions",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of custom labels for SELinux and AppArmor multi-level security\nsystems. For more information, see the dockerSecurityOptions content\nfor the ContainerDefinition data type in the Amazon EC2 Container\nService API Reference.",
+          "SyntaxExpression": "[ String, ... ]"
         },
         {
           "Name": "EntryPoint",
@@ -11155,8 +11287,24 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether the task stops if this container fails. If you\nspecify true and the container fails, all other containers in the task\nstop. If you specify false and the container fails, none of the other\ncontainers in the task are affected. This value is true by default.",
+          "DocString": "Indicates whether the task stops if this container fails. If you\nspecify true and the container fails, all other containers in the task\nstop. If you specify false and the container fails, none of the other\ncontainers in the task is affected. This value is true by default.",
           "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "ExtraHosts",
+          "Type": "List of Amazon EC2 Container Service TaskDefinition ContainerDefinitions HostEntry",
+          "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html",
+          "TypeName": "",
+          "DocString": "A list of hostnames and IP address mappings to append to the\n/etc/hosts file on the container.",
+          "SyntaxExpression": "[ Host Entry, ... ]"
+        },
+        {
+          "Name": "Hostname",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name that Docker will use for the container's hostname.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "Image",
@@ -11175,11 +11323,19 @@
           "SyntaxExpression": "[ String, ... ]"
         },
         {
+          "Name": "LogConfiguration",
+          "Type": "Amazon EC2 Container Service TaskDefinition ContainerDefinitions LogConfiguration",
+          "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configures a custom log driver for the container. For more\ninformation, see the logConfiguration content for the\nContainerDefinition data type in the Amazon EC2 Container Service API\nReference.",
+          "SyntaxExpression": "Log Configuration"
+        },
+        {
           "Name": "Memory",
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of MiB of memory to reserve for the container. If your\ncontainer attempts to exceed the allocated memory, the container is\nkilled.",
+          "DocString": "The number of MiB of memory to reserve for the container. If your\ncontainer attempts to exceed the allocated memory, the container is\nterminated.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -11207,12 +11363,52 @@
           "SyntaxExpression": "[ Port Map, ... ]"
         },
         {
+          "Name": "Privileged",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the container is given full access to the host\ncontainer instance.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "ReadonlyRootFilesystem",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the container's root file system is mounted as read\nonly.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "Ulimits",
+          "Type": "List of Amazon EC2 Container Service TaskDefinition ContainerDefinitions Ulimit",
+          "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html",
+          "TypeName": "",
+          "DocString": "A list of ulimits to set in the container. The ulimits set constraints\non how much resources a container can consume so that it doesn't\ndeplete all available resources on the host.",
+          "SyntaxExpression": "[ Ulimit, ... ]"
+        },
+        {
+          "Name": "User",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The user name to use inside the container.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "VolumesFrom",
           "Type": "List of Amazon EC2 Container Service TaskDefinition ContainerDefinitions VolumesFrom",
           "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html",
           "TypeName": "",
-          "DocString": "Data volumes to mount from another container.",
+          "DocString": "The data volumes to mount from another container.",
           "SyntaxExpression": "[ Volume From, ... ]"
+        },
+        {
+          "Name": "WorkingDirectory",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The working directory in the container in which to run commands.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -11235,6 +11431,50 @@
           "TypeName": "",
           "DocString": "The value of the environment variable.",
           "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon EC2 Container Service TaskDefinition ContainerDefinitions HostEntry",
+      "Href": "aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html",
+      "Properties": [
+        {
+          "Name": "Hostname",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The hostname to use in the /etc/hosts file.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IpAddress",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The IP address to use in the /etc/hosts file.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon EC2 Container Service TaskDefinition ContainerDefinitions LogConfiguration",
+      "Href": "aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html",
+      "Properties": [
+        {
+          "Name": "LogDriver",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The log driver to use for the container. This parameter requires that\nyour container instance uses Docker Remote API Version 1.18 or\ngreater. For more information, see the logDriver content for the\nLogConfiguration data type in the Amazon EC2 Container Service API\nReference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Options",
+          "Type": "Key-value pairs, with the option name as the key and the option value as the value",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The configuration options to send to the log driver. This parameter\nrequires that your container instance uses Docker Remote API Version\n1.18 or greater. ",
+          "SyntaxExpression": "{ String:String, ... }"
         }
       ]
     },
@@ -11286,6 +11526,36 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The host port number on the container instance that you want to\nreserve for your container. You can specify a non-reserved host port\nfor your container port mapping, or you can omit the host port (or set\nit to 0). If you specify a container port but no host port, your\ncontainer port is automatically assigned a host port in the 49153 to\n65535 port range.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon EC2 Container Service TaskDefinition ContainerDefinitions Ulimit",
+      "Href": "aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html",
+      "Properties": [
+        {
+          "Name": "HardLimit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The hard limit for the ulimit type.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of ulimit. For valid values, see the name content for the\nUlimit data type in the Amazon EC2 Container Service API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SoftLimit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The soft limit for the ulimit type.",
           "SyntaxExpression": "Integer"
         }
       ]
@@ -12327,7 +12597,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the S3 bucket that contains the source code of your Lambda\nfunction. The S3 bucket must be in the same region in which the stack\nis created.",
+          "DocString": "The name of the S3 bucket that contains the source code of your Lambda\nfunction. The S3 bucket must be in the same region as the stack.",
           "SyntaxExpression": "String"
         },
         {
@@ -12335,7 +12605,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The location and name of your source code .zip file. If you specify\nthis property, you must also specify the S3Bucket property.",
+          "DocString": "The location and name of the .zip file that contains your source code.\nIf you specify this property, you must also specify the S3Bucket\nproperty.",
           "SyntaxExpression": "String"
         },
         {
@@ -12343,7 +12613,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "If you have S3 versioning enabled, the version ID of your source code\n.zip file. You can specify this property only if you specify a bucket\nlocation.",
+          "DocString": "If you have S3 versioning enabled, the version ID of the.zip file that\ncontains your source code. You can specify this property only if you\nspecify the S3Bucket and S3Key properties.",
           "SyntaxExpression": "String"
         },
         {
@@ -12351,7 +12621,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "For nodejs runtime environments, the source code of your Lambda\nfunction. You cannot use this property with other runtime\nenvironments.",
+          "DocString": "For nodejs and python2.7 runtime environments, the source code of your\nLambda function. You can't use this property with other runtime\nenvironments.",
           "SyntaxExpression": "String"
         }
       ]
