@@ -9764,11 +9764,11 @@
         },
         {
           "Name": "SourceDetails",
-          "Type": "AWS Config ConfigRule Source SourceDetails",
+          "Type": "List of AWS Config ConfigRule Source SourceDetails",
           "TypeHref": "aws-properties-config-configrule-source-sourcedetails.html",
           "TypeName": "",
           "DocString": "Provides the source and type of event that triggers AWS Config to\nevaluate your AWS resources.",
-          "SyntaxExpression": "SourceDetails"
+          "SyntaxExpression": "[ SourceDetail, ... ]"
         },
         {
           "Name": "SourceIdentifier",

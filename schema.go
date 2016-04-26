@@ -7564,7 +7564,7 @@ type ConfigConfigRuleSource struct {
 
 	// Provides the source and type of event that triggers AWS Config to
 	// evaluate your AWS resources.
-	SourceDetails *ConfigConfigRuleSourceSourceDetails `json:"SourceDetails,omitempty"`
+	SourceDetails *ConfigConfigRuleSourceSourceDetailsList `json:"SourceDetails,omitempty"`
 
 	// For AWS managed rules, the identifier of the rule. For a list of
 	// identifiers, see AWS Managed Rules in the AWS Config Developer Guide.
