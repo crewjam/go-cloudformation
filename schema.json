@@ -4961,7 +4961,7 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "The policies to associate with this role. Policies can also be\nspecified externally. For sample templates that demonstrates both\nembedded and external policies, see Template Examples.",
+          "DocString": "Important",
           "SyntaxExpression": "[ Policies, ... ]"
         }
       ]
