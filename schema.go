@@ -585,7 +585,7 @@ type AutoScalingScalingPolicy struct {
 	// An Auto Scaling policy type. You can specify SimpleScaling or
 	// StepScaling. By default, AWS CloudFormation specifies SimpleScaling.
 	// For more information, see Scaling Policy Types in the Auto Scaling
-	// Developer Guide.
+	// User Guide.
 	PolicyType *StringExpr `json:"PolicyType,omitempty"`
 
 	// The number of instances by which to scale. The AdjustmentType property

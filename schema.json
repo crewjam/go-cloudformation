@@ -909,7 +909,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "An Auto Scaling policy type. You can specify SimpleScaling or\nStepScaling. By default, AWS CloudFormation specifies SimpleScaling.\nFor more information, see Scaling Policy Types in the Auto Scaling\nDeveloper Guide.",
+          "DocString": "An Auto Scaling policy type. You can specify SimpleScaling or\nStepScaling. By default, AWS CloudFormation specifies SimpleScaling.\nFor more information, see Scaling Policy Types in the Auto Scaling\nUser Guide.",
           "SyntaxExpression": "String"
         },
         {
