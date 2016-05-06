@@ -3,9 +3,8 @@ package cloudformation
 import (
 	"encoding/json"
 	"io/ioutil"
+	"reflect"
 	"testing"
-
-	"github.com/kr/pretty"
 )
 
 var testFilePaths = []string{
@@ -70,8 +69,7 @@ func testOne(t *testing.T, input []byte) {
 	parsedOutput := map[string]interface{}{}
 	json.Unmarshal(output, &parsedOutput)
 
-	diffs := pretty.Diff(parsedInput, parsedOutput)
-	for _, diff := range diffs {
-		t.Errorf("%s", diff)
+	if !reflect.DeepEqual(parsedInput, parsedOutput) {
+		t.Errorf("expected %#v, got %#v", parsedInput, parsedOutput)
 	}
 }
