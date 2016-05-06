@@ -3397,7 +3397,9 @@ type IAMRole struct {
 	// see Friendly Names and Paths in IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
-	// Important
+	// The policies to associate with this role. Policies can also be
+	// specified externally. For sample templates that demonstrates both
+	// embedded and external policies, see Template Examples.
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 }
 
@@ -6574,8 +6576,11 @@ type CloudFrontDistributionConfigurationViewerCertificate struct {
 	// domain name when viewers use HTTPS to request your content.
 	CloudFrontDefaultCertificate *BoolExpr `json:"CloudFrontDefaultCertificate,omitempty"`
 
-	// The IAM certificate ID to use if you're using an alternate domain
-	// name.
+	// If you're using an alternate domain name, the ID of a server
+	// certificate. This ID is the ServerCertificateId value, which AWS
+	// Identity and Access Management (IAM) returns when you add the
+	// certificate to the IAM certificate store, such as
+	// ASCACKCEVSQ6CEXAMPLE1.
 	IamCertificateId *StringExpr `json:"IamCertificateId,omitempty"`
 
 	// The minimum version of the SSL protocol that you want CloudFront to

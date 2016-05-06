@@ -4961,7 +4961,7 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "Important",
+          "DocString": "The policies to associate with this role. Policies can also be\nspecified externally. For sample templates that demonstrates both\nembedded and external policies, see Template Examples.",
           "SyntaxExpression": "[ Policies, ... ]"
         }
       ]
@@ -8963,7 +8963,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The IAM certificate ID to use if you're using an alternate domain\nname.",
+          "DocString": "If you're using an alternate domain name, the ID of a server\ncertificate. This ID is the ServerCertificateId value, which AWS\nIdentity and Access Management (IAM) returns when you add the\ncertificate to the IAM certificate store, such as\nASCACKCEVSQ6CEXAMPLE1.",
           "SyntaxExpression": "String"
         },
         {
