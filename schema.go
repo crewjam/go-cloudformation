@@ -94,7 +94,7 @@ type ApiGatewayAuthorizer struct {
 	// error code.
 	IdentityValidationExpression *StringExpr `json:"IdentityValidationExpression,omitempty"`
 
-	// A name of the authorizer.
+	// The name of the authorizer.
 	Name *StringExpr `json:"Name,omitempty"`
 
 	// The ID of the RestApi resource in which API Gateway creates the
@@ -205,7 +205,9 @@ type ApiGatewayMethod struct {
 	// path, or header, and name is a valid, unique parameter name.
 	RequestParameters interface{} `json:"RequestParameters,omitempty"`
 
-	// The ID of an API Gateway resource.
+	// The ID of an API Gateway resource. For root resource methods, specify
+	// the RestApi root resource ID, such as { "Fn::GetAtt": ["MyRestApi",
+	// "RootResourceId"] }.
 	ResourceId *StringExpr `json:"ResourceId,omitempty"`
 
 	// The ID of the RestApi resource in which API Gateway creates the
@@ -250,6 +252,8 @@ func (s ApiGatewayModel) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html
 type ApiGatewayResource struct {
 	// If you want to create a child resource, the ID of the parent resource.
+	// For resources without a parent, specify the RestApi root resource ID,
+	// such as { "Fn::GetAtt": ["MyRestApi", "RootResourceId"] }.
 	ParentId *StringExpr `json:"ParentId,omitempty"`
 
 	// A path name for the resource.
@@ -2187,7 +2191,8 @@ type EC2VPC struct {
 	// The allowed tenancy of instances launched into the VPC.
 	InstanceTenancy *StringExpr `json:"InstanceTenancy,omitempty"`
 
-	// An arbitrary set of tags (key–value pairs) for this VPC.
+	// An arbitrary set of tags (key–value pairs) for this VPC. To name a
+	// VPC resource, specify a value for the Name key.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
@@ -5427,10 +5432,9 @@ type APIGatewayMethodIntegration struct {
 
 	// The credentials required for the integration. To specify an AWS
 	// Identity and Access Management (IAM) role that API Gateway assumes,
-	// specify the role's Amazon Resource Name (ARN). To use resource-based
-	// permissions on the AWS Lambda (Lambda) function, specify null. To
-	// require that the caller's identity be passed through from the request,
-	// specify arn:aws:iam::\*:user/\*.
+	// specify the role's Amazon Resource Name (ARN). To require that the
+	// caller's identity be passed through from the request, specify
+	// arn:aws:iam::\*:user/\*.
 	Credentials *StringExpr `json:"Credentials,omitempty"`
 
 	// The integration's HTTP method type.
@@ -5449,26 +5453,18 @@ type APIGatewayMethodIntegration struct {
 	// the value.
 	RequestParameters interface{} `json:"RequestParameters,omitempty"`
 
-	// The templates used to transform the method request body. Specify
-	// templates as key-value pairs (string-to-string maps), with a content
-	// type as the key and a template as the value.
+	// A map of Apache Velocity templates that are applied on the request
+	// payload. The template that API Gateway uses is based on the value of
+	// the Content-Type header sent by the client. The content type value is
+	// the key, and the template is the value (specified as a string), such
+	// as the following snippet:
 	RequestTemplates interface{} `json:"RequestTemplates,omitempty"`
 
-	// The type of back end your method is running, such as HTTP, AWS, or
-	// MOCK.
+	// The type of back end your method is running, such as HTTP, AWS (for
+	// Lambda functions), or MOCK.
 	Type *StringExpr `json:"Type,omitempty"`
 
-	// The integration's Uniform Resource Identifier (URI). If you specify
-	// HTTP for the Type property, specify the API endpoint URL. If you
-	// specify MOCK for the Type property, don't specify this property. If
-	// you specify AWS for the Type property, specify an AWS service that
-	// follows the form:
-	// arn:aws:apigateway:region:subdomain.service|service:path|action/service_api.
-	// For example, a Lambda function URI follows the form:
-	// arn:aws:apigateway:region:lambda:path/path. The path is usually in the
-	// form /2015-03-31/functions/LambdaFunctionARN/invocations. For more
-	// information, see the uri property of the Integration resource in the
-	// Amazon API Gateway REST API Reference.
+	// The integration's Uniform Resource Identifier (URI).
 	Uri *StringExpr `json:"Uri,omitempty"`
 }
 
@@ -10713,7 +10709,7 @@ func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification
 type ElasticMapReduceStepHadoopJarStepConfig struct {
 	// A list of command line arguments passed to the JAR file's main
 	// function when the function is executed.
-	Args *StringExpr `json:"Args,omitempty"`
+	Args *StringListExpr `json:"Args,omitempty"`
 
 	// A path to the JAR file that Amazon EMR runs for the job flow step.
 	Jar *StringExpr `json:"Jar,omitempty"`

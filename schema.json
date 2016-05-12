@@ -101,7 +101,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name of the authorizer.",
+          "DocString": "The name of the authorizer.",
           "SyntaxExpression": "String"
         },
         {
@@ -285,7 +285,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of an API Gateway resource.",
+          "DocString": "The ID of an API Gateway resource. For root resource methods, specify\nthe RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\",\n\"RootResourceId\"] }.",
           "SyntaxExpression": "String"
         },
         {
@@ -353,7 +353,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "If you want to create a child resource, the ID of the parent resource.",
+          "DocString": "If you want to create a child resource, the ID of the parent resource.\nFor resources without a parent, specify the RestApi root resource ID,\nsuch as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.",
           "SyntaxExpression": "String"
         },
         {
@@ -3195,7 +3195,7 @@
           "Type": "AWS CloudFormation Resource Tags",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
-          "DocString": "An arbitrary set of tags (key–value pairs) for this VPC.",
+          "DocString": "An arbitrary set of tags (key–value pairs) for this VPC. To name a\nVPC resource, specify a value for the Name key.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
         }
       ]
@@ -7926,7 +7926,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The credentials required for the integration. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To use resource-based\npermissions on the AWS Lambda (Lambda) function, specify null. To\nrequire that the caller's identity be passed through from the request,\nspecify arn:aws:iam::\\*:user/\\*.",
+          "DocString": "The credentials required for the integration. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To require that the\ncaller's identity be passed through from the request, specify\narn:aws:iam::\\*:user/\\*.",
           "SyntaxExpression": "String"
         },
         {
@@ -7958,7 +7958,7 @@
           "Type": "List of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The templates used to transform the method request body. Specify\ntemplates as key-value pairs (string-to-string maps), with a content\ntype as the key and a template as the value.",
+          "DocString": "A map of Apache Velocity templates that are applied on the request\npayload. The template that API Gateway uses is based on the value of\nthe Content-Type header sent by the client. The content type value is\nthe key, and the template is the value (specified as a string), such\nas the following snippet:",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
@@ -7966,7 +7966,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of back end your method is running, such as HTTP, AWS, or\nMOCK.",
+          "DocString": "The type of back end your method is running, such as HTTP, AWS (for\nLambda functions), or MOCK.",
           "SyntaxExpression": "String"
         },
         {
@@ -7974,7 +7974,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The integration's Uniform Resource Identifier (URI). If you specify\nHTTP for the Type property, specify the API endpoint URL. If you\nspecify MOCK for the Type property, don't specify this property. If\nyou specify AWS for the Type property, specify an AWS service that\nfollows the form:\narn:aws:apigateway:region:subdomain.service|service:path|action/service_api.\nFor example, a Lambda function URI follows the form:\narn:aws:apigateway:region:lambda:path/path. The path is usually in the\nform /2015-03-31/functions/LambdaFunctionARN/invocations. For more\ninformation, see the uri property of the Integration resource in the\nAmazon API Gateway REST API Reference.",
+          "DocString": "The integration's Uniform Resource Identifier (URI).",
           "SyntaxExpression": "String"
         }
       ]
@@ -12392,11 +12392,11 @@
       "Properties": [
         {
           "Name": "Args",
-          "Type": "String",
+          "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of command line arguments passed to the JAR file's main\nfunction when the function is executed.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "[ [ String, ... ] ]"
         },
         {
           "Name": "Jar",
