@@ -3195,7 +3195,7 @@
           "Type": "AWS CloudFormation Resource Tags",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
-          "DocString": "An arbitrary set of tags (key–value pairs) for this VPC.",
+          "DocString": "An arbitrary set of tags (key–value pairs) for this VPC. To name a\nVPC resource, specify a value for the Name key.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
         }
       ]
@@ -12396,7 +12396,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of command line arguments passed to the JAR file's main\nfunction when the function is executed.",
-          "SyntaxExpression": "[ [ String, ... ] ]"
+          "SyntaxExpression": "[ String, ... ]"
         },
         {
           "Name": "Jar",

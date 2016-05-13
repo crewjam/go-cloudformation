@@ -2191,7 +2191,8 @@ type EC2VPC struct {
 	// The allowed tenancy of instances launched into the VPC.
 	InstanceTenancy *StringExpr `json:"InstanceTenancy,omitempty"`
 
-	// An arbitrary set of tags (key–value pairs) for this VPC.
+	// An arbitrary set of tags (key–value pairs) for this VPC. To name a
+	// VPC resource, specify a value for the Name key.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
