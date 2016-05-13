@@ -2191,8 +2191,7 @@ type EC2VPC struct {
 	// The allowed tenancy of instances launched into the VPC.
 	InstanceTenancy *StringExpr `json:"InstanceTenancy,omitempty"`
 
-	// An arbitrary set of tags (key–value pairs) for this VPC. To name a
-	// VPC resource, specify a value for the Name key.
+	// An arbitrary set of tags (key–value pairs) for this VPC.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
@@ -3402,9 +3401,7 @@ type IAMRole struct {
 	// see Friendly Names and Paths in IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
-	// The policies to associate with this role. Policies can also be
-	// specified externally. For sample templates that demonstrates both
-	// embedded and external policies, see Template Examples.
+	// Important
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 }
 

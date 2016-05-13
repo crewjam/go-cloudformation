@@ -3195,7 +3195,7 @@
           "Type": "AWS CloudFormation Resource Tags",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
-          "DocString": "An arbitrary set of tags (key–value pairs) for this VPC. To name a\nVPC resource, specify a value for the Name key.",
+          "DocString": "An arbitrary set of tags (key–value pairs) for this VPC.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
         }
       ]
@@ -4961,7 +4961,7 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "The policies to associate with this role. Policies can also be\nspecified externally. For sample templates that demonstrates both\nembedded and external policies, see Template Examples.",
+          "DocString": "Important",
           "SyntaxExpression": "[ Policies, ... ]"
         }
       ]
