@@ -266,7 +266,7 @@
         },
         {
           "Name": "RequestModels",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The resources used for the response's content type. Specify response\nmodels as key-value pairs (string-to-string maps), with a content type\nas the key and a Model resource name as the value.",
@@ -274,10 +274,10 @@
         },
         {
           "Name": "RequestParameters",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Request parameters that API Gateway accepts. Specify request\nparameters as key-value pairs (string-to-Boolean maps), with a source\nas the key and a Boolean as the value. The Boolean specifies whether a\nparameter is required. A source must match the following format\nmethod.request.location.name, where the location is a query string,\npath, or header, and name is a valid, unique parameter name.",
+          "DocString": "Request parameters that API Gateway accepts. Specify request\nparameters as key-value pairs (string-to-Boolean maps), with a source\nas the key and a Boolean as the value. The Boolean specifies whether a\nparameter is required. A source must match the following format\nmethod.request.location.name, where the location is querystring, path,\nor header, and name is a valid, unique parameter name.",
           "SyntaxExpression": "{ String:Boolean, ... }"
         },
         {
@@ -506,7 +506,7 @@
         },
         {
           "Name": "Variables",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A map (string to string map) that defines the stage variables, where\nthe variable name is the key and the variable value is the value.\nVariable names are limited to alphanumeric characters. Values must\nmatch the following regular expression: [A-Za-z0-9-._~:/?#\u0026amp;=,]+.",
@@ -4341,14 +4341,6 @@
           "SyntaxExpression": "[ Configurations, ... ]"
         },
         {
-          "Name": "EbsConfiguration",
-          "Type": "Amazon Elastic MapReduce EbsConfiguration",
-          "TypeHref": "aws-properties-emr-ebsconfiguration.html",
-          "TypeName": "",
-          "DocString": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to\nattach to your instances.",
-          "SyntaxExpression": "EBSConfiguration"
-        },
-        {
           "Name": "Instances",
           "Type": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig",
           "TypeHref": "aws-properties-emr-cluster-jobflowinstancesconfig.html",
@@ -7807,7 +7799,7 @@
         },
         {
           "Name": "Variables",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A map that defines the stage variables. Variable names must consist of\nalphanumeric characters, and the values must match the following\nregular expression: [A-Za-z0-9-._~:/?#\u0026amp;=,]+.",
@@ -7840,7 +7832,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether responses are cached and returned for requests. You\nmust enable a cache cluster on the stage to cache responses.",
+          "DocString": "Indicates whether responses are cached and returned for requests. You\nmust enable a cache cluster on the stage to cache responses. For more\ninformation, see Enable API Gateway Caching in a Stage to Enhance API\nPerformance in the API Gateway Developer Guide.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -7888,7 +7880,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account.",
+          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account. For more\ninformation, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -7896,7 +7888,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account.",
+          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account. For\nmore information, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
           "SyntaxExpression": "Number"
         }
       ]
@@ -7947,7 +7939,7 @@
         },
         {
           "Name": "RequestParameters",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The request parameters that API Gateway sends with the back-end\nrequest. Specify request parameters as key-value pairs\n(string-to-string maps), with a destination as the key and a source as\nthe value.",
@@ -7955,7 +7947,7 @@
         },
         {
           "Name": "RequestTemplates",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A map of Apache Velocity templates that are applied on the request\npayload. The template that API Gateway uses is based on the value of\nthe Content-Type header sent by the client. The content type value is\nthe key, and the template is the value (specified as a string), such\nas the following snippet:",
@@ -7985,18 +7977,18 @@
       "Properties": [
         {
           "Name": "ResponseParameters",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The response parameters from the back-end response that API Gateway\nsends to the method response. Specify response parameters as key-value\npairs (string-to-string maps), with a destination as the key and a\nsource as the value.",
+          "DocString": "The response parameters from the back-end response that API Gateway\nsends to the method response. Specify response parameters as key-value\npairs (string-to-string maps), with a destination as the key and a\nsource as the value. For more information, see API Gateway API Request\nand Response Parameter-Mapping Reference in the API Gateway Developer\nGuide.",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
           "Name": "ResponseTemplates",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The templates used to transform the integration response body. Specify\ntemplates as key-value pairs (string-to-string maps), with a content\ntype as the key and a template as the value.",
+          "DocString": "The templates used to transform the integration response body. Specify\ntemplates as key-value pairs (string-to-string maps), with a content\ntype as the key and a template as the value. For more information, see\nAPI Gateway API Request and Response Payload-Mapping Template\nReference in the API Gateway Developer Guide.",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
@@ -8023,7 +8015,7 @@
       "Properties": [
         {
           "Name": "ResponseModels",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The resources used for the response's content type. Specify response\nmodels as key-value pairs (string-to-string maps), with a content type\nas the key and a Model resource name as the value.",
@@ -8031,7 +8023,7 @@
         },
         {
           "Name": "ResponseParameters",
-          "Type": "List of key-value pairs",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Response parameters that API Gateway sends to the client that called a\nmethod. Specify response parameters as key-value pairs\n(string-to-Boolean maps), with a destination as the key and a Boolean\nas the value. Specify the destination using the following pattern:\nmethod.response.header.name, where the name is a valid, unique header\nname. The Boolean specifies whether a parameter is required.",
@@ -8158,7 +8150,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account.",
+          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account. For more\ninformation, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -8166,7 +8158,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account.",
+          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account. For\nmore information, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
           "SyntaxExpression": "Number"
         }
       ]
@@ -12265,6 +12257,14 @@
           "SyntaxExpression": "[ Configuration, ... ]"
         },
         {
+          "Name": "EbsConfiguration",
+          "Type": "Amazon Elastic MapReduce EbsConfiguration",
+          "TypeHref": "aws-properties-emr-ebsconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to\nattach to your instances.",
+          "SyntaxExpression": "EBSConfiguration"
+        },
+        {
           "Name": "InstanceCount",
           "Type": "Integer",
           "TypeHref": "",
@@ -12317,7 +12317,7 @@
       "Href": "aws-properties-emr-ebsconfiguration.html",
       "Properties": [
         {
-          "Name": "EbsBlockDeviceConfig",
+          "Name": "EbsBlockDeviceConfigs",
           "Type": "List of Amazon Elastic MapReduce EbsConfiguration",
           "TypeHref": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
           "TypeName": "",
@@ -12335,7 +12335,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig",
+      "Name": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfigs",
       "Href": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
       "Properties": [
         {

@@ -201,8 +201,8 @@ type ApiGatewayMethod struct {
 	// parameters as key-value pairs (string-to-Boolean maps), with a source
 	// as the key and a Boolean as the value. The Boolean specifies whether a
 	// parameter is required. A source must match the following format
-	// method.request.location.name, where the location is a query string,
-	// path, or header, and name is a valid, unique parameter name.
+	// method.request.location.name, where the location is querystring, path,
+	// or header, and name is a valid, unique parameter name.
 	RequestParameters interface{} `json:"RequestParameters,omitempty"`
 
 	// The ID of an API Gateway resource. For root resource methods, specify
@@ -2993,10 +2993,6 @@ type EMRCluster struct {
 	// The software configuration of the Amazon EMR cluster.
 	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
 
-	// Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to
-	// attach to your instances.
-	EbsConfiguration *ElasticMapReduceEbsConfiguration `json:"EbsConfiguration,omitempty"`
-
 	// Configures the EC2 instances that will run jobs in the Amazon EMR
 	// cluster.
 	Instances *ElasticMapReduceClusterJobFlowInstancesConfig `json:"Instances,omitempty"`
@@ -5369,7 +5365,9 @@ type APIGatewayDeploymentStageDescriptionMethodSetting struct {
 	CacheTtlInSeconds *IntegerExpr `json:"CacheTtlInSeconds,omitempty"`
 
 	// Indicates whether responses are cached and returned for requests. You
-	// must enable a cache cluster on the stage to cache responses.
+	// must enable a cache cluster on the stage to cache responses. For more
+	// information, see Enable API Gateway Caching in a Stage to Enhance API
+	// Performance in the API Gateway Developer Guide.
 	CachingEnabled *BoolExpr `json:"CachingEnabled,omitempty"`
 
 	// Indicates whether data trace logging is enabled for methods in the
@@ -5390,11 +5388,15 @@ type APIGatewayDeploymentStageDescriptionMethodSetting struct {
 	ResourcePath *StringExpr `json:"ResourcePath,omitempty"`
 
 	// The number of burst requests per second that API Gateway permits
-	// across all APIs, stages, and methods in your AWS account.
+	// across all APIs, stages, and methods in your AWS account. For more
+	// information, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
 	ThrottlingBurstLimit *IntegerExpr `json:"ThrottlingBurstLimit,omitempty"`
 
 	// The number of steady-state requests per second that API Gateway
-	// permits across all APIs, stages, and methods in your AWS account.
+	// permits across all APIs, stages, and methods in your AWS account. For
+	// more information, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
 	ThrottlingRateLimit *IntegerExpr `json:"ThrottlingRateLimit,omitempty"`
 }
 
@@ -5493,12 +5495,16 @@ type APIGatewayMethodIntegrationIntegrationResponse struct {
 	// The response parameters from the back-end response that API Gateway
 	// sends to the method response. Specify response parameters as key-value
 	// pairs (string-to-string maps), with a destination as the key and a
-	// source as the value.
+	// source as the value. For more information, see API Gateway API Request
+	// and Response Parameter-Mapping Reference in the API Gateway Developer
+	// Guide.
 	ResponseParameters interface{} `json:"ResponseParameters,omitempty"`
 
 	// The templates used to transform the integration response body. Specify
 	// templates as key-value pairs (string-to-string maps), with a content
-	// type as the key and a template as the value.
+	// type as the key and a template as the value. For more information, see
+	// API Gateway API Request and Response Payload-Mapping Template
+	// Reference in the API Gateway Developer Guide.
 	ResponseTemplates interface{} `json:"ResponseTemplates,omitempty"`
 
 	// A regular expression that specifies which error strings or status
@@ -5645,11 +5651,15 @@ type APIGatewayStageMethodSetting struct {
 	ResourcePath *StringExpr `json:"ResourcePath,omitempty"`
 
 	// The number of burst requests per second that API Gateway permits
-	// across all APIs, stages, and methods in your AWS account.
+	// across all APIs, stages, and methods in your AWS account. For more
+	// information, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
 	ThrottlingBurstLimit *IntegerExpr `json:"ThrottlingBurstLimit,omitempty"`
 
 	// The number of steady-state requests per second that API Gateway
-	// permits across all APIs, stages, and methods in your AWS account.
+	// permits across all APIs, stages, and methods in your AWS account. For
+	// more information, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
 	ThrottlingRateLimit *IntegerExpr `json:"ThrottlingRateLimit,omitempty"`
 }
 
@@ -10524,6 +10534,10 @@ type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig struct {
 	// Guide.
 	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
 
+	// Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to
+	// attach to your instances.
+	EbsConfiguration *ElasticMapReduceEbsConfiguration `json:"EbsConfiguration,omitempty"`
+
 	// The number of instances to launch in the instance group.
 	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
 
@@ -10598,7 +10612,7 @@ func (l *ElasticMapReduceClusterJobFlowInstancesConfigPlacementList) UnmarshalJS
 type ElasticMapReduceEbsConfiguration struct {
 	// Configures the block storage devices that are associated with your EMR
 	// instances.
-	EbsBlockDeviceConfig *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList `json:"EbsBlockDeviceConfig,omitempty"`
+	EbsBlockDeviceConfigs *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList `json:"EbsBlockDeviceConfigs,omitempty"`
 
 	// Indicates whether the instances are optimized for Amazon EBS I/O. This
 	// optimization provides dedicated throughput to Amazon EBS and an
@@ -10629,10 +10643,10 @@ func (l *ElasticMapReduceEbsConfigurationList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig represents Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig
+// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs represents Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfigs
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
-type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig struct {
+type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs struct {
 	// The settings for the Amazon EBS volumes.
 	VolumeSpecification *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification `json:"VolumeSpecification,omitempty"`
 
@@ -10641,21 +10655,21 @@ type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig struct {
 	VolumesPerInstance *IntegerExpr `json:"VolumesPerInstance,omitempty"`
 }
 
-// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList represents a list of ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig
-type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig
+// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList represents a list of ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs
+type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList) UnmarshalJSON(buf []byte) error {
+func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig{}
+	item := ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList{item}
+		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList{item}
 		return nil
 	}
-	list := []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfig{}
+	list := []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigList(list)
+		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList(list)
 		return nil
 	}
 	return err
