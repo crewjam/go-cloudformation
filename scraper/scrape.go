@@ -215,7 +215,11 @@ func (r *Resource) Load() error {
 	// element with the text "Properties" is what we're looking for.
 	doc.Find(".variablelist").Each(func(i int, varList *goquery.Selection) {
 		tileText := varList.Parent().Find(".titlepage").First().Text()
-		if tileText != "Properties" && tileText != "Parameters" {
+		switch tileText {
+		case "Properties":
+		case "Parameters":
+		case "Members":
+		default:
 			return
 		}
 

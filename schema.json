@@ -4061,12 +4061,86 @@
     {
       "Name": "AWS::ElasticBeanstalk::ApplicationVersion",
       "Href": "aws-properties-beanstalk-version.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "ApplicationName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Name of the Elastic Beanstalk application that is associated with this\napplication version.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of this application version.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SourceBundle",
+          "Type": "Source Bundle",
+          "TypeHref": "aws-properties-beanstalk-sourcebundle.html",
+          "TypeName": "",
+          "DocString": "The location of the source bundle for this version.",
+          "SyntaxExpression": "{ SourceBundle }"
+        }
+      ]
     },
     {
       "Name": "AWS::ElasticBeanstalk::ConfigurationTemplate",
       "Href": "aws-resource-beanstalk-configurationtemplate.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "ApplicationName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Name of the Elastic Beanstalk application that is associated with this\nconfiguration template.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An optional description for this configuration.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "EnvironmentId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An environment whose settings you want to use to create the\nconfiguration template. You must specify this property if you don't\nspecify the SolutionStackName or SourceConfiguration properties.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "OptionSettings",
+          "Type": "A list of OptionSettings",
+          "TypeHref": "aws-properties-beanstalk-option-settings.html",
+          "TypeName": "",
+          "DocString": "A list of OptionSettings for this Elastic Beanstalk configuration. For\na complete list of Elastic Beanstalk configuration options, see Option\nValues, in the AWS Elastic Beanstalk Developer Guide.",
+          "SyntaxExpression": "[ OptionSetting, ... ]"
+        },
+        {
+          "Name": "SolutionStackName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of an Elastic Beanstalk solution stack that this\nconfiguration will use. A solution stack specifies the operating\nsystem, architecture, and application server for a configuration\ntemplate, such as 64bit Amazon Linux 2013.09 running Tomcat 7 Java 7.\nFor more information, see Supported Platforms in the AWS Elastic\nBeanstalk Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SourceConfiguration",
+          "Type": "Elastic Beanstalk SourceConfiguration Property Type",
+          "TypeHref": "aws-properties-beanstalk-configurationtemplate-sourceconfiguration.html",
+          "TypeName": "",
+          "DocString": "A configuration template that is associated with another Elastic\nBeanstalk application. If you specify the SolutionStackName property\nand the SourceConfiguration property, the solution stack in the source\nconfiguration template must match the value that you specified for the\nSolutionStackName property.",
+          "SyntaxExpression": "Source configuration"
+        }
+      ]
     },
     {
       "Name": "AWS::ElasticBeanstalk::Environment",
@@ -11727,22 +11801,106 @@
     {
       "Name": "Elastic Beanstalk Environment Tier Property Type",
       "Href": "aws-properties-beanstalk-environment-tier.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the environment tier. You can specify WebServer or Worker.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of this environment tier. You can specify Standard for the\nWebServer tier or SQS/HTTP for the Worker tier.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Version",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The version of this environment tier.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "Elastic Beanstalk OptionSettings Property Type",
       "Href": "aws-properties-beanstalk-option-settings.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "Namespace",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A unique namespace identifying the option's associated AWS resource.\nFor a list of namespaces that you can use, see Configuration Options\nin the AWS Elastic Beanstalk Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "OptionName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the configuration option. For a list of options that you\ncan use, see Configuration Options in the AWS Elastic Beanstalk\nDeveloper Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Value",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the setting.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "Elastic Beanstalk SourceBundle Property Type",
       "Href": "aws-properties-beanstalk-sourcebundle.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "S3Bucket",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon S3 bucket where the data is located.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "S3Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon S3 key where the data is located.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "Elastic Beanstalk SourceConfiguration Property Type",
       "Href": "aws-properties-beanstalk-configurationtemplate-sourceconfiguration.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "ApplicationName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the Elastic Beanstalk application that contains the\nconfiguration template that you want to use.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TemplateName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the configuration template.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "Elastic Load Balancing AccessLoggingPolicy",

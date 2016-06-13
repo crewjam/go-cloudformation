@@ -2809,6 +2809,15 @@ func (s ElasticBeanstalkApplication) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html
 type ElasticBeanstalkApplicationVersion struct {
+	// Name of the Elastic Beanstalk application that is associated with this
+	// application version.
+	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
+
+	// A description of this application version.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The location of the source bundle for this version.
+	SourceBundle *ElasticBeanstalkSourceBundle `json:"SourceBundle,omitempty"`
 }
 
 // CfnResourceType returns AWS::ElasticBeanstalk::ApplicationVersion to implement the ResourceProperties interface
@@ -2820,6 +2829,37 @@ func (s ElasticBeanstalkApplicationVersion) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-beanstalk-configurationtemplate.html
 type ElasticBeanstalkConfigurationTemplate struct {
+	// Name of the Elastic Beanstalk application that is associated with this
+	// configuration template.
+	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
+
+	// An optional description for this configuration.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// An environment whose settings you want to use to create the
+	// configuration template. You must specify this property if you don't
+	// specify the SolutionStackName or SourceConfiguration properties.
+	EnvironmentId *StringExpr `json:"EnvironmentId,omitempty"`
+
+	// A list of OptionSettings for this Elastic Beanstalk configuration. For
+	// a complete list of Elastic Beanstalk configuration options, see Option
+	// Values, in the AWS Elastic Beanstalk Developer Guide.
+	OptionSettings *ElasticBeanstalkOptionSettingsList `json:"OptionSettings,omitempty"`
+
+	// The name of an Elastic Beanstalk solution stack that this
+	// configuration will use. A solution stack specifies the operating
+	// system, architecture, and application server for a configuration
+	// template, such as 64bit Amazon Linux 2013.09 running Tomcat 7 Java 7.
+	// For more information, see Supported Platforms in the AWS Elastic
+	// Beanstalk Developer Guide.
+	SolutionStackName *StringExpr `json:"SolutionStackName,omitempty"`
+
+	// A configuration template that is associated with another Elastic
+	// Beanstalk application. If you specify the SolutionStackName property
+	// and the SourceConfiguration property, the solution stack in the source
+	// configuration template must match the value that you specified for the
+	// SolutionStackName property.
+	SourceConfiguration *ElasticBeanstalkSourceConfiguration `json:"SourceConfiguration,omitempty"`
 }
 
 // CfnResourceType returns AWS::ElasticBeanstalk::ConfigurationTemplate to implement the ResourceProperties interface
@@ -9818,6 +9858,15 @@ func (l *ElasticFileSystemFileSystemFileSystemTagsList) UnmarshalJSON(buf []byte
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html
 type ElasticBeanstalkEnvironmentTier struct {
+	// The name of the environment tier. You can specify WebServer or Worker.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The type of this environment tier. You can specify Standard for the
+	// WebServer tier or SQS/HTTP for the Worker tier.
+	Type *StringExpr `json:"Type,omitempty"`
+
+	// The version of this environment tier.
+	Version *StringExpr `json:"Version,omitempty"`
 }
 
 // ElasticBeanstalkEnvironmentTierList represents a list of ElasticBeanstalkEnvironmentTier
@@ -9844,6 +9893,18 @@ func (l *ElasticBeanstalkEnvironmentTierList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html
 type ElasticBeanstalkOptionSettings struct {
+	// A unique namespace identifying the option's associated AWS resource.
+	// For a list of namespaces that you can use, see Configuration Options
+	// in the AWS Elastic Beanstalk Developer Guide.
+	Namespace *StringExpr `json:"Namespace,omitempty"`
+
+	// The name of the configuration option. For a list of options that you
+	// can use, see Configuration Options in the AWS Elastic Beanstalk
+	// Developer Guide.
+	OptionName *StringExpr `json:"OptionName,omitempty"`
+
+	// The value of the setting.
+	Value *StringExpr `json:"Value,omitempty"`
 }
 
 // ElasticBeanstalkOptionSettingsList represents a list of ElasticBeanstalkOptionSettings
@@ -9870,6 +9931,11 @@ func (l *ElasticBeanstalkOptionSettingsList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-sourcebundle.html
 type ElasticBeanstalkSourceBundle struct {
+	// The Amazon S3 bucket where the data is located.
+	S3Bucket *StringExpr `json:"S3Bucket,omitempty"`
+
+	// The Amazon S3 key where the data is located.
+	S3Key *StringExpr `json:"S3Key,omitempty"`
 }
 
 // ElasticBeanstalkSourceBundleList represents a list of ElasticBeanstalkSourceBundle
@@ -9896,6 +9962,12 @@ func (l *ElasticBeanstalkSourceBundleList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-configurationtemplate-sourceconfiguration.html
 type ElasticBeanstalkSourceConfiguration struct {
+	// The name of the Elastic Beanstalk application that contains the
+	// configuration template that you want to use.
+	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
+
+	// The name of the configuration template.
+	TemplateName *StringExpr `json:"TemplateName,omitempty"`
 }
 
 // ElasticBeanstalkSourceConfigurationList represents a list of ElasticBeanstalkSourceConfiguration
