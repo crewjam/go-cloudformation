@@ -62,7 +62,7 @@ func Deploy(input DeployInput) error {
 
 	needCapabilityIam := false
 	for _, resource := range input.Template.Resources {
-		switch resource.Properties.ResourceType() {
+		switch resource.Properties.CfnResourceType() {
 		case "AWS::IAM::AccessKey":
 			needCapabilityIam = true
 		case "AWS::IAM::Group":

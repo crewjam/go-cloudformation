@@ -83,7 +83,7 @@ type Output struct {
 
 // ResourceProperties is an interface that is implemented by resource objects.
 type ResourceProperties interface {
-	ResourceType() string
+	CfnResourceType() string
 }
 
 // Resource represents a resource in a cloudformation template. It contains resource
@@ -109,7 +109,7 @@ func (r Resource) MarshalJSON() ([]byte, error) {
 		UpdatePolicy   *UpdatePolicy          `json:",omitempty"`
 		Properties     ResourceProperties
 	}{
-		Type:           r.Properties.ResourceType(),
+		Type:           r.Properties.CfnResourceType(),
 		CreationPolicy: r.CreationPolicy,
 		DeletionPolicy: r.DeletionPolicy,
 		DependsOn:      r.DependsOn,

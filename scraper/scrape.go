@@ -126,8 +126,8 @@ func (tr *TemplateReference) writeGo(w io.Writer) {
 		fmt.Fprintf(w, "\n")
 		if resource.IsTopLevelResource() {
 
-			fmt.Fprintf(w, "// ResourceType returns %s to implement the ResourceProperties interface\n", resource.Name)
-			fmt.Fprintf(w, "func (s %s) ResourceType() string {\n", resource.GoName())
+			fmt.Fprintf(w, "// CfnResourceType returns %s to implement the ResourceProperties interface\n", resource.Name)
+			fmt.Fprintf(w, "func (s %s) CfnResourceType() string {\n", resource.GoName())
 			fmt.Fprintf(w, "	return %q\n", resource.Name)
 			fmt.Fprintf(w, "}\n")
 			fmt.Fprintf(w, "\n")

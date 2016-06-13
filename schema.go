@@ -26,8 +26,8 @@ type ApiGatewayAccount struct {
 	CloudWatchRoleArn *StringExpr `json:"CloudWatchRoleArn,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Account to implement the ResourceProperties interface
-func (s ApiGatewayAccount) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Account to implement the ResourceProperties interface
+func (s ApiGatewayAccount) CfnResourceType() string {
 	return "AWS::ApiGateway::Account"
 }
 
@@ -50,8 +50,8 @@ type ApiGatewayApiKey struct {
 	StageKeys *APIGatewayApiKeyStageKeyList `json:"StageKeys,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::ApiKey to implement the ResourceProperties interface
-func (s ApiGatewayApiKey) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::ApiKey to implement the ResourceProperties interface
+func (s ApiGatewayApiKey) CfnResourceType() string {
 	return "AWS::ApiGateway::ApiKey"
 }
 
@@ -105,8 +105,8 @@ type ApiGatewayAuthorizer struct {
 	Type *StringExpr `json:"Type,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Authorizer to implement the ResourceProperties interface
-func (s ApiGatewayAuthorizer) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Authorizer to implement the ResourceProperties interface
+func (s ApiGatewayAuthorizer) CfnResourceType() string {
 	return "AWS::ApiGateway::Authorizer"
 }
 
@@ -128,8 +128,8 @@ type ApiGatewayBasePathMapping struct {
 	Stage *StringExpr `json:"Stage,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::BasePathMapping to implement the ResourceProperties interface
-func (s ApiGatewayBasePathMapping) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::BasePathMapping to implement the ResourceProperties interface
+func (s ApiGatewayBasePathMapping) CfnResourceType() string {
 	return "AWS::ApiGateway::BasePathMapping"
 }
 
@@ -141,8 +141,8 @@ type ApiGatewayClientCertificate struct {
 	Description *StringExpr `json:"Description,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::ClientCertificate to implement the ResourceProperties interface
-func (s ApiGatewayClientCertificate) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::ClientCertificate to implement the ResourceProperties interface
+func (s ApiGatewayClientCertificate) CfnResourceType() string {
 	return "AWS::ApiGateway::ClientCertificate"
 }
 
@@ -160,11 +160,12 @@ type ApiGatewayDeployment struct {
 	StageDescription *APIGatewayDeploymentStageDescription `json:"StageDescription,omitempty"`
 
 	// A name for the stage that API Gateway creates with this deployment.
+	// Use only alphanumeric characters.
 	StageName *StringExpr `json:"StageName,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Deployment to implement the ResourceProperties interface
-func (s ApiGatewayDeployment) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Deployment to implement the ResourceProperties interface
+func (s ApiGatewayDeployment) CfnResourceType() string {
 	return "AWS::ApiGateway::Deployment"
 }
 
@@ -215,8 +216,8 @@ type ApiGatewayMethod struct {
 	RestApiId *StringExpr `json:"RestApiId,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Method to implement the ResourceProperties interface
-func (s ApiGatewayMethod) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Method to implement the ResourceProperties interface
+func (s ApiGatewayMethod) CfnResourceType() string {
 	return "AWS::ApiGateway::Method"
 }
 
@@ -242,8 +243,8 @@ type ApiGatewayModel struct {
 	Schema *StringExpr `json:"Schema,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Model to implement the ResourceProperties interface
-func (s ApiGatewayModel) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Model to implement the ResourceProperties interface
+func (s ApiGatewayModel) CfnResourceType() string {
 	return "AWS::ApiGateway::Model"
 }
 
@@ -264,8 +265,8 @@ type ApiGatewayResource struct {
 	RestApiId *StringExpr `json:"RestApiId,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Resource to implement the ResourceProperties interface
-func (s ApiGatewayResource) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Resource to implement the ResourceProperties interface
+func (s ApiGatewayResource) CfnResourceType() string {
 	return "AWS::ApiGateway::Resource"
 }
 
@@ -299,8 +300,8 @@ type ApiGatewayRestApi struct {
 	Parameters *StringListExpr `json:"Parameters,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::RestApi to implement the ResourceProperties interface
-func (s ApiGatewayRestApi) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::RestApi to implement the ResourceProperties interface
+func (s ApiGatewayRestApi) CfnResourceType() string {
 	return "AWS::ApiGateway::RestApi"
 }
 
@@ -341,8 +342,8 @@ type ApiGatewayStage struct {
 	Variables interface{} `json:"Variables,omitempty"`
 }
 
-// ResourceType returns AWS::ApiGateway::Stage to implement the ResourceProperties interface
-func (s ApiGatewayStage) ResourceType() string {
+// CfnResourceType returns AWS::ApiGateway::Stage to implement the ResourceProperties interface
+func (s ApiGatewayStage) CfnResourceType() string {
 	return "AWS::ApiGateway::Stage"
 }
 
@@ -413,8 +414,8 @@ type AutoScalingAutoScalingGroup struct {
 	VPCZoneIdentifier *StringListExpr `json:"VPCZoneIdentifier,omitempty"`
 }
 
-// ResourceType returns AWS::AutoScaling::AutoScalingGroup to implement the ResourceProperties interface
-func (s AutoScalingAutoScalingGroup) ResourceType() string {
+// CfnResourceType returns AWS::AutoScaling::AutoScalingGroup to implement the ResourceProperties interface
+func (s AutoScalingAutoScalingGroup) CfnResourceType() string {
 	return "AWS::AutoScaling::AutoScalingGroup"
 }
 
@@ -504,8 +505,8 @@ type AutoScalingLaunchConfiguration struct {
 	UserData *StringExpr `json:"UserData,omitempty"`
 }
 
-// ResourceType returns AWS::AutoScaling::LaunchConfiguration to implement the ResourceProperties interface
-func (s AutoScalingLaunchConfiguration) ResourceType() string {
+// CfnResourceType returns AWS::AutoScaling::LaunchConfiguration to implement the ResourceProperties interface
+func (s AutoScalingLaunchConfiguration) CfnResourceType() string {
 	return "AWS::AutoScaling::LaunchConfiguration"
 }
 
@@ -548,8 +549,8 @@ type AutoScalingLifecycleHook struct {
 	RoleARN *StringExpr `json:"RoleARN,omitempty"`
 }
 
-// ResourceType returns AWS::AutoScaling::LifecycleHook to implement the ResourceProperties interface
-func (s AutoScalingLifecycleHook) ResourceType() string {
+// CfnResourceType returns AWS::AutoScaling::LifecycleHook to implement the ResourceProperties interface
+func (s AutoScalingLifecycleHook) CfnResourceType() string {
 	return "AWS::AutoScaling::LifecycleHook"
 }
 
@@ -606,8 +607,8 @@ type AutoScalingScalingPolicy struct {
 	StepAdjustments *AutoScalingScalingPolicyStepAdjustmentsList `json:"StepAdjustments,omitempty"`
 }
 
-// ResourceType returns AWS::AutoScaling::ScalingPolicy to implement the ResourceProperties interface
-func (s AutoScalingScalingPolicy) ResourceType() string {
+// CfnResourceType returns AWS::AutoScaling::ScalingPolicy to implement the ResourceProperties interface
+func (s AutoScalingScalingPolicy) CfnResourceType() string {
 	return "AWS::AutoScaling::ScalingPolicy"
 }
 
@@ -643,8 +644,8 @@ type AutoScalingScheduledAction struct {
 	StartTime time.Time `json:"StartTime,omitempty"`
 }
 
-// ResourceType returns AWS::AutoScaling::ScheduledAction to implement the ResourceProperties interface
-func (s AutoScalingScheduledAction) ResourceType() string {
+// CfnResourceType returns AWS::AutoScaling::ScheduledAction to implement the ResourceProperties interface
+func (s AutoScalingScheduledAction) CfnResourceType() string {
 	return "AWS::AutoScaling::ScheduledAction"
 }
 
@@ -683,8 +684,8 @@ type CloudFormationAuthentication struct {
 	RoleName *StringExpr `json:"roleName,omitempty"`
 }
 
-// ResourceType returns AWS::CloudFormation::Authentication to implement the ResourceProperties interface
-func (s CloudFormationAuthentication) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::Authentication to implement the ResourceProperties interface
+func (s CloudFormationAuthentication) CfnResourceType() string {
 	return "AWS::CloudFormation::Authentication"
 }
 
@@ -699,8 +700,8 @@ type CloudFormationCustomResource struct {
 	ServiceToken *StringExpr `json:"ServiceToken,omitempty"`
 }
 
-// ResourceType returns AWS::CloudFormation::CustomResource to implement the ResourceProperties interface
-func (s CloudFormationCustomResource) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::CustomResource to implement the ResourceProperties interface
+func (s CloudFormationCustomResource) CfnResourceType() string {
 	return "AWS::CloudFormation::CustomResource"
 }
 
@@ -710,8 +711,8 @@ func (s CloudFormationCustomResource) ResourceType() string {
 type CloudFormationInit struct {
 }
 
-// ResourceType returns AWS::CloudFormation::Init to implement the ResourceProperties interface
-func (s CloudFormationInit) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::Init to implement the ResourceProperties interface
+func (s CloudFormationInit) CfnResourceType() string {
 	return "AWS::CloudFormation::Init"
 }
 
@@ -729,8 +730,8 @@ type CloudFormationInterface struct {
 	ParameterLabels *InterfaceParameterLabel `json:"ParameterLabels,omitempty"`
 }
 
-// ResourceType returns AWS::CloudFormation::Interface to implement the ResourceProperties interface
-func (s CloudFormationInterface) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::Interface to implement the ResourceProperties interface
+func (s CloudFormationInterface) CfnResourceType() string {
 	return "AWS::CloudFormation::Interface"
 }
 
@@ -766,8 +767,8 @@ type CloudFormationStack struct {
 	TimeoutInMinutes *StringExpr `json:"TimeoutInMinutes,omitempty"`
 }
 
-// ResourceType returns AWS::CloudFormation::Stack to implement the ResourceProperties interface
-func (s CloudFormationStack) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::Stack to implement the ResourceProperties interface
+func (s CloudFormationStack) CfnResourceType() string {
 	return "AWS::CloudFormation::Stack"
 }
 
@@ -797,8 +798,8 @@ type CloudFormationWaitCondition struct {
 	Timeout *StringExpr `json:"Timeout,omitempty"`
 }
 
-// ResourceType returns AWS::CloudFormation::WaitCondition to implement the ResourceProperties interface
-func (s CloudFormationWaitCondition) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::WaitCondition to implement the ResourceProperties interface
+func (s CloudFormationWaitCondition) CfnResourceType() string {
 	return "AWS::CloudFormation::WaitCondition"
 }
 
@@ -808,8 +809,8 @@ func (s CloudFormationWaitCondition) ResourceType() string {
 type CloudFormationWaitConditionHandle struct {
 }
 
-// ResourceType returns AWS::CloudFormation::WaitConditionHandle to implement the ResourceProperties interface
-func (s CloudFormationWaitConditionHandle) ResourceType() string {
+// CfnResourceType returns AWS::CloudFormation::WaitConditionHandle to implement the ResourceProperties interface
+func (s CloudFormationWaitConditionHandle) CfnResourceType() string {
 	return "AWS::CloudFormation::WaitConditionHandle"
 }
 
@@ -821,8 +822,8 @@ type CloudFrontDistribution struct {
 	DistributionConfig *CloudFrontDistributionConfig `json:"DistributionConfig,omitempty"`
 }
 
-// ResourceType returns AWS::CloudFront::Distribution to implement the ResourceProperties interface
-func (s CloudFrontDistribution) ResourceType() string {
+// CfnResourceType returns AWS::CloudFront::Distribution to implement the ResourceProperties interface
+func (s CloudFrontDistribution) CfnResourceType() string {
 	return "AWS::CloudFront::Distribution"
 }
 
@@ -884,8 +885,8 @@ type CloudTrailTrail struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::CloudTrail::Trail to implement the ResourceProperties interface
-func (s CloudTrailTrail) ResourceType() string {
+// CfnResourceType returns AWS::CloudTrail::Trail to implement the ResourceProperties interface
+func (s CloudTrailTrail) CfnResourceType() string {
 	return "AWS::CloudTrail::Trail"
 }
 
@@ -960,8 +961,8 @@ type CloudWatchAlarm struct {
 	Unit *StringExpr `json:"Unit,omitempty"`
 }
 
-// ResourceType returns AWS::CloudWatch::Alarm to implement the ResourceProperties interface
-func (s CloudWatchAlarm) ResourceType() string {
+// CfnResourceType returns AWS::CloudWatch::Alarm to implement the ResourceProperties interface
+func (s CloudWatchAlarm) CfnResourceType() string {
 	return "AWS::CloudWatch::Alarm"
 }
 
@@ -975,8 +976,8 @@ type CodeDeployApplication struct {
 	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
 }
 
-// ResourceType returns AWS::CodeDeploy::Application to implement the ResourceProperties interface
-func (s CodeDeployApplication) ResourceType() string {
+// CfnResourceType returns AWS::CodeDeploy::Application to implement the ResourceProperties interface
+func (s CodeDeployApplication) CfnResourceType() string {
 	return "AWS::CodeDeploy::Application"
 }
 
@@ -1000,8 +1001,8 @@ type CodeDeployDeploymentConfig struct {
 	MinimumHealthyHosts *CodeDeployDeploymentConfigMinimumHealthyHosts `json:"MinimumHealthyHosts,omitempty"`
 }
 
-// ResourceType returns AWS::CodeDeploy::DeploymentConfig to implement the ResourceProperties interface
-func (s CodeDeployDeploymentConfig) ResourceType() string {
+// CfnResourceType returns AWS::CodeDeploy::DeploymentConfig to implement the ResourceProperties interface
+func (s CodeDeployDeploymentConfig) CfnResourceType() string {
 	return "AWS::CodeDeploy::DeploymentConfig"
 }
 
@@ -1051,8 +1052,8 @@ type CodeDeployDeploymentGroup struct {
 	ServiceRoleArn *StringExpr `json:"ServiceRoleArn,omitempty"`
 }
 
-// ResourceType returns AWS::CodeDeploy::DeploymentGroup to implement the ResourceProperties interface
-func (s CodeDeployDeploymentGroup) ResourceType() string {
+// CfnResourceType returns AWS::CodeDeploy::DeploymentGroup to implement the ResourceProperties interface
+func (s CodeDeployDeploymentGroup) CfnResourceType() string {
 	return "AWS::CodeDeploy::DeploymentGroup"
 }
 
@@ -1085,8 +1086,8 @@ type CodePipelineCustomAction struct {
 	Version *StringExpr `json:"Version,omitempty"`
 }
 
-// ResourceType returns AWS::CodePipeline::CustomActionType to implement the ResourceProperties interface
-func (s CodePipelineCustomAction) ResourceType() string {
+// CfnResourceType returns AWS::CodePipeline::CustomActionType to implement the ResourceProperties interface
+func (s CodePipelineCustomAction) CfnResourceType() string {
 	return "AWS::CodePipeline::CustomActionType"
 }
 
@@ -1121,8 +1122,8 @@ type CodePipelinePipeline struct {
 	Stages *CodePipelinePipelineStagesList `json:"Stages,omitempty"`
 }
 
-// ResourceType returns AWS::CodePipeline::Pipeline to implement the ResourceProperties interface
-func (s CodePipelinePipeline) ResourceType() string {
+// CfnResourceType returns AWS::CodePipeline::Pipeline to implement the ResourceProperties interface
+func (s CodePipelinePipeline) CfnResourceType() string {
 	return "AWS::CodePipeline::Pipeline"
 }
 
@@ -1160,8 +1161,8 @@ type ConfigConfigRule struct {
 	Source *ConfigConfigRuleSource `json:"Source,omitempty"`
 }
 
-// ResourceType returns AWS::Config::ConfigRule to implement the ResourceProperties interface
-func (s ConfigConfigRule) ResourceType() string {
+// CfnResourceType returns AWS::Config::ConfigRule to implement the ResourceProperties interface
+func (s ConfigConfigRule) CfnResourceType() string {
 	return "AWS::Config::ConfigRule"
 }
 
@@ -1187,8 +1188,8 @@ type ConfigConfigurationRecorder struct {
 	RoleARN *StringExpr `json:"RoleARN,omitempty"`
 }
 
-// ResourceType returns AWS::Config::ConfigurationRecorder to implement the ResourceProperties interface
-func (s ConfigConfigurationRecorder) ResourceType() string {
+// CfnResourceType returns AWS::Config::ConfigurationRecorder to implement the ResourceProperties interface
+func (s ConfigConfigurationRecorder) CfnResourceType() string {
 	return "AWS::Config::ConfigurationRecorder"
 }
 
@@ -1217,8 +1218,8 @@ type ConfigDeliveryChannel struct {
 	SnsTopicARN *StringExpr `json:"SnsTopicARN,omitempty"`
 }
 
-// ResourceType returns AWS::Config::DeliveryChannel to implement the ResourceProperties interface
-func (s ConfigDeliveryChannel) ResourceType() string {
+// CfnResourceType returns AWS::Config::DeliveryChannel to implement the ResourceProperties interface
+func (s ConfigDeliveryChannel) CfnResourceType() string {
 	return "AWS::Config::DeliveryChannel"
 }
 
@@ -1262,8 +1263,8 @@ type DataPipelinePipeline struct {
 	PipelineTags *DataPipelinePipelinePipelineTagsList `json:"PipelineTags,omitempty"`
 }
 
-// ResourceType returns AWS::DataPipeline::Pipeline to implement the ResourceProperties interface
-func (s DataPipelinePipeline) ResourceType() string {
+// CfnResourceType returns AWS::DataPipeline::Pipeline to implement the ResourceProperties interface
+func (s DataPipelinePipeline) CfnResourceType() string {
 	return "AWS::DataPipeline::Pipeline"
 }
 
@@ -1304,8 +1305,8 @@ type DirectoryServiceMicrosoftAD struct {
 	VpcSettings *DirectoryServiceMicrosoftADVpcSettings `json:"VpcSettings,omitempty"`
 }
 
-// ResourceType returns AWS::DirectoryService::MicrosoftAD to implement the ResourceProperties interface
-func (s DirectoryServiceMicrosoftAD) ResourceType() string {
+// CfnResourceType returns AWS::DirectoryService::MicrosoftAD to implement the ResourceProperties interface
+func (s DirectoryServiceMicrosoftAD) CfnResourceType() string {
 	return "AWS::DirectoryService::MicrosoftAD"
 }
 
@@ -1345,8 +1346,8 @@ type DirectoryServiceSimpleAD struct {
 	VpcSettings *DirectoryServiceSimpleADVpcSettings `json:"VpcSettings,omitempty"`
 }
 
-// ResourceType returns AWS::DirectoryService::SimpleAD to implement the ResourceProperties interface
-func (s DirectoryServiceSimpleAD) ResourceType() string {
+// CfnResourceType returns AWS::DirectoryService::SimpleAD to implement the ResourceProperties interface
+func (s DirectoryServiceSimpleAD) CfnResourceType() string {
 	return "AWS::DirectoryService::SimpleAD"
 }
 
@@ -1388,8 +1389,8 @@ type DynamoDBTable struct {
 	TableName *StringExpr `json:"TableName,omitempty"`
 }
 
-// ResourceType returns AWS::DynamoDB::Table to implement the ResourceProperties interface
-func (s DynamoDBTable) ResourceType() string {
+// CfnResourceType returns AWS::DynamoDB::Table to implement the ResourceProperties interface
+func (s DynamoDBTable) CfnResourceType() string {
 	return "AWS::DynamoDB::Table"
 }
 
@@ -1412,8 +1413,8 @@ type EC2CustomerGateway struct {
 	Type *StringExpr `json:"Type,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::CustomerGateway to implement the ResourceProperties interface
-func (s EC2CustomerGateway) ResourceType() string {
+// CfnResourceType returns AWS::EC2::CustomerGateway to implement the ResourceProperties interface
+func (s EC2CustomerGateway) CfnResourceType() string {
 	return "AWS::EC2::CustomerGateway"
 }
 
@@ -1443,8 +1444,8 @@ type EC2DHCPOptions struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::DHCPOptions to implement the ResourceProperties interface
-func (s EC2DHCPOptions) ResourceType() string {
+// CfnResourceType returns AWS::EC2::DHCPOptions to implement the ResourceProperties interface
+func (s EC2DHCPOptions) CfnResourceType() string {
 	return "AWS::EC2::DHCPOptions"
 }
 
@@ -1461,8 +1462,8 @@ type EC2EIP struct {
 	Domain *StringExpr `json:"Domain,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::EIP to implement the ResourceProperties interface
-func (s EC2EIP) ResourceType() string {
+// CfnResourceType returns AWS::EC2::EIP to implement the ResourceProperties interface
+func (s EC2EIP) CfnResourceType() string {
 	return "AWS::EC2::EIP"
 }
 
@@ -1496,9 +1497,45 @@ type EC2EIPAssociation struct {
 	PrivateIpAddress *StringExpr `json:"PrivateIpAddress,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::EIPAssociation to implement the ResourceProperties interface
-func (s EC2EIPAssociation) ResourceType() string {
+// CfnResourceType returns AWS::EC2::EIPAssociation to implement the ResourceProperties interface
+func (s EC2EIPAssociation) CfnResourceType() string {
 	return "AWS::EC2::EIPAssociation"
+}
+
+// EC2FlowLog represents AWS::EC2::FlowLog
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html
+type EC2FlowLog struct {
+	// The Amazon Resource Name (ARN) of an AWS Identity and Access
+	// Management (IAM) role that permits Amazon EC2 to publish flow logs to
+	// a CloudWatch Logs log group in your account.
+	DeliverLogsPermissionArn *StringExpr `json:"DeliverLogsPermissionArn,omitempty"`
+
+	// The name of a new or existing CloudWatch Logs log group where Amazon
+	// EC2 publishes your flow logs.
+	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
+
+	// The ID of the subnet, network interface, or VPC for which you want to
+	// create a flow log.
+	ResourceId *StringExpr `json:"ResourceId,omitempty"`
+
+	// The type of resource that you specified in the ResourceId property.
+	// For example, if you specified a VPC ID for the ResourceId property,
+	// specify VPC for this property. For valid values, see the ResourceType
+	// parameter for the CreateFlowLogs action in the Amazon EC2 API
+	// Reference.
+	ResourceType *StringExpr `json:"ResourceType,omitempty"`
+
+	// The type of traffic to log. You can log traffic that the resource
+	// accepts or rejects, or all traffic. For valid values, see the
+	// TrafficType parameter for the CreateFlowLogs action in the Amazon EC2
+	// API Reference.
+	TrafficType *StringExpr `json:"TrafficType,omitempty"`
+}
+
+// CfnResourceType returns AWS::EC2::FlowLog to implement the ResourceProperties interface
+func (s EC2FlowLog) CfnResourceType() string {
+	return "AWS::EC2::FlowLog"
 }
 
 // EC2Host represents AWS::EC2::Host
@@ -1524,8 +1561,8 @@ type EC2Host struct {
 	InstanceType *StringExpr `json:"InstanceType,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::Host to implement the ResourceProperties interface
-func (s EC2Host) ResourceType() string {
+// CfnResourceType returns AWS::EC2::Host to implement the ResourceProperties interface
+func (s EC2Host) CfnResourceType() string {
 	return "AWS::EC2::Host"
 }
 
@@ -1661,8 +1698,8 @@ type EC2Instance struct {
 	AdditionalInfo *StringExpr `json:"AdditionalInfo,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::Instance to implement the ResourceProperties interface
-func (s EC2Instance) ResourceType() string {
+// CfnResourceType returns AWS::EC2::Instance to implement the ResourceProperties interface
+func (s EC2Instance) CfnResourceType() string {
 	return "AWS::EC2::Instance"
 }
 
@@ -1674,8 +1711,8 @@ type EC2InternetGateway struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::InternetGateway to implement the ResourceProperties interface
-func (s EC2InternetGateway) ResourceType() string {
+// CfnResourceType returns AWS::EC2::InternetGateway to implement the ResourceProperties interface
+func (s EC2InternetGateway) CfnResourceType() string {
 	return "AWS::EC2::InternetGateway"
 }
 
@@ -1692,8 +1729,8 @@ type EC2NatGateway struct {
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::NatGateway to implement the ResourceProperties interface
-func (s EC2NatGateway) ResourceType() string {
+// CfnResourceType returns AWS::EC2::NatGateway to implement the ResourceProperties interface
+func (s EC2NatGateway) CfnResourceType() string {
 	return "AWS::EC2::NatGateway"
 }
 
@@ -1708,8 +1745,8 @@ type EC2NetworkAcl struct {
 	VpcId *StringExpr `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::NetworkAcl to implement the ResourceProperties interface
-func (s EC2NetworkAcl) ResourceType() string {
+// CfnResourceType returns AWS::EC2::NetworkAcl to implement the ResourceProperties interface
+func (s EC2NetworkAcl) CfnResourceType() string {
 	return "AWS::EC2::NetworkAcl"
 }
 
@@ -1749,8 +1786,8 @@ type EC2NetworkAclEntry struct {
 	RuleNumber *IntegerExpr `json:"RuleNumber,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::NetworkAclEntry to implement the ResourceProperties interface
-func (s EC2NetworkAclEntry) ResourceType() string {
+// CfnResourceType returns AWS::EC2::NetworkAclEntry to implement the ResourceProperties interface
+func (s EC2NetworkAclEntry) CfnResourceType() string {
 	return "AWS::EC2::NetworkAclEntry"
 }
 
@@ -1795,8 +1832,8 @@ type EC2NetworkInterface struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::NetworkInterface to implement the ResourceProperties interface
-func (s EC2NetworkInterface) ResourceType() string {
+// CfnResourceType returns AWS::EC2::NetworkInterface to implement the ResourceProperties interface
+func (s EC2NetworkInterface) CfnResourceType() string {
 	return "AWS::EC2::NetworkInterface"
 }
 
@@ -1819,8 +1856,8 @@ type EC2NetworkInterfaceAttachment struct {
 	NetworkInterfaceId *StringExpr `json:"NetworkInterfaceId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::NetworkInterfaceAttachment to implement the ResourceProperties interface
-func (s EC2NetworkInterfaceAttachment) ResourceType() string {
+// CfnResourceType returns AWS::EC2::NetworkInterfaceAttachment to implement the ResourceProperties interface
+func (s EC2NetworkInterfaceAttachment) CfnResourceType() string {
 	return "AWS::EC2::NetworkInterfaceAttachment"
 }
 
@@ -1837,8 +1874,8 @@ type EC2PlacementGroup struct {
 	Strategy *StringExpr `json:"Strategy,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::PlacementGroup to implement the ResourceProperties interface
-func (s EC2PlacementGroup) ResourceType() string {
+// CfnResourceType returns AWS::EC2::PlacementGroup to implement the ResourceProperties interface
+func (s EC2PlacementGroup) CfnResourceType() string {
 	return "AWS::EC2::PlacementGroup"
 }
 
@@ -1870,8 +1907,8 @@ type EC2Route struct {
 	VpcPeeringConnectionId *StringExpr `json:"VpcPeeringConnectionId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::Route to implement the ResourceProperties interface
-func (s EC2Route) ResourceType() string {
+// CfnResourceType returns AWS::EC2::Route to implement the ResourceProperties interface
+func (s EC2Route) CfnResourceType() string {
 	return "AWS::EC2::Route"
 }
 
@@ -1886,8 +1923,8 @@ type EC2RouteTable struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::RouteTable to implement the ResourceProperties interface
-func (s EC2RouteTable) ResourceType() string {
+// CfnResourceType returns AWS::EC2::RouteTable to implement the ResourceProperties interface
+func (s EC2RouteTable) CfnResourceType() string {
 	return "AWS::EC2::RouteTable"
 }
 
@@ -1912,8 +1949,8 @@ type EC2SecurityGroup struct {
 	VpcId *StringExpr `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::SecurityGroup to implement the ResourceProperties interface
-func (s EC2SecurityGroup) ResourceType() string {
+// CfnResourceType returns AWS::EC2::SecurityGroup to implement the ResourceProperties interface
+func (s EC2SecurityGroup) CfnResourceType() string {
 	return "AWS::EC2::SecurityGroup"
 }
 
@@ -1947,8 +1984,8 @@ type EC2SecurityGroupEgress struct {
 	ToPort *IntegerExpr `json:"ToPort,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::SecurityGroupEgress to implement the ResourceProperties interface
-func (s EC2SecurityGroupEgress) ResourceType() string {
+// CfnResourceType returns AWS::EC2::SecurityGroupEgress to implement the ResourceProperties interface
+func (s EC2SecurityGroupEgress) CfnResourceType() string {
 	return "AWS::EC2::SecurityGroupEgress"
 }
 
@@ -1998,8 +2035,8 @@ type EC2SecurityGroupIngress struct {
 	ToPort *IntegerExpr `json:"ToPort,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::SecurityGroupIngress to implement the ResourceProperties interface
-func (s EC2SecurityGroupIngress) ResourceType() string {
+// CfnResourceType returns AWS::EC2::SecurityGroupIngress to implement the ResourceProperties interface
+func (s EC2SecurityGroupIngress) CfnResourceType() string {
 	return "AWS::EC2::SecurityGroupIngress"
 }
 
@@ -2011,8 +2048,8 @@ type EC2SpotFleet struct {
 	SpotFleetRequestConfigData *EC2SpotFleetSpotFleetRequestConfigData `json:"SpotFleetRequestConfigData,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::SpotFleet to implement the ResourceProperties interface
-func (s EC2SpotFleet) ResourceType() string {
+// CfnResourceType returns AWS::EC2::SpotFleet to implement the ResourceProperties interface
+func (s EC2SpotFleet) CfnResourceType() string {
 	return "AWS::EC2::SpotFleet"
 }
 
@@ -2041,8 +2078,8 @@ type EC2Subnet struct {
 	VpcId interface{} `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::Subnet to implement the ResourceProperties interface
-func (s EC2Subnet) ResourceType() string {
+// CfnResourceType returns AWS::EC2::Subnet to implement the ResourceProperties interface
+func (s EC2Subnet) CfnResourceType() string {
 	return "AWS::EC2::Subnet"
 }
 
@@ -2058,8 +2095,8 @@ type EC2SubnetNetworkAclAssociation struct {
 	NetworkAclId *StringExpr `json:"NetworkAclId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::SubnetNetworkAclAssociation to implement the ResourceProperties interface
-func (s EC2SubnetNetworkAclAssociation) ResourceType() string {
+// CfnResourceType returns AWS::EC2::SubnetNetworkAclAssociation to implement the ResourceProperties interface
+func (s EC2SubnetNetworkAclAssociation) CfnResourceType() string {
 	return "AWS::EC2::SubnetNetworkAclAssociation"
 }
 
@@ -2076,8 +2113,8 @@ type EC2SubnetRouteTableAssociation struct {
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::SubnetRouteTableAssociation to implement the ResourceProperties interface
-func (s EC2SubnetRouteTableAssociation) ResourceType() string {
+// CfnResourceType returns AWS::EC2::SubnetRouteTableAssociation to implement the ResourceProperties interface
+func (s EC2SubnetRouteTableAssociation) CfnResourceType() string {
 	return "AWS::EC2::SubnetRouteTableAssociation"
 }
 
@@ -2139,8 +2176,8 @@ type EC2Volume struct {
 	VolumeType *StringExpr `json:"VolumeType,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::Volume to implement the ResourceProperties interface
-func (s EC2Volume) ResourceType() string {
+// CfnResourceType returns AWS::EC2::Volume to implement the ResourceProperties interface
+func (s EC2Volume) CfnResourceType() string {
 	return "AWS::EC2::Volume"
 }
 
@@ -2163,8 +2200,8 @@ type EC2VolumeAttachment struct {
 	VolumeId *StringExpr `json:"VolumeId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VolumeAttachment to implement the ResourceProperties interface
-func (s EC2VolumeAttachment) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VolumeAttachment to implement the ResourceProperties interface
+func (s EC2VolumeAttachment) CfnResourceType() string {
 	return "AWS::EC2::VolumeAttachment"
 }
 
@@ -2196,8 +2233,8 @@ type EC2VPC struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPC to implement the ResourceProperties interface
-func (s EC2VPC) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPC to implement the ResourceProperties interface
+func (s EC2VPC) CfnResourceType() string {
 	return "AWS::EC2::VPC"
 }
 
@@ -2213,8 +2250,8 @@ type EC2VPCDHCPOptionsAssociation struct {
 	VpcId *StringExpr `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPCDHCPOptionsAssociation to implement the ResourceProperties interface
-func (s EC2VPCDHCPOptionsAssociation) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPCDHCPOptionsAssociation to implement the ResourceProperties interface
+func (s EC2VPCDHCPOptionsAssociation) CfnResourceType() string {
 	return "AWS::EC2::VPCDHCPOptionsAssociation"
 }
 
@@ -2240,8 +2277,8 @@ type EC2VPCEndpoint struct {
 	VpcId *StringExpr `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPCEndpoint to implement the ResourceProperties interface
-func (s EC2VPCEndpoint) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPCEndpoint to implement the ResourceProperties interface
+func (s EC2VPCEndpoint) CfnResourceType() string {
 	return "AWS::EC2::VPCEndpoint"
 }
 
@@ -2260,8 +2297,8 @@ type EC2VPCGatewayAttachment struct {
 	VpnGatewayId *StringExpr `json:"VpnGatewayId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPCGatewayAttachment to implement the ResourceProperties interface
-func (s EC2VPCGatewayAttachment) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPCGatewayAttachment to implement the ResourceProperties interface
+func (s EC2VPCGatewayAttachment) CfnResourceType() string {
 	return "AWS::EC2::VPCGatewayAttachment"
 }
 
@@ -2279,8 +2316,8 @@ type EC2VPCPeeringConnection struct {
 	VpcId *StringExpr `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPCPeeringConnection to implement the ResourceProperties interface
-func (s EC2VPCPeeringConnection) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPCPeeringConnection to implement the ResourceProperties interface
+func (s EC2VPCPeeringConnection) CfnResourceType() string {
 	return "AWS::EC2::VPCPeeringConnection"
 }
 
@@ -2306,8 +2343,8 @@ type EC2VPNConnection struct {
 	VpnGatewayId *StringExpr `json:"VpnGatewayId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPNConnection to implement the ResourceProperties interface
-func (s EC2VPNConnection) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPNConnection to implement the ResourceProperties interface
+func (s EC2VPNConnection) CfnResourceType() string {
 	return "AWS::EC2::VPNConnection"
 }
 
@@ -2323,8 +2360,8 @@ type EC2VPNConnectionRoute struct {
 	VpnConnectionId *StringExpr `json:"VpnConnectionId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPNConnectionRoute to implement the ResourceProperties interface
-func (s EC2VPNConnectionRoute) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPNConnectionRoute to implement the ResourceProperties interface
+func (s EC2VPNConnectionRoute) CfnResourceType() string {
 	return "AWS::EC2::VPNConnectionRoute"
 }
 
@@ -2340,8 +2377,8 @@ type EC2VPNGateway struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPNGateway to implement the ResourceProperties interface
-func (s EC2VPNGateway) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPNGateway to implement the ResourceProperties interface
+func (s EC2VPNGateway) CfnResourceType() string {
 	return "AWS::EC2::VPNGateway"
 }
 
@@ -2360,8 +2397,8 @@ type EC2VPNGatewayRoutePropagation struct {
 	VpnGatewayId *StringExpr `json:"VpnGatewayId,omitempty"`
 }
 
-// ResourceType returns AWS::EC2::VPNGatewayRoutePropagation to implement the ResourceProperties interface
-func (s EC2VPNGatewayRoutePropagation) ResourceType() string {
+// CfnResourceType returns AWS::EC2::VPNGatewayRoutePropagation to implement the ResourceProperties interface
+func (s EC2VPNGatewayRoutePropagation) CfnResourceType() string {
 	return "AWS::EC2::VPNGatewayRoutePropagation"
 }
 
@@ -2380,8 +2417,8 @@ type ECRRepository struct {
 	RepositoryPolicyText interface{} `json:"RepositoryPolicyText,omitempty"`
 }
 
-// ResourceType returns AWS::ECR::Repository to implement the ResourceProperties interface
-func (s ECRRepository) ResourceType() string {
+// CfnResourceType returns AWS::ECR::Repository to implement the ResourceProperties interface
+func (s ECRRepository) CfnResourceType() string {
 	return "AWS::ECR::Repository"
 }
 
@@ -2391,8 +2428,8 @@ func (s ECRRepository) ResourceType() string {
 type ECSCluster struct {
 }
 
-// ResourceType returns AWS::ECS::Cluster to implement the ResourceProperties interface
-func (s ECSCluster) ResourceType() string {
+// CfnResourceType returns AWS::ECS::Cluster to implement the ResourceProperties interface
+func (s ECSCluster) CfnResourceType() string {
 	return "AWS::ECS::Cluster"
 }
 
@@ -2424,8 +2461,8 @@ type ECSService struct {
 	TaskDefinition *StringExpr `json:"TaskDefinition,omitempty"`
 }
 
-// ResourceType returns AWS::ECS::Service to implement the ResourceProperties interface
-func (s ECSService) ResourceType() string {
+// CfnResourceType returns AWS::ECS::Service to implement the ResourceProperties interface
+func (s ECSService) CfnResourceType() string {
 	return "AWS::ECS::Service"
 }
 
@@ -2442,8 +2479,8 @@ type ECSTaskDefinition struct {
 	Volumes *EC2ContainerServiceTaskDefinitionVolumesList `json:"Volumes,omitempty"`
 }
 
-// ResourceType returns AWS::ECS::TaskDefinition to implement the ResourceProperties interface
-func (s ECSTaskDefinition) ResourceType() string {
+// CfnResourceType returns AWS::ECS::TaskDefinition to implement the ResourceProperties interface
+func (s ECSTaskDefinition) CfnResourceType() string {
 	return "AWS::ECS::TaskDefinition"
 }
 
@@ -2455,8 +2492,8 @@ type EFSFileSystem struct {
 	FileSystemTags *ElasticFileSystemFileSystemFileSystemTagsList `json:"FileSystemTags,omitempty"`
 }
 
-// ResourceType returns AWS::EFS::FileSystem to implement the ResourceProperties interface
-func (s EFSFileSystem) ResourceType() string {
+// CfnResourceType returns AWS::EFS::FileSystem to implement the ResourceProperties interface
+func (s EFSFileSystem) CfnResourceType() string {
 	return "AWS::EFS::FileSystem"
 }
 
@@ -2484,8 +2521,8 @@ type EFSMountTarget struct {
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
 }
 
-// ResourceType returns AWS::EFS::MountTarget to implement the ResourceProperties interface
-func (s EFSMountTarget) ResourceType() string {
+// CfnResourceType returns AWS::EFS::MountTarget to implement the ResourceProperties interface
+func (s EFSMountTarget) CfnResourceType() string {
 	return "AWS::EFS::MountTarget"
 }
 
@@ -2586,8 +2623,8 @@ type ElastiCacheCacheCluster struct {
 	VpcSecurityGroupIds *StringListExpr `json:"VpcSecurityGroupIds,omitempty"`
 }
 
-// ResourceType returns AWS::ElastiCache::CacheCluster to implement the ResourceProperties interface
-func (s ElastiCacheCacheCluster) ResourceType() string {
+// CfnResourceType returns AWS::ElastiCache::CacheCluster to implement the ResourceProperties interface
+func (s ElastiCacheCacheCluster) CfnResourceType() string {
 	return "AWS::ElastiCache::CacheCluster"
 }
 
@@ -2608,8 +2645,8 @@ type ElastiCacheParameterGroup struct {
 	Properties interface{} `json:"Properties,omitempty"`
 }
 
-// ResourceType returns AWS::ElastiCache::ParameterGroup to implement the ResourceProperties interface
-func (s ElastiCacheParameterGroup) ResourceType() string {
+// CfnResourceType returns AWS::ElastiCache::ParameterGroup to implement the ResourceProperties interface
+func (s ElastiCacheParameterGroup) CfnResourceType() string {
 	return "AWS::ElastiCache::ParameterGroup"
 }
 
@@ -2700,8 +2737,8 @@ type ElastiCacheReplicationGroup struct {
 	SnapshotWindow *StringExpr `json:"SnapshotWindow,omitempty"`
 }
 
-// ResourceType returns AWS::ElastiCache::ReplicationGroup to implement the ResourceProperties interface
-func (s ElastiCacheReplicationGroup) ResourceType() string {
+// CfnResourceType returns AWS::ElastiCache::ReplicationGroup to implement the ResourceProperties interface
+func (s ElastiCacheReplicationGroup) CfnResourceType() string {
 	return "AWS::ElastiCache::ReplicationGroup"
 }
 
@@ -2713,8 +2750,8 @@ type ElastiCacheSecurityGroup struct {
 	Description *StringExpr `json:"Description,omitempty"`
 }
 
-// ResourceType returns AWS::ElastiCache::SecurityGroup to implement the ResourceProperties interface
-func (s ElastiCacheSecurityGroup) ResourceType() string {
+// CfnResourceType returns AWS::ElastiCache::SecurityGroup to implement the ResourceProperties interface
+func (s ElastiCacheSecurityGroup) CfnResourceType() string {
 	return "AWS::ElastiCache::SecurityGroup"
 }
 
@@ -2734,8 +2771,8 @@ type ElastiCacheSecurityGroupIngress struct {
 	EC2SecurityGroupOwnerId *StringExpr `json:"EC2SecurityGroupOwnerId,omitempty"`
 }
 
-// ResourceType returns AWS::ElastiCache::SecurityGroupIngress to implement the ResourceProperties interface
-func (s ElastiCacheSecurityGroupIngress) ResourceType() string {
+// CfnResourceType returns AWS::ElastiCache::SecurityGroupIngress to implement the ResourceProperties interface
+func (s ElastiCacheSecurityGroupIngress) CfnResourceType() string {
 	return "AWS::ElastiCache::SecurityGroupIngress"
 }
 
@@ -2745,8 +2782,8 @@ func (s ElastiCacheSecurityGroupIngress) ResourceType() string {
 type ElastiCacheSubnetGroup struct {
 }
 
-// ResourceType returns AWS::ElastiCache::SubnetGroup  to implement the ResourceProperties interface
-func (s ElastiCacheSubnetGroup) ResourceType() string {
+// CfnResourceType returns AWS::ElastiCache::SubnetGroup  to implement the ResourceProperties interface
+func (s ElastiCacheSubnetGroup) CfnResourceType() string {
 	return "AWS::ElastiCache::SubnetGroup "
 }
 
@@ -2763,8 +2800,8 @@ type ElasticBeanstalkApplication struct {
 	Description *StringExpr `json:"Description,omitempty"`
 }
 
-// ResourceType returns AWS::ElasticBeanstalk::Application to implement the ResourceProperties interface
-func (s ElasticBeanstalkApplication) ResourceType() string {
+// CfnResourceType returns AWS::ElasticBeanstalk::Application to implement the ResourceProperties interface
+func (s ElasticBeanstalkApplication) CfnResourceType() string {
 	return "AWS::ElasticBeanstalk::Application"
 }
 
@@ -2774,8 +2811,8 @@ func (s ElasticBeanstalkApplication) ResourceType() string {
 type ElasticBeanstalkApplicationVersion struct {
 }
 
-// ResourceType returns AWS::ElasticBeanstalk::ApplicationVersion to implement the ResourceProperties interface
-func (s ElasticBeanstalkApplicationVersion) ResourceType() string {
+// CfnResourceType returns AWS::ElasticBeanstalk::ApplicationVersion to implement the ResourceProperties interface
+func (s ElasticBeanstalkApplicationVersion) CfnResourceType() string {
 	return "AWS::ElasticBeanstalk::ApplicationVersion"
 }
 
@@ -2785,8 +2822,8 @@ func (s ElasticBeanstalkApplicationVersion) ResourceType() string {
 type ElasticBeanstalkConfigurationTemplate struct {
 }
 
-// ResourceType returns AWS::ElasticBeanstalk::ConfigurationTemplate to implement the ResourceProperties interface
-func (s ElasticBeanstalkConfigurationTemplate) ResourceType() string {
+// CfnResourceType returns AWS::ElasticBeanstalk::ConfigurationTemplate to implement the ResourceProperties interface
+func (s ElasticBeanstalkConfigurationTemplate) CfnResourceType() string {
 	return "AWS::ElasticBeanstalk::ConfigurationTemplate"
 }
 
@@ -2839,8 +2876,8 @@ type ElasticBeanstalkEnvironment struct {
 	VersionLabel *StringExpr `json:"VersionLabel,omitempty"`
 }
 
-// ResourceType returns AWS::ElasticBeanstalk::Environment to implement the ResourceProperties interface
-func (s ElasticBeanstalkEnvironment) ResourceType() string {
+// CfnResourceType returns AWS::ElasticBeanstalk::Environment to implement the ResourceProperties interface
+func (s ElasticBeanstalkEnvironment) CfnResourceType() string {
 	return "AWS::ElasticBeanstalk::Environment"
 }
 
@@ -2925,8 +2962,8 @@ type ElasticLoadBalancingLoadBalancer struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::ElasticLoadBalancing::LoadBalancer to implement the ResourceProperties interface
-func (s ElasticLoadBalancingLoadBalancer) ResourceType() string {
+// CfnResourceType returns AWS::ElasticLoadBalancing::LoadBalancer to implement the ResourceProperties interface
+func (s ElasticLoadBalancingLoadBalancer) CfnResourceType() string {
 	return "AWS::ElasticLoadBalancing::LoadBalancer"
 }
 
@@ -2970,8 +3007,8 @@ type ElasticsearchDomain struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::Elasticsearch::Domain to implement the ResourceProperties interface
-func (s ElasticsearchDomain) ResourceType() string {
+// CfnResourceType returns AWS::Elasticsearch::Domain to implement the ResourceProperties interface
+func (s ElasticsearchDomain) CfnResourceType() string {
 	return "AWS::Elasticsearch::Domain"
 }
 
@@ -3035,8 +3072,8 @@ type EMRCluster struct {
 	VisibleToAllUsers *BoolExpr `json:"VisibleToAllUsers,omitempty"`
 }
 
-// ResourceType returns AWS::EMR::Cluster to implement the ResourceProperties interface
-func (s EMRCluster) ResourceType() string {
+// CfnResourceType returns AWS::EMR::Cluster to implement the ResourceProperties interface
+func (s EMRCluster) CfnResourceType() string {
 	return "AWS::EMR::Cluster"
 }
 
@@ -3083,8 +3120,8 @@ type EMRInstanceGroupConfig struct {
 	Name *StringExpr `json:"Name,omitempty"`
 }
 
-// ResourceType returns AWS::EMR::InstanceGroupConfig to implement the ResourceProperties interface
-func (s EMRInstanceGroupConfig) ResourceType() string {
+// CfnResourceType returns AWS::EMR::InstanceGroupConfig to implement the ResourceProperties interface
+func (s EMRInstanceGroupConfig) CfnResourceType() string {
 	return "AWS::EMR::InstanceGroupConfig"
 }
 
@@ -3093,7 +3130,7 @@ func (s EMRInstanceGroupConfig) ResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html
 type EMRStep struct {
 	// The action to take if the job flow step fails. Currently, AWS
-	// CloudFormation supports CONTINUE and CONTINUE_AND_WAIT. For more
+	// CloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more
 	// information, see Managing Cluster Termination in the Amazon Elastic
 	// MapReduce Management Guide.
 	ActionOnFailure *StringExpr `json:"ActionOnFailure,omitempty"`
@@ -3108,8 +3145,8 @@ type EMRStep struct {
 	Name *StringExpr `json:"Name,omitempty"`
 }
 
-// ResourceType returns AWS::EMR::Step to implement the ResourceProperties interface
-func (s EMRStep) ResourceType() string {
+// CfnResourceType returns AWS::EMR::Step to implement the ResourceProperties interface
+func (s EMRStep) CfnResourceType() string {
 	return "AWS::EMR::Step"
 }
 
@@ -3153,8 +3190,8 @@ type EventsRule struct {
 	Targets *CloudWatchEventsRuleTargetList `json:"Targets,omitempty"`
 }
 
-// ResourceType returns AWS::Events::Rule to implement the ResourceProperties interface
-func (s EventsRule) ResourceType() string {
+// CfnResourceType returns AWS::Events::Rule to implement the ResourceProperties interface
+func (s EventsRule) CfnResourceType() string {
 	return "AWS::Events::Rule"
 }
 
@@ -3174,8 +3211,8 @@ type GameLiftAlias struct {
 	RoutingStrategy *GameLiftAliasRoutingStrategy `json:"RoutingStrategy,omitempty"`
 }
 
-// ResourceType returns AWS::GameLift::Alias to implement the ResourceProperties interface
-func (s GameLiftAlias) ResourceType() string {
+// CfnResourceType returns AWS::GameLift::Alias to implement the ResourceProperties interface
+func (s GameLiftAlias) CfnResourceType() string {
 	return "AWS::GameLift::Alias"
 }
 
@@ -3197,8 +3234,8 @@ type GameLiftBuild struct {
 	Version *StringExpr `json:"Version,omitempty"`
 }
 
-// ResourceType returns AWS::GameLift::Build to implement the ResourceProperties interface
-func (s GameLiftBuild) ResourceType() string {
+// CfnResourceType returns AWS::GameLift::Build to implement the ResourceProperties interface
+func (s GameLiftBuild) CfnResourceType() string {
 	return "AWS::GameLift::Build"
 }
 
@@ -3257,8 +3294,8 @@ type GameLiftFleet struct {
 	ServerLaunchPath *StringExpr `json:"ServerLaunchPath,omitempty"`
 }
 
-// ResourceType returns AWS::GameLift::Fleet to implement the ResourceProperties interface
-func (s GameLiftFleet) ResourceType() string {
+// CfnResourceType returns AWS::GameLift::Fleet to implement the ResourceProperties interface
+func (s GameLiftFleet) CfnResourceType() string {
 	return "AWS::GameLift::Fleet"
 }
 
@@ -3280,8 +3317,8 @@ type IAMAccessKey struct {
 	UserName *StringExpr `json:"UserName,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::AccessKey to implement the ResourceProperties interface
-func (s IAMAccessKey) ResourceType() string {
+// CfnResourceType returns AWS::IAM::AccessKey to implement the ResourceProperties interface
+func (s IAMAccessKey) CfnResourceType() string {
 	return "AWS::IAM::AccessKey"
 }
 
@@ -3301,8 +3338,8 @@ type IAMGroup struct {
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::Group to implement the ResourceProperties interface
-func (s IAMGroup) ResourceType() string {
+// CfnResourceType returns AWS::IAM::Group to implement the ResourceProperties interface
+func (s IAMGroup) CfnResourceType() string {
 	return "AWS::IAM::Group"
 }
 
@@ -3319,8 +3356,8 @@ type IAMInstanceProfile struct {
 	Roles interface{} `json:"Roles,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::InstanceProfile to implement the ResourceProperties interface
-func (s IAMInstanceProfile) ResourceType() string {
+// CfnResourceType returns AWS::IAM::InstanceProfile to implement the ResourceProperties interface
+func (s IAMInstanceProfile) CfnResourceType() string {
 	return "AWS::IAM::InstanceProfile"
 }
 
@@ -3351,8 +3388,8 @@ type IAMManagedPolicy struct {
 	Users *StringListExpr `json:"Users,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::ManagedPolicy to implement the ResourceProperties interface
-func (s IAMManagedPolicy) ResourceType() string {
+// CfnResourceType returns AWS::IAM::ManagedPolicy to implement the ResourceProperties interface
+func (s IAMManagedPolicy) CfnResourceType() string {
 	return "AWS::IAM::ManagedPolicy"
 }
 
@@ -3379,8 +3416,8 @@ type IAMPolicy struct {
 	Users *StringListExpr `json:"Users,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::Policy to implement the ResourceProperties interface
-func (s IAMPolicy) ResourceType() string {
+// CfnResourceType returns AWS::IAM::Policy to implement the ResourceProperties interface
+func (s IAMPolicy) CfnResourceType() string {
 	return "AWS::IAM::Policy"
 }
 
@@ -3402,8 +3439,8 @@ type IAMRole struct {
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::Role to implement the ResourceProperties interface
-func (s IAMRole) ResourceType() string {
+// CfnResourceType returns AWS::IAM::Role to implement the ResourceProperties interface
+func (s IAMRole) CfnResourceType() string {
 	return "AWS::IAM::Role"
 }
 
@@ -3431,8 +3468,8 @@ type IAMUser struct {
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::User to implement the ResourceProperties interface
-func (s IAMUser) ResourceType() string {
+// CfnResourceType returns AWS::IAM::User to implement the ResourceProperties interface
+func (s IAMUser) CfnResourceType() string {
 	return "AWS::IAM::User"
 }
 
@@ -3447,8 +3484,8 @@ type IAMUserToGroupAddition struct {
 	Users interface{} `json:"Users,omitempty"`
 }
 
-// ResourceType returns AWS::IAM::UserToGroupAddition to implement the ResourceProperties interface
-func (s IAMUserToGroupAddition) ResourceType() string {
+// CfnResourceType returns AWS::IAM::UserToGroupAddition to implement the ResourceProperties interface
+func (s IAMUserToGroupAddition) CfnResourceType() string {
 	return "AWS::IAM::UserToGroupAddition"
 }
 
@@ -3456,6 +3493,11 @@ func (s IAMUserToGroupAddition) ResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html
 type KinesisStream struct {
+	// The name of the Amazon Kinesis stream. If you don't specify a name,
+	// AWS CloudFormation generates a unique physical ID and uses that ID for
+	// the stream name. For more information, see Name Type.
+	Name *StringExpr `json:"Name,omitempty"`
+
 	// The number of shards that the stream uses. For greater provisioned
 	// throughput, increase the number of shards.
 	ShardCount *IntegerExpr `json:"ShardCount,omitempty"`
@@ -3465,9 +3507,31 @@ type KinesisStream struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::Kinesis::Stream to implement the ResourceProperties interface
-func (s KinesisStream) ResourceType() string {
+// CfnResourceType returns AWS::Kinesis::Stream to implement the ResourceProperties interface
+func (s KinesisStream) CfnResourceType() string {
 	return "AWS::Kinesis::Stream"
+}
+
+// KinesisFirehoseDeliveryStream represents AWS::KinesisFirehose::DeliveryStream
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html
+type KinesisFirehoseDeliveryStream struct {
+	// A name for the delivery stream.
+	DeliveryStreamName *StringExpr `json:"DeliveryStreamName,omitempty"`
+
+	// An Amazon ES destination for the delivery stream.
+	ElasticsearchDestinationConfiguration *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration `json:"ElasticsearchDestinationConfiguration,omitempty"`
+
+	// An Amazon Redshift destination for the delivery stream.
+	RedshiftDestinationConfiguration *KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration `json:"RedshiftDestinationConfiguration,omitempty"`
+
+	// An Amazon S3 destination for the delivery stream.
+	S3DestinationConfiguration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3DestinationConfiguration,omitempty"`
+}
+
+// CfnResourceType returns AWS::KinesisFirehose::DeliveryStream to implement the ResourceProperties interface
+func (s KinesisFirehoseDeliveryStream) CfnResourceType() string {
+	return "AWS::KinesisFirehose::DeliveryStream"
 }
 
 // KMSKey represents AWS::KMS::Key
@@ -3493,8 +3557,8 @@ type KMSKey struct {
 	KeyPolicy interface{} `json:"KeyPolicy,omitempty"`
 }
 
-// ResourceType returns AWS::KMS::Key to implement the ResourceProperties interface
-func (s KMSKey) ResourceType() string {
+// CfnResourceType returns AWS::KMS::Key to implement the ResourceProperties interface
+func (s KMSKey) CfnResourceType() string {
 	return "AWS::KMS::Key"
 }
 
@@ -3527,8 +3591,8 @@ type LambdaEventSourceMapping struct {
 	StartingPosition *StringExpr `json:"StartingPosition,omitempty"`
 }
 
-// ResourceType returns AWS::Lambda::EventSourceMapping to implement the ResourceProperties interface
-func (s LambdaEventSourceMapping) ResourceType() string {
+// CfnResourceType returns AWS::Lambda::EventSourceMapping to implement the ResourceProperties interface
+func (s LambdaEventSourceMapping) CfnResourceType() string {
 	return "AWS::Lambda::EventSourceMapping"
 }
 
@@ -3552,8 +3616,8 @@ type LambdaAlias struct {
 	Name *StringExpr `json:"Name,omitempty"`
 }
 
-// ResourceType returns AWS::Lambda::Alias to implement the ResourceProperties interface
-func (s LambdaAlias) ResourceType() string {
+// CfnResourceType returns AWS::Lambda::Alias to implement the ResourceProperties interface
+func (s LambdaAlias) CfnResourceType() string {
 	return "AWS::Lambda::Alias"
 }
 
@@ -3613,8 +3677,8 @@ type LambdaFunction struct {
 	VpcConfig *LambdaFunctionVPCConfig `json:"VpcConfig,omitempty"`
 }
 
-// ResourceType returns AWS::Lambda::Function to implement the ResourceProperties interface
-func (s LambdaFunction) ResourceType() string {
+// CfnResourceType returns AWS::Lambda::Function to implement the ResourceProperties interface
+func (s LambdaFunction) CfnResourceType() string {
 	return "AWS::Lambda::Function"
 }
 
@@ -3657,8 +3721,8 @@ type LambdaPermission struct {
 	SourceArn *StringExpr `json:"SourceArn,omitempty"`
 }
 
-// ResourceType returns AWS::Lambda::Permission to implement the ResourceProperties interface
-func (s LambdaPermission) ResourceType() string {
+// CfnResourceType returns AWS::Lambda::Permission to implement the ResourceProperties interface
+func (s LambdaPermission) CfnResourceType() string {
 	return "AWS::Lambda::Permission"
 }
 
@@ -3682,8 +3746,8 @@ type LambdaVersion struct {
 	FunctionName *StringExpr `json:"FunctionName,omitempty"`
 }
 
-// ResourceType returns AWS::Lambda::Version to implement the ResourceProperties interface
-func (s LambdaVersion) ResourceType() string {
+// CfnResourceType returns AWS::Lambda::Version to implement the ResourceProperties interface
+func (s LambdaVersion) CfnResourceType() string {
 	return "AWS::Lambda::Version"
 }
 
@@ -3707,8 +3771,8 @@ type LogsDestination struct {
 	TargetArn *StringExpr `json:"TargetArn,omitempty"`
 }
 
-// ResourceType returns AWS::Logs::Destination to implement the ResourceProperties interface
-func (s LogsDestination) ResourceType() string {
+// CfnResourceType returns AWS::Logs::Destination to implement the ResourceProperties interface
+func (s LogsDestination) CfnResourceType() string {
 	return "AWS::Logs::Destination"
 }
 
@@ -3723,8 +3787,8 @@ type LogsLogGroup struct {
 	RetentionInDays *IntegerExpr `json:"RetentionInDays,omitempty"`
 }
 
-// ResourceType returns AWS::Logs::LogGroup to implement the ResourceProperties interface
-func (s LogsLogGroup) ResourceType() string {
+// CfnResourceType returns AWS::Logs::LogGroup to implement the ResourceProperties interface
+func (s LogsLogGroup) CfnResourceType() string {
 	return "AWS::Logs::LogGroup"
 }
 
@@ -3740,8 +3804,8 @@ type LogsLogStream struct {
 	LogStreamName *StringExpr `json:"LogStreamName,omitempty"`
 }
 
-// ResourceType returns AWS::Logs::LogStream to implement the ResourceProperties interface
-func (s LogsLogStream) ResourceType() string {
+// CfnResourceType returns AWS::Logs::LogStream to implement the ResourceProperties interface
+func (s LogsLogStream) CfnResourceType() string {
 	return "AWS::Logs::LogStream"
 }
 
@@ -3766,8 +3830,8 @@ type LogsMetricFilter struct {
 	MetricTransformations *CloudWatchLogsMetricFilterMetricTransformationPropertyList `json:"MetricTransformations,omitempty"`
 }
 
-// ResourceType returns AWS::Logs::MetricFilter to implement the ResourceProperties interface
-func (s LogsMetricFilter) ResourceType() string {
+// CfnResourceType returns AWS::Logs::MetricFilter to implement the ResourceProperties interface
+func (s LogsMetricFilter) CfnResourceType() string {
 	return "AWS::Logs::MetricFilter"
 }
 
@@ -3798,8 +3862,8 @@ type LogsSubscriptionFilter struct {
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
 }
 
-// ResourceType returns AWS::Logs::SubscriptionFilter to implement the ResourceProperties interface
-func (s LogsSubscriptionFilter) ResourceType() string {
+// CfnResourceType returns AWS::Logs::SubscriptionFilter to implement the ResourceProperties interface
+func (s LogsSubscriptionFilter) CfnResourceType() string {
 	return "AWS::Logs::SubscriptionFilter"
 }
 
@@ -3847,8 +3911,8 @@ type OpsWorksApp struct {
 	Type *StringExpr `json:"Type,omitempty"`
 }
 
-// ResourceType returns AWS::OpsWorks::App to implement the ResourceProperties interface
-func (s OpsWorksApp) ResourceType() string {
+// CfnResourceType returns AWS::OpsWorks::App to implement the ResourceProperties interface
+func (s OpsWorksApp) CfnResourceType() string {
 	return "AWS::OpsWorks::App"
 }
 
@@ -3864,8 +3928,8 @@ type OpsWorksElasticLoadBalancerAttachment struct {
 	LayerId *StringExpr `json:"LayerId,omitempty"`
 }
 
-// ResourceType returns AWS::OpsWorks::ElasticLoadBalancerAttachment to implement the ResourceProperties interface
-func (s OpsWorksElasticLoadBalancerAttachment) ResourceType() string {
+// CfnResourceType returns AWS::OpsWorks::ElasticLoadBalancerAttachment to implement the ResourceProperties interface
+func (s OpsWorksElasticLoadBalancerAttachment) CfnResourceType() string {
 	return "AWS::OpsWorks::ElasticLoadBalancerAttachment"
 }
 
@@ -3930,8 +3994,8 @@ type OpsWorksInstance struct {
 	TimeBasedAutoScaling *OpsWorksTimeBasedAutoScaling `json:"TimeBasedAutoScaling,omitempty"`
 }
 
-// ResourceType returns AWS::OpsWorks::Instance to implement the ResourceProperties interface
-func (s OpsWorksInstance) ResourceType() string {
+// CfnResourceType returns AWS::OpsWorks::Instance to implement the ResourceProperties interface
+func (s OpsWorksInstance) CfnResourceType() string {
 	return "AWS::OpsWorks::Instance"
 }
 
@@ -4001,8 +4065,8 @@ type OpsWorksLayer struct {
 	VolumeConfigurations *OpsWorksVolumeConfigurationList `json:"VolumeConfigurations,omitempty"`
 }
 
-// ResourceType returns AWS::OpsWorks::Layer to implement the ResourceProperties interface
-func (s OpsWorksLayer) ResourceType() string {
+// CfnResourceType returns AWS::OpsWorks::Layer to implement the ResourceProperties interface
+func (s OpsWorksLayer) CfnResourceType() string {
 	return "AWS::OpsWorks::Layer"
 }
 
@@ -4095,8 +4159,8 @@ type OpsWorksStack struct {
 	VpcId *StringExpr `json:"VpcId,omitempty"`
 }
 
-// ResourceType returns AWS::OpsWorks::Stack to implement the ResourceProperties interface
-func (s OpsWorksStack) ResourceType() string {
+// CfnResourceType returns AWS::OpsWorks::Stack to implement the ResourceProperties interface
+func (s OpsWorksStack) CfnResourceType() string {
 	return "AWS::OpsWorks::Stack"
 }
 
@@ -4177,8 +4241,8 @@ type RDSDBCluster struct {
 	VpcSecurityGroupIds *StringListExpr `json:"VpcSecurityGroupIds,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBCluster to implement the ResourceProperties interface
-func (s RDSDBCluster) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBCluster to implement the ResourceProperties interface
+func (s RDSDBCluster) CfnResourceType() string {
 	return "AWS::RDS::DBCluster"
 }
 
@@ -4202,8 +4266,8 @@ type RDSDBClusterParameterGroup struct {
 	Tags *ResourceTagList `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBClusterParameterGroup to implement the ResourceProperties interface
-func (s RDSDBClusterParameterGroup) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBClusterParameterGroup to implement the ResourceProperties interface
+func (s RDSDBClusterParameterGroup) CfnResourceType() string {
 	return "AWS::RDS::DBClusterParameterGroup"
 }
 
@@ -4321,11 +4385,15 @@ type RDSDBInstance struct {
 
 	// The daily time range during which automated backups are created if
 	// automated backups are enabled, as determined by the
-	// BackupRetentionPeriod.
+	// BackupRetentionPeriod property. For valid values, see the
+	// PreferredBackupWindow parameter for the CreateDBInstance action in the
+	// Amazon Relational Database Service API Reference.
 	PreferredBackupWindow *StringExpr `json:"PreferredBackupWindow,omitempty"`
 
 	// The weekly time range (in UTC) during which system maintenance can
-	// occur.
+	// occur. For valid values, see the PreferredMaintenanceWindow parameter
+	// for the CreateDBInstance action in the Amazon Relational Database
+	// Service API Reference.
 	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
 
 	// Indicates whether the database instance is an Internet-facing
@@ -4352,15 +4420,15 @@ type RDSDBInstance struct {
 	// instance.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
-	// A list of the VPC security groups to assign to the Amazon RDS
+	// A list of the VPC security group IDs to assign to the Amazon RDS
 	// instance. The list can include both the physical IDs of existing VPC
 	// security groups or references to AWS::EC2::SecurityGroup resources
 	// created in the template.
 	VPCSecurityGroups *StringListExpr `json:"VPCSecurityGroups,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBInstance to implement the ResourceProperties interface
-func (s RDSDBInstance) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBInstance to implement the ResourceProperties interface
+func (s RDSDBInstance) CfnResourceType() string {
 	return "AWS::RDS::DBInstance"
 }
 
@@ -4383,8 +4451,8 @@ type RDSDBParameterGroup struct {
 	Tags *ResourceTagList `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBParameterGroup to implement the ResourceProperties interface
-func (s RDSDBParameterGroup) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBParameterGroup to implement the ResourceProperties interface
+func (s RDSDBParameterGroup) CfnResourceType() string {
 	return "AWS::RDS::DBParameterGroup"
 }
 
@@ -4407,8 +4475,8 @@ type RDSDBSecurityGroup struct {
 	Tags *ResourceTagList `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBSecurityGroup to implement the ResourceProperties interface
-func (s RDSDBSecurityGroup) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBSecurityGroup to implement the ResourceProperties interface
+func (s RDSDBSecurityGroup) CfnResourceType() string {
 	return "AWS::RDS::DBSecurityGroup"
 }
 
@@ -4435,8 +4503,8 @@ type RDSDBSecurityGroupIngress struct {
 	EC2SecurityGroupOwnerId *StringExpr `json:"EC2SecurityGroupOwnerId,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBSecurityGroupIngress to implement the ResourceProperties interface
-func (s RDSDBSecurityGroupIngress) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBSecurityGroupIngress to implement the ResourceProperties interface
+func (s RDSDBSecurityGroupIngress) CfnResourceType() string {
 	return "AWS::RDS::DBSecurityGroupIngress"
 }
 
@@ -4454,8 +4522,8 @@ type RDSDBSubnetGroup struct {
 	Tags *ResourceTagList `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::DBSubnetGroup to implement the ResourceProperties interface
-func (s RDSDBSubnetGroup) ResourceType() string {
+// CfnResourceType returns AWS::RDS::DBSubnetGroup to implement the ResourceProperties interface
+func (s RDSDBSubnetGroup) CfnResourceType() string {
 	return "AWS::RDS::DBSubnetGroup"
 }
 
@@ -4483,12 +4551,15 @@ type RDSEventSubscription struct {
 	// The type of source for which Amazon RDS provides notification events.
 	// For example, if you want to be notified of events generated by a
 	// database instance, set this parameter to db-instance. If you don't
-	// specify a value, notifications are provided for all source types.
+	// specify a value, notifications are provided for all source types. For
+	// valid values, see the SourceType parameter for the
+	// CreateEventSubscription action in the Amazon Relational Database
+	// Service API Reference.
 	SourceType *StringExpr `json:"SourceType,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::EventSubscription to implement the ResourceProperties interface
-func (s RDSEventSubscription) ResourceType() string {
+// CfnResourceType returns AWS::RDS::EventSubscription to implement the ResourceProperties interface
+func (s RDSEventSubscription) CfnResourceType() string {
 	return "AWS::RDS::EventSubscription"
 }
 
@@ -4514,8 +4585,8 @@ type RDSOptionGroup struct {
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
-// ResourceType returns AWS::RDS::OptionGroup to implement the ResourceProperties interface
-func (s RDSOptionGroup) ResourceType() string {
+// CfnResourceType returns AWS::RDS::OptionGroup to implement the ResourceProperties interface
+func (s RDSOptionGroup) CfnResourceType() string {
 	return "AWS::RDS::OptionGroup"
 }
 
@@ -4622,8 +4693,8 @@ type RedshiftCluster struct {
 	VpcSecurityGroupIds *StringListExpr `json:"VpcSecurityGroupIds,omitempty"`
 }
 
-// ResourceType returns AWS::Redshift::Cluster to implement the ResourceProperties interface
-func (s RedshiftCluster) ResourceType() string {
+// CfnResourceType returns AWS::Redshift::Cluster to implement the ResourceProperties interface
+func (s RedshiftCluster) CfnResourceType() string {
 	return "AWS::Redshift::Cluster"
 }
 
@@ -4646,8 +4717,8 @@ type RedshiftClusterParameterGroup struct {
 	Parameters *RedshiftParameterList `json:"Parameters,omitempty"`
 }
 
-// ResourceType returns AWS::Redshift::ClusterParameterGroup to implement the ResourceProperties interface
-func (s RedshiftClusterParameterGroup) ResourceType() string {
+// CfnResourceType returns AWS::Redshift::ClusterParameterGroup to implement the ResourceProperties interface
+func (s RedshiftClusterParameterGroup) CfnResourceType() string {
 	return "AWS::Redshift::ClusterParameterGroup"
 }
 
@@ -4659,8 +4730,8 @@ type RedshiftClusterSecurityGroup struct {
 	Description *StringExpr `json:"Description,omitempty"`
 }
 
-// ResourceType returns AWS::Redshift::ClusterSecurityGroup to implement the ResourceProperties interface
-func (s RedshiftClusterSecurityGroup) ResourceType() string {
+// CfnResourceType returns AWS::Redshift::ClusterSecurityGroup to implement the ResourceProperties interface
+func (s RedshiftClusterSecurityGroup) CfnResourceType() string {
 	return "AWS::Redshift::ClusterSecurityGroup"
 }
 
@@ -4686,8 +4757,8 @@ type RedshiftClusterSecurityGroupIngress struct {
 	EC2SecurityGroupOwnerId *StringExpr `json:"EC2SecurityGroupOwnerId,omitempty"`
 }
 
-// ResourceType returns AWS::Redshift::ClusterSecurityGroupIngress to implement the ResourceProperties interface
-func (s RedshiftClusterSecurityGroupIngress) ResourceType() string {
+// CfnResourceType returns AWS::Redshift::ClusterSecurityGroupIngress to implement the ResourceProperties interface
+func (s RedshiftClusterSecurityGroupIngress) CfnResourceType() string {
 	return "AWS::Redshift::ClusterSecurityGroupIngress"
 }
 
@@ -4702,8 +4773,8 @@ type RedshiftClusterSubnetGroup struct {
 	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
 }
 
-// ResourceType returns AWS::Redshift::ClusterSubnetGroup to implement the ResourceProperties interface
-func (s RedshiftClusterSubnetGroup) ResourceType() string {
+// CfnResourceType returns AWS::Redshift::ClusterSubnetGroup to implement the ResourceProperties interface
+func (s RedshiftClusterSubnetGroup) CfnResourceType() string {
 	return "AWS::Redshift::ClusterSubnetGroup"
 }
 
@@ -4718,8 +4789,8 @@ type Route53HealthCheck struct {
 	HealthCheckTags *Route53HealthCheckTagsList `json:"HealthCheckTags,omitempty"`
 }
 
-// ResourceType returns AWS::Route53::HealthCheck to implement the ResourceProperties interface
-func (s Route53HealthCheck) ResourceType() string {
+// CfnResourceType returns AWS::Route53::HealthCheck to implement the ResourceProperties interface
+func (s Route53HealthCheck) CfnResourceType() string {
 	return "AWS::Route53::HealthCheck"
 }
 
@@ -4744,8 +4815,8 @@ type Route53HostedZone struct {
 	VPCs *Route53HostedZoneVPCsList `json:"VPCs,omitempty"`
 }
 
-// ResourceType returns AWS::Route53::HostedZone to implement the ResourceProperties interface
-func (s Route53HostedZone) ResourceType() string {
+// CfnResourceType returns AWS::Route53::HostedZone to implement the ResourceProperties interface
+func (s Route53HostedZone) CfnResourceType() string {
 	return "AWS::Route53::HostedZone"
 }
 
@@ -4824,8 +4895,8 @@ type Route53RecordSet struct {
 	Weight *IntegerExpr `json:"Weight,omitempty"`
 }
 
-// ResourceType returns AWS::Route53::RecordSet to implement the ResourceProperties interface
-func (s Route53RecordSet) ResourceType() string {
+// CfnResourceType returns AWS::Route53::RecordSet to implement the ResourceProperties interface
+func (s Route53RecordSet) CfnResourceType() string {
 	return "AWS::Route53::RecordSet"
 }
 
@@ -4867,8 +4938,8 @@ type Route53RecordSetGroup struct {
 	RecordSets *Route53RecordSetList `json:"RecordSets,omitempty"`
 }
 
-// ResourceType returns AWS::Route53::RecordSetGroup to implement the ResourceProperties interface
-func (s Route53RecordSetGroup) ResourceType() string {
+// CfnResourceType returns AWS::Route53::RecordSetGroup to implement the ResourceProperties interface
+func (s Route53RecordSetGroup) CfnResourceType() string {
 	return "AWS::Route53::RecordSetGroup"
 }
 
@@ -4923,8 +4994,8 @@ type S3Bucket struct {
 	WebsiteConfiguration *S3WebsiteConfigurationProperty `json:"WebsiteConfiguration,omitempty"`
 }
 
-// ResourceType returns AWS::S3::Bucket to implement the ResourceProperties interface
-func (s S3Bucket) ResourceType() string {
+// CfnResourceType returns AWS::S3::Bucket to implement the ResourceProperties interface
+func (s S3Bucket) CfnResourceType() string {
 	return "AWS::S3::Bucket"
 }
 
@@ -4941,8 +5012,8 @@ type S3BucketPolicy struct {
 	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
 }
 
-// ResourceType returns AWS::S3::BucketPolicy to implement the ResourceProperties interface
-func (s S3BucketPolicy) ResourceType() string {
+// CfnResourceType returns AWS::S3::BucketPolicy to implement the ResourceProperties interface
+func (s S3BucketPolicy) CfnResourceType() string {
 	return "AWS::S3::BucketPolicy"
 }
 
@@ -4952,8 +5023,8 @@ func (s S3BucketPolicy) ResourceType() string {
 type SDBDomain struct {
 }
 
-// ResourceType returns AWS::SDB::Domain to implement the ResourceProperties interface
-func (s SDBDomain) ResourceType() string {
+// CfnResourceType returns AWS::SDB::Domain to implement the ResourceProperties interface
+func (s SDBDomain) CfnResourceType() string {
 	return "AWS::SDB::Domain"
 }
 
@@ -4974,8 +5045,8 @@ type SNSTopic struct {
 	TopicName *StringExpr `json:"TopicName,omitempty"`
 }
 
-// ResourceType returns AWS::SNS::Topic to implement the ResourceProperties interface
-func (s SNSTopic) ResourceType() string {
+// CfnResourceType returns AWS::SNS::Topic to implement the ResourceProperties interface
+func (s SNSTopic) CfnResourceType() string {
 	return "AWS::SNS::Topic"
 }
 
@@ -4993,8 +5064,8 @@ type SNSTopicPolicy struct {
 	Topics interface{} `json:"Topics,omitempty"`
 }
 
-// ResourceType returns AWS::SNS::TopicPolicy to implement the ResourceProperties interface
-func (s SNSTopicPolicy) ResourceType() string {
+// CfnResourceType returns AWS::SNS::TopicPolicy to implement the ResourceProperties interface
+func (s SNSTopicPolicy) CfnResourceType() string {
 	return "AWS::SNS::TopicPolicy"
 }
 
@@ -5042,8 +5113,8 @@ type SQSQueue struct {
 	VisibilityTimeout *IntegerExpr `json:"VisibilityTimeout,omitempty"`
 }
 
-// ResourceType returns AWS::SQS::Queue to implement the ResourceProperties interface
-func (s SQSQueue) ResourceType() string {
+// CfnResourceType returns AWS::SQS::Queue to implement the ResourceProperties interface
+func (s SQSQueue) CfnResourceType() string {
 	return "AWS::SQS::Queue"
 }
 
@@ -5060,8 +5131,8 @@ type SQSQueuePolicy struct {
 	Queues *StringListExpr `json:"Queues,omitempty"`
 }
 
-// ResourceType returns AWS::SQS::QueuePolicy to implement the ResourceProperties interface
-func (s SQSQueuePolicy) ResourceType() string {
+// CfnResourceType returns AWS::SQS::QueuePolicy to implement the ResourceProperties interface
+func (s SQSQueuePolicy) CfnResourceType() string {
 	return "AWS::SQS::QueuePolicy"
 }
 
@@ -5075,8 +5146,8 @@ type SSMDocument struct {
 	Content interface{} `json:"Content,omitempty"`
 }
 
-// ResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
-func (s SSMDocument) ResourceType() string {
+// CfnResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
+func (s SSMDocument) CfnResourceType() string {
 	return "AWS::SSM::Document"
 }
 
@@ -5093,8 +5164,8 @@ type WAFByteMatchSet struct {
 	Name *StringExpr `json:"Name,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::ByteMatchSet to implement the ResourceProperties interface
-func (s WAFByteMatchSet) ResourceType() string {
+// CfnResourceType returns AWS::WAF::ByteMatchSet to implement the ResourceProperties interface
+func (s WAFByteMatchSet) CfnResourceType() string {
 	return "AWS::WAF::ByteMatchSet"
 }
 
@@ -5121,8 +5192,8 @@ type WAFIPSet struct {
 	Name *StringExpr `json:"Name,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::IPSet to implement the ResourceProperties interface
-func (s WAFIPSet) ResourceType() string {
+// CfnResourceType returns AWS::WAF::IPSet to implement the ResourceProperties interface
+func (s WAFIPSet) CfnResourceType() string {
 	return "AWS::WAF::IPSet"
 }
 
@@ -5143,8 +5214,8 @@ type WAFRule struct {
 	Predicates *WAFRulePredicatesList `json:"Predicates,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::Rule to implement the ResourceProperties interface
-func (s WAFRule) ResourceType() string {
+// CfnResourceType returns AWS::WAF::Rule to implement the ResourceProperties interface
+func (s WAFRule) CfnResourceType() string {
 	return "AWS::WAF::Rule"
 }
 
@@ -5159,8 +5230,8 @@ type WAFSizeConstraintSet struct {
 	SizeConstraints *WAFSizeConstraintSetSizeConstraintList `json:"SizeConstraints,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::SizeConstraintSet to implement the ResourceProperties interface
-func (s WAFSizeConstraintSet) ResourceType() string {
+// CfnResourceType returns AWS::WAF::SizeConstraintSet to implement the ResourceProperties interface
+func (s WAFSizeConstraintSet) CfnResourceType() string {
 	return "AWS::WAF::SizeConstraintSet"
 }
 
@@ -5177,8 +5248,8 @@ type WAFSqlInjectionMatchSet struct {
 	SqlInjectionMatchTuples *WAFSqlInjectionMatchSetSqlInjectionMatchTuplesList `json:"SqlInjectionMatchTuples,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::SqlInjectionMatchSet to implement the ResourceProperties interface
-func (s WAFSqlInjectionMatchSet) ResourceType() string {
+// CfnResourceType returns AWS::WAF::SqlInjectionMatchSet to implement the ResourceProperties interface
+func (s WAFSqlInjectionMatchSet) CfnResourceType() string {
 	return "AWS::WAF::SqlInjectionMatchSet"
 }
 
@@ -5202,8 +5273,8 @@ type WAFWebACL struct {
 	Rules *WAFWebACLRulesList `json:"Rules,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::WebACL to implement the ResourceProperties interface
-func (s WAFWebACL) ResourceType() string {
+// CfnResourceType returns AWS::WAF::WebACL to implement the ResourceProperties interface
+func (s WAFWebACL) CfnResourceType() string {
 	return "AWS::WAF::WebACL"
 }
 
@@ -5219,8 +5290,8 @@ type WAFXssMatchSet struct {
 	XssMatchTuples *WAFXssMatchSetXssMatchTupleList `json:"XssMatchTuples,omitempty"`
 }
 
-// ResourceType returns AWS::WAF::XssMatchSet to implement the ResourceProperties interface
-func (s WAFXssMatchSet) ResourceType() string {
+// CfnResourceType returns AWS::WAF::XssMatchSet to implement the ResourceProperties interface
+func (s WAFXssMatchSet) CfnResourceType() string {
 	return "AWS::WAF::XssMatchSet"
 }
 
@@ -5258,8 +5329,8 @@ type WorkSpacesWorkspace struct {
 	VolumeEncryptionKey *StringExpr `json:"VolumeEncryptionKey,omitempty"`
 }
 
-// ResourceType returns AWS::WorkSpaces::Workspace to implement the ResourceProperties interface
-func (s WorkSpacesWorkspace) ResourceType() string {
+// CfnResourceType returns AWS::WorkSpaces::Workspace to implement the ResourceProperties interface
+func (s WorkSpacesWorkspace) CfnResourceType() string {
 	return "AWS::WorkSpaces::Workspace"
 }
 
@@ -10967,6 +11038,434 @@ func (l *IAMUserLoginProfileList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions represents Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html
+type KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions struct {
+	// Indicates whether CloudWatch Logs logging is enabled.
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+
+	// The name of the CloudWatch Logs log group that contains the log stream
+	// that Firehose will use.
+	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
+
+	// The name of the CloudWatch Logs log stream that Firehose uses to send
+	// logs about data delivery.
+	LogStreamName *StringExpr `json:"LogStreamName,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptionsList represents a list of KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions
+type KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptionsList []KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptionsList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptionsList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration represents Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html
+type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration struct {
+	// Configures how Firehose buffers incoming data while delivering it to
+	// the Amazon ES domain.
+	BufferingHints *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints `json:"BufferingHints,omitempty"`
+
+	// The Amazon CloudWatch Logs logging options for the delivery stream.
+	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the Amazon ES domain that Firehose
+	// delivers data to.
+	DomainARN *StringExpr `json:"DomainARN,omitempty"`
+
+	// The name of the Elasticsearch index to which Firehose adds data for
+	// indexing.
+	IndexName *StringExpr `json:"IndexName,omitempty"`
+
+	// The frequency of Elasticsearch index rotation. If you enable index
+	// rotation, Firehose appends a portion of the UTC arrival timestamp to
+	// the specified index name, and rotates the appended timestamp
+	// accordingly. For more information, see Index Rotation for the Amazon
+	// ES Destination in the Amazon Kinesis Firehose Developer Guide.
+	IndexRotationPeriod *StringExpr `json:"IndexRotationPeriod,omitempty"`
+
+	// The retry behavior when Firehose is unable to deliver data to Amazon
+	// ES.
+	RetryOptions *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions `json:"RetryOptions,omitempty"`
+
+	// The ARN of the AWS Identity and Access Management (IAM) role that
+	// grants Firehose access to your S3 bucket, AWS KMS (if you enable data
+	// encryption), and Amazon CloudWatch Logs (if you enable logging).
+	RoleARN *StringExpr `json:"RoleARN,omitempty"`
+
+	// The condition under which Firehose delivers data to Amazon Simple
+	// Storage Service (Amazon S3). You can send Amazon S3 all documents (all
+	// data) or only the documents that Firehose could not deliver to the
+	// Amazon ES destination. For more information and valid values, see the
+	// S3BackupMode content for the ElasticsearchDestinationConfiguration
+	// data type in the Amazon Kinesis Firehose API Reference.
+	S3BackupMode *StringExpr `json:"S3BackupMode,omitempty"`
+
+	// The S3 bucket where Firehose backs up incoming data.
+	S3Configuration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3Configuration,omitempty"`
+
+	// The Elasticsearch type name that Amazon ES adds to documents when
+	// indexing data.
+	TypeName *StringExpr `json:"TypeName,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationList represents a list of KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration
+type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationList []KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints represents Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration BufferingHints
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints.html
+type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints struct {
+	// The length of time, in seconds, that Firehose buffers incoming data
+	// before delivering it to the destination. For valid values, see the
+	// IntervalInSeconds content for the BufferingHints data type in the
+	// Amazon Kinesis Firehose API Reference.
+	IntervalInSeconds *IntegerExpr `json:"IntervalInSeconds,omitempty"`
+
+	// The size of the buffer, in MBs, that Firehose uses for incoming data
+	// before delivering it to the destination. For valid values, see the
+	// SizeInMBs content for the BufferingHints data type in the Amazon
+	// Kinesis Firehose API Reference.
+	SizeInMBs *IntegerExpr `json:"SizeInMBs,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHintsList represents a list of KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints
+type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHintsList []KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHintsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHintsList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHints{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationBufferingHintsList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions represents Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration RetryOptions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions.html
+type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions struct {
+	// After an initial failure to deliver to Amazon ES, the total amount of
+	// time during which Firehose re-attempts delivery (including the first
+	// attempt). If Firehose can't deliver the data within the specified
+	// time, it writes the data to the backup S3 bucket. For valid values,
+	// see the DurationInSeconds content for the ElasticsearchRetryOptions
+	// data type in the Amazon Kinesis Firehose API Reference.
+	DurationInSeconds *IntegerExpr `json:"DurationInSeconds,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptionsList represents a list of KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions
+type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptionsList []KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptionsList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationRetryOptionsList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration represents Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html
+type KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration struct {
+	// The Amazon CloudWatch Logs logging options for the delivery stream.
+	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
+
+	// The connection string that Firehose uses to connect to the Amazon
+	// Redshift cluster.
+	ClusterJDBCURL *StringExpr `json:"ClusterJDBCURL,omitempty"`
+
+	// Configures the Amazon Redshift COPY command that Firehose uses to load
+	// data into the cluster from the S3 bucket.
+	CopyCommand *KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand `json:"CopyCommand,omitempty"`
+
+	// The password for the Amazon Redshift user that you specified in the
+	// Username property.
+	Password *StringExpr `json:"Password,omitempty"`
+
+	// The ARN of the AWS Identity and Access Management (IAM) role that
+	// grants Firehose access to your S3 bucket and AWS KMS (if you enable
+	// data encryption).
+	RoleARN *StringExpr `json:"RoleARN,omitempty"`
+
+	// The S3 bucket where Firehose first delivers data. After the data is in
+	// the bucket, Firehose uses the COPY command to load the data into the
+	// Amazon Redshift cluster. For the S3 bucket's compression format, don't
+	// specify SNAPPY or ZIP because the Amazon Redshift COPY command doesn't
+	// support them.
+	S3Configuration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3Configuration,omitempty"`
+
+	// The Amazon Redshift user that has permission to access the Amazon
+	// Redshift cluster. This user must have INSERT privileges for copying
+	// data from the S3 bucket to the cluster.
+	Username *StringExpr `json:"Username,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationList represents a list of KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration
+type KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationList []KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand represents Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration CopyCommand
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html
+type KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand struct {
+	// Parameters to use with the Amazon Redshift COPY command. For examples,
+	// see the CopyOptions content for the CopyCommand data type in the
+	// Amazon Kinesis Firehose API Reference.
+	CopyOptions *StringExpr `json:"CopyOptions,omitempty"`
+
+	// A comma-separated list of the column names in the table that Firehose
+	// copies data to.
+	DataTableColumns *StringExpr `json:"DataTableColumns,omitempty"`
+
+	// The name of the table where Firehose adds the copied data.
+	DataTableName *StringExpr `json:"DataTableName,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommandList represents a list of KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand
+type KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommandList []KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommandList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommandList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommand{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationCopyCommandList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfiguration represents Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html
+type KinesisFirehoseDeliveryStreamS3DestinationConfiguration struct {
+	// The Amazon Resource Name (ARN) of the S3 bucket to send data to.
+	BucketARN *StringExpr `json:"BucketARN,omitempty"`
+
+	// Configures how Firehose buffers incoming data while delivering it to
+	// the S3 bucket.
+	BufferingHints *KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints `json:"BufferingHints,omitempty"`
+
+	// The Amazon CloudWatch Logs logging options for the delivery stream.
+	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
+
+	// The type of compression that Firehose uses to compress the data that
+	// it delivers to the S3 bucket. For valid values, see the
+	// CompressionFormat content for the S3DestinationConfiguration data type
+	// in the Amazon Kinesis Firehose API Reference.
+	CompressionFormat *StringExpr `json:"CompressionFormat,omitempty"`
+
+	// Configures Amazon Simple Storage Service (Amazon S3) server-side
+	// encryption. Firehose uses AWS Key Management Service (AWS KMS) to
+	// encrypt the data that it delivers to your S3 bucket.
+	EncryptionConfiguration *KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration `json:"EncryptionConfiguration,omitempty"`
+
+	// A prefix that Firehose adds to the files that it delivers to the S3
+	// bucket. The prefix helps you identify the files that Firehose
+	// delivered.
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+
+	// The ARN of an AWS Identity and Access Management (IAM) role that
+	// grants Firehose access to your S3 bucket and AWS KMS (if you enable
+	// data encryption).
+	RoleARN *StringExpr `json:"RoleARN,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationList represents a list of KinesisFirehoseDeliveryStreamS3DestinationConfiguration
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationList []KinesisFirehoseDeliveryStreamS3DestinationConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamS3DestinationConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamS3DestinationConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints represents Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration BufferingHints
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints struct {
+	// The length of time, in seconds, that Firehose buffers incoming data
+	// before delivering it to the destination. For valid values, see the
+	// IntervalInSeconds content for the BufferingHints data type in the
+	// Amazon Kinesis Firehose API Reference.
+	IntervalInSeconds *IntegerExpr `json:"IntervalInSeconds,omitempty"`
+
+	// The size of the buffer, in MBs, that Firehose uses for incoming data
+	// before delivering it to the destination. For valid values, see the
+	// SizeInMBs content for the BufferingHints data type in the Amazon
+	// Kinesis Firehose API Reference.
+	SizeInMBs *IntegerExpr `json:"SizeInMBs,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHintsList represents a list of KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHintsList []KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHintsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHintsList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHints{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationBufferingHintsList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig represents Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration KMSEncryptionConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig.html
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig struct {
+	// The Amazon Resource Name (ARN) of the AWS KMS encryption key that
+	// Amazon S3 uses to encrypt data delivered by the Firehose stream. The
+	// key must belong to the same region as the destination S3 bucket.
+	AWSKMSKeyARN *StringExpr `json:"AWSKMSKeyARN,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfigList represents a list of KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfigList []KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfigList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration represents Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration struct {
+	// The AWS Key Management Service (AWS KMS) encryption key that Amazon S3
+	// uses to encrypt your data.
+	KMSEncryptionConfig *KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig `json:"KMSEncryptionConfig,omitempty"`
+
+	// Disables encryption. For valid values, see the NoEncryptionConfig
+	// content for the EncryptionConfiguration data type in the Amazon
+	// Kinesis Firehose API Reference.
+	NoEncryptionConfig *StringExpr `json:"NoEncryptionConfig,omitempty"`
+}
+
+// KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationList represents a list of KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration
+type KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationList []KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
 // LambdaFunctionCode represents AWS Lambda Function Code
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
@@ -10985,9 +11484,9 @@ type LambdaFunctionCode struct {
 	// specify the S3Bucket and S3Key properties.
 	S3ObjectVersion *StringExpr `json:"S3ObjectVersion,omitempty"`
 
-	// For nodejs and python2.7 runtime environments, the source code of your
-	// Lambda function. You can't use this property with other runtime
-	// environments.
+	// For nodejs, nodejs4.3, and python2.7 runtime environments, the source
+	// code of your Lambda function. You can't use this property with other
+	// runtime environments.
 	ZipFile *StringExpr `json:"ZipFile,omitempty"`
 }
 
@@ -13522,6 +14021,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2EIP{}
 	case "AWS::EC2::EIPAssociation":
 		return &EC2EIPAssociation{}
+	case "AWS::EC2::FlowLog":
+		return &EC2FlowLog{}
 	case "AWS::EC2::Host":
 		return &EC2Host{}
 	case "AWS::EC2::Instance":
@@ -13648,6 +14149,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &IAMUserToGroupAddition{}
 	case "AWS::Kinesis::Stream":
 		return &KinesisStream{}
+	case "AWS::KinesisFirehose::DeliveryStream":
+		return &KinesisFirehoseDeliveryStream{}
 	case "AWS::KMS::Key":
 		return &KMSKey{}
 	case "AWS::Lambda::EventSourceMapping":

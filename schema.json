@@ -207,7 +207,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the stage that API Gateway creates with this deployment.",
+          "DocString": "A name for the stage that API Gateway creates with this deployment.\nUse only alphanumeric characters.",
           "SyntaxExpression": "String"
         }
       ]
@@ -2174,6 +2174,52 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The private IP address that you want to associate with the Elastic IP\naddress. The private IP address is restricted to the primary and\nsecondary private IP addresses that are associated with the network\ninterface. By default, the private IP address that is associated with\nthe EIP is the primary private IP address of the network interface.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::EC2::FlowLog",
+      "Href": "aws-resource-ec2-flowlog.html",
+      "Properties": [
+        {
+          "Name": "DeliverLogsPermissionArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of an AWS Identity and Access\nManagement (IAM) role that permits Amazon EC2 to publish flow logs to\na CloudWatch Logs log group in your account.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "LogGroupName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of a new or existing CloudWatch Logs log group where Amazon\nEC2 publishes your flow logs.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ResourceId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the subnet, network interface, or VPC for which you want to\ncreate a flow log.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ResourceType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of resource that you specified in the ResourceId property.\nFor example, if you specified a VPC ID for the ResourceId property,\nspecify VPC for this property. For valid values, see the ResourceType\nparameter for the CreateFlowLogs action in the Amazon EC2 API\nReference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TrafficType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of traffic to log. You can log traffic that the resource\naccepts or rejects, or all traffic. For valid values, see the\nTrafficType parameter for the CreateFlowLogs action in the Amazon EC2\nAPI Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -4493,7 +4539,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The action to take if the job flow step fails. Currently, AWS\nCloudFormation supports CONTINUE and CONTINUE_AND_WAIT. For more\ninformation, see Managing Cluster Termination in the Amazon Elastic\nMapReduce Management Guide.",
+          "DocString": "The action to take if the job flow step fails. Currently, AWS\nCloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more\ninformation, see Managing Cluster Termination in the Amazon Elastic\nMapReduce Management Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -5031,6 +5077,14 @@
       "Href": "aws-resource-kinesis-stream.html",
       "Properties": [
         {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the Amazon Kinesis stream. If you don't specify a name,\nAWS CloudFormation generates a unique physical ID and uses that ID for\nthe stream name. For more information, see Name Type.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "ShardCount",
           "Type": "Integer",
           "TypeHref": "",
@@ -5045,6 +5099,44 @@
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) to associate with the\nAmazon Kinesis stream.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::KinesisFirehose::DeliveryStream",
+      "Href": "aws-resource-kinesisfirehose-deliverystream.html",
+      "Properties": [
+        {
+          "Name": "DeliveryStreamName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the delivery stream.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ElasticsearchDestinationConfiguration",
+          "Type": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html",
+          "TypeName": "",
+          "DocString": "An Amazon ES destination for the delivery stream.",
+          "SyntaxExpression": "ElasticsearchDestinationConfiguration"
+        },
+        {
+          "Name": "RedshiftDestinationConfiguration",
+          "Type": "Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html",
+          "TypeName": "",
+          "DocString": "An Amazon Redshift destination for the delivery stream.",
+          "SyntaxExpression": "RedshiftDestinationConfiguration"
+        },
+        {
+          "Name": "S3DestinationConfiguration",
+          "Type": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html",
+          "TypeName": "",
+          "DocString": "An Amazon S3 destination for the delivery stream.",
+          "SyntaxExpression": "S3DestinationConfiguration"
         }
       ]
     },
@@ -6365,7 +6457,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The daily time range during which automated backups are created if\nautomated backups are enabled, as determined by the\nBackupRetentionPeriod.",
+          "DocString": "The daily time range during which automated backups are created if\nautomated backups are enabled, as determined by the\nBackupRetentionPeriod property. For valid values, see the\nPreferredBackupWindow parameter for the CreateDBInstance action in the\nAmazon Relational Database Service API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -6373,7 +6465,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The weekly time range (in UTC) during which system maintenance can\noccur. ",
+          "DocString": "The weekly time range (in UTC) during which system maintenance can\noccur. For valid values, see the PreferredMaintenanceWindow parameter\nfor the CreateDBInstance action in the Amazon Relational Database\nService API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -6421,7 +6513,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of the VPC security groups to assign to the Amazon RDS\ninstance. The list can include both the physical IDs of existing VPC\nsecurity groups or references to AWS::EC2::SecurityGroup resources\ncreated in the template.",
+          "DocString": "A list of the VPC security group IDs to assign to the Amazon RDS\ninstance. The list can include both the physical IDs of existing VPC\nsecurity groups or references to AWS::EC2::SecurityGroup resources\ncreated in the template.",
           "SyntaxExpression": "[ String, ... ]"
         }
       ]
@@ -6619,7 +6711,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of source for which Amazon RDS provides notification events.\nFor example, if you want to be notified of events generated by a\ndatabase instance, set this parameter to db-instance. If you don't\nspecify a value, notifications are provided for all source types.",
+          "DocString": "The type of source for which Amazon RDS provides notification events.\nFor example, if you want to be notified of events generated by a\ndatabase instance, set this parameter to db-instance. If you don't\nspecify a value, notifications are provided for all source types. For\nvalid values, see the SourceType parameter for the\nCreateEventSubscription action in the Amazon Relational Database\nService API Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -12589,6 +12681,370 @@
       ]
     },
     {
+      "Name": "Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html",
+      "Properties": [
+        {
+          "Name": "Enabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether CloudWatch Logs logging is enabled.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "LogGroupName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the CloudWatch Logs log group that contains the log stream\nthat Firehose will use.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "LogStreamName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the CloudWatch Logs log stream that Firehose uses to send\nlogs about data delivery.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html",
+      "Properties": [
+        {
+          "Name": "BufferingHints",
+          "Type": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration BufferingHints",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints.html",
+          "TypeName": "",
+          "DocString": "Configures how Firehose buffers incoming data while delivering it to\nthe Amazon ES domain.",
+          "SyntaxExpression": "BufferingHints"
+        },
+        {
+          "Name": "CloudWatchLoggingOptions",
+          "Type": "Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html",
+          "TypeName": "",
+          "DocString": "The Amazon CloudWatch Logs logging options for the delivery stream.",
+          "SyntaxExpression": "CloudWatchLoggingOptions"
+        },
+        {
+          "Name": "DomainARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the Amazon ES domain that Firehose\ndelivers data to.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IndexName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the Elasticsearch index to which Firehose adds data for\nindexing.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "IndexRotationPeriod",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The frequency of Elasticsearch index rotation. If you enable index\nrotation, Firehose appends a portion of the UTC arrival timestamp to\nthe specified index name, and rotates the appended timestamp\naccordingly. For more information, see Index Rotation for the Amazon\nES Destination in the Amazon Kinesis Firehose Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RetryOptions",
+          "Type": "String",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions.html",
+          "TypeName": "",
+          "DocString": "The retry behavior when Firehose is unable to deliver data to Amazon\nES.",
+          "SyntaxExpression": "RetryOptions"
+        },
+        {
+          "Name": "RoleARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the AWS Identity and Access Management (IAM) role that\ngrants Firehose access to your S3 bucket, AWS KMS (if you enable data\nencryption), and Amazon CloudWatch Logs (if you enable logging).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "S3BackupMode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The condition under which Firehose delivers data to Amazon Simple\nStorage Service (Amazon S3). You can send Amazon S3 all documents (all\ndata) or only the documents that Firehose could not deliver to the\nAmazon ES destination. For more information and valid values, see the\nS3BackupMode content for the ElasticsearchDestinationConfiguration\ndata type in the Amazon Kinesis Firehose API Reference. ",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "S3Configuration",
+          "Type": "String",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html",
+          "TypeName": "",
+          "DocString": "The S3 bucket where Firehose backs up incoming data.",
+          "SyntaxExpression": "S3Configuration"
+        },
+        {
+          "Name": "TypeName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Elasticsearch type name that Amazon ES adds to documents when\nindexing data.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration BufferingHints",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints.html",
+      "Properties": [
+        {
+          "Name": "IntervalInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The length of time, in seconds, that Firehose buffers incoming data\nbefore delivering it to the destination. For valid values, see the\nIntervalInSeconds content for the BufferingHints data type in the\nAmazon Kinesis Firehose API Reference.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "SizeInMBs",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The size of the buffer, in MBs, that Firehose uses for incoming data\nbefore delivering it to the destination. For valid values, see the\nSizeInMBs content for the BufferingHints data type in the Amazon\nKinesis Firehose API Reference.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration RetryOptions",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions.html",
+      "Properties": [
+        {
+          "Name": "DurationInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "After an initial failure to deliver to Amazon ES, the total amount of\ntime during which Firehose re-attempts delivery (including the first\nattempt). If Firehose can't deliver the data within the specified\ntime, it writes the data to the backup S3 bucket. For valid values,\nsee the DurationInSeconds content for the ElasticsearchRetryOptions\ndata type in the Amazon Kinesis Firehose API Reference.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html",
+      "Properties": [
+        {
+          "Name": "CloudWatchLoggingOptions",
+          "Type": "Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html",
+          "TypeName": "",
+          "DocString": "The Amazon CloudWatch Logs logging options for the delivery stream.",
+          "SyntaxExpression": "CloudWatchLoggingOptions"
+        },
+        {
+          "Name": "ClusterJDBCURL",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The connection string that Firehose uses to connect to the Amazon\nRedshift cluster.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "CopyCommand",
+          "Type": "Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration CopyCommand",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html",
+          "TypeName": "",
+          "DocString": "Configures the Amazon Redshift COPY command that Firehose uses to load\ndata into the cluster from the S3 bucket.",
+          "SyntaxExpression": "CopyCommand"
+        },
+        {
+          "Name": "Password",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The password for the Amazon Redshift user that you specified in the\nUsername property.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the AWS Identity and Access Management (IAM) role that\ngrants Firehose access to your S3 bucket and AWS KMS (if you enable\ndata encryption).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "S3Configuration",
+          "Type": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html",
+          "TypeName": "",
+          "DocString": "The S3 bucket where Firehose first delivers data. After the data is in\nthe bucket, Firehose uses the COPY command to load the data into the\nAmazon Redshift cluster. For the S3 bucket's compression format, don't\nspecify SNAPPY or ZIP because the Amazon Redshift COPY command doesn't\nsupport them.",
+          "SyntaxExpression": "S3Configuration"
+        },
+        {
+          "Name": "Username",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Redshift user that has permission to access the Amazon\nRedshift cluster. This user must have INSERT privileges for copying\ndata from the S3 bucket to the cluster.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration CopyCommand",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html",
+      "Properties": [
+        {
+          "Name": "CopyOptions",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Parameters to use with the Amazon Redshift COPY command. For examples,\nsee the CopyOptions content for the CopyCommand data type in the\nAmazon Kinesis Firehose API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DataTableColumns",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A comma-separated list of the column names in the table that Firehose\ncopies data to.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DataTableName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the table where Firehose adds the copied data.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html",
+      "Properties": [
+        {
+          "Name": "BucketARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the S3 bucket to send data to.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "BufferingHints",
+          "Type": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration BufferingHints",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html",
+          "TypeName": "",
+          "DocString": "Configures how Firehose buffers incoming data while delivering it to\nthe S3 bucket.",
+          "SyntaxExpression": "BufferingHints"
+        },
+        {
+          "Name": "CloudWatchLoggingOptions",
+          "Type": "Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html",
+          "TypeName": "",
+          "DocString": "The Amazon CloudWatch Logs logging options for the delivery stream.",
+          "SyntaxExpression": "CloudWatchLoggingOptions"
+        },
+        {
+          "Name": "CompressionFormat",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of compression that Firehose uses to compress the data that\nit delivers to the S3 bucket. For valid values, see the\nCompressionFormat content for the S3DestinationConfiguration data type\nin the Amazon Kinesis Firehose API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "EncryptionConfiguration",
+          "Type": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configures Amazon Simple Storage Service (Amazon S3) server-side\nencryption. Firehose uses AWS Key Management Service (AWS KMS) to\nencrypt the data that it delivers to your S3 bucket.",
+          "SyntaxExpression": "EncryptionConfiguration"
+        },
+        {
+          "Name": "Prefix",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A prefix that Firehose adds to the files that it delivers to the S3\nbucket. The prefix helps you identify the files that Firehose\ndelivered.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of an AWS Identity and Access Management (IAM) role that\ngrants Firehose access to your S3 bucket and AWS KMS (if you enable\ndata encryption).",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration BufferingHints",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html",
+      "Properties": [
+        {
+          "Name": "IntervalInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The length of time, in seconds, that Firehose buffers incoming data\nbefore delivering it to the destination. For valid values, see the\nIntervalInSeconds content for the BufferingHints data type in the\nAmazon Kinesis Firehose API Reference.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "SizeInMBs",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The size of the buffer, in MBs, that Firehose uses for incoming data\nbefore delivering it to the destination. For valid values, see the\nSizeInMBs content for the BufferingHints data type in the Amazon\nKinesis Firehose API Reference.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration KMSEncryptionConfig",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig.html",
+      "Properties": [
+        {
+          "Name": "AWSKMSKeyARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the AWS KMS encryption key that\nAmazon S3 uses to encrypt data delivered by the Firehose stream. The\nkey must belong to the same region as the destination S3 bucket.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration",
+      "Href": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html",
+      "Properties": [
+        {
+          "Name": "KMSEncryptionConfig",
+          "Type": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration KMSEncryptionConfig",
+          "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig.html",
+          "TypeName": "",
+          "DocString": "The AWS Key Management Service (AWS KMS) encryption key that Amazon S3\nuses to encrypt your data.",
+          "SyntaxExpression": "KMSEncryptionConfig"
+        },
+        {
+          "Name": "NoEncryptionConfig",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Disables encryption. For valid values, see the NoEncryptionConfig\ncontent for the EncryptionConfiguration data type in the Amazon\nKinesis Firehose API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS Lambda Function Code",
       "Href": "aws-properties-lambda-function-code.html",
       "Properties": [
@@ -12621,7 +13077,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "For nodejs and python2.7 runtime environments, the source code of your\nLambda function. You can't use this property with other runtime\nenvironments.",
+          "DocString": "For nodejs, nodejs4.3, and python2.7 runtime environments, the source\ncode of your Lambda function. You can't use this property with other\nruntime environments.",
           "SyntaxExpression": "String"
         }
       ]
