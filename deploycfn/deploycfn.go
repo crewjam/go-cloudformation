@@ -52,7 +52,10 @@ func Deploy(input DeployInput) error {
 	})
 	doCreate := err != nil || len(describeStacksResponse.Stacks) == 0
 
-	watcher := &StackEventWatcher{}
+	watcher := &StackEventWatcher{
+		Service:   cfnSvc,
+		StackName: input.StackName,
+	}
 	if !doCreate {
 		watcher, err = NewStackEventWatcher(input.Session, input.StackName)
 		if err != nil {

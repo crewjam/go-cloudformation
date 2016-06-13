@@ -52,6 +52,9 @@ func NewStackEventWatcher(session client.ConfigProvider, stackName string) (*Sta
 // log channel. Returns when the stack enters a non-transitional state. The
 // return value is non-nil if the final state is an error state.
 func (sw *StackEventWatcher) Watch() error {
+	if sw.seenEvents == nil {
+		sw.seenEvents = map[string]struct{}{}
+	}
 	lastStackStatus := ""
 	for {
 		// print the events for the stack
