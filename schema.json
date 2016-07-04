@@ -383,7 +383,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A Swagger specification that defines a set of RESTful APIs in JSON or\nYAML format.",
+          "DocString": "A Swagger specification that defines a set of RESTful APIs in JSON.\nFor specifications in YAML, use the BodyS3Location property.",
           "SyntaxExpression": "String"
         },
         {
@@ -4309,7 +4309,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the load balancer. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nload balancer. The name must be unique within your set of load\nbalancers. For more information, see Name Type.",
+          "DocString": "A name for the load balancer. For valid values, see the\nLoadBalancerName parameter for the CreateLoadBalancer action in the\nElastic Load Balancing API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -4387,7 +4387,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the Amazon ES domain. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\ndomain name. For more information, see Name Type.",
+          "DocString": "A name for the Amazon ES domain. For valid values, see the DomainName\ndata type in the Amazon Elasticsearch Service Developer Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4699,7 +4699,7 @@
           "Type": "List of Amazon CloudWatch Events Rule Target",
           "TypeHref": "aws-properties-events-rule-target.html",
           "TypeName": "",
-          "DocString": "The resources, such as Lambda functions or Amazon Kinesis streams,\nthat CloudWatch Events routes events to and invokes when the rule is\ntriggered.",
+          "DocString": "The resources, such as Lambda functions or Amazon Kinesis streams,\nthat CloudWatch Events routes events to and invokes when the rule is\ntriggered. For information about valid targets, see the PutTargets\naction in the Amazon CloudWatch Events API Reference.",
           "SyntaxExpression": "[ Target, ... ]"
         }
       ]
@@ -7916,6 +7916,30 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "CacheDataEncrypted",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the cached responses are encrypted.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "CacheTtlInSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The time-to-live (TTL) period, in seconds, that specifies how long API\nGateway caches responses.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "CachingEnabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether responses are cached and returned for requests. You\nmust enable a cache cluster on the stage to cache responses. For more\ninformation, see Enable API Gateway Caching in a Stage to Enhance API\nPerformance in the API Gateway Developer Guide.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
           "Name": "ClientCertificateId",
           "Type": "String",
           "TypeHref": "",
@@ -7924,12 +7948,12 @@
           "SyntaxExpression": "String"
         },
         {
-          "Name": "DeploymentId",
-          "Type": "String",
+          "Name": "DataTraceEnabled",
+          "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the deployment that the stage points to.",
-          "SyntaxExpression": "String"
+          "DocString": "Indicates whether data trace logging is enabled for methods in the\nstage. API Gateway pushes these logs to Amazon CloudWatch Logs.",
+          "SyntaxExpression": "Boolean"
         },
         {
           "Name": "Description",
@@ -7937,6 +7961,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the purpose of the stage.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "LoggingLevel",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The logging level for this method. For valid values, see the\nloggingLevel property of the Stage resource in the Amazon API Gateway\nAPI Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -7948,12 +7980,12 @@
           "SyntaxExpression": "[ MethodSetting ]"
         },
         {
-          "Name": "RestApiId",
-          "Type": "String",
+          "Name": "MetricsEnabled",
+          "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of a RestApi resource that you're deploying with this stage.",
-          "SyntaxExpression": "String"
+          "DocString": "Indicates whether Amazon CloudWatch metrics are enabled for methods in\nthe stage.",
+          "SyntaxExpression": "Boolean"
         },
         {
           "Name": "StageName",
@@ -7962,6 +7994,22 @@
           "TypeName": "",
           "DocString": "The name of the stage, which API Gateway uses as the first path\nsegment in the invoke Uniform Resource Identifier (URI).",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ThrottlingBurstLimit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of burst requests per second that API Gateway permits\nacross all APIs, stages, and methods in your AWS account. For more\ninformation, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "ThrottlingRateLimit",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account. For\nmore information, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
+          "SyntaxExpression": "Number"
         },
         {
           "Name": "Variables",
@@ -8022,7 +8070,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The logging level for this method.",
+          "DocString": "The logging level for this method. For valid values, see the\nloggingLevel property of the Stage resource in the Amazon API Gateway\nAPI Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -8038,7 +8086,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The resource path for this method.",
+          "DocString": "The resource path for this method. Forward slashes (/) are encoded as\n~1 and the initial slash must include a forward slash. For example,\nthe path value /resource/subresource must be encoded as\n/~1resource~1subresource. To specify the root path, use only a slash\n(/).",
           "SyntaxExpression": "String"
         },
         {
@@ -8230,7 +8278,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The file name of the application revision (Amazon S3 object name).",
+          "DocString": "The file name of the Swagger file (Amazon S3 object name).",
           "SyntaxExpression": "String"
         },
         {
@@ -8292,7 +8340,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The logging level for this method.",
+          "DocString": "The logging level for this method. For valid values, see the\nloggingLevel property of the Stage resource in the Amazon API Gateway\nAPI Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -8308,7 +8356,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The resource path for this method.",
+          "DocString": "The resource path for this method. Forward slashes (/) are encoded as\n~1 and the initial slash must include a forward slash. For example,\nthe path value /resource/subresource must be encoded as\n/~1resource~1subresource. To specify the root path, use only a slash\n(/).",
           "SyntaxExpression": "String"
         },
         {
@@ -12425,7 +12473,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of an Amazon Virtual Private Cloud (Amazon VPC) virtual private\ncloud (VPC) where you want to launch your instances.",
+          "DocString": "The ID of a subnet where you want to launch your instances.",
           "SyntaxExpression": "String"
         },
         {

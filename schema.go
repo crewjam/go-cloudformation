@@ -274,8 +274,8 @@ func (s ApiGatewayResource) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
 type ApiGatewayRestApi struct {
-	// A Swagger specification that defines a set of RESTful APIs in JSON or
-	// YAML format.
+	// A Swagger specification that defines a set of RESTful APIs in JSON.
+	// For specifications in YAML, use the BodyS3Location property.
 	Body *StringExpr `json:"Body,omitempty"`
 
 	// The Amazon Simple Storage Service (Amazon S3) location that points to
@@ -2965,10 +2965,9 @@ type ElasticLoadBalancingLoadBalancer struct {
 	// listeners.
 	LBCookieStickinessPolicy *ElasticLoadBalancingLBCookieStickinessPolicyList `json:"LBCookieStickinessPolicy,omitempty"`
 
-	// A name for the load balancer. If you don't specify a name, AWS
-	// CloudFormation generates a unique physical ID and uses that ID for the
-	// load balancer. The name must be unique within your set of load
-	// balancers. For more information, see Name Type.
+	// A name for the load balancer. For valid values, see the
+	// LoadBalancerName parameter for the CreateLoadBalancer action in the
+	// Elastic Load Balancing API Reference.
 	LoadBalancerName *StringExpr `json:"LoadBalancerName,omitempty"`
 
 	// One or more listeners for this load balancer. Each listener must be
@@ -3022,9 +3021,8 @@ type ElasticsearchDomain struct {
 	// Elasticsearch Service Developer Guide.
 	AdvancedOptions interface{} `json:"AdvancedOptions,omitempty"`
 
-	// A name for the Amazon ES domain. If you don't specify a name, AWS
-	// CloudFormation generates a unique physical ID and uses that ID for the
-	// domain name. For more information, see Name Type.
+	// A name for the Amazon ES domain. For valid values, see the DomainName
+	// data type in the Amazon Elasticsearch Service Developer Guide.
 	DomainName *StringExpr `json:"DomainName,omitempty"`
 
 	// The configurations of Amazon Elastic Block Store (Amazon EBS) volumes
@@ -3226,7 +3224,8 @@ type EventsRule struct {
 
 	// The resources, such as Lambda functions or Amazon Kinesis streams,
 	// that CloudWatch Events routes events to and invokes when the rule is
-	// triggered.
+	// triggered. For information about valid targets, see the PutTargets
+	// action in the Amazon CloudWatch Events API Reference.
 	Targets *CloudWatchEventsRuleTargetList `json:"Targets,omitempty"`
 }
 
@@ -5418,25 +5417,57 @@ type APIGatewayDeploymentStageDescription struct {
 	// The size of the stage's cache cluster.
 	CacheClusterSize *StringExpr `json:"CacheClusterSize,omitempty"`
 
+	// Indicates whether the cached responses are encrypted.
+	CacheDataEncrypted *BoolExpr `json:"CacheDataEncrypted,omitempty"`
+
+	// The time-to-live (TTL) period, in seconds, that specifies how long API
+	// Gateway caches responses.
+	CacheTtlInSeconds *IntegerExpr `json:"CacheTtlInSeconds,omitempty"`
+
+	// Indicates whether responses are cached and returned for requests. You
+	// must enable a cache cluster on the stage to cache responses. For more
+	// information, see Enable API Gateway Caching in a Stage to Enhance API
+	// Performance in the API Gateway Developer Guide.
+	CachingEnabled *BoolExpr `json:"CachingEnabled,omitempty"`
+
 	// The identifier of the client certificate that API Gateway uses to call
 	// your integration endpoints in the stage.
 	ClientCertificateId *StringExpr `json:"ClientCertificateId,omitempty"`
 
-	// The ID of the deployment that the stage points to.
-	DeploymentId *StringExpr `json:"DeploymentId,omitempty"`
+	// Indicates whether data trace logging is enabled for methods in the
+	// stage. API Gateway pushes these logs to Amazon CloudWatch Logs.
+	DataTraceEnabled *BoolExpr `json:"DataTraceEnabled,omitempty"`
 
 	// A description of the purpose of the stage.
 	Description *StringExpr `json:"Description,omitempty"`
 
+	// The logging level for this method. For valid values, see the
+	// loggingLevel property of the Stage resource in the Amazon API Gateway
+	// API Reference.
+	LoggingLevel *StringExpr `json:"LoggingLevel,omitempty"`
+
 	// Configures settings for all of the stage's methods.
 	MethodSettings *APIGatewayDeploymentStageDescriptionMethodSettingList `json:"MethodSettings,omitempty"`
 
-	// The ID of a RestApi resource that you're deploying with this stage.
-	RestApiId *StringExpr `json:"RestApiId,omitempty"`
+	// Indicates whether Amazon CloudWatch metrics are enabled for methods in
+	// the stage.
+	MetricsEnabled *BoolExpr `json:"MetricsEnabled,omitempty"`
 
 	// The name of the stage, which API Gateway uses as the first path
 	// segment in the invoke Uniform Resource Identifier (URI).
 	StageName *StringExpr `json:"StageName,omitempty"`
+
+	// The number of burst requests per second that API Gateway permits
+	// across all APIs, stages, and methods in your AWS account. For more
+	// information, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
+	ThrottlingBurstLimit *IntegerExpr `json:"ThrottlingBurstLimit,omitempty"`
+
+	// The number of steady-state requests per second that API Gateway
+	// permits across all APIs, stages, and methods in your AWS account. For
+	// more information, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
+	ThrottlingRateLimit *IntegerExpr `json:"ThrottlingRateLimit,omitempty"`
 
 	// A map that defines the stage variables. Variable names must consist of
 	// alphanumeric characters, and the values must match the following
@@ -5488,14 +5519,20 @@ type APIGatewayDeploymentStageDescriptionMethodSetting struct {
 	// The HTTP method.
 	HttpMethod *StringExpr `json:"HttpMethod,omitempty"`
 
-	// The logging level for this method.
+	// The logging level for this method. For valid values, see the
+	// loggingLevel property of the Stage resource in the Amazon API Gateway
+	// API Reference.
 	LoggingLevel *StringExpr `json:"LoggingLevel,omitempty"`
 
 	// Indicates whether Amazon CloudWatch metrics are enabled for methods in
 	// the stage.
 	MetricsEnabled *BoolExpr `json:"MetricsEnabled,omitempty"`
 
-	// The resource path for this method.
+	// The resource path for this method. Forward slashes (/) are encoded as
+	// ~1 and the initial slash must include a forward slash. For example,
+	// the path value /resource/subresource must be encoded as
+	// /~1resource~1subresource. To specify the root path, use only a slash
+	// (/).
 	ResourcePath *StringExpr `json:"ResourcePath,omitempty"`
 
 	// The number of burst requests per second that API Gateway permits
@@ -5701,7 +5738,7 @@ type APIGatewayRestApiS3Location struct {
 	// file.
 	ETag *StringExpr `json:"ETag,omitempty"`
 
-	// The file name of the application revision (Amazon S3 object name).
+	// The file name of the Swagger file (Amazon S3 object name).
 	Key *StringExpr `json:"Key,omitempty"`
 
 	// For versioning-enabled buckets, a specific version of the Swagger
@@ -5751,14 +5788,20 @@ type APIGatewayStageMethodSetting struct {
 	// The HTTP method.
 	HttpMethod *StringExpr `json:"HttpMethod,omitempty"`
 
-	// The logging level for this method.
+	// The logging level for this method. For valid values, see the
+	// loggingLevel property of the Stage resource in the Amazon API Gateway
+	// API Reference.
 	LoggingLevel *StringExpr `json:"LoggingLevel,omitempty"`
 
 	// Indicates whether Amazon CloudWatch metrics are enabled for methods in
 	// the stage.
 	MetricsEnabled *BoolExpr `json:"MetricsEnabled,omitempty"`
 
-	// The resource path for this method.
+	// The resource path for this method. Forward slashes (/) are encoded as
+	// ~1 and the initial slash must include a forward slash. For example,
+	// the path value /resource/subresource must be encoded as
+	// /~1resource~1subresource. To specify the root path, use only a slash
+	// (/).
 	ResourcePath *StringExpr `json:"ResourcePath,omitempty"`
 
 	// The number of burst requests per second that API Gateway permits
@@ -10609,8 +10652,7 @@ type ElasticMapReduceClusterJobFlowInstancesConfig struct {
 	// which you can use to access the instances in your Amazon EMR cluster.
 	Ec2KeyName *StringExpr `json:"Ec2KeyName,omitempty"`
 
-	// The ID of an Amazon Virtual Private Cloud (Amazon VPC) virtual private
-	// cloud (VPC) where you want to launch your instances.
+	// The ID of a subnet where you want to launch your instances.
 	Ec2SubnetId *StringExpr `json:"Ec2SubnetId,omitempty"`
 
 	// The ID of an EC2 security group (managed by Amazon EMR) that is
