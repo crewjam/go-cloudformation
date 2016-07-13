@@ -2169,10 +2169,9 @@ type EC2Volume struct {
 	// An arbitrary set of tags (key–value pairs) for this volume.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
-	// The volume type. You can specify standard, io1, or gp2. If you set the
-	// type to io1, you must also set the Iops property. For more information
-	// about these values and the default value, see the VolumeType parameter
-	// for the CreateVolume action in the Amazon EC2 API Reference.
+	// The volume type. If you set the type to io1, you must also set the
+	// Iops property. For valid values, see the VolumeType parameter for the
+	// CreateVolume action in the Amazon EC2 API Reference.
 	VolumeType *StringExpr `json:"VolumeType,omitempty"`
 }
 
@@ -8445,10 +8444,9 @@ type ElasticBlockStoreBlockDeviceProperty struct {
 	// 1024. If the volume type is io1, the minimum value is 10.
 	VolumeSize *StringExpr `json:"VolumeSize,omitempty"`
 
-	// The volume type. You can specify standard, io1, or gp2. If you set the
-	// type to io1, you must also set the Iops property. For more information
-	// about these values and the default value, see CreateVolume in the
-	// Amazon EC2 API Reference.
+	// The volume type. If you set the type to io1, you must also set the
+	// Iops property. For valid values, see the VolumeType parameter for the
+	// CreateVolume action in the Amazon EC2 API Reference.
 	VolumeType *StringExpr `json:"VolumeType,omitempty"`
 }
 
@@ -9712,6 +9710,11 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings struct {
 	// container port is automatically assigned a host port in the 49153 to
 	// 65535 port range.
 	HostPort *IntegerExpr `json:"HostPort,omitempty"`
+
+	// The protocol used for the port mapping. For valid values, see the
+	// protocol parameter in the Amazon EC2 Container Service Developer
+	// Guide. By default, AWS CloudFormation specifies tcp.
+	Protocol *StringExpr `json:"Protocol,omitempty"`
 }
 
 // EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappingsList represents a list of EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings

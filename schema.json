@@ -3165,7 +3165,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The volume type. You can specify standard, io1, or gp2. If you set the\ntype to io1, you must also set the Iops property. For more information\nabout these values and the default value, see the VolumeType parameter\nfor the CreateVolume action in the Amazon EC2 API Reference.",
+          "DocString": "The volume type. If you set the type to io1, you must also set the\nIops property. For valid values, see the VolumeType parameter for the\nCreateVolume action in the Amazon EC2 API Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -10525,7 +10525,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The volume type. You can specify standard, io1, or gp2. If you set the\ntype to io1, you must also set the Iops property. For more information\nabout these values and the default value, see CreateVolume in the\nAmazon EC2 API Reference.",
+          "DocString": "The volume type. If you set the type to io1, you must also set the\nIops property. For valid values, see the VolumeType parameter for the\nCreateVolume action in the Amazon EC2 API Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -11733,6 +11733,14 @@
           "TypeName": "",
           "DocString": "The host port number on the container instance that you want to\nreserve for your container. You can specify a non-reserved host port\nfor your container port mapping, or you can omit the host port (or set\nit to 0). If you specify a container port but no host port, your\ncontainer port is automatically assigned a host port in the 49153 to\n65535 port range.",
           "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Protocol",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The protocol used for the port mapping. For valid values, see the\nprotocol parameter in the Amazon EC2 Container Service Developer\nGuide. By default, AWS CloudFormation specifies tcp.",
+          "SyntaxExpression": "String"
         }
       ]
     },
