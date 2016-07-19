@@ -12199,13 +12199,13 @@ func (l *RedshiftParameterList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html
 type ResourceTag struct {
-	// The key name of the tag. You can specify a value that is 1 to 128
+	// The key name of the tag. You can specify a value that is 1 to 127
 	// Unicode characters in length and cannot be prefixed with aws:. You can
 	// use any of the following characters: the set of Unicode letters,
 	// digits, whitespace, _, ., /, =, +, and -.
 	Key *StringExpr `json:"Key,omitempty"`
 
-	// The value for the tag. You can specify a value that is 1 to 128
+	// The value for the tag. You can specify a value that is 1 to 255
 	// Unicode characters in length and cannot be prefixed with aws:. You can
 	// use any of the following characters: the set of Unicode letters,
 	// digits, whitespace, _, ., /, =, +, and -.
