@@ -336,11 +336,11 @@
         },
         {
           "Name": "Schema",
-          "Type": "String",
+          "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The schema to use to transform data to one or more output formats.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "JSON object"
         }
       ]
     },
@@ -380,11 +380,11 @@
       "Properties": [
         {
           "Name": "Body",
-          "Type": "String",
+          "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A Swagger specification that defines a set of RESTful APIs in JSON.\nFor specifications in YAML, use the BodyS3Location property.",
-          "SyntaxExpression": "String"
+          "DocString": "A Swagger specification that defines a set of RESTful APIs in the JSON\nformat. To specify a Swagger file that is in the YAML format, use the\nBodyS3Location property.",
+          "SyntaxExpression": "JSON object"
         },
         {
           "Name": "BodyS3Location",
@@ -3829,11 +3829,11 @@
         },
         {
           "Name": "Properties",
-          "Type": "JSON object",
+          "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A comma-delimited list of parameter name/value pairs. For more\ninformation, go to ModifyCacheParameterGroup in the Amazon ElastiCache\nAPI Reference Guide.",
-          "SyntaxExpression": "{ \"prop1\" : \"value1\", ... }"
+          "SyntaxExpression": "{ String:String, ... }"
         }
       ]
     },
@@ -4893,6 +4893,14 @@
       "Href": "aws-properties-iam-group.html",
       "Properties": [
         {
+          "Name": "GroupName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the IAM group. For valid values, see the GroupName\nparameter for the CreateGroup action in the IAM API Reference. If you\ndon't specify a name, AWS CloudFormation generates a unique physical\nID and uses that ID for the group name.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "ManagedPolicyArns",
           "Type": "List of strings",
           "TypeHref": "",
@@ -4905,7 +4913,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The path to the group. For more information about paths, see\nIdentifiers for IAM Entities in Using IAM.",
+          "DocString": "The path to the group. For more information about paths, see IAM\nIdentifiers in the IAM User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4913,7 +4921,7 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "The policies to associate with this group. For information about\npolicies, see Overview of Policies in Using IAM.",
+          "DocString": "The policies to associate with this group. For information about\npolicies, see Overview of IAM Policies in the IAM User Guide.",
           "SyntaxExpression": "[ Policies, ... ]"
         }
       ]
@@ -5049,7 +5057,7 @@
           "Type": "A JSON policy document",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The IAM assume role policy that is associated with this role.",
+          "DocString": "The trust policy that is associated with this role.",
           "SyntaxExpression": "{ JSON }"
         },
         {
@@ -5073,8 +5081,16 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "Important",
+          "DocString": "The policies to associate with this role. You can specify a policy\ninline or reference an external policy, such as a policy declared in\nan AWS::IAM::Policy or AWS::IAM::ManagedPolicy resource. For sample\ntemplates that demonstrates both embedded and external policies, see\nTemplate Examples.",
           "SyntaxExpression": "[ Policies, ... ]"
+        },
+        {
+          "Name": "RoleName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the IAM role. For valid values, see the RoleName parameter\nfor the CreateRole action in the IAM API Reference. If you don't\nspecify a name, AWS CloudFormation generates a unique physical ID and\nuses that ID for the group name.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -5111,7 +5127,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The path for the user name. For more information about paths, see\nIdentifiers for IAM Entities in Using AWS Identity and Access\nManagement.",
+          "DocString": "The path for the user name. For more information about paths, see IAM\nIdentifiers in the IAM User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -5119,8 +5135,16 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "The policies to associate with this user. For information about\npolicies, see Overview of Policies in [Using IAM].",
+          "DocString": "The policies to associate with this user. For information about\npolicies, see Overview of IAM Policies in the IAM User Guide.",
           "SyntaxExpression": "[ Policies, ... ]"
+        },
+        {
+          "Name": "UserName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the IAM user. For valid values, see the UserName parameter\nfor the CreateUser action in the IAM API Reference. If you don't\nspecify a name, AWS CloudFormation generates a unique physical ID and\nuses that ID for the group name.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -5143,6 +5167,138 @@
           "TypeName": "",
           "DocString": "Required: Yes",
           "SyntaxExpression": "[ User1, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::IoT::Certificate",
+      "Href": "aws-resource-iot-certificate.html",
+      "Properties": [
+        {
+          "Name": "CertificateSigningRequest",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The certificate signing request (CSR).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Status",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The status of the certificate.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::IoT::Policy",
+      "Href": "aws-resource-iot-policy.html",
+      "Properties": [
+        {
+          "Name": "PolicyDocument",
+          "Type": "JSON object",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The JSON document that describes the policy.",
+          "SyntaxExpression": "JSON object"
+        },
+        {
+          "Name": "PolicyName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name (the physical ID) of the AWS IoT policy.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::IoT::PolicyPrincipalAttachment",
+      "Href": "aws-resource-iot-policyprincipalattachment.html",
+      "Properties": [
+        {
+          "Name": "PolicyName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the policy.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Principal",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The principal, which can be a certificate ARN (as returned from the\nCreateCertificate operation) or an Amazon Cognito ID.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::IoT::Thing",
+      "Href": "aws-resource-iot-thing.html",
+      "Properties": [
+        {
+          "Name": "AttributePayload",
+          "Type": "",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A JSON string that contains up to three key-value pairs, for example:\n{\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}.",
+          "SyntaxExpression": "{ String:String, ... }"
+        },
+        {
+          "Name": "ThingName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name (the physical ID) of the AWS IoT thing.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::IoT::ThingPrincipalAttachment",
+      "Href": "aws-resource-iot-thingprincipalattachment.html",
+      "Properties": [
+        {
+          "Name": "Principal",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The principal, which can be a certificate ARN (as returned from the\nCreateCertificate operation) or an Amazon Cognito ID.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ThingName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the AWS IoT thing.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::IoT::TopicRule",
+      "Href": "aws-resource-iot-topicrule.html",
+      "Properties": [
+        {
+          "Name": "RuleName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name (the physical ID) of the AWS IoT rule.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TopicRulePayload",
+          "Type": "TopicRulePayload object",
+          "TypeHref": "aws-properties-iot-topicrulepayload.html",
+          "TypeName": "",
+          "DocString": "The actions associated with the AWS IoT rule.",
+          "SyntaxExpression": "TopicRulePayLoad"
         }
       ]
     },
@@ -8152,6 +8308,14 @@
           "SyntaxExpression": "[ IntegrationResponse, ... ]"
         },
         {
+          "Name": "PassthroughBehavior",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates when API Gateway passes requests to the targeted back end.\nThis behavior depends on the request's Content-Type header and whether\nyou defined a mapping template for it.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "RequestParameters",
           "Type": "Mapping of key-value pairs",
           "TypeHref": "",
@@ -9199,7 +9363,7 @@
           "Type": "CloudFront ForwardedValues Cookies",
           "TypeHref": "aws-properties-cloudfront-forwardedvalues-cookies.html",
           "TypeName": "",
-          "DocString": "Forwards specified cookies to the origin of the cache behavior.",
+          "DocString": "Forwards specified cookies to the origin of the cache behavior. For\nmore information, see Configuring CloudFront to Cache Based on Cookies\nin the Amazon CloudFront Developer Guide.",
           "SyntaxExpression": "Cookies"
         },
         {
@@ -9215,7 +9379,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether you want CloudFront to forward query strings to the\norigin that is associated with this cache behavior. If so, specify\ntrue; if not, specify false.",
+          "DocString": "Indicates whether you want CloudFront to forward query strings to the\norigin that is associated with this cache behavior. If so, specify\ntrue; if not, specify false. For more information, see Configuring\nCloudFront to Cache Based on Query String Parameters in the Amazon\nCloudFront Developer Guide.",
           "SyntaxExpression": "Boolean"
         }
       ]
@@ -12891,6 +13055,524 @@
           "TypeName": "",
           "DocString": "Specifies whether the user is required to set a new password the next\ntime the user logs in to the AWS Management Console.",
           "SyntaxExpression": "Boolean"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Actions",
+      "Href": "aws-properties-iot-actions.html",
+      "Properties": [
+        {
+          "Name": "CloudwatchAlarm",
+          "Type": "CloudWatchAlarm action object",
+          "TypeHref": "aws-properties-iot-cloudwatchalarm.html",
+          "TypeName": "",
+          "DocString": "Changes the state of a CloudWatch alarm.",
+          "SyntaxExpression": "{ CloudwatchAlarm Action, ... }"
+        },
+        {
+          "Name": "CloudwatchMetric",
+          "Type": "CloudWatchMetric action object",
+          "TypeHref": "aws-properties-iot-cloudwatchmetric.html",
+          "TypeName": "",
+          "DocString": "Captures a CloudWatch metric.",
+          "SyntaxExpression": "{ CloudwatchMetric Action, ... }"
+        },
+        {
+          "Name": "DynamoDB",
+          "Type": "DynamoDB action object",
+          "TypeHref": "aws-properties-iot-dynamodb.html",
+          "TypeName": "",
+          "DocString": "Writes data to a DynamoDB table.",
+          "SyntaxExpression": "{ DynamoDB Action, ... }"
+        },
+        {
+          "Name": "ElasticSearch",
+          "Type": "ElasticSearch action object",
+          "TypeHref": "aws-properties-iot-elasticsearch.html",
+          "TypeName": "",
+          "DocString": "Writes data to an Elasticsearch domain.",
+          "SyntaxExpression": "{ ElasticSearch Action, ... }"
+        },
+        {
+          "Name": "Firehose",
+          "Type": "Firehose action object",
+          "TypeHref": "aws-properties-iot-firehose.html",
+          "TypeName": "",
+          "DocString": "Writes data to a Firehose stream.",
+          "SyntaxExpression": "{ Firehose Action, ... }"
+        },
+        {
+          "Name": "Kinesis",
+          "Type": "Kinesis action object",
+          "TypeHref": "aws-properties-iot-kinesis.html",
+          "TypeName": "",
+          "DocString": "Writes data to an Amazon Kinesis stream.",
+          "SyntaxExpression": "{ Kinesis Action, ... }"
+        },
+        {
+          "Name": "Lambda",
+          "Type": "Lambda action object",
+          "TypeHref": "aws-properties-iot-lambda.html",
+          "TypeName": "",
+          "DocString": "Invokes a Lambda function.",
+          "SyntaxExpression": "{ Lambda Action, ... }"
+        },
+        {
+          "Name": "Republish",
+          "Type": "Republish action object",
+          "TypeHref": "aws-properties-iot-republish.html",
+          "TypeName": "",
+          "DocString": "Publishes data to an MQ Telemetry Transport (MQTT) topic different\nfrom the one currently specified.",
+          "SyntaxExpression": "{ Republish Action, ... }"
+        },
+        {
+          "Name": "S3",
+          "Type": "S3 action object",
+          "TypeHref": "aws-properties-iot-s3.html",
+          "TypeName": "",
+          "DocString": "Writes data to an S3 bucket.",
+          "SyntaxExpression": "{ S3 Action, ... }"
+        },
+        {
+          "Name": "Sns",
+          "Type": "Sns action object",
+          "TypeHref": "aws-properties-iot-sns.html",
+          "TypeName": "",
+          "DocString": "Publishes data to an SNS topic.",
+          "SyntaxExpression": "{ Sns Action, ... }"
+        },
+        {
+          "Name": "Sqs",
+          "Type": "Sqs action object",
+          "TypeHref": "aws-properties-iot-sqs.html",
+          "TypeName": "",
+          "DocString": "Publishes data to an SQS queue.",
+          "SyntaxExpression": "{ Sqs Action, ... }"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT CloudwatchAlarm Action",
+      "Href": "aws-properties-iot-cloudwatchalarm.html",
+      "Properties": [
+        {
+          "Name": "AlarmName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The CloudWatch alarm name.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The IAM role that allows access to the CloudWatch alarm.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StateReason",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The reason for the change of the alarm state.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StateValue",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the alarm state.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT CloudwatchMetric Action",
+      "Href": "aws-properties-iot-cloudwatchmetric.html",
+      "Properties": [
+        {
+          "Name": "MetricName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the CloudWatch metric.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MetricNamespace",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the CloudWatch metric namespace.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MetricTimestamp",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An optional Unix timestamp.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MetricUnit",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The metric unit supported by Amazon CloudWatch.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MetricValue",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value to publish to the metric. For example, if you count the\noccurrences of a particular term such as Error, the value will be 1\nfor each occurrence.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to the CloudWatch metric.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT DynamoDB Action",
+      "Href": "aws-properties-iot-dynamodb.html",
+      "Properties": [
+        {
+          "Name": "HashKeyField",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the hash key.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "HashKeyValue",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the hash key.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "PayloadField",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the column in the DynamoDB table that contains the result\nof the query. You can customize this name.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RangeKeyField",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the range key.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RangeKeyValue",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the range key.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to the DynamoDB table.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TableName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the DynamoDB table.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT ElasticSearch Action",
+      "Href": "aws-properties-iot-elasticsearch.html",
+      "Properties": [
+        {
+          "Name": "Endpoint",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The endpoint of your Elasticsearch domain.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Id",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A unique identifier for the stored data.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Index",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Elasticsearch index where the data is stored.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to Elasticsearch.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of stored data.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Firehose Action",
+      "Href": "aws-properties-iot-firehose.html",
+      "Properties": [
+        {
+          "Name": "DeliveryStreamName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The delivery stream name.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to the Firehose stream.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Kinesis Action",
+      "Href": "aws-properties-iot-kinesis.html",
+      "Properties": [
+        {
+          "Name": "PartitionKey",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The partition key (the grouping of data by shard within an an Amazon\nKinesis stream).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to an Amazon Kinesis\nstream.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StreamName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the Amazon Kinesis stream.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Lambda Action",
+      "Href": "aws-properties-iot-lambda.html",
+      "Properties": [
+        {
+          "Name": "FunctionArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the Lambda function.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Republish Action",
+      "Href": "aws-properties-iot-republish.html",
+      "Properties": [
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants publishing access.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Topic",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the MQTT topic topic different from the one currently\nspecified.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT S3 Action",
+      "Href": "aws-properties-iot-s3.html",
+      "Properties": [
+        {
+          "Name": "BucketName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the S3 bucket.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The object key (the name of an object in the S3 bucket).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to Amazon S3.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Sns Action",
+      "Href": "aws-properties-iot-sns.html",
+      "Properties": [
+        {
+          "Name": "MessageFormat",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The format of the published message. Amazon SNS uses this setting to\ndetermine whether it should parse the payload and extract the\nplatform-specific bits from the payload.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to Amazon SNS.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TargetArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the Amazon SNS topic.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT Sqs Action",
+      "Href": "aws-properties-iot-sqs.html",
+      "Properties": [
+        {
+          "Name": "QueueUrl",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The URL of the Amazon Simple Queue Service (Amazon SQS) queue.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the IAM role that grants access to Amazon SQS.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "UseBase64",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies whether Base64 encoding should be used.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS IoT TopicRulePayload",
+      "Href": "aws-properties-iot-topicrulepayload.html",
+      "Properties": [
+        {
+          "Name": "Actions",
+          "Type": "Array of Action objects",
+          "TypeHref": "aws-properties-iot-actions.html",
+          "TypeName": "",
+          "DocString": "The actions associated with the rule.",
+          "SyntaxExpression": "[ Action, ... ]"
+        },
+        {
+          "Name": "AwsIotSqlVersion",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The version of the SQL rules engine to use when evaluating the rule.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The description of the rule.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RuleDisabled",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies whether the rule is disabled.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "Sql",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The SQL statement that queries the topic. For more information, see\nRules for AWS IoT in the AWS IoT Developer Guide.",
+          "SyntaxExpression": "String"
         }
       ]
     },

@@ -240,7 +240,7 @@ type ApiGatewayModel struct {
 	RestApiId *StringExpr `json:"RestApiId,omitempty"`
 
 	// The schema to use to transform data to one or more output formats.
-	Schema *StringExpr `json:"Schema,omitempty"`
+	Schema interface{} `json:"Schema,omitempty"`
 }
 
 // CfnResourceType returns AWS::ApiGateway::Model to implement the ResourceProperties interface
@@ -274,9 +274,10 @@ func (s ApiGatewayResource) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
 type ApiGatewayRestApi struct {
-	// A Swagger specification that defines a set of RESTful APIs in JSON.
-	// For specifications in YAML, use the BodyS3Location property.
-	Body *StringExpr `json:"Body,omitempty"`
+	// A Swagger specification that defines a set of RESTful APIs in the JSON
+	// format. To specify a Swagger file that is in the YAML format, use the
+	// BodyS3Location property.
+	Body interface{} `json:"Body,omitempty"`
 
 	// The Amazon Simple Storage Service (Amazon S3) location that points to
 	// a Swagger file, which defines a set of RESTful APIs in JSON or YAML
@@ -3364,15 +3365,21 @@ func (s IAMAccessKey) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html
 type IAMGroup struct {
+	// A name for the IAM group. For valid values, see the GroupName
+	// parameter for the CreateGroup action in the IAM API Reference. If you
+	// don't specify a name, AWS CloudFormation generates a unique physical
+	// ID and uses that ID for the group name.
+	GroupName *StringExpr `json:"GroupName,omitempty"`
+
 	// One or more managed policy ARNs to attach to this group.
 	ManagedPolicyArns *StringListExpr `json:"ManagedPolicyArns,omitempty"`
 
-	// The path to the group. For more information about paths, see
-	// Identifiers for IAM Entities in Using IAM.
+	// The path to the group. For more information about paths, see IAM
+	// Identifiers in the IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
 	// The policies to associate with this group. For information about
-	// policies, see Overview of Policies in Using IAM.
+	// policies, see Overview of IAM Policies in the IAM User Guide.
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 }
 
@@ -3463,7 +3470,7 @@ func (s IAMPolicy) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
 type IAMRole struct {
-	// The IAM assume role policy that is associated with this role.
+	// The trust policy that is associated with this role.
 	AssumeRolePolicyDocument interface{} `json:"AssumeRolePolicyDocument,omitempty"`
 
 	// One or more managed policy ARNs to attach to this role.
@@ -3473,8 +3480,18 @@ type IAMRole struct {
 	// see Friendly Names and Paths in IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
-	// Important
+	// The policies to associate with this role. You can specify a policy
+	// inline or reference an external policy, such as a policy declared in
+	// an AWS::IAM::Policy or AWS::IAM::ManagedPolicy resource. For sample
+	// templates that demonstrates both embedded and external policies, see
+	// Template Examples.
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
+
+	// A name for the IAM role. For valid values, see the RoleName parameter
+	// for the CreateRole action in the IAM API Reference. If you don't
+	// specify a name, AWS CloudFormation generates a unique physical ID and
+	// uses that ID for the group name.
+	RoleName *StringExpr `json:"RoleName,omitempty"`
 }
 
 // CfnResourceType returns AWS::IAM::Role to implement the ResourceProperties interface
@@ -3496,14 +3513,19 @@ type IAMUser struct {
 	// One or more managed policy ARNs to attach to this user.
 	ManagedPolicyArns *StringListExpr `json:"ManagedPolicyArns,omitempty"`
 
-	// The path for the user name. For more information about paths, see
-	// Identifiers for IAM Entities in Using AWS Identity and Access
-	// Management.
+	// The path for the user name. For more information about paths, see IAM
+	// Identifiers in the IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
 	// The policies to associate with this user. For information about
-	// policies, see Overview of Policies in [Using IAM].
+	// policies, see Overview of IAM Policies in the IAM User Guide.
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
+
+	// A name for the IAM user. For valid values, see the UserName parameter
+	// for the CreateUser action in the IAM API Reference. If you don't
+	// specify a name, AWS CloudFormation generates a unique physical ID and
+	// uses that ID for the group name.
+	UserName *StringExpr `json:"UserName,omitempty"`
 }
 
 // CfnResourceType returns AWS::IAM::User to implement the ResourceProperties interface
@@ -3525,6 +3547,105 @@ type IAMUserToGroupAddition struct {
 // CfnResourceType returns AWS::IAM::UserToGroupAddition to implement the ResourceProperties interface
 func (s IAMUserToGroupAddition) CfnResourceType() string {
 	return "AWS::IAM::UserToGroupAddition"
+}
+
+// IoTCertificate represents AWS::IoT::Certificate
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html
+type IoTCertificate struct {
+	// The certificate signing request (CSR).
+	CertificateSigningRequest *StringExpr `json:"CertificateSigningRequest,omitempty"`
+
+	// The status of the certificate.
+	Status *StringExpr `json:"Status,omitempty"`
+}
+
+// CfnResourceType returns AWS::IoT::Certificate to implement the ResourceProperties interface
+func (s IoTCertificate) CfnResourceType() string {
+	return "AWS::IoT::Certificate"
+}
+
+// IoTPolicy represents AWS::IoT::Policy
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html
+type IoTPolicy struct {
+	// The JSON document that describes the policy.
+	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
+
+	// The name (the physical ID) of the AWS IoT policy.
+	PolicyName *StringExpr `json:"PolicyName,omitempty"`
+}
+
+// CfnResourceType returns AWS::IoT::Policy to implement the ResourceProperties interface
+func (s IoTPolicy) CfnResourceType() string {
+	return "AWS::IoT::Policy"
+}
+
+// IoTPolicyPrincipalAttachment represents AWS::IoT::PolicyPrincipalAttachment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policyprincipalattachment.html
+type IoTPolicyPrincipalAttachment struct {
+	// The name of the policy.
+	PolicyName *StringExpr `json:"PolicyName,omitempty"`
+
+	// The principal, which can be a certificate ARN (as returned from the
+	// CreateCertificate operation) or an Amazon Cognito ID.
+	Principal *StringExpr `json:"Principal,omitempty"`
+}
+
+// CfnResourceType returns AWS::IoT::PolicyPrincipalAttachment to implement the ResourceProperties interface
+func (s IoTPolicyPrincipalAttachment) CfnResourceType() string {
+	return "AWS::IoT::PolicyPrincipalAttachment"
+}
+
+// IoTThing represents AWS::IoT::Thing
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html
+type IoTThing struct {
+	// A JSON string that contains up to three key-value pairs, for example:
+	// {\"attributes\":{\"string1\":\"string2\"}}.
+	AttributePayload interface{} `json:"AttributePayload,omitempty"`
+
+	// The name (the physical ID) of the AWS IoT thing.
+	ThingName *StringExpr `json:"ThingName,omitempty"`
+}
+
+// CfnResourceType returns AWS::IoT::Thing to implement the ResourceProperties interface
+func (s IoTThing) CfnResourceType() string {
+	return "AWS::IoT::Thing"
+}
+
+// IoTThingPrincipalAttachment represents AWS::IoT::ThingPrincipalAttachment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html
+type IoTThingPrincipalAttachment struct {
+	// The principal, which can be a certificate ARN (as returned from the
+	// CreateCertificate operation) or an Amazon Cognito ID.
+	Principal *StringExpr `json:"Principal,omitempty"`
+
+	// The name of the AWS IoT thing.
+	ThingName *StringExpr `json:"ThingName,omitempty"`
+}
+
+// CfnResourceType returns AWS::IoT::ThingPrincipalAttachment to implement the ResourceProperties interface
+func (s IoTThingPrincipalAttachment) CfnResourceType() string {
+	return "AWS::IoT::ThingPrincipalAttachment"
+}
+
+// IoTTopicRule represents AWS::IoT::TopicRule
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html
+type IoTTopicRule struct {
+	// The name (the physical ID) of the AWS IoT rule.
+	RuleName *StringExpr `json:"RuleName,omitempty"`
+
+	// The actions associated with the AWS IoT rule.
+	TopicRulePayload *IoTTopicRulePayload `json:"TopicRulePayload,omitempty"`
+}
+
+// CfnResourceType returns AWS::IoT::TopicRule to implement the ResourceProperties interface
+func (s IoTTopicRule) CfnResourceType() string {
+	return "AWS::IoT::TopicRule"
 }
 
 // KinesisStream represents AWS::Kinesis::Stream
@@ -5594,6 +5715,11 @@ type APIGatewayMethodIntegration struct {
 	// that you define.
 	IntegrationResponses *APIGatewayMethodIntegrationIntegrationResponseList `json:"IntegrationResponses,omitempty"`
 
+	// Indicates when API Gateway passes requests to the targeted back end.
+	// This behavior depends on the request's Content-Type header and whether
+	// you defined a mapping template for it.
+	PassthroughBehavior *StringExpr `json:"PassthroughBehavior,omitempty"`
+
 	// The request parameters that API Gateway sends with the back-end
 	// request. Specify request parameters as key-value pairs
 	// (string-to-string maps), with a destination as the key and a source as
@@ -6774,7 +6900,9 @@ func (l *CloudFrontDistributionConfigurationViewerCertificateList) UnmarshalJSON
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-forwardedvalues.html
 type CloudFrontForwardedValues struct {
-	// Forwards specified cookies to the origin of the cache behavior.
+	// Forwards specified cookies to the origin of the cache behavior. For
+	// more information, see Configuring CloudFront to Cache Based on Cookies
+	// in the Amazon CloudFront Developer Guide.
 	Cookies *CloudFrontForwardedValuesCookies `json:"Cookies,omitempty"`
 
 	// Specifies the headers that you want Amazon CloudFront to forward to
@@ -6786,7 +6914,9 @@ type CloudFrontForwardedValues struct {
 
 	// Indicates whether you want CloudFront to forward query strings to the
 	// origin that is associated with this cache behavior. If so, specify
-	// true; if not, specify false.
+	// true; if not, specify false. For more information, see Configuring
+	// CloudFront to Cache Based on Query String Parameters in the Amazon
+	// CloudFront Developer Guide.
 	QueryString *BoolExpr `json:"QueryString,omitempty"`
 }
 
@@ -11155,6 +11285,506 @@ func (l *IAMUserLoginProfileList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// IoTActions represents AWS IoT Actions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html
+type IoTActions struct {
+	// Changes the state of a CloudWatch alarm.
+	CloudwatchAlarm *IoTCloudwatchAlarmAction `json:"CloudwatchAlarm,omitempty"`
+
+	// Captures a CloudWatch metric.
+	CloudwatchMetric *IoTCloudwatchMetricAction `json:"CloudwatchMetric,omitempty"`
+
+	// Writes data to a DynamoDB table.
+	DynamoDB *IoTDynamoDBAction `json:"DynamoDB,omitempty"`
+
+	// Writes data to an Elasticsearch domain.
+	ElasticSearch *IoTElasticSearchAction `json:"ElasticSearch,omitempty"`
+
+	// Writes data to a Firehose stream.
+	Firehose *IoTFirehoseAction `json:"Firehose,omitempty"`
+
+	// Writes data to an Amazon Kinesis stream.
+	Kinesis *IoTKinesisAction `json:"Kinesis,omitempty"`
+
+	// Invokes a Lambda function.
+	Lambda *IoTLambdaAction `json:"Lambda,omitempty"`
+
+	// Publishes data to an MQ Telemetry Transport (MQTT) topic different
+	// from the one currently specified.
+	Republish *IoTRepublishAction `json:"Republish,omitempty"`
+
+	// Writes data to an S3 bucket.
+	S3 *IoTS3Action `json:"S3,omitempty"`
+
+	// Publishes data to an SNS topic.
+	Sns *IoTSnsAction `json:"Sns,omitempty"`
+
+	// Publishes data to an SQS queue.
+	Sqs *IoTSqsAction `json:"Sqs,omitempty"`
+}
+
+// IoTActionsList represents a list of IoTActions
+type IoTActionsList []IoTActions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTActionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTActions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTActionsList{item}
+		return nil
+	}
+	list := []IoTActions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTActionsList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTCloudwatchAlarmAction represents AWS IoT CloudwatchAlarm Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html
+type IoTCloudwatchAlarmAction struct {
+	// The CloudWatch alarm name.
+	AlarmName *StringExpr `json:"AlarmName,omitempty"`
+
+	// The IAM role that allows access to the CloudWatch alarm.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The reason for the change of the alarm state.
+	StateReason *StringExpr `json:"StateReason,omitempty"`
+
+	// The value of the alarm state.
+	StateValue *StringExpr `json:"StateValue,omitempty"`
+}
+
+// IoTCloudwatchAlarmActionList represents a list of IoTCloudwatchAlarmAction
+type IoTCloudwatchAlarmActionList []IoTCloudwatchAlarmAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTCloudwatchAlarmActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTCloudwatchAlarmAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTCloudwatchAlarmActionList{item}
+		return nil
+	}
+	list := []IoTCloudwatchAlarmAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTCloudwatchAlarmActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTCloudwatchMetricAction represents AWS IoT CloudwatchMetric Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html
+type IoTCloudwatchMetricAction struct {
+	// The name of the CloudWatch metric.
+	MetricName *StringExpr `json:"MetricName,omitempty"`
+
+	// The name of the CloudWatch metric namespace.
+	MetricNamespace *StringExpr `json:"MetricNamespace,omitempty"`
+
+	// An optional Unix timestamp.
+	MetricTimestamp *StringExpr `json:"MetricTimestamp,omitempty"`
+
+	// The metric unit supported by Amazon CloudWatch.
+	MetricUnit *StringExpr `json:"MetricUnit,omitempty"`
+
+	// The value to publish to the metric. For example, if you count the
+	// occurrences of a particular term such as Error, the value will be 1
+	// for each occurrence.
+	MetricValue *StringExpr `json:"MetricValue,omitempty"`
+
+	// The ARN of the IAM role that grants access to the CloudWatch metric.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+}
+
+// IoTCloudwatchMetricActionList represents a list of IoTCloudwatchMetricAction
+type IoTCloudwatchMetricActionList []IoTCloudwatchMetricAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTCloudwatchMetricActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTCloudwatchMetricAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTCloudwatchMetricActionList{item}
+		return nil
+	}
+	list := []IoTCloudwatchMetricAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTCloudwatchMetricActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTDynamoDBAction represents AWS IoT DynamoDB Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html
+type IoTDynamoDBAction struct {
+	// The name of the hash key.
+	HashKeyField *StringExpr `json:"HashKeyField,omitempty"`
+
+	// The value of the hash key.
+	HashKeyValue *StringExpr `json:"HashKeyValue,omitempty"`
+
+	// The name of the column in the DynamoDB table that contains the result
+	// of the query. You can customize this name.
+	PayloadField *StringExpr `json:"PayloadField,omitempty"`
+
+	// The name of the range key.
+	RangeKeyField *StringExpr `json:"RangeKeyField,omitempty"`
+
+	// The value of the range key.
+	RangeKeyValue *StringExpr `json:"RangeKeyValue,omitempty"`
+
+	// The ARN of the IAM role that grants access to the DynamoDB table.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The name of the DynamoDB table.
+	TableName *StringExpr `json:"TableName,omitempty"`
+}
+
+// IoTDynamoDBActionList represents a list of IoTDynamoDBAction
+type IoTDynamoDBActionList []IoTDynamoDBAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTDynamoDBActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTDynamoDBAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTDynamoDBActionList{item}
+		return nil
+	}
+	list := []IoTDynamoDBAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTDynamoDBActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTElasticSearchAction represents AWS IoT ElasticSearch Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html
+type IoTElasticSearchAction struct {
+	// The endpoint of your Elasticsearch domain.
+	Endpoint *StringExpr `json:"Endpoint,omitempty"`
+
+	// A unique identifier for the stored data.
+	Id *StringExpr `json:"Id,omitempty"`
+
+	// The Elasticsearch index where the data is stored.
+	Index *StringExpr `json:"Index,omitempty"`
+
+	// The ARN of the IAM role that grants access to Elasticsearch.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The type of stored data.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// IoTElasticSearchActionList represents a list of IoTElasticSearchAction
+type IoTElasticSearchActionList []IoTElasticSearchAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTElasticSearchActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTElasticSearchAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTElasticSearchActionList{item}
+		return nil
+	}
+	list := []IoTElasticSearchAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTElasticSearchActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTFirehoseAction represents AWS IoT Firehose Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html
+type IoTFirehoseAction struct {
+	// The delivery stream name.
+	DeliveryStreamName *StringExpr `json:"DeliveryStreamName,omitempty"`
+
+	// The ARN of the IAM role that grants access to the Firehose stream.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+}
+
+// IoTFirehoseActionList represents a list of IoTFirehoseAction
+type IoTFirehoseActionList []IoTFirehoseAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTFirehoseActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTFirehoseAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTFirehoseActionList{item}
+		return nil
+	}
+	list := []IoTFirehoseAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTFirehoseActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTKinesisAction represents AWS IoT Kinesis Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html
+type IoTKinesisAction struct {
+	// The partition key (the grouping of data by shard within an an Amazon
+	// Kinesis stream).
+	PartitionKey *StringExpr `json:"PartitionKey,omitempty"`
+
+	// The ARN of the IAM role that grants access to an Amazon Kinesis
+	// stream.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The name of the Amazon Kinesis stream.
+	StreamName *StringExpr `json:"StreamName,omitempty"`
+}
+
+// IoTKinesisActionList represents a list of IoTKinesisAction
+type IoTKinesisActionList []IoTKinesisAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTKinesisActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTKinesisAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTKinesisActionList{item}
+		return nil
+	}
+	list := []IoTKinesisAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTKinesisActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTLambdaAction represents AWS IoT Lambda Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-lambda.html
+type IoTLambdaAction struct {
+	// The ARN of the Lambda function.
+	FunctionArn *StringExpr `json:"FunctionArn,omitempty"`
+}
+
+// IoTLambdaActionList represents a list of IoTLambdaAction
+type IoTLambdaActionList []IoTLambdaAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTLambdaActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTLambdaAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTLambdaActionList{item}
+		return nil
+	}
+	list := []IoTLambdaAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTLambdaActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTRepublishAction represents AWS IoT Republish Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-republish.html
+type IoTRepublishAction struct {
+	// The ARN of the IAM role that grants publishing access.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The name of the MQTT topic topic different from the one currently
+	// specified.
+	Topic *StringExpr `json:"Topic,omitempty"`
+}
+
+// IoTRepublishActionList represents a list of IoTRepublishAction
+type IoTRepublishActionList []IoTRepublishAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTRepublishActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTRepublishAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTRepublishActionList{item}
+		return nil
+	}
+	list := []IoTRepublishAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTRepublishActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTS3Action represents AWS IoT S3 Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html
+type IoTS3Action struct {
+	// The name of the S3 bucket.
+	BucketName *StringExpr `json:"BucketName,omitempty"`
+
+	// The object key (the name of an object in the S3 bucket).
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The ARN of the IAM role that grants access to Amazon S3.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+}
+
+// IoTS3ActionList represents a list of IoTS3Action
+type IoTS3ActionList []IoTS3Action
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTS3ActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTS3Action{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTS3ActionList{item}
+		return nil
+	}
+	list := []IoTS3Action{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTS3ActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTSnsAction represents AWS IoT Sns Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html
+type IoTSnsAction struct {
+	// The format of the published message. Amazon SNS uses this setting to
+	// determine whether it should parse the payload and extract the
+	// platform-specific bits from the payload.
+	MessageFormat *StringExpr `json:"MessageFormat,omitempty"`
+
+	// The ARN of the IAM role that grants access to Amazon SNS.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// The ARN of the Amazon SNS topic.
+	TargetArn *StringExpr `json:"TargetArn,omitempty"`
+}
+
+// IoTSnsActionList represents a list of IoTSnsAction
+type IoTSnsActionList []IoTSnsAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTSnsActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTSnsAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTSnsActionList{item}
+		return nil
+	}
+	list := []IoTSnsAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTSnsActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTSqsAction represents AWS IoT Sqs Action
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html
+type IoTSqsAction struct {
+	// The URL of the Amazon Simple Queue Service (Amazon SQS) queue.
+	QueueUrl *StringExpr `json:"QueueUrl,omitempty"`
+
+	// The ARN of the IAM role that grants access to Amazon SQS.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// Specifies whether Base64 encoding should be used.
+	UseBase64 *StringExpr `json:"UseBase64,omitempty"`
+}
+
+// IoTSqsActionList represents a list of IoTSqsAction
+type IoTSqsActionList []IoTSqsAction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTSqsActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTSqsAction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTSqsActionList{item}
+		return nil
+	}
+	list := []IoTSqsAction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTSqsActionList(list)
+		return nil
+	}
+	return err
+}
+
+// IoTTopicRulePayload represents AWS IoT TopicRulePayload
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html
+type IoTTopicRulePayload struct {
+	// The actions associated with the rule.
+	Actions *IoTActionsList `json:"Actions,omitempty"`
+
+	// The version of the SQL rules engine to use when evaluating the rule.
+	AwsIotSqlVersion *StringExpr `json:"AwsIotSqlVersion,omitempty"`
+
+	// The description of the rule.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Specifies whether the rule is disabled.
+	RuleDisabled *BoolExpr `json:"RuleDisabled,omitempty"`
+
+	// The SQL statement that queries the topic. For more information, see
+	// Rules for AWS IoT in the AWS IoT Developer Guide.
+	Sql *StringExpr `json:"Sql,omitempty"`
+}
+
+// IoTTopicRulePayloadList represents a list of IoTTopicRulePayload
+type IoTTopicRulePayloadList []IoTTopicRulePayload
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTTopicRulePayloadList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTTopicRulePayload{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTTopicRulePayloadList{item}
+		return nil
+	}
+	list := []IoTTopicRulePayload{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTTopicRulePayloadList(list)
+		return nil
+	}
+	return err
+}
+
 // KinesisFirehoseDeliveryStreamDestinationCloudWatchLoggingOptions represents Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html
@@ -14264,6 +14894,18 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &IAMUser{}
 	case "AWS::IAM::UserToGroupAddition":
 		return &IAMUserToGroupAddition{}
+	case "AWS::IoT::Certificate":
+		return &IoTCertificate{}
+	case "AWS::IoT::Policy":
+		return &IoTPolicy{}
+	case "AWS::IoT::PolicyPrincipalAttachment":
+		return &IoTPolicyPrincipalAttachment{}
+	case "AWS::IoT::Thing":
+		return &IoTThing{}
+	case "AWS::IoT::ThingPrincipalAttachment":
+		return &IoTThingPrincipalAttachment{}
+	case "AWS::IoT::TopicRule":
+		return &IoTTopicRule{}
 	case "AWS::Kinesis::Stream":
 		return &KinesisStream{}
 	case "AWS::KinesisFirehose::DeliveryStream":
