@@ -6917,7 +6917,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of event categories that you want to subscribe to for a given\nsource type. If you don't specify this property, you are notified\nabout all event categories.",
+          "DocString": "A list of event categories that you want to subscribe to for a given\nsource type. If you don't specify this property, you are notified\nabout all event categories. For more information, see Using Amazon RDS\nEvent Notification in the Amazon Relational Database Service User\nGuide.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -8288,7 +8288,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The credentials required for the integration. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To require that the\ncaller's identity be passed through from the request, specify\narn:aws:iam::\\*:user/\\*.",
+          "DocString": "The credentials required for the integration. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To require that the\ncaller's identity be passed through from the request, specify\narn:aws:iam::*:user/*.",
           "SyntaxExpression": "String"
         },
         {

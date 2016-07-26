@@ -4696,7 +4696,9 @@ type RDSEventSubscription struct {
 
 	// A list of event categories that you want to subscribe to for a given
 	// source type. If you don't specify this property, you are notified
-	// about all event categories.
+	// about all event categories. For more information, see Using Amazon RDS
+	// Event Notification in the Amazon Relational Database Service User
+	// Guide.
 	EventCategories *StringListExpr `json:"EventCategories,omitempty"`
 
 	// The Amazon Resource Name (ARN) of an Amazon SNS topic that you want to
@@ -5702,7 +5704,7 @@ type APIGatewayMethodIntegration struct {
 	// Identity and Access Management (IAM) role that API Gateway assumes,
 	// specify the role's Amazon Resource Name (ARN). To require that the
 	// caller's identity be passed through from the request, specify
-	// arn:aws:iam::\*:user/\*.
+	// arn:aws:iam::*:user/*.
 	Credentials *StringExpr `json:"Credentials,omitempty"`
 
 	// The integration's HTTP method type.
