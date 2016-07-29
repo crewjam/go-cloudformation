@@ -14,10 +14,11 @@ type IAMPrincipal struct {
 
 // IAMPolicyStatement represents an IAM policy statement
 type IAMPolicyStatement struct {
-	Sid       string          `json:",omitempty"`
-	Effect    string          `json:",omitempty"`
-	Principal *IAMPrincipal   `json:",omitempty"`
-	Action    *StringListExpr `json:",omitempty"`
-	Resource  *StringListExpr `json:",omitempty"`
-	Condition interface{}     `json:",omitempty"`
+	Sid          string          `json:",omitempty"`
+	Effect       string          `json:",omitempty"`
+	Principal    *IAMPrincipal   `json:",omitempty"`
+	NotPrincipal *IAMPrincipal   `json:",omitempty"`
+	Action       *StringListExpr `json:",omitempty"`
+	Resource     *StringListExpr `json:",omitempty"`
+	Condition    interface{}     `json:",omitempty"`
 }
