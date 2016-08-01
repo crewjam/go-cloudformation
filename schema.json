@@ -12720,7 +12720,7 @@
         },
         {
           "Name": "Configurations",
-          "Type": "List of Amazon Elastic MapReduce Cluster Configuration",
+          "Type": "List of Amazon EMR Cluster Configuration",
           "TypeHref": "aws-properties-emr-cluster-configuration.html",
           "TypeName": "",
           "DocString": "A list of configurations to apply to this instance group. For more\ninformation see, Configuring Applications in the Amazon EMR Release\nGuide.",
@@ -12728,7 +12728,7 @@
         },
         {
           "Name": "EbsConfiguration",
-          "Type": "Amazon Elastic MapReduce EbsConfiguration",
+          "Type": "Amazon EMR EbsConfiguration",
           "TypeHref": "aws-properties-emr-ebsconfiguration.html",
           "TypeName": "",
           "DocString": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to\nattach to your instances.",
@@ -12810,7 +12810,7 @@
       "Properties": [
         {
           "Name": "VolumeSpecification",
-          "Type": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification",
+          "Type": "Amazon EMR EbsConfiguration EbsBlockDeviceConfig VolumeSpecification",
           "TypeHref": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html",
           "TypeName": "",
           "DocString": "The settings for the Amazon EBS volumes.",
