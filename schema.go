@@ -3059,24 +3059,24 @@ type EMRCluster struct {
 
 	// The software applications to deploy on the cluster, and the arguments
 	// that Amazon EMR passes to those applications.
-	Applications *ElasticMapReduceClusterApplicationList `json:"Applications,omitempty"`
+	Applications *EMRClusterApplicationList `json:"Applications,omitempty"`
 
 	// A list of bootstrap actions that Amazon EMR runs before starting
 	// applications on the cluster.
-	BootstrapActions *ElasticMapReduceClusterBootstrapActionConfigList `json:"BootstrapActions,omitempty"`
+	BootstrapActions *EMRClusterBootstrapActionConfigList `json:"BootstrapActions,omitempty"`
 
 	// The software configuration of the Amazon EMR cluster.
-	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+	Configurations *EMRClusterConfigurationList `json:"Configurations,omitempty"`
 
 	// Configures the EC2 instances that will run jobs in the Amazon EMR
 	// cluster.
-	Instances *ElasticMapReduceClusterJobFlowInstancesConfig `json:"Instances,omitempty"`
+	Instances *EMRClusterJobFlowInstancesConfig `json:"Instances,omitempty"`
 
 	// An AWS Identity and Access Management (IAM) role for an Amazon EMR
 	// cluster. All EC2 instances in the cluster assume this role, which
 	// instances use to access AWS services and resources to complete a job.
 	// For more information, see Configure IAM Roles for Amazon EMR in the
-	// Amazon Elastic MapReduce Management Guide.
+	// Amazon EMR Management Guide.
 	JobFlowRole *StringExpr `json:"JobFlowRole,omitempty"`
 
 	// An S3 bucket location to which Amazon EMR writes logs files from a job
@@ -3090,12 +3090,12 @@ type EMRCluster struct {
 	// The Amazon EMR software release label. A release is a set of software
 	// applications and components that you can install and configure on an
 	// Amazon EMR cluster. For more information, see About Amazon EMR
-	// Releases in the Amazon Elastic MapReduce Release Guide.
+	// Releases in the Amazon EMR Release Guide.
 	ReleaseLabel *StringExpr `json:"ReleaseLabel,omitempty"`
 
 	// The IAM role that Amazon EMR assumes to access AWS resources on your
 	// behalf. For more information, see Configure IAM Roles for Amazon EMR
-	// in the Amazon Elastic MapReduce Management Guide.
+	// in the Amazon EMR Management Guide.
 	ServiceRole *StringExpr `json:"ServiceRole,omitempty"`
 
 	// An arbitrary set of tags (key–value pairs) to help you identify the
@@ -3124,25 +3124,25 @@ type EMRInstanceGroupConfig struct {
 	BidPrice *StringExpr `json:"BidPrice,omitempty"`
 
 	// A list of configurations to apply to this instance group. For more
-	// information see, Configuring Applications in the Amazon Elastic
-	// MapReduce Release Guide.
-	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+	// information see, Configuring Applications in the Amazon EMR Release
+	// Guide.
+	Configurations *EMRClusterConfigurationList `json:"Configurations,omitempty"`
 
 	// Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to
 	// attach to your instances.
-	EbsConfiguration *ElasticMapReduceEbsConfiguration `json:"EbsConfiguration,omitempty"`
+	EbsConfiguration *EMREbsConfiguration `json:"EbsConfiguration,omitempty"`
 
 	// The number of instances to launch in the instance group.
 	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
 
 	// The role of the servers in the Amazon EMR cluster, such as TASK. For
-	// more information, see Instance Groups in the Amazon Elastic MapReduce
-	// Management Guide.
+	// more information, see Instance Groups in the Amazon EMR Management
+	// Guide.
 	InstanceRole *StringExpr `json:"InstanceRole,omitempty"`
 
 	// The EC2 instance type for all instances in the instance group. For
-	// more information, see Instance Configurations in the Amazon Elastic
-	// MapReduce Management Guide.
+	// more information, see Instance Configurations in the Amazon EMR
+	// Management Guide.
 	InstanceType *StringExpr `json:"InstanceType,omitempty"`
 
 	// The ID of an Amazon EMR cluster that you want to associate this
@@ -3169,12 +3169,12 @@ func (s EMRInstanceGroupConfig) CfnResourceType() string {
 type EMRStep struct {
 	// The action to take if the job flow step fails. Currently, AWS
 	// CloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more
-	// information, see Managing Cluster Termination in the Amazon Elastic
-	// MapReduce Management Guide.
+	// information, see Managing Cluster Termination in the Amazon EMR
+	// Management Guide.
 	ActionOnFailure *StringExpr `json:"ActionOnFailure,omitempty"`
 
 	// The JAR file that includes the main function that Amazon EMR executes.
-	HadoopJarStep *ElasticMapReduceStepHadoopJarStepConfig `json:"HadoopJarStep,omitempty"`
+	HadoopJarStep *EMRStepHadoopJarStepConfig `json:"HadoopJarStep,omitempty"`
 
 	// The ID of a cluster in which you want to run this job flow step.
 	JobFlowId *StringExpr `json:"JobFlowId,omitempty"`
@@ -10618,10 +10618,10 @@ func (l *ElasticsearchServiceDomainSnapshotOptionsList) UnmarshalJSON(buf []byte
 	return err
 }
 
-// ElasticMapReduceClusterApplication represents Amazon Elastic MapReduce Cluster Application
+// EMRClusterApplication represents Amazon EMR Cluster Application
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-application.html
-type ElasticMapReduceClusterApplication struct {
+type EMRClusterApplication struct {
 	// Metadata about third-party applications that third-party vendors use
 	// for testing purposes.
 	AdditionalInfo *StringExpr `json:"AdditionalInfo,omitempty"`
@@ -10631,68 +10631,68 @@ type ElasticMapReduceClusterApplication struct {
 
 	// The name of the application to add to your cluster, such as Hadoop or
 	// Hive. For valid values, see the Applications parameter in the Amazon
-	// Elastic MapReduce API Reference.
+	// EMR API Reference.
 	Name *StringExpr `json:"Name,omitempty"`
 
 	// The version of the application.
 	Version *StringExpr `json:"Version,omitempty"`
 }
 
-// ElasticMapReduceClusterApplicationList represents a list of ElasticMapReduceClusterApplication
-type ElasticMapReduceClusterApplicationList []ElasticMapReduceClusterApplication
+// EMRClusterApplicationList represents a list of EMRClusterApplication
+type EMRClusterApplicationList []EMRClusterApplication
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterApplicationList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterApplicationList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterApplication{}
+	item := EMRClusterApplication{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterApplicationList{item}
+		*l = EMRClusterApplicationList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterApplication{}
+	list := []EMRClusterApplication{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterApplicationList(list)
+		*l = EMRClusterApplicationList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceClusterBootstrapActionConfig represents Amazon Elastic MapReduce Cluster BootstrapActionConfig
+// EMRClusterBootstrapActionConfig represents Amazon EMR Cluster BootstrapActionConfig
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig.html
-type ElasticMapReduceClusterBootstrapActionConfig struct {
+type EMRClusterBootstrapActionConfig struct {
 	// The name of the bootstrap action to add to your cluster.
 	Name *StringExpr `json:"Name,omitempty"`
 
 	// The script that the bootstrap action runs.
-	ScriptBootstrapAction *ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig `json:"ScriptBootstrapAction,omitempty"`
+	ScriptBootstrapAction *EMRClusterBootstrapActionConfigScriptBootstrapActionConfig `json:"ScriptBootstrapAction,omitempty"`
 }
 
-// ElasticMapReduceClusterBootstrapActionConfigList represents a list of ElasticMapReduceClusterBootstrapActionConfig
-type ElasticMapReduceClusterBootstrapActionConfigList []ElasticMapReduceClusterBootstrapActionConfig
+// EMRClusterBootstrapActionConfigList represents a list of EMRClusterBootstrapActionConfig
+type EMRClusterBootstrapActionConfigList []EMRClusterBootstrapActionConfig
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterBootstrapActionConfig{}
+	item := EMRClusterBootstrapActionConfig{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterBootstrapActionConfigList{item}
+		*l = EMRClusterBootstrapActionConfigList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterBootstrapActionConfig{}
+	list := []EMRClusterBootstrapActionConfig{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterBootstrapActionConfigList(list)
+		*l = EMRClusterBootstrapActionConfigList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig represents Amazon Elastic MapReduce Cluster BootstrapActionConfig ScriptBootstrapActionConfig
+// EMRClusterBootstrapActionConfigScriptBootstrapActionConfig represents Amazon EMR Cluster BootstrapActionConfig ScriptBootstrapActionConfig
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html
-type ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig struct {
+type EMRClusterBootstrapActionConfigScriptBootstrapActionConfig struct {
 	// A list of command line arguments to pass to the bootstrap action
 	// script.
 	Args *StringListExpr `json:"Args,omitempty"`
@@ -10702,72 +10702,72 @@ type ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig str
 	Path *StringExpr `json:"Path,omitempty"`
 }
 
-// ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList represents a list of ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig
-type ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList []ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig
+// EMRClusterBootstrapActionConfigScriptBootstrapActionConfigList represents a list of EMRClusterBootstrapActionConfigScriptBootstrapActionConfig
+type EMRClusterBootstrapActionConfigScriptBootstrapActionConfigList []EMRClusterBootstrapActionConfigScriptBootstrapActionConfig
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterBootstrapActionConfigScriptBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig{}
+	item := EMRClusterBootstrapActionConfigScriptBootstrapActionConfig{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList{item}
+		*l = EMRClusterBootstrapActionConfigScriptBootstrapActionConfigList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfig{}
+	list := []EMRClusterBootstrapActionConfigScriptBootstrapActionConfig{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterBootstrapActionConfigScriptBootstrapActionConfigList(list)
+		*l = EMRClusterBootstrapActionConfigScriptBootstrapActionConfigList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceClusterConfiguration represents Amazon Elastic MapReduce Cluster Configuration
+// EMRClusterConfiguration represents Amazon EMR Cluster Configuration
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html
-type ElasticMapReduceClusterConfiguration struct {
+type EMRClusterConfiguration struct {
 	// The name of an application-specific configuration file. For more
-	// information see, Configuring Applications in the Amazon Elastic
-	// MapReduce Release Guide.
+	// information see, Configuring Applications in the Amazon EMR Release
+	// Guide.
 	Classification *StringExpr `json:"Classification,omitempty"`
 
 	// The settings that you want to change in the application-specific
 	// configuration file. For more information see, Configuring Applications
-	// in the Amazon Elastic MapReduce Release Guide.
+	// in the Amazon EMR Release Guide.
 	ConfigurationProperties *StringExpr `json:"ConfigurationProperties,omitempty"`
 
 	// A list of configurations to apply to this configuration. You can nest
 	// configurations so that a single configuration can have its own
 	// configurations. In other words, you can configure a configuration. For
-	// more information see, Configuring Applications in the Amazon Elastic
-	// MapReduce Release Guide.
-	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+	// more information see, Configuring Applications in the Amazon EMR
+	// Release Guide.
+	Configurations *EMRClusterConfigurationList `json:"Configurations,omitempty"`
 }
 
-// ElasticMapReduceClusterConfigurationList represents a list of ElasticMapReduceClusterConfiguration
-type ElasticMapReduceClusterConfigurationList []ElasticMapReduceClusterConfiguration
+// EMRClusterConfigurationList represents a list of EMRClusterConfiguration
+type EMRClusterConfigurationList []EMRClusterConfiguration
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterConfigurationList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterConfigurationList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterConfiguration{}
+	item := EMRClusterConfiguration{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterConfigurationList{item}
+		*l = EMRClusterConfigurationList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterConfiguration{}
+	list := []EMRClusterConfiguration{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterConfigurationList(list)
+		*l = EMRClusterConfigurationList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceClusterJobFlowInstancesConfig represents Amazon Elastic MapReduce Cluster JobFlowInstancesConfig
+// EMRClusterJobFlowInstancesConfig represents Amazon EMR Cluster JobFlowInstancesConfig
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig.html
-type ElasticMapReduceClusterJobFlowInstancesConfig struct {
+type EMRClusterJobFlowInstancesConfig struct {
 	// A list of additional EC2 security group IDs to assign to the master
 	// instance (master node) in your Amazon EMR cluster. Use this property
 	// to supplement the rules specified by the Amazon EMR managed master
@@ -10781,7 +10781,7 @@ type ElasticMapReduceClusterJobFlowInstancesConfig struct {
 	AdditionalSlaveSecurityGroups *StringListExpr `json:"AdditionalSlaveSecurityGroups,omitempty"`
 
 	// The settings for the core instances in your Amazon EMR cluster.
-	CoreInstanceGroup *ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig `json:"CoreInstanceGroup,omitempty"`
+	CoreInstanceGroup *EMRClusterJobFlowInstancesConfigInstanceGroupConfig `json:"CoreInstanceGroup,omitempty"`
 
 	// The name of an Amazon Elastic Compute Cloud (Amazon EC2) key pair,
 	// which you can use to access the instances in your Amazon EMR cluster.
@@ -10801,14 +10801,14 @@ type ElasticMapReduceClusterJobFlowInstancesConfig struct {
 	EmrManagedSlaveSecurityGroup *StringExpr `json:"EmrManagedSlaveSecurityGroup,omitempty"`
 
 	// The Hadoop version for the job flow. For valid values, see the
-	// HadoopVersion parameter in the Amazon Elastic MapReduce API Reference.
+	// HadoopVersion parameter in the Amazon EMR API Reference.
 	HadoopVersion *StringExpr `json:"HadoopVersion,omitempty"`
 
 	// The settings for the master instance (master node).
-	MasterInstanceGroup *ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig `json:"MasterInstanceGroup,omitempty"`
+	MasterInstanceGroup *EMRClusterJobFlowInstancesConfigInstanceGroupConfig `json:"MasterInstanceGroup,omitempty"`
 
 	// The Availability Zone (AZ) in which the job flow runs.
-	Placement *ElasticMapReduceClusterJobFlowInstancesConfigPlacement `json:"Placement,omitempty"`
+	Placement *EMRClusterJobFlowInstancesConfigPlacement `json:"Placement,omitempty"`
 
 	// The ID of an EC2 security group (managed by Amazon EMR) that services
 	// use to access clusters in private subnets.
@@ -10821,30 +10821,30 @@ type ElasticMapReduceClusterJobFlowInstancesConfig struct {
 	TerminationProtected *BoolExpr `json:"TerminationProtected,omitempty"`
 }
 
-// ElasticMapReduceClusterJobFlowInstancesConfigList represents a list of ElasticMapReduceClusterJobFlowInstancesConfig
-type ElasticMapReduceClusterJobFlowInstancesConfigList []ElasticMapReduceClusterJobFlowInstancesConfig
+// EMRClusterJobFlowInstancesConfigList represents a list of EMRClusterJobFlowInstancesConfig
+type EMRClusterJobFlowInstancesConfigList []EMRClusterJobFlowInstancesConfig
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterJobFlowInstancesConfigList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterJobFlowInstancesConfigList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterJobFlowInstancesConfig{}
+	item := EMRClusterJobFlowInstancesConfig{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterJobFlowInstancesConfigList{item}
+		*l = EMRClusterJobFlowInstancesConfigList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterJobFlowInstancesConfig{}
+	list := []EMRClusterJobFlowInstancesConfig{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterJobFlowInstancesConfigList(list)
+		*l = EMRClusterJobFlowInstancesConfigList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig represents Amazon Elastic MapReduce Cluster JobFlowInstancesConfig InstanceGroupConfig
+// EMRClusterJobFlowInstancesConfigInstanceGroupConfig represents Amazon EMR Cluster JobFlowInstancesConfig InstanceGroupConfig
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html
-type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig struct {
+type EMRClusterJobFlowInstancesConfigInstanceGroupConfig struct {
 	// When launching instances as Spot Instances, the bid price in USD for
 	// each EC2 instance in the instance group.
 	BidPrice *StringExpr `json:"BidPrice,omitempty"`
@@ -10852,11 +10852,11 @@ type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig struct {
 	// A list of configurations to apply to this instance group. For more
 	// information see, Configuring Applications in the Amazon EMR Release
 	// Guide.
-	Configurations *ElasticMapReduceClusterConfigurationList `json:"Configurations,omitempty"`
+	Configurations *EMRClusterConfigurationList `json:"Configurations,omitempty"`
 
 	// Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to
 	// attach to your instances.
-	EbsConfiguration *ElasticMapReduceEbsConfiguration `json:"EbsConfiguration,omitempty"`
+	EbsConfiguration *EMREbsConfiguration `json:"EbsConfiguration,omitempty"`
 
 	// The number of instances to launch in the instance group.
 	InstanceCount *IntegerExpr `json:"InstanceCount,omitempty"`
@@ -10875,30 +10875,30 @@ type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig struct {
 	Name *StringExpr `json:"Name,omitempty"`
 }
 
-// ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList represents a list of ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig
-type ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList []ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig
+// EMRClusterJobFlowInstancesConfigInstanceGroupConfigList represents a list of EMRClusterJobFlowInstancesConfigInstanceGroupConfig
+type EMRClusterJobFlowInstancesConfigInstanceGroupConfigList []EMRClusterJobFlowInstancesConfigInstanceGroupConfig
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterJobFlowInstancesConfigInstanceGroupConfigList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig{}
+	item := EMRClusterJobFlowInstancesConfigInstanceGroupConfig{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList{item}
+		*l = EMRClusterJobFlowInstancesConfigInstanceGroupConfigList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfig{}
+	list := []EMRClusterJobFlowInstancesConfigInstanceGroupConfig{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterJobFlowInstancesConfigInstanceGroupConfigList(list)
+		*l = EMRClusterJobFlowInstancesConfigInstanceGroupConfigList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceClusterJobFlowInstancesConfigPlacement represents Amazon Elastic MapReduce Cluster JobFlowInstancesConfig PlacementType
+// EMRClusterJobFlowInstancesConfigPlacement represents Amazon EMR Cluster JobFlowInstancesConfig PlacementType
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-placementtype.html
-type ElasticMapReduceClusterJobFlowInstancesConfigPlacement struct {
+type EMRClusterJobFlowInstancesConfigPlacement struct {
 	// The Amazon Elastic Compute Cloud (Amazon EC2) AZ for the job flow. For
 	// more information, see
 	// http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
@@ -10906,33 +10906,33 @@ type ElasticMapReduceClusterJobFlowInstancesConfigPlacement struct {
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 }
 
-// ElasticMapReduceClusterJobFlowInstancesConfigPlacementList represents a list of ElasticMapReduceClusterJobFlowInstancesConfigPlacement
-type ElasticMapReduceClusterJobFlowInstancesConfigPlacementList []ElasticMapReduceClusterJobFlowInstancesConfigPlacement
+// EMRClusterJobFlowInstancesConfigPlacementList represents a list of EMRClusterJobFlowInstancesConfigPlacement
+type EMRClusterJobFlowInstancesConfigPlacementList []EMRClusterJobFlowInstancesConfigPlacement
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceClusterJobFlowInstancesConfigPlacementList) UnmarshalJSON(buf []byte) error {
+func (l *EMRClusterJobFlowInstancesConfigPlacementList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceClusterJobFlowInstancesConfigPlacement{}
+	item := EMRClusterJobFlowInstancesConfigPlacement{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceClusterJobFlowInstancesConfigPlacementList{item}
+		*l = EMRClusterJobFlowInstancesConfigPlacementList{item}
 		return nil
 	}
-	list := []ElasticMapReduceClusterJobFlowInstancesConfigPlacement{}
+	list := []EMRClusterJobFlowInstancesConfigPlacement{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceClusterJobFlowInstancesConfigPlacementList(list)
+		*l = EMRClusterJobFlowInstancesConfigPlacementList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceEbsConfiguration represents Amazon Elastic MapReduce EbsConfiguration
+// EMREbsConfiguration represents Amazon EMR EbsConfiguration
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html
-type ElasticMapReduceEbsConfiguration struct {
+type EMREbsConfiguration struct {
 	// Configures the block storage devices that are associated with your EMR
 	// instances.
-	EbsBlockDeviceConfigs *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList `json:"EbsBlockDeviceConfigs,omitempty"`
+	EbsBlockDeviceConfigs *EMREbsConfigurationEbsBlockDeviceConfigsList `json:"EbsBlockDeviceConfigs,omitempty"`
 
 	// Indicates whether the instances are optimized for Amazon EBS I/O. This
 	// optimization provides dedicated throughput to Amazon EBS and an
@@ -10943,62 +10943,62 @@ type ElasticMapReduceEbsConfiguration struct {
 	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
 }
 
-// ElasticMapReduceEbsConfigurationList represents a list of ElasticMapReduceEbsConfiguration
-type ElasticMapReduceEbsConfigurationList []ElasticMapReduceEbsConfiguration
+// EMREbsConfigurationList represents a list of EMREbsConfiguration
+type EMREbsConfigurationList []EMREbsConfiguration
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceEbsConfigurationList) UnmarshalJSON(buf []byte) error {
+func (l *EMREbsConfigurationList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceEbsConfiguration{}
+	item := EMREbsConfiguration{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceEbsConfigurationList{item}
+		*l = EMREbsConfigurationList{item}
 		return nil
 	}
-	list := []ElasticMapReduceEbsConfiguration{}
+	list := []EMREbsConfiguration{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceEbsConfigurationList(list)
+		*l = EMREbsConfigurationList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs represents Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfigs
+// EMREbsConfigurationEbsBlockDeviceConfigs represents Amazon EMR EbsConfiguration EbsBlockDeviceConfigs
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
-type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs struct {
+type EMREbsConfigurationEbsBlockDeviceConfigs struct {
 	// The settings for the Amazon EBS volumes.
-	VolumeSpecification *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification `json:"VolumeSpecification,omitempty"`
+	VolumeSpecification *EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification `json:"VolumeSpecification,omitempty"`
 
 	// The number of Amazon EBS volumes that you want to create for each
 	// instance in the EMR cluster or instance group.
 	VolumesPerInstance *IntegerExpr `json:"VolumesPerInstance,omitempty"`
 }
 
-// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList represents a list of ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs
-type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs
+// EMREbsConfigurationEbsBlockDeviceConfigsList represents a list of EMREbsConfigurationEbsBlockDeviceConfigs
+type EMREbsConfigurationEbsBlockDeviceConfigsList []EMREbsConfigurationEbsBlockDeviceConfigs
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList) UnmarshalJSON(buf []byte) error {
+func (l *EMREbsConfigurationEbsBlockDeviceConfigsList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs{}
+	item := EMREbsConfigurationEbsBlockDeviceConfigs{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList{item}
+		*l = EMREbsConfigurationEbsBlockDeviceConfigsList{item}
 		return nil
 	}
-	list := []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigs{}
+	list := []EMREbsConfigurationEbsBlockDeviceConfigs{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigsList(list)
+		*l = EMREbsConfigurationEbsBlockDeviceConfigsList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification represents Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification
+// EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification represents Amazon EMR EbsConfiguration EbsBlockDeviceConfig VolumeSpecification
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html
-type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification struct {
+type EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification struct {
 	// The number of I/O operations per second (IOPS) that the volume
 	// supports. For more information, see Iops for the EbsBlockDevice action
 	// in the Amazon EC2 API Reference.
@@ -11015,30 +11015,30 @@ type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification str
 	VolumeType *StringExpr `json:"VolumeType,omitempty"`
 }
 
-// ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList represents a list of ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification
-type ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification
+// EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList represents a list of EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification
+type EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList []EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList) UnmarshalJSON(buf []byte) error {
+func (l *EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification{}
+	item := EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList{item}
+		*l = EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList{item}
 		return nil
 	}
-	list := []ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecification{}
+	list := []EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceEbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList(list)
+		*l = EMREbsConfigurationEbsBlockDeviceConfigVolumeSpecificationList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceStepHadoopJarStepConfig represents Amazon Elastic MapReduce Step HadoopJarStepConfig
+// EMRStepHadoopJarStepConfig represents Amazon EMR Step HadoopJarStepConfig
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html
-type ElasticMapReduceStepHadoopJarStepConfig struct {
+type EMRStepHadoopJarStepConfig struct {
 	// A list of command line arguments passed to the JAR file's main
 	// function when the function is executed.
 	Args *StringListExpr `json:"Args,omitempty"`
@@ -11054,33 +11054,33 @@ type ElasticMapReduceStepHadoopJarStepConfig struct {
 	// A list of Java properties that are set when the job flow step runs.
 	// You can use these properties to pass key-value pairs to your main
 	// function in the JAR file.
-	StepProperties *ElasticMapReduceStepHadoopJarStepConfigKeyValueList `json:"StepProperties,omitempty"`
+	StepProperties *EMRStepHadoopJarStepConfigKeyValueList `json:"StepProperties,omitempty"`
 }
 
-// ElasticMapReduceStepHadoopJarStepConfigList represents a list of ElasticMapReduceStepHadoopJarStepConfig
-type ElasticMapReduceStepHadoopJarStepConfigList []ElasticMapReduceStepHadoopJarStepConfig
+// EMRStepHadoopJarStepConfigList represents a list of EMRStepHadoopJarStepConfig
+type EMRStepHadoopJarStepConfigList []EMRStepHadoopJarStepConfig
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceStepHadoopJarStepConfigList) UnmarshalJSON(buf []byte) error {
+func (l *EMRStepHadoopJarStepConfigList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceStepHadoopJarStepConfig{}
+	item := EMRStepHadoopJarStepConfig{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceStepHadoopJarStepConfigList{item}
+		*l = EMRStepHadoopJarStepConfigList{item}
 		return nil
 	}
-	list := []ElasticMapReduceStepHadoopJarStepConfig{}
+	list := []EMRStepHadoopJarStepConfig{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceStepHadoopJarStepConfigList(list)
+		*l = EMRStepHadoopJarStepConfigList(list)
 		return nil
 	}
 	return err
 }
 
-// ElasticMapReduceStepHadoopJarStepConfigKeyValue represents Amazon Elastic MapReduce Step HadoopJarStepConfig KeyValue
+// EMRStepHadoopJarStepConfigKeyValue represents Amazon EMR Step HadoopJarStepConfig KeyValue
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig-keyvalue.html
-type ElasticMapReduceStepHadoopJarStepConfigKeyValue struct {
+type EMRStepHadoopJarStepConfigKeyValue struct {
 	// The unique identifier of a key-value pair.
 	Key *StringExpr `json:"Key,omitempty"`
 
@@ -11088,21 +11088,21 @@ type ElasticMapReduceStepHadoopJarStepConfigKeyValue struct {
 	Value *StringExpr `json:"Value,omitempty"`
 }
 
-// ElasticMapReduceStepHadoopJarStepConfigKeyValueList represents a list of ElasticMapReduceStepHadoopJarStepConfigKeyValue
-type ElasticMapReduceStepHadoopJarStepConfigKeyValueList []ElasticMapReduceStepHadoopJarStepConfigKeyValue
+// EMRStepHadoopJarStepConfigKeyValueList represents a list of EMRStepHadoopJarStepConfigKeyValue
+type EMRStepHadoopJarStepConfigKeyValueList []EMRStepHadoopJarStepConfigKeyValue
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticMapReduceStepHadoopJarStepConfigKeyValueList) UnmarshalJSON(buf []byte) error {
+func (l *EMRStepHadoopJarStepConfigKeyValueList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticMapReduceStepHadoopJarStepConfigKeyValue{}
+	item := EMRStepHadoopJarStepConfigKeyValue{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticMapReduceStepHadoopJarStepConfigKeyValueList{item}
+		*l = EMRStepHadoopJarStepConfigKeyValueList{item}
 		return nil
 	}
-	list := []ElasticMapReduceStepHadoopJarStepConfigKeyValue{}
+	list := []EMRStepHadoopJarStepConfigKeyValue{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticMapReduceStepHadoopJarStepConfigKeyValueList(list)
+		*l = EMRStepHadoopJarStepConfigKeyValueList(list)
 		return nil
 	}
 	return err

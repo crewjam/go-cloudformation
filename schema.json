@@ -4438,7 +4438,7 @@
         },
         {
           "Name": "Applications",
-          "Type": "List of Amazon Elastic MapReduce Cluster Application",
+          "Type": "List of Amazon EMR Cluster Application",
           "TypeHref": "aws-properties-emr-cluster-application.html",
           "TypeName": "",
           "DocString": "The software applications to deploy on the cluster, and the arguments\nthat Amazon EMR passes to those applications.",
@@ -4446,7 +4446,7 @@
         },
         {
           "Name": "BootstrapActions",
-          "Type": "List of Amazon Elastic MapReduce Cluster BootstrapActionConfig",
+          "Type": "List of Amazon EMR Cluster BootstrapActionConfig",
           "TypeHref": "aws-properties-emr-cluster-bootstrapactionconfig.html",
           "TypeName": "",
           "DocString": "A list of bootstrap actions that Amazon EMR runs before starting\napplications on the cluster.",
@@ -4454,7 +4454,7 @@
         },
         {
           "Name": "Configurations",
-          "Type": "List of Amazon Elastic MapReduce Cluster Configuration",
+          "Type": "List of Amazon EMR Cluster Configuration",
           "TypeHref": "aws-properties-emr-cluster-configuration.html",
           "TypeName": "",
           "DocString": "The software configuration of the Amazon EMR cluster.",
@@ -4462,7 +4462,7 @@
         },
         {
           "Name": "Instances",
-          "Type": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig",
+          "Type": "Amazon EMR Cluster JobFlowInstancesConfig",
           "TypeHref": "aws-properties-emr-cluster-jobflowinstancesconfig.html",
           "TypeName": "",
           "DocString": "Configures the EC2 instances that will run jobs in the Amazon EMR\ncluster.",
@@ -4473,7 +4473,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "An AWS Identity and Access Management (IAM) role for an Amazon EMR\ncluster. All EC2 instances in the cluster assume this role, which\ninstances use to access AWS services and resources to complete a job.\nFor more information, see Configure IAM Roles for Amazon EMR in the\nAmazon Elastic MapReduce Management Guide.",
+          "DocString": "An AWS Identity and Access Management (IAM) role for an Amazon EMR\ncluster. All EC2 instances in the cluster assume this role, which\ninstances use to access AWS services and resources to complete a job.\nFor more information, see Configure IAM Roles for Amazon EMR in the\nAmazon EMR Management Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4497,7 +4497,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Amazon EMR software release label. A release is a set of software\napplications and components that you can install and configure on an\nAmazon EMR cluster. For more information, see About Amazon EMR\nReleases in the Amazon Elastic MapReduce Release Guide.",
+          "DocString": "The Amazon EMR software release label. A release is a set of software\napplications and components that you can install and configure on an\nAmazon EMR cluster. For more information, see About Amazon EMR\nReleases in the Amazon EMR Release Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4505,7 +4505,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The IAM role that Amazon EMR assumes to access AWS resources on your\nbehalf. For more information, see Configure IAM Roles for Amazon EMR\nin the Amazon Elastic MapReduce Management Guide.",
+          "DocString": "The IAM role that Amazon EMR assumes to access AWS resources on your\nbehalf. For more information, see Configure IAM Roles for Amazon EMR\nin the Amazon EMR Management Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4540,15 +4540,15 @@
         },
         {
           "Name": "Configurations",
-          "Type": "List of Amazon Elastic MapReduce Cluster Configuration",
+          "Type": "List of Amazon EMR Cluster Configuration",
           "TypeHref": "aws-properties-emr-cluster-configuration.html",
           "TypeName": "",
-          "DocString": "A list of configurations to apply to this instance group. For more\ninformation see, Configuring Applications in the Amazon Elastic\nMapReduce Release Guide.",
+          "DocString": "A list of configurations to apply to this instance group. For more\ninformation see, Configuring Applications in the Amazon EMR Release\nGuide.",
           "SyntaxExpression": "[ Configuration, ... ]"
         },
         {
           "Name": "EbsConfiguration",
-          "Type": "Amazon Elastic MapReduce EbsConfiguration",
+          "Type": "Amazon EMR EbsConfiguration",
           "TypeHref": "aws-properties-emr-ebsconfiguration.html",
           "TypeName": "",
           "DocString": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to\nattach to your instances.",
@@ -4567,7 +4567,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The role of the servers in the Amazon EMR cluster, such as TASK. For\nmore information, see Instance Groups in the Amazon Elastic MapReduce\nManagement Guide.",
+          "DocString": "The role of the servers in the Amazon EMR cluster, such as TASK. For\nmore information, see Instance Groups in the Amazon EMR Management\nGuide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4575,7 +4575,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The EC2 instance type for all instances in the instance group. For\nmore information, see Instance Configurations in the Amazon Elastic\nMapReduce Management Guide.",
+          "DocString": "The EC2 instance type for all instances in the instance group. For\nmore information, see Instance Configurations in the Amazon EMR\nManagement Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4613,12 +4613,12 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The action to take if the job flow step fails. Currently, AWS\nCloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more\ninformation, see Managing Cluster Termination in the Amazon Elastic\nMapReduce Management Guide.",
+          "DocString": "The action to take if the job flow step fails. Currently, AWS\nCloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more\ninformation, see Managing Cluster Termination in the Amazon EMR\nManagement Guide.",
           "SyntaxExpression": "String"
         },
         {
           "Name": "HadoopJarStep",
-          "Type": "Amazon Elastic MapReduce Step HadoopJarStepConfig",
+          "Type": "Amazon EMR Step HadoopJarStepConfig",
           "TypeHref": "aws-properties-emr-step-hadoopjarstepconfig.html",
           "TypeName": "",
           "DocString": "The JAR file that includes the main function that Amazon EMR executes.",
@@ -12493,7 +12493,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster Application",
+      "Name": "Amazon EMR Cluster Application",
       "Href": "aws-properties-emr-cluster-application.html",
       "Properties": [
         {
@@ -12517,7 +12517,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the application to add to your cluster, such as Hadoop or\nHive. For valid values, see the Applications parameter in the Amazon\nElastic MapReduce API Reference.",
+          "DocString": "The name of the application to add to your cluster, such as Hadoop or\nHive. For valid values, see the Applications parameter in the Amazon\nEMR API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -12531,7 +12531,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster BootstrapActionConfig",
+      "Name": "Amazon EMR Cluster BootstrapActionConfig",
       "Href": "aws-properties-emr-cluster-bootstrapactionconfig.html",
       "Properties": [
         {
@@ -12544,7 +12544,7 @@
         },
         {
           "Name": "ScriptBootstrapAction",
-          "Type": "Amazon Elastic MapReduce Cluster BootstrapActionConfig ScriptBootstrapActionConfig",
+          "Type": "Amazon EMR Cluster BootstrapActionConfig ScriptBootstrapActionConfig",
           "TypeHref": "aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html",
           "TypeName": "",
           "DocString": "The script that the bootstrap action runs.",
@@ -12553,7 +12553,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster BootstrapActionConfig ScriptBootstrapActionConfig",
+      "Name": "Amazon EMR Cluster BootstrapActionConfig ScriptBootstrapActionConfig",
       "Href": "aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html",
       "Properties": [
         {
@@ -12575,7 +12575,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster Configuration",
+      "Name": "Amazon EMR Cluster Configuration",
       "Href": "aws-properties-emr-cluster-configuration.html",
       "Properties": [
         {
@@ -12583,7 +12583,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of an application-specific configuration file. For more\ninformation see, Configuring Applications in the Amazon Elastic\nMapReduce Release Guide.",
+          "DocString": "The name of an application-specific configuration file. For more\ninformation see, Configuring Applications in the Amazon EMR Release\nGuide.",
           "SyntaxExpression": "String"
         },
         {
@@ -12591,21 +12591,21 @@
           "Type": "String-to-string map",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The settings that you want to change in the application-specific\nconfiguration file. For more information see, Configuring Applications\nin the Amazon Elastic MapReduce Release Guide.",
+          "DocString": "The settings that you want to change in the application-specific\nconfiguration file. For more information see, Configuring Applications\nin the Amazon EMR Release Guide.",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
           "Name": "Configurations",
-          "Type": "List of Amazon Elastic MapReduce Cluster Configuration",
+          "Type": "List of Amazon EMR Cluster Configuration",
           "TypeHref": "aws-properties-emr-cluster-configuration.html",
           "TypeName": "",
-          "DocString": "A list of configurations to apply to this configuration. You can nest\nconfigurations so that a single configuration can have its own\nconfigurations. In other words, you can configure a configuration. For\nmore information see, Configuring Applications in the Amazon Elastic\nMapReduce Release Guide.",
+          "DocString": "A list of configurations to apply to this configuration. You can nest\nconfigurations so that a single configuration can have its own\nconfigurations. In other words, you can configure a configuration. For\nmore information see, Configuring Applications in the Amazon EMR\nRelease Guide.",
           "SyntaxExpression": "[ Configuration, ... ]"
         }
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig",
+      "Name": "Amazon EMR Cluster JobFlowInstancesConfig",
       "Href": "aws-properties-emr-cluster-jobflowinstancesconfig.html",
       "Properties": [
         {
@@ -12626,7 +12626,7 @@
         },
         {
           "Name": "CoreInstanceGroup",
-          "Type": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig InstanceGroupConfig",
+          "Type": "Amazon EMR Cluster JobFlowInstancesConfig InstanceGroupConfig",
           "TypeHref": "aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html",
           "TypeName": "",
           "DocString": "The settings for the core instances in your Amazon EMR cluster.",
@@ -12669,12 +12669,12 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Hadoop version for the job flow. For valid values, see the\nHadoopVersion parameter in the Amazon Elastic MapReduce API Reference.",
+          "DocString": "The Hadoop version for the job flow. For valid values, see the\nHadoopVersion parameter in the Amazon EMR API Reference.",
           "SyntaxExpression": "String"
         },
         {
           "Name": "MasterInstanceGroup",
-          "Type": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig InstanceGroupConfig",
+          "Type": "Amazon EMR Cluster JobFlowInstancesConfig InstanceGroupConfig",
           "TypeHref": "aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html",
           "TypeName": "",
           "DocString": "The settings for the master instance (master node).",
@@ -12682,7 +12682,7 @@
         },
         {
           "Name": "Placement",
-          "Type": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig PlacementType",
+          "Type": "Amazon EMR Cluster JobFlowInstancesConfig PlacementType",
           "TypeHref": "aws-properties-emr-cluster-jobflowinstancesconfig-placementtype.html",
           "TypeName": "",
           "DocString": "The Availability Zone (AZ) in which the job flow runs.",
@@ -12707,7 +12707,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig InstanceGroupConfig",
+      "Name": "Amazon EMR Cluster JobFlowInstancesConfig InstanceGroupConfig",
       "Href": "aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html",
       "Properties": [
         {
@@ -12769,7 +12769,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig PlacementType",
+      "Name": "Amazon EMR Cluster JobFlowInstancesConfig PlacementType",
       "Href": "aws-properties-emr-cluster-jobflowinstancesconfig-placementtype.html",
       "Properties": [
         {
@@ -12783,12 +12783,12 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce EbsConfiguration",
+      "Name": "Amazon EMR EbsConfiguration",
       "Href": "aws-properties-emr-ebsconfiguration.html",
       "Properties": [
         {
           "Name": "EbsBlockDeviceConfigs",
-          "Type": "List of Amazon Elastic MapReduce EbsConfiguration",
+          "Type": "List of Amazon EMR EbsConfiguration",
           "TypeHref": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
           "TypeName": "",
           "DocString": "Configures the block storage devices that are associated with your EMR\ninstances.",
@@ -12805,7 +12805,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfigs",
+      "Name": "Amazon EMR EbsConfiguration EbsBlockDeviceConfigs",
       "Href": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
       "Properties": [
         {
@@ -12827,7 +12827,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification",
+      "Name": "Amazon EMR EbsConfiguration EbsBlockDeviceConfig VolumeSpecification",
       "Href": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html",
       "Properties": [
         {
@@ -12857,7 +12857,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Step HadoopJarStepConfig",
+      "Name": "Amazon EMR Step HadoopJarStepConfig",
       "Href": "aws-properties-emr-step-hadoopjarstepconfig.html",
       "Properties": [
         {
@@ -12886,7 +12886,7 @@
         },
         {
           "Name": "StepProperties",
-          "Type": "List of Amazon Elastic MapReduce Step HadoopJarStepConfig KeyValue",
+          "Type": "List of Amazon EMR Step HadoopJarStepConfig KeyValue",
           "TypeHref": "aws-properties-emr-step-hadoopjarstepconfig-keyvalue.html",
           "TypeName": "",
           "DocString": "A list of Java properties that are set when the job flow step runs.\nYou can use these properties to pass key-value pairs to your main\nfunction in the JAR file.",
@@ -12895,7 +12895,7 @@
       ]
     },
     {
-      "Name": "Amazon Elastic MapReduce Step HadoopJarStepConfig KeyValue",
+      "Name": "Amazon EMR Step HadoopJarStepConfig KeyValue",
       "Href": "aws-properties-emr-step-hadoopjarstepconfig-keyvalue.html",
       "Properties": [
         {
