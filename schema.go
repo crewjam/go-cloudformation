@@ -2449,7 +2449,10 @@ type ECSService struct {
 	// TaskDefinition property, that you want to run on the cluster.
 	DesiredCount *StringExpr `json:"DesiredCount,omitempty"`
 
-	// A list of load balancer objects to associate with the cluster.
+	// A list of load balancer objects to associate with the cluster. For
+	// information about the number of load balancers you can specify per
+	// service, see Service Load Balancing in the Amazon EC2 Container
+	// Service Developer Guide.
 	LoadBalancers *EC2ContainerServiceServiceLoadBalancersList `json:"LoadBalancers,omitempty"`
 
 	// The name or ARN of an AWS Identity and Access Management (IAM) role
@@ -5132,8 +5135,7 @@ type S3Bucket struct {
 	// Settings that defines where logs are stored.
 	LoggingConfiguration *S3LoggingConfiguration `json:"LoggingConfiguration,omitempty"`
 
-	// Configuration that defines which Amazon SNS topic to send messages to
-	// and what events to report.
+	// Configuration that defines how Amazon S3 handles bucket notifications.
 	NotificationConfiguration *S3NotificationConfiguration `json:"NotificationConfiguration,omitempty"`
 
 	// Configuration for replicating objects in an S3 bucket. To enable
@@ -11301,7 +11303,7 @@ type IoTActions struct {
 	DynamoDB *IoTDynamoDBAction `json:"DynamoDB,omitempty"`
 
 	// Writes data to an Elasticsearch domain.
-	ElasticSearch *IoTElasticSearchAction `json:"ElasticSearch,omitempty"`
+	Elasticsearch *IoTElasticsearchAction `json:"Elasticsearch,omitempty"`
 
 	// Writes data to a Firehose stream.
 	Firehose *IoTFirehoseAction `json:"Firehose,omitempty"`
@@ -11475,10 +11477,10 @@ func (l *IoTDynamoDBActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// IoTElasticSearchAction represents AWS IoT ElasticSearch Action
+// IoTElasticsearchAction represents AWS IoT Elasticsearch Action
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html
-type IoTElasticSearchAction struct {
+type IoTElasticsearchAction struct {
 	// The endpoint of your Elasticsearch domain.
 	Endpoint *StringExpr `json:"Endpoint,omitempty"`
 
@@ -11495,21 +11497,21 @@ type IoTElasticSearchAction struct {
 	Type *StringExpr `json:"Type,omitempty"`
 }
 
-// IoTElasticSearchActionList represents a list of IoTElasticSearchAction
-type IoTElasticSearchActionList []IoTElasticSearchAction
+// IoTElasticsearchActionList represents a list of IoTElasticsearchAction
+type IoTElasticsearchActionList []IoTElasticsearchAction
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *IoTElasticSearchActionList) UnmarshalJSON(buf []byte) error {
+func (l *IoTElasticsearchActionList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := IoTElasticSearchAction{}
+	item := IoTElasticsearchAction{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = IoTElasticSearchActionList{item}
+		*l = IoTElasticsearchActionList{item}
 		return nil
 	}
-	list := []IoTElasticSearchAction{}
+	list := []IoTElasticsearchAction{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = IoTElasticSearchActionList(list)
+		*l = IoTElasticsearchActionList(list)
 		return nil
 	}
 	return err

@@ -3538,7 +3538,7 @@
           "Type": "List of Amazon EC2 Container Service Service LoadBalancers",
           "TypeHref": "aws-properties-ecs-service-loadbalancers.html",
           "TypeName": "",
-          "DocString": "A list of load balancer objects to associate with the cluster.",
+          "DocString": "A list of load balancer objects to associate with the cluster. For\ninformation about the number of load balancers you can specify per\nservice, see Service Load Balancing in the Amazon EC2 Container\nService Developer Guide.",
           "SyntaxExpression": "[ Load Balancer Objects, ... ]"
         },
         {
@@ -4412,7 +4412,7 @@
           "TypeHref": "aws-properties-elasticsearch-domain-snapshotoptions.html",
           "TypeName": "",
           "DocString": "The automated snapshot configuration for the Amazon ES domain indices.",
-          "SyntaxExpression": "Snaptshot Options"
+          "SyntaxExpression": "Snapshot Options"
         },
         {
           "Name": "Tags",
@@ -7567,7 +7567,7 @@
           "Type": "Amazon S3 NotificationConfiguration",
           "TypeHref": "aws-properties-s3-bucket-notificationconfig.html",
           "TypeName": "",
-          "DocString": "Configuration that defines which Amazon SNS topic to send messages to\nand what events to report.",
+          "DocString": "Configuration that defines how Amazon S3 handles bucket notifications.",
           "SyntaxExpression": "Notification Configuration"
         },
         {
@@ -13087,12 +13087,12 @@
           "SyntaxExpression": "{ DynamoDB Action, ... }"
         },
         {
-          "Name": "ElasticSearch",
-          "Type": "ElasticSearch action object",
+          "Name": "Elasticsearch",
+          "Type": "Elasticsearch action object",
           "TypeHref": "aws-properties-iot-elasticsearch.html",
           "TypeName": "",
           "DocString": "Writes data to an Elasticsearch domain.",
-          "SyntaxExpression": "{ ElasticSearch Action, ... }"
+          "SyntaxExpression": "{ Elasticsearch Action, ... }"
         },
         {
           "Name": "Firehose",
@@ -13307,7 +13307,7 @@
       ]
     },
     {
-      "Name": "AWS IoT ElasticSearch Action",
+      "Name": "AWS IoT Elasticsearch Action",
       "Href": "aws-properties-iot-elasticsearch.html",
       "Properties": [
         {
