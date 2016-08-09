@@ -348,6 +348,93 @@ func (s ApiGatewayStage) CfnResourceType() string {
 	return "AWS::ApiGateway::Stage"
 }
 
+// ApplicationAutoScalingScalableTarget represents AWS::ApplicationAutoScaling::ScalableTarget
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html
+type ApplicationAutoScalingScalableTarget struct {
+	// The maximum value that Application Auto Scaling can use to scale a
+	// target during a scaling activity.
+	MaxCapacity *IntegerExpr `json:"MaxCapacity,omitempty"`
+
+	// The minimum value that Application Auto Scaling can use to scale a
+	// target during a scaling activity.
+	MinCapacity *IntegerExpr `json:"MinCapacity,omitempty"`
+
+	// The unique resource identifier to associate with this scalable target.
+	// For more information, see the ResourceId parameter for the
+	// RegisterScalableTarget action in the Application Auto Scaling API
+	// Reference.
+	ResourceId *StringExpr `json:"ResourceId,omitempty"`
+
+	// The Amazon Resource Name (ARN) of an AWS Identity and Access
+	// Management (IAM) role that allows Application Auto Scaling to modify
+	// your scalable target.
+	RoleARN *StringExpr `json:"RoleARN,omitempty"`
+
+	// The scalable dimension associated with the scalable target. Specify
+	// the service namespace, resource type, and scaling property, such as
+	// ecs:service:DesiredCount for the desired task count of an Amazon EC2
+	// Container Service service. For valid values, see the ScalableDimension
+	// content for the ScalingPolicy data type in the Application Auto
+	// Scaling API Reference.
+	ScalableDimension *StringExpr `json:"ScalableDimension,omitempty"`
+
+	// The AWS service namespace of the scalable target. For a list of
+	// service namespaces, see AWS Service Namespaces in the AWS General
+	// Reference.
+	ServiceNamespace *StringExpr `json:"ServiceNamespace,omitempty"`
+}
+
+// CfnResourceType returns AWS::ApplicationAutoScaling::ScalableTarget to implement the ResourceProperties interface
+func (s ApplicationAutoScalingScalableTarget) CfnResourceType() string {
+	return "AWS::ApplicationAutoScaling::ScalableTarget"
+}
+
+// ApplicationAutoScalingScalingPolicy represents AWS::ApplicationAutoScaling::ScalingPolicy
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html
+type ApplicationAutoScalingScalingPolicy struct {
+	// A name for the scaling policy.
+	PolicyName *StringExpr `json:"PolicyName,omitempty"`
+
+	// An Application Auto Scaling policy type. For valid values, see the
+	// PolicyType parameter for the PutScalingPolicy action in the
+	// Application Auto Scaling API Reference.
+	PolicyType *StringExpr `json:"PolicyType,omitempty"`
+
+	// The unique resource identifier for the scalable target that this
+	// scaling policy applies to. For more information, see the ResourceId
+	// parameter for the PutScalingPolicy action in the Application Auto
+	// Scaling API Reference.
+	ResourceId *StringExpr `json:"ResourceId,omitempty"`
+
+	// The scalable dimension of the scalable target that this scaling policy
+	// applies to. The scalable dimension contains the service namespace,
+	// resource type, and scaling property, such as ecs:service:DesiredCount
+	// for the desired task count of an Amazon ECS service.
+	ScalableDimension *StringExpr `json:"ScalableDimension,omitempty"`
+
+	// The AWS service namespace of the scalable target that this scaling
+	// policy applies to. For a list of service namespaces, see AWS Service
+	// Namespaces in the AWS General Reference.
+	ServiceNamespace *StringExpr `json:"ServiceNamespace,omitempty"`
+
+	// The AWS CloudFormation-generated ID of an Application Auto Scaling
+	// scalable target. For more information about the ID, see the Return
+	// Value section of the AWS::ApplicationAutoScaling::ScalableTarget
+	// resource.
+	ScalingTargetId *StringExpr `json:"ScalingTargetId,omitempty"`
+
+	// A step policy that configures when Application Auto Scaling scales
+	// resources up or down, and by how much.
+	StepScalingPolicyConfiguration *ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration `json:"StepScalingPolicyConfiguration,omitempty"`
+}
+
+// CfnResourceType returns AWS::ApplicationAutoScaling::ScalingPolicy to implement the ResourceProperties interface
+func (s ApplicationAutoScalingScalingPolicy) CfnResourceType() string {
+	return "AWS::ApplicationAutoScaling::ScalingPolicy"
+}
+
 // AutoScalingAutoScalingGroup represents AWS::AutoScaling::AutoScalingGroup
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html
@@ -648,6 +735,35 @@ type AutoScalingScheduledAction struct {
 // CfnResourceType returns AWS::AutoScaling::ScheduledAction to implement the ResourceProperties interface
 func (s AutoScalingScheduledAction) CfnResourceType() string {
 	return "AWS::AutoScaling::ScheduledAction"
+}
+
+// CertificateManagerCertificate represents AWS::CertificateManager::Certificate
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html
+type CertificateManagerCertificate struct {
+	// Fully qualified domain name (FQDN), such as www.example.com, of the
+	// site that you want to secure with the ACM certificate. To protect
+	// several sites in the same domain, use an asterisk (*) to specify a
+	// wildcard. For example, *.example.com protects www.example.com,
+	// site.example.com, and images.example.com.
+	DomainName *StringExpr `json:"DomainName,omitempty"`
+
+	// Domain information that domain name registrars use to verify your
+	// identity. For more information and the default values, see Configure
+	// Email for Your Domain and Validate Domain Ownership in the AWS
+	// Certificate Manager User Guide.
+	DomainValidationOptions *CertificateManagerCertificateDomainValidationOptionList `json:"DomainValidationOptions,omitempty"`
+
+	// FQDNs to be included in the Subject Alternative Name extension of the
+	// ACM certificate. For example, you can add www.example.net to a
+	// certificate for the www.example.com domain name so that users can
+	// reach your site by using either name.
+	SubjectAlternativeNames *StringListExpr `json:"SubjectAlternativeNames,omitempty"`
+}
+
+// CfnResourceType returns AWS::CertificateManager::Certificate to implement the ResourceProperties interface
+func (s CertificateManagerCertificate) CfnResourceType() string {
+	return "AWS::CertificateManager::Certificate"
 }
 
 // CloudFormationAuthentication represents AWS::CloudFormation::Authentication
@@ -2493,6 +2609,11 @@ func (s ECSTaskDefinition) CfnResourceType() string {
 type EFSFileSystem struct {
 	// Tags to associate with the file system.
 	FileSystemTags *ElasticFileSystemFileSystemFileSystemTagsList `json:"FileSystemTags,omitempty"`
+
+	// The performance mode of the file system. For valid values, see the
+	// PerformanceMode parameter for the CreateFileSystem action in the
+	// Amazon Elastic File System User Guide.
+	PerformanceMode *StringExpr `json:"PerformanceMode,omitempty"`
 }
 
 // CfnResourceType returns AWS::EFS::FileSystem to implement the ResourceProperties interface
@@ -3712,10 +3833,10 @@ type KMSKey struct {
 	// this value to false by default.
 	EnableKeyRotation *BoolExpr `json:"EnableKeyRotation,omitempty"`
 
-	// An AWS Identity and Access Management (IAM) policy to attach to the
-	// key. Use a policy to specify who has permission to use the key and
-	// which actions they can perform. For more information, see Key Policies
-	// in the AWS Key Management Service Developer Guide.
+	// An AWS KMS key policy to attach to the key. Use a policy to specify
+	// who has permission to use the key and which actions they can perform.
+	// For more information, see Key Policies in the AWS Key Management
+	// Service Developer Guide.
 	KeyPolicy interface{} `json:"KeyPolicy,omitempty"`
 }
 
@@ -5966,6 +6087,103 @@ func (l *APIGatewayStageMethodSettingList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration represents Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html
+type ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration struct {
+	// Specifies whether the ScalingAdjustment value in the StepAdjustment
+	// property is an absolute number or a percentage of the current
+	// capacity. For valid values, see the AdjustmentType content for the
+	// StepScalingPolicyConfiguration data type in the Application Auto
+	// Scaling API Reference.
+	AdjustmentType *StringExpr `json:"AdjustmentType,omitempty"`
+
+	// The amount of time, in seconds, after a scaling activity completes
+	// before any further trigger-related scaling activities can start. For
+	// more information, see the Cooldown content for the
+	// StepScalingPolicyConfiguration data type in the Application Auto
+	// Scaling API Reference.
+	Cooldown *IntegerExpr `json:"Cooldown,omitempty"`
+
+	// The aggregation type for the CloudWatch metrics. You can specify
+	// Minimum, Maximum, or Average. By default, AWS CloudFormation specifies
+	// Average. For more information, see Aggregation in the Amazon
+	// CloudWatch Developer Guide.
+	MetricAggregationType *StringExpr `json:"MetricAggregationType,omitempty"`
+
+	// The minimum number of resources to adjust when a scaling activity is
+	// triggered. If you specify PercentChangeInCapacity for the adjustment
+	// type, the scaling policy scales the target by this amount.
+	MinAdjustmentMagnitude *IntegerExpr `json:"MinAdjustmentMagnitude,omitempty"`
+
+	// A set of adjustments that enable you to scale based on the size of the
+	// alarm breach.
+	StepAdjustments *ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustmentList `json:"StepAdjustments,omitempty"`
+}
+
+// ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationList represents a list of ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration
+type ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationList []ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationList{item}
+		return nil
+	}
+	list := []ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment represents Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration StepAdjustment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html
+type ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment struct {
+	// The lower bound of the breach size. The lower bound is the difference
+	// between the breach threshold and the aggregated CloudWatch metric
+	// value. If the metric value is within the lower and upper bounds,
+	// Application Auto Scaling triggers this step adjustment.
+	MetricIntervalLowerBound *IntegerExpr `json:"MetricIntervalLowerBound,omitempty"`
+
+	// The upper bound of the breach size. The upper bound is the difference
+	// between the breach threshold and the CloudWatch metric value. If the
+	// metric value is within the lower and upper bounds, Application Auto
+	// Scaling triggers this step adjustment.
+	MetricIntervalUpperBound *IntegerExpr `json:"MetricIntervalUpperBound,omitempty"`
+
+	// The amount by which to scale. The adjustment is based on the value
+	// that you specified in the AdjustmentType property (either an absolute
+	// number or a percentage). A positive value adds to the current capacity
+	// and a negative number subtracts from the current capacity.
+	ScalingAdjustment *IntegerExpr `json:"ScalingAdjustment,omitempty"`
+}
+
+// ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustmentList represents a list of ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment
+type ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustmentList []ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustmentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustmentList{item}
+		return nil
+	}
+	list := []ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustmentList(list)
+		return nil
+	}
+	return err
+}
+
 // AutoScalingBlockDeviceMapping represents AWS CloudFormation AutoScaling Block Device Mapping Property Type
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html
@@ -6138,25 +6356,22 @@ func (l *AutoScalingNotificationConfigurationsList) UnmarshalJSON(buf []byte) er
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html
 type AutoScalingScalingPolicyStepAdjustments struct {
-	// The lower bound for the difference between the breach threshold and
-	// the CloudWatch metric. If the metric value exceeds the breach
-	// threshold, the lower bound is inclusive (the metric must be greater
-	// than or equal to the threshold plus the lower bound). Otherwise, it is
-	// exclusive (the metric must be greater than the threshold plus the
-	// lower bound). A null value indicates negative infinity.
+	// The lower bound of the breach size. The lower bound is the difference
+	// between the breach threshold and the aggregated CloudWatch metric
+	// value. If the metric value is within the lower and upper bounds, Auto
+	// Scaling triggers this step adjustment.
 	MetricIntervalLowerBound *IntegerExpr `json:"MetricIntervalLowerBound,omitempty"`
 
-	// The upper bound for the difference between the breach threshold and
-	// the CloudWatch metric. If the metric value exceeds the breach
-	// threshold, the upper bound is exclusive (the metric must be less than
-	// the threshold plus the upper bound). Otherwise, it is inclusive (the
-	// metric must be less than or equal to the threshold plus the upper
-	// bound). A null value indicates positive infinity.
+	// The upper bound of the breach size. The upper bound is the difference
+	// between the breach threshold and the CloudWatch metric value. If the
+	// metric value is within the lower and upper bounds, Auto Scaling
+	// triggers this step adjustment.
 	MetricIntervalUpperBound *IntegerExpr `json:"MetricIntervalUpperBound,omitempty"`
 
-	// The amount by which to scale, based on the value that you specified in
-	// the AdjustmentType property. A positive value adds to the current
-	// capacity and a negative number subtracts from the current capacity.
+	// The amount by which to scale. The adjustment is based on the value
+	// that you specified in the AdjustmentType property (either an absolute
+	// number or a percentage). A positive value adds to the current capacity
+	// and a negative number subtracts from the current capacity.
 	ScalingAdjustment *IntegerExpr `json:"ScalingAdjustment,omitempty"`
 }
 
@@ -6213,6 +6428,43 @@ func (l *AutoScalingTagsList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = AutoScalingTagsList(list)
+		return nil
+	}
+	return err
+}
+
+// CertificateManagerCertificateDomainValidationOption represents AWS Certificate Manager Certificate DomainValidationOption
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html
+type CertificateManagerCertificateDomainValidationOption struct {
+	// Fully Qualified Domain Name (FQDN) of the Certificate that you are
+	// requesting.
+	DomainName *StringExpr `json:"DomainName,omitempty"`
+
+	// The domain that domain name registrars use to send validation emails.
+	// Registrars use this value as the email address suffix when sending
+	// emails to verify your identity. This value must be the same as the
+	// domain name or a superdomain of the domain name. For more information,
+	// see the ValidationDomain content for the DomainValidationOption data
+	// type in the AWS Certificate Manager API Reference.
+	ValidationDomain *StringExpr `json:"ValidationDomain,omitempty"`
+}
+
+// CertificateManagerCertificateDomainValidationOptionList represents a list of CertificateManagerCertificateDomainValidationOption
+type CertificateManagerCertificateDomainValidationOptionList []CertificateManagerCertificateDomainValidationOption
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CertificateManagerCertificateDomainValidationOptionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CertificateManagerCertificateDomainValidationOption{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CertificateManagerCertificateDomainValidationOptionList{item}
+		return nil
+	}
+	list := []CertificateManagerCertificateDomainValidationOption{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CertificateManagerCertificateDomainValidationOptionList(list)
 		return nil
 	}
 	return err
@@ -6690,6 +6942,10 @@ type CloudFrontDistributionConfigOrigin struct {
 	// the distribution.
 	Id *StringExpr `json:"Id,omitempty"`
 
+	// Custom headers that CloudFront includes when it forwards a request to
+	// your origin.
+	OriginCustomHeaders *CloudFrontDistributionConfigOriginOriginCustomHeaderList `json:"OriginCustomHeaders,omitempty"`
+
 	// The path that CloudFront uses to request content from an S3 bucket or
 	// custom origin. The combination of the DomainName and OriginPath
 	// properties must resolve to a valid path. The value must start with a
@@ -6732,6 +6988,11 @@ type CloudFrontDistributionConfigOriginCustomOrigin struct {
 
 	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *StringExpr `json:"OriginProtocolPolicy,omitempty"`
+
+	// The SSL protocols that CloudFront can use when establishing an HTTPS
+	// connection with your origin. By default, AWS CloudFormation specifies
+	// the TLSv1 and SSLv3 protocols.
+	OriginSSLProtocols *StringListExpr `json:"OriginSSLProtocols,omitempty"`
 }
 
 // CloudFrontDistributionConfigOriginCustomOriginList represents a list of CloudFrontDistributionConfigOriginCustomOrigin
@@ -6749,6 +7010,40 @@ func (l *CloudFrontDistributionConfigOriginCustomOriginList) UnmarshalJSON(buf [
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = CloudFrontDistributionConfigOriginCustomOriginList(list)
+		return nil
+	}
+	return err
+}
+
+// CloudFrontDistributionConfigOriginOriginCustomHeader represents CloudFront DistributionConfig Origin OriginCustomHeader
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-origin-origincustomheader.html
+type CloudFrontDistributionConfigOriginOriginCustomHeader struct {
+	// The name of a header that CloudFront forwards to your origin. For more
+	// information, see Forwarding Custom Headers to Your Origin (Web
+	// Distributions Only) in the Amazon CloudFront Developer Guide.
+	HeaderName *StringExpr `json:"HeaderName,omitempty"`
+
+	// The value for the header that you specified in the HeaderName
+	// property.
+	HeaderValue *StringExpr `json:"HeaderValue,omitempty"`
+}
+
+// CloudFrontDistributionConfigOriginOriginCustomHeaderList represents a list of CloudFrontDistributionConfigOriginOriginCustomHeader
+type CloudFrontDistributionConfigOriginOriginCustomHeaderList []CloudFrontDistributionConfigOriginOriginCustomHeader
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionConfigOriginOriginCustomHeaderList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionConfigOriginOriginCustomHeader{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionConfigOriginOriginCustomHeaderList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionConfigOriginOriginCustomHeader{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionConfigOriginOriginCustomHeaderList(list)
 		return nil
 	}
 	return err
@@ -6859,15 +7154,21 @@ func (l *CloudFrontDistributionConfigRestrictionsGeoRestrictionList) UnmarshalJS
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributionconfig-viewercertificate.html
 type CloudFrontDistributionConfigurationViewerCertificate struct {
+	// If you're using an alternate domain name, the Amazon Resource Name
+	// (ARN) of an AWS Certificate Manager (ACM) certificate. Use the ACM
+	// service to provision and manage your certificates. For more
+	// information, see the AWS Certificate Manager User Guide.
+	AcmCertificateArn *StringExpr `json:"AcmCertificateArn,omitempty"`
+
 	// Indicates whether to use the default certificate for your CloudFront
 	// domain name when viewers use HTTPS to request your content.
 	CloudFrontDefaultCertificate *BoolExpr `json:"CloudFrontDefaultCertificate,omitempty"`
 
 	// If you're using an alternate domain name, the ID of a server
-	// certificate. This ID is the ServerCertificateId value, which AWS
-	// Identity and Access Management (IAM) returns when you add the
-	// certificate to the IAM certificate store, such as
-	// ASCACKCEVSQ6CEXAMPLE1.
+	// certificate that was purchased from a certificate authority. This ID
+	// is the ServerCertificateId value, which AWS Identity and Access
+	// Management (IAM) returns when the certificate is added to the IAM
+	// certificate store, such as ASCACKCEVSQ6CEXAMPLE1.
 	IamCertificateId *StringExpr `json:"IamCertificateId,omitempty"`
 
 	// The minimum version of the SSL protocol that you want CloudFront to
@@ -14710,6 +15011,10 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ApiGatewayRestApi{}
 	case "AWS::ApiGateway::Stage":
 		return &ApiGatewayStage{}
+	case "AWS::ApplicationAutoScaling::ScalableTarget":
+		return &ApplicationAutoScalingScalableTarget{}
+	case "AWS::ApplicationAutoScaling::ScalingPolicy":
+		return &ApplicationAutoScalingScalingPolicy{}
 	case "AWS::AutoScaling::AutoScalingGroup":
 		return &AutoScalingAutoScalingGroup{}
 	case "AWS::AutoScaling::LaunchConfiguration":
@@ -14720,6 +15025,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &AutoScalingScalingPolicy{}
 	case "AWS::AutoScaling::ScheduledAction":
 		return &AutoScalingScheduledAction{}
+	case "AWS::CertificateManager::Certificate":
+		return &CertificateManagerCertificate{}
 	case "AWS::CloudFormation::Authentication":
 		return &CloudFormationAuthentication{}
 	case "AWS::CloudFormation::CustomResource":

@@ -515,6 +515,122 @@
       ]
     },
     {
+      "Name": "AWS::ApplicationAutoScaling::ScalableTarget",
+      "Href": "aws-resource-applicationautoscaling-scalabletarget.html",
+      "Properties": [
+        {
+          "Name": "MaxCapacity",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The maximum value that Application Auto Scaling can use to scale a\ntarget during a scaling activity.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "MinCapacity",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The minimum value that Application Auto Scaling can use to scale a\ntarget during a scaling activity.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ResourceId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The unique resource identifier to associate with this scalable target.\nFor more information, see the ResourceId parameter for the\nRegisterScalableTarget action in the Application Auto Scaling API\nReference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "RoleARN",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of an AWS Identity and Access\nManagement (IAM) role that allows Application Auto Scaling to modify\nyour scalable target.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ScalableDimension",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The scalable dimension associated with the scalable target. Specify\nthe service namespace, resource type, and scaling property, such as\necs:service:DesiredCount for the desired task count of an Amazon EC2\nContainer Service service. For valid values, see the ScalableDimension\ncontent for the ScalingPolicy data type in the Application Auto\nScaling API Reference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ServiceNamespace",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The AWS service namespace of the scalable target. For a list of\nservice namespaces, see AWS Service Namespaces in the AWS General\nReference.",
+          "SyntaxExpression": ""
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApplicationAutoScaling::ScalingPolicy",
+      "Href": "aws-resource-applicationautoscaling-scalingpolicy.html",
+      "Properties": [
+        {
+          "Name": "PolicyName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the scaling policy.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "PolicyType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An Application Auto Scaling policy type. For valid values, see the\nPolicyType parameter for the PutScalingPolicy action in the\nApplication Auto Scaling API Reference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ResourceId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The unique resource identifier for the scalable target that this\nscaling policy applies to. For more information, see the ResourceId\nparameter for the PutScalingPolicy action in the Application Auto\nScaling API Reference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ScalableDimension",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The scalable dimension of the scalable target that this scaling policy\napplies to. The scalable dimension contains the service namespace,\nresource type, and scaling property, such as ecs:service:DesiredCount\nfor the desired task count of an Amazon ECS service.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ServiceNamespace",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The AWS service namespace of the scalable target that this scaling\npolicy applies to. For a list of service namespaces, see AWS Service\nNamespaces in the AWS General Reference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ScalingTargetId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The AWS CloudFormation-generated ID of an Application Auto Scaling\nscalable target. For more information about the ID, see the Return\nValue section of the AWS::ApplicationAutoScaling::ScalableTarget\nresource.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "StepScalingPolicyConfiguration",
+          "Type": "Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration",
+          "TypeHref": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html",
+          "TypeName": "",
+          "DocString": "A step policy that configures when Application Auto Scaling scales\nresources up or down, and by how much.",
+          "SyntaxExpression": ""
+        }
+      ]
+    },
+    {
       "Name": "AWS::AutoScaling::AutoScalingGroup",
       "Href": "aws-properties-as-group.html",
       "Properties": [
@@ -989,6 +1105,36 @@
           "TypeName": "",
           "DocString": "The time in UTC for this schedule to start. For example,\n2010-06-01T00:00:00Z.",
           "SyntaxExpression": "Time stamp"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::CertificateManager::Certificate",
+      "Href": "aws-resource-certificatemanager-certificate.html",
+      "Properties": [
+        {
+          "Name": "DomainName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Fully qualified domain name (FQDN), such as www.example.com, of the\nsite that you want to secure with the ACM certificate. To protect\nseveral sites in the same domain, use an asterisk (*) to specify a\nwildcard. For example, *.example.com protects www.example.com,\nsite.example.com, and images.example.com.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "DomainValidationOptions",
+          "Type": "List of AWS Certificate Manager Certificate DomainValidationOption",
+          "TypeHref": "aws-properties-certificatemanager-certificate-domainvalidationoption.html",
+          "TypeName": "",
+          "DocString": "Domain information that domain name registrars use to verify your\nidentity. For more information and the default values, see Configure\nEmail for Your Domain and Validate Domain Ownership in the AWS\nCertificate Manager User Guide.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "SubjectAlternativeNames",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "FQDNs to be included in the Subject Alternative Name extension of the\nACM certificate. For example, you can add www.example.net to a\ncertificate for the www.example.com domain name so that users can\nreach your site by using either name.",
+          "SyntaxExpression": ""
         }
       ]
     },
@@ -3592,6 +3738,14 @@
           "TypeName": "",
           "DocString": "Tags to associate with the file system.",
           "SyntaxExpression": "[ FileSystemTags, ... ]"
+        },
+        {
+          "Name": "PerformanceMode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The performance mode of the file system. For valid values, see the\nPerformanceMode parameter for the CreateFileSystem action in the\nAmazon Elastic File System User Guide.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -5403,7 +5557,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "An AWS Identity and Access Management (IAM) policy to attach to the\nkey. Use a policy to specify who has permission to use the key and\nwhich actions they can perform. For more information, see Key Policies\nin the AWS Key Management Service Developer Guide.",
+          "DocString": "An AWS KMS key policy to attach to the key. Use a policy to specify\nwho has permission to use the key and which actions they can perform.\nFor more information, see Key Policies in the AWS Key Management\nService Developer Guide.",
           "SyntaxExpression": "JSON object"
         }
       ]
@@ -8542,6 +8696,82 @@
       ]
     },
     {
+      "Name": "Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration",
+      "Href": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html",
+      "Properties": [
+        {
+          "Name": "AdjustmentType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies whether the ScalingAdjustment value in the StepAdjustment\nproperty is an absolute number or a percentage of the current\ncapacity. For valid values, see the AdjustmentType content for the\nStepScalingPolicyConfiguration data type in the Application Auto\nScaling API Reference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "Cooldown",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The amount of time, in seconds, after a scaling activity completes\nbefore any further trigger-related scaling activities can start. For\nmore information, see the Cooldown content for the\nStepScalingPolicyConfiguration data type in the Application Auto\nScaling API Reference.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "MetricAggregationType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The aggregation type for the CloudWatch metrics. You can specify\nMinimum, Maximum, or Average. By default, AWS CloudFormation specifies\nAverage. For more information, see Aggregation in the Amazon\nCloudWatch Developer Guide.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "MinAdjustmentMagnitude",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The minimum number of resources to adjust when a scaling activity is\ntriggered. If you specify PercentChangeInCapacity for the adjustment\ntype, the scaling policy scales the target by this amount.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "StepAdjustments",
+          "Type": "List of Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration StepAdjustment",
+          "TypeHref": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html",
+          "TypeName": "",
+          "DocString": "A set of adjustments that enable you to scale based on the size of the\nalarm breach.",
+          "SyntaxExpression": ""
+        }
+      ]
+    },
+    {
+      "Name": "Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration StepAdjustment",
+      "Href": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html",
+      "Properties": [
+        {
+          "Name": "MetricIntervalLowerBound",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The lower bound of the breach size. The lower bound is the difference\nbetween the breach threshold and the aggregated CloudWatch metric\nvalue. If the metric value is within the lower and upper bounds,\nApplication Auto Scaling triggers this step adjustment.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "MetricIntervalUpperBound",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The upper bound of the breach size. The upper bound is the difference\nbetween the breach threshold and the CloudWatch metric value. If the\nmetric value is within the lower and upper bounds, Application Auto\nScaling triggers this step adjustment.",
+          "SyntaxExpression": ""
+        },
+        {
+          "Name": "ScalingAdjustment",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The amount by which to scale. The adjustment is based on the value\nthat you specified in the AdjustmentType property (either an absolute\nnumber or a percentage). A positive value adds to the current capacity\nand a negative number subtracts from the current capacity.",
+          "SyntaxExpression": ""
+        }
+      ]
+    },
+    {
       "Name": "AWS CloudFormation AutoScaling Block Device Mapping Property Type",
       "Href": "aws-properties-as-launchconfig-blockdev-mapping.html",
       "Properties": [
@@ -8686,7 +8916,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The lower bound for the difference between the breach threshold and\nthe CloudWatch metric. If the metric value exceeds the breach\nthreshold, the lower bound is inclusive (the metric must be greater\nthan or equal to the threshold plus the lower bound). Otherwise, it is\nexclusive (the metric must be greater than the threshold plus the\nlower bound). A null value indicates negative infinity.",
+          "DocString": "The lower bound of the breach size. The lower bound is the difference\nbetween the breach threshold and the aggregated CloudWatch metric\nvalue. If the metric value is within the lower and upper bounds, Auto\nScaling triggers this step adjustment.",
           "SyntaxExpression": "Number"
         },
         {
@@ -8694,7 +8924,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The upper bound for the difference between the breach threshold and\nthe CloudWatch metric. If the metric value exceeds the breach\nthreshold, the upper bound is exclusive (the metric must be less than\nthe threshold plus the upper bound). Otherwise, it is inclusive (the\nmetric must be less than or equal to the threshold plus the upper\nbound). A null value indicates positive infinity.",
+          "DocString": "The upper bound of the breach size. The upper bound is the difference\nbetween the breach threshold and the CloudWatch metric value. If the\nmetric value is within the lower and upper bounds, Auto Scaling\ntriggers this step adjustment.",
           "SyntaxExpression": "Number"
         },
         {
@@ -8702,7 +8932,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The amount by which to scale, based on the value that you specified in\nthe AdjustmentType property. A positive value adds to the current\ncapacity and a negative number subtracts from the current capacity.",
+          "DocString": "The amount by which to scale. The adjustment is based on the value\nthat you specified in the AdjustmentType property (either an absolute\nnumber or a percentage). A positive value adds to the current capacity\nand a negative number subtracts from the current capacity.",
           "SyntaxExpression": "Integer"
         }
       ]
@@ -8734,6 +8964,28 @@
           "TypeName": "",
           "DocString": "Set to true if you want AWS CloudFormation to copy the tag to EC2\ninstances that are launched as part of the auto scaling group. Set to\nfalse if you want the tag attached only to the auto scaling group and\nnot copied to any instances launched as part of the auto scaling\ngroup.",
           "SyntaxExpression": "Boolean"
+        }
+      ]
+    },
+    {
+      "Name": "AWS Certificate Manager Certificate DomainValidationOption",
+      "Href": "aws-properties-certificatemanager-certificate-domainvalidationoption.html",
+      "Properties": [
+        {
+          "Name": "DomainName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Fully Qualified Domain Name (FQDN) of the Certificate that you are\nrequesting.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ValidationDomain",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The domain that domain name registrars use to send validation emails.\nRegistrars use this value as the email address suffix when sending\nemails to verify your identity. This value must be the same as the\ndomain name or a superdomain of the domain name. For more information,\nsee the ValidationDomain content for the DomainValidationOption data\ntype in the AWS Certificate Manager API Reference.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -9195,6 +9447,14 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "OriginCustomHeaders",
+          "Type": "List of OriginCustomHeader type",
+          "TypeHref": "aws-properties-cloudfront-origin-origincustomheader.html",
+          "TypeName": "",
+          "DocString": "Custom headers that CloudFront includes when it forwards a request to\nyour origin.",
+          "SyntaxExpression": "[ OriginCustomHeader, ... ]"
+        },
+        {
           "Name": "OriginPath",
           "Type": "String",
           "TypeHref": "",
@@ -9238,6 +9498,36 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The origin protocol policy to apply to your origin.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "OriginSSLProtocols",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The SSL protocols that CloudFront can use when establishing an HTTPS\nconnection with your origin. By default, AWS CloudFormation specifies\nthe TLSv1 and SSLv3 protocols.",
+          "SyntaxExpression": "[ String, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "CloudFront DistributionConfig Origin OriginCustomHeader",
+      "Href": "aws-properties-cloudfront-origin-origincustomheader.html",
+      "Properties": [
+        {
+          "Name": "HeaderName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of a header that CloudFront forwards to your origin. For more\ninformation, see Forwarding Custom Headers to Your Origin (Web\nDistributions Only) in the Amazon CloudFront Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "HeaderValue",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value for the header that you specified in the HeaderName\nproperty.",
           "SyntaxExpression": "String"
         }
       ]
@@ -9321,6 +9611,14 @@
       "Href": "aws-properties-cloudfront-distributionconfig-viewercertificate.html",
       "Properties": [
         {
+          "Name": "AcmCertificateArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you're using an alternate domain name, the Amazon Resource Name\n(ARN) of an AWS Certificate Manager (ACM) certificate. Use the ACM\nservice to provision and manage your certificates. For more\ninformation, see the AWS Certificate Manager User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "CloudFrontDefaultCertificate",
           "Type": "Boolean",
           "TypeHref": "",
@@ -9333,7 +9631,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "If you're using an alternate domain name, the ID of a server\ncertificate. This ID is the ServerCertificateId value, which AWS\nIdentity and Access Management (IAM) returns when you add the\ncertificate to the IAM certificate store, such as\nASCACKCEVSQ6CEXAMPLE1.",
+          "DocString": "If you're using an alternate domain name, the ID of a server\ncertificate that was purchased from a certificate authority. This ID\nis the ServerCertificateId value, which AWS Identity and Access\nManagement (IAM) returns when the certificate is added to the IAM\ncertificate store, such as ASCACKCEVSQ6CEXAMPLE1.",
           "SyntaxExpression": "String"
         },
         {
