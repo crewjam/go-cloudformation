@@ -467,7 +467,8 @@ type AutoScalingAutoScalingGroup struct {
 	// AWS::AutoScaling::LaunchConfiguration.
 	LaunchConfigurationName *StringExpr `json:"LaunchConfigurationName,omitempty"`
 
-	// A list of load balancers associated with this Auto Scaling group.
+	// A list of Classic load balancers associated with this Auto Scaling
+	// group. To specify Application load balancers, use TargetGroupARNs.
 	LoadBalancerNames *StringListExpr `json:"LoadBalancerNames,omitempty"`
 
 	// The maximum size of the Auto Scaling group.
@@ -491,6 +492,10 @@ type AutoScalingAutoScalingGroup struct {
 
 	// The tags you want to attach to this resource.
 	Tags *AutoScalingTagsList `json:"Tags,omitempty"`
+
+	// A list of Amazon Resource Names (ARN) of target groups to associate
+	// with the Auto Scaling group.
+	TargetGroupARNs *StringListExpr `json:"TargetGroupARNs,omitempty"`
 
 	// A policy or a list of policies that are used to select the instances
 	// to terminate. The policies are executed in the order that you list
@@ -3091,7 +3096,7 @@ type ElasticLoadBalancingLoadBalancer struct {
 
 	// A name for the load balancer. For valid values, see the
 	// LoadBalancerName parameter for the CreateLoadBalancer action in the
-	// Elastic Load Balancing API Reference.
+	// Elastic Load Balancing API Reference version 2012-06-01.
 	LoadBalancerName *StringExpr `json:"LoadBalancerName,omitempty"`
 
 	// One or more listeners for this load balancer. Each listener must be
@@ -3102,7 +3107,7 @@ type ElasticLoadBalancingLoadBalancer struct {
 	// A list of elastic load balancing policies to apply to this elastic
 	// load balancer. Specify only back-end server policies. For more
 	// information, see DescribeLoadBalancerPolicyTypes in the Elastic Load
-	// Balancing API Reference.
+	// Balancing API Reference version 2012-06-01.
 	Policies *ElasticLoadBalancingPolicyList `json:"Policies,omitempty"`
 
 	// For load balancers attached to an Amazon VPC, this parameter can be
@@ -3128,6 +3133,167 @@ type ElasticLoadBalancingLoadBalancer struct {
 // CfnResourceType returns AWS::ElasticLoadBalancing::LoadBalancer to implement the ResourceProperties interface
 func (s ElasticLoadBalancingLoadBalancer) CfnResourceType() string {
 	return "AWS::ElasticLoadBalancing::LoadBalancer"
+}
+
+// ElasticLoadBalancingV2Listener represents AWS::ElasticLoadBalancingV2::Listener
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html
+type ElasticLoadBalancingV2Listener struct {
+	// The SSL server certificate for the listener. With a certificate, you
+	// can encrypt traffic between the load balancer and the clients that
+	// initiate HTTPS sessions, and traffic between the load balancer and
+	// your targets.
+	Certificates *ElasticLoadBalancingListenerCertificatesList `json:"Certificates,omitempty"`
+
+	// The default actions that the listener takes when handling incoming
+	// requests.
+	DefaultActions *ElasticLoadBalancingListenerDefaultActionsList `json:"DefaultActions,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the load balancer to associate with
+	// the listener.
+	LoadBalancerArn *StringExpr `json:"LoadBalancerArn,omitempty"`
+
+	// The port on which the listener listens for requests.
+	Port *IntegerExpr `json:"Port,omitempty"`
+
+	// The protocol that clients must use to send requests to the listener.
+	Protocol *StringExpr `json:"Protocol,omitempty"`
+
+	// The security policy that defines the ciphers and protocols that the
+	// load balancer supports.
+	SslPolicy *StringExpr `json:"SslPolicy,omitempty"`
+}
+
+// CfnResourceType returns AWS::ElasticLoadBalancingV2::Listener to implement the ResourceProperties interface
+func (s ElasticLoadBalancingV2Listener) CfnResourceType() string {
+	return "AWS::ElasticLoadBalancingV2::Listener"
+}
+
+// ElasticLoadBalancingV2ListenerRule represents AWS::ElasticLoadBalancingV2::ListenerRule
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html
+type ElasticLoadBalancingV2ListenerRule struct {
+	// The action that the listener takes when a request meets the specified
+	// condition.
+	Actions *ElasticLoadBalancingListenerRuleActionsList `json:"Actions,omitempty"`
+
+	// The conditions under which a rule takes effect.
+	Conditions *ElasticLoadBalancingListenerRuleConditionsList `json:"Conditions,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the listener that the rule applies
+	// to.
+	ListenerArn *StringExpr `json:"ListenerArn,omitempty"`
+
+	// The priority for the rule. Elastic Load Balancing evaluates rules in
+	// priority order, from the lowest value to the highest value. If a
+	// request satisfies a rule, Elastic Load Balancing ignores all
+	// subsequent rules.
+	Priority *IntegerExpr `json:"Priority,omitempty"`
+}
+
+// CfnResourceType returns AWS::ElasticLoadBalancingV2::ListenerRule to implement the ResourceProperties interface
+func (s ElasticLoadBalancingV2ListenerRule) CfnResourceType() string {
+	return "AWS::ElasticLoadBalancingV2::ListenerRule"
+}
+
+// ElasticLoadBalancingV2LoadBalancer represents AWS::ElasticLoadBalancingV2::LoadBalancer
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
+type ElasticLoadBalancingV2LoadBalancer struct {
+	// Load balancer configurations.
+	LoadBalancerAttributes *ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList `json:"LoadBalancerAttributes,omitempty"`
+
+	// A name for the load balancer, which must be unique within your AWS
+	// account. The name can have a maximum of 32 alphanumeric characters and
+	// hyphens. Names can't begin or end with a hyphen.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// Indicates whether the load balancer is Internet-facing or internal. An
+	// Internet-facing load balancer routes requests from clients over the
+	// Internet to targets in your public subnets. An internal load balancer
+	// routes requests to targets using private IP addresses.
+	Scheme *StringExpr `json:"Scheme,omitempty"`
+
+	// A list of the IDs of the security groups to assign to the load
+	// balancer.
+	SecurityGroups *StringListExpr `json:"SecurityGroups,omitempty"`
+
+	// A list of at least two IDs of the subnets to associate with the load
+	// balancer. Subnets must be in different Availability Zones.
+	Subnets *StringListExpr `json:"Subnets,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) to associate with this
+	// load balancer. Use tags to help manage resources.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+}
+
+// CfnResourceType returns AWS::ElasticLoadBalancingV2::LoadBalancer to implement the ResourceProperties interface
+func (s ElasticLoadBalancingV2LoadBalancer) CfnResourceType() string {
+	return "AWS::ElasticLoadBalancingV2::LoadBalancer"
+}
+
+// ElasticLoadBalancingV2TargetGroup represents AWS::ElasticLoadBalancingV2::TargetGroup
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
+type ElasticLoadBalancingV2TargetGroup struct {
+	// The approximate number of seconds between health checks for an
+	// individual target.
+	HealthCheckIntervalSeconds *IntegerExpr `json:"HealthCheckIntervalSeconds,omitempty"`
+
+	// The ping path destination where Elastic Load Balancing sends health
+	// check requests.
+	HealthCheckPath *StringExpr `json:"HealthCheckPath,omitempty"`
+
+	// The port that the load balancer uses when performing health checks on
+	// the targets.
+	HealthCheckPort *StringExpr `json:"HealthCheckPort,omitempty"`
+
+	// The protocol that the load balancer uses when performing health checks
+	// on the targets, such as HTTP or HTTPS.
+	HealthCheckProtocol *StringExpr `json:"HealthCheckProtocol,omitempty"`
+
+	// The number of seconds to wait for a response before considering that a
+	// health check has failed.
+	HealthCheckTimeoutSeconds *IntegerExpr `json:"HealthCheckTimeoutSeconds,omitempty"`
+
+	// The number of consecutive successful health checks that are required
+	// before an unhealthy target is considered healthy.
+	HealthyThresholdCount *IntegerExpr `json:"HealthyThresholdCount,omitempty"`
+
+	// The HTTP codes that a healthy target uses when responding to a health
+	// check.
+	Matcher *ElasticLoadBalancingTargetGroupMatcher `json:"Matcher,omitempty"`
+
+	// A name for the target group.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The port on which the targets receive traffic.
+	Port *IntegerExpr `json:"Port,omitempty"`
+
+	// The protocol to use for routing traffic to the targets.
+	Protocol *StringExpr `json:"Protocol,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for the target group. Use
+	// tags to help manage resources.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
+	// Target group configurations.
+	TargetGroupAttributes *ElasticLoadBalancingTargetGroupTargetGroupAttributesList `json:"TargetGroupAttributes,omitempty"`
+
+	// The targets to add to this target group.
+	Targets *ElasticLoadBalancingTargetGroupTargetDescriptionList `json:"Targets,omitempty"`
+
+	// The number of consecutive failed health checks that are required
+	// before a target is considered unhealthy.
+	UnhealthyThresholdCount *IntegerExpr `json:"UnhealthyThresholdCount,omitempty"`
+
+	// The ID of the VPC in which your targets are located.
+	VpcId *StringExpr `json:"VpcId,omitempty"`
+}
+
+// CfnResourceType returns AWS::ElasticLoadBalancingV2::TargetGroup to implement the ResourceProperties interface
+func (s ElasticLoadBalancingV2TargetGroup) CfnResourceType() string {
+	return "AWS::ElasticLoadBalancingV2::TargetGroup"
 }
 
 // ElasticsearchDomain represents AWS::Elasticsearch::Domain
@@ -10707,7 +10873,7 @@ type ElasticLoadBalancingListener struct {
 	// A list of ElasticLoadBalancing policy names to associate with the
 	// listener. Specify only policies that are compatible with listeners.
 	// For more information, see DescribeLoadBalancerPolicyTypes in the
-	// Elastic Load Balancing API Reference.
+	// Elastic Load Balancing API Reference version 2012-06-01.
 	PolicyNames *StringListExpr `json:"PolicyNames,omitempty"`
 
 	// Specifies the load balancer transport protocol to use for routing —
@@ -10780,6 +10946,264 @@ func (l *ElasticLoadBalancingPolicyList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = ElasticLoadBalancingPolicyList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingListenerCertificates represents Elastic Load Balancing Listener Certificates
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html
+type ElasticLoadBalancingListenerCertificates struct {
+	// The Amazon Resource Name (ARN) of the certificate to associate with
+	// the listener.
+	CertificateArn *StringExpr `json:"CertificateArn,omitempty"`
+}
+
+// ElasticLoadBalancingListenerCertificatesList represents a list of ElasticLoadBalancingListenerCertificates
+type ElasticLoadBalancingListenerCertificatesList []ElasticLoadBalancingListenerCertificates
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingListenerCertificatesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingListenerCertificates{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingListenerCertificatesList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingListenerCertificates{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingListenerCertificatesList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingListenerDefaultActions represents Elastic Load Balancing Listener DefaultActions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html
+type ElasticLoadBalancingListenerDefaultActions struct {
+	// The Amazon Resource Name (ARN) of the target group to which Elastic
+	// Load Balancing routes the traffic.
+	TargetGroupArn *StringExpr `json:"TargetGroupArn,omitempty"`
+
+	// The type of action. For valid values, see the Type contents for the
+	// Action data type in the Elastic Load Balancing API Reference version
+	// 2015-12-01.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// ElasticLoadBalancingListenerDefaultActionsList represents a list of ElasticLoadBalancingListenerDefaultActions
+type ElasticLoadBalancingListenerDefaultActionsList []ElasticLoadBalancingListenerDefaultActions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingListenerDefaultActionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingListenerDefaultActions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingListenerDefaultActionsList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingListenerDefaultActions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingListenerDefaultActionsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingListenerRuleActions represents Elastic Load Balancing ListenerRule Actions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html
+type ElasticLoadBalancingListenerRuleActions struct {
+	// The Amazon Resource Name (ARN) of the target group to which Elastic
+	// Load Balancing routes the traffic.
+	TargetGroupArn *StringExpr `json:"TargetGroupArn,omitempty"`
+
+	// The type of action. For valid values, see the Type contents for the
+	// Action data type in the Elastic Load Balancing API Reference version
+	// 2015-12-01.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// ElasticLoadBalancingListenerRuleActionsList represents a list of ElasticLoadBalancingListenerRuleActions
+type ElasticLoadBalancingListenerRuleActionsList []ElasticLoadBalancingListenerRuleActions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingListenerRuleActionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingListenerRuleActions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingListenerRuleActionsList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingListenerRuleActions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingListenerRuleActionsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingListenerRuleConditions represents Elastic Load Balancing ListenerRule Conditions
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html
+type ElasticLoadBalancingListenerRuleConditions struct {
+	// The name of the condition that you want to define, such as
+	// path-pattern (which forwards requests based on the URL of the
+	// request).
+	Field *StringExpr `json:"Field,omitempty"`
+
+	// The value for the field that you specified in the Field property.
+	Values *StringListExpr `json:"Values,omitempty"`
+}
+
+// ElasticLoadBalancingListenerRuleConditionsList represents a list of ElasticLoadBalancingListenerRuleConditions
+type ElasticLoadBalancingListenerRuleConditionsList []ElasticLoadBalancingListenerRuleConditions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingListenerRuleConditionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingListenerRuleConditions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingListenerRuleConditionsList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingListenerRuleConditions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingListenerRuleConditionsList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingLoadBalancerLoadBalancerAttributes represents Elastic Load Balancing LoadBalancer LoadBalancerAttributes
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html
+type ElasticLoadBalancingLoadBalancerLoadBalancerAttributes struct {
+	// The name of an attribute that you want to configure. For the list of
+	// attributes that you can configure, see the Key contents for the
+	// LoadBalancerAttribute data type in the Elastic Load Balancing API
+	// Reference version 2015-12-01.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// A value for the attribute.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList represents a list of ElasticLoadBalancingLoadBalancerLoadBalancerAttributes
+type ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList []ElasticLoadBalancingLoadBalancerLoadBalancerAttributes
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingLoadBalancerLoadBalancerAttributes{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingLoadBalancerLoadBalancerAttributes{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingTargetGroupMatcher represents Elastic Load Balancing TargetGroup Matcher
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html
+type ElasticLoadBalancingTargetGroupMatcher struct {
+	// The HTTP codes that a healthy target must use when responding to a
+	// health check, such as 200,202 or 200-299.
+	HttpCode *StringExpr `json:"HttpCode,omitempty"`
+}
+
+// ElasticLoadBalancingTargetGroupMatcherList represents a list of ElasticLoadBalancingTargetGroupMatcher
+type ElasticLoadBalancingTargetGroupMatcherList []ElasticLoadBalancingTargetGroupMatcher
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingTargetGroupMatcherList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingTargetGroupMatcher{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingTargetGroupMatcherList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingTargetGroupMatcher{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingTargetGroupMatcherList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingTargetGroupTargetDescription represents Elastic Load Balancing TargetGroup TargetDescription
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html
+type ElasticLoadBalancingTargetGroupTargetDescription struct {
+	// The ID of the target, such as an EC2 instance ID.
+	Id *StringExpr `json:"Id,omitempty"`
+
+	// The port number on which the target is listening for traffic.
+	Port *IntegerExpr `json:"Port,omitempty"`
+}
+
+// ElasticLoadBalancingTargetGroupTargetDescriptionList represents a list of ElasticLoadBalancingTargetGroupTargetDescription
+type ElasticLoadBalancingTargetGroupTargetDescriptionList []ElasticLoadBalancingTargetGroupTargetDescription
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingTargetGroupTargetDescriptionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingTargetGroupTargetDescription{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingTargetGroupTargetDescriptionList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingTargetGroupTargetDescription{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingTargetGroupTargetDescriptionList(list)
+		return nil
+	}
+	return err
+}
+
+// ElasticLoadBalancingTargetGroupTargetGroupAttributes represents Elastic Load Balancing TargetGroup TargetGroupAttributes
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html
+type ElasticLoadBalancingTargetGroupTargetGroupAttributes struct {
+	// The name of the attribute that you want to configure. For the list of
+	// attributes that you can configure, see the Key contents for the
+	// TargetGroupAttribute data type in the Elastic Load Balancing API
+	// Reference version 2015-12-01.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// A value for the attribute.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// ElasticLoadBalancingTargetGroupTargetGroupAttributesList represents a list of ElasticLoadBalancingTargetGroupTargetGroupAttributes
+type ElasticLoadBalancingTargetGroupTargetGroupAttributesList []ElasticLoadBalancingTargetGroupTargetGroupAttributes
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingTargetGroupTargetGroupAttributesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingTargetGroupTargetGroupAttributes{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingTargetGroupTargetGroupAttributesList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingTargetGroupTargetGroupAttributes{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingTargetGroupTargetGroupAttributesList(list)
 		return nil
 	}
 	return err
@@ -15173,6 +15597,14 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ElasticBeanstalkEnvironment{}
 	case "AWS::ElasticLoadBalancing::LoadBalancer":
 		return &ElasticLoadBalancingLoadBalancer{}
+	case "AWS::ElasticLoadBalancingV2::Listener":
+		return &ElasticLoadBalancingV2Listener{}
+	case "AWS::ElasticLoadBalancingV2::ListenerRule":
+		return &ElasticLoadBalancingV2ListenerRule{}
+	case "AWS::ElasticLoadBalancingV2::LoadBalancer":
+		return &ElasticLoadBalancingV2LoadBalancer{}
+	case "AWS::ElasticLoadBalancingV2::TargetGroup":
+		return &ElasticLoadBalancingV2TargetGroup{}
 	case "AWS::Elasticsearch::Domain":
 		return &ElasticsearchDomain{}
 	case "AWS::EMR::Cluster":

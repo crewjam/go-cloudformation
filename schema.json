@@ -695,7 +695,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of load balancers associated with this Auto Scaling group.",
+          "DocString": "A list of Classic load balancers associated with this Auto Scaling\ngroup. To specify Application load balancers, use TargetGroupARNs.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -745,6 +745,14 @@
           "TypeName": "",
           "DocString": "The tags you want to attach to this resource.",
           "SyntaxExpression": "[ Auto Scaling Tag, ..., ]"
+        },
+        {
+          "Name": "TargetGroupARNs",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of Amazon Resource Names (ARN) of target groups to associate\nwith the Auto Scaling group.",
+          "SyntaxExpression": "[ String, ... ]"
         },
         {
           "Name": "TerminationPolicies",
@@ -4463,7 +4471,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the load balancer. For valid values, see the\nLoadBalancerName parameter for the CreateLoadBalancer action in the\nElastic Load Balancing API Reference.",
+          "DocString": "A name for the load balancer. For valid values, see the\nLoadBalancerName parameter for the CreateLoadBalancer action in the\nElastic Load Balancing API Reference version 2012-06-01.",
           "SyntaxExpression": "String"
         },
         {
@@ -4479,7 +4487,7 @@
           "Type": "A list of ElasticLoadBalancing policy objects",
           "TypeHref": "aws-properties-ec2-elb-policy.html",
           "TypeName": "",
-          "DocString": "A list of elastic load balancing policies to apply to this elastic\nload balancer. Specify only back-end server policies. For more\ninformation, see DescribeLoadBalancerPolicyTypes in the Elastic Load\nBalancing API Reference.",
+          "DocString": "A list of elastic load balancing policies to apply to this elastic\nload balancer. Specify only back-end server policies. For more\ninformation, see DescribeLoadBalancerPolicyTypes in the Elastic Load\nBalancing API Reference version 2012-06-01.",
           "SyntaxExpression": "[ ElasticLoadBalancing Policy, ... ]"
         },
         {
@@ -4513,6 +4521,278 @@
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key-value pairs) for this load balancer.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ElasticLoadBalancingV2::Listener",
+      "Href": "aws-resource-elasticloadbalancingv2-listener.html",
+      "Properties": [
+        {
+          "Name": "Certificates",
+          "Type": "List of Elastic Load Balancing Listener Certificates",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-listener-certificates.html",
+          "TypeName": "",
+          "DocString": "The SSL server certificate for the listener. With a certificate, you\ncan encrypt traffic between the load balancer and the clients that\ninitiate HTTPS sessions, and traffic between the load balancer and\nyour targets.",
+          "SyntaxExpression": "[ Certificates, ... ]"
+        },
+        {
+          "Name": "DefaultActions",
+          "Type": "List of Elastic Load Balancing Listener DefaultActions",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-listener-defaultactions.html",
+          "TypeName": "",
+          "DocString": "The default actions that the listener takes when handling incoming\nrequests.",
+          "SyntaxExpression": "[ DefaultActions, ... ]"
+        },
+        {
+          "Name": "LoadBalancerArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the load balancer to associate with\nthe listener.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Port",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The port on which the listener listens for requests.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Protocol",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The protocol that clients must use to send requests to the listener.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SslPolicy",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The security policy that defines the ciphers and protocols that the\nload balancer supports.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
+      "Href": "aws-resource-elasticloadbalancingv2-listenerrule.html",
+      "Properties": [
+        {
+          "Name": "Actions",
+          "Type": "List of Elastic Load Balancing ListenerRule Actions",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-listenerrule-actions.html",
+          "TypeName": "",
+          "DocString": "The action that the listener takes when a request meets the specified\ncondition.",
+          "SyntaxExpression": "[ Actions, ... ]"
+        },
+        {
+          "Name": "Conditions",
+          "Type": "List of Elastic Load Balancing ListenerRule Conditions",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-listenerrule-conditions.html",
+          "TypeName": "",
+          "DocString": "The conditions under which a rule takes effect.",
+          "SyntaxExpression": "[ Conditions, ... ]"
+        },
+        {
+          "Name": "ListenerArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the listener that the rule applies\nto.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Priority",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The priority for the rule. Elastic Load Balancing evaluates rules in\npriority order, from the lowest value to the highest value. If a\nrequest satisfies a rule, Elastic Load Balancing ignores all\nsubsequent rules.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Href": "aws-resource-elasticloadbalancingv2-loadbalancer.html",
+      "Properties": [
+        {
+          "Name": "LoadBalancerAttributes",
+          "Type": "List of Elastic Load Balancing LoadBalancer LoadBalancerAttributes",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",
+          "TypeName": "",
+          "DocString": "Load balancer configurations.",
+          "SyntaxExpression": "[ LoadBalancerAttributes, ... ]"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the load balancer, which must be unique within your AWS\naccount. The name can have a maximum of 32 alphanumeric characters and\nhyphens. Names can't begin or end with a hyphen.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Scheme",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the load balancer is Internet-facing or internal. An\nInternet-facing load balancer routes requests from clients over the\nInternet to targets in your public subnets. An internal load balancer\nroutes requests to targets using private IP addresses.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SecurityGroups",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of the IDs of the security groups to assign to the load\nbalancer.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "Subnets",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of at least two IDs of the subnets to associate with the load\nbalancer. Subnets must be in different Availability Zones.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "Tags",
+          "Type": "AWS CloudFormation Resource Tags",
+          "TypeHref": "aws-properties-resource-tags.html",
+          "TypeName": "",
+          "DocString": "An arbitrary set of tags (key–value pairs) to associate with this\nload balancer. Use tags to help manage resources.",
+          "SyntaxExpression": "[ Resource Tag, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Href": "aws-resource-elasticloadbalancingv2-targetgroup.html",
+      "Properties": [
+        {
+          "Name": "HealthCheckIntervalSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The approximate number of seconds between health checks for an\nindividual target.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "HealthCheckPath",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ping path destination where Elastic Load Balancing sends health\ncheck requests.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "HealthCheckPort",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The port that the load balancer uses when performing health checks on\nthe targets.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "HealthCheckProtocol",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The protocol that the load balancer uses when performing health checks\non the targets, such as HTTP or HTTPS.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "HealthCheckTimeoutSeconds",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of seconds to wait for a response before considering that a\nhealth check has failed.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "HealthyThresholdCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of consecutive successful health checks that are required\nbefore an unhealthy target is considered healthy.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Matcher",
+          "Type": "Elastic Load Balancing TargetGroup Matcher",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-targetgroup-matcher.html",
+          "TypeName": "",
+          "DocString": "The HTTP codes that a healthy target uses when responding to a health\ncheck.",
+          "SyntaxExpression": "Matcher"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the target group.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Port",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The port on which the targets receive traffic.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Protocol",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The protocol to use for routing traffic to the targets.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Tags",
+          "Type": "AWS CloudFormation Resource Tags",
+          "TypeHref": "aws-properties-resource-tags.html",
+          "TypeName": "",
+          "DocString": "An arbitrary set of tags (key–value pairs) for the target group. Use\ntags to help manage resources.",
+          "SyntaxExpression": "[ Resource Tag, ... ]"
+        },
+        {
+          "Name": "TargetGroupAttributes",
+          "Type": "List of Elastic Load Balancing TargetGroup TargetGroupAttributes",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html",
+          "TypeName": "",
+          "DocString": "Target group configurations.",
+          "SyntaxExpression": "[ TargetGroupAttributes, ... ]"
+        },
+        {
+          "Name": "Targets",
+          "Type": "List of Elastic Load Balancing TargetGroup TargetDescription",
+          "TypeHref": "aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html",
+          "TypeName": "",
+          "DocString": "The targets to add to this target group.",
+          "SyntaxExpression": "[ TargetDescription, ... ]"
+        },
+        {
+          "Name": "UnhealthyThresholdCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of consecutive failed health checks that are required\nbefore a target is considered unhealthy.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "VpcId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the VPC in which your targets are located.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -12617,7 +12897,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of ElasticLoadBalancing policy names to associate with the\nlistener. Specify only policies that are compatible with listeners.\nFor more information, see DescribeLoadBalancerPolicyTypes in the\nElastic Load Balancing API Reference.",
+          "DocString": "A list of ElasticLoadBalancing policy names to associate with the\nlistener. Specify only policies that are compatible with listeners.\nFor more information, see DescribeLoadBalancerPolicyTypes in the\nElastic Load Balancing API Reference version 2012-06-01.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -12680,6 +12960,166 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the policy type for this policy. This must be one of the\ntypes reported by the Elastic Load Balancing\nDescribeLoadBalancerPolicyTypes action.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing Listener Certificates",
+      "Href": "aws-properties-elasticloadbalancingv2-listener-certificates.html",
+      "Properties": [
+        {
+          "Name": "CertificateArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the certificate to associate with\nthe listener.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing Listener DefaultActions",
+      "Href": "aws-properties-elasticloadbalancingv2-listener-defaultactions.html",
+      "Properties": [
+        {
+          "Name": "TargetGroupArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the target group to which Elastic\nLoad Balancing routes the traffic.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of action. For valid values, see the Type contents for the\nAction data type in the Elastic Load Balancing API Reference version\n2015-12-01.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing ListenerRule Actions",
+      "Href": "aws-properties-elasticloadbalancingv2-listenerrule-actions.html",
+      "Properties": [
+        {
+          "Name": "TargetGroupArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the target group to which Elastic\nLoad Balancing routes the traffic.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of action. For valid values, see the Type contents for the\nAction data type in the Elastic Load Balancing API Reference version\n2015-12-01.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing ListenerRule Conditions",
+      "Href": "aws-properties-elasticloadbalancingv2-listenerrule-conditions.html",
+      "Properties": [
+        {
+          "Name": "Field",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the condition that you want to define, such as\npath-pattern (which forwards requests based on the URL of the\nrequest).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Values",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value for the field that you specified in the Field property.",
+          "SyntaxExpression": "[ String, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing LoadBalancer LoadBalancerAttributes",
+      "Href": "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",
+      "Properties": [
+        {
+          "Name": "Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of an attribute that you want to configure. For the list of\nattributes that you can configure, see the Key contents for the\nLoadBalancerAttribute data type in the Elastic Load Balancing API\nReference version 2015-12-01.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Value",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A value for the attribute.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing TargetGroup Matcher",
+      "Href": "aws-properties-elasticloadbalancingv2-targetgroup-matcher.html",
+      "Properties": [
+        {
+          "Name": "HttpCode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The HTTP codes that a healthy target must use when responding to a\nhealth check, such as 200,202 or 200-299. ",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing TargetGroup TargetDescription",
+      "Href": "aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html",
+      "Properties": [
+        {
+          "Name": "Id",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the target, such as an EC2 instance ID.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Port",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The port number on which the target is listening for traffic.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "Elastic Load Balancing TargetGroup TargetGroupAttributes",
+      "Href": "aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html",
+      "Properties": [
+        {
+          "Name": "Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the attribute that you want to configure. For the list of\nattributes that you can configure, see the Key contents for the\nTargetGroupAttribute data type in the Elastic Load Balancing API\nReference version 2015-12-01.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Value",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A value for the attribute.",
           "SyntaxExpression": "String"
         }
       ]
