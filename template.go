@@ -95,6 +95,7 @@ type Resource struct {
 	DependsOn      []string
 	Metadata       map[string]interface{}
 	UpdatePolicy   *UpdatePolicy
+	Condition      string
 	Properties     ResourceProperties
 }
 
@@ -107,6 +108,7 @@ func (r Resource) MarshalJSON() ([]byte, error) {
 		DependsOn      []string               `json:",omitempty"`
 		Metadata       map[string]interface{} `json:",omitempty"`
 		UpdatePolicy   *UpdatePolicy          `json:",omitempty"`
+		Condition      string                 `json:",omitempty"`
 		Properties     ResourceProperties
 	}{
 		Type:           r.Properties.CfnResourceType(),
@@ -115,6 +117,7 @@ func (r Resource) MarshalJSON() ([]byte, error) {
 		DependsOn:      r.DependsOn,
 		Metadata:       r.Metadata,
 		UpdatePolicy:   r.UpdatePolicy,
+		Condition:      r.Condition,
 		Properties:     r.Properties,
 	})
 }
