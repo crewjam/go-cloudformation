@@ -19,6 +19,7 @@ type IAMPolicyStatement struct {
 	Principal    *IAMPrincipal   `json:",omitempty"`
 	NotPrincipal *IAMPrincipal   `json:",omitempty"`
 	Action       *StringListExpr `json:",omitempty"`
+	NotAction    *StringListExpr `json:",omitempty"`
 	Resource     *StringListExpr `json:",omitempty"`
 	Condition    interface{}     `json:",omitempty"`
 }
