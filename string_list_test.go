@@ -49,9 +49,14 @@ func (testSuite *StringListTest) TestStringList(c *C) {
 	err = json.Unmarshal([]byte(inputBuf), &v)
 	c.Assert(err, ErrorMatches, "json: cannot unmarshal .*")
 
+	// A single string where a string list is expected returns
+	// a string list.
 	inputBuf = `{"A": "asdf"}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, ErrorMatches, "json: cannot unmarshal .*")
+	c.Assert(err, IsNil)
+	buf, err = json.Marshal(v)
+	c.Assert(err, IsNil)
+	c.Assert(string(buf), Equals, `{"A":["asdf"]}`)
 
 	inputBuf = `{"A": [false]}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
