@@ -65,6 +65,16 @@ func (x *StringListExpr) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("%#v is not a StringListFunc", funcCall)
 	}
 
+	// Perhaps we have a single item, like "foo" which
+	// occurs occasionally.
+	var v2 StringExpr
+	err3 := json.Unmarshal(data, &v2)
+	if err3 == nil {
+		x.Func = nil
+		x.Literal = []*StringExpr{&v2}
+		return nil
+	}
+
 	// Return the original error trying to unmarshal the literal expression,
 	// which will be the most expressive.
 	return err
