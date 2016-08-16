@@ -3770,10 +3770,7 @@ type IAMRole struct {
 	// see Friendly Names and Paths in IAM User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
-	// The policies to associate with this role. You can specify a policy
-	// inline or reference an external policy, such as a policy declared in
-	// an AWS::IAM::Policy or AWS::IAM::ManagedPolicy resource. For sample
-	// templates that demonstrates both embedded and external policies, see
+	// The policies to associate with this role. For sample templates, see
 	// Template Examples.
 	Policies *IAMPoliciesList `json:"Policies,omitempty"`
 
@@ -10007,6 +10004,10 @@ type EC2ContainerServiceServiceLoadBalancers struct {
 	// The name of the load balancer to associated with the Amazon ECS
 	// service.
 	LoadBalancerName *StringExpr `json:"LoadBalancerName,omitempty"`
+
+	// A target group Amazon Resource Name (ARN) to associate with the Amazon
+	// ECS service.
+	TargetGroupArn *StringExpr `json:"TargetGroupArn,omitempty"`
 }
 
 // EC2ContainerServiceServiceLoadBalancersList represents a list of EC2ContainerServiceServiceLoadBalancers

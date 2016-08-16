@@ -5515,7 +5515,7 @@
           "Type": "List of IAM Policies",
           "TypeHref": "aws-properties-iam-policy.html",
           "TypeName": "",
-          "DocString": "The policies to associate with this role. You can specify a policy\ninline or reference an external policy, such as a policy declared in\nan AWS::IAM::Policy or AWS::IAM::ManagedPolicy resource. For sample\ntemplates that demonstrates both embedded and external policies, see\nTemplate Examples.",
+          "DocString": "The policies to associate with this role. For sample templates, see\nTemplate Examples.",
           "SyntaxExpression": "[ Policies, ... ]"
         },
         {
@@ -12150,6 +12150,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the load balancer to associated with the Amazon ECS\nservice.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TargetGroupArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A target group Amazon Resource Name (ARN) to associate with the Amazon\nECS service.",
           "SyntaxExpression": "String"
         }
       ]
