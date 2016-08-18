@@ -687,12 +687,14 @@ type AutoScalingScalingPolicy struct {
 	PolicyType *StringExpr `json:"PolicyType,omitempty"`
 
 	// The number of instances by which to scale. The AdjustmentType property
-	// determines whether AWS CloudFormation interprets this number as an
-	// absolute number (when the ExactCapacityvalue is specified) or as a
-	// percentage of the existing Auto Scaling group size (when the
+	// determines if AWS CloudFormation interprets this number as an absolute
+	// number (when the ExactCapacity value is specified), increase or
+	// decrease capacity by a specified number (when the ChangeInCapacity
+	// value is specified), or increase or decrease capacity as a percentage
+	// of the existing Auto Scaling group size (when the
 	// PercentChangeInCapacity value is specified). A positive value adds to
 	// the current capacity and a negative value subtracts from the current
-	// capacity.
+	// capacity. For exact capacity, you must specify a positive value.
 	ScalingAdjustment *IntegerExpr `json:"ScalingAdjustment,omitempty"`
 
 	// A set of adjustments that enable you to scale based on the size of the
@@ -4135,8 +4137,8 @@ type LambdaPermission struct {
 	// The Lambda actions that you want to allow in this statement. For
 	// example, you can specify lambda:CreateFunction to specify a certain
 	// action, or use a wildcard (lambda:*) to grant permission to all Lambda
-	// actions. For a list of actions, see Actions in the AWS Lambda
-	// Developer Guide.
+	// actions. For a list of actions, see Actions and Condition Context Keys
+	// for AWS Lambda in the IAM User Guide.
 	Action *StringExpr `json:"Action,omitempty"`
 
 	// The name (physical ID) or Amazon Resource Name (ARN) of the Lambda
@@ -9807,7 +9809,10 @@ func (l *EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringLis
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html
 type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces struct {
-	// Indicates whether monitoring is enabled for the instances.
+	// Indicates whether to assign a public IP address to an instance that
+	// you launch in a VPC. The public IP address can only be assigned to a
+	// network interface for eth0, and can only be assigned to a new network
+	// interface, not an existing one.
 	AssociatePublicIpAddress *BoolExpr `json:"AssociatePublicIpAddress,omitempty"`
 
 	// Indicates whether to delete the network interface when the instance
@@ -10005,8 +10010,8 @@ type EC2ContainerServiceServiceLoadBalancers struct {
 	// service.
 	LoadBalancerName *StringExpr `json:"LoadBalancerName,omitempty"`
 
-	// A target group Amazon Resource Name (ARN) to associate with the Amazon
-	// ECS service.
+	// An Application load balancer target group Amazon Resource Name (ARN)
+	// to associate with the Amazon ECS service.
 	TargetGroupArn *StringExpr `json:"TargetGroupArn,omitempty"`
 }
 

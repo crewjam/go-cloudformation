@@ -1041,7 +1041,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of instances by which to scale. The AdjustmentType property\ndetermines whether AWS CloudFormation interprets this number as an\nabsolute number (when the ExactCapacityvalue is specified) or as a\npercentage of the existing Auto Scaling group size (when the\nPercentChangeInCapacity value is specified). A positive value adds to\nthe current capacity and a negative value subtracts from the current\ncapacity.",
+          "DocString": "The number of instances by which to scale. The AdjustmentType property\ndetermines if AWS CloudFormation interprets this number as an absolute\nnumber (when the ExactCapacity value is specified), increase or\ndecrease capacity by a specified number (when the ChangeInCapacity\nvalue is specified), or increase or decrease capacity as a percentage\nof the existing Auto Scaling group size (when the\nPercentChangeInCapacity value is specified). A positive value adds to\nthe current capacity and a negative value subtracts from the current\ncapacity. For exact capacity, you must specify a positive value.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -6013,7 +6013,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Lambda actions that you want to allow in this statement. For\nexample, you can specify lambda:CreateFunction to specify a certain\naction, or use a wildcard (lambda:*) to grant permission to all Lambda\nactions. For a list of actions, see Actions in the AWS Lambda\nDeveloper Guide.",
+          "DocString": "The Lambda actions that you want to allow in this statement. For\nexample, you can specify lambda:CreateFunction to specify a certain\naction, or use a wildcard (lambda:*) to grant permission to all Lambda\nactions. For a list of actions, see Actions and Condition Context Keys\nfor AWS Lambda in the IAM User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -11975,7 +11975,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether monitoring is enabled for the instances.",
+          "DocString": "Indicates whether to assign a public IP address to an instance that\nyou launch in a VPC. The public IP address can only be assigned to a\nnetwork interface for eth0, and can only be assigned to a new network\ninterface, not an existing one.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -12157,7 +12157,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A target group Amazon Resource Name (ARN) to associate with the Amazon\nECS service.",
+          "DocString": "An Application load balancer target group Amazon Resource Name (ARN)\nto associate with the Amazon ECS service.",
           "SyntaxExpression": "String"
         }
       ]
