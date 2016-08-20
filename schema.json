@@ -8174,7 +8174,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The length of time during which the queue will be unavailable once a\nmessage is delivered from the queue. This blocks other components from\nreceiving the same message and gives the initial component time to\nprocess and delete the message from the queue.",
+          "DocString": "The length of time during which a message will be unavailable once a\nmessage is delivered from the queue. This blocks other components from\nreceiving the same message and gives the initial component time to\nprocess and delete the message from the queue.",
           "SyntaxExpression": "Integer"
         }
       ]
