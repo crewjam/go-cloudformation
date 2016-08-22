@@ -13837,7 +13837,7 @@
           "Type": "Elasticsearch action object",
           "TypeHref": "aws-properties-iot-elasticsearch.html",
           "TypeName": "",
-          "DocString": "Writes data to an Elasticsearch domain.",
+          "DocString": "Writes data to an Amazon ES domain.",
           "SyntaxExpression": "{ Elasticsearch Action, ... }"
         },
         {
@@ -14061,7 +14061,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The endpoint of your Elasticsearch domain.",
+          "DocString": "The endpoint of your Amazon ES domain.",
           "SyntaxExpression": "String"
         },
         {
@@ -14077,7 +14077,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Elasticsearch index where the data is stored.",
+          "DocString": "The Amazon ES index where the data is stored.",
           "SyntaxExpression": "String"
         },
         {
@@ -14085,7 +14085,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ARN of the IAM role that grants access to Elasticsearch.",
+          "DocString": "The ARN of the IAM role that grants access to Amazon ES.",
           "SyntaxExpression": "String"
         },
         {
@@ -14385,7 +14385,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the Elasticsearch index to which Firehose adds data for\nindexing.",
+          "DocString": "The name of the Amazon ES index to which Firehose adds data for\nindexing.",
           "SyntaxExpression": "String"
         },
         {
@@ -14393,7 +14393,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The frequency of Elasticsearch index rotation. If you enable index\nrotation, Firehose appends a portion of the UTC arrival timestamp to\nthe specified index name, and rotates the appended timestamp\naccordingly. For more information, see Index Rotation for the Amazon\nES Destination in the Amazon Kinesis Firehose Developer Guide.",
+          "DocString": "The frequency of Amazon ES index rotation. If you enable index\nrotation, Firehose appends a portion of the UTC arrival timestamp to\nthe specified index name, and rotates the appended timestamp\naccordingly. For more information, see Index Rotation for the Amazon\nES Destination in the Amazon Kinesis Firehose Developer Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -14433,7 +14433,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Elasticsearch type name that Amazon ES adds to documents when\nindexing data.",
+          "DocString": "The Amazon ES type name that Amazon ES adds to documents when indexing\ndata.",
           "SyntaxExpression": "String"
         }
       ]
