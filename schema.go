@@ -10006,7 +10006,7 @@ type EC2ContainerServiceServiceLoadBalancers struct {
 	// Your container instances must allow ingress traffic on this port.
 	ContainerPort *IntegerExpr `json:"ContainerPort,omitempty"`
 
-	// The name of the load balancer to associated with the Amazon ECS
+	// The name of a Classic Load Balancer to associate with the Amazon ECS
 	// service.
 	LoadBalancerName *StringExpr `json:"LoadBalancerName,omitempty"`
 
@@ -12033,7 +12033,7 @@ type IoTActions struct {
 	// Writes data to a DynamoDB table.
 	DynamoDB *IoTDynamoDBAction `json:"DynamoDB,omitempty"`
 
-	// Writes data to an Amazon ES domain.
+	// Writes data to an Elasticsearch domain.
 	Elasticsearch *IoTElasticsearchAction `json:"Elasticsearch,omitempty"`
 
 	// Writes data to a Firehose stream.
@@ -12212,16 +12212,16 @@ func (l *IoTDynamoDBActionList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html
 type IoTElasticsearchAction struct {
-	// The endpoint of your Amazon ES domain.
+	// The endpoint of your Elasticsearch domain.
 	Endpoint *StringExpr `json:"Endpoint,omitempty"`
 
 	// A unique identifier for the stored data.
 	Id *StringExpr `json:"Id,omitempty"`
 
-	// The Amazon ES index where the data is stored.
+	// The Elasticsearch index where the data is stored.
 	Index *StringExpr `json:"Index,omitempty"`
 
-	// The ARN of the IAM role that grants access to Amazon ES.
+	// The ARN of the IAM role that grants access to Elasticsearch.
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
 
 	// The type of stored data.
@@ -12571,11 +12571,11 @@ type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration struct {
 	// delivers data to.
 	DomainARN *StringExpr `json:"DomainARN,omitempty"`
 
-	// The name of the Amazon ES index to which Firehose adds data for
+	// The name of the Elasticsearch index to which Firehose adds data for
 	// indexing.
 	IndexName *StringExpr `json:"IndexName,omitempty"`
 
-	// The frequency of Amazon ES index rotation. If you enable index
+	// The frequency of Elasticsearch index rotation. If you enable index
 	// rotation, Firehose appends a portion of the UTC arrival timestamp to
 	// the specified index name, and rotates the appended timestamp
 	// accordingly. For more information, see Index Rotation for the Amazon
@@ -12602,8 +12602,8 @@ type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration struct {
 	// The S3 bucket where Firehose backs up incoming data.
 	S3Configuration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3Configuration,omitempty"`
 
-	// The Amazon ES type name that Amazon ES adds to documents when indexing
-	// data.
+	// The Elasticsearch type name that Amazon ES adds to documents when
+	// indexing data.
 	TypeName *StringExpr `json:"TypeName,omitempty"`
 }
 
