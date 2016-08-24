@@ -1757,7 +1757,7 @@ type EC2Instance struct {
 	// Specifies whether monitoring is enabled for the instance.
 	Monitoring *BoolExpr `json:"Monitoring,omitempty"`
 
-	// A list of embedded objects that describe the network interfaces to
+	// A list of embedded objects that describes the network interfaces to
 	// associate with this instance.
 	NetworkInterfaces *EC2NetworkInterfaceEmbeddedList `json:"NetworkInterfaces,omitempty"`
 

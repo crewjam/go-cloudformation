@@ -2521,7 +2521,7 @@
           "Type": "A list of EC2 NetworkInterface Embedded Property Type",
           "TypeHref": "aws-properties-ec2-network-iface-embedded.html",
           "TypeName": "",
-          "DocString": "A list of embedded objects that describe the network interfaces to\nassociate with this instance.",
+          "DocString": "A list of embedded objects that describes the network interfaces to\nassociate with this instance.",
           "SyntaxExpression": "[ EC2 Network Interface, ... ]"
         },
         {
