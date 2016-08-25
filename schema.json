@@ -6123,6 +6123,14 @@
       "Href": "aws-resource-logs-loggroup.html",
       "Properties": [
         {
+          "Name": "LogGroupName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the log group. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\ntable name. For more information, see Name Type.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "RetentionInDays",
           "Type": "Integer",
           "TypeHref": "",

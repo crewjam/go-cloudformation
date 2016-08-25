@@ -4228,6 +4228,11 @@ func (s LogsDestination) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
 type LogsLogGroup struct {
+	// A name for the log group. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID and uses that ID for the
+	// table name. For more information, see Name Type.
+	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
+
 	// The number of days log events are kept in CloudWatch Logs. When a log
 	// event expires, CloudWatch Logs automatically deletes it. For valid
 	// values, see PutRetentionPolicy in the Amazon CloudWatch Logs API
