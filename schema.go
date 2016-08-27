@@ -766,6 +766,9 @@ type CertificateManagerCertificate struct {
 	// certificate for the www.example.com domain name so that users can
 	// reach your site by using either name.
 	SubjectAlternativeNames *StringListExpr `json:"SubjectAlternativeNames,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for this ACM certificate.
+	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
 // CfnResourceType returns AWS::CertificateManager::Certificate to implement the ResourceProperties interface

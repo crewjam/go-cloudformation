@@ -1143,6 +1143,14 @@
           "TypeName": "",
           "DocString": "FQDNs to be included in the Subject Alternative Name extension of the\nACM certificate. For example, you can add www.example.net to a\ncertificate for the www.example.com domain name so that users can\nreach your site by using either name.",
           "SyntaxExpression": ""
+        },
+        {
+          "Name": "Tags",
+          "Type": "AWS CloudFormation Resource Tags",
+          "TypeHref": "aws-properties-resource-tags.html",
+          "TypeName": "",
+          "DocString": "An arbitrary set of tags (key–value pairs) for this ACM certificate.",
+          "SyntaxExpression": ""
         }
       ]
     },
