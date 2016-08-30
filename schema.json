@@ -12897,7 +12897,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies the TCP port on which the instance server is listening. This\nproperty cannot be modified for the life of the load balancer.",
+          "DocString": "Specifies the TCP port on which the instance server listens. You can't\nmodify this property during the life of the load balancer.",
           "SyntaxExpression": "String"
         },
         {
@@ -12905,7 +12905,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies the protocol to use for routing traffic to back-end\ninstances—HTTP, HTTPS, TCP, or SSL. This property cannot be modified\nfor the life of the load balancer.",
+          "DocString": "Specifies the protocol to use for routing traffic to back-end\ninstances: HTTP, HTTPS, TCP, or SSL. You can't modify this property\nduring the life of the load balancer.",
           "SyntaxExpression": "String"
         },
         {
@@ -12913,7 +12913,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies the external load balancer port number. This property cannot\nbe modified for the life of the load balancer.",
+          "DocString": "Specifies the external load balancer port number. You can't modify\nthis property during the life of the load balancer.",
           "SyntaxExpression": "String"
         },
         {
@@ -12921,7 +12921,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of ElasticLoadBalancing policy names to associate with the\nlistener. Specify only policies that are compatible with listeners.\nFor more information, see DescribeLoadBalancerPolicyTypes in the\nElastic Load Balancing API Reference version 2012-06-01.",
+          "DocString": "A list of ElasticLoadBalancing policy names to associate with the\nListener. Specify only policies that are compatible with a Listener.\nFor more information, see DescribeLoadBalancerPolicyTypes in the\nElastic Load Balancing API Reference version 2012-06-01.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -12929,7 +12929,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies the load balancer transport protocol to use for routing —\nHTTP, HTTPS, TCP or SSL. This property cannot be modified for the life\nof the load balancer.",
+          "DocString": "Specifies the load balancer transport protocol to use for routing:\nHTTP, HTTPS, TCP or SSL. You can't modify this property during the\nlife of the load balancer.",
           "SyntaxExpression": "String"
         },
         {
@@ -12937,7 +12937,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ARN of the SSL certificate to use. For more information about SSL\ncertificates, see Managing Server Certificates in the AWS Identity and\nAccess Management documentation.",
+          "DocString": "The ARN of the SSL certificate to use. For more information about SSL\ncertificates, see Managing Server Certificates in the AWS Identity and\nAccess Management User Guide.",
           "SyntaxExpression": "String"
         }
       ]

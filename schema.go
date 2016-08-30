@@ -10871,33 +10871,33 @@ func (l *ElasticLoadBalancingLBCookieStickinessPolicyList) UnmarshalJSON(buf []b
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html
 type ElasticLoadBalancingListener struct {
-	// Specifies the TCP port on which the instance server is listening. This
-	// property cannot be modified for the life of the load balancer.
+	// Specifies the TCP port on which the instance server listens. You can't
+	// modify this property during the life of the load balancer.
 	InstancePort *StringExpr `json:"InstancePort,omitempty"`
 
 	// Specifies the protocol to use for routing traffic to back-end
-	// instances—HTTP, HTTPS, TCP, or SSL. This property cannot be modified
-	// for the life of the load balancer.
+	// instances: HTTP, HTTPS, TCP, or SSL. You can't modify this property
+	// during the life of the load balancer.
 	InstanceProtocol *StringExpr `json:"InstanceProtocol,omitempty"`
 
-	// Specifies the external load balancer port number. This property cannot
-	// be modified for the life of the load balancer.
+	// Specifies the external load balancer port number. You can't modify
+	// this property during the life of the load balancer.
 	LoadBalancerPort *StringExpr `json:"LoadBalancerPort,omitempty"`
 
 	// A list of ElasticLoadBalancing policy names to associate with the
-	// listener. Specify only policies that are compatible with listeners.
+	// Listener. Specify only policies that are compatible with a Listener.
 	// For more information, see DescribeLoadBalancerPolicyTypes in the
 	// Elastic Load Balancing API Reference version 2012-06-01.
 	PolicyNames *StringListExpr `json:"PolicyNames,omitempty"`
 
-	// Specifies the load balancer transport protocol to use for routing —
-	// HTTP, HTTPS, TCP or SSL. This property cannot be modified for the life
-	// of the load balancer.
+	// Specifies the load balancer transport protocol to use for routing:
+	// HTTP, HTTPS, TCP or SSL. You can't modify this property during the
+	// life of the load balancer.
 	Protocol *StringExpr `json:"Protocol,omitempty"`
 
 	// The ARN of the SSL certificate to use. For more information about SSL
 	// certificates, see Managing Server Certificates in the AWS Identity and
-	// Access Management documentation.
+	// Access Management User Guide.
 	SSLCertificateId *StringExpr `json:"SSLCertificateId,omitempty"`
 }
 
