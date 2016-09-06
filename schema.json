@@ -4630,10 +4630,10 @@
       "Properties": [
         {
           "Name": "LoadBalancerAttributes",
-          "Type": "List of Elastic Load Balancing LoadBalancer LoadBalancerAttributes",
+          "Type": "A list of Elastic Load Balancing LoadBalancer LoadBalancerAttributes",
           "TypeHref": "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",
           "TypeName": "",
-          "DocString": "Load balancer configurations.",
+          "DocString": "Specifies the load balancer configuration.",
           "SyntaxExpression": "[ LoadBalancerAttributes, ... ]"
         },
         {
@@ -4641,7 +4641,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the load balancer, which must be unique within your AWS\naccount. The name can have a maximum of 32 alphanumeric characters and\nhyphens. Names can't begin or end with a hyphen.",
+          "DocString": "Specifies a name for the load balancer. This name must be unique\nwithin your AWS account and can have a maximum of 32 alphanumeric\ncharacters and hyphens. A name can't begin or end with a hyphen.",
           "SyntaxExpression": "String"
         },
         {
@@ -4649,7 +4649,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether the load balancer is Internet-facing or internal. An\nInternet-facing load balancer routes requests from clients over the\nInternet to targets in your public subnets. An internal load balancer\nroutes requests to targets using private IP addresses.",
+          "DocString": "Specifies whether the load balancer is internal or Internet-facing. An\ninternal load balancer routes requests to targets using private IP\naddresses. An Internet-facing load balancer routes requests from\nclients over the Internet to targets in your public subnets. ",
           "SyntaxExpression": "String"
         },
         {
@@ -4657,7 +4657,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of the IDs of the security groups to assign to the load\nbalancer.",
+          "DocString": "Specifies a list of the IDs of the security groups to assign to the\nload balancer.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -4665,7 +4665,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of at least two IDs of the subnets to associate with the load\nbalancer. Subnets must be in different Availability Zones.",
+          "DocString": "Specifies a list of at least two IDs of the subnets to associate with\nthe load balancer. The subnets must be in different Availability\nZones.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -4673,7 +4673,7 @@
           "Type": "AWS CloudFormation Resource Tags",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
-          "DocString": "An arbitrary set of tags (key–value pairs) to associate with this\nload balancer. Use tags to help manage resources.",
+          "DocString": "Specifies an arbitrary set of tags (key–value pairs) to associate\nwith this load balancer. Use tags to manage your resources.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
         }
       ]

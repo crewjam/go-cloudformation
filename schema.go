@@ -3205,30 +3205,31 @@ func (s ElasticLoadBalancingV2ListenerRule) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
 type ElasticLoadBalancingV2LoadBalancer struct {
-	// Load balancer configurations.
+	// Specifies the load balancer configuration.
 	LoadBalancerAttributes *ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList `json:"LoadBalancerAttributes,omitempty"`
 
-	// A name for the load balancer, which must be unique within your AWS
-	// account. The name can have a maximum of 32 alphanumeric characters and
-	// hyphens. Names can't begin or end with a hyphen.
+	// Specifies a name for the load balancer. This name must be unique
+	// within your AWS account and can have a maximum of 32 alphanumeric
+	// characters and hyphens. A name can't begin or end with a hyphen.
 	Name *StringExpr `json:"Name,omitempty"`
 
-	// Indicates whether the load balancer is Internet-facing or internal. An
-	// Internet-facing load balancer routes requests from clients over the
-	// Internet to targets in your public subnets. An internal load balancer
-	// routes requests to targets using private IP addresses.
+	// Specifies whether the load balancer is internal or Internet-facing. An
+	// internal load balancer routes requests to targets using private IP
+	// addresses. An Internet-facing load balancer routes requests from
+	// clients over the Internet to targets in your public subnets.
 	Scheme *StringExpr `json:"Scheme,omitempty"`
 
-	// A list of the IDs of the security groups to assign to the load
-	// balancer.
+	// Specifies a list of the IDs of the security groups to assign to the
+	// load balancer.
 	SecurityGroups *StringListExpr `json:"SecurityGroups,omitempty"`
 
-	// A list of at least two IDs of the subnets to associate with the load
-	// balancer. Subnets must be in different Availability Zones.
+	// Specifies a list of at least two IDs of the subnets to associate with
+	// the load balancer. The subnets must be in different Availability
+	// Zones.
 	Subnets *StringListExpr `json:"Subnets,omitempty"`
 
-	// An arbitrary set of tags (key–value pairs) to associate with this
-	// load balancer. Use tags to help manage resources.
+	// Specifies an arbitrary set of tags (key–value pairs) to associate
+	// with this load balancer. Use tags to manage your resources.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
