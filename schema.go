@@ -3511,7 +3511,7 @@ type EventsRule struct {
 	// The schedule or rate (frequency) that determines when CloudWatch
 	// Events runs the rule. For more information, see Schedule Expression
 	// Syntax for Rules in the Amazon CloudWatch Developer Guide.
-	ScheduleExpression interface{} `json:"ScheduleExpression,omitempty"`
+	ScheduleExpression *StringExpr `json:"ScheduleExpression,omitempty"`
 
 	// Indicates whether the rule is enabled. For valid values, see the State
 	// parameter for the PutRule action in the Amazon CloudWatch Events API
@@ -4828,6 +4828,19 @@ type RDSDBInstance struct {
 	// optional when you specify the DBSnapshotIdentifier or the
 	// DBClusterIdentifier property to create DB instances.
 	MasterUserPassword *StringExpr `json:"MasterUserPassword,omitempty"`
+
+	// The interval, in seconds, between points when Amazon RDS collects
+	// enhanced monitoring metrics for the DB instance. To disable metrics
+	// collection, specify 0.
+	MonitoringInterval *IntegerExpr `json:"MonitoringInterval,omitempty"`
+
+	// The ARN of the AWS Identity and Access Management (IAM) role that
+	// permits Amazon RDS to send enhanced monitoring metrics to Amazon
+	// CloudWatch, for example, arn:aws:iam:123456789012:role/emaccess. For
+	// information on creating a monitoring role, see To create an IAM role
+	// for Amazon RDS Enhanced Monitoring in the Amazon Relational Database
+	// Service User Guide.
+	MonitoringRoleArn *StringExpr `json:"MonitoringRoleArn,omitempty"`
 
 	// Specifies if the database instance is a multiple Availability Zone
 	// deployment. You cannot set the AvailabilityZone parameter if the

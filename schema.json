@@ -5122,7 +5122,7 @@
         },
         {
           "Name": "ScheduleExpression",
-          "Type": "",
+          "Type": "String",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The schedule or rate (frequency) that determines when CloudWatch\nEvents runs the rule. For more information, see Schedule Expression\nSyntax for Rules in the Amazon CloudWatch Developer Guide.",
@@ -7106,6 +7106,22 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The master password for the database instance. This property is\noptional when you specify the DBSnapshotIdentifier or the\nDBClusterIdentifier property to create DB instances.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MonitoringInterval",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The interval, in seconds, between points when Amazon RDS collects\nenhanced monitoring metrics for the DB instance. To disable metrics\ncollection, specify 0.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "MonitoringRoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the AWS Identity and Access Management (IAM) role that\npermits Amazon RDS to send enhanced monitoring metrics to Amazon\nCloudWatch, for example, arn:aws:iam:123456789012:role/emaccess. For\ninformation on creating a monitoring role, see To create an IAM role\nfor Amazon RDS Enhanced Monitoring in the Amazon Relational Database\nService User Guide.",
           "SyntaxExpression": "String"
         },
         {
