@@ -3689,7 +3689,7 @@
         },
         {
           "Name": "DesiredCount",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of simultaneous tasks, which you specify by using the\nTaskDefinition property, that you want to run on the cluster.",
@@ -6945,7 +6945,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The allocated storage size specified in gigabytes (GB).",
+          "DocString": "The allocated storage size, specified in gigabytes (GB).",
           "SyntaxExpression": "String"
         },
         {
@@ -6953,7 +6953,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether major version upgrades are allowed. Changing this\nparameter does not result in an outage, and the change is applied\nasynchronously as soon as possible.",
+          "DocString": "Indicates whether major version upgrades are allowed. Setting this\nparameter does not result in an outage, and the change is applied\nasynchronously as soon as possible.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -6961,7 +6961,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates that minor engine upgrades will be applied automatically to\nthe DB instance during the maintenance window. The default value is\ntrue.",
+          "DocString": "Indicates that minor engine upgrades are applied automatically to the\nDB instance during the maintenance window. The default value is true.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -6977,7 +6977,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of days for which automatic DB snapshots are retained.",
+          "DocString": "The number of days during which automatic DB snapshots are retained. ",
           "SyntaxExpression": "String"
         },
         {
@@ -6985,7 +6985,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "For supported engines, specifies the character set to associate with\nthe database instance. For more information, see Appendix: Oracle\nCharacter Sets Supported in Amazon RDS in the Amazon Relational\nDatabase Service User Guide.",
+          "DocString": "For supported engines, specifies the character set to associate with\nthe DB instance. For more information, see Appendix: Oracle Character\nSets Supported in Amazon RDS in the Amazon Relational Database Service\nUser Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -6993,7 +6993,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The identifier of an existing DB cluster that this instance will be\nassociated with. If you specify this property, specify aurora for the\nEngine property and do not specify any of the following properties:\nAllocatedStorage, CharacterSetName, DBSecurityGroups,\nSourceDBInstanceIdentifier, and StorageType.",
+          "DocString": "The name of an existing DB cluster that this instance will be\nassociated with. If you specify this property, specify aurora for the\nEngine property and do not specify any of the following properties:\nAllocatedStorage, CharacterSetName, DBSecurityGroups,\nSourceDBInstanceIdentifier, or StorageType.",
           "SyntaxExpression": "String"
         },
         {
@@ -7001,7 +7001,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the compute and memory capacity class of the DB instance.",
+          "DocString": "The name of the compute and memory capacity classes of the DB\ninstance.",
           "SyntaxExpression": "String"
         },
         {
@@ -7009,7 +7009,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the DB instance. If you specify a name, AWS CloudFormation\nconverts it to lower case. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nDB instance. For more information, see Name Type.",
+          "DocString": "A name for the DB instance. If you specify a name, AWS CloudFormation\nconverts it to lower \u003ecase. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nDB instance. For more information, see Name Type.",
           "SyntaxExpression": "String"
         },
         {
@@ -7017,7 +7017,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the initial database of this instance that was provided at\ncreate time, if one was specified. This same name is returned for the\nlife of the DB instance.",
+          "DocString": "The name of the DB instance that was provided at the time of creation,\nif one was specified. This same name is returned for the life of the\nDB instance.",
           "SyntaxExpression": "String"
         },
         {
@@ -7033,7 +7033,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of the DB security groups to assign to the Amazon RDS instance.\nThe list can include both the name of existing DB security groups or\nreferences to AWS::RDS::DBSecurityGroup resources created in the\ntemplate.",
+          "DocString": "A list of the DB security groups to assign to the DB instance. The\nlist can include both the name of existing DB security groups or\nreferences to AWS::RDS::DBSecurityGroup resources created in the\ntemplate.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -7041,7 +7041,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The identifier for the DB snapshot to restore from.",
+          "DocString": "The name or ARN of the DB snapshot used to restore the DB instance. If\nyou are restoring from a shared manual DB snapshot, you must specify\nthe Amazon Resource Name (ARN) of the snapshot.",
           "SyntaxExpression": "String"
         },
         {
@@ -7057,7 +7057,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the database engine that the DB instance uses. This\nproperty is optional when you specify the DBSnapshotIdentifier\nproperty to create DB instances.",
+          "DocString": "The database engine that the DB instance uses. This property is\noptional when you specify the DBSnapshotIdentifier property to create\nDB instances.",
           "SyntaxExpression": "String"
         },
         {
@@ -7065,7 +7065,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The version number of the database engine to use.",
+          "DocString": "The version number of the database engine that the DB instance uses.",
           "SyntaxExpression": "String"
         },
         {
@@ -7081,7 +7081,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Amazon Resource Name (ARN) of the AWS Key Management Service\nmaster key that is used to encrypt the database instance, such as\narn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.\nIf you enable the StorageEncrypted property but don't specify this\nproperty, the default master key is used. If you specify this\nproperty, you must set the StorageEncrypted property to true.",
+          "DocString": "The ARN of the AWS Key Management Service (AWS KMS) master key that is\nused to encrypt the DB instance, such as\narn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.\nIf you enable the StorageEncrypted property but don't specify this\nproperty, AWS CloudFormation uses the default master key. If you\nspecify this property, you must set the StorageEncrypted property to\ntrue.",
           "SyntaxExpression": "String"
         },
         {
@@ -7089,7 +7089,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The license model information for the DB instance.",
+          "DocString": "The license model of the DB instance.",
           "SyntaxExpression": "String"
         },
         {
@@ -7097,7 +7097,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The master user name for the database instance. This property is\noptional when you specify the DBSnapshotIdentifier or the\nDBClusterIdentifier property to create DB instances. ",
+          "DocString": "The master user name for the DB instance. This property is optional\nwhen you specify the DBSnapshotIdentifier or the DBClusterIdentifier\nproperty to create DB instances. ",
           "SyntaxExpression": "String"
         },
         {
@@ -7105,7 +7105,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The master password for the database instance. This property is\noptional when you specify the DBSnapshotIdentifier or the\nDBClusterIdentifier property to create DB instances.",
+          "DocString": "The master password for the DB instance. This property is optional\nwhen you specify the DBSnapshotIdentifier or the DBClusterIdentifier\nproperty to create DB instances.",
           "SyntaxExpression": "String"
         },
         {
@@ -7113,7 +7113,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The interval, in seconds, between points when Amazon RDS collects\nenhanced monitoring metrics for the DB instance. To disable metrics\ncollection, specify 0.",
+          "DocString": "The interval, in seconds, between points when Amazon RDS collects\nenhanced monitoring metrics for the DB instance. To disable metrics\ncollection, specify 0. For default and valid values, see the\nMonitoringInterval parameter for the CreateDBInstance action in the\nAmazon Relational Database Service API Reference.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -7129,7 +7129,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies if the database instance is a multiple Availability Zone\ndeployment. You cannot set the AvailabilityZone parameter if the\nMultiAZ parameter is set to true.",
+          "DocString": "Specifies whether the DB instance deployed in multiple Availability\nZones. You cannot set the AvailabilityZone parameter if the MultiAZ\nparameter is set to true.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -7137,7 +7137,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "An option group that this database instance is associated with.",
+          "DocString": "The option group that this DB instance is associated with.",
           "SyntaxExpression": "String"
         },
         {
@@ -7153,7 +7153,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The daily time range during which automated backups are created if\nautomated backups are enabled, as determined by the\nBackupRetentionPeriod property. For valid values, see the\nPreferredBackupWindow parameter for the CreateDBInstance action in the\nAmazon Relational Database Service API Reference.",
+          "DocString": "The daily time range during which automated backups are performed if\nautomated backups are enabled, as determined by the\nBackupRetentionPeriod property. For valid values, see the\nPreferredBackupWindow parameter for the CreateDBInstance action in the\nAmazon Relational Database Service API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -7169,7 +7169,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether the database instance is an Internet-facing\ninstance. If you specify true, an instance is created with a publicly\nresolvable DNS name, which resolves to a public IP address. If you\nspecify false, an internal instance is created with a DNS name that\nresolves to a private IP address. ",
+          "DocString": "Indicates whether the DB instance is an Internet-facing instance. If\nyou specify true, AWS CloudFormation creates an instance with a\npublicly resolvable DNS name, which resolves to a public IP address.\nIf you specify false, AWS CloudFormation creates an internal instance\nwith a DNS name that resolves to a private IP address. ",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -7177,7 +7177,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "If you want to create a read replica DB instance, specify the ID of\nthe source database instance. Each database instance can have a\ncertain number of read replicas. For more information, see Working\nwith Read Replicas in the Amazon Relational Database Service Developer\nGuide.",
+          "DocString": "If you want to create a read replica DB instance, specify the ID of\nthe source DB instance. Each B instance can have a limited number of\nread replicas. For more information, see Working with Read Replicas in\nthe Amazon Relational Database Service Developer Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -7185,7 +7185,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether the database instance is encrypted.",
+          "DocString": "Indicates whether the DB instance is encrypted.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -7193,7 +7193,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The storage type associated with this database instance.",
+          "DocString": "The storage type associated with this DB instance.",
           "SyntaxExpression": "String"
         },
         {
@@ -7201,7 +7201,7 @@
           "Type": "AWS CloudFormation Resource Tags",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
-          "DocString": "An arbitrary set of tags (key–value pairs) for this database\ninstance.",
+          "DocString": "An arbitrary set of tags (key–value pairs) for this DB instance.",
           "SyntaxExpression": "[ Resource Tag, ..., ]"
         },
         {
@@ -7209,7 +7209,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of the VPC security group IDs to assign to the Amazon RDS\ninstance. The list can include both the physical IDs of existing VPC\nsecurity groups or references to AWS::EC2::SecurityGroup resources\ncreated in the template.",
+          "DocString": "A list of the VPC security group IDs to assign to the DB instance. The\nlist can include both the physical IDs of existing VPC security groups\nand references to AWS::EC2::SecurityGroup resources created in the\ntemplate.",
           "SyntaxExpression": "[ String, ... ]"
         }
       ]
@@ -7643,7 +7643,7 @@
           "Type": "",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the cluster the source snapshot was created from.",
+          "DocString": "The name of the cluster the source snapshot was created from. For more\ninformation about restoring from a snapshot, see the\nRestoreFromClusterSnapshot action in the Amazon Redshift API\nReference.",
           "SyntaxExpression": "String"
         },
         {
@@ -11291,7 +11291,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The volume size, in gibibytes (GiB). This can be a number from 1 –\n1024. If the volume type is io1, the minimum value is 10.",
+          "DocString": "The volume size, in gibibytes (GiB). For valid values, see the Size\nparameter for the CreateVolume action in the Amazon EC2 API Reference.",
           "SyntaxExpression": "String"
         },
         {

@@ -2573,7 +2573,7 @@ type ECSService struct {
 
 	// The number of simultaneous tasks, which you specify by using the
 	// TaskDefinition property, that you want to run on the cluster.
-	DesiredCount *StringExpr `json:"DesiredCount,omitempty"`
+	DesiredCount *IntegerExpr `json:"DesiredCount,omitempty"`
 
 	// A list of load balancer objects to associate with the cluster. For
 	// information about the number of load balancers you can specify per
@@ -4732,17 +4732,16 @@ func (s RDSDBClusterParameterGroup) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
 type RDSDBInstance struct {
-	// The allocated storage size specified in gigabytes (GB).
+	// The allocated storage size, specified in gigabytes (GB).
 	AllocatedStorage *StringExpr `json:"AllocatedStorage,omitempty"`
 
-	// Indicates whether major version upgrades are allowed. Changing this
+	// Indicates whether major version upgrades are allowed. Setting this
 	// parameter does not result in an outage, and the change is applied
 	// asynchronously as soon as possible.
 	AllowMajorVersionUpgrade *BoolExpr `json:"AllowMajorVersionUpgrade,omitempty"`
 
-	// Indicates that minor engine upgrades will be applied automatically to
-	// the DB instance during the maintenance window. The default value is
-	// true.
+	// Indicates that minor engine upgrades are applied automatically to the
+	// DB instance during the maintenance window. The default value is true.
 	AutoMinorVersionUpgrade *BoolExpr `json:"AutoMinorVersionUpgrade,omitempty"`
 
 	// The name of the Availability Zone where the DB instance is located.
@@ -4750,88 +4749,94 @@ type RDSDBInstance struct {
 	// is set to true.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 
-	// The number of days for which automatic DB snapshots are retained.
+	// The number of days during which automatic DB snapshots are retained.
 	BackupRetentionPeriod *StringExpr `json:"BackupRetentionPeriod,omitempty"`
 
 	// For supported engines, specifies the character set to associate with
-	// the database instance. For more information, see Appendix: Oracle
-	// Character Sets Supported in Amazon RDS in the Amazon Relational
-	// Database Service User Guide.
+	// the DB instance. For more information, see Appendix: Oracle Character
+	// Sets Supported in Amazon RDS in the Amazon Relational Database Service
+	// User Guide.
 	CharacterSetName *StringExpr `json:"CharacterSetName,omitempty"`
 
-	// The identifier of an existing DB cluster that this instance will be
+	// The name of an existing DB cluster that this instance will be
 	// associated with. If you specify this property, specify aurora for the
 	// Engine property and do not specify any of the following properties:
 	// AllocatedStorage, CharacterSetName, DBSecurityGroups,
-	// SourceDBInstanceIdentifier, and StorageType.
+	// SourceDBInstanceIdentifier, or StorageType.
 	DBClusterIdentifier *StringExpr `json:"DBClusterIdentifier,omitempty"`
 
-	// The name of the compute and memory capacity class of the DB instance.
+	// The name of the compute and memory capacity classes of the DB
+	// instance.
 	DBInstanceClass *StringExpr `json:"DBInstanceClass,omitempty"`
 
 	// A name for the DB instance. If you specify a name, AWS CloudFormation
-	// converts it to lower case. If you don't specify a name, AWS
+	// converts it to lower >case. If you don't specify a name, AWS
 	// CloudFormation generates a unique physical ID and uses that ID for the
 	// DB instance. For more information, see Name Type.
 	DBInstanceIdentifier *StringExpr `json:"DBInstanceIdentifier,omitempty"`
 
-	// The name of the initial database of this instance that was provided at
-	// create time, if one was specified. This same name is returned for the
-	// life of the DB instance.
+	// The name of the DB instance that was provided at the time of creation,
+	// if one was specified. This same name is returned for the life of the
+	// DB instance.
 	DBName *StringExpr `json:"DBName,omitempty"`
 
 	// The name of an existing DB parameter group or a reference to an
 	// AWS::RDS::DBParameterGroup resource created in the template.
 	DBParameterGroupName *StringExpr `json:"DBParameterGroupName,omitempty"`
 
-	// A list of the DB security groups to assign to the Amazon RDS instance.
-	// The list can include both the name of existing DB security groups or
+	// A list of the DB security groups to assign to the DB instance. The
+	// list can include both the name of existing DB security groups or
 	// references to AWS::RDS::DBSecurityGroup resources created in the
 	// template.
 	DBSecurityGroups *StringListExpr `json:"DBSecurityGroups,omitempty"`
 
-	// The identifier for the DB snapshot to restore from.
+	// The name or ARN of the DB snapshot used to restore the DB instance. If
+	// you are restoring from a shared manual DB snapshot, you must specify
+	// the Amazon Resource Name (ARN) of the snapshot.
 	DBSnapshotIdentifier *StringExpr `json:"DBSnapshotIdentifier,omitempty"`
 
 	// A DB subnet group to associate with the DB instance.
 	DBSubnetGroupName *StringExpr `json:"DBSubnetGroupName,omitempty"`
 
-	// The name of the database engine that the DB instance uses. This
-	// property is optional when you specify the DBSnapshotIdentifier
-	// property to create DB instances.
+	// The database engine that the DB instance uses. This property is
+	// optional when you specify the DBSnapshotIdentifier property to create
+	// DB instances.
 	Engine *StringExpr `json:"Engine,omitempty"`
 
-	// The version number of the database engine to use.
+	// The version number of the database engine that the DB instance uses.
 	EngineVersion *StringExpr `json:"EngineVersion,omitempty"`
 
 	// The number of I/O operations per second (IOPS) that the database
 	// provisions. The value must be equal to or greater than 1000.
 	Iops *IntegerExpr `json:"Iops,omitempty"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service
-	// master key that is used to encrypt the database instance, such as
+	// The ARN of the AWS Key Management Service (AWS KMS) master key that is
+	// used to encrypt the DB instance, such as
 	// arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
 	// If you enable the StorageEncrypted property but don't specify this
-	// property, the default master key is used. If you specify this
-	// property, you must set the StorageEncrypted property to true.
+	// property, AWS CloudFormation uses the default master key. If you
+	// specify this property, you must set the StorageEncrypted property to
+	// true.
 	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
 
-	// The license model information for the DB instance.
+	// The license model of the DB instance.
 	LicenseModel *StringExpr `json:"LicenseModel,omitempty"`
 
-	// The master user name for the database instance. This property is
-	// optional when you specify the DBSnapshotIdentifier or the
-	// DBClusterIdentifier property to create DB instances.
+	// The master user name for the DB instance. This property is optional
+	// when you specify the DBSnapshotIdentifier or the DBClusterIdentifier
+	// property to create DB instances.
 	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
 
-	// The master password for the database instance. This property is
-	// optional when you specify the DBSnapshotIdentifier or the
-	// DBClusterIdentifier property to create DB instances.
+	// The master password for the DB instance. This property is optional
+	// when you specify the DBSnapshotIdentifier or the DBClusterIdentifier
+	// property to create DB instances.
 	MasterUserPassword *StringExpr `json:"MasterUserPassword,omitempty"`
 
 	// The interval, in seconds, between points when Amazon RDS collects
 	// enhanced monitoring metrics for the DB instance. To disable metrics
-	// collection, specify 0.
+	// collection, specify 0. For default and valid values, see the
+	// MonitoringInterval parameter for the CreateDBInstance action in the
+	// Amazon Relational Database Service API Reference.
 	MonitoringInterval *IntegerExpr `json:"MonitoringInterval,omitempty"`
 
 	// The ARN of the AWS Identity and Access Management (IAM) role that
@@ -4842,18 +4847,18 @@ type RDSDBInstance struct {
 	// Service User Guide.
 	MonitoringRoleArn *StringExpr `json:"MonitoringRoleArn,omitempty"`
 
-	// Specifies if the database instance is a multiple Availability Zone
-	// deployment. You cannot set the AvailabilityZone parameter if the
-	// MultiAZ parameter is set to true.
+	// Specifies whether the DB instance deployed in multiple Availability
+	// Zones. You cannot set the AvailabilityZone parameter if the MultiAZ
+	// parameter is set to true.
 	MultiAZ *BoolExpr `json:"MultiAZ,omitempty"`
 
-	// An option group that this database instance is associated with.
+	// The option group that this DB instance is associated with.
 	OptionGroupName *StringExpr `json:"OptionGroupName,omitempty"`
 
 	// The port for the instance.
 	Port *StringExpr `json:"Port,omitempty"`
 
-	// The daily time range during which automated backups are created if
+	// The daily time range during which automated backups are performed if
 	// automated backups are enabled, as determined by the
 	// BackupRetentionPeriod property. For valid values, see the
 	// PreferredBackupWindow parameter for the CreateDBInstance action in the
@@ -4866,34 +4871,32 @@ type RDSDBInstance struct {
 	// Service API Reference.
 	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
 
-	// Indicates whether the database instance is an Internet-facing
-	// instance. If you specify true, an instance is created with a publicly
-	// resolvable DNS name, which resolves to a public IP address. If you
-	// specify false, an internal instance is created with a DNS name that
-	// resolves to a private IP address.
+	// Indicates whether the DB instance is an Internet-facing instance. If
+	// you specify true, AWS CloudFormation creates an instance with a
+	// publicly resolvable DNS name, which resolves to a public IP address.
+	// If you specify false, AWS CloudFormation creates an internal instance
+	// with a DNS name that resolves to a private IP address.
 	PubliclyAccessible *BoolExpr `json:"PubliclyAccessible,omitempty"`
 
 	// If you want to create a read replica DB instance, specify the ID of
-	// the source database instance. Each database instance can have a
-	// certain number of read replicas. For more information, see Working
-	// with Read Replicas in the Amazon Relational Database Service Developer
-	// Guide.
+	// the source DB instance. Each B instance can have a limited number of
+	// read replicas. For more information, see Working with Read Replicas in
+	// the Amazon Relational Database Service Developer Guide.
 	SourceDBInstanceIdentifier *StringExpr `json:"SourceDBInstanceIdentifier,omitempty"`
 
-	// Indicates whether the database instance is encrypted.
+	// Indicates whether the DB instance is encrypted.
 	StorageEncrypted *BoolExpr `json:"StorageEncrypted,omitempty"`
 
-	// The storage type associated with this database instance.
+	// The storage type associated with this DB instance.
 	StorageType *StringExpr `json:"StorageType,omitempty"`
 
-	// An arbitrary set of tags (key–value pairs) for this database
-	// instance.
+	// An arbitrary set of tags (key–value pairs) for this DB instance.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
-	// A list of the VPC security group IDs to assign to the Amazon RDS
-	// instance. The list can include both the physical IDs of existing VPC
-	// security groups or references to AWS::EC2::SecurityGroup resources
-	// created in the template.
+	// A list of the VPC security group IDs to assign to the DB instance. The
+	// list can include both the physical IDs of existing VPC security groups
+	// and references to AWS::EC2::SecurityGroup resources created in the
+	// template.
 	VPCSecurityGroups *StringListExpr `json:"VPCSecurityGroups,omitempty"`
 }
 
@@ -5155,7 +5158,10 @@ type RedshiftCluster struct {
 	// Indicates whether the cluster can be accessed from a public network.
 	PubliclyAccessible *BoolExpr `json:"PubliclyAccessible,omitempty"`
 
-	// The name of the cluster the source snapshot was created from.
+	// The name of the cluster the source snapshot was created from. For more
+	// information about restoring from a snapshot, see the
+	// RestoreFromClusterSnapshot action in the Amazon Redshift API
+	// Reference.
 	SnapshotClusterIdentifier interface{} `json:"SnapshotClusterIdentifier,omitempty"`
 
 	// The name of the snapshot from which to create a new cluster.
@@ -9062,8 +9068,8 @@ type ElasticBlockStoreBlockDeviceProperty struct {
 	// The snapshot ID of the volume to use to create a block device.
 	SnapshotId *StringExpr `json:"SnapshotId,omitempty"`
 
-	// The volume size, in gibibytes (GiB). This can be a number from 1 –
-	// 1024. If the volume type is io1, the minimum value is 10.
+	// The volume size, in gibibytes (GiB). For valid values, see the Size
+	// parameter for the CreateVolume action in the Amazon EC2 API Reference.
 	VolumeSize *StringExpr `json:"VolumeSize,omitempty"`
 
 	// The volume type. If you set the type to io1, you must also set the
