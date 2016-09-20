@@ -269,7 +269,7 @@
           "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The resources used for the response's content type. Specify response\nmodels as key-value pairs (string-to-string maps), with a content type\nas the key and a Model resource name as the value.",
+          "DocString": "The resources used for the response's content type. Specify response\nmodels as key-value pairs (string-to-string map), with a content type\nas the key and a Model resource name as the value.",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
@@ -277,7 +277,7 @@
           "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Request parameters that API Gateway accepts. Specify request\nparameters as key-value pairs (string-to-Boolean maps), with a source\nas the key and a Boolean as the value. The Boolean specifies whether a\nparameter is required. A source must match the following format\nmethod.request.location.name, where the location is querystring, path,\nor header, and name is a valid, unique parameter name.",
+          "DocString": "Request parameters that API Gateway accepts. Specify request\nparameters as key-value pairs (string-to-Boolean map), with a source\nas the key and a Boolean as the value. The Boolean specifies whether a\nparameter is required. A source must match the following format\nmethod.request.location.name, where the location is querystring, path,\nor header, and name is a valid, unique parameter name.",
           "SyntaxExpression": "{ String:Boolean, ... }"
         },
         {
@@ -383,7 +383,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A Swagger specification that defines a set of RESTful APIs in the JSON\nformat. To specify a Swagger file that is in the YAML format, use the\nBodyS3Location property.",
+          "DocString": "A Swagger specification that defines a set of RESTful APIs in the JSON\nformat.",
           "SyntaxExpression": "JSON object"
         },
         {
@@ -524,7 +524,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The maximum value that Application Auto Scaling can use to scale a\ntarget during a scaling activity.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "MinCapacity",
@@ -532,7 +532,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The minimum value that Application Auto Scaling can use to scale a\ntarget during a scaling activity.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "ResourceId",
@@ -540,7 +540,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The unique resource identifier to associate with this scalable target.\nFor more information, see the ResourceId parameter for the\nRegisterScalableTarget action in the Application Auto Scaling API\nReference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "RoleARN",
@@ -548,7 +548,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an AWS Identity and Access\nManagement (IAM) role that allows Application Auto Scaling to modify\nyour scalable target.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "ScalableDimension",
@@ -556,7 +556,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The scalable dimension associated with the scalable target. Specify\nthe service namespace, resource type, and scaling property, such as\necs:service:DesiredCount for the desired task count of an Amazon EC2\nContainer Service service. For valid values, see the ScalableDimension\ncontent for the ScalingPolicy data type in the Application Auto\nScaling API Reference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "ServiceNamespace",
@@ -564,7 +564,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS service namespace of the scalable target. For a list of\nservice namespaces, see AWS Service Namespaces in the AWS General\nReference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -578,7 +578,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the scaling policy.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "PolicyType",
@@ -586,7 +586,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An Application Auto Scaling policy type. For valid values, see the\nPolicyType parameter for the PutScalingPolicy action in the\nApplication Auto Scaling API Reference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "ResourceId",
@@ -594,7 +594,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The unique resource identifier for the scalable target that this\nscaling policy applies to. For more information, see the ResourceId\nparameter for the PutScalingPolicy action in the Application Auto\nScaling API Reference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "ScalableDimension",
@@ -602,7 +602,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The scalable dimension of the scalable target that this scaling policy\napplies to. The scalable dimension contains the service namespace,\nresource type, and scaling property, such as ecs:service:DesiredCount\nfor the desired task count of an Amazon ECS service.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "ServiceNamespace",
@@ -610,7 +610,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS service namespace of the scalable target that this scaling\npolicy applies to. For a list of service namespaces, see AWS Service\nNamespaces in the AWS General Reference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "ScalingTargetId",
@@ -618,7 +618,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS CloudFormation-generated ID of an Application Auto Scaling\nscalable target. For more information about the ID, see the Return\nValue section of the AWS::ApplicationAutoScaling::ScalableTarget\nresource.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "StepScalingPolicyConfiguration",
@@ -626,7 +626,7 @@
           "TypeHref": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html",
           "TypeName": "",
           "DocString": "A step policy that configures when Application Auto Scaling scales\nresources up or down, and by how much.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "StepScalingPolicyConfiguration"
         }
       ]
     },
@@ -744,7 +744,7 @@
           "TypeHref": "aws-properties-as-tags.html",
           "TypeName": "",
           "DocString": "The tags you want to attach to this resource.",
-          "SyntaxExpression": "[ Auto Scaling Tag, ..., ]"
+          "SyntaxExpression": "[ Auto Scaling Tag, ... ]"
         },
         {
           "Name": "TargetGroupARNs",
@@ -1126,7 +1126,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Fully qualified domain name (FQDN), such as www.example.com, of the\nsite that you want to secure with the ACM certificate. To protect\nseveral sites in the same domain, use an asterisk (*) to specify a\nwildcard. For example, *.example.com protects www.example.com,\nsite.example.com, and images.example.com.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "DomainValidationOptions",
@@ -1134,7 +1134,7 @@
           "TypeHref": "aws-properties-certificatemanager-certificate-domainvalidationoption.html",
           "TypeName": "",
           "DocString": "Domain information that domain name registrars use to verify your\nidentity. For more information and the default values, see Configure\nEmail for Your Domain and Validate Domain Ownership in the AWS\nCertificate Manager User Guide.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "[ DomainValidationOptions, ... ]"
         },
         {
           "Name": "SubjectAlternativeNames",
@@ -1142,7 +1142,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "FQDNs to be included in the Subject Alternative Name extension of the\nACM certificate. For example, you can add www.example.net to a\ncertificate for the www.example.com domain name so that users can\nreach your site by using either name.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "[ String, ... ]"
         },
         {
           "Name": "Tags",
@@ -1150,7 +1150,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this ACM certificate.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "[ Resource Tag, ... ]"
         }
       ]
     },
@@ -2718,8 +2718,8 @@
         },
         {
           "Name": "Icmp",
-          "Type": "EC2 ICMP Property Type",
-          "TypeHref": "aws-properties-ec2-icmp.html",
+          "Type": "EC2NetworkAclEntryIcmp",
+          "TypeHref": "aws-properties-ec2-networkaclentry-icmp.html",
           "TypeName": "",
           "DocString": "The Internet Control Message Protocol (ICMP) code and type.",
           "SyntaxExpression": "EC2 ICMP"
@@ -2734,8 +2734,8 @@
         },
         {
           "Name": "PortRange",
-          "Type": "EC2 PortRange Property Type",
-          "TypeHref": "aws-properties-ec2-port-range.html",
+          "Type": "EC2 NetworkAclEntry Icmp",
+          "TypeHref": "aws-properties-ec2-networkaclentry-portrange.html",
           "TypeName": "",
           "DocString": "The range of port numbers for the UDP/TCP protocol.",
           "SyntaxExpression": "EC2 PortRange"
@@ -3206,7 +3206,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A Ref structure that contains the ID of the VPC on which you want to\ncreate the subnet. The VPC ID is provided as the value of the \"Ref\"\nproperty, as: { \"Ref\": \"VPCID\" }.",
-          "SyntaxExpression": "{ \"Ref\" : String }"
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -3220,7 +3220,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID representing the current association between the original\nnetwork ACL and the subnet.",
-          "SyntaxExpression": "{ String }"
+          "SyntaxExpression": "String"
         },
         {
           "Name": "NetworkAclId",
@@ -3228,7 +3228,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the new ACL to associate with the subnet.",
-          "SyntaxExpression": "{ String }"
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -3665,7 +3665,16 @@
     {
       "Name": "AWS::ECS::Cluster",
       "Href": "aws-resource-ecs-cluster.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "ClusterName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the cluster. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID for the name. For more\ninformation, see Name Type.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "AWS::ECS::Service",
@@ -3732,6 +3741,22 @@
           "TypeName": "",
           "DocString": "A list of container definitions in JSON format that describe the\ncontainers that make up your task.",
           "SyntaxExpression": "[ Container Definition, ... ]"
+        },
+        {
+          "Name": "Family",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of a family that this task definition is registered to. A\nfamily groups multiple versions of a task definition. Amazon ECS gives\nthe first task definition that you registered to a family a revision\nnumber of 1. Amazon ECS gives sequential revision numbers to each task\ndefinition that you add.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TaskRoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of an AWS Identity and Access\nManagement (IAM) role that grants containers in the task permission to\ncall AWS APIs on your behalf. For more information, see IAM Roles for\nTasks in the Amazon EC2 Container Service Developer Guide.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "Volumes",
@@ -4849,6 +4874,14 @@
           "SyntaxExpression": "Elasticsearch Cluster Config"
         },
         {
+          "Name": "ElasticsearchVersion",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The version of Elasticsearch to use, such as 2.3. For information\nabout the versions that Amazon ES supports, see the\nElasticsearch-Version parameter for the CreateElasticsearchDomain\naction in the Amazon Elasticsearch Service Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "SnapshotOptions",
           "Type": "Amazon Elasticsearch Service Domain SnapshotOptions",
           "TypeHref": "aws-properties-elasticsearch-domain-snapshotoptions.html",
@@ -5585,7 +5618,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the IAM user. For valid values, see the UserName parameter\nfor the CreateUser action in the IAM API Reference. If you don't\nspecify a name, AWS CloudFormation generates a unique physical ID and\nuses that ID for the group name.",
+          "DocString": "A name for the IAM user. For valid values, see the UserName parameter\nfor the CreateUser action in the IAM API Reference. If you don't\nspecify a name, AWS CloudFormation generates a unique physical ID and\nuses that ID for the user name.",
           "SyntaxExpression": "String"
         }
       ]
@@ -5687,7 +5720,7 @@
           "Type": "",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A JSON string that contains up to three key-value pairs, for example:\n{\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}.",
+          "DocString": "A JSON string that contains up to three key-value pairs, for example:\n{ \"attributes\": { \"string1\":\"string2\" } }.",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
@@ -5813,6 +5846,28 @@
       ]
     },
     {
+      "Name": "AWS::KMS::Alias",
+      "Href": "aws-resource-kms-alias.html",
+      "Properties": [
+        {
+          "Name": "AliasName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the alias. The name must start with alias followed by a\nforward slash, such as alias/. You can't specify aliases that begin\nwith alias/AWS. These aliases are reserved.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TargetKeyId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the key for which you are creating the alias. Specify the\nkey's globally unique identifier or Amazon Resource Name (ARN). You\ncan't specify another alias.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS::KMS::Key",
       "Href": "aws-resource-kms-key.html",
       "Properties": [
@@ -5905,7 +5960,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Information that describes the alias, such as its purpose or the\nfunction that it's associated with.",
+          "DocString": "Information about the alias, such as its purpose or the Lambda\nfunction that is associated with it.",
           "SyntaxExpression": "String"
         },
         {
@@ -6993,7 +7048,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of an existing DB cluster that this instance will be\nassociated with. If you specify this property, specify aurora for the\nEngine property and do not specify any of the following properties:\nAllocatedStorage, CharacterSetName, DBSecurityGroups,\nSourceDBInstanceIdentifier, or StorageType.",
+          "DocString": "The name of an existing DB cluster that this instance will be\nassociated with. If you specify this property, specify aurora for the\nEngine property and do not specify any of the following properties:\nAllocatedStorage, BackupRetentionPeriod, CharacterSetName,\nDBSecurityGroups, PreferredBackupWindow, PreferredMaintenanceWindow,\nPort, SourceDBInstanceIdentifier, or StorageType.",
           "SyntaxExpression": "String"
         },
         {
@@ -7113,7 +7168,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The interval, in seconds, between points when Amazon RDS collects\nenhanced monitoring metrics for the DB instance. To disable metrics\ncollection, specify 0. For default and valid values, see the\nMonitoringInterval parameter for the CreateDBInstance action in the\nAmazon Relational Database Service API Reference.",
+          "DocString": "The interval, in seconds, between points when Amazon RDS collects\nenhanced monitoring metrics for the DB instance. To disable metrics\ncollection, specify 0.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -7129,7 +7184,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies whether the DB instance deployed in multiple Availability\nZones. You cannot set the AvailabilityZone parameter if the MultiAZ\nparameter is set to true.",
+          "DocString": "Specifies if the database instance is a multiple Availability Zone\ndeployment. You cannot set the AvailabilityZone parameter if the\nMultiAZ parameter is set to true.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -7177,7 +7232,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "If you want to create a read replica DB instance, specify the ID of\nthe source DB instance. Each B instance can have a limited number of\nread replicas. For more information, see Working with Read Replicas in\nthe Amazon Relational Database Service Developer Guide.",
+          "DocString": "If you want to create a read replica DB instance, specify the ID of\nthe source DB instance. Each DB instance can have a limited number of\nread replicas. For more information, see Working with Read Replicas in\nthe Amazon Relational Database Service Developer Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -7202,7 +7257,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this DB instance.",
-          "SyntaxExpression": "[ Resource Tag, ..., ]"
+          "SyntaxExpression": "[ Resource Tag, ... ]"
         },
         {
           "Name": "VPCSecurityGroups",
@@ -7778,7 +7833,7 @@
           "TypeHref": "aws-properties-route53-healthcheck-healthcheckconfig.html",
           "TypeName": "",
           "DocString": "An Amazon Route 53 health check.",
-          "SyntaxExpression": "{ HealthCheckConfig }"
+          "SyntaxExpression": "HealthCheckConfig"
         },
         {
           "Name": "HealthCheckTags",
@@ -7800,7 +7855,7 @@
           "TypeHref": "aws-properties-route53-hostedzone-hostedzoneconfig.html",
           "TypeName": "",
           "DocString": "A complex type that contains an optional comment about your hosted\nzone.",
-          "SyntaxExpression": "{ HostedZoneConfig }"
+          "SyntaxExpression": "HostedZoneConfig"
         },
         {
           "Name": "HostedZoneTags",
@@ -7862,7 +7917,7 @@
           "TypeHref": "aws-properties-route53-recordset-geolocation.html",
           "TypeName": "",
           "DocString": "Describes how Amazon Route 53 responds to DNS queries based on the\ngeographic origin of the query.",
-          "SyntaxExpression": "{ GeoLocation }"
+          "SyntaxExpression": "GeoLocation"
         },
         {
           "Name": "HealthCheckId",
@@ -8095,7 +8150,16 @@
     {
       "Name": "AWS::SDB::Domain",
       "Href": "aws-properties-simpledb.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Information about the Amazon SimpleDB domain.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "AWS::SNS::Topic",
@@ -8398,7 +8462,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A friendly name or description for the Amazon CloudWatch metric of\nthis web ACL.",
+          "DocString": "A friendly name or description for the Amazon CloudWatch metric of\nthis web ACL. For valid values, see the MetricName parameter of the\nCreateWebACL action in the AWS WAF API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -9017,7 +9081,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies whether the ScalingAdjustment value in the StepAdjustment\nproperty is an absolute number or a percentage of the current\ncapacity. For valid values, see the AdjustmentType content for the\nStepScalingPolicyConfiguration data type in the Application Auto\nScaling API Reference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "Cooldown",
@@ -9025,7 +9089,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The amount of time, in seconds, after a scaling activity completes\nbefore any further trigger-related scaling activities can start. For\nmore information, see the Cooldown content for the\nStepScalingPolicyConfiguration data type in the Application Auto\nScaling API Reference.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "MetricAggregationType",
@@ -9033,7 +9097,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The aggregation type for the CloudWatch metrics. You can specify\nMinimum, Maximum, or Average. By default, AWS CloudFormation specifies\nAverage. For more information, see Aggregation in the Amazon\nCloudWatch Developer Guide.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "MinAdjustmentMagnitude",
@@ -9041,7 +9105,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The minimum number of resources to adjust when a scaling activity is\ntriggered. If you specify PercentChangeInCapacity for the adjustment\ntype, the scaling policy scales the target by this amount.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "StepAdjustments",
@@ -9049,7 +9113,7 @@
           "TypeHref": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html",
           "TypeName": "",
           "DocString": "A set of adjustments that enable you to scale based on the size of the\nalarm breach.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "[ StepAdjustment, ... ]"
         }
       ]
     },
@@ -9063,7 +9127,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The lower bound of the breach size. The lower bound is the difference\nbetween the breach threshold and the aggregated CloudWatch metric\nvalue. If the metric value is within the lower and upper bounds,\nApplication Auto Scaling triggers this step adjustment.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Number"
         },
         {
           "Name": "MetricIntervalUpperBound",
@@ -9071,7 +9135,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The upper bound of the breach size. The upper bound is the difference\nbetween the breach threshold and the CloudWatch metric value. If the\nmetric value is within the lower and upper bounds, Application Auto\nScaling triggers this step adjustment.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Number"
         },
         {
           "Name": "ScalingAdjustment",
@@ -9079,7 +9143,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The amount by which to scale. The adjustment is based on the value\nthat you specified in the AdjustmentType property (either an absolute\nnumber or a percentage). A positive value adds to the current capacity\nand a negative number subtracts from the current capacity.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         }
       ]
     },
@@ -11305,28 +11369,6 @@
       ]
     },
     {
-      "Name": "EC2 ICMP Property Type",
-      "Href": "aws-properties-ec2-icmp.html",
-      "Properties": [
-        {
-          "Name": "Code",
-          "Type": "Integer",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The Internet Control Message Protocol (ICMP) code. You can use -1 to\nspecify all ICMP codes for the given ICMP type.Condition: Required if\nspecifying 1 (ICMP) for the CreateNetworkAclEntry protocol parameter.",
-          "SyntaxExpression": ""
-        },
-        {
-          "Name": "Type",
-          "Type": "Integer",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The Internet Control Message Protocol (ICMP) type. You can use -1 to\nspecify all ICMP types.Condition: Required if specifying 1 (ICMP) for\nthe CreateNetworkAclEntry protocol parameter.",
-          "SyntaxExpression": ""
-        }
-      ]
-    },
-    {
       "Name": "Amazon EC2 Instance SsmAssociations",
       "Href": "aws-properties-ec2-instance-ssmassociations.html",
       "Properties": [
@@ -11479,84 +11521,46 @@
       ]
     },
     {
-      "Name": "EC2 Network Interface Association",
-      "Href": "aws-properties-ec2-network-interface-association.html",
+      "Name": "EC2 NetworkAclEntry Icmp",
+      "Href": "aws-properties-ec2-networkaclentry-icmp.html",
       "Properties": [
         {
-          "Name": "AttachmentID",
-          "Type": "String",
+          "Name": "Code",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the network interface attachment.",
-          "SyntaxExpression": "String"
+          "DocString": "The Internet Control Message Protocol (ICMP) code. You can use -1 to\nspecify all ICMP codes for the given ICMP type.",
+          "SyntaxExpression": "Integer"
         },
         {
-          "Name": "InstanceID",
-          "Type": "String",
+          "Name": "Type",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the instance attached to the network interface.",
-          "SyntaxExpression": "String"
-        },
-        {
-          "Name": "PublicIp",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The address of the Elastic IP address bound to the network interface.",
-          "SyntaxExpression": "String"
-        },
-        {
-          "Name": "IpOwnerId",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The ID of the Elastic IP address owner.",
-          "SyntaxExpression": "String"
+          "DocString": "The Internet Control Message Protocol (ICMP) type. You can use -1 to\nspecify all ICMP types.",
+          "SyntaxExpression": "Integer"
         }
       ]
     },
     {
-      "Name": "EC2 Network Interface Attachment",
-      "Href": "aws-properties-ec2-network-interface-attachment.html",
+      "Name": "EC2 NetworkAclEntry PortRange",
+      "Href": "aws-properties-ec2-networkaclentry-portrange.html",
       "Properties": [
         {
-          "Name": "AttachmentID",
-          "Type": "String",
+          "Name": "From",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the network interface attachment.",
-          "SyntaxExpression": "String"
+          "DocString": "The first port in the range.",
+          "SyntaxExpression": "Integer"
         },
         {
-          "Name": "InstanceID",
-          "Type": "String",
+          "Name": "To",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the instance attached to the network interface.",
-          "SyntaxExpression": "String"
-        }
-      ]
-    },
-    {
-      "Name": "EC2 Network Interface Group Item",
-      "Href": "aws-properties-ec2-network-interface-groupitem.html",
-      "Properties": [
-        {
-          "Name": "Key",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "ID of the security group.",
-          "SyntaxExpression": ""
-        },
-        {
-          "Name": "Value",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "Name of the security group.",
-          "SyntaxExpression": ""
+          "DocString": "The last port in the range.",
+          "SyntaxExpression": "Integer"
         }
       ]
     },
@@ -11583,28 +11587,6 @@
       ]
     },
     {
-      "Name": "EC2 PortRange Property Type",
-      "Href": "aws-properties-ec2-port-range.html",
-      "Properties": [
-        {
-          "Name": "From",
-          "Type": "Integer",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The first port in the range.Condition: Required if specifying 6 (TCP)\nor 17 (UDP) for the CreateNetworkAclEntry protocol parameter.",
-          "SyntaxExpression": ""
-        },
-        {
-          "Name": "To",
-          "Type": "Integer",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The last port in the range.Condition: Required if specifying 6 (TCP)\nor 17 (UDP) for the CreateNetworkAclEntry protocol parameter.",
-          "SyntaxExpression": ""
-        }
-      ]
-    },
-    {
       "Name": "EC2 Security Group Rule Property Type",
       "Href": "aws-properties-ec2-security-group-rule.html",
       "Properties": [
@@ -11614,7 +11596,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies a CIDR range.",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "DestinationSecurityGroupId (SecurityGroupEgress only)",
@@ -11630,7 +11612,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The start of port range for the TCP and UDP protocols, or an ICMP type\nnumber. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP\ntype number).",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "IpProtocol",
@@ -11638,7 +11620,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An IP protocol name or number. For valid values, go to the IpProtocol\nparameter in AuthorizeSecurityGroupIngress",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "String"
         },
         {
           "Name": "SourceSecurityGroupId (SecurityGroupIngress only)",
@@ -11670,7 +11652,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The end of port range for the TCP and UDP protocols, or an ICMP code.\nAn ICMP code of -1 indicates a wildcard (i.e., any ICMP code).",
-          "SyntaxExpression": ""
+          "SyntaxExpression": "Integer"
         }
       ]
     },
@@ -11851,6 +11833,14 @@
           "TypeName": "",
           "DocString": "One or more security group IDs to associate with the instances.",
           "SyntaxExpression": "[ SecurityGroup, ... ]"
+        },
+        {
+          "Name": "SpotPrice",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The bid price per unit hour for the specified instance type. If you\ndon't specify a value, Amazon EC2 uses the Spot bid price for the\nfleet. For more information, see How Spot Fleet Works in the Amazon\nEC2 User Guide for Linux Instances.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "SubnetId",
@@ -13280,7 +13270,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Metadata about third-party applications that third-party vendors use\nfor testing purposes.",
-          "SyntaxExpression": "[ String:String, ... ]"
+          "SyntaxExpression": "{ String:String, ... }"
         },
         {
           "Name": "Args",
@@ -13846,7 +13836,7 @@
           "TypeHref": "aws-properties-iot-cloudwatchalarm.html",
           "TypeName": "",
           "DocString": "Changes the state of a CloudWatch alarm.",
-          "SyntaxExpression": "{ CloudwatchAlarm Action, ... }"
+          "SyntaxExpression": "CloudwatchAlarm Action"
         },
         {
           "Name": "CloudwatchMetric",
@@ -13854,7 +13844,7 @@
           "TypeHref": "aws-properties-iot-cloudwatchmetric.html",
           "TypeName": "",
           "DocString": "Captures a CloudWatch metric.",
-          "SyntaxExpression": "{ CloudwatchMetric Action, ... }"
+          "SyntaxExpression": "CloudwatchMetric Action"
         },
         {
           "Name": "DynamoDB",
@@ -13862,7 +13852,7 @@
           "TypeHref": "aws-properties-iot-dynamodb.html",
           "TypeName": "",
           "DocString": "Writes data to a DynamoDB table.",
-          "SyntaxExpression": "{ DynamoDB Action, ... }"
+          "SyntaxExpression": "DynamoDB Action"
         },
         {
           "Name": "Elasticsearch",
@@ -13870,7 +13860,7 @@
           "TypeHref": "aws-properties-iot-elasticsearch.html",
           "TypeName": "",
           "DocString": "Writes data to an Elasticsearch domain.",
-          "SyntaxExpression": "{ Elasticsearch Action, ... }"
+          "SyntaxExpression": "Elasticsearch Action"
         },
         {
           "Name": "Firehose",
@@ -13878,7 +13868,7 @@
           "TypeHref": "aws-properties-iot-firehose.html",
           "TypeName": "",
           "DocString": "Writes data to a Firehose stream.",
-          "SyntaxExpression": "{ Firehose Action, ... }"
+          "SyntaxExpression": "Firehose Action"
         },
         {
           "Name": "Kinesis",
@@ -13886,7 +13876,7 @@
           "TypeHref": "aws-properties-iot-kinesis.html",
           "TypeName": "",
           "DocString": "Writes data to an Amazon Kinesis stream.",
-          "SyntaxExpression": "{ Kinesis Action, ... }"
+          "SyntaxExpression": "Kinesis Action"
         },
         {
           "Name": "Lambda",
@@ -13894,7 +13884,7 @@
           "TypeHref": "aws-properties-iot-lambda.html",
           "TypeName": "",
           "DocString": "Invokes a Lambda function.",
-          "SyntaxExpression": "{ Lambda Action, ... }"
+          "SyntaxExpression": "Lambda Action"
         },
         {
           "Name": "Republish",
@@ -13902,7 +13892,7 @@
           "TypeHref": "aws-properties-iot-republish.html",
           "TypeName": "",
           "DocString": "Publishes data to an MQ Telemetry Transport (MQTT) topic different\nfrom the one currently specified.",
-          "SyntaxExpression": "{ Republish Action, ... }"
+          "SyntaxExpression": "Republish Action"
         },
         {
           "Name": "S3",
@@ -13910,7 +13900,7 @@
           "TypeHref": "aws-properties-iot-s3.html",
           "TypeName": "",
           "DocString": "Writes data to an S3 bucket.",
-          "SyntaxExpression": "{ S3 Action, ... }"
+          "SyntaxExpression": "S3 Action"
         },
         {
           "Name": "Sns",
@@ -13918,7 +13908,7 @@
           "TypeHref": "aws-properties-iot-sns.html",
           "TypeName": "",
           "DocString": "Publishes data to an SNS topic.",
-          "SyntaxExpression": "{ Sns Action, ... }"
+          "SyntaxExpression": "Sns Action"
         },
         {
           "Name": "Sqs",
@@ -13926,7 +13916,7 @@
           "TypeHref": "aws-properties-iot-sqs.html",
           "TypeName": "",
           "DocString": "Publishes data to an SQS queue.",
-          "SyntaxExpression": "{ Sqs Action, ... }"
+          "SyntaxExpression": "Sqs Action"
         }
       ]
     },

@@ -194,12 +194,12 @@ type ApiGatewayMethod struct {
 	MethodResponses *APIGatewayMethodMethodResponseList `json:"MethodResponses,omitempty"`
 
 	// The resources used for the response's content type. Specify response
-	// models as key-value pairs (string-to-string maps), with a content type
+	// models as key-value pairs (string-to-string map), with a content type
 	// as the key and a Model resource name as the value.
 	RequestModels interface{} `json:"RequestModels,omitempty"`
 
 	// Request parameters that API Gateway accepts. Specify request
-	// parameters as key-value pairs (string-to-Boolean maps), with a source
+	// parameters as key-value pairs (string-to-Boolean map), with a source
 	// as the key and a Boolean as the value. The Boolean specifies whether a
 	// parameter is required. A source must match the following format
 	// method.request.location.name, where the location is querystring, path,
@@ -275,8 +275,7 @@ func (s ApiGatewayResource) CfnResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
 type ApiGatewayRestApi struct {
 	// A Swagger specification that defines a set of RESTful APIs in the JSON
-	// format. To specify a Swagger file that is in the YAML format, use the
-	// BodyS3Location property.
+	// format.
 	Body interface{} `json:"Body,omitempty"`
 
 	// The Amazon Simple Storage Service (Amazon S3) location that points to
@@ -1891,13 +1890,13 @@ type EC2NetworkAclEntry struct {
 	Egress *BoolExpr `json:"Egress,omitempty"`
 
 	// The Internet Control Message Protocol (ICMP) code and type.
-	Icmp *EC2ICMP `json:"Icmp,omitempty"`
+	Icmp *EC2NetworkAclEntryIcmp `json:"Icmp,omitempty"`
 
 	// ID of the ACL where the entry will be created.
 	NetworkAclId *StringExpr `json:"NetworkAclId,omitempty"`
 
 	// The range of port numbers for the UDP/TCP protocol.
-	PortRange *EC2PortRange `json:"PortRange,omitempty"`
+	PortRange *EC2NetworkAclEntryPortRange `json:"PortRange,omitempty"`
 
 	// The IP protocol that the rule applies to. You must specify -1 or a
 	// protocol number (go to Protocol Numbers at iana.org). You can specify
@@ -2552,6 +2551,10 @@ func (s ECRRepository) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html
 type ECSCluster struct {
+	// A name for the cluster. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID for the name. For more
+	// information, see Name Type.
+	ClusterName *StringExpr `json:"ClusterName,omitempty"`
 }
 
 // CfnResourceType returns AWS::ECS::Cluster to implement the ResourceProperties interface
@@ -2602,6 +2605,19 @@ type ECSTaskDefinition struct {
 	// A list of container definitions in JSON format that describe the
 	// containers that make up your task.
 	ContainerDefinitions *EC2ContainerServiceTaskDefinitionContainerDefinitionsList `json:"ContainerDefinitions,omitempty"`
+
+	// The name of a family that this task definition is registered to. A
+	// family groups multiple versions of a task definition. Amazon ECS gives
+	// the first task definition that you registered to a family a revision
+	// number of 1. Amazon ECS gives sequential revision numbers to each task
+	// definition that you add.
+	Family *StringExpr `json:"Family,omitempty"`
+
+	// The Amazon Resource Name (ARN) of an AWS Identity and Access
+	// Management (IAM) role that grants containers in the task permission to
+	// call AWS APIs on your behalf. For more information, see IAM Roles for
+	// Tasks in the Amazon EC2 Container Service Developer Guide.
+	TaskRoleArn *StringExpr `json:"TaskRoleArn,omitempty"`
 
 	// A list of volume definitions in JSON format for volumes that you can
 	// use in your container definitions.
@@ -3333,6 +3349,12 @@ type ElasticsearchDomain struct {
 	// Elasticsearch Service Developer Guide.
 	ElasticsearchClusterConfig *ElasticsearchServiceDomainElasticsearchClusterConfig `json:"ElasticsearchClusterConfig,omitempty"`
 
+	// The version of Elasticsearch to use, such as 2.3. For information
+	// about the versions that Amazon ES supports, see the
+	// Elasticsearch-Version parameter for the CreateElasticsearchDomain
+	// action in the Amazon Elasticsearch Service Developer Guide.
+	ElasticsearchVersion *StringExpr `json:"ElasticsearchVersion,omitempty"`
+
 	// The automated snapshot configuration for the Amazon ES domain indices.
 	SnapshotOptions *ElasticsearchServiceDomainSnapshotOptions `json:"SnapshotOptions,omitempty"`
 
@@ -3817,7 +3839,7 @@ type IAMUser struct {
 	// A name for the IAM user. For valid values, see the UserName parameter
 	// for the CreateUser action in the IAM API Reference. If you don't
 	// specify a name, AWS CloudFormation generates a unique physical ID and
-	// uses that ID for the group name.
+	// uses that ID for the user name.
 	UserName *StringExpr `json:"UserName,omitempty"`
 }
 
@@ -3896,7 +3918,7 @@ func (s IoTPolicyPrincipalAttachment) CfnResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html
 type IoTThing struct {
 	// A JSON string that contains up to three key-value pairs, for example:
-	// {\"attributes\":{\"string1\":\"string2\"}}.
+	// { "attributes": { "string1":"string2" } }.
 	AttributePayload interface{} `json:"AttributePayload,omitempty"`
 
 	// The name (the physical ID) of the AWS IoT thing.
@@ -3986,6 +4008,26 @@ func (s KinesisFirehoseDeliveryStream) CfnResourceType() string {
 	return "AWS::KinesisFirehose::DeliveryStream"
 }
 
+// KMSAlias represents AWS::KMS::Alias
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html
+type KMSAlias struct {
+	// The name of the alias. The name must start with alias followed by a
+	// forward slash, such as alias/. You can't specify aliases that begin
+	// with alias/AWS. These aliases are reserved.
+	AliasName *StringExpr `json:"AliasName,omitempty"`
+
+	// The ID of the key for which you are creating the alias. Specify the
+	// key's globally unique identifier or Amazon Resource Name (ARN). You
+	// can't specify another alias.
+	TargetKeyId *StringExpr `json:"TargetKeyId,omitempty"`
+}
+
+// CfnResourceType returns AWS::KMS::Alias to implement the ResourceProperties interface
+func (s KMSAlias) CfnResourceType() string {
+	return "AWS::KMS::Alias"
+}
+
 // KMSKey represents AWS::KMS::Key
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html
@@ -4052,8 +4094,8 @@ func (s LambdaEventSourceMapping) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html
 type LambdaAlias struct {
-	// Information that describes the alias, such as its purpose or the
-	// function that it's associated with.
+	// Information about the alias, such as its purpose or the Lambda
+	// function that is associated with it.
 	Description *StringExpr `json:"Description,omitempty"`
 
 	// The Lambda function that you want to associate with this alias. You
@@ -4761,8 +4803,9 @@ type RDSDBInstance struct {
 	// The name of an existing DB cluster that this instance will be
 	// associated with. If you specify this property, specify aurora for the
 	// Engine property and do not specify any of the following properties:
-	// AllocatedStorage, CharacterSetName, DBSecurityGroups,
-	// SourceDBInstanceIdentifier, or StorageType.
+	// AllocatedStorage, BackupRetentionPeriod, CharacterSetName,
+	// DBSecurityGroups, PreferredBackupWindow, PreferredMaintenanceWindow,
+	// Port, SourceDBInstanceIdentifier, or StorageType.
 	DBClusterIdentifier *StringExpr `json:"DBClusterIdentifier,omitempty"`
 
 	// The name of the compute and memory capacity classes of the DB
@@ -4834,9 +4877,7 @@ type RDSDBInstance struct {
 
 	// The interval, in seconds, between points when Amazon RDS collects
 	// enhanced monitoring metrics for the DB instance. To disable metrics
-	// collection, specify 0. For default and valid values, see the
-	// MonitoringInterval parameter for the CreateDBInstance action in the
-	// Amazon Relational Database Service API Reference.
+	// collection, specify 0.
 	MonitoringInterval *IntegerExpr `json:"MonitoringInterval,omitempty"`
 
 	// The ARN of the AWS Identity and Access Management (IAM) role that
@@ -4847,9 +4888,9 @@ type RDSDBInstance struct {
 	// Service User Guide.
 	MonitoringRoleArn *StringExpr `json:"MonitoringRoleArn,omitempty"`
 
-	// Specifies whether the DB instance deployed in multiple Availability
-	// Zones. You cannot set the AvailabilityZone parameter if the MultiAZ
-	// parameter is set to true.
+	// Specifies if the database instance is a multiple Availability Zone
+	// deployment. You cannot set the AvailabilityZone parameter if the
+	// MultiAZ parameter is set to true.
 	MultiAZ *BoolExpr `json:"MultiAZ,omitempty"`
 
 	// The option group that this DB instance is associated with.
@@ -4879,7 +4920,7 @@ type RDSDBInstance struct {
 	PubliclyAccessible *BoolExpr `json:"PubliclyAccessible,omitempty"`
 
 	// If you want to create a read replica DB instance, specify the ID of
-	// the source DB instance. Each B instance can have a limited number of
+	// the source DB instance. Each DB instance can have a limited number of
 	// read replicas. For more information, see Working with Read Replicas in
 	// the Amazon Relational Database Service Developer Guide.
 	SourceDBInstanceIdentifier *StringExpr `json:"SourceDBInstanceIdentifier,omitempty"`
@@ -5498,6 +5539,8 @@ func (s S3BucketPolicy) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html
 type SDBDomain struct {
+	// Information about the Amazon SimpleDB domain.
+	Description *StringExpr `json:"Description,omitempty"`
 }
 
 // CfnResourceType returns AWS::SDB::Domain to implement the ResourceProperties interface
@@ -5739,7 +5782,8 @@ type WAFWebACL struct {
 	DefaultAction *WAFWebACLAction `json:"DefaultAction,omitempty"`
 
 	// A friendly name or description for the Amazon CloudWatch metric of
-	// this web ACL.
+	// this web ACL. For valid values, see the MetricName parameter of the
+	// CreateWebACL action in the AWS WAF API Reference.
 	MetricName *StringExpr `json:"MetricName,omitempty"`
 
 	// A friendly name or description of the web ACL.
@@ -9098,41 +9142,6 @@ func (l *ElasticBlockStoreBlockDevicePropertyList) UnmarshalJSON(buf []byte) err
 	return err
 }
 
-// EC2ICMP represents EC2 ICMP Property Type
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-icmp.html
-type EC2ICMP struct {
-	// The Internet Control Message Protocol (ICMP) code. You can use -1 to
-	// specify all ICMP codes for the given ICMP type.Condition: Required if
-	// specifying 1 (ICMP) for the CreateNetworkAclEntry protocol parameter.
-	Code *IntegerExpr `json:"Code,omitempty"`
-
-	// The Internet Control Message Protocol (ICMP) type. You can use -1 to
-	// specify all ICMP types.Condition: Required if specifying 1 (ICMP) for
-	// the CreateNetworkAclEntry protocol parameter.
-	Type *IntegerExpr `json:"Type,omitempty"`
-}
-
-// EC2ICMPList represents a list of EC2ICMP
-type EC2ICMPList []EC2ICMP
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *EC2ICMPList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := EC2ICMP{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = EC2ICMPList{item}
-		return nil
-	}
-	list := []EC2ICMP{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = EC2ICMPList(list)
-		return nil
-	}
-	return err
-}
-
 // EC2InstanceSsmAssociations represents Amazon EC2 Instance SsmAssociations
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html
@@ -9298,100 +9307,65 @@ func (l *EC2NetworkInterfaceEmbeddedList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// EC2NetworkInterfaceAssociation represents EC2 Network Interface Association
+// EC2NetworkAclEntryIcmp represents EC2 NetworkAclEntry Icmp
 //
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-association.html
-type EC2NetworkInterfaceAssociation struct {
-	// The ID of the network interface attachment.
-	AttachmentID *StringExpr `json:"AttachmentID,omitempty"`
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html
+type EC2NetworkAclEntryIcmp struct {
+	// The Internet Control Message Protocol (ICMP) code. You can use -1 to
+	// specify all ICMP codes for the given ICMP type.
+	Code *IntegerExpr `json:"Code,omitempty"`
 
-	// The ID of the instance attached to the network interface.
-	InstanceID *StringExpr `json:"InstanceID,omitempty"`
-
-	// The address of the Elastic IP address bound to the network interface.
-	PublicIp *StringExpr `json:"PublicIp,omitempty"`
-
-	// The ID of the Elastic IP address owner.
-	IpOwnerId *StringExpr `json:"IpOwnerId,omitempty"`
+	// The Internet Control Message Protocol (ICMP) type. You can use -1 to
+	// specify all ICMP types.
+	Type *IntegerExpr `json:"Type,omitempty"`
 }
 
-// EC2NetworkInterfaceAssociationList represents a list of EC2NetworkInterfaceAssociation
-type EC2NetworkInterfaceAssociationList []EC2NetworkInterfaceAssociation
+// EC2NetworkAclEntryIcmpList represents a list of EC2NetworkAclEntryIcmp
+type EC2NetworkAclEntryIcmpList []EC2NetworkAclEntryIcmp
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *EC2NetworkInterfaceAssociationList) UnmarshalJSON(buf []byte) error {
+func (l *EC2NetworkAclEntryIcmpList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := EC2NetworkInterfaceAssociation{}
+	item := EC2NetworkAclEntryIcmp{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = EC2NetworkInterfaceAssociationList{item}
+		*l = EC2NetworkAclEntryIcmpList{item}
 		return nil
 	}
-	list := []EC2NetworkInterfaceAssociation{}
+	list := []EC2NetworkAclEntryIcmp{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = EC2NetworkInterfaceAssociationList(list)
+		*l = EC2NetworkAclEntryIcmpList(list)
 		return nil
 	}
 	return err
 }
 
-// EC2NetworkInterfaceAttachmentType represents EC2 Network Interface Attachment
+// EC2NetworkAclEntryPortRange represents EC2 NetworkAclEntry PortRange
 //
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-attachment.html
-type EC2NetworkInterfaceAttachmentType struct {
-	// The ID of the network interface attachment.
-	AttachmentID *StringExpr `json:"AttachmentID,omitempty"`
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html
+type EC2NetworkAclEntryPortRange struct {
+	// The first port in the range.
+	From *IntegerExpr `json:"From,omitempty"`
 
-	// The ID of the instance attached to the network interface.
-	InstanceID *StringExpr `json:"InstanceID,omitempty"`
+	// The last port in the range.
+	To *IntegerExpr `json:"To,omitempty"`
 }
 
-// EC2NetworkInterfaceAttachmentTypeList represents a list of EC2NetworkInterfaceAttachmentType
-type EC2NetworkInterfaceAttachmentTypeList []EC2NetworkInterfaceAttachmentType
+// EC2NetworkAclEntryPortRangeList represents a list of EC2NetworkAclEntryPortRange
+type EC2NetworkAclEntryPortRangeList []EC2NetworkAclEntryPortRange
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *EC2NetworkInterfaceAttachmentTypeList) UnmarshalJSON(buf []byte) error {
+func (l *EC2NetworkAclEntryPortRangeList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := EC2NetworkInterfaceAttachmentType{}
+	item := EC2NetworkAclEntryPortRange{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = EC2NetworkInterfaceAttachmentTypeList{item}
+		*l = EC2NetworkAclEntryPortRangeList{item}
 		return nil
 	}
-	list := []EC2NetworkInterfaceAttachmentType{}
+	list := []EC2NetworkAclEntryPortRange{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = EC2NetworkInterfaceAttachmentTypeList(list)
-		return nil
-	}
-	return err
-}
-
-// EC2NetworkInterfaceGroupItem represents EC2 Network Interface Group Item
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-groupitem.html
-type EC2NetworkInterfaceGroupItem struct {
-	// ID of the security group.
-	Key *StringExpr `json:"Key,omitempty"`
-
-	// Name of the security group.
-	Value *StringExpr `json:"Value,omitempty"`
-}
-
-// EC2NetworkInterfaceGroupItemList represents a list of EC2NetworkInterfaceGroupItem
-type EC2NetworkInterfaceGroupItemList []EC2NetworkInterfaceGroupItem
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *EC2NetworkInterfaceGroupItemList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := EC2NetworkInterfaceGroupItem{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = EC2NetworkInterfaceGroupItemList{item}
-		return nil
-	}
-	list := []EC2NetworkInterfaceGroupItem{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = EC2NetworkInterfaceGroupItemList(list)
+		*l = EC2NetworkAclEntryPortRangeList(list)
 		return nil
 	}
 	return err
@@ -9426,39 +9400,6 @@ func (l *EC2NetworkInterfacePrivateIPSpecificationList) UnmarshalJSON(buf []byte
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2NetworkInterfacePrivateIPSpecificationList(list)
-		return nil
-	}
-	return err
-}
-
-// EC2PortRange represents EC2 PortRange Property Type
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-port-range.html
-type EC2PortRange struct {
-	// The first port in the range.Condition: Required if specifying 6 (TCP)
-	// or 17 (UDP) for the CreateNetworkAclEntry protocol parameter.
-	From *IntegerExpr `json:"From,omitempty"`
-
-	// The last port in the range.Condition: Required if specifying 6 (TCP)
-	// or 17 (UDP) for the CreateNetworkAclEntry protocol parameter.
-	To *IntegerExpr `json:"To,omitempty"`
-}
-
-// EC2PortRangeList represents a list of EC2PortRange
-type EC2PortRangeList []EC2PortRange
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *EC2PortRangeList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := EC2PortRange{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = EC2PortRangeList{item}
-		return nil
-	}
-	list := []EC2PortRange{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = EC2PortRangeList(list)
 		return nil
 	}
 	return err
@@ -9647,6 +9588,12 @@ type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications 
 
 	// One or more security group IDs to associate with the instances.
 	SecurityGroups *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroupsList `json:"SecurityGroups,omitempty"`
+
+	// The bid price per unit hour for the specified instance type. If you
+	// don't specify a value, Amazon EC2 uses the Spot bid price for the
+	// fleet. For more information, see How Spot Fleet Works in the Amazon
+	// EC2 User Guide for Linux Instances.
+	SpotPrice *StringExpr `json:"SpotPrice,omitempty"`
 
 	// The ID of the subnet in which to launch the instances.
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
@@ -15687,6 +15634,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &KinesisStream{}
 	case "AWS::KinesisFirehose::DeliveryStream":
 		return &KinesisFirehoseDeliveryStream{}
+	case "AWS::KMS::Alias":
+		return &KMSAlias{}
 	case "AWS::KMS::Key":
 		return &KMSKey{}
 	case "AWS::Lambda::EventSourceMapping":

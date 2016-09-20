@@ -38,6 +38,11 @@ func (tr *TemplateReference) Load() error {
 			name := s.Text()
 			name = regexp.MustCompile("\\s+").ReplaceAllString(name, " ")
 			href, _ := s.Attr("href")
+
+			// hack around documentation bug, reported 20 Sept 2016
+			if href == "aws-properties-ec2-networkaclentry-portrange.html" {
+				name = "EC2 NetworkAclEntry PortRange"
+			}
 			tr.Resources = append(tr.Resources, &Resource{Name: name, Href: href})
 
 		})
@@ -252,6 +257,12 @@ func (r *Resource) Load() error {
 					})
 				}
 			})
+
+			if property.Name == "Icmp" && property.TypeHref == "aws-properties-ec2-networkaclentry-portrange.html" {
+				property.Type = "EC2NetworkAclEntryIcmp"
+				property.TypeHref = "aws-properties-ec2-networkaclentry-icmp.html"
+			}
+
 			r.Properties = append(r.Properties, &property)
 		})
 	})
@@ -286,9 +297,15 @@ func (r *Resource) Load() error {
 	// the syntax of each property in the SyntaxExpression field of the corresponding
 	// property.
 	doc.Find(".programlisting").Each(func(i int, varList *goquery.Selection) {
-		if varList.Parent().Find(".titlepage").First().Text() != "Syntax" {
+		headlineText := varList.Parent().Find(".titlepage").First().Text()
+		if headlineText != "JSON" {
 			return
 		}
+		nextHeadlineText := varList.Parent().Parent().Find(".titlepage").First().Text()
+		if !strings.HasPrefix(nextHeadlineText, "Syntax") {
+			return
+		}
+
 		for _, line := range strings.Split(varList.Text(), "\n") {
 			if !strings.Contains(line, ":") {
 				continue
