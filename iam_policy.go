@@ -8,6 +8,16 @@ type IAMPolicyDocument struct {
 	Statement []IAMPolicyStatement
 }
 
+// ToJSON returns the JSON representation of the policy document or
+// panics if the object cannot be marshaled.
+func (i IAMPolicyDocument) ToJSON() string {
+	buf, err := json.Marshal(i)
+	if err != nil {
+		panic(err)
+	}
+	return string(buf)
+}
+
 // IAMPrincipal represents a principal in an IAM policy
 type IAMPrincipal struct {
 	AWS           *StringListExpr `json:",omitempty"`
