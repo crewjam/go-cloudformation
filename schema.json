@@ -2585,7 +2585,7 @@
           "Type": "List of Amazon EC2 Instance SsmAssociations",
           "TypeHref": "aws-properties-ec2-instance-ssmassociations.html",
           "TypeName": "",
-          "DocString": "The Amazon EC2 Simple Systems Manager (SSM) document and parameter\nvalues to associate with this instance. To use this property, you must\nspecify an IAM role for the instance. For more information, see\nPrerequisites for Remotely Running Commands on EC2 Instances in the\nAmazon EC2 User Guide for Microsoft Windows Instances.",
+          "DocString": "The Amazon EC2 Simple Systems Manager (SSM) document and parameter\nvalues to associate with this instance. To use this property, you must\nspecify an IAM role for the instance. For more information, see\nPrerequisites for Remotely Running Commands on EC2 Instances in the\nAmazon EC2 User Guide for Windows Instances.",
           "SyntaxExpression": "[ SSMAssociation, ... ]"
         },
         {
@@ -2718,7 +2718,7 @@
         },
         {
           "Name": "Icmp",
-          "Type": "EC2NetworkAclEntryIcmp",
+          "Type": "EC2 NetworkAclEntry Icmp",
           "TypeHref": "aws-properties-ec2-networkaclentry-icmp.html",
           "TypeName": "",
           "DocString": "The Internet Control Message Protocol (ICMP) code and type.",
@@ -2734,7 +2734,7 @@
         },
         {
           "Name": "PortRange",
-          "Type": "EC2 NetworkAclEntry Icmp",
+          "Type": "EC2 NetworkAclEntry PortRange",
           "TypeHref": "aws-properties-ec2-networkaclentry-portrange.html",
           "TypeName": "",
           "DocString": "The range of port numbers for the UDP/TCP protocol.",

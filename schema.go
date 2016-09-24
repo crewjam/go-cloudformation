@@ -1797,7 +1797,7 @@ type EC2Instance struct {
 	// values to associate with this instance. To use this property, you must
 	// specify an IAM role for the instance. For more information, see
 	// Prerequisites for Remotely Running Commands on EC2 Instances in the
-	// Amazon EC2 User Guide for Microsoft Windows Instances.
+	// Amazon EC2 User Guide for Windows Instances.
 	SsmAssociations *EC2InstanceSsmAssociationsList `json:"SsmAssociations,omitempty"`
 
 	// If you're using Amazon VPC, this property specifies the ID of the
