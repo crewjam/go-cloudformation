@@ -851,7 +851,7 @@ type CloudFormationInterface struct {
 	// shown.
 	ParameterGroups *InterfaceParameterGroupList `json:"ParameterGroups,omitempty"`
 
-	// A list of parameters and their friendly names that the AWS
+	// A mapping of parameters and their friendly names that the AWS
 	// CloudFormation console shows when a stack is created or updated.
 	ParameterLabels *InterfaceParameterLabel `json:"ParameterLabels,omitempty"`
 }

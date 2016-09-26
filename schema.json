@@ -1260,7 +1260,7 @@
           "Type": "AWS CloudFormation Interface ParameterLabel",
           "TypeHref": "aws-properties-cloudformation-interface-parameterlabel.html",
           "TypeName": "",
-          "DocString": "A list of parameters and their friendly names that the AWS\nCloudFormation console shows when a stack is created or updated.",
+          "DocString": "A mapping of parameters and their friendly names that the AWS\nCloudFormation console shows when a stack is created or updated.",
           "SyntaxExpression": "ParameterLabel"
         }
       ]
