@@ -14,7 +14,7 @@ func (testSuite *ImportValueFuncTest) TestRef(c *C) {
 	inputBuf := `{"Fn::ImportValue" : "sharedValueToImport"}`
 	f, err := unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, IsNil)
-	c.Assert(f.(StringFunc).String(), DeepEquals, ImportValue("sharedValueToImport").String())
+	c.Assert(f.(StringFunc).String(), DeepEquals, ImportValue(String("sharedValueToImport")).String())
 
 	// tidy the JSON input
 	inputStruct := map[string]interface{}{}
@@ -27,12 +27,8 @@ func (testSuite *ImportValueFuncTest) TestRef(c *C) {
 }
 
 func (testSuite *ImportValueFuncTest) TestFailures(c *C) {
-	inputBuf := `{"Fn::ImportValue": {"Fn::ImportValue": "foo"}}`
+	inputBuf := `{"Fn::ImportValue": ["1"]}`
 	_, err := unmarshalFunc([]byte(inputBuf))
-	c.Assert(err, ErrorMatches, "cannot decode function")
-
-	inputBuf = `{"Fn::ImportValue": ["1"]}`
-	_, err = unmarshalFunc([]byte(inputBuf))
 	c.Assert(err, ErrorMatches, "cannot decode function")
 
 	inputBuf = `{"Fn::ImportValue": true}`
