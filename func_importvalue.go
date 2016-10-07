@@ -1,8 +1,8 @@
 package cloudformation
 
 // ImportValue returns a new instance of ImportValue that imports valueToImport.
-func ImportValue(valueToImport string) ImportValueFunc {
-	return ImportValueFunc{ValueToImport: valueToImport}
+func ImportValue(valueToImport Stringable) ImportValueFunc {
+	return ImportValueFunc{ValueToImport: *valueToImport.String()}
 }
 
 // ImportValueFunc represents an invocation of the Fn::ImportValue intrinsic.
@@ -26,7 +26,7 @@ func ImportValue(valueToImport string) ImportValueFunc {
 //
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html
 type ImportValueFunc struct {
-	ValueToImport string `json:"Fn::ImportValue"`
+	ValueToImport StringExpr `json:"Fn::ImportValue"`
 }
 
 // String returns this reference as a StringExpr

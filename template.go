@@ -74,7 +74,7 @@ type Parameter struct {
 //
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-crossstackref.html
 type OutputExport struct {
-	Name string `json:",omitempty"`
+	Name Stringable `json:",omitempty"`
 }
 
 // Output represents a template output
