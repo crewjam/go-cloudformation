@@ -105,6 +105,14 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "ProviderARNs",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of the Amazon Cognito user pool Amazon Resource Names (ARNs) to\nassociate with this authorizer. For more information, see Use Amazon\nCognito Your User Pool in the API Gateway Developer Guide.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
           "Name": "RestApiId",
           "Type": "String",
           "TypeHref": "",
@@ -419,6 +427,14 @@
           "SyntaxExpression": "Boolean"
         },
         {
+          "Name": "Mode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The update mode for the RestApi resource, such as merge or overwrite.\nBy default, AWS CloudFormation specifies overwrite.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "Name",
           "Type": "String",
           "TypeHref": "",
@@ -511,6 +527,52 @@
           "TypeName": "",
           "DocString": "A map (string to string map) that defines the stage variables, where\nthe variable name is the key and the variable value is the value.\nVariable names are limited to alphanumeric characters. Values must\nmatch the following regular expression: [A-Za-z0-9-._~:/?#\u0026amp;=,]+.",
           "SyntaxExpression": "{ String:String, ... }"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::UsagePlan",
+      "Href": "aws-resource-apigateway-usageplan.html",
+      "Properties": [
+        {
+          "Name": "ApiStages",
+          "Type": "List of Amazon API Gateway UsagePlan ApiStage",
+          "TypeHref": "aws-properties-apigateway-usageplan-apistage.html",
+          "TypeName": "",
+          "DocString": "The APIs and API stages to associate with this usage plan.",
+          "SyntaxExpression": "[ ApiStage, ... ]"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The purpose of this usage plan.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Quota",
+          "Type": "Amazon API Gateway UsagePlan QuotaSettings",
+          "TypeHref": "aws-properties-apigateway-usageplan-quotasettings.html",
+          "TypeName": "",
+          "DocString": "Configures the number of requests that users can make within a given\ninterval.",
+          "SyntaxExpression": "QuotaSettings"
+        },
+        {
+          "Name": "Throttle",
+          "Type": "Amazon API Gateway UsagePlan ThrottleSettings",
+          "TypeHref": "aws-properties-apigateway-usageplan-throttlesettings.html",
+          "TypeName": "",
+          "DocString": "Configures the overall request rate (average requests per second) and\nburst capacity.",
+          "SyntaxExpression": "ThrottleSettings"
+        },
+        {
+          "Name": "UsagePlanName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for this usage plan.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -1577,6 +1639,36 @@
           "TypeName": "",
           "DocString": "The unit for the alarm's associated metric.",
           "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::CodeCommit::Repository",
+      "Href": "aws-resource-codecommit-repository.html",
+      "Properties": [
+        {
+          "Name": "RepositoryDescription",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description about the AWS CodeCommit repository. For constraints,\nsee the CreateRepository action in the AWS CodeCommit API Reference.",
+          "SyntaxExpression": "String, required"
+        },
+        {
+          "Name": "RepositoryName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the AWS CodeCommit repository.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Triggers",
+          "Type": "List of AWS CodeCommit Repository Trigger",
+          "TypeHref": "aws-properties-codecommit-repository-triggers.html",
+          "TypeName": "",
+          "DocString": "Defines the actions to take in response to events that occur in the\nrepository. For example, you can send email notifications when someone\npushes to the repository.",
+          "SyntaxExpression": "[ Trigger ]"
         }
       ]
     },
@@ -3028,6 +3120,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "CIDR range.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DestinationPrefixListId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The AWS service prefix of an Amazon VPC endpoint. For more\ninformation, see VPC Endpoints in the Amazon VPC User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -6231,11 +6331,11 @@
       "Properties": [
         {
           "Name": "FilterPattern",
-          "Type": "List of strings",
+          "Type": "String",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Describes the pattern that CloudWatch Logs follows to interpret each\nentry in a log. For example, a log entry might contain fields such as\ntimestamps, IP addresses, error codes, bytes transferred, and so on.\nYou use the pattern to specify those fields and to specify what to\nlook for in the log file. For example, if you're interested in error\ncodes that begin with 1234, your filter pattern might be [timestamps,\nip_addresses, error_codes = 1234*, size, ...].",
-          "SyntaxExpression": "[String, ...]"
+          "SyntaxExpression": "String"
         },
         {
           "Name": "LogGroupName",
@@ -7105,6 +7205,22 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A DB subnet group to associate with the DB instance.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Domain",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "For an Amazon RDS DB instance that is running Microsoft SQL Server,\nthe Active Directory directory ID to create the instance in. Amazon\nRDS uses Windows Authentication to authenticate users that connect to\nthe DB instance. For more information, see Using Windows\nAuthentication with an Amazon RDS DB Instance Running Microsoft SQL\nServer in the Amazon Relational Database Service User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DomainIAMRoleName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of an IAM role that Amazon RDS uses when calling the\nDirectory Service APIs.",
           "SyntaxExpression": "String"
         },
         {
@@ -8866,7 +8982,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of back end your method is running, such as HTTP, AWS (for\nLambda functions), or MOCK.",
+          "DocString": "The type of back end your method is running, such as HTTP, AWS, or\nMOCK. For valid values, see the type property in the Amazon API\nGateway REST API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -9067,6 +9183,80 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of steady-state requests per second that API Gateway\npermits across all APIs, stages, and methods in your AWS account. For\nmore information, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
+          "SyntaxExpression": "Number"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway UsagePlan ApiStage",
+      "Href": "aws-properties-apigateway-usageplan-apistage.html",
+      "Properties": [
+        {
+          "Name": "ApiId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of an API that is in the specified Stage property that you want\nto associate with the usage plan.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Stage",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of an API Gateway stage to associate with the usage plan.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway UsagePlan QuotaSettings",
+      "Href": "aws-properties-apigateway-usageplan-quotasettings.html",
+      "Properties": [
+        {
+          "Name": "Limit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The maximum number of requests that users can make within the\nspecified time period.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Offset",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "For the initial time period, the number of requests to subtract from\nthe specified limit. When you first implement a usage plan, the plan\nmight start in the middle of the week or month. With this property,\nyou can decrease the limit for this initial time period.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Period",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The time period for which the maximum limit of requests applies, such\nas DAY or WEEK. For valid values, see the period property for the\nUsagePlan resource in the Amazon API Gateway REST API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon API Gateway UsagePlan ThrottleSettings",
+      "Href": "aws-properties-apigateway-usageplan-throttlesettings.html",
+      "Properties": [
+        {
+          "Name": "BurstLimit",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The maximum API request rate limit over a time ranging from one to a\nfew seconds. The maximum API request rate limit depends on whether the\nunderlying token bucket is at its full capacity. For more information\nabout request throttling, see Manage API Request Throttling in the API\nGateway Developer Guide.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "RateLimit",
+          "Type": "Number",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The API request steady-state rate limit (average requests per second\nover an extended period of time). For more information about request\nthrottling, see Manage API Request Throttling in the API Gateway\nDeveloper Guide.",
           "SyntaxExpression": "Number"
         }
       ]
@@ -10171,6 +10361,52 @@
       ]
     },
     {
+      "Name": "AWS CodeCommit Repository Trigger",
+      "Href": "aws-properties-codecommit-repository-triggers.html",
+      "Properties": [
+        {
+          "Name": "Branches",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The names of the branches in the AWS CodeCommit repository that\ncontain events that you want to include in the trigger. If you don't\nspecify at least one branch, the trigger applies to all branches.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "CustomData",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "When an event is triggered, additional information that AWS CodeCommit\nincludes when it sends information to the target.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DestinationArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the resource that is the target for\nthis trigger. For valid targets, see Manage Triggers for an AWS\nCodeCommit Repository in the AWS CodeCommit User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Events",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The repository events for which AWS CodeCommit sends information to\nthe target, which you specified in the DestinationArn property. If you\ndon't specify events, the trigger runs for all repository events. For\nvalid values, see the RepositoryTrigger data type in the AWS\nCodeCommit API Reference.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the trigger.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS CodeDeploy DeploymentConfig MinimumHealthyHosts",
       "Href": "aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html",
       "Properties": [
@@ -10664,7 +10900,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The order in which AWS CodePipeline runs this action.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         }
       ]
     },
@@ -11596,6 +11832,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies a CIDR range.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DestinationPrefixListId (SecurityGroupEgress only)",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The AWS service prefix of an Amazon VPC endpoint. For more\ninformation, see VPC Endpoints in the Amazon VPC User Guide.",
           "SyntaxExpression": "String"
         },
         {

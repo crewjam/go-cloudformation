@@ -97,6 +97,11 @@ type ApiGatewayAuthorizer struct {
 	// The name of the authorizer.
 	Name *StringExpr `json:"Name,omitempty"`
 
+	// A list of the Amazon Cognito user pool Amazon Resource Names (ARNs) to
+	// associate with this authorizer. For more information, see Use Amazon
+	// Cognito Your User Pool in the API Gateway Developer Guide.
+	ProviderARNs *StringListExpr `json:"ProviderARNs,omitempty"`
+
 	// The ID of the RestApi resource in which API Gateway creates the
 	// authorizer.
 	RestApiId *StringExpr `json:"RestApiId,omitempty"`
@@ -293,6 +298,10 @@ type ApiGatewayRestApi struct {
 	// resource, indicates whether to roll back the resource.
 	FailOnWarnings *BoolExpr `json:"FailOnWarnings,omitempty"`
 
+	// The update mode for the RestApi resource, such as merge or overwrite.
+	// By default, AWS CloudFormation specifies overwrite.
+	Mode *StringExpr `json:"Mode,omitempty"`
+
 	// A name for the API Gateway RestApi resource.
 	Name *StringExpr `json:"Name,omitempty"`
 
@@ -345,6 +354,33 @@ type ApiGatewayStage struct {
 // CfnResourceType returns AWS::ApiGateway::Stage to implement the ResourceProperties interface
 func (s ApiGatewayStage) CfnResourceType() string {
 	return "AWS::ApiGateway::Stage"
+}
+
+// ApiGatewayUsagePlan represents AWS::ApiGateway::UsagePlan
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html
+type ApiGatewayUsagePlan struct {
+	// The APIs and API stages to associate with this usage plan.
+	ApiStages *APIGatewayUsagePlanApiStageList `json:"ApiStages,omitempty"`
+
+	// The purpose of this usage plan.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// Configures the number of requests that users can make within a given
+	// interval.
+	Quota *APIGatewayUsagePlanQuotaSettings `json:"Quota,omitempty"`
+
+	// Configures the overall request rate (average requests per second) and
+	// burst capacity.
+	Throttle *APIGatewayUsagePlanThrottleSettings `json:"Throttle,omitempty"`
+
+	// A name for this usage plan.
+	UsagePlanName *StringExpr `json:"UsagePlanName,omitempty"`
+}
+
+// CfnResourceType returns AWS::ApiGateway::UsagePlan to implement the ResourceProperties interface
+func (s ApiGatewayUsagePlan) CfnResourceType() string {
+	return "AWS::ApiGateway::UsagePlan"
 }
 
 // ApplicationAutoScalingScalableTarget represents AWS::ApplicationAutoScaling::ScalableTarget
@@ -1090,6 +1126,28 @@ type CloudWatchAlarm struct {
 // CfnResourceType returns AWS::CloudWatch::Alarm to implement the ResourceProperties interface
 func (s CloudWatchAlarm) CfnResourceType() string {
 	return "AWS::CloudWatch::Alarm"
+}
+
+// CodeCommitRepository represents AWS::CodeCommit::Repository
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html
+type CodeCommitRepository struct {
+	// A description about the AWS CodeCommit repository. For constraints,
+	// see the CreateRepository action in the AWS CodeCommit API Reference.
+	RepositoryDescription *StringExpr `json:"RepositoryDescription,omitempty"`
+
+	// A name for the AWS CodeCommit repository.
+	RepositoryName *StringExpr `json:"RepositoryName,omitempty"`
+
+	// Defines the actions to take in response to events that occur in the
+	// repository. For example, you can send email notifications when someone
+	// pushes to the repository.
+	Triggers *CodeCommitRepositoryTriggerList `json:"Triggers,omitempty"`
+}
+
+// CfnResourceType returns AWS::CodeCommit::Repository to implement the ResourceProperties interface
+func (s CodeCommitRepository) CfnResourceType() string {
+	return "AWS::CodeCommit::Repository"
 }
 
 // CodeDeployApplication represents AWS::CodeDeploy::Application
@@ -2086,6 +2144,10 @@ func (s EC2SecurityGroup) CfnResourceType() string {
 type EC2SecurityGroupEgress struct {
 	// CIDR range.
 	CidrIp *StringExpr `json:"CidrIp,omitempty"`
+
+	// The AWS service prefix of an Amazon VPC endpoint. For more
+	// information, see VPC Endpoints in the Amazon VPC User Guide.
+	DestinationPrefixListId *StringExpr `json:"DestinationPrefixListId,omitempty"`
 
 	// Specifies the group ID of the destination Amazon VPC security group.
 	DestinationSecurityGroupId *StringExpr `json:"DestinationSecurityGroupId,omitempty"`
@@ -4319,7 +4381,7 @@ type LogsMetricFilter struct {
 	// look for in the log file. For example, if you're interested in error
 	// codes that begin with 1234, your filter pattern might be [timestamps,
 	// ip_addresses, error_codes = 1234*, size, ...].
-	FilterPattern *StringListExpr `json:"FilterPattern,omitempty"`
+	FilterPattern *StringExpr `json:"FilterPattern,omitempty"`
 
 	// The name of an existing log group that you want to associate with this
 	// metric filter.
@@ -4840,6 +4902,18 @@ type RDSDBInstance struct {
 
 	// A DB subnet group to associate with the DB instance.
 	DBSubnetGroupName *StringExpr `json:"DBSubnetGroupName,omitempty"`
+
+	// For an Amazon RDS DB instance that is running Microsoft SQL Server,
+	// the Active Directory directory ID to create the instance in. Amazon
+	// RDS uses Windows Authentication to authenticate users that connect to
+	// the DB instance. For more information, see Using Windows
+	// Authentication with an Amazon RDS DB Instance Running Microsoft SQL
+	// Server in the Amazon Relational Database Service User Guide.
+	Domain *StringExpr `json:"Domain,omitempty"`
+
+	// The name of an IAM role that Amazon RDS uses when calling the
+	// Directory Service APIs.
+	DomainIAMRoleName *StringExpr `json:"DomainIAMRoleName,omitempty"`
 
 	// The database engine that the DB instance uses. This property is
 	// optional when you specify the DBSnapshotIdentifier property to create
@@ -6095,8 +6169,9 @@ type APIGatewayMethodIntegration struct {
 	// as the following snippet:
 	RequestTemplates interface{} `json:"RequestTemplates,omitempty"`
 
-	// The type of back end your method is running, such as HTTP, AWS (for
-	// Lambda functions), or MOCK.
+	// The type of back end your method is running, such as HTTP, AWS, or
+	// MOCK. For valid values, see the type property in the Amazon API
+	// Gateway REST API Reference.
 	Type *StringExpr `json:"Type,omitempty"`
 
 	// The integration's Uniform Resource Identifier (URI).
@@ -6319,6 +6394,116 @@ func (l *APIGatewayStageMethodSettingList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = APIGatewayStageMethodSettingList(list)
+		return nil
+	}
+	return err
+}
+
+// APIGatewayUsagePlanApiStage represents Amazon API Gateway UsagePlan ApiStage
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html
+type APIGatewayUsagePlanApiStage struct {
+	// The ID of an API that is in the specified Stage property that you want
+	// to associate with the usage plan.
+	ApiId *StringExpr `json:"ApiId,omitempty"`
+
+	// The name of an API Gateway stage to associate with the usage plan.
+	Stage *StringExpr `json:"Stage,omitempty"`
+}
+
+// APIGatewayUsagePlanApiStageList represents a list of APIGatewayUsagePlanApiStage
+type APIGatewayUsagePlanApiStageList []APIGatewayUsagePlanApiStage
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *APIGatewayUsagePlanApiStageList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := APIGatewayUsagePlanApiStage{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = APIGatewayUsagePlanApiStageList{item}
+		return nil
+	}
+	list := []APIGatewayUsagePlanApiStage{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = APIGatewayUsagePlanApiStageList(list)
+		return nil
+	}
+	return err
+}
+
+// APIGatewayUsagePlanQuotaSettings represents Amazon API Gateway UsagePlan QuotaSettings
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html
+type APIGatewayUsagePlanQuotaSettings struct {
+	// The maximum number of requests that users can make within the
+	// specified time period.
+	Limit *IntegerExpr `json:"Limit,omitempty"`
+
+	// For the initial time period, the number of requests to subtract from
+	// the specified limit. When you first implement a usage plan, the plan
+	// might start in the middle of the week or month. With this property,
+	// you can decrease the limit for this initial time period.
+	Offset *IntegerExpr `json:"Offset,omitempty"`
+
+	// The time period for which the maximum limit of requests applies, such
+	// as DAY or WEEK. For valid values, see the period property for the
+	// UsagePlan resource in the Amazon API Gateway REST API Reference.
+	Period *StringExpr `json:"Period,omitempty"`
+}
+
+// APIGatewayUsagePlanQuotaSettingsList represents a list of APIGatewayUsagePlanQuotaSettings
+type APIGatewayUsagePlanQuotaSettingsList []APIGatewayUsagePlanQuotaSettings
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *APIGatewayUsagePlanQuotaSettingsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := APIGatewayUsagePlanQuotaSettings{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = APIGatewayUsagePlanQuotaSettingsList{item}
+		return nil
+	}
+	list := []APIGatewayUsagePlanQuotaSettings{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = APIGatewayUsagePlanQuotaSettingsList(list)
+		return nil
+	}
+	return err
+}
+
+// APIGatewayUsagePlanThrottleSettings represents Amazon API Gateway UsagePlan ThrottleSettings
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html
+type APIGatewayUsagePlanThrottleSettings struct {
+	// The maximum API request rate limit over a time ranging from one to a
+	// few seconds. The maximum API request rate limit depends on whether the
+	// underlying token bucket is at its full capacity. For more information
+	// about request throttling, see Manage API Request Throttling in the API
+	// Gateway Developer Guide.
+	BurstLimit *IntegerExpr `json:"BurstLimit,omitempty"`
+
+	// The API request steady-state rate limit (average requests per second
+	// over an extended period of time). For more information about request
+	// throttling, see Manage API Request Throttling in the API Gateway
+	// Developer Guide.
+	RateLimit *IntegerExpr `json:"RateLimit,omitempty"`
+}
+
+// APIGatewayUsagePlanThrottleSettingsList represents a list of APIGatewayUsagePlanThrottleSettings
+type APIGatewayUsagePlanThrottleSettingsList []APIGatewayUsagePlanThrottleSettings
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *APIGatewayUsagePlanThrottleSettingsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := APIGatewayUsagePlanThrottleSettings{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = APIGatewayUsagePlanThrottleSettingsList{item}
+		return nil
+	}
+	list := []APIGatewayUsagePlanThrottleSettings{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = APIGatewayUsagePlanThrottleSettingsList(list)
 		return nil
 	}
 	return err
@@ -7622,6 +7807,55 @@ func (l *CloudWatchLogsMetricFilterMetricTransformationPropertyList) UnmarshalJS
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = CloudWatchLogsMetricFilterMetricTransformationPropertyList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeCommitRepositoryTrigger represents AWS CodeCommit Repository Trigger
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-triggers.html
+type CodeCommitRepositoryTrigger struct {
+	// The names of the branches in the AWS CodeCommit repository that
+	// contain events that you want to include in the trigger. If you don't
+	// specify at least one branch, the trigger applies to all branches.
+	Branches *StringListExpr `json:"Branches,omitempty"`
+
+	// When an event is triggered, additional information that AWS CodeCommit
+	// includes when it sends information to the target.
+	CustomData *StringExpr `json:"CustomData,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the resource that is the target for
+	// this trigger. For valid targets, see Manage Triggers for an AWS
+	// CodeCommit Repository in the AWS CodeCommit User Guide.
+	DestinationArn *StringExpr `json:"DestinationArn,omitempty"`
+
+	// The repository events for which AWS CodeCommit sends information to
+	// the target, which you specified in the DestinationArn property. If you
+	// don't specify events, the trigger runs for all repository events. For
+	// valid values, see the RepositoryTrigger data type in the AWS
+	// CodeCommit API Reference.
+	Events *StringListExpr `json:"Events,omitempty"`
+
+	// A name for the trigger.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// CodeCommitRepositoryTriggerList represents a list of CodeCommitRepositoryTrigger
+type CodeCommitRepositoryTriggerList []CodeCommitRepositoryTrigger
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeCommitRepositoryTriggerList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeCommitRepositoryTrigger{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeCommitRepositoryTriggerList{item}
+		return nil
+	}
+	list := []CodeCommitRepositoryTrigger{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeCommitRepositoryTriggerList(list)
 		return nil
 	}
 	return err
@@ -9411,6 +9645,10 @@ func (l *EC2NetworkInterfacePrivateIPSpecificationList) UnmarshalJSON(buf []byte
 type EC2SecurityGroupRule struct {
 	// Specifies a CIDR range.
 	CidrIp *StringExpr `json:"CidrIp,omitempty"`
+
+	// The AWS service prefix of an Amazon VPC endpoint. For more
+	// information, see VPC Endpoints in the Amazon VPC User Guide.
+	DestinationPrefixListIdXXSecurityGroupEgressXOnlyX *StringExpr `json:"DestinationPrefixListId (SecurityGroupEgress only),omitempty"`
 
 	// Specifies the GroupId of the destination Amazon VPC security group.
 	DestinationSecurityGroupIdXXSecurityGroupEgressXOnlyX *StringExpr `json:"DestinationSecurityGroupId (SecurityGroupEgress only),omitempty"`
@@ -15416,6 +15654,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ApiGatewayRestApi{}
 	case "AWS::ApiGateway::Stage":
 		return &ApiGatewayStage{}
+	case "AWS::ApiGateway::UsagePlan":
+		return &ApiGatewayUsagePlan{}
 	case "AWS::ApplicationAutoScaling::ScalableTarget":
 		return &ApplicationAutoScalingScalableTarget{}
 	case "AWS::ApplicationAutoScaling::ScalingPolicy":
@@ -15452,6 +15692,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &CloudTrailTrail{}
 	case "AWS::CloudWatch::Alarm":
 		return &CloudWatchAlarm{}
+	case "AWS::CodeCommit::Repository":
+		return &CodeCommitRepository{}
 	case "AWS::CodeDeploy::Application":
 		return &CodeDeployApplication{}
 	case "AWS::CodeDeploy::DeploymentConfig":
