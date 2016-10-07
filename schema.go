@@ -298,10 +298,6 @@ type ApiGatewayRestApi struct {
 	// resource, indicates whether to roll back the resource.
 	FailOnWarnings *BoolExpr `json:"FailOnWarnings,omitempty"`
 
-	// The update mode for the RestApi resource, such as merge or overwrite.
-	// By default, AWS CloudFormation specifies overwrite.
-	Mode *StringExpr `json:"Mode,omitempty"`
-
 	// A name for the API Gateway RestApi resource.
 	Name *StringExpr `json:"Name,omitempty"`
 

@@ -427,14 +427,6 @@
           "SyntaxExpression": "Boolean"
         },
         {
-          "Name": "Mode",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The update mode for the RestApi resource, such as merge or overwrite.\nBy default, AWS CloudFormation specifies overwrite.",
-          "SyntaxExpression": "String"
-        },
-        {
           "Name": "Name",
           "Type": "String",
           "TypeHref": "",
