@@ -9,6 +9,7 @@ import (
 
 var testFilePaths = []string{
 	"examples/minimal.template",
+	"examples/minimal_outputs.template",
 	//"examples/app.template",
 	"examples/app-minimal.template",
 	"examples/LAMP_Multi_AZ.template",

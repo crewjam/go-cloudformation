@@ -69,6 +69,14 @@ type Parameter struct {
 	ConstraintDescription string       `json:",omitempty"`
 }
 
+// OutputExport represents the name of the resource output that should
+// be used for cross stack references.
+//
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-crossstackref.html
+type OutputExport struct {
+	Name Stringable `json:",omitempty"`
+}
+
 // Output represents a template output
 //
 // The optional Outputs section declares output values that you want to view from the
@@ -77,8 +85,9 @@ type Parameter struct {
 //
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html
 type Output struct {
-	Description string      `json:",omitempty"`
-	Value       interface{} `json:",omitempty"`
+	Description string        `json:",omitempty"`
+	Value       interface{}   `json:",omitempty"`
+	Export      *OutputExport `json:",omitempty"`
 }
 
 // ResourceProperties is an interface that is implemented by resource objects.

@@ -99,6 +99,11 @@ func unmarshalFunc(data []byte) (Func, error) {
 			if err := json.Unmarshal(data, &f); err == nil {
 				return f, nil
 			}
+		case "Fn::ImportValue":
+			f := ImportValueFunc{}
+			if err := json.Unmarshal(data, &f); err == nil {
+				return f, nil
+			}
 		default:
 			return nil, UnknownFunctionError{Name: key}
 		}
