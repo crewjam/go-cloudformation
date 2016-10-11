@@ -1273,7 +1273,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Describes the role for role-based authentication.",
+          "DocString": "Describes the role for role-based authentication. ",
           "SyntaxExpression": "String"
         }
       ]
