@@ -651,7 +651,8 @@ type AutoScalingLifecycleHook struct {
 	HeartbeatTimeout *IntegerExpr `json:"HeartbeatTimeout,omitempty"`
 
 	// The state of the Amazon EC2 instance to which you want to attach the
-	// lifecycle hook.
+	// lifecycle hook. For valid values, see the LifecycleTransition content
+	// for the LifecycleHook data type in the Auto Scaling API Reference.
 	LifecycleTransition *StringExpr `json:"LifecycleTransition,omitempty"`
 
 	// Additional information that you want to include when Auto Scaling
@@ -4871,7 +4872,7 @@ type RDSDBInstance struct {
 	DBInstanceClass *StringExpr `json:"DBInstanceClass,omitempty"`
 
 	// A name for the DB instance. If you specify a name, AWS CloudFormation
-	// converts it to lower >case. If you don't specify a name, AWS
+	// converts it to lower case. If you don't specify a name, AWS
 	// CloudFormation generates a unique physical ID and uses that ID for the
 	// DB instance. For more information, see Name Type.
 	DBInstanceIdentifier *StringExpr `json:"DBInstanceIdentifier,omitempty"`
@@ -4935,14 +4936,10 @@ type RDSDBInstance struct {
 	// The license model of the DB instance.
 	LicenseModel *StringExpr `json:"LicenseModel,omitempty"`
 
-	// The master user name for the DB instance. This property is optional
-	// when you specify the DBSnapshotIdentifier or the DBClusterIdentifier
-	// property to create DB instances.
+	// The master user name for the DB instance.
 	MasterUsername *StringExpr `json:"MasterUsername,omitempty"`
 
-	// The master password for the DB instance. This property is optional
-	// when you specify the DBSnapshotIdentifier or the DBClusterIdentifier
-	// property to create DB instances.
+	// The master password for the DB instance.
 	MasterUserPassword *StringExpr `json:"MasterUserPassword,omitempty"`
 
 	// The interval, in seconds, between points when Amazon RDS collects
@@ -7153,9 +7150,8 @@ type CloudFrontDistributionConfigCacheBehavior struct {
 	// The protocol that users can use to access the files in the origin that
 	// you specified in the TargetOriginId property when a request matches
 	// the value of the PathPattern property. For more information about the
-	// valid values, see the ViewerProtocolPolicy elements in the
-	// DistributionConfig Complex Type topic in the Amazon CloudFront API
-	// Reference.
+	// valid values, see the ViewerProtocolPolicy content for the
+	// CacheBehavior data type in the Amazon CloudFront API Reference.
 	ViewerProtocolPolicy *StringExpr `json:"ViewerProtocolPolicy,omitempty"`
 }
 
@@ -7283,9 +7279,9 @@ type CloudFrontDefaultCacheBehavior struct {
 
 	// The protocol that users can use to access the files in the origin that
 	// you specified in the TargetOriginId property when the default cache
-	// behavior is applied to a request. For valid values, see the
-	// ViewerProtocolPolicy element of the DistributionConfig Complex Type in
-	// the Amazon CloudFront API Reference.
+	// behavior is applied to a request. For more information about the valid
+	// values, see the ViewerProtocolPolicy content for the
+	// DefaultCacheBehavior data type in the Amazon CloudFront API Reference.
 	ViewerProtocolPolicy *StringExpr `json:"ViewerProtocolPolicy,omitempty"`
 }
 

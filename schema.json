@@ -1001,7 +1001,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The state of the Amazon EC2 instance to which you want to attach the\nlifecycle hook.",
+          "DocString": "The state of the Amazon EC2 instance to which you want to attach the\nlifecycle hook. For valid values, see the LifecycleTransition content\nfor the LifecycleHook data type in the Auto Scaling API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -7156,7 +7156,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the DB instance. If you specify a name, AWS CloudFormation\nconverts it to lower \u003ecase. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nDB instance. For more information, see Name Type.",
+          "DocString": "A name for the DB instance. If you specify a name, AWS CloudFormation\nconverts it to lower case. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nDB instance. For more information, see Name Type.",
           "SyntaxExpression": "String"
         },
         {
@@ -7260,7 +7260,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The master user name for the DB instance. This property is optional\nwhen you specify the DBSnapshotIdentifier or the DBClusterIdentifier\nproperty to create DB instances. ",
+          "DocString": "The master user name for the DB instance.",
           "SyntaxExpression": "String"
         },
         {
@@ -7268,7 +7268,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The master password for the DB instance. This property is optional\nwhen you specify the DBSnapshotIdentifier or the DBClusterIdentifier\nproperty to create DB instances.",
+          "DocString": "The master password for the DB instance.",
           "SyntaxExpression": "String"
         },
         {
@@ -9809,7 +9809,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The protocol that users can use to access the files in the origin that\nyou specified in the TargetOriginId property when a request matches\nthe value of the PathPattern property. For more information about the\nvalid values, see the ViewerProtocolPolicy elements in the\nDistributionConfig Complex Type topic in the Amazon CloudFront API\nReference.",
+          "DocString": "The protocol that users can use to access the files in the origin that\nyou specified in the TargetOriginId property when a request matches\nthe value of the PathPattern property. For more information about the\nvalid values, see the ViewerProtocolPolicy content for the\nCacheBehavior data type in the Amazon CloudFront API Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -9941,7 +9941,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The protocol that users can use to access the files in the origin that\nyou specified in the TargetOriginId property when the default cache\nbehavior is applied to a request. For valid values, see the\nViewerProtocolPolicy element of the DistributionConfig Complex Type in\nthe Amazon CloudFront API Reference.",
+          "DocString": "The protocol that users can use to access the files in the origin that\nyou specified in the TargetOriginId property when the default cache\nbehavior is applied to a request. For more information about the valid\nvalues, see the ViewerProtocolPolicy content for the\nDefaultCacheBehavior data type in the Amazon CloudFront API Reference.",
           "SyntaxExpression": "String"
         }
       ]
