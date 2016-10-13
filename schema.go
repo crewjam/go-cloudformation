@@ -2879,7 +2879,8 @@ type ElastiCacheReplicationGroup struct {
 	CacheNodeType *StringExpr `json:"CacheNodeType,omitempty"`
 
 	// The name of the parameter group to associate with this replication
-	// group.
+	// group. For valid and default values, see CreateReplicationGroup in the
+	// Amazon ElastiCache API Reference Guide.
 	CacheParameterGroupName *StringExpr `json:"CacheParameterGroupName,omitempty"`
 
 	// A list of cache security group names to associate with this
@@ -2898,13 +2899,23 @@ type ElastiCacheReplicationGroup struct {
 	// in this replication group.
 	EngineVersion *StringExpr `json:"EngineVersion,omitempty"`
 
+	// Configuration options for the node group (shard).
+	NodeGroupConfiguration *ElastiCacheReplicationGroupNodeGroupConfigurationList `json:"NodeGroupConfiguration,omitempty"`
+
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification
 	// Service topic to which notifications are sent.
 	NotificationTopicArn *StringExpr `json:"NotificationTopicArn,omitempty"`
 
 	// The number of cache clusters for this replication group. If automatic
-	// failover is enabled, you must specify a value greater than 1.
+	// failover is enabled, you must specify a value greater than 1. For
+	// valid values, see CreateReplicationGroup in the Amazon ElastiCache API
+	// Reference Guide.
 	NumCacheClusters *IntegerExpr `json:"NumCacheClusters,omitempty"`
+
+	// The number of node groups (shards) for this Redis (clustered mode
+	// enabled) replication group. For Redis (clustered mode disabled), omit
+	// this property.
+	NumNodeGroups *IntegerExpr `json:"NumNodeGroups,omitempty"`
 
 	// The port number on which each member of the replication group accepts
 	// connections.
@@ -2920,8 +2931,22 @@ type ElastiCacheReplicationGroup struct {
 	// Sunday from 10 PM to 11:30 PM.
 	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
 
+	// The cache cluster that ElastiCache uses as the primary cluster for the
+	// replication group. The cache cluster must have a status of available.
+	PrimaryClusterId *StringExpr `json:"PrimaryClusterId,omitempty"`
+
+	// The number of replica nodes in each node group (shard). For valid
+	// values, see CreateReplicationGroup in the Amazon ElastiCache API
+	// Reference Guide.
+	ReplicasPerNodeGroup *IntegerExpr `json:"ReplicasPerNodeGroup,omitempty"`
+
 	// The description of the replication group.
 	ReplicationGroupDescription *StringExpr `json:"ReplicationGroupDescription,omitempty"`
+
+	// An ID for the replication group. If you don't specify an ID, AWS
+	// CloudFormation generates a unique physical ID. For more information,
+	// see Name Type.
+	ReplicationGroupId *StringExpr `json:"ReplicationGroupId,omitempty"`
 
 	// A list of Amazon Virtual Private Cloud (Amazon VPC) security groups to
 	// associate with this replication group. Use this property only when you
@@ -2937,13 +2962,26 @@ type ElastiCacheReplicationGroup struct {
 	// arn:aws:s3:::my_bucket/snapshot1.rdb.
 	SnapshotArns *StringListExpr `json:"SnapshotArns,omitempty"`
 
+	// The name of a snapshot from which to restore data into the replication
+	// group.
+	SnapshotName *StringExpr `json:"SnapshotName,omitempty"`
+
 	// The number of days that ElastiCache retains automatic snapshots before
 	// deleting them.
 	SnapshotRetentionLimit *IntegerExpr `json:"SnapshotRetentionLimit,omitempty"`
 
+	// The ID of the cache cluster that ElastiCache uses as the daily
+	// snapshot source for the replication group.
+	SnapshottingClusterId *StringExpr `json:"SnapshottingClusterId,omitempty"`
+
 	// The time range (in UTC) when ElastiCache takes a daily snapshot of
-	// your node group. For example, you can specify 05:00-09:00.
+	// your node group that you specified in the SnapshottingClusterId
+	// property. For example, you can specify 05:00-09:00.
 	SnapshotWindow *StringExpr `json:"SnapshotWindow,omitempty"`
+
+	// An arbitrary set of tags (key–value pairs) for this replication
+	// group.
+	Tags []ResourceTag `json:"Tags,omitempty"`
 }
 
 // CfnResourceType returns AWS::ElastiCache::ReplicationGroup to implement the ResourceProperties interface
@@ -10843,6 +10881,50 @@ func (l *ElasticBeanstalkSourceConfigurationList) UnmarshalJSON(buf []byte) erro
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = ElasticBeanstalkSourceConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// ElastiCacheReplicationGroupNodeGroupConfiguration represents Amazon ElastiCache ReplicationGroup NodeGroupConfiguration
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html
+type ElastiCacheReplicationGroupNodeGroupConfiguration struct {
+	// The Availability Zone where ElastiCache launches the node group's
+	// primary node.
+	PrimaryAvailabilityZone *StringExpr `json:"PrimaryAvailabilityZone,omitempty"`
+
+	// A list of Availability Zones where ElastiCache launches the read
+	// replicas. The number of Availability Zones must match the value of the
+	// ReplicaCount property or, if you don't specify the ReplicaCount
+	// property, the replication group's ReplicasPerNodeGroup property.
+	ReplicaAvailabilityZones *StringListExpr `json:"ReplicaAvailabilityZones,omitempty"`
+
+	// The number of read replica nodes in the node group.
+	ReplicaCount *IntegerExpr `json:"ReplicaCount,omitempty"`
+
+	// A string of comma-separated values where the first set of values are
+	// the slot numbers (zero based), and the second set of values are the
+	// keyspaces for each slot. The following example specifies three slots
+	// (numbered 0, 1, and 2): 0,1,2,0-4999,5000-9999,10000-16,383.
+	Slots *StringExpr `json:"Slots,omitempty"`
+}
+
+// ElastiCacheReplicationGroupNodeGroupConfigurationList represents a list of ElastiCacheReplicationGroupNodeGroupConfiguration
+type ElastiCacheReplicationGroupNodeGroupConfigurationList []ElastiCacheReplicationGroupNodeGroupConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElastiCacheReplicationGroupNodeGroupConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElastiCacheReplicationGroupNodeGroupConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElastiCacheReplicationGroupNodeGroupConfigurationList{item}
+		return nil
+	}
+	list := []ElastiCacheReplicationGroupNodeGroupConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElastiCacheReplicationGroupNodeGroupConfigurationList(list)
 		return nil
 	}
 	return err

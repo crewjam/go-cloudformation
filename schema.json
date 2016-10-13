@@ -1273,7 +1273,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Describes the role for role-based authentication. ",
+          "DocString": "Describes the role for role-based authentication.",
           "SyntaxExpression": "String"
         }
       ]
@@ -4157,7 +4157,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the parameter group to associate with this replication\ngroup.",
+          "DocString": "The name of the parameter group to associate with this replication\ngroup. For valid and default values, see CreateReplicationGroup in the\nAmazon ElastiCache API Reference Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -4193,6 +4193,14 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "NodeGroupConfiguration",
+          "Type": "List of Amazon ElastiCache ReplicationGroup NodeGroupConfiguration",
+          "TypeHref": "aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html",
+          "TypeName": "",
+          "DocString": "Configuration options for the node group (shard).",
+          "SyntaxExpression": "[ NodeGroupConfiguration ]"
+        },
+        {
           "Name": "NotificationTopicArn",
           "Type": "String",
           "TypeHref": "",
@@ -4205,7 +4213,15 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of cache clusters for this replication group. If automatic\nfailover is enabled, you must specify a value greater than 1.",
+          "DocString": "The number of cache clusters for this replication group. If automatic\nfailover is enabled, you must specify a value greater than 1. For\nvalid values, see CreateReplicationGroup in the Amazon ElastiCache API\nReference Guide.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "NumNodeGroups",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of node groups (shards) for this Redis (clustered mode\nenabled) replication group. For Redis (clustered mode disabled), omit\nthis property.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -4233,11 +4249,35 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "PrimaryClusterId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The cache cluster that ElastiCache uses as the primary cluster for the\nreplication group. The cache cluster must have a status of available.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ReplicasPerNodeGroup",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of replica nodes in each node group (shard). For valid\nvalues, see CreateReplicationGroup in the Amazon ElastiCache API\nReference Guide.",
+          "SyntaxExpression": "Integer"
+        },
+        {
           "Name": "ReplicationGroupDescription",
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The description of the replication group.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ReplicationGroupId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An ID for the replication group. If you don't specify an ID, AWS\nCloudFormation generates a unique physical ID. For more information,\nsee Name Type.",
           "SyntaxExpression": "String"
         },
         {
@@ -4257,6 +4297,14 @@
           "SyntaxExpression": "[ String, ... ]"
         },
         {
+          "Name": "SnapshotName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of a snapshot from which to restore data into the replication\ngroup.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "SnapshotRetentionLimit",
           "Type": "Integer",
           "TypeHref": "",
@@ -4265,12 +4313,28 @@
           "SyntaxExpression": "Integer"
         },
         {
+          "Name": "SnapshottingClusterId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the cache cluster that ElastiCache uses as the daily\nsnapshot source for the replication group.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "SnapshotWindow",
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The time range (in UTC) when ElastiCache takes a daily snapshot of\nyour node group. For example, you can specify 05:00-09:00.",
+          "DocString": "The time range (in UTC) when ElastiCache takes a daily snapshot of\nyour node group that you specified in the SnapshottingClusterId\nproperty. For example, you can specify 05:00-09:00.",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Tags",
+          "Type": "AWS CloudFormation Resource Tags",
+          "TypeHref": "aws-properties-resource-tags.html",
+          "TypeName": "",
+          "DocString": "An arbitrary set of tags (key–value pairs) for this replication\ngroup.",
+          "SyntaxExpression": "Resource Tag, ..."
         }
       ]
     },
@@ -12962,6 +13026,44 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the configuration template.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon ElastiCache ReplicationGroup NodeGroupConfiguration",
+      "Href": "aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html",
+      "Properties": [
+        {
+          "Name": "PrimaryAvailabilityZone",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Availability Zone where ElastiCache launches the node group's\nprimary node.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ReplicaAvailabilityZones",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of Availability Zones where ElastiCache launches the read\nreplicas. The number of Availability Zones must match the value of the\nReplicaCount property or, if you don't specify the ReplicaCount\nproperty, the replication group's ReplicasPerNodeGroup property.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "ReplicaCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of read replica nodes in the node group.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Slots",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A string of comma-separated values where the first set of values are\nthe slot numbers (zero based), and the second set of values are the\nkeyspaces for each slot. The following example specifies three slots\n(numbered 0, 1, and 2): 0,1,2,0-4999,5000-9999,10000-16,383.",
           "SyntaxExpression": "String"
         }
       ]
