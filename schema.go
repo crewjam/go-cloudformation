@@ -7626,10 +7626,14 @@ type CloudFrontDistributionConfigurationViewerCertificate struct {
 	// The minimum version of the SSL protocol that you want CloudFront to
 	// use for HTTPS connections. CloudFront serves your objects only to
 	// browsers or devices that support at least the SSL version that you
-	// specify.
+	// specify. For valid values, see the MinimumProtocolVersion content for
+	// the ViewerCertificate data type in the Amazon CloudFront API
+	// Reference.
 	MinimumProtocolVersion *StringExpr `json:"MinimumProtocolVersion,omitempty"`
 
-	// Specifies how CloudFront serves HTTPS requests.
+	// Specifies how CloudFront serves HTTPS requests. For valid values, see
+	// the SslSupportMethod content for the ViewerCertificate data type in
+	// the Amazon CloudFront API Reference.
 	SslSupportMethod *StringExpr `json:"SslSupportMethod,omitempty"`
 }
 
