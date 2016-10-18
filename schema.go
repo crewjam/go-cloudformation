@@ -4284,9 +4284,9 @@ type LambdaPermission struct {
 	// for AWS Lambda in the IAM User Guide.
 	Action *StringExpr `json:"Action,omitempty"`
 
-	// The name (physical ID) or Amazon Resource Name (ARN) of the Lambda
-	// function that you want to associate with this statement. Lambda adds
-	// this statement to the function's access policy.
+	// The name (physical ID), Amazon Resource Name (ARN), or alias ARN of
+	// the Lambda function that you want to associate with this statement.
+	// Lambda adds this statement to the function's access policy.
 	FunctionName *StringExpr `json:"FunctionName,omitempty"`
 
 	// The entity for which you are granting permission to invoke the Lambda

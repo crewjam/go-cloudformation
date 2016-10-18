@@ -6240,7 +6240,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name (physical ID) or Amazon Resource Name (ARN) of the Lambda\nfunction that you want to associate with this statement. Lambda adds\nthis statement to the function's access policy.",
+          "DocString": "The name (physical ID), Amazon Resource Name (ARN), or alias ARN of\nthe Lambda function that you want to associate with this statement.\nLambda adds this statement to the function's access policy.",
           "SyntaxExpression": "String"
         },
         {
