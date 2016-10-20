@@ -10365,7 +10365,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A unique identifier for the target.",
+          "DocString": "A unique, user-defined identifier for the target. Acceptable values\ninclude alphanumeric characters, periods (.), hypens (-), and\nunderscores (_).",
           "SyntaxExpression": "String"
         },
         {

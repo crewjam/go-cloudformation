@@ -7772,7 +7772,9 @@ type CloudWatchEventsRuleTarget struct {
 	// The Amazon Resource Name (ARN) of the target.
 	Arn *StringExpr `json:"Arn,omitempty"`
 
-	// A unique identifier for the target.
+	// A unique, user-defined identifier for the target. Acceptable values
+	// include alphanumeric characters, periods (.), hypens (-), and
+	// underscores (_).
 	Id *StringExpr `json:"Id,omitempty"`
 
 	// A JSON-formatted text string that is passed to the target. This value
