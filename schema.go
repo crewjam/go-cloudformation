@@ -106,7 +106,7 @@ type ApiGatewayAuthorizer struct {
 	// authorizer.
 	RestApiId *StringExpr `json:"RestApiId,omitempty"`
 
-	// The type of the authorizer, such as TOKEN.
+	// The type of authorizer:
 	Type *StringExpr `json:"Type,omitempty"`
 }
 

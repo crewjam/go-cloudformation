@@ -125,7 +125,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of the authorizer, such as TOKEN.",
+          "DocString": "The type of authorizer:",
           "SyntaxExpression": "String"
         }
       ]
@@ -7585,7 +7585,7 @@
         },
         {
           "Name": "Tags",
-          "Type": "A list of resource tags",
+          "Type": "A list of resource tags in key-value format",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "The tags that you want to attach to the RDS database subnet group.",
