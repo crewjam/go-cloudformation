@@ -2605,7 +2605,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies whether monitoring is enabled for the instance.",
+          "DocString": "Specifies whether detailed monitoring is enabled for the instance.",
           "SyntaxExpression": "Boolean"
         },
         {

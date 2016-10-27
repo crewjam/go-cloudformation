@@ -1811,7 +1811,7 @@ type EC2Instance struct {
 	// Provides the name of the Amazon EC2 key pair.
 	KeyName *StringExpr `json:"KeyName,omitempty"`
 
-	// Specifies whether monitoring is enabled for the instance.
+	// Specifies whether detailed monitoring is enabled for the instance.
 	Monitoring *BoolExpr `json:"Monitoring,omitempty"`
 
 	// A list of embedded objects that describes the network interfaces to
