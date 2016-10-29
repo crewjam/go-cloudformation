@@ -3487,11 +3487,9 @@ type EMRCluster struct {
 	// cluster.
 	Instances *EMRClusterJobFlowInstancesConfig `json:"Instances,omitempty"`
 
-	// An AWS Identity and Access Management (IAM) role for an Amazon EMR
-	// cluster. All EC2 instances in the cluster assume this role, which
-	// instances use to access AWS services and resources to complete a job.
-	// For more information, see Configure IAM Roles for Amazon EMR in the
-	// Amazon EMR Management Guide.
+	// Also called instance profile and EC2 role. Accepts an instance profile
+	// associated with the role that you want to use. All EC2 instances in
+	// the cluster assume this role.
 	JobFlowRole *StringExpr `json:"JobFlowRole,omitempty"`
 
 	// An S3 bucket location to which Amazon EMR writes logs files from a job

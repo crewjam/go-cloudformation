@@ -5104,7 +5104,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "An AWS Identity and Access Management (IAM) role for an Amazon EMR\ncluster. All EC2 instances in the cluster assume this role, which\ninstances use to access AWS services and resources to complete a job.\nFor more information, see Configure IAM Roles for Amazon EMR in the\nAmazon EMR Management Guide.",
+          "DocString": "Also called instance profile and EC2 role. Accepts an instance profile\nassociated with the role that you want to use. All EC2 instances in\nthe cluster assume this role. ",
           "SyntaxExpression": "String"
         },
         {
