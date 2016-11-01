@@ -1525,7 +1525,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The list of actions to execute when this alarm transitions into an\nALARM state from any other state. Each action is specified as an\nAmazon Resource Number (ARN). For more information about creating\nalarms and the actions you can specify, see Creating Amazon CloudWatch\nAlarms in the Amazon CloudWatch Developer Guide.",
+          "DocString": "The list of actions to execute when this alarm transitions into an\nALARM state from any other state. Each action is specified as an\nAmazon Resource Number (ARN). For more information about creating\nalarms and the actions you can specify, see Creating Amazon CloudWatch\nAlarms in the Amazon CloudWatch User Guide.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -1581,7 +1581,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name for the alarm's associated metric. For more information about\nthe metrics that you can specify, see Amazon CloudWatch Namespaces,\nDimensions, and Metrics Reference in the Amazon CloudWatch Developer\nGuide.",
+          "DocString": "The name for the alarm's associated metric. For more information about\nthe metrics that you can specify, see Amazon CloudWatch Namespaces,\nDimensions, and Metrics Reference in the Amazon CloudWatch User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -5290,7 +5290,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Describes which events CloudWatch Events routes to the specified\ntarget. These routed events are matched events. For more information,\nsee Events and Event Patterns in the Amazon CloudWatch Developer\nGuide.",
+          "DocString": "Describes which events CloudWatch Events routes to the specified\ntarget. These routed events are matched events. For more information,\nsee Events and Event Patterns in the Amazon CloudWatch User Guide.",
           "SyntaxExpression": "JSON object"
         },
         {
@@ -5314,7 +5314,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The schedule or rate (frequency) that determines when CloudWatch\nEvents runs the rule. For more information, see Schedule Expression\nSyntax for Rules in the Amazon CloudWatch Developer Guide.",
+          "DocString": "The schedule or rate (frequency) that determines when CloudWatch\nEvents runs the rule. For more information, see Schedule Expression\nSyntax for Rules in the Amazon CloudWatch User Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -6428,7 +6428,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The filtering expressions that restrict what gets delivered to the\ndestination AWS resource. For more information about the filter\npattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch\nDeveloper Guide.",
+          "DocString": "The filtering expressions that restrict what gets delivered to the\ndestination AWS resource. For more information about the filter\npattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch\nUser Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -9342,7 +9342,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The aggregation type for the CloudWatch metrics. You can specify\nMinimum, Maximum, or Average. By default, AWS CloudFormation specifies\nAverage. For more information, see Aggregation in the Amazon\nCloudWatch Developer Guide.",
+          "DocString": "The aggregation type for the CloudWatch metrics. You can specify\nMinimum, Maximum, or Average. By default, AWS CloudFormation specifies\nAverage. For more information, see Aggregation in the Amazon\nCloudWatch User Guide.",
           "SyntaxExpression": "String"
         },
         {

@@ -1061,7 +1061,7 @@ type CloudWatchAlarm struct {
 	// ALARM state from any other state. Each action is specified as an
 	// Amazon Resource Number (ARN). For more information about creating
 	// alarms and the actions you can specify, see Creating Amazon CloudWatch
-	// Alarms in the Amazon CloudWatch Developer Guide.
+	// Alarms in the Amazon CloudWatch User Guide.
 	AlarmActions *StringListExpr `json:"AlarmActions,omitempty"`
 
 	// The description for the alarm.
@@ -1093,8 +1093,7 @@ type CloudWatchAlarm struct {
 
 	// The name for the alarm's associated metric. For more information about
 	// the metrics that you can specify, see Amazon CloudWatch Namespaces,
-	// Dimensions, and Metrics Reference in the Amazon CloudWatch Developer
-	// Guide.
+	// Dimensions, and Metrics Reference in the Amazon CloudWatch User Guide.
 	MetricName *StringExpr `json:"MetricName,omitempty"`
 
 	// The namespace for the alarm's associated metric.
@@ -3610,8 +3609,7 @@ type EventsRule struct {
 
 	// Describes which events CloudWatch Events routes to the specified
 	// target. These routed events are matched events. For more information,
-	// see Events and Event Patterns in the Amazon CloudWatch Developer
-	// Guide.
+	// see Events and Event Patterns in the Amazon CloudWatch User Guide.
 	EventPattern interface{} `json:"EventPattern,omitempty"`
 
 	// A name for the rule. If you don't specify a name, AWS CloudFormation
@@ -3627,7 +3625,7 @@ type EventsRule struct {
 
 	// The schedule or rate (frequency) that determines when CloudWatch
 	// Events runs the rule. For more information, see Schedule Expression
-	// Syntax for Rules in the Amazon CloudWatch Developer Guide.
+	// Syntax for Rules in the Amazon CloudWatch User Guide.
 	ScheduleExpression *StringExpr `json:"ScheduleExpression,omitempty"`
 
 	// Indicates whether the rule is enabled. For valid values, see the State
@@ -4440,7 +4438,7 @@ type LogsSubscriptionFilter struct {
 	// The filtering expressions that restrict what gets delivered to the
 	// destination AWS resource. For more information about the filter
 	// pattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch
-	// Developer Guide.
+	// User Guide.
 	FilterPattern *StringExpr `json:"FilterPattern,omitempty"`
 
 	// The log group to associate with the subscription filter. All log
@@ -6559,7 +6557,7 @@ type ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration struct {
 	// The aggregation type for the CloudWatch metrics. You can specify
 	// Minimum, Maximum, or Average. By default, AWS CloudFormation specifies
 	// Average. For more information, see Aggregation in the Amazon
-	// CloudWatch Developer Guide.
+	// CloudWatch User Guide.
 	MetricAggregationType *StringExpr `json:"MetricAggregationType,omitempty"`
 
 	// The minimum number of resources to adjust when a scaling activity is
