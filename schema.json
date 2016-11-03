@@ -9727,6 +9727,14 @@
           "SyntaxExpression": "Boolean"
         },
         {
+          "Name": "HttpVersion",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The latest HTTP version that viewers can use to communicate with\nCloudFront. Viewers that don't support the latest version\nautomatically use an earlier HTTP version. By default, AWS\nCloudFormation specifies http1.1.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "Logging",
           "Type": "Logging type",
           "TypeHref": "aws-properties-cloudfront-logging.html",
@@ -10301,6 +10309,14 @@
           "TypeName": "",
           "DocString": "Indicates whether you want CloudFront to forward query strings to the\norigin that is associated with this cache behavior. If so, specify\ntrue; if not, specify false. For more information, see Configuring\nCloudFront to Cache Based on Query String Parameters in the Amazon\nCloudFront Developer Guide.",
           "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "QueryStringCacheKeys",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you forward query strings to the origin, specifies the query string\nparameters that CloudFront uses to determine which content to cache.\nFor more information, see Configuring CloudFront to Cache Based on\nQuery String Parameters in the Amazon CloudFront Developer Guide.",
+          "SyntaxExpression": "[ String, ... ]"
         }
       ]
     },

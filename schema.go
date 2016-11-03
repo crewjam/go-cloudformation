@@ -7072,6 +7072,12 @@ type CloudFrontDistributionConfig struct {
 	// requests for content.
 	Enabled *BoolExpr `json:"Enabled,omitempty"`
 
+	// The latest HTTP version that viewers can use to communicate with
+	// CloudFront. Viewers that don't support the latest version
+	// automatically use an earlier HTTP version. By default, AWS
+	// CloudFormation specifies http1.1.
+	HttpVersion *StringExpr `json:"HttpVersion,omitempty"`
+
 	// Controls whether access logs are written for the distribution. To turn
 	// on access logs, specify this property.
 	Logging *CloudFrontLogging `json:"Logging,omitempty"`
@@ -7675,6 +7681,12 @@ type CloudFrontForwardedValues struct {
 	// CloudFront to Cache Based on Query String Parameters in the Amazon
 	// CloudFront Developer Guide.
 	QueryString *BoolExpr `json:"QueryString,omitempty"`
+
+	// If you forward query strings to the origin, specifies the query string
+	// parameters that CloudFront uses to determine which content to cache.
+	// For more information, see Configuring CloudFront to Cache Based on
+	// Query String Parameters in the Amazon CloudFront Developer Guide.
+	QueryStringCacheKeys *StringListExpr `json:"QueryStringCacheKeys,omitempty"`
 }
 
 // CloudFrontForwardedValuesList represents a list of CloudFrontForwardedValues
