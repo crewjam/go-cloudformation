@@ -15095,7 +15095,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "For nodejs, nodejs4.3, and python2.7 runtime environments, the source\ncode of your Lambda function. You can't use this property with other\nruntime environments.",
+          "DocString": "For nodejs4.3 and python2.7 runtime environments, the source code of\nyour Lambda function. You can't use this property with other runtime\nenvironments.",
           "SyntaxExpression": "String"
         }
       ]

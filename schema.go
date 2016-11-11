@@ -13267,9 +13267,9 @@ type LambdaFunctionCode struct {
 	// specify the S3Bucket and S3Key properties.
 	S3ObjectVersion *StringExpr `json:"S3ObjectVersion,omitempty"`
 
-	// For nodejs, nodejs4.3, and python2.7 runtime environments, the source
-	// code of your Lambda function. You can't use this property with other
-	// runtime environments.
+	// For nodejs4.3 and python2.7 runtime environments, the source code of
+	// your Lambda function. You can't use this property with other runtime
+	// environments.
 	ZipFile *StringExpr `json:"ZipFile,omitempty"`
 }
 
