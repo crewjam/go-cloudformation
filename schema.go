@@ -1800,7 +1800,7 @@ type EC2Instance struct {
 	// RunInstances command in the Amazon EC2 API Reference.
 	InstanceInitiatedShutdownBehavior *StringExpr `json:"InstanceInitiatedShutdownBehavior,omitempty"`
 
-	// The instance type, such as t2.micro. The default type is "m1.small".
+	// The instance type, such as t2.micro. The default type is "m3.medium".
 	// For a list of instance types, see Instance Families and Types.
 	InstanceType *StringExpr `json:"InstanceType,omitempty"`
 
@@ -11427,7 +11427,7 @@ func (l *ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList) UnmarshalJS
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html
 type ElasticLoadBalancingTargetGroupMatcher struct {
 	// The HTTP codes that a healthy target must use when responding to a
-	// health check, such as 200,202 or 200-299.
+	// health check, such as 200,202 or 200-399.
 	HttpCode *StringExpr `json:"HttpCode,omitempty"`
 }
 

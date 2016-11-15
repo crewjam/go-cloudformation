@@ -2581,7 +2581,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The instance type, such as t2.micro. The default type is \"m1.small\".\nFor a list of instance types, see Instance Families and Types.",
+          "DocString": "The instance type, such as t2.micro. The default type is \"m3.medium\".\nFor a list of instance types, see Instance Families and Types.",
           "SyntaxExpression": "String"
         },
         {
@@ -13459,7 +13459,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The HTTP codes that a healthy target must use when responding to a\nhealth check, such as 200,202 or 200-299. ",
+          "DocString": "The HTTP codes that a healthy target must use when responding to a\nhealth check, such as 200,202 or 200-399. ",
           "SyntaxExpression": "String"
         }
       ]
