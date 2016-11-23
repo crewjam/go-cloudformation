@@ -2647,7 +2647,12 @@ type ECSService struct {
 	// balancer.
 	Role *StringExpr `json:"Role,omitempty"`
 
-	// The ARN of the task definition that you want to run on the cluster.
+	// The ARN of the task definition (including the revision number) that
+	// you want to run on the cluster, such as
+	// arn:aws:ecs:us-east-1:123456789012:task-definition/mytask:3. You can't
+	// use :latest to specify a revision because it's ambiguous. For example,
+	// if AWS CloudFormation needed to rollback an update, it wouldn't know
+	// which revision to rollback to.
 	TaskDefinition *StringExpr `json:"TaskDefinition,omitempty"`
 }
 
@@ -2883,8 +2888,7 @@ type ElastiCacheReplicationGroup struct {
 	CacheParameterGroupName *StringExpr `json:"CacheParameterGroupName,omitempty"`
 
 	// A list of cache security group names to associate with this
-	// replication group. If you specify the SecurityGroupIds property, do
-	// not specify this property; you can specify only one.
+	// replication group.
 	CacheSecurityGroupNames *StringListExpr `json:"CacheSecurityGroupNames,omitempty"`
 
 	// The name of a cache subnet group to use for this replication group.
@@ -2948,10 +2952,7 @@ type ElastiCacheReplicationGroup struct {
 	ReplicationGroupId *StringExpr `json:"ReplicationGroupId,omitempty"`
 
 	// A list of Amazon Virtual Private Cloud (Amazon VPC) security groups to
-	// associate with this replication group. Use this property only when you
-	// are creating a replication group in a VPC. If you specify the
-	// CacheSecurityGroupNames property, do not specify this property; you
-	// can specify only one.
+	// associate with this replication group.
 	SecurityGroupIds *StringListExpr `json:"SecurityGroupIds,omitempty"`
 
 	// A single-element string list that specifies an ARN of a Redis .rdb
@@ -4220,6 +4221,12 @@ type LambdaFunction struct {
 	// A description of the function.
 	Description *StringExpr `json:"Description,omitempty"`
 
+	// Key-value pairs that Lambda caches and makes available for your Lambda
+	// functions. Use environment variables to apply configuration changes,
+	// such as test and production environment configurations, without
+	// changing your Lambda function source code.
+	Environment *LambdaFunctionEnvironment `json:"Environment,omitempty"`
+
 	// A name for the function. If you don't specify a name, AWS
 	// CloudFormation generates a unique physical ID and uses that ID for the
 	// function's name. For more information, see Name Type.
@@ -4229,6 +4236,11 @@ type LambdaFunction struct {
 	// to start running your code. For more information, see the Handler
 	// property in the AWS Lambda Developer Guide.
 	Handler *StringExpr `json:"Handler,omitempty"`
+
+	// The Amazon Resource Name (ARN) of an AWS Key Management Service (AWS
+	// KMS) key that Lambda uses to encrypt and decrypt environment variable
+	// values.
+	KmsKeyArn *StringExpr `json:"KmsKeyArn,omitempty"`
 
 	// The amount of memory, in MB, that is allocated to your Lambda
 	// function. Lambda uses this value to proportionally allocate the amount
@@ -4463,8 +4475,7 @@ func (s LogsSubscriptionFilter) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html
 type OpsWorksApp struct {
-	// Contains the information required to retrieve an app from a
-	// repository.
+	// The information required to retrieve an app from a repository.
 	AppSource *OpsWorksSource `json:"AppSource,omitempty"`
 
 	// One or more user-defined key-value pairs to be added to the stack
@@ -4473,6 +4484,9 @@ type OpsWorksApp struct {
 
 	// A description of the app.
 	Description *StringExpr `json:"Description,omitempty"`
+
+	// A list of databases to associate with the AWS OpsWorks app.
+	DataSources *DataSourceList `json:"DataSources,omitempty"`
 
 	// The app virtual host settings, with multiple domains separated by
 	// commas. For example, 'www.example.com, example.com'.
@@ -4484,7 +4498,7 @@ type OpsWorksApp struct {
 	// The environment variables to associate with the AWS OpsWorks app.
 	Environment *OpsWorksAppEnvironmentList `json:"Environment,omitempty"`
 
-	// The AWS OpsWorks app name.
+	// The name of the AWS OpsWorks app.
 	Name *StringExpr `json:"Name,omitempty"`
 
 	// The app short name, which is used internally by AWS OpsWorks and by
@@ -4494,7 +4508,7 @@ type OpsWorksApp struct {
 	// The SSL configuration
 	SslConfiguration *OpsWorksSslConfiguration `json:"SslConfiguration,omitempty"`
 
-	// The AWS OpsWorks stack ID that this app will be associated with.
+	// The ID of the AWS OpsWorks stack to associate this app with.
 	StackId *StringExpr `json:"StackId,omitempty"`
 
 	// The app type. Each supported type is associated with a particular
@@ -4529,6 +4543,13 @@ func (s OpsWorksElasticLoadBalancerAttachment) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html
 type OpsWorksInstance struct {
+	// The version of the AWS OpsWorks agent that AWS OpsWorks installs on
+	// each instance. AWS OpsWorks sends commands to the agent to performs
+	// tasks on your instances, such as starting Chef runs. For valid values,
+	// see the AgentVersion parameter for the CreateInstance action in the
+	// AWS OpsWorks API Reference.
+	AgentVersion *StringExpr `json:"AgentVersion,omitempty"`
+
 	// The ID of the custom Amazon Machine Image (AMI) to be used to create
 	// the instance. For more information about custom AMIs, see Using Custom
 	// AMIs in the AWS OpsWorks User Guide.
@@ -4545,12 +4566,23 @@ type OpsWorksInstance struct {
 	// The instance Availability Zone.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 
+	// A list of block devices that are mapped to the AWS OpsWorks instance.
+	// For more information, see the BlockDeviceMappings parameter for the
+	// CreateInstance action in the AWS OpsWorks API Reference.
+	BlockDeviceMappings *OpsWorksInstanceBlockDeviceMappingList `json:"BlockDeviceMappings,omitempty"`
+
 	// Whether the instance is optimized for Amazon Elastic Block Store
 	// (Amazon EBS) I/O. If you specify an Amazon EBS-optimized instance
 	// type, AWS OpsWorks enables EBS optimization by default. For more
 	// information, see Amazon EBS–Optimized Instances in the Amazon EC2
 	// User Guide for Linux Instances.
 	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
+
+	// A list of Elastic IP addresses to associate with the instance.
+	ElasticIps *StringListExpr `json:"ElasticIps,omitempty"`
+
+	// The name of the instance host.
+	Hostname *StringExpr `json:"Hostname,omitempty"`
 
 	// Whether to install operating system and package updates when the
 	// instance boots.
@@ -4582,8 +4614,19 @@ type OpsWorksInstance struct {
 	// and direct AWS OpsWorks to launch the instance in a different subnet.
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
 
+	// The tenancy of the instance. For more information, see the Tenancy
+	// parameter for the CreateInstance action in the AWS OpsWorks API
+	// Reference.
+	Tenancy *StringExpr `json:"Tenancy,omitempty"`
+
 	// The time-based scaling configuration for the instance.
 	TimeBasedAutoScaling *OpsWorksTimeBasedAutoScaling `json:"TimeBasedAutoScaling,omitempty"`
+
+	// The instance's virtualization type, paravirtual or hvm.
+	VirtualizationType *StringExpr `json:"VirtualizationType,omitempty"`
+
+	// A list of Amazon EBS volume IDs to associate with the instance.
+	Volumes *StringListExpr `json:"Volumes,omitempty"`
 }
 
 // CfnResourceType returns AWS::OpsWorks::Instance to implement the ResourceProperties interface
@@ -4611,6 +4654,12 @@ type OpsWorksLayer struct {
 	// The Amazon Resource Name (ARN) of an IAM instance profile that is to
 	// be used for the Amazon EC2 instances in this layer.
 	CustomInstanceProfileArn *StringExpr `json:"CustomInstanceProfileArn,omitempty"`
+
+	// A custom stack configuration and deployment attributes that AWS
+	// OpsWorks installs on the layer's instances. For more information, see
+	// the CustomJson parameter for the CreateLayer action in the AWS
+	// OpsWorks API Reference.
+	CustomJson interface{} `json:"CustomJson,omitempty"`
 
 	// Custom event recipes for this layer.
 	CustomRecipes *OpsWorksRecipes `json:"CustomRecipes,omitempty"`
@@ -4682,6 +4731,15 @@ type OpsWorksStack struct {
 	// Reference.
 	ChefConfiguration *OpsWorksChefConfiguration `json:"ChefConfiguration,omitempty"`
 
+	// If you're cloning an AWS OpsWorks stack, a list of AWS OpsWorks
+	// application stack IDs from the source stack to include in the cloned
+	// stack.
+	CloneAppIds *StringListExpr `json:"CloneAppIds,omitempty"`
+
+	// If you're cloning an AWS OpsWorks stack, indicates whether to clone
+	// the source stack's permissions.
+	ClonePermissions *BoolExpr `json:"ClonePermissions,omitempty"`
+
 	// Describes the configuration manager. When you create a stack, you use
 	// the configuration manager to specify the Chef version. For supported
 	// Chef versions, see the CreateStack ConfigurationManager parameter in
@@ -4724,6 +4782,14 @@ type OpsWorksStack struct {
 	// instance.
 	DefaultSubnetId *StringExpr `json:"DefaultSubnetId,omitempty"`
 
+	// The Amazon Resource Name (ARN) of the Amazon EC2 Container Service
+	// (Amazon ECS) cluster to register with the AWS OpsWorks stack.
+	EcsClusterArn *StringExpr `json:"EcsClusterArn,omitempty"`
+
+	// A list of Elastic IP addresses to register with the AWS OpsWorks
+	// stack.
+	ElasticIps *OpsWorksStackElasticIpList `json:"ElasticIps,omitempty"`
+
 	// The stack's host name theme, with spaces replaced by underscores. The
 	// theme is used to generate host names for the stack's instances. For
 	// more information, see CreateStack in the AWS OpsWorks API Reference.
@@ -4732,10 +4798,18 @@ type OpsWorksStack struct {
 	// The name of the AWS OpsWorks stack.
 	Name *StringExpr `json:"Name,omitempty"`
 
+	// The Amazon Relational Database Service (Amazon RDS) DB instance to
+	// register with the AWS OpsWorks stack.
+	RdsDbInstances *OpsWorksStackRdsDbInstanceList `json:"RdsDbInstances,omitempty"`
+
 	// The AWS Identity and Access Management (IAM) role that AWS OpsWorks
 	// uses to work with AWS resources on your behalf. You must specify an
 	// Amazon Resource Name (ARN) for an existing IAM role.
 	ServiceRoleArn *StringExpr `json:"ServiceRoleArn,omitempty"`
+
+	// If you're cloning an AWS OpsWorks stack, the stack ID of the source
+	// AWS OpsWorks stack to clone.
+	SourceStackId *StringExpr `json:"SourceStackId,omitempty"`
 
 	// Whether the stack uses custom cookbooks.
 	UseCustomCookbooks *BoolExpr `json:"UseCustomCookbooks,omitempty"`
@@ -4754,6 +4828,54 @@ type OpsWorksStack struct {
 // CfnResourceType returns AWS::OpsWorks::Stack to implement the ResourceProperties interface
 func (s OpsWorksStack) CfnResourceType() string {
 	return "AWS::OpsWorks::Stack"
+}
+
+// OpsWorksUserProfile represents AWS::OpsWorks::UserProfile
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html
+type OpsWorksUserProfile struct {
+	// Indicates whether users can use the AWS OpsWorks My Settings page to
+	// specify their own SSH public key. For more information, see Setting an
+	// IAM User's Public SSH Key in the AWS OpsWorks User Guide.
+	AllowSelfManagement *BoolExpr `json:"AllowSelfManagement,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access
+	// Management (IAM) user to associate with this configuration.
+	IamUserArn *StringExpr `json:"IamUserArn,omitempty"`
+
+	// The public SSH key that is associated with the IAM user. The IAM user
+	// must have or be given the corresponding private key to access
+	// instances.
+	SshPublicKey *StringExpr `json:"SshPublicKey,omitempty"`
+}
+
+// CfnResourceType returns AWS::OpsWorks::UserProfile to implement the ResourceProperties interface
+func (s OpsWorksUserProfile) CfnResourceType() string {
+	return "AWS::OpsWorks::UserProfile"
+}
+
+// OpsWorksVolume represents AWS::OpsWorks::Volume
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html
+type OpsWorksVolume struct {
+	// The ID of the Amazon EBS volume to register with the AWS OpsWorks
+	// stack.
+	Ec2VolumeId *StringExpr `json:"Ec2VolumeId,omitempty"`
+
+	// The mount point for the Amazon EBS volume, such as /mnt/disk1.
+	MountPoint *StringExpr `json:"MountPoint,omitempty"`
+
+	// A name for the Amazon EBS volume.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The ID of the AWS OpsWorks stack that AWS OpsWorks registers the
+	// volume to.
+	StackId *StringExpr `json:"StackId,omitempty"`
+}
+
+// CfnResourceType returns AWS::OpsWorks::Volume to implement the ResourceProperties interface
+func (s OpsWorksVolume) CfnResourceType() string {
+	return "AWS::OpsWorks::Volume"
 }
 
 // RDSDBCluster represents AWS::RDS::DBCluster
@@ -4892,6 +5014,13 @@ type RDSDBInstance struct {
 	// Sets Supported in Amazon RDS in the Amazon Relational Database Service
 	// User Guide.
 	CharacterSetName *StringExpr `json:"CharacterSetName,omitempty"`
+
+	// Indicates whether to copy all of the user-defined tags from the DB
+	// instance to snapshots of the DB instance. By default, Amazon RDS
+	// doesn't copy tags to snapshots. Amazon RDS doesn't copy tags with the
+	// aws:: prefix unless it's the DB instance's final snapshot (the
+	// snapshot when you delete the DB instance).
+	CopyTagsToSnapshot *BoolExpr `json:"CopyTagsToSnapshot,omitempty"`
 
 	// The name of an existing DB cluster that this instance will be
 	// associated with. If you specify this property, specify aurora for the
@@ -5649,6 +5778,30 @@ func (s SDBDomain) CfnResourceType() string {
 	return "AWS::SDB::Domain"
 }
 
+// SNSSubscription represents AWS::SNS::Subscription
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html
+type SNSSubscription struct {
+	// The endpoint that receives notifications from the Amazon SNS topic.
+	// The endpoint value depends on the protocol that you specify. For more
+	// information, see the Subscribe Endpoint parameter in the Amazon Simple
+	// Notification Service API Reference.
+	Endpoint *StringExpr `json:"Endpoint,omitempty"`
+
+	// The subscription's protocol. For more information, see the Subscribe
+	// Protocol parameter in the Amazon Simple Notification Service API
+	// Reference.
+	Protocol *StringExpr `json:"Protocol,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the topic to subscribe to.
+	TopicArn *StringExpr `json:"TopicArn,omitempty"`
+}
+
+// CfnResourceType returns AWS::SNS::Subscription to implement the ResourceProperties interface
+func (s SNSSubscription) CfnResourceType() string {
+	return "AWS::SNS::Subscription"
+}
+
 // SNSTopic represents AWS::SNS::Topic
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html
@@ -5658,7 +5811,7 @@ type SNSTopic struct {
 	DisplayName *StringExpr `json:"DisplayName,omitempty"`
 
 	// The SNS subscriptions (endpoints) for this topic.
-	Subscription *SNSSubscriptionList `json:"Subscription,omitempty"`
+	Subscription *SNSSubscriptionPropertyList `json:"Subscription,omitempty"`
 
 	// A name for the topic. If you don't specify a name, AWS CloudFormation
 	// generates a unique physical ID and uses that ID for the topic name.
@@ -5822,7 +5975,9 @@ func (s WAFIPSet) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html
 type WAFRule struct {
-	// A friendly name or description for the metrics of the rule.
+	// A friendly name or description for the metrics of the rule. For valid
+	// values, see the MetricName parameter for the CreateRule action in the
+	// AWS WAF API Reference.
 	MetricName *StringExpr `json:"MetricName,omitempty"`
 
 	// A friendly name or description of the rule.
@@ -6231,10 +6386,7 @@ func (l *APIGatewayMethodIntegrationList) UnmarshalJSON(buf []byte) error {
 type APIGatewayMethodIntegrationIntegrationResponse struct {
 	// The response parameters from the back-end response that API Gateway
 	// sends to the method response. Specify response parameters as key-value
-	// pairs (string-to-string maps), with a destination as the key and a
-	// source as the value. For more information, see API Gateway API Request
-	// and Response Parameter-Mapping Reference in the API Gateway Developer
-	// Guide.
+	// pairs (string-to-string mappings).
 	ResponseParameters interface{} `json:"ResponseParameters,omitempty"`
 
 	// The templates used to transform the integration response body. Specify
@@ -9970,10 +10122,14 @@ type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsB
 	// in the Amazon EC2 API Reference.
 	Iops *IntegerExpr `json:"Iops,omitempty"`
 
-	// The snapshot ID of the volume that you want to use.
+	// The snapshot ID of the volume that you want to use. If you specify
+	// both the SnapshotId and VolumeSize properties, VolumeSize must be
+	// equal to or greater than the size of the snapshot.
 	SnapshotId *StringExpr `json:"SnapshotId,omitempty"`
 
-	// The volume size, in Gibibytes (GiB). For more information about
+	// The volume size, in Gibibytes (GiB). If you specify both the
+	// SnapshotId and VolumeSize properties, VolumeSize must be equal to or
+	// greater than the size of the snapshot. For more information about
 	// specifying the volume size, see VolumeSize for the EbsBlockDevice
 	// action in the Amazon EC2 API Reference.
 	VolumeSize *IntegerExpr `json:"VolumeSize,omitempty"`
@@ -10564,15 +10720,14 @@ func (l *EC2ContainerServiceTaskDefinitionContainerDefinitionsMountPointsList) U
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html
 type EC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings struct {
-	// The port number on the container that is bound to the host port.
+	// The port number on the container bound to the host port.
 	ContainerPort *IntegerExpr `json:"ContainerPort,omitempty"`
 
 	// The host port number on the container instance that you want to
 	// reserve for your container. You can specify a non-reserved host port
-	// for your container port mapping, or you can omit the host port (or set
-	// it to 0). If you specify a container port but no host port, your
-	// container port is automatically assigned a host port in the 49153 to
-	// 65535 port range.
+	// for your container port mapping, omit the host port, or set the host
+	// port to 0. If you specify a container port but no host port, your
+	// container host port is assigned automatically .
 	HostPort *IntegerExpr `json:"HostPort,omitempty"`
 
 	// The protocol used for the port mapping. For valid values, see the
@@ -13249,6 +13404,34 @@ func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfig
 	return err
 }
 
+// LambdaFunctionEnvironment represents AWS Lambda Function Environment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html
+type LambdaFunctionEnvironment struct {
+	// A map of key-value pairs that the Lambda function can access.
+	Variables interface{} `json:"Variables,omitempty"`
+}
+
+// LambdaFunctionEnvironmentList represents a list of LambdaFunctionEnvironment
+type LambdaFunctionEnvironmentList []LambdaFunctionEnvironment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *LambdaFunctionEnvironmentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := LambdaFunctionEnvironment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = LambdaFunctionEnvironmentList{item}
+		return nil
+	}
+	list := []LambdaFunctionEnvironment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = LambdaFunctionEnvironmentList(list)
+		return nil
+	}
+	return err
+}
+
 // LambdaFunctionCode represents AWS Lambda Function Code
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
@@ -13347,6 +13530,81 @@ func (l *NameList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = NameList(list)
+		return nil
+	}
+	return err
+}
+
+// DataSource represents DataSource
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html
+type DataSource struct {
+	// The ARN of the data source.
+	Arn *StringExpr `json:"Arn,omitempty"`
+
+	// The name of the database.
+	DatabaseName *StringExpr `json:"DatabaseName,omitempty"`
+
+	// The type of the data source, such as AutoSelectOpsworksMysqlInstance,
+	// OpsworksMysqlInstance, or RdsDbInstance. For valid values, see the
+	// DataSource type in the AWS OpsWorks API Reference.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// DataSourceList represents a list of DataSource
+type DataSourceList []DataSource
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *DataSourceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := DataSource{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = DataSourceList{item}
+		return nil
+	}
+	list := []DataSource{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = DataSourceList(list)
+		return nil
+	}
+	return err
+}
+
+// OpsWorksAppEnvironment represents AWS OpsWorks App Environment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html
+type OpsWorksAppEnvironment struct {
+	// The name of the environment variable, which can consist of up to 64
+	// characters. You can use upper and lowercase letters, numbers, and
+	// underscores (_), but the name must start with a letter or underscore.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// Indicates whether the value of the environment variable is concealed,
+	// such as with a DescribeApps response. To conceal an environment
+	// variable's value, set the value to true.
+	Secure *BoolExpr `json:"Secure,omitempty"`
+
+	// The value of the environment variable, which can be empty. You can
+	// specify a value of up to 256 characters.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// OpsWorksAppEnvironmentList represents a list of OpsWorksAppEnvironment
+type OpsWorksAppEnvironmentList []OpsWorksAppEnvironment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *OpsWorksAppEnvironmentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := OpsWorksAppEnvironment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = OpsWorksAppEnvironmentList{item}
+		return nil
+	}
+	list := []OpsWorksAppEnvironment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = OpsWorksAppEnvironmentList(list)
 		return nil
 	}
 	return err
@@ -13533,6 +13791,102 @@ func (l *OpsWorksLoadBasedAutoScalingList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
+// OpsWorksInstanceBlockDeviceMapping represents AWS OpsWorks Instance BlockDeviceMapping
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html
+type OpsWorksInstanceBlockDeviceMapping struct {
+	// The name of the device that is exposed to the instance, such as
+	// /dev/dsh or xvdh. For the root device, you can use the explicit device
+	// name or you can set this parameter to ROOT_DEVICE. If you set the
+	// parameter to ROOT_DEVICE, AWS OpsWorks provides the correct device
+	// name.
+	DeviceName *StringExpr `json:"DeviceName,omitempty"`
+
+	// Configuration information about the Amazon Elastic Block Store (Amazon
+	// EBS) volume.
+	Ebs *OpsWorksInstanceBlockDeviceMappingEbsBlockDevice `json:"Ebs,omitempty"`
+
+	// Suppresses the device that is specified in the block device mapping of
+	// the AWS OpsWorks instance Amazon Machine Image (AMI).
+	NoDevice *StringExpr `json:"NoDevice,omitempty"`
+
+	// The name of the virtual device. The name must be in the form
+	// ephemeralX, where X is a number equal to or greater than zero (0), for
+	// example, ephemeral0.
+	VirtualName *StringExpr `json:"VirtualName,omitempty"`
+}
+
+// OpsWorksInstanceBlockDeviceMappingList represents a list of OpsWorksInstanceBlockDeviceMapping
+type OpsWorksInstanceBlockDeviceMappingList []OpsWorksInstanceBlockDeviceMapping
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *OpsWorksInstanceBlockDeviceMappingList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := OpsWorksInstanceBlockDeviceMapping{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = OpsWorksInstanceBlockDeviceMappingList{item}
+		return nil
+	}
+	list := []OpsWorksInstanceBlockDeviceMapping{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = OpsWorksInstanceBlockDeviceMappingList(list)
+		return nil
+	}
+	return err
+}
+
+// OpsWorksInstanceBlockDeviceMappingEbsBlockDevice represents AWS OpsWorks Instance BlockDeviceMapping EbsBlockDevice
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping-ebsblockdevice.html
+type OpsWorksInstanceBlockDeviceMappingEbsBlockDevice struct {
+	// Indicates whether to delete the volume when the instance is
+	// terminated.
+	DeleteOnTermination *BoolExpr `json:"DeleteOnTermination,omitempty"`
+
+	// The number of I/O operations per second (IOPS) that the volume
+	// supports. For more information, see Iops for the EbsBlockDevice action
+	// in the Amazon EC2 API Reference.
+	Iops *IntegerExpr `json:"Iops,omitempty"`
+
+	// The snapshot ID of the volume that you want to use. If you specify
+	// both the SnapshotId and VolumeSize properties, VolumeSize must be
+	// equal to or greater than the size of the snapshot.
+	SnapshotId *StringExpr `json:"SnapshotId,omitempty"`
+
+	// The volume size, in Gibibytes (GiB). If you specify both the
+	// SnapshotId and VolumeSize properties, VolumeSize must be equal to or
+	// greater than the size of the snapshot. For more information about
+	// specifying volume size, see VolumeSize for the EbsBlockDevice action
+	// in the Amazon EC2 API Reference.
+	VolumeSize *IntegerExpr `json:"VolumeSize,omitempty"`
+
+	// The volume type. For more information about specifying the volume
+	// type, see VolumeType for the EbsBlockDevice action in the Amazon EC2
+	// API Reference.
+	VolumeType *StringExpr `json:"VolumeType,omitempty"`
+}
+
+// OpsWorksInstanceBlockDeviceMappingEbsBlockDeviceList represents a list of OpsWorksInstanceBlockDeviceMappingEbsBlockDevice
+type OpsWorksInstanceBlockDeviceMappingEbsBlockDeviceList []OpsWorksInstanceBlockDeviceMappingEbsBlockDevice
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *OpsWorksInstanceBlockDeviceMappingEbsBlockDeviceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := OpsWorksInstanceBlockDeviceMappingEbsBlockDevice{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = OpsWorksInstanceBlockDeviceMappingEbsBlockDeviceList{item}
+		return nil
+	}
+	list := []OpsWorksInstanceBlockDeviceMappingEbsBlockDevice{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = OpsWorksInstanceBlockDeviceMappingEbsBlockDeviceList(list)
+		return nil
+	}
+	return err
+}
+
 // OpsWorksRecipes represents AWS OpsWorks Recipes Type
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html
@@ -13635,45 +13989,6 @@ func (l *OpsWorksSourceList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 
-// OpsWorksAppEnvironment represents AWS OpsWorks App Environment
-//
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html
-type OpsWorksAppEnvironment struct {
-	// The name of the environment variable, which can consist of up to 64
-	// characters. You can use upper and lowercase letters, numbers, and
-	// underscores (_), but the name must start with a letter or underscore.
-	Key *StringExpr `json:"Key,omitempty"`
-
-	// Indicates whether the value of the environment variable is concealed,
-	// such as with a DescribeApps response. To conceal an environment
-	// variable's value, set the value to true.
-	Secure *BoolExpr `json:"Secure,omitempty"`
-
-	// The value of the environment variable, which can be empty. You can
-	// specify a value of up to 256 characters.
-	Value *StringExpr `json:"Value,omitempty"`
-}
-
-// OpsWorksAppEnvironmentList represents a list of OpsWorksAppEnvironment
-type OpsWorksAppEnvironmentList []OpsWorksAppEnvironment
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *OpsWorksAppEnvironmentList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := OpsWorksAppEnvironment{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = OpsWorksAppEnvironmentList{item}
-		return nil
-	}
-	list := []OpsWorksAppEnvironment{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = OpsWorksAppEnvironmentList(list)
-		return nil
-	}
-	return err
-}
-
 // OpsWorksSslConfiguration represents AWS OpsWorks SslConfiguration Type
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html
@@ -13703,6 +14018,72 @@ func (l *OpsWorksSslConfigurationList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = OpsWorksSslConfigurationList(list)
+		return nil
+	}
+	return err
+}
+
+// OpsWorksStackElasticIp represents AWS OpsWorks Stack ElasticIp
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html
+type OpsWorksStackElasticIp struct {
+	// The Elastic IP address.
+	Ip *StringExpr `json:"Ip,omitempty"`
+
+	// A name for the Elastic IP address.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// OpsWorksStackElasticIpList represents a list of OpsWorksStackElasticIp
+type OpsWorksStackElasticIpList []OpsWorksStackElasticIp
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *OpsWorksStackElasticIpList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := OpsWorksStackElasticIp{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = OpsWorksStackElasticIpList{item}
+		return nil
+	}
+	list := []OpsWorksStackElasticIp{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = OpsWorksStackElasticIpList(list)
+		return nil
+	}
+	return err
+}
+
+// OpsWorksStackRdsDbInstance represents AWS OpsWorks Stack RdsDbInstance
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html
+type OpsWorksStackRdsDbInstance struct {
+	// The password of the registered database.
+	DbPassword *StringExpr `json:"DbPassword,omitempty"`
+
+	// The master user name of the registered database.
+	DbUser *StringExpr `json:"DbUser,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the Amazon RDS DB instance to
+	// register with the AWS OpsWorks stack.
+	RdsDbInstanceArn *StringExpr `json:"RdsDbInstanceArn,omitempty"`
+}
+
+// OpsWorksStackRdsDbInstanceList represents a list of OpsWorksStackRdsDbInstance
+type OpsWorksStackRdsDbInstanceList []OpsWorksStackRdsDbInstance
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *OpsWorksStackRdsDbInstanceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := OpsWorksStackRdsDbInstance{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = OpsWorksStackRdsDbInstanceList{item}
+		return nil
+	}
+	list := []OpsWorksStackRdsDbInstance{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = OpsWorksStackRdsDbInstanceList(list)
 		return nil
 	}
 	return err
@@ -15186,10 +15567,10 @@ func (l *S3WebsiteConfigurationRoutingRulesRoutingRuleConditionPropertyList) Unm
 	return err
 }
 
-// SNSSubscription represents Amazon SNS Subscription Property Type
+// SNSSubscriptionProperty represents Amazon SNS Subscription Property Type
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html
-type SNSSubscription struct {
+type SNSSubscriptionProperty struct {
 	// The subscription's endpoint (format depends on the protocol). For more
 	// information, see the Subscribe Endpoint parameter in the Amazon Simple
 	// Notification Service API Reference.
@@ -15201,21 +15582,21 @@ type SNSSubscription struct {
 	Protocol *StringExpr `json:"Protocol,omitempty"`
 }
 
-// SNSSubscriptionList represents a list of SNSSubscription
-type SNSSubscriptionList []SNSSubscription
+// SNSSubscriptionPropertyList represents a list of SNSSubscriptionProperty
+type SNSSubscriptionPropertyList []SNSSubscriptionProperty
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *SNSSubscriptionList) UnmarshalJSON(buf []byte) error {
+func (l *SNSSubscriptionPropertyList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := SNSSubscription{}
+	item := SNSSubscriptionProperty{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = SNSSubscriptionList{item}
+		*l = SNSSubscriptionPropertyList{item}
 		return nil
 	}
-	list := []SNSSubscription{}
+	list := []SNSSubscriptionProperty{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = SNSSubscriptionList(list)
+		*l = SNSSubscriptionPropertyList(list)
 		return nil
 	}
 	return err
@@ -15998,6 +16379,10 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &OpsWorksLayer{}
 	case "AWS::OpsWorks::Stack":
 		return &OpsWorksStack{}
+	case "AWS::OpsWorks::UserProfile":
+		return &OpsWorksUserProfile{}
+	case "AWS::OpsWorks::Volume":
+		return &OpsWorksVolume{}
 	case "AWS::RDS::DBCluster":
 		return &RDSDBCluster{}
 	case "AWS::RDS::DBClusterParameterGroup":
@@ -16040,6 +16425,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &S3BucketPolicy{}
 	case "AWS::SDB::Domain":
 		return &SDBDomain{}
+	case "AWS::SNS::Subscription":
+		return &SNSSubscription{}
 	case "AWS::SNS::Topic":
 		return &SNSTopic{}
 	case "AWS::SNS::TopicPolicy":

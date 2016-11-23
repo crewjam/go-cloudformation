@@ -3817,7 +3817,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ARN of the task definition that you want to run on the cluster.",
+          "DocString": "The ARN of the task definition (including the revision number) that\nyou want to run on the cluster, such as\narn:aws:ecs:us-east-1:123456789012:task-definition/mytask:3. You can't\nuse :latest to specify a revision because it's ambiguous. For example,\nif AWS CloudFormation needed to rollback an update, it wouldn't know\nwhich revision to rollback to.",
           "SyntaxExpression": "String"
         }
       ]
@@ -4165,7 +4165,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of cache security group names to associate with this\nreplication group. If you specify the SecurityGroupIds property, do\nnot specify this property; you can specify only one.",
+          "DocString": "A list of cache security group names to associate with this\nreplication group.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -4285,7 +4285,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of Amazon Virtual Private Cloud (Amazon VPC) security groups to\nassociate with this replication group. Use this property only when you\nare creating a replication group in a VPC. If you specify the\nCacheSecurityGroupNames property, do not specify this property; you\ncan specify only one.",
+          "DocString": "A list of Amazon Virtual Private Cloud (Amazon VPC) security groups to\nassociate with this replication group.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -6166,6 +6166,14 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "Environment",
+          "Type": "AWS Lambda Function Environment",
+          "TypeHref": "aws-properties-lambda-function-environment.html",
+          "TypeName": "",
+          "DocString": "Key-value pairs that Lambda caches and makes available for your Lambda\nfunctions. Use environment variables to apply configuration changes,\nsuch as test and production environment configurations, without\nchanging your Lambda function source code.",
+          "SyntaxExpression": "Environment"
+        },
+        {
           "Name": "FunctionName",
           "Type": "String",
           "TypeHref": "",
@@ -6179,6 +6187,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the function (within your source code) that Lambda calls\nto start running your code. For more information, see the Handler\nproperty in the AWS Lambda Developer Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "KmsKeyArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of an AWS Key Management Service (AWS\nKMS) key that Lambda uses to encrypt and decrypt environment variable\nvalues.",
           "SyntaxExpression": "String"
         },
         {
@@ -6458,7 +6474,7 @@
           "Type": "AWS OpsWorks Source Type",
           "TypeHref": "aws-properties-opsworks-stack-source.html",
           "TypeName": "",
-          "DocString": "Contains the information required to retrieve an app from a\nrepository.",
+          "DocString": "The information required to retrieve an app from a repository.",
           "SyntaxExpression": "Source"
         },
         {
@@ -6476,6 +6492,14 @@
           "TypeName": "",
           "DocString": "A description of the app.",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DataSources",
+          "Type": "List of DataSource",
+          "TypeHref": "aws-properties-opsworks-app-datasource.html",
+          "TypeName": "",
+          "DocString": "A list of databases to associate with the AWS OpsWorks app.",
+          "SyntaxExpression": "[ DataSource, ... ]"
         },
         {
           "Name": "Domains",
@@ -6506,7 +6530,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The AWS OpsWorks app name.",
+          "DocString": "The name of the AWS OpsWorks app.",
           "SyntaxExpression": "String"
         },
         {
@@ -6530,7 +6554,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The AWS OpsWorks stack ID that this app will be associated with.",
+          "DocString": "The ID of the AWS OpsWorks stack to associate this app with.",
           "SyntaxExpression": "String"
         },
         {
@@ -6570,6 +6594,14 @@
       "Href": "aws-resource-opsworks-instance.html",
       "Properties": [
         {
+          "Name": "AgentVersion",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The version of the AWS OpsWorks agent that AWS OpsWorks installs on\neach instance. AWS OpsWorks sends commands to the agent to performs\ntasks on your instances, such as starting Chef runs. For valid values,\nsee the AgentVersion parameter for the CreateInstance action in the\nAWS OpsWorks API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "AmiId",
           "Type": "String",
           "TypeHref": "",
@@ -6602,12 +6634,36 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "BlockDeviceMappings",
+          "Type": "List of AWS OpsWorks Instance BlockDeviceMapping",
+          "TypeHref": "aws-properties-opsworks-instance-blockdevicemapping.html",
+          "TypeName": "",
+          "DocString": "A list of block devices that are mapped to the AWS OpsWorks instance.\nFor more information, see the BlockDeviceMappings parameter for the\nCreateInstance action in the AWS OpsWorks API Reference.",
+          "SyntaxExpression": "[ BlockDeviceMapping, ... ]"
+        },
+        {
           "Name": "EbsOptimized",
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Whether the instance is optimized for Amazon Elastic Block Store\n(Amazon EBS) I/O. If you specify an Amazon EBS-optimized instance\ntype, AWS OpsWorks enables EBS optimization by default. For more\ninformation, see Amazon EBS–Optimized Instances in the Amazon EC2\nUser Guide for Linux Instances.",
           "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "ElasticIps",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of Elastic IP addresses to associate with the instance.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "Hostname",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the instance host.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "InstallUpdatesOnBoot",
@@ -6674,12 +6730,36 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "Tenancy",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The tenancy of the instance. For more information, see the Tenancy\nparameter for the CreateInstance action in the AWS OpsWorks API\nReference.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "TimeBasedAutoScaling",
           "Type": "AWS OpsWorks TimeBasedAutoScaling Type",
           "TypeHref": "aws-properties-opsworks-instance-timebasedautoscaling.html",
           "TypeName": "",
           "DocString": "The time-based scaling configuration for the instance.",
-          "SyntaxExpression": "{ TimeBasedAutoScaling }"
+          "SyntaxExpression": "TimeBasedAutoScaling"
+        },
+        {
+          "Name": "VirtualizationType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The instance's virtualization type, paravirtual or hvm.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Volumes",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A list of Amazon EBS volume IDs to associate with the instance.",
+          "SyntaxExpression": "[ String, ... ]"
         }
       ]
     },
@@ -6718,6 +6798,14 @@
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an IAM instance profile that is to\nbe used for the Amazon EC2 instances in this layer.",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "CustomJson",
+          "Type": "JSON object",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A custom stack configuration and deployment attributes that AWS\nOpsWorks installs on the layer's instances. For more information, see\nthe CustomJson parameter for the CreateLayer action in the AWS\nOpsWorks API Reference.",
+          "SyntaxExpression": "JSON object"
         },
         {
           "Name": "CustomRecipes",
@@ -6846,6 +6934,22 @@
           "SyntaxExpression": "{ ChefConfiguration }"
         },
         {
+          "Name": "CloneAppIds",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you're cloning an AWS OpsWorks stack, a list of AWS OpsWorks\napplication stack IDs from the source stack to include in the cloned\nstack.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "ClonePermissions",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you're cloning an AWS OpsWorks stack, indicates whether to clone\nthe source stack's permissions.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
           "Name": "ConfigurationManager",
           "Type": "AWS OpsWorks StackConfigurationManager Type",
           "TypeHref": "aws-properties-opsworks-stack-stackconfigmanager.html",
@@ -6918,6 +7022,22 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "EcsClusterArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the Amazon EC2 Container Service\n(Amazon ECS) cluster to register with the AWS OpsWorks stack.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ElasticIps",
+          "Type": "List of AWS OpsWorks Stack ElasticIp",
+          "TypeHref": "aws-properties-opsworks-stack-elasticip.html",
+          "TypeName": "",
+          "DocString": "A list of Elastic IP addresses to register with the AWS OpsWorks\nstack.",
+          "SyntaxExpression": "[ ElasticIp, ... ]"
+        },
+        {
           "Name": "HostnameTheme",
           "Type": "String",
           "TypeHref": "",
@@ -6934,11 +7054,27 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "RdsDbInstances",
+          "Type": "List of AWS OpsWorks Stack RdsDbInstance",
+          "TypeHref": "aws-properties-opsworks-stack-rdsdbinstance.html",
+          "TypeName": "",
+          "DocString": "The Amazon Relational Database Service (Amazon RDS) DB instance to\nregister with the AWS OpsWorks stack.",
+          "SyntaxExpression": "[ RdsDbInstance, ... ]"
+        },
+        {
           "Name": "ServiceRoleArn",
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS Identity and Access Management (IAM) role that AWS OpsWorks\nuses to work with AWS resources on your behalf. You must specify an\nAmazon Resource Name (ARN) for an existing IAM role.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SourceStackId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "If you're cloning an AWS OpsWorks stack, the stack ID of the source\nAWS OpsWorks stack to clone.",
           "SyntaxExpression": "String"
         },
         {
@@ -6963,6 +7099,74 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC that the stack is to be launched into, which must be\nin the specified region. All instances are launched into this VPC. If\nyou specify this property, you must specify the DefaultSubnetId\nproperty.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::OpsWorks::UserProfile",
+      "Href": "aws-resource-opsworks-userprofile.html",
+      "Properties": [
+        {
+          "Name": "AllowSelfManagement",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether users can use the AWS OpsWorks My Settings page to\nspecify their own SSH public key. For more information, see Setting an\nIAM User's Public SSH Key in the AWS OpsWorks User Guide.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "IamUserArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the AWS Identity and Access\nManagement (IAM) user to associate with this configuration.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SshPublicKey",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The public SSH key that is associated with the IAM user. The IAM user\nmust have or be given the corresponding private key to access\ninstances.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::OpsWorks::Volume",
+      "Href": "aws-resource-opsworks-volume.html",
+      "Properties": [
+        {
+          "Name": "Ec2VolumeId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the Amazon EBS volume to register with the AWS OpsWorks\nstack.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MountPoint",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The mount point for the Amazon EBS volume, such as /mnt/disk1.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the Amazon EBS volume.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "StackId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the AWS OpsWorks stack that AWS OpsWorks registers the\nvolume to.",
           "SyntaxExpression": "String"
         }
       ]
@@ -7198,6 +7402,14 @@
           "TypeName": "",
           "DocString": "For supported engines, specifies the character set to associate with\nthe DB instance. For more information, see Appendix: Oracle Character\nSets Supported in Amazon RDS in the Amazon Relational Database Service\nUser Guide.",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "CopyTagsToSnapshot",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether to copy all of the user-defined tags from the DB\ninstance to snapshots of the DB instance. By default, Amazon RDS\ndoesn't copy tags to snapshots. Amazon RDS doesn't copy tags with the\naws:: prefix unless it's the DB instance's final snapshot (the\nsnapshot when you delete the DB instance).",
+          "SyntaxExpression": "Boolean"
         },
         {
           "Name": "DBClusterIdentifier",
@@ -8334,6 +8546,36 @@
       ]
     },
     {
+      "Name": "AWS::SNS::Subscription",
+      "Href": "aws-resource-sns-subscription.html",
+      "Properties": [
+        {
+          "Name": "Endpoint",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The endpoint that receives notifications from the Amazon SNS topic.\nThe endpoint value depends on the protocol that you specify. For more\ninformation, see the Subscribe Endpoint parameter in the Amazon Simple\nNotification Service API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Protocol",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The subscription's protocol. For more information, see the Subscribe\nProtocol parameter in the Amazon Simple Notification Service API\nReference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "TopicArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the topic to subscribe to.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS::SNS::Topic",
       "Href": "aws-properties-sns-topic.html",
       "Properties": [
@@ -8552,7 +8794,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A friendly name or description for the metrics of the rule.",
+          "DocString": "A friendly name or description for the metrics of the rule. For valid\nvalues, see the MetricName parameter for the CreateRule action in the\nAWS WAF API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -9060,7 +9302,7 @@
           "Type": "Mapping of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The response parameters from the back-end response that API Gateway\nsends to the method response. Specify response parameters as key-value\npairs (string-to-string maps), with a destination as the key and a\nsource as the value. For more information, see API Gateway API Request\nand Response Parameter-Mapping Reference in the API Gateway Developer\nGuide.",
+          "DocString": "The response parameters from the back-end response that API Gateway\nsends to the method response. Specify response parameters as key-value\npairs (string-to-string mappings).",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
@@ -12255,7 +12497,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The snapshot ID of the volume that you want to use.",
+          "DocString": "The snapshot ID of the volume that you want to use. If you specify\nboth the SnapshotId and VolumeSize properties, VolumeSize must be\nequal to or greater than the size of the snapshot.",
           "SyntaxExpression": "String"
         },
         {
@@ -12263,7 +12505,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The volume size, in Gibibytes (GiB). For more information about\nspecifying the volume size, see VolumeSize for the EbsBlockDevice\naction in the Amazon EC2 API Reference.",
+          "DocString": "The volume size, in Gibibytes (GiB). If you specify both the\nSnapshotId and VolumeSize properties, VolumeSize must be equal to or\ngreater than the size of the snapshot. For more information about\nspecifying the volume size, see VolumeSize for the EbsBlockDevice\naction in the Amazon EC2 API Reference.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -12811,7 +13053,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The port number on the container that is bound to the host port.",
+          "DocString": "The port number on the container bound to the host port.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -12819,7 +13061,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The host port number on the container instance that you want to\nreserve for your container. You can specify a non-reserved host port\nfor your container port mapping, or you can omit the host port (or set\nit to 0). If you specify a container port but no host port, your\ncontainer port is automatically assigned a host port in the 49153 to\n65535 port range.",
+          "DocString": "The host port number on the container instance that you want to\nreserve for your container. You can specify a non-reserved host port\nfor your container port mapping, omit the host port, or set the host\nport to 0. If you specify a container port but no host port, your\ncontainer host port is assigned automatically .",
           "SyntaxExpression": "Integer"
         },
         {
@@ -15063,6 +15305,20 @@
       ]
     },
     {
+      "Name": "AWS Lambda Function Environment",
+      "Href": "aws-properties-lambda-function-environment.html",
+      "Properties": [
+        {
+          "Name": "Variables",
+          "Type": "Mapping of key-value pairs",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A map of key-value pairs that the Lambda function can access.",
+          "SyntaxExpression": "{ String:String, ... }"
+        }
+      ]
+    },
+    {
       "Name": "AWS Lambda Function Code",
       "Href": "aws-properties-lambda-function-code.html",
       "Properties": [
@@ -15126,6 +15382,66 @@
       "Name": "Name Type",
       "Href": "aws-properties-name.html",
       "Properties": null
+    },
+    {
+      "Name": "DataSource",
+      "Href": "aws-properties-opsworks-app-datasource.html",
+      "Properties": [
+        {
+          "Name": "Arn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the data source.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DatabaseName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the database.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of the data source, such as AutoSelectOpsworksMysqlInstance,\nOpsworksMysqlInstance, or RdsDbInstance. For valid values, see the\nDataSource type in the AWS OpsWorks API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS OpsWorks App Environment",
+      "Href": "aws-properties-opsworks-app-environment.html",
+      "Properties": [
+        {
+          "Name": "Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the environment variable, which can consist of up to 64\ncharacters. You can use upper and lowercase letters, numbers, and\nunderscores (_), but the name must start with a letter or underscore.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Secure",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether the value of the environment variable is concealed,\nsuch as with a DescribeApps response. To conceal an environment\nvariable's value, set the value to true.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "Value",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the environment variable, which can be empty. You can\nspecify a value of up to 256 characters.",
+          "SyntaxExpression": "String"
+        }
+      ]
     },
     {
       "Name": "AWS OpsWorks AutoScalingThresholds Type",
@@ -15270,6 +15586,90 @@
       ]
     },
     {
+      "Name": "AWS OpsWorks Instance BlockDeviceMapping",
+      "Href": "aws-properties-opsworks-instance-blockdevicemapping.html",
+      "Properties": [
+        {
+          "Name": "DeviceName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the device that is exposed to the instance, such as\n/dev/dsh or xvdh. For the root device, you can use the explicit device\nname or you can set this parameter to ROOT_DEVICE. If you set the\nparameter to ROOT_DEVICE, AWS OpsWorks provides the correct device\nname.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Ebs",
+          "Type": "AWS OpsWorks Instance BlockDeviceMapping EbsBlockDevice",
+          "TypeHref": "aws-properties-opsworks-instance-blockdevicemapping-ebsblockdevice.html",
+          "TypeName": "",
+          "DocString": "Configuration information about the Amazon Elastic Block Store (Amazon\nEBS) volume.",
+          "SyntaxExpression": "EbsBlockDevice"
+        },
+        {
+          "Name": "NoDevice",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Suppresses the device that is specified in the block device mapping of\nthe AWS OpsWorks instance Amazon Machine Image (AMI).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "VirtualName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the virtual device. The name must be in the form\nephemeralX, where X is a number equal to or greater than zero (0), for\nexample, ephemeral0.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS OpsWorks Instance BlockDeviceMapping EbsBlockDevice",
+      "Href": "aws-properties-opsworks-instance-blockdevicemapping-ebsblockdevice.html",
+      "Properties": [
+        {
+          "Name": "DeleteOnTermination",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether to delete the volume when the instance is\nterminated.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "Iops",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. For more information, see Iops for the EbsBlockDevice action\nin the Amazon EC2 API Reference.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "SnapshotId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The snapshot ID of the volume that you want to use. If you specify\nboth the SnapshotId and VolumeSize properties, VolumeSize must be\nequal to or greater than the size of the snapshot.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "VolumeSize",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The volume size, in Gibibytes (GiB). If you specify both the\nSnapshotId and VolumeSize properties, VolumeSize must be equal to or\ngreater than the size of the snapshot. For more information about\nspecifying volume size, see VolumeSize for the EbsBlockDevice action\nin the Amazon EC2 API Reference.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "VolumeType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The volume type. For more information about specifying the volume\ntype, see VolumeType for the EbsBlockDevice action in the Amazon EC2\nAPI Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS OpsWorks Recipes Type",
       "Href": "aws-properties-opsworks-layer-recipes.html",
       "Properties": [
@@ -15370,36 +15770,6 @@
       ]
     },
     {
-      "Name": "AWS OpsWorks App Environment",
-      "Href": "aws-properties-opsworks-app-environment.html",
-      "Properties": [
-        {
-          "Name": "Key",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The name of the environment variable, which can consist of up to 64\ncharacters. You can use upper and lowercase letters, numbers, and\nunderscores (_), but the name must start with a letter or underscore.",
-          "SyntaxExpression": "String"
-        },
-        {
-          "Name": "Secure",
-          "Type": "Boolean",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "Indicates whether the value of the environment variable is concealed,\nsuch as with a DescribeApps response. To conceal an environment\nvariable's value, set the value to true.",
-          "SyntaxExpression": "Boolean"
-        },
-        {
-          "Name": "Value",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The value of the environment variable, which can be empty. You can\nspecify a value of up to 256 characters.",
-          "SyntaxExpression": "String"
-        }
-      ]
-    },
-    {
       "Name": "AWS OpsWorks SslConfiguration Type",
       "Href": "aws-properties-opsworks-app-sslconfiguration.html",
       "Properties": [
@@ -15425,6 +15795,58 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The private key; the contents of the certificate's domain.kex file.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS OpsWorks Stack ElasticIp",
+      "Href": "aws-properties-opsworks-stack-elasticip.html",
+      "Properties": [
+        {
+          "Name": "Ip",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Elastic IP address.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the Elastic IP address.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS OpsWorks Stack RdsDbInstance",
+      "Href": "aws-properties-opsworks-stack-rdsdbinstance.html",
+      "Properties": [
+        {
+          "Name": "DbPassword",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The password of the registered database.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DbUser",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The master user name of the registered database.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RdsDbInstanceArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the Amazon RDS DB instance to\nregister with the AWS OpsWorks stack.",
           "SyntaxExpression": "String"
         }
       ]
