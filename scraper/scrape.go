@@ -347,6 +347,15 @@ func (r *Resource) GoName() string {
 		return "EC2NetworkInterfaceAttachmentType"
 	}
 
+	// There is an object named AWS::SNS::Subscription and an object named
+	// SNS Subscription. To avoid a duplication definition, we have to deconflict
+	// them here.
+	if r.Name == "Amazon SNS Subscription Property Type" {
+		return "SNSSubscriptionProperty"
+	}
+
+	// Note: If we find one more conflict, we should do something more clever here
+
 	return rv
 }
 
