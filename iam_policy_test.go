@@ -45,23 +45,22 @@ func (testSuite *IAMPolicyTest) TestIAMPolicyStatement(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(string(b), Equals, `{"Version":"2012-10-17","Statement":[{"Sid":"AddPerm","Effect":"Allow","Principal":"*","Action":["s3:GetObject"],"Resource":["arn:aws:s3:::examplebucket/*"]}]}`)
 
-	// Try other variations of Principal
+	// Try other variations of Principal, as well as a single statement rather than an array
 	p = `{
    "Version":"2012-10-17",
    "Id":"PolicyForCloudFrontPrivateContent",
-   "Statement":[
-     {
+   "Statement": {
        "Sid":" Grant a CloudFront Origin Identity access to support private content",
        "Effect":"Allow",
        "Principal":{"CanonicalUser":"79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be"},
        "Action":"s3:GetObject",
        "Resource":"arn:aws:s3:::example-bucket/*"
-     }
-   ]
+    }
 }`
 
 	err = json.Unmarshal([]byte(p), &v)
 	c.Assert(err, IsNil)
+	s = v.Statement[0]
 	c.Assert(s.Principal.AWS, IsNil)
 	c.Assert(s.Principal.CanonicalUser, DeepEquals, StringList(String("79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be")))
 	c.Assert(s.Principal.Federated, IsNil)
@@ -93,6 +92,7 @@ func (testSuite *IAMPolicyTest) TestIAMPolicyStatement(c *C) {
 
 	err = json.Unmarshal([]byte(p), &v)
 	c.Assert(err, IsNil)
+	s = v.Statement[0]
 	c.Assert(s.Principal.AWS, IsNil)
 	c.Assert(s.Principal.CanonicalUser, IsNil)
 	c.Assert(s.Principal.Federated, IsNil)
