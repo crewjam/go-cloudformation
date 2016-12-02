@@ -279,12 +279,12 @@ func (s ApiGatewayResource) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
 type ApiGatewayRestApi struct {
-	// A Swagger specification that defines a set of RESTful APIs in the JSON
-	// format.
+	// An OpenAPI specification that defines a set of RESTful APIs in the
+	// JSON format.
 	Body interface{} `json:"Body,omitempty"`
 
 	// The Amazon Simple Storage Service (Amazon S3) location that points to
-	// a Swagger file, which defines a set of RESTful APIs in JSON or YAML
+	// a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML
 	// format.
 	BodyS3Location *APIGatewayRestApiS3Location `json:"BodyS3Location,omitempty"`
 
@@ -1124,6 +1124,56 @@ func (s CloudWatchAlarm) CfnResourceType() string {
 	return "AWS::CloudWatch::Alarm"
 }
 
+// CodeBuildProject represents AWS::CodeBuild::Project
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
+type CodeBuildProject struct {
+	// The output settings for artifacts that the project generates during a
+	// build.
+	Artifacts *CodeBuildProjectArtifacts `json:"Artifacts,omitempty"`
+
+	// A description of the project. Use the description to identify the
+	// purpose of the project.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The alias or Amazon Resource Name (ARN) of the AWS Key Management
+	// Service (AWS KMS) customer master key (CMK) that AWS CodeBuild uses to
+	// encrypt the build output. If you don't specify a value, AWS CodeBuild
+	// uses the AWS-managed CMK for Amazon Simple Storage Service.
+	EncryptionKey *StringExpr `json:"EncryptionKey,omitempty"`
+
+	// The build environment settings for the project, such as the
+	// environment type or the environment variables to use for the build
+	// environment.
+	Environment *CodeBuildProjectEnvironment `json:"Environment,omitempty"`
+
+	// A name for the project. The name must be unique across all of the
+	// projects in your AWS account.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The ARN of the service role that AWS CodeBuild uses to interact with
+	// services on your behalf.
+	ServiceRole *StringExpr `json:"ServiceRole,omitempty"`
+
+	// The source code settings for the project, such as the source code's
+	// repository type and location.
+	Source *CodeBuildProjectSource `json:"Source,omitempty"`
+
+	// An arbitrary set of tags (key-value pairs) for the AWS CodeBuild
+	// project.
+	Tags []ResourceTag `json:"Tags,omitempty"`
+
+	// The number of minutes after which AWS CodeBuild stops the build if
+	// it's not complete. For valid values, see the timeoutInMinutes field in
+	// the AWS CodeBuild User Guide.
+	TimeoutInMinutes *IntegerExpr `json:"TimeoutInMinutes,omitempty"`
+}
+
+// CfnResourceType returns AWS::CodeBuild::Project to implement the ResourceProperties interface
+func (s CodeBuildProject) CfnResourceType() string {
+	return "AWS::CodeBuild::Project"
+}
+
 // CodeCommitRepository represents AWS::CodeCommit::Repository
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html
@@ -1804,6 +1854,18 @@ type EC2Instance struct {
 	// For a list of instance types, see Instance Families and Types.
 	InstanceType *StringExpr `json:"InstanceType,omitempty"`
 
+	// The number of IPv6 addresses to associate with the instance's primary
+	// network interface. Amazon EC2 automatically selects the IPv6 addresses
+	// from the subnet range. To specify specific IPv6 addresses, use the
+	// Ipv6Addresses property and don't specify this property.
+	Ipv6AddressCount *IntegerExpr `json:"Ipv6AddressCount,omitempty"`
+
+	// One or more specific IPv6 addresses from the IPv6 CIDR block range of
+	// your subnet to associate with the instance's primary network
+	// interface. To specify a number of IPv6 addresses, use the
+	// Ipv6AddressCount property and don't specify this property.
+	Ipv6Addresses *EC2NetworkInterfaceIpv6AddressesList `json:"Ipv6Addresses,omitempty"`
+
 	// The kernel ID.
 	KernelId *StringExpr `json:"KernelId,omitempty"`
 
@@ -1934,7 +1996,7 @@ func (s EC2NetworkAcl) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html
 type EC2NetworkAclEntry struct {
-	// The CIDR range to allow or deny, in CIDR notation (e.g.,
+	// The IPv4 CIDR range to allow or deny, in CIDR notation (e.g.,
 	// 172.16.0.0/24).
 	CidrBlock *StringExpr `json:"CidrBlock,omitempty"`
 
@@ -1945,6 +2007,9 @@ type EC2NetworkAclEntry struct {
 
 	// The Internet Control Message Protocol (ICMP) code and type.
 	Icmp *EC2NetworkAclEntryIcmp `json:"Icmp,omitempty"`
+
+	// The IPv6 CIDR range to allow or deny, in CIDR notation.
+	Ipv6CidrBlock *StringExpr `json:"Ipv6CidrBlock,omitempty"`
 
 	// ID of the ACL where the entry will be created.
 	NetworkAclId *StringExpr `json:"NetworkAclId,omitempty"`
@@ -1980,6 +2045,18 @@ type EC2NetworkInterface struct {
 
 	// A list of security group IDs associated with this network interface.
 	GroupSet *StringListExpr `json:"GroupSet,omitempty"`
+
+	// The number of IPv6 addresses to associate with the network interface.
+	// Amazon EC2 automatically selects the IPv6 addresses from the subnet
+	// range. To specify specific IPv6 addresses, use the Ipv6Addresses
+	// property and don't specify this property.
+	Ipv6AddressCount *IntegerExpr `json:"Ipv6AddressCount,omitempty"`
+
+	// One or more specific IPv6 addresses from the IPv6 CIDR block range of
+	// your subnet to associate with the network interface. If you're
+	// specifying a number of IPv6 addresses, use the Ipv6AddressCount
+	// property and don't specify this property.
+	Ipv6Addresses *EC2NetworkInterfaceIpv6AddressesList `json:"Ipv6Addresses,omitempty"`
 
 	// Assigns a single private IP address to the network interface, which is
 	// used as the primary private IP address. If you want to specify
@@ -2063,9 +2140,14 @@ func (s EC2PlacementGroup) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html
 type EC2Route struct {
-	// The CIDR address block used for the destination match. For example,
-	// 0.0.0.0/0. Routing decisions are based on the most specific match.
+	// The IPv4 CIDR address block used for the destination match. For
+	// example, 0.0.0.0/0. Routing decisions are based on the most specific
+	// match.
 	DestinationCidrBlock *StringExpr `json:"DestinationCidrBlock,omitempty"`
+
+	// The IPv6 CIDR address block used for the destination match. For
+	// example, ::/0. Routing decisions are based on the most specific match.
+	DestinationIpv6CidrBlock *StringExpr `json:"DestinationIpv6CidrBlock,omitempty"`
 
 	// The ID of an Internet gateway or virtual private gateway that is
 	// attached to your VPC. For example: igw-eaad4883.
@@ -2138,8 +2220,11 @@ func (s EC2SecurityGroup) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html
 type EC2SecurityGroupEgress struct {
-	// CIDR range.
+	// An IPv4 CIDR range.
 	CidrIp *StringExpr `json:"CidrIp,omitempty"`
+
+	// An IPv6 CIDR range.
+	CidrIpv6 *StringExpr `json:"CidrIpv6,omitempty"`
 
 	// The AWS service prefix of an Amazon VPC endpoint. For more
 	// information, see VPC Endpoints in the Amazon VPC User Guide.
@@ -2177,8 +2262,11 @@ func (s EC2SecurityGroupEgress) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html
 type EC2SecurityGroupIngress struct {
-	// Specifies a CIDR range.
+	// An IPv4 CIDR range.
 	CidrIp *StringExpr `json:"CidrIp,omitempty"`
+
+	// An IPv6 CIDR range.
+	CidrIpv6 *StringExpr `json:"CidrIpv6,omitempty"`
 
 	// Start of port range for the TCP and UDP protocols, or an ICMP type
 	// number. If you specify icmp for the IpProtocol property, you can
@@ -2267,6 +2355,23 @@ func (s EC2Subnet) CfnResourceType() string {
 	return "AWS::EC2::Subnet"
 }
 
+// EC2SubnetCidrBlock represents AWS::EC2::SubnetCidrBlock
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html
+type EC2SubnetCidrBlock struct {
+	// The IPv6 CIDR block for the subnet. The CIDR block must have a prefix
+	// length of /64.
+	Ipv6CidrBlock *StringExpr `json:"Ipv6CidrBlock,omitempty"`
+
+	// The ID of the subnet to associate the IPv6 CIDR block with.
+	SubnetId *StringExpr `json:"SubnetId,omitempty"`
+}
+
+// CfnResourceType returns AWS::EC2::SubnetCidrBlock to implement the ResourceProperties interface
+func (s EC2SubnetCidrBlock) CfnResourceType() string {
+	return "AWS::EC2::SubnetCidrBlock"
+}
+
 // EC2SubnetNetworkAclAssociation represents AWS::EC2::SubnetNetworkAclAssociation
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-network-acl-assoc.html
@@ -2319,12 +2424,12 @@ type EC2Volume struct {
 	// The Availability Zone in which to create the new volume.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 
-	// Indicates whether the volume is encrypted. Encrypted Amazon EBS
-	// volumes can only be attached to instance types that support Amazon EBS
+	// Indicates whether the volume is encrypted. You can attach encrypted
+	// Amazon EBS volumes only to instance types that support Amazon EBS
 	// encryption. Volumes that are created from encrypted snapshots are
-	// automatically encrypted. You cannot create an encrypted volume from an
-	// unencrypted snapshot or vice versa. If your AMI uses encrypted
-	// volumes, you can only launch the AMI on supported instance types. For
+	// automatically encrypted. You can't create an encrypted volume from an
+	// unencrypted snapshot, or vice versa. If your AMI uses encrypted
+	// volumes, you can launch the AMI only on supported instance types. For
 	// more information, see Amazon EBS encryption in the Amazon EC2 User
 	// Guide for Linux Instances.
 	Encrypted *BoolExpr `json:"Encrypted,omitempty"`
@@ -2338,14 +2443,14 @@ type EC2Volume struct {
 	// The Amazon Resource Name (ARN) of the AWS Key Management Service
 	// master key that is used to create the encrypted volume, such as
 	// arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
-	// If you create an encrypted volume and don't specify this property, the
-	// default master key is used.
+	// If you create an encrypted volume and don't specify this property, AWS
+	// CloudFormation uses the default master key.
 	KmsKeyId *StringExpr `json:"KmsKeyId,omitempty"`
 
 	// The size of the volume, in gibibytes (GiBs). For more information
 	// about the valid sizes for each volume type, see the Size parameter for
 	// the CreateVolume action in the Amazon EC2 API Reference.
-	Size *StringExpr `json:"Size,omitempty"`
+	Size *IntegerExpr `json:"Size,omitempty"`
 
 	// The snapshot from which to create the new volume.
 	SnapshotId *StringExpr `json:"SnapshotId,omitempty"`
@@ -2419,6 +2524,25 @@ type EC2VPC struct {
 // CfnResourceType returns AWS::EC2::VPC to implement the ResourceProperties interface
 func (s EC2VPC) CfnResourceType() string {
 	return "AWS::EC2::VPC"
+}
+
+// EC2VPCCidrBlock represents AWS::EC2::VPCCidrBlock
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html
+type EC2VPCCidrBlock struct {
+	// Whether to request an Amazon-provided IPv6 CIDR block with a /56
+	// prefix length for the VPC. You can't specify the range of IPv6
+	// addresses or the size of the CIDR block.
+	AmazonProvidedIpv6CidrBlock *BoolExpr `json:"AmazonProvidedIpv6CidrBlock,omitempty"`
+
+	// The ID of the VPC to associate the Amazon-provided IPv6 CIDR block
+	// with.
+	VpcId *StringExpr `json:"VpcId,omitempty"`
+}
+
+// CfnResourceType returns AWS::EC2::VPCCidrBlock to implement the ResourceProperties interface
+func (s EC2VPCCidrBlock) CfnResourceType() string {
+	return "AWS::EC2::VPCCidrBlock"
 }
 
 // EC2VPCDHCPOptionsAssociation represents AWS::EC2::VPCDHCPOptionsAssociation
@@ -2870,7 +2994,7 @@ type ElastiCacheReplicationGroup struct {
 	// Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a
 	// read-only replica is automatically promoted to a read-write primary
 	// cluster if the existing primary cluster fails. If you specify true,
-	// you must specify a value greater than 1 for the NumCacheNodes
+	// you must specify a value greater than 1 for the NumCacheClusters
 	// property. By default, AWS CloudFormation sets the value to true.
 	AutomaticFailoverEnabled *BoolExpr `json:"AutomaticFailoverEnabled,omitempty"`
 
@@ -3318,6 +3442,13 @@ func (s ElasticLoadBalancingV2ListenerRule) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
 type ElasticLoadBalancingV2LoadBalancer struct {
+	// The type of IP addresses that are used by the load balancer's subnets,
+	// such as ipv4 (for IPv4 addresses) or dualstack (for IPv4 and IPv6
+	// addresses). For valid values, see the IpAddressType parameter for the
+	// CreateLoadBalancer action in the Elastic Load Balancing API Reference
+	// version 2015-12-01.
+	IpAddressType *StringExpr `json:"IpAddressType,omitempty"`
+
 	// Specifies the load balancer configuration.
 	LoadBalancerAttributes *ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList `json:"LoadBalancerAttributes,omitempty"`
 
@@ -3398,6 +3529,9 @@ type ElasticLoadBalancingV2TargetGroup struct {
 
 	// Target group configurations.
 	TargetGroupAttributes *ElasticLoadBalancingTargetGroupTargetGroupAttributesList `json:"TargetGroupAttributes,omitempty"`
+
+	// The full name of the target group.
+	TargetGroupFullName *StringExpr `json:"TargetGroupFullName,omitempty"`
 
 	// The targets to add to this target group.
 	Targets *ElasticLoadBalancingTargetGroupTargetDescriptionList `json:"Targets,omitempty"`
@@ -5910,6 +6044,37 @@ func (s SQSQueuePolicy) CfnResourceType() string {
 	return "AWS::SQS::QueuePolicy"
 }
 
+// SSMAssociation represents AWS::SSM::Association
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html
+type SSMAssociation struct {
+	// The version of the SSM document to associate with the target.
+	DocumentVersion *StringExpr `json:"DocumentVersion,omitempty"`
+
+	// The ID of the instance that the SSM document is associated with.
+	InstanceId *StringExpr `json:"InstanceId,omitempty"`
+
+	// The name of the SSM document.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// Parameter values that the SSM document uses at runtime.
+	Parameters *StringExpr `json:"Parameters,omitempty"`
+
+	// A Cron expression that specifies when the association is applied to
+	// the target. For supported expressions, see the ScheduleExpression
+	// parameter for the CreateAssociation action in the Amazon EC2 Simple
+	// Systems Manager API Reference.
+	ScheduleExpression *StringExpr `json:"ScheduleExpression,omitempty"`
+
+	// The targets that the SSM document sends commands to.
+	Targets *EC2SimpleSystemsManagerAssociationTargetsList `json:"Targets,omitempty"`
+}
+
+// CfnResourceType returns AWS::SSM::Association to implement the ResourceProperties interface
+func (s SSMAssociation) CfnResourceType() string {
+	return "AWS::SSM::Association"
+}
+
 // SSMDocument represents AWS::SSM::Document
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html
@@ -6471,18 +6636,18 @@ func (l *APIGatewayMethodMethodResponseList) UnmarshalJSON(buf []byte) error {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-restapi-bodys3location.html
 type APIGatewayRestApiS3Location struct {
-	// The name of the S3 bucket where the Swagger file is stored.
+	// The name of the S3 bucket where the OpenAPI file is stored.
 	Bucket *StringExpr `json:"Bucket,omitempty"`
 
-	// The Amazon S3 ETag (a file checksum) of the Swagger file. If you don't
-	// specify a value, API Gateway skips ETag validation of your Swagger
+	// The Amazon S3 ETag (a file checksum) of the OpenAPI file. If you don't
+	// specify a value, API Gateway skips ETag validation of your OpenAPI
 	// file.
 	ETag *StringExpr `json:"ETag,omitempty"`
 
-	// The file name of the Swagger file (Amazon S3 object name).
+	// The file name of the OpenAPI file (Amazon S3 object name).
 	Key *StringExpr `json:"Key,omitempty"`
 
-	// For versioning-enabled buckets, a specific version of the Swagger
+	// For versioning-enabled buckets, a specific version of the OpenAPI
 	// file.
 	Version *StringExpr `json:"Version,omitempty"`
 }
@@ -8003,6 +8168,172 @@ func (l *CloudWatchLogsMetricFilterMetricTransformationPropertyList) UnmarshalJS
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = CloudWatchLogsMetricFilterMetricTransformationPropertyList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeBuildProjectArtifacts represents AWS CodeBuild Project Artifacts
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html
+type CodeBuildProjectArtifacts struct {
+	// The location where AWS CodeBuild saves the build output artifacts. For
+	// valid values, see the artifacts-location field in the AWS CodeBuild
+	// User Guide.
+	Location *StringExpr `json:"Location,omitempty"`
+
+	// The name of the build output folder where AWS CodeBuild saves the
+	// build output artifacts. For .zip packages, the name of the build
+	// output .zip file that contains the build output artifacts.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The information AWS CodeBuild adds to the build output path, such as a
+	// build ID. For more information, see the namespaceType field in the AWS
+	// CodeBuild User Guide.
+	NamespaceType *StringExpr `json:"NamespaceType,omitempty"`
+
+	// Indicates how AWS CodeBuild packages the build output artifacts. For
+	// valid values, see the packaging field in the AWS CodeBuild User Guide.
+	Packaging *StringExpr `json:"Packaging,omitempty"`
+
+	// The path to the build output folder where AWS CodeBuild saves the
+	// build output artifacts.
+	Path *StringExpr `json:"Path,omitempty"`
+
+	// The type of build output artifact. For valid values, see the
+	// artifacts-type field in the AWS CodeBuild User Guide.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodeBuildProjectArtifactsList represents a list of CodeBuildProjectArtifacts
+type CodeBuildProjectArtifactsList []CodeBuildProjectArtifacts
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeBuildProjectArtifactsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeBuildProjectArtifacts{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeBuildProjectArtifactsList{item}
+		return nil
+	}
+	list := []CodeBuildProjectArtifacts{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeBuildProjectArtifactsList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeBuildProjectEnvironment represents AWS CodeBuild Project Environment
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html
+type CodeBuildProjectEnvironment struct {
+	// The type of compute environment, such as BUILD_GENERAL1_SMALL. The
+	// compute type determines the number of CPU cores and memory the build
+	// environment uses. For valid values, see the computeType field in the
+	// AWS CodeBuild User Guide.
+	ComputeType *StringExpr `json:"ComputeType,omitempty"`
+
+	// The environment variables that your builds can use. For more
+	// information, see the environmentVariables field in the AWS CodeBuild
+	// User Guide.
+	EnvironmentVariables *CodeBuildProjectEnvironmentEnvironmentVariablesList `json:"EnvironmentVariables,omitempty"`
+
+	// The Docker image identifier that the build environment uses. For more
+	// information, see the image field in the AWS CodeBuild User Guide.
+	Image *StringExpr `json:"Image,omitempty"`
+
+	// The type of build environment. For valid values, see the
+	// environment-type field in the AWS CodeBuild User Guide.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodeBuildProjectEnvironmentList represents a list of CodeBuildProjectEnvironment
+type CodeBuildProjectEnvironmentList []CodeBuildProjectEnvironment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeBuildProjectEnvironmentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeBuildProjectEnvironment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeBuildProjectEnvironmentList{item}
+		return nil
+	}
+	list := []CodeBuildProjectEnvironment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeBuildProjectEnvironmentList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeBuildProjectEnvironmentEnvironmentVariables represents AWS CodeBuild Project Environment EnvironmentVariables
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment-environmentvariables.html
+type CodeBuildProjectEnvironmentEnvironmentVariables struct {
+	// The name of an environment variable.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// The value of the environment variable.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// CodeBuildProjectEnvironmentEnvironmentVariablesList represents a list of CodeBuildProjectEnvironmentEnvironmentVariables
+type CodeBuildProjectEnvironmentEnvironmentVariablesList []CodeBuildProjectEnvironmentEnvironmentVariables
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeBuildProjectEnvironmentEnvironmentVariablesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeBuildProjectEnvironmentEnvironmentVariables{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeBuildProjectEnvironmentEnvironmentVariablesList{item}
+		return nil
+	}
+	list := []CodeBuildProjectEnvironmentEnvironmentVariables{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeBuildProjectEnvironmentEnvironmentVariablesList(list)
+		return nil
+	}
+	return err
+}
+
+// CodeBuildProjectSource represents AWS CodeBuild Project Source
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
+type CodeBuildProjectSource struct {
+	// The build specification, specified as a single string. For more
+	// information, see the Build Spec Reference in the AWS CodeBuild User
+	// Guide.
+	BuildSpec *StringExpr `json:"BuildSpec,omitempty"`
+
+	// The location of the source code in the specified repository type. For
+	// more information, see the source-location field in the AWS CodeBuild
+	// User Guide.
+	Location *StringExpr `json:"Location,omitempty"`
+
+	// The type of repository that contains your source code. For valid
+	// values, see the source-type field in the AWS CodeBuild User Guide.
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// CodeBuildProjectSourceList represents a list of CodeBuildProjectSource
+type CodeBuildProjectSourceList []CodeBuildProjectSource
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeBuildProjectSourceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeBuildProjectSource{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeBuildProjectSourceList{item}
+		return nil
+	}
+	list := []CodeBuildProjectSource{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeBuildProjectSourceList(list)
 		return nil
 	}
 	return err
@@ -9693,6 +10024,18 @@ type EC2NetworkInterfaceEmbedded struct {
 	// An existing network interface ID.
 	NetworkInterfaceId *StringExpr `json:"NetworkInterfaceId,omitempty"`
 
+	// The number of IPv6 addresses to associate with the network interface.
+	// Amazon EC2 automatically selects the IPv6 addresses from the subnet
+	// range. To specify specific IPv6 addresses, use the Ipv6Addresses
+	// property and don't specify this property.
+	Ipv6AddressCount *IntegerExpr `json:"Ipv6AddressCount,omitempty"`
+
+	// One or more specific IPv6 addresses from the IPv6 CIDR block range of
+	// your subnet to associate with the network interface. To specify a
+	// number of IPv6 addresses, use the Ipv6AddressCount property and don't
+	// specify this property.
+	Ipv6Addresses *EC2NetworkInterfaceIpv6AddressesList `json:"Ipv6Addresses,omitempty"`
+
 	// Assigns a single private IP address to the network interface, which is
 	// used as the primary private IP address. If you want to specify
 	// multiple private IP address, use the PrivateIpAddresses property.
@@ -9796,6 +10139,34 @@ func (l *EC2NetworkAclEntryPortRangeList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2NetworkAclEntryPortRangeList(list)
+		return nil
+	}
+	return err
+}
+
+// EC2NetworkInterfaceIpv6Addresses represents EC2 NetworkInterface Ipv6Addresses
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-ipv6addresses.html
+type EC2NetworkInterfaceIpv6Addresses struct {
+	// The IPv6 address to associate with the network interface.
+	Ipv6Address *StringExpr `json:"Ipv6Address,omitempty"`
+}
+
+// EC2NetworkInterfaceIpv6AddressesList represents a list of EC2NetworkInterfaceIpv6Addresses
+type EC2NetworkInterfaceIpv6AddressesList []EC2NetworkInterfaceIpv6Addresses
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2NetworkInterfaceIpv6AddressesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2NetworkInterfaceIpv6Addresses{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2NetworkInterfaceIpv6AddressesList{item}
+		return nil
+	}
+	list := []EC2NetworkInterfaceIpv6Addresses{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2NetworkInterfaceIpv6AddressesList(list)
 		return nil
 	}
 	return err
@@ -10223,9 +10594,9 @@ func (l *EC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoringLis
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html
 type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfaces struct {
 	// Indicates whether to assign a public IP address to an instance that
-	// you launch in a VPC. The public IP address can only be assigned to a
-	// network interface for eth0, and can only be assigned to a new network
-	// interface, not an existing one.
+	// you launch in a VPC. You can assign the public IP address can only to
+	// a network interface for eth0, and only to a new network interface, not
+	// an existing one.
 	AssociatePublicIpAddress *BoolExpr `json:"AssociatePublicIpAddress,omitempty"`
 
 	// Indicates whether to delete the network interface when the instance
@@ -10241,16 +10612,26 @@ type ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsN
 	// A list of security group IDs to associate with this network interface.
 	Groups *StringListExpr `json:"Groups,omitempty"`
 
+	// The number of IPv6 addresses to associate with the network interface.
+	// Amazon Elastic Compute Cloud automatically selects the IPv6 addresses
+	// from the subnet range. To specify specific IPv6 addresses, use the
+	// Ipv6Addresses property and don't specify this property.
+	Ipv6AddressCount *IntegerExpr `json:"Ipv6AddressCount,omitempty"`
+
+	// One or more specific IPv6 addresses from the IPv6 CIDR block range of
+	// your subnet to associate with the network interface. To specify a
+	// number of IPv6 addresses, use the Ipv6AddressCount property and don't
+	// specify this property.
+	Ipv6Addresses *EC2NetworkInterfaceIpv6AddressesList `json:"Ipv6Addresses,omitempty"`
+
 	// A network interface ID.
 	NetworkInterfaceId *StringExpr `json:"NetworkInterfaceId,omitempty"`
 
 	// One or more private IP addresses to assign to the network interface.
-	// You can designate only one private IP address as primary.
 	PrivateIpAddresses *ElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddressesList `json:"PrivateIpAddresses,omitempty"`
 
-	// The number of secondary private IP addresses that Amazon Elastic
-	// Compute Cloud (Amazon EC2) automatically assigns to the network
-	// interface.
+	// The number of secondary private IP addresses that Amazon EC2
+	// automatically assigns to the network interface.
 	SecondaryPrivateIpAddressCount *IntegerExpr `json:"SecondaryPrivateIpAddressCount,omitempty"`
 
 	// The ID of the subnet to associate with the network interface.
@@ -15567,6 +15948,41 @@ func (l *S3WebsiteConfigurationRoutingRulesRoutingRuleConditionPropertyList) Unm
 	return err
 }
 
+// EC2SimpleSystemsManagerAssociationTargets represents Amazon EC2 Simple Systems Manager Association Targets
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-targets.html
+type EC2SimpleSystemsManagerAssociationTargets struct {
+	// The name of the criteria that EC2 instances must meet. For valid keys,
+	// see the Target data type in the Amazon EC2 Simple Systems Manager API
+	// Reference.
+	Key *StringExpr `json:"Key,omitempty"`
+
+	// The value of the criteria. SSM runs targeted commands on EC2 instances
+	// that match the criteria. For more information, see the Target data
+	// type in the Amazon EC2 Simple Systems Manager API Reference.
+	Values *StringListExpr `json:"Values,omitempty"`
+}
+
+// EC2SimpleSystemsManagerAssociationTargetsList represents a list of EC2SimpleSystemsManagerAssociationTargets
+type EC2SimpleSystemsManagerAssociationTargetsList []EC2SimpleSystemsManagerAssociationTargets
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2SimpleSystemsManagerAssociationTargetsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2SimpleSystemsManagerAssociationTargets{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2SimpleSystemsManagerAssociationTargetsList{item}
+		return nil
+	}
+	list := []EC2SimpleSystemsManagerAssociationTargets{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2SimpleSystemsManagerAssociationTargetsList(list)
+		return nil
+	}
+	return err
+}
+
 // SNSSubscriptionProperty represents Amazon SNS Subscription Property Type
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html
@@ -16161,6 +16577,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &CloudTrailTrail{}
 	case "AWS::CloudWatch::Alarm":
 		return &CloudWatchAlarm{}
+	case "AWS::CodeBuild::Project":
+		return &CodeBuildProject{}
 	case "AWS::CodeCommit::Repository":
 		return &CodeCommitRepository{}
 	case "AWS::CodeDeploy::Application":
@@ -16229,6 +16647,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2SpotFleet{}
 	case "AWS::EC2::Subnet":
 		return &EC2Subnet{}
+	case "AWS::EC2::SubnetCidrBlock":
+		return &EC2SubnetCidrBlock{}
 	case "AWS::EC2::SubnetNetworkAclAssociation":
 		return &EC2SubnetNetworkAclAssociation{}
 	case "AWS::EC2::SubnetRouteTableAssociation":
@@ -16239,6 +16659,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2VolumeAttachment{}
 	case "AWS::EC2::VPC":
 		return &EC2VPC{}
+	case "AWS::EC2::VPCCidrBlock":
+		return &EC2VPCCidrBlock{}
 	case "AWS::EC2::VPCDHCPOptionsAssociation":
 		return &EC2VPCDHCPOptionsAssociation{}
 	case "AWS::EC2::VPCEndpoint":
@@ -16435,6 +16857,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SQSQueue{}
 	case "AWS::SQS::QueuePolicy":
 		return &SQSQueuePolicy{}
+	case "AWS::SSM::Association":
+		return &SSMAssociation{}
 	case "AWS::SSM::Document":
 		return &SSMDocument{}
 	case "AWS::WAF::ByteMatchSet":

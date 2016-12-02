@@ -391,7 +391,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A Swagger specification that defines a set of RESTful APIs in the JSON\nformat.",
+          "DocString": "An OpenAPI specification that defines a set of RESTful APIs in the\nJSON format.",
           "SyntaxExpression": "JSON object"
         },
         {
@@ -399,7 +399,7 @@
           "Type": "Amazon API Gateway RestApi S3Location",
           "TypeHref": "aws-properties-apitgateway-restapi-bodys3location.html",
           "TypeName": "",
-          "DocString": "The Amazon Simple Storage Service (Amazon S3) location that points to\na Swagger file, which defines a set of RESTful APIs in JSON or YAML\nformat.",
+          "DocString": "The Amazon Simple Storage Service (Amazon S3) location that points to\na OpenAPI file, which defines a set of RESTful APIs in JSON or YAML\nformat.",
           "SyntaxExpression": "S3Location"
         },
         {
@@ -1635,6 +1635,84 @@
       ]
     },
     {
+      "Name": "AWS::CodeBuild::Project",
+      "Href": "aws-resource-codebuild-project.html",
+      "Properties": [
+        {
+          "Name": "Artifacts",
+          "Type": "AWS CodeBuild Project Artifacts",
+          "TypeHref": "aws-properties-codebuild-project-artifacts.html",
+          "TypeName": "",
+          "DocString": "The output settings for artifacts that the project generates during a\nbuild.",
+          "SyntaxExpression": "Artifacts"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A description of the project. Use the description to identify the\npurpose of the project.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "EncryptionKey",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The alias or Amazon Resource Name (ARN) of the AWS Key Management\nService (AWS KMS) customer master key (CMK) that AWS CodeBuild uses to\nencrypt the build output. If you don't specify a value, AWS CodeBuild\nuses the AWS-managed CMK for Amazon Simple Storage Service.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Environment",
+          "Type": "AWS CodeBuild Project Environment",
+          "TypeHref": "aws-properties-codebuild-project-environment.html",
+          "TypeName": "",
+          "DocString": "The build environment settings for the project, such as the\nenvironment type or the environment variables to use for the build\nenvironment.",
+          "SyntaxExpression": "Environment"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the project. The name must be unique across all of the\nprojects in your AWS account.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "ServiceRole",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ARN of the service role that AWS CodeBuild uses to interact with\nservices on your behalf.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Source",
+          "Type": "AWS CodeBuild Project Source",
+          "TypeHref": "aws-properties-codebuild-project-source.html",
+          "TypeName": "",
+          "DocString": "The source code settings for the project, such as the source code's\nrepository type and location.",
+          "SyntaxExpression": "Source"
+        },
+        {
+          "Name": "Tags",
+          "Type": "AWS CloudFormation Resource Tags",
+          "TypeHref": "aws-properties-resource-tags.html",
+          "TypeName": "",
+          "DocString": "An arbitrary set of tags (key-value pairs) for the AWS CodeBuild\nproject.",
+          "SyntaxExpression": "[ Resource Tag, ... ]"
+        },
+        {
+          "Name": "TimeoutInMinutes",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of minutes after which AWS CodeBuild stops the build if\nit's not complete. For valid values, see the timeoutInMinutes field in\nthe AWS CodeBuild User Guide.",
+          "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
       "Name": "AWS::CodeCommit::Repository",
       "Href": "aws-resource-codecommit-repository.html",
       "Properties": [
@@ -2585,6 +2663,22 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "Ipv6AddressCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of IPv6 addresses to associate with the instance's primary\nnetwork interface. Amazon EC2 automatically selects the IPv6 addresses\nfrom the subnet range. To specify specific IPv6 addresses, use the\nIpv6Addresses property and don't specify this property.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Ipv6Addresses",
+          "Type": "List of EC2 NetworkInterface Ipv6Addresses",
+          "TypeHref": "aws-properties-ec2-networkinterface-ipv6addresses.html",
+          "TypeName": "",
+          "DocString": "One or more specific IPv6 addresses from the IPv6 CIDR block range of\nyour subnet to associate with the instance's primary network\ninterface. To specify a number of IPv6 addresses, use the\nIpv6AddressCount property and don't specify this property.",
+          "SyntaxExpression": "[ IPv6 Address Type, ... ]"
+        },
+        {
           "Name": "KernelId",
           "Type": "String",
           "TypeHref": "",
@@ -2789,7 +2883,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The CIDR range to allow or deny, in CIDR notation (e.g.,\n172.16.0.0/24).",
+          "DocString": "The IPv4 CIDR range to allow or deny, in CIDR notation (e.g.,\n172.16.0.0/24).",
           "SyntaxExpression": "String"
         },
         {
@@ -2807,6 +2901,14 @@
           "TypeName": "",
           "DocString": "The Internet Control Message Protocol (ICMP) code and type.",
           "SyntaxExpression": "EC2 ICMP"
+        },
+        {
+          "Name": "Ipv6CidrBlock",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The IPv6 CIDR range to allow or deny, in CIDR notation.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "NetworkAclId",
@@ -2869,6 +2971,22 @@
           "TypeName": "",
           "DocString": "A list of security group IDs associated with this network interface.",
           "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "Ipv6AddressCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of IPv6 addresses to associate with the network interface.\nAmazon EC2 automatically selects the IPv6 addresses from the subnet\nrange. To specify specific IPv6 addresses, use the Ipv6Addresses\nproperty and don't specify this property.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Ipv6Addresses",
+          "Type": "List of EC2 NetworkInterface Ipv6Addresses",
+          "TypeHref": "aws-properties-ec2-networkinterface-ipv6addresses.html",
+          "TypeName": "",
+          "DocString": "One or more specific IPv6 addresses from the IPv6 CIDR block range of\nyour subnet to associate with the network interface. If you're\nspecifying a number of IPv6 addresses, use the Ipv6AddressCount\nproperty and don't specify this property.",
+          "SyntaxExpression": "[ Ipv6Address, ... ]"
         },
         {
           "Name": "PrivateIpAddress",
@@ -2981,7 +3099,15 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The CIDR address block used for the destination match. For example,\n0.0.0.0/0. Routing decisions are based on the most specific match.",
+          "DocString": "The IPv4 CIDR address block used for the destination match. For\nexample, 0.0.0.0/0. Routing decisions are based on the most specific\nmatch.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "DestinationIpv6CidrBlock",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The IPv6 CIDR address block used for the destination match. For\nexample, ::/0. Routing decisions are based on the most specific match.",
           "SyntaxExpression": "String"
         },
         {
@@ -3111,7 +3237,15 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "CIDR range.",
+          "DocString": "An IPv4 CIDR range.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "CidrIpv6",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An IPv6 CIDR range.",
           "SyntaxExpression": "String"
         },
         {
@@ -3173,7 +3307,15 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies a CIDR range.",
+          "DocString": "An IPv4 CIDR range.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "CidrIpv6",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "An IPv6 CIDR range.",
           "SyntaxExpression": "String"
         },
         {
@@ -3303,6 +3445,28 @@
       ]
     },
     {
+      "Name": "AWS::EC2::SubnetCidrBlock",
+      "Href": "aws-resource-ec2-subnetcidrblock.html",
+      "Properties": [
+        {
+          "Name": "Ipv6CidrBlock",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The IPv6 CIDR block for the subnet. The CIDR block must have a prefix\nlength of /64.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SubnetId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the subnet to associate the IPv6 CIDR block with.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS::EC2::SubnetNetworkAclAssociation",
       "Href": "aws-resource-ec2-subnet-network-acl-assoc.html",
       "Properties": [
@@ -3371,7 +3535,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether the volume is encrypted. Encrypted Amazon EBS\nvolumes can only be attached to instance types that support Amazon EBS\nencryption. Volumes that are created from encrypted snapshots are\nautomatically encrypted. You cannot create an encrypted volume from an\nunencrypted snapshot or vice versa. If your AMI uses encrypted\nvolumes, you can only launch the AMI on supported instance types. For\nmore information, see Amazon EBS encryption in the Amazon EC2 User\nGuide for Linux Instances.",
+          "DocString": "Indicates whether the volume is encrypted. You can attach encrypted\nAmazon EBS volumes only to instance types that support Amazon EBS\nencryption. Volumes that are created from encrypted snapshots are\nautomatically encrypted. You can't create an encrypted volume from an\nunencrypted snapshot, or vice versa. If your AMI uses encrypted\nvolumes, you can launch the AMI only on supported instance types. For\nmore information, see Amazon EBS encryption in the Amazon EC2 User\nGuide for Linux Instances.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -3387,16 +3551,16 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Amazon Resource Name (ARN) of the AWS Key Management Service\nmaster key that is used to create the encrypted volume, such as\narn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.\nIf you create an encrypted volume and don't specify this property, the\ndefault master key is used.",
+          "DocString": "The Amazon Resource Name (ARN) of the AWS Key Management Service\nmaster key that is used to create the encrypted volume, such as\narn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.\nIf you create an encrypted volume and don't specify this property, AWS\nCloudFormation uses the default master key.",
           "SyntaxExpression": "String"
         },
         {
           "Name": "Size",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The size of the volume, in gibibytes (GiBs). For more information\nabout the valid sizes for each volume type, see the Size parameter for\nthe CreateVolume action in the Amazon EC2 API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "SnapshotId",
@@ -3497,6 +3661,28 @@
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this VPC. To name a\nVPC resource, specify a value for the Name key.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::EC2::VPCCidrBlock",
+      "Href": "aws-resource-ec2-vpccidrblock.html",
+      "Properties": [
+        {
+          "Name": "AmazonProvidedIpv6CidrBlock",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Whether to request an Amazon-provided IPv6 CIDR block with a /56\nprefix length for the VPC. You can't specify the range of IPv6\naddresses or the size of the CIDR block.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
+          "Name": "VpcId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the VPC to associate the Amazon-provided IPv6 CIDR block\nwith.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -4133,7 +4319,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a\nread-only replica is automatically promoted to a read-write primary\ncluster if the existing primary cluster fails. If you specify true,\nyou must specify a value greater than 1 for the NumCacheNodes\nproperty. By default, AWS CloudFormation sets the value to true.",
+          "DocString": "Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a\nread-only replica is automatically promoted to a read-write primary\ncluster if the existing primary cluster fails. If you specify true,\nyou must specify a value greater than 1 for the NumCacheClusters\nproperty. By default, AWS CloudFormation sets the value to true.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -4810,6 +4996,14 @@
       "Href": "aws-resource-elasticloadbalancingv2-loadbalancer.html",
       "Properties": [
         {
+          "Name": "IpAddressType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of IP addresses that are used by the load balancer's subnets,\nsuch as ipv4 (for IPv4 addresses) or dualstack (for IPv4 and IPv6\naddresses). For valid values, see the IpAddressType parameter for the\nCreateLoadBalancer action in the Elastic Load Balancing API Reference\nversion 2015-12-01.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "LoadBalancerAttributes",
           "Type": "A list of Elastic Load Balancing LoadBalancer LoadBalancerAttributes",
           "TypeHref": "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",
@@ -4958,6 +5152,14 @@
           "TypeName": "",
           "DocString": "Target group configurations.",
           "SyntaxExpression": "[ TargetGroupAttributes, ... ]"
+        },
+        {
+          "Name": "TargetGroupFullName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The full name of the target group.",
+          "SyntaxExpression": "String"
         },
         {
           "Name": "Targets",
@@ -8712,6 +8914,60 @@
       ]
     },
     {
+      "Name": "AWS::SSM::Association",
+      "Href": "aws-resource-ssm-association.html",
+      "Properties": [
+        {
+          "Name": "DocumentVersion",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The version of the SSM document to associate with the target.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "InstanceId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the instance that the SSM document is associated with.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the SSM document.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Parameters",
+          "Type": "String to list-of-strings map",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Parameter values that the SSM document uses at runtime.",
+          "SyntaxExpression": "{ String: [String, ...] }"
+        },
+        {
+          "Name": "ScheduleExpression",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A Cron expression that specifies when the association is applied to\nthe target. For supported expressions, see the ScheduleExpression\nparameter for the CreateAssociation action in the Amazon EC2 Simple\nSystems Manager API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Targets",
+          "Type": "List of Amazon EC2 Simple Systems Manager Association Targets",
+          "TypeHref": "aws-properties-ssm-association-targets.html",
+          "TypeName": "",
+          "DocString": "The targets that the SSM document sends commands to.",
+          "SyntaxExpression": "[ Targets ]"
+        }
+      ]
+    },
+    {
       "Name": "AWS::SSM::Document",
       "Href": "aws-resource-ssm-document.html",
       "Properties": [
@@ -9370,7 +9626,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the S3 bucket where the Swagger file is stored.",
+          "DocString": "The name of the S3 bucket where the OpenAPI file is stored.",
           "SyntaxExpression": "String"
         },
         {
@@ -9378,7 +9634,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Amazon S3 ETag (a file checksum) of the Swagger file. If you don't\nspecify a value, API Gateway skips ETag validation of your Swagger\nfile.",
+          "DocString": "The Amazon S3 ETag (a file checksum) of the OpenAPI file. If you don't\nspecify a value, API Gateway skips ETag validation of your OpenAPI\nfile.",
           "SyntaxExpression": "String"
         },
         {
@@ -9386,7 +9642,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The file name of the Swagger file (Amazon S3 object name).",
+          "DocString": "The file name of the OpenAPI file (Amazon S3 object name).",
           "SyntaxExpression": "String"
         },
         {
@@ -9394,7 +9650,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "For versioning-enabled buckets, a specific version of the Swagger\nfile.",
+          "DocString": "For versioning-enabled buckets, a specific version of the OpenAPI\nfile.",
           "SyntaxExpression": "String"
         }
       ]
@@ -10670,6 +10926,150 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The value that is published to the CloudWatch metric. For example, if\nyou're counting the occurrences of a particular term like Error,\nspecify 1 for the metric value. If you're counting the number of bytes\ntransferred, reference the value that is in the log event by using $\nfollowed by the name of the field that you specified in the filter\npattern, such as $size.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS CodeBuild Project Artifacts",
+      "Href": "aws-properties-codebuild-project-artifacts.html",
+      "Properties": [
+        {
+          "Name": "Location",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The location where AWS CodeBuild saves the build output artifacts. For\nvalid values, see the artifacts-location field in the AWS CodeBuild\nUser Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the build output folder where AWS CodeBuild saves the\nbuild output artifacts. For .zip packages, the name of the build\noutput .zip file that contains the build output artifacts.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "NamespaceType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The information AWS CodeBuild adds to the build output path, such as a\nbuild ID. For more information, see the namespaceType field in the AWS\nCodeBuild User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Packaging",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates how AWS CodeBuild packages the build output artifacts. For\nvalid values, see the packaging field in the AWS CodeBuild User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Path",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The path to the build output folder where AWS CodeBuild saves the\nbuild output artifacts.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of build output artifact. For valid values, see the\nartifacts-type field in the AWS CodeBuild User Guide.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS CodeBuild Project Environment",
+      "Href": "aws-properties-codebuild-project-environment.html",
+      "Properties": [
+        {
+          "Name": "ComputeType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of compute environment, such as BUILD_GENERAL1_SMALL. The\ncompute type determines the number of CPU cores and memory the build\nenvironment uses. For valid values, see the computeType field in the\nAWS CodeBuild User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "EnvironmentVariables",
+          "Type": "List of AWS CodeBuild Project Environment EnvironmentVariables",
+          "TypeHref": "aws-properties-codebuild-project-environment-environmentvariables.html",
+          "TypeName": "",
+          "DocString": "The environment variables that your builds can use. For more\ninformation, see the environmentVariables field in the AWS CodeBuild\nUser Guide.",
+          "SyntaxExpression": "[ EnvironmentVariables ]"
+        },
+        {
+          "Name": "Image",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Docker image identifier that the build environment uses. For more\ninformation, see the image field in the AWS CodeBuild User Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of build environment. For valid values, see the\nenvironment-type field in the AWS CodeBuild User Guide.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS CodeBuild Project Environment EnvironmentVariables",
+      "Href": "aws-properties-codebuild-project-environment-environmentvariables.html",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of an environment variable.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Value",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the environment variable.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS CodeBuild Project Source",
+      "Href": "aws-properties-codebuild-project-source.html",
+      "Properties": [
+        {
+          "Name": "BuildSpec",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The build specification, specified as a single string. For more\ninformation, see the Build Spec Reference in the AWS CodeBuild User\nGuide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Location",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The location of the source code in the specified repository type. For\nmore information, see the source-location field in the AWS CodeBuild\nUser Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of repository that contains your source code. For valid\nvalues, see the source-type field in the AWS CodeBuild User Guide.",
           "SyntaxExpression": "String"
         }
       ]
@@ -12037,6 +12437,22 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "Ipv6AddressCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of IPv6 addresses to associate with the network interface.\nAmazon EC2 automatically selects the IPv6 addresses from the subnet\nrange. To specify specific IPv6 addresses, use the Ipv6Addresses\nproperty and don't specify this property.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Ipv6Addresses",
+          "Type": "List of EC2 NetworkInterface Ipv6Addresses",
+          "TypeHref": "aws-properties-ec2-networkinterface-ipv6addresses.html",
+          "TypeName": "",
+          "DocString": "One or more specific IPv6 addresses from the IPv6 CIDR block range of\nyour subnet to associate with the network interface. To specify a\nnumber of IPv6 addresses, use the Ipv6AddressCount property and don't\nspecify this property.",
+          "SyntaxExpression": "[ IPv6 Address Type, ... ]"
+        },
+        {
           "Name": "PrivateIpAddress",
           "Type": "String",
           "TypeHref": "",
@@ -12111,6 +12527,20 @@
           "TypeName": "",
           "DocString": "The last port in the range.",
           "SyntaxExpression": "Integer"
+        }
+      ]
+    },
+    {
+      "Name": "EC2 NetworkInterface Ipv6Addresses",
+      "Href": "aws-properties-ec2-networkinterface-ipv6addresses.html",
+      "Properties": [
+        {
+          "Name": "Ipv6Address",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The IPv6 address to associate with the network interface.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -12555,7 +12985,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether to assign a public IP address to an instance that\nyou launch in a VPC. The public IP address can only be assigned to a\nnetwork interface for eth0, and can only be assigned to a new network\ninterface, not an existing one.",
+          "DocString": "Indicates whether to assign a public IP address to an instance that\nyou launch in a VPC. You can assign the public IP address can only to\na network interface for eth0, and only to a new network interface, not\nan existing one.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -12591,6 +13021,22 @@
           "SyntaxExpression": "[ String, ... ]"
         },
         {
+          "Name": "Ipv6AddressCount",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of IPv6 addresses to associate with the network interface.\nAmazon Elastic Compute Cloud automatically selects the IPv6 addresses\nfrom the subnet range. To specify specific IPv6 addresses, use the\nIpv6Addresses property and don't specify this property.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "Ipv6Addresses",
+          "Type": "List of EC2 NetworkInterface Ipv6Addresses",
+          "TypeHref": "aws-properties-ec2-networkinterface-ipv6addresses.html",
+          "TypeName": "",
+          "DocString": "One or more specific IPv6 addresses from the IPv6 CIDR block range of\nyour subnet to associate with the network interface. To specify a\nnumber of IPv6 addresses, use the Ipv6AddressCount property and don't\nspecify this property.",
+          "SyntaxExpression": "[ IPv6 Address Type, ... ]"
+        },
+        {
           "Name": "NetworkInterfaceId",
           "Type": "String",
           "TypeHref": "",
@@ -12603,7 +13049,7 @@
           "Type": "List of Amazon Elastic Compute Cloud SpotFleet SpotFleetRequestConfigData LaunchSpecifications NetworkInterfaces PrivateIpAddresses",
           "TypeHref": "aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html",
           "TypeName": "",
-          "DocString": "One or more private IP addresses to assign to the network interface.\nYou can designate only one private IP address as primary.",
+          "DocString": "One or more private IP addresses to assign to the network interface.",
           "SyntaxExpression": "[ PrivateIpAddresses, ... ]"
         },
         {
@@ -12611,7 +13057,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of secondary private IP addresses that Amazon Elastic\nCompute Cloud (Amazon EC2) automatically assigns to the network\ninterface.",
+          "DocString": "The number of secondary private IP addresses that Amazon EC2\nautomatically assigns to the network interface.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -17004,6 +17450,28 @@
           "TypeName": "",
           "DocString": "The object key name prefix when the redirect is applied. For example,\nto redirect requests for ExamplePage.html, set the key prefix to\nExamplePage.html. To redirect request for all pages with the prefix\ndocs/, set the key prefix to docs/, which identifies all objects in\nthe docs/ folder.",
           "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon EC2 Simple Systems Manager Association Targets",
+      "Href": "aws-properties-ssm-association-targets.html",
+      "Properties": [
+        {
+          "Name": "Key",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the criteria that EC2 instances must meet. For valid keys,\nsee the Target data type in the Amazon EC2 Simple Systems Manager API\nReference.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Values",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the criteria. SSM runs targeted commands on EC2 instances\nthat match the criteria. For more information, see the Target data\ntype in the Amazon EC2 Simple Systems Manager API Reference.",
+          "SyntaxExpression": "[ String, ... ]"
         }
       ]
     },
