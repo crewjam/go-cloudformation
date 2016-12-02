@@ -4759,7 +4759,8 @@ type OpsWorksInstance struct {
 	// The instance's virtualization type, paravirtual or hvm.
 	VirtualizationType *StringExpr `json:"VirtualizationType,omitempty"`
 
-	// A list of Amazon EBS volume IDs to associate with the instance.
+	// A list of AWS OpsWorks volume IDs to associate with the instance. For
+	// more information, see AWS::OpsWorks::Volume.
 	Volumes *StringListExpr `json:"Volumes,omitempty"`
 }
 

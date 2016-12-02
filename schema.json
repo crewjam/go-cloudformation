@@ -6960,7 +6960,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A list of Amazon EBS volume IDs to associate with the instance.",
+          "DocString": "A list of AWS OpsWorks volume IDs to associate with the instance. For\nmore information, see AWS::OpsWorks::Volume.",
           "SyntaxExpression": "[ String, ... ]"
         }
       ]
