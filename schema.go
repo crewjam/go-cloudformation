@@ -4650,8 +4650,8 @@ type OpsWorksApp struct {
 	StackId *StringExpr `json:"StackId,omitempty"`
 
 	// The app type. Each supported type is associated with a particular
-	// layer. For more information, see CreateApp in the AWS OpsWorks API
-	// Reference.
+	// layer. For more information, see CreateApp in the AWS OpsWorks Stacks
+	// API Reference.
 	Type *StringExpr `json:"Type,omitempty"`
 }
 
@@ -4685,7 +4685,7 @@ type OpsWorksInstance struct {
 	// each instance. AWS OpsWorks sends commands to the agent to performs
 	// tasks on your instances, such as starting Chef runs. For valid values,
 	// see the AgentVersion parameter for the CreateInstance action in the
-	// AWS OpsWorks API Reference.
+	// AWS OpsWorks Stacks API Reference.
 	AgentVersion *StringExpr `json:"AgentVersion,omitempty"`
 
 	// The ID of the custom Amazon Machine Image (AMI) to be used to create
@@ -4698,7 +4698,7 @@ type OpsWorksInstance struct {
 
 	// For scaling instances, the type of scaling. If you specify load-based
 	// scaling, do not specify a time-based scaling configuration. For valid
-	// values, see CreateInstance in the AWS OpsWorks API Reference.
+	// values, see CreateInstance in the AWS OpsWorks Stacks API Reference.
 	AutoScalingType *StringExpr `json:"AutoScalingType,omitempty"`
 
 	// The instance Availability Zone.
@@ -4706,7 +4706,7 @@ type OpsWorksInstance struct {
 
 	// A list of block devices that are mapped to the AWS OpsWorks instance.
 	// For more information, see the BlockDeviceMappings parameter for the
-	// CreateInstance action in the AWS OpsWorks API Reference.
+	// CreateInstance action in the AWS OpsWorks Stacks API Reference.
 	BlockDeviceMappings *OpsWorksInstanceBlockDeviceMappingList `json:"BlockDeviceMappings,omitempty"`
 
 	// Whether the instance is optimized for Amazon Elastic Block Store
@@ -4727,14 +4727,15 @@ type OpsWorksInstance struct {
 	InstallUpdatesOnBoot *BoolExpr `json:"InstallUpdatesOnBoot,omitempty"`
 
 	// The instance type, which must be supported by AWS OpsWorks. For more
-	// information, see CreateInstance in the AWS OpsWorks API Reference.
+	// information, see CreateInstance in the AWS OpsWorks Stacks API
+	// Reference.
 	InstanceType *StringExpr `json:"InstanceType,omitempty"`
 
 	// The IDs of the AWS OpsWorks layers to associate with this instance.
 	LayerIds *StringListExpr `json:"LayerIds,omitempty"`
 
 	// The instance operating system. For more information, see
-	// CreateInstance in the AWS OpsWorks API Reference.
+	// CreateInstance in the AWS OpsWorks Stacks API Reference.
 	Os *StringExpr `json:"Os,omitempty"`
 
 	// The root device type of the instance.
@@ -4753,7 +4754,7 @@ type OpsWorksInstance struct {
 	SubnetId *StringExpr `json:"SubnetId,omitempty"`
 
 	// The tenancy of the instance. For more information, see the Tenancy
-	// parameter for the CreateInstance action in the AWS OpsWorks API
+	// parameter for the CreateInstance action in the AWS OpsWorks Stacks API
 	// Reference.
 	Tenancy *StringExpr `json:"Tenancy,omitempty"`
 
@@ -4797,7 +4798,7 @@ type OpsWorksLayer struct {
 	// A custom stack configuration and deployment attributes that AWS
 	// OpsWorks installs on the layer's instances. For more information, see
 	// the CustomJson parameter for the CreateLayer action in the AWS
-	// OpsWorks API Reference.
+	// OpsWorks Stacks API Reference.
 	CustomJson interface{} `json:"CustomJson,omitempty"`
 
 	// Custom event recipes for this layer.
@@ -4837,8 +4838,8 @@ type OpsWorksLayer struct {
 
 	// The layer type. A stack cannot have more than one layer of the same
 	// type, except for the custom type. You can have any number of custom
-	// types. For more information, see CreateLayer in the AWS OpsWorks API
-	// Reference.
+	// types. For more information, see CreateLayer in the AWS OpsWorks
+	// Stacks API Reference.
 	Type *StringExpr `json:"Type,omitempty"`
 
 	// Describes the Amazon EBS volumes for this layer.
@@ -4858,7 +4859,7 @@ type OpsWorksStack struct {
 	// communicates with the service and handles tasks such as initiating
 	// Chef runs in response to lifecycle events. For valid values, see the
 	// AgentVersion parameter for the CreateStack action in the AWS OpsWorks
-	// API Reference.
+	// Stacks API Reference.
 	AgentVersion *StringExpr `json:"AgentVersion,omitempty"`
 
 	// One or more user-defined key-value pairs to be added to the stack
@@ -4866,7 +4867,7 @@ type OpsWorksStack struct {
 	Attributes interface{} `json:"Attributes,omitempty"`
 
 	// Describes the Chef configuration. For more information, see the
-	// CreateStack ChefConfiguration parameter in the AWS OpsWorks API
+	// CreateStack ChefConfiguration parameter in the AWS OpsWorks Stacks API
 	// Reference.
 	ChefConfiguration *OpsWorksChefConfiguration `json:"ChefConfiguration,omitempty"`
 
@@ -4882,7 +4883,7 @@ type OpsWorksStack struct {
 	// Describes the configuration manager. When you create a stack, you use
 	// the configuration manager to specify the Chef version. For supported
 	// Chef versions, see the CreateStack ConfigurationManager parameter in
-	// the AWS OpsWorks API Reference.
+	// the AWS OpsWorks Stacks API Reference.
 	ConfigurationManager *OpsWorksStackConfigurationManager `json:"ConfigurationManager,omitempty"`
 
 	// Contains the information required to retrieve a cookbook from a
@@ -4891,7 +4892,7 @@ type OpsWorksStack struct {
 
 	// A user-defined custom JSON object. The custom JSON is used to override
 	// the corresponding default stack configuration JSON values. For more
-	// information, see CreateStack in the AWS OpsWorks API Reference.
+	// information, see CreateStack in the AWS OpsWorks Stacks API Reference.
 	CustomJson interface{} `json:"CustomJson,omitempty"`
 
 	// The stack's default Availability Zone, which must be in the specified
@@ -4903,13 +4904,13 @@ type OpsWorksStack struct {
 	DefaultInstanceProfileArn *StringExpr `json:"DefaultInstanceProfileArn,omitempty"`
 
 	// The stack's default operating system. For more information, see
-	// CreateStack in the AWS OpsWorks API Reference.
+	// CreateStack in the AWS OpsWorks Stacks API Reference.
 	DefaultOs *StringExpr `json:"DefaultOs,omitempty"`
 
 	// The default root device type. This value is used by default for all
 	// instances in the stack, but you can override it when you create an
 	// instance. For more information, see CreateStack in the AWS OpsWorks
-	// API Reference.
+	// Stacks API Reference.
 	DefaultRootDeviceType *StringExpr `json:"DefaultRootDeviceType,omitempty"`
 
 	// A default SSH key for the stack instances. You can override this value
@@ -4931,7 +4932,8 @@ type OpsWorksStack struct {
 
 	// The stack's host name theme, with spaces replaced by underscores. The
 	// theme is used to generate host names for the stack's instances. For
-	// more information, see CreateStack in the AWS OpsWorks API Reference.
+	// more information, see CreateStack in the AWS OpsWorks Stacks API
+	// Reference.
 	HostnameTheme *StringExpr `json:"HostnameTheme,omitempty"`
 
 	// The name of the AWS OpsWorks stack.
@@ -13939,7 +13941,7 @@ type DataSource struct {
 
 	// The type of the data source, such as AutoSelectOpsworksMysqlInstance,
 	// OpsworksMysqlInstance, or RdsDbInstance. For valid values, see the
-	// DataSource type in the AWS OpsWorks API Reference.
+	// DataSource type in the AWS OpsWorks Stacks API Reference.
 	Type *StringExpr `json:"Type,omitempty"`
 }
 
@@ -14579,7 +14581,7 @@ type OpsWorksVolumeConfiguration struct {
 	Size *IntegerExpr `json:"Size,omitempty"`
 
 	// The type of volume, such as magnetic or SSD. For valid values, see
-	// VolumeConfiguration in the AWS OpsWorks API Reference.
+	// VolumeConfiguration in the AWS OpsWorks Stacks API Reference.
 	VolumeType *StringExpr `json:"VolumeType,omitempty"`
 }
 
