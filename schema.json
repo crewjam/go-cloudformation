@@ -391,7 +391,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "An OpenAPI specification that defines a set of RESTful APIs in the\nJSON format.",
+          "DocString": "An OpenAPI specification that defines a set of RESTful APIs in the\nJSON format. For YAML templates, you can also specify the\nspecification in the YAML format.",
           "SyntaxExpression": "JSON object"
         },
         {
@@ -2947,7 +2947,7 @@
           "Type": "Number",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Rule number to assign to the entry (e.g., 100). This must be a\npositive integer from 1 to 32766.",
+          "DocString": "Rule number to assign to the entry, such as 100. ACL entries are\nprocessed in ascending order by rule number. Entries can't use the\nsame rule number unless one is an egress rule and the other is an\ningress rule. For valid values, see the CreateNetworkAclEntry action\nin the Amazon EC2 API Reference.",
           "SyntaxExpression": "Integer"
         }
       ]
@@ -8978,6 +8978,14 @@
           "TypeName": "",
           "DocString": "A JSON object that describes an instance configuration. For more\ninformation, see SSM Documents in the Amazon EC2 Simple Systems\nManager API Reference.",
           "SyntaxExpression": "JSON object"
+        },
+        {
+          "Name": "DocumentType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of document to create that relates to the purpose of your\ndocument, such as running commands, bootstrapping software, or\nautomating tasks. For valid values, see the CreateDocument action in\nthe Amazon EC2 Simple Systems Manager API Reference.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -16610,7 +16618,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The hosted zone ID. For load balancers, use the canonical hosted zone\nID of the load balancer. For Amazon S3, use the hosted zone ID for\nyour bucket's website endpoint. For CloudFront, use Z2FDTNDATAQYW2.\nFor examples, see Example: Creating Alias Resource Record Sets in the\nAmazon Route 53 API Reference.",
+          "DocString": "The hosted zone ID. For load balancers, use the canonical hosted zone\nID of the load balancer. For Amazon S3, use the hosted zone ID for\nyour bucket's website endpoint. For CloudFront, use Z2FDTNDATAQYW2.\nFor a list of hosted zone IDs of other services, see the relevant\nservice in the AWS Regions and Endpoints.",
           "SyntaxExpression": "String"
         }
       ]

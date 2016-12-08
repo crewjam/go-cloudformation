@@ -280,7 +280,8 @@ func (s ApiGatewayResource) CfnResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
 type ApiGatewayRestApi struct {
 	// An OpenAPI specification that defines a set of RESTful APIs in the
-	// JSON format.
+	// JSON format. For YAML templates, you can also specify the
+	// specification in the YAML format.
 	Body interface{} `json:"Body,omitempty"`
 
 	// The Amazon Simple Storage Service (Amazon S3) location that points to
@@ -2026,8 +2027,11 @@ type EC2NetworkAclEntry struct {
 	// are "allow" or "deny".
 	RuleAction *StringExpr `json:"RuleAction,omitempty"`
 
-	// Rule number to assign to the entry (e.g., 100). This must be a
-	// positive integer from 1 to 32766.
+	// Rule number to assign to the entry, such as 100. ACL entries are
+	// processed in ascending order by rule number. Entries can't use the
+	// same rule number unless one is an egress rule and the other is an
+	// ingress rule. For valid values, see the CreateNetworkAclEntry action
+	// in the Amazon EC2 API Reference.
 	RuleNumber *IntegerExpr `json:"RuleNumber,omitempty"`
 }
 
@@ -6084,6 +6088,12 @@ type SSMDocument struct {
 	// information, see SSM Documents in the Amazon EC2 Simple Systems
 	// Manager API Reference.
 	Content interface{} `json:"Content,omitempty"`
+
+	// The type of document to create that relates to the purpose of your
+	// document, such as running commands, bootstrapping software, or
+	// automating tasks. For valid values, see the CreateDocument action in
+	// the Amazon EC2 Simple Systems Manager API Reference.
+	DocumentType *StringExpr `json:"DocumentType,omitempty"`
 }
 
 // CfnResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
@@ -14797,8 +14807,8 @@ type Route53AliasTargetProperty struct {
 	// The hosted zone ID. For load balancers, use the canonical hosted zone
 	// ID of the load balancer. For Amazon S3, use the hosted zone ID for
 	// your bucket's website endpoint. For CloudFront, use Z2FDTNDATAQYW2.
-	// For examples, see Example: Creating Alias Resource Record Sets in the
-	// Amazon Route 53 API Reference.
+	// For a list of hosted zone IDs of other services, see the relevant
+	// service in the AWS Regions and Endpoints.
 	HostedZoneId *StringExpr `json:"HostedZoneId,omitempty"`
 }
 
