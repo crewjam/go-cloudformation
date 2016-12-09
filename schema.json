@@ -4996,14 +4996,6 @@
       "Href": "aws-resource-elasticloadbalancingv2-loadbalancer.html",
       "Properties": [
         {
-          "Name": "IpAddressType",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The type of IP addresses that are used by the load balancer's subnets,\nsuch as ipv4 (for IPv4 addresses) or dualstack (for IPv4 and IPv6\naddresses). For valid values, see the IpAddressType parameter for the\nCreateLoadBalancer action in the Elastic Load Balancing API Reference\nversion 2015-12-01.",
-          "SyntaxExpression": "String"
-        },
-        {
           "Name": "LoadBalancerAttributes",
           "Type": "A list of Elastic Load Balancing LoadBalancer LoadBalancerAttributes",
           "TypeHref": "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",

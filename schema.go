@@ -3446,13 +3446,6 @@ func (s ElasticLoadBalancingV2ListenerRule) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
 type ElasticLoadBalancingV2LoadBalancer struct {
-	// The type of IP addresses that are used by the load balancer's subnets,
-	// such as ipv4 (for IPv4 addresses) or dualstack (for IPv4 and IPv6
-	// addresses). For valid values, see the IpAddressType parameter for the
-	// CreateLoadBalancer action in the Elastic Load Balancing API Reference
-	// version 2015-12-01.
-	IpAddressType *StringExpr `json:"IpAddressType,omitempty"`
-
 	// Specifies the load balancer configuration.
 	LoadBalancerAttributes *ElasticLoadBalancingLoadBalancerLoadBalancerAttributesList `json:"LoadBalancerAttributes,omitempty"`
 
