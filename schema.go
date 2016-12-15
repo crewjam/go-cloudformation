@@ -3167,9 +3167,9 @@ type ElastiCacheSubnetGroup struct {
 	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
 }
 
-// CfnResourceType returns AWS::ElastiCache::SubnetGroup  to implement the ResourceProperties interface
+// CfnResourceType returns AWS::ElastiCache::SubnetGroup to implement the ResourceProperties interface
 func (s ElastiCacheSubnetGroup) CfnResourceType() string {
-	return "AWS::ElastiCache::SubnetGroup "
+	return "AWS::ElastiCache::SubnetGroup"
 }
 
 // ElasticBeanstalkApplication represents AWS::ElasticBeanstalk::Application
@@ -16715,7 +16715,7 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ElastiCacheSecurityGroup{}
 	case "AWS::ElastiCache::SecurityGroupIngress":
 		return &ElastiCacheSecurityGroupIngress{}
-	case "AWS::ElastiCache::SubnetGroup ":
+	case "AWS::ElastiCache::SubnetGroup":
 		return &ElastiCacheSubnetGroup{}
 	case "AWS::ElasticBeanstalk::Application":
 		return &ElasticBeanstalkApplication{}

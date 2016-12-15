@@ -37,6 +37,7 @@ func (tr *TemplateReference) Load() error {
 		doc.Find(".highlights li a").Each(func(i int, s *goquery.Selection) {
 			name := s.Text()
 			name = regexp.MustCompile("\\s+").ReplaceAllString(name, " ")
+			name = strings.TrimSpace(name)
 			href, _ := s.Attr("href")
 
 			// hack around documentation bug, reported 20 Sept 2016
