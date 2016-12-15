@@ -4571,7 +4571,32 @@
     {
       "Name": "AWS::ElastiCache::SubnetGroup ",
       "Href": "aws-properties-elasticache-subnetgroup.html",
-      "Properties": null
+      "Properties": [
+        {
+          "Name": "CacheSubnetGroupName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A name for the cache subnet group. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID. For more information,\nsee Name Type.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The description for the cache subnet group.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "SubnetIds",
+          "Type": "String list",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon EC2 subnet IDs for the cache subnet group.",
+          "SyntaxExpression": "[ String, ... ]"
+        }
+      ]
     },
     {
       "Name": "AWS::ElasticBeanstalk::Application",

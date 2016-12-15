@@ -219,7 +219,7 @@ func (r *Resource) Load() error {
 	// An element with the class 'variablelist' immediately preceeded by an
 	// element with the text "Properties" is what we're looking for.
 	doc.Find(".variablelist").Each(func(i int, varList *goquery.Selection) {
-		tileText := varList.Parent().Find(".titlepage").First().Text()
+		tileText := strings.TrimSpace(varList.Parent().Find(".titlepage").First().Text())
 		switch tileText {
 		case "Properties":
 		case "Parameters":
@@ -232,7 +232,7 @@ func (r *Resource) Load() error {
 		// name of the property, the following DD element contains information
 		// about it, including the type.
 		varList.Find("dl dt").Each(func(i int, dt *goquery.Selection) {
-			property := Property{Name: dt.Text()}
+			property := Property{Name: strings.TrimSpace(dt.Text())}
 
 			dd := dt.Next()
 

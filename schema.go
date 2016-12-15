@@ -3155,6 +3155,16 @@ func (s ElastiCacheSecurityGroupIngress) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html
 type ElastiCacheSubnetGroup struct {
+	// A name for the cache subnet group. If you don't specify a name, AWS
+	// CloudFormation generates a unique physical ID. For more information,
+	// see Name Type.
+	CacheSubnetGroupName *StringExpr `json:"CacheSubnetGroupName,omitempty"`
+
+	// The description for the cache subnet group.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The Amazon EC2 subnet IDs for the cache subnet group.
+	SubnetIds *StringListExpr `json:"SubnetIds,omitempty"`
 }
 
 // CfnResourceType returns AWS::ElastiCache::SubnetGroup  to implement the ResourceProperties interface
