@@ -1357,11 +1357,11 @@
         },
         {
           "Name": "TimeoutInMinutes",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The length of time, in minutes, that AWS CloudFormation waits for the\nnested stack to reach the CREATE_COMPLETE state. The default is no\ntimeout. When AWS CloudFormation detects that the nested stack has\nreached the CREATE_COMPLETE state, it marks the nested stack resource\nas CREATE_COMPLETE in the parent stack and resumes creating the parent\nstack. If the timeout period expires before the nested stack reaches\nCREATE_COMPLETE, AWS CloudFormation marks the nested stack as failed\nand rolls back both the nested stack and parent stack.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         }
       ]
     },
@@ -1371,11 +1371,11 @@
       "Properties": [
         {
           "Name": "Count",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of success signals that AWS CloudFormation must receive\nbefore it continues the stack creation process. When the wait\ncondition receives the requisite number of success signals, AWS\nCloudFormation resumes the creation of the stack. If the wait\ncondition does not receive the specified number of success signals\nbefore the Timeout period expires, AWS CloudFormation assumes that the\nwait condition has failed and rolls the stack back.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "Handle",
@@ -1562,11 +1562,11 @@
         },
         {
           "Name": "EvaluationPeriods",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of periods over which data is compared to the specified\nthreshold.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "InsufficientDataActions",
@@ -1602,11 +1602,11 @@
         },
         {
           "Name": "Period",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The time over which the specified statistic is applied. You must\nspecify a time in seconds that is also a multiple of 60.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "Statistic",
@@ -1618,11 +1618,11 @@
         },
         {
           "Name": "Threshold",
-          "Type": "String",
+          "Type": "Double",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The value against which the specified statistic is compared.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Double"
         },
         {
           "Name": "Unit",
@@ -4192,11 +4192,11 @@
         },
         {
           "Name": "NumCacheNodes",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of cache nodes that the cache cluster should have.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "Port",
@@ -9536,7 +9536,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of back end your method is running, such as HTTP, AWS, or\nMOCK. For valid values, see the type property in the Amazon API\nGateway REST API Reference.",
+          "DocString": "The type of back end your method is running, such as HTTP or MOCK. For\nall of the valid values, see the type property for the Integration\nresource in the Amazon API Gateway REST API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -10606,19 +10606,19 @@
       "Properties": [
         {
           "Name": "HTTPPort",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The HTTP port the custom origin listens on.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "HTTPSPort",
-          "Type": "String",
+          "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The HTTPS port the custom origin listens on.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Integer"
         },
         {
           "Name": "OriginProtocolPolicy",
@@ -15332,11 +15332,11 @@
         },
         {
           "Name": "UseBase64",
-          "Type": "String",
+          "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies whether Base64 encoding should be used.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Boolean"
         }
       ]
     },

@@ -924,7 +924,7 @@ type CloudFormationStack struct {
 	// stack. If the timeout period expires before the nested stack reaches
 	// CREATE_COMPLETE, AWS CloudFormation marks the nested stack as failed
 	// and rolls back both the nested stack and parent stack.
-	TimeoutInMinutes *StringExpr `json:"TimeoutInMinutes,omitempty"`
+	TimeoutInMinutes *IntegerExpr `json:"TimeoutInMinutes,omitempty"`
 }
 
 // CfnResourceType returns AWS::CloudFormation::Stack to implement the ResourceProperties interface
@@ -943,7 +943,7 @@ type CloudFormationWaitCondition struct {
 	// condition does not receive the specified number of success signals
 	// before the Timeout period expires, AWS CloudFormation assumes that the
 	// wait condition has failed and rolls the stack back.
-	Count *StringExpr `json:"Count,omitempty"`
+	Count *IntegerExpr `json:"Count,omitempty"`
 
 	// A reference to the wait condition handle used to signal this wait
 	// condition. Use the Ref intrinsic function to specify an
@@ -1083,7 +1083,7 @@ type CloudWatchAlarm struct {
 
 	// The number of periods over which data is compared to the specified
 	// threshold.
-	EvaluationPeriods *StringExpr `json:"EvaluationPeriods,omitempty"`
+	EvaluationPeriods *IntegerExpr `json:"EvaluationPeriods,omitempty"`
 
 	// The list of actions to execute when this alarm transitions into an
 	// INSUFFICIENT_DATA state from any other state. Each action is specified
@@ -1108,13 +1108,13 @@ type CloudWatchAlarm struct {
 
 	// The time over which the specified statistic is applied. You must
 	// specify a time in seconds that is also a multiple of 60.
-	Period *StringExpr `json:"Period,omitempty"`
+	Period *IntegerExpr `json:"Period,omitempty"`
 
 	// The statistic to apply to the alarm's associated metric.
 	Statistic *StringExpr `json:"Statistic,omitempty"`
 
 	// The value against which the specified statistic is compared.
-	Threshold *StringExpr `json:"Threshold,omitempty"`
+	Threshold interface{} `json:"Threshold,omitempty"`
 
 	// The unit for the alarm's associated metric.
 	Unit *StringExpr `json:"Unit,omitempty"`
@@ -2913,7 +2913,7 @@ type ElastiCacheCacheCluster struct {
 	NotificationTopicArn *StringExpr `json:"NotificationTopicArn,omitempty"`
 
 	// The number of cache nodes that the cache cluster should have.
-	NumCacheNodes *StringExpr `json:"NumCacheNodes,omitempty"`
+	NumCacheNodes *IntegerExpr `json:"NumCacheNodes,omitempty"`
 
 	// The port number on which each of the cache nodes will accept
 	// connections.
@@ -6522,9 +6522,9 @@ type APIGatewayMethodIntegration struct {
 	// as the following snippet:
 	RequestTemplates interface{} `json:"RequestTemplates,omitempty"`
 
-	// The type of back end your method is running, such as HTTP, AWS, or
-	// MOCK. For valid values, see the type property in the Amazon API
-	// Gateway REST API Reference.
+	// The type of back end your method is running, such as HTTP or MOCK. For
+	// all of the valid values, see the type property for the Integration
+	// resource in the Amazon API Gateway REST API Reference.
 	Type *StringExpr `json:"Type,omitempty"`
 
 	// The integration's Uniform Resource Identifier (URI).
@@ -7758,10 +7758,10 @@ func (l *CloudFrontDistributionConfigOriginList) UnmarshalJSON(buf []byte) error
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-customorigin.html
 type CloudFrontDistributionConfigOriginCustomOrigin struct {
 	// The HTTP port the custom origin listens on.
-	HTTPPort *StringExpr `json:"HTTPPort,omitempty"`
+	HTTPPort *IntegerExpr `json:"HTTPPort,omitempty"`
 
 	// The HTTPS port the custom origin listens on.
-	HTTPSPort *StringExpr `json:"HTTPSPort,omitempty"`
+	HTTPSPort *IntegerExpr `json:"HTTPSPort,omitempty"`
 
 	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *StringExpr `json:"OriginProtocolPolicy,omitempty"`
@@ -13299,7 +13299,7 @@ type IoTSqsAction struct {
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
 
 	// Specifies whether Base64 encoding should be used.
-	UseBase64 *StringExpr `json:"UseBase64,omitempty"`
+	UseBase64 *BoolExpr `json:"UseBase64,omitempty"`
 }
 
 // IoTSqsActionList represents a list of IoTSqsAction
