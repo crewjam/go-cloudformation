@@ -1,21 +1,26 @@
 package deploycfn
 
 import (
+	"bytes"
+	"crypto/sha1"
 	"encoding/json"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudformation"
+	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/crewjam/awsregion"
 	cfn "github.com/crewjam/go-cloudformation"
 )
 
 type DeployInput struct {
-	Session    client.ConfigProvider
-	StackName  string
-	Template   *cfn.Template
-	Parameters map[string]string
+	Session        client.ConfigProvider
+	StackName      string
+	Template       *cfn.Template
+	Parameters     map[string]string
+	TemplateBucket string
 }
 
 // Deploy creates or updates the specified CloudFormation template to AWS.
@@ -104,13 +109,33 @@ func Deploy(input DeployInput) error {
 				ParameterKey:     aws.String(key),
 				UsePreviousValue: aws.Bool(true),
 			})
+
+	var templateBodyStr = aws.String(string(templateBody))
+	var templateURL *string
+
+	const maxTemplateSize = 51200
+	if input.TemplateBucket != "" && len(templateBody) > maxTemplateSize {
+		s3svc := s3.New(input.Session)
+
+		sha1sum := sha1.Sum(templateBody)
+		key := fmt.Sprintf("cfn/%x/%s.template", sha1sum[:], input.StackName)
+		_, err := s3svc.PutObject(&s3.PutObjectInput{
+			Bucket: &input.TemplateBucket,
+			Key:    &key,
+			Body:   bytes.NewReader(templateBody),
+		})
+		if err != nil {
+			return err
 		}
+		templateBodyStr = nil
+		templateURL = aws.String(fmt.Sprintf("https://%s.s3.amazonaws.com/%s", input.TemplateBucket, key))
 	}
 
 	if doCreate {
 		_, err = cfnSvc.CreateStack(&cloudformation.CreateStackInput{
 			StackName:    aws.String(input.StackName),
-			TemplateBody: aws.String(string(templateBody)),
+			TemplateBody: templateBodyStr,
+			TemplateURL:  templateURL,
 			Capabilities: capabilities,
 			Parameters:   parameters,
 		})
@@ -120,7 +145,8 @@ func Deploy(input DeployInput) error {
 	} else {
 		_, err = cfnSvc.UpdateStack(&cloudformation.UpdateStackInput{
 			StackName:    aws.String(input.StackName),
-			TemplateBody: aws.String(string(templateBody)),
+			TemplateBody: templateBodyStr,
+			TemplateURL:  templateURL,
 			Capabilities: capabilities,
 			Parameters:   parameters,
 		})
