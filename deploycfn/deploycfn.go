@@ -105,10 +105,21 @@ func Deploy(input DeployInput) error {
 			if _, ok := input.Parameters[key]; ok {
 				continue
 			}
-			parameters = append(parameters, &cloudformation.Parameter{
-				ParameterKey:     aws.String(key),
-				UsePreviousValue: aws.Bool(true),
-			})
+
+			parameterExistsInCurrentStack := false
+			for _, p := range describeStacksResponse.Stacks[0].Parameters {
+				if *p.ParameterKey == key {
+					parameterExistsInCurrentStack = true
+				}
+			}
+			if parameterExistsInCurrentStack {
+				parameters = append(parameters, &cloudformation.Parameter{
+					ParameterKey:     aws.String(key),
+					UsePreviousValue: aws.Bool(true),
+				})
+			}
+		}
+	}
 
 	var templateBodyStr = aws.String(string(templateBody))
 	var templateURL *string
