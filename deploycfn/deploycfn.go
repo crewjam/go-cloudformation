@@ -1,17 +1,21 @@
 package deploycfn
 
 import (
+	"archive/zip"
 	"bytes"
 	"crypto/sha1"
 	"encoding/json"
 	"fmt"
+	"strings"
 
+	log "github.com/Sirupsen/logrus"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/cloudformation"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/crewjam/awsregion"
+
 	cfn "github.com/crewjam/go-cloudformation"
 )
 
@@ -40,11 +44,6 @@ type DeployInput struct {
 //   }
 //
 func Deploy(input DeployInput) error {
-	templateBody, err := json.Marshal(input.Template)
-	if err != nil {
-		return err
-	}
-
 	if input.Session == nil {
 		awsSession := session.New()
 		awsregion.GuessRegion(awsSession.Config)
@@ -93,6 +92,63 @@ func Deploy(input DeployInput) error {
 		capabilities = append(capabilities, aws.String(cloudformation.CapabilityCapabilityIam))
 	}
 
+	// if inline lambda function code is too big, upload it to S3
+	if input.TemplateBucket != "" {
+		for resourceName, resource := range input.Template.Resources {
+			if resource.Properties.CfnResourceType() == "AWS::Lambda::Function" {
+				if f, ok := resource.Properties.(cfn.LambdaFunction); ok {
+					if f.Code != nil && f.Code.ZipFile != nil {
+						if f.Code.ZipFile.Func == nil {
+							code := []byte(f.Code.ZipFile.Literal)
+							if len(code) > 4096 {
+								// the zip file is too long, store it in S3
+								s3svc := s3.New(input.Session)
+								sha1sum := sha1.Sum(code)
+								key := fmt.Sprintf("cfn/%x/%s/%s/lambda-code.zip", sha1sum[:],
+									input.StackName, resourceName)
+
+								fileName := strings.Split(f.Handler.Literal, ".")[0] + ".js"
+
+								zipBuf := new(bytes.Buffer)
+								w := zip.NewWriter(zipBuf)
+								zipFileWriter, err := w.Create(fileName)
+								if err != nil {
+									return err
+								}
+								if _, err := zipFileWriter.Write(code); err != nil {
+									return err
+								}
+								if err := w.Close(); err != nil {
+									return err
+								}
+
+								l := log.WithField("Resource", resourceName)
+								l = l.WithField("Path", "s3://"+input.TemplateBucket+"/"+key)
+								l.Info("uploaded inline lambda function code")
+
+								_, err = s3svc.PutObject(&s3.PutObjectInput{
+									Bucket: &input.TemplateBucket,
+									Key:    &key,
+									Body:   bytes.NewReader(zipBuf.Bytes()),
+								})
+								if err != nil {
+									return err
+								}
+
+								// Update the template
+								f.Code = &cfn.LambdaFunctionCode{
+									S3Bucket: cfn.String(input.TemplateBucket),
+									S3Key:    cfn.String(key),
+								}
+								input.Template.Resources[resourceName].Properties = f
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	parameters := []*cloudformation.Parameter{}
 	for key, value := range input.Parameters {
 		parameters = append(parameters, &cloudformation.Parameter{
@@ -121,6 +177,10 @@ func Deploy(input DeployInput) error {
 		}
 	}
 
+	templateBody, err := json.Marshal(input.Template)
+	if err != nil {
+		return err
+	}
 	var templateBodyStr = aws.String(string(templateBody))
 	var templateURL *string
 
@@ -130,6 +190,9 @@ func Deploy(input DeployInput) error {
 
 		sha1sum := sha1.Sum(templateBody)
 		key := fmt.Sprintf("cfn/%x/%s.template", sha1sum[:], input.StackName)
+
+		log.WithField("Path", "s3://"+input.TemplateBucket+"/"+key).Info("uploaded template")
+
 		_, err := s3svc.PutObject(&s3.PutObjectInput{
 			Bucket: &input.TemplateBucket,
 			Key:    &key,
