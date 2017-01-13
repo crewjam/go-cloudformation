@@ -5028,7 +5028,7 @@ func (s OpsWorksVolume) CfnResourceType() string {
 type RDSDBCluster struct {
 	// A list of Availability Zones (AZs) in which DB instances in the
 	// cluster can be created.
-	AvailabilityZones *StringExpr `json:"AvailabilityZones,omitempty"`
+	AvailabilityZones *StringListExpr `json:"AvailabilityZones,omitempty"`
 
 	// The number of days for which automatic backups are retained. For more
 	// information, see CreateDBCluster in the Amazon Relational Database

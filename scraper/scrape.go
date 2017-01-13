@@ -429,15 +429,21 @@ func (p *Property) GoType(tr *TemplateReference) string {
 			p.TypeName = "[UNKNOWN " + p.TypeHref + "]"
 		}
 	}
+
+	isMaybeList := false
+	if strings.HasPrefix(p.Type, "A list of") ||
+		strings.HasPrefix(p.Type, "List of") ||
+		strings.HasPrefix(p.Type, "list of") ||
+		strings.HasPrefix(p.SyntaxExpression, "[") {
+		isMaybeList = true
+	}
+
 	if p.TypeName != "" {
 		if p.Type == "AWS CloudFormation Resource Tags" {
 			return "[]ResourceTag"
 		}
 
-		if strings.HasPrefix(p.Type, "A list of") ||
-			strings.HasPrefix(p.Type, "List of") ||
-			strings.HasPrefix(p.Type, "list of") ||
-			strings.HasPrefix(p.SyntaxExpression, "[") {
+		if isMaybeList {
 			return p.TypeName + "List"
 		}
 
@@ -446,6 +452,9 @@ func (p *Property) GoType(tr *TemplateReference) string {
 
 	switch p.Type {
 	case "String":
+		if isMaybeList {
+			return "*StringListExpr"
+		}
 		return "*StringExpr"
 	case "List of strings":
 		return "*StringListExpr"
