@@ -347,7 +347,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The schema to use to transform data to one or more output formats.",
+          "DocString": "The schema to use to transform data to one or more output formats.\nSpecify null ({}) if you don't want to specify a schema.",
           "SyntaxExpression": "JSON object"
         }
       ]
@@ -2465,7 +2465,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Allocation ID for the VPC Elastic IP address you want to associate\nwith an Amazon EC2 instance in your VPC.",
+          "DocString": "[EC2-VPC] Allocation ID for the VPC Elastic IP address you want to\nassociate with an Amazon EC2 instance in your VPC.",
           "SyntaxExpression": "String"
         },
         {
@@ -2481,7 +2481,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Instance ID of the Amazon EC2 instance that you want to associate with\nthe Elastic IP address specified by the EIP property.",
+          "DocString": "Instance ID of the Amazon EC2 instance that you want to associate with\nthe Elastic IP address specified by the EIP property. If the instance\nhas more than one network interface, you must specify a network\ninterface ID.",
           "SyntaxExpression": "String"
         },
         {
@@ -2489,7 +2489,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the network interface to associate with the Elastic IP\naddress (VPC only).",
+          "DocString": "[EC2-VPC] The ID of the network interface to associate with the\nElastic IP address. If the instance has more than one network\ninterface, you must specify a network interface ID.",
           "SyntaxExpression": "String"
         },
         {
@@ -2497,7 +2497,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The private IP address that you want to associate with the Elastic IP\naddress. The private IP address is restricted to the primary and\nsecondary private IP addresses that are associated with the network\ninterface. By default, the private IP address that is associated with\nthe EIP is the primary private IP address of the network interface.",
+          "DocString": "[EC2-VPC] The private IP address that you want to associate with the\nElastic IP address. The private IP address is restricted to the\nprimary and secondary private IP addresses that are associated with\nthe network interface. By default, the private IP address that is\nassociated with the EIP is the primary private IP address of the\nnetwork interface.",
           "SyntaxExpression": "String"
         }
       ]
@@ -2635,7 +2635,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The physical ID (resource name) of an instance profile or a reference\nto an AWS::IAM::InstanceProfile resource.",
+          "DocString": "The physical ID of an instance profile or a reference to an\nAWS::IAM::InstanceProfile resource.",
           "SyntaxExpression": "String"
         },
         {
@@ -5790,10 +5790,10 @@
         },
         {
           "Name": "Roles",
-          "Type": "List of references to AWS::IAM::Roles. Currently, a maximum of one role can be assigned to an instance profile",
+          "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The roles associated with this IAM instance profile.",
+          "DocString": "The name of an existing IAM role to associate with this instance\nprofile. Currently, a maximum of one role can be assigned to an\ninstance profile.",
           "SyntaxExpression": "[ IAM Roles ]"
         }
       ]
@@ -6701,7 +6701,7 @@
           "Type": "A list of key-value pairs",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "One or more user-defined key-value pairs to be added to the stack\nattributes bag.",
+          "DocString": "One or more user-defined key-value pairs to be added to the app\nattributes bag.",
           "SyntaxExpression": "{ String:String, ... }"
         },
         {
@@ -7587,7 +7587,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether major version upgrades are allowed. Setting this\nparameter does not result in an outage, and the change is applied\nasynchronously as soon as possible.",
+          "DocString": "If you update the EngineVersion property to a version that's different\nfrom the DB instance's current major version, set this property to\ntrue. For more information, see ModifyDBInstance in the Amazon\nRelational Database Service API Reference.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -8511,7 +8511,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Designates the record set as a PRIMARY or SECONDARY failover record\nset. When you have more than one resource performing the same\nfunction, you can configure Amazon Route 53 to check the health of\nyour resources and use only health resources to respond to DNS\nqueries. You cannot create nonfailover resource record sets that have\nthe same Name and Type property values as failover resource record\nsets. For more information, see the Failover element in the Amazon\nRoute 53 API Reference.",
+          "DocString": "Designates the record set as a PRIMARY or SECONDARY failover record\nset. When you have more than one resource performing the same\nfunction, you can configure Amazon Route 53 to check the health of\nyour resources and use only health resources to respond to DNS\nqueries. You cannot create nonfailover resource record sets that have\nthe same Name and Type property values as failover resource record\nsets. For more information, see the Failover content in the Amazon\nRoute 53 API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -8591,7 +8591,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of records to add.",
+          "DocString": "The type of records to add. For valid values, see the Type content in\nthe Amazon Route 53 API Reference. In AWS CloudFormation, you can't\ncreate records of type NS or SOA.",
           "SyntaxExpression": "String"
         },
         {
@@ -8917,7 +8917,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A policy document containing permissions to add to the specified SQS\nqueues.",
+          "DocString": "A policy document that contains the permissions for the specified\nAmazon SQS queues. For more information about Amazon SQS policies, see\nCreating Custom Policies Using the Access Policy Language in the\nAmazon Simple Queue Service Developer Guide.",
           "SyntaxExpression": "JSON"
         },
         {
@@ -8993,7 +8993,7 @@
           "Type": "JSON object",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A JSON object that describes an instance configuration. For more\ninformation, see SSM Documents in the Amazon EC2 Simple Systems\nManager API Reference.",
+          "DocString": "A JSON object that describes an instance configuration. For more\ninformation, see Creating SSM Documents in the Amazon EC2 User Guide\nfor Linux Instances.",
           "SyntaxExpression": "JSON object"
         },
         {

@@ -245,6 +245,7 @@ type ApiGatewayModel struct {
 	RestApiId *StringExpr `json:"RestApiId,omitempty"`
 
 	// The schema to use to transform data to one or more output formats.
+	// Specify null ({}) if you don't want to specify a schema.
 	Schema interface{} `json:"Schema,omitempty"`
 }
 
@@ -1702,8 +1703,8 @@ func (s EC2EIP) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip-association.html
 type EC2EIPAssociation struct {
-	// Allocation ID for the VPC Elastic IP address you want to associate
-	// with an Amazon EC2 instance in your VPC.
+	// [EC2-VPC] Allocation ID for the VPC Elastic IP address you want to
+	// associate with an Amazon EC2 instance in your VPC.
 	AllocationId *StringExpr `json:"AllocationId,omitempty"`
 
 	// Elastic IP address that you want to associate with the Amazon EC2
@@ -1713,18 +1714,22 @@ type EC2EIPAssociation struct {
 	EIP *StringExpr `json:"EIP,omitempty"`
 
 	// Instance ID of the Amazon EC2 instance that you want to associate with
-	// the Elastic IP address specified by the EIP property.
+	// the Elastic IP address specified by the EIP property. If the instance
+	// has more than one network interface, you must specify a network
+	// interface ID.
 	InstanceId *StringExpr `json:"InstanceId,omitempty"`
 
-	// The ID of the network interface to associate with the Elastic IP
-	// address (VPC only).
+	// [EC2-VPC] The ID of the network interface to associate with the
+	// Elastic IP address. If the instance has more than one network
+	// interface, you must specify a network interface ID.
 	NetworkInterfaceId *StringExpr `json:"NetworkInterfaceId,omitempty"`
 
-	// The private IP address that you want to associate with the Elastic IP
-	// address. The private IP address is restricted to the primary and
-	// secondary private IP addresses that are associated with the network
-	// interface. By default, the private IP address that is associated with
-	// the EIP is the primary private IP address of the network interface.
+	// [EC2-VPC] The private IP address that you want to associate with the
+	// Elastic IP address. The private IP address is restricted to the
+	// primary and secondary private IP addresses that are associated with
+	// the network interface. By default, the private IP address that is
+	// associated with the EIP is the primary private IP address of the
+	// network interface.
 	PrivateIpAddress *StringExpr `json:"PrivateIpAddress,omitempty"`
 }
 
@@ -1837,8 +1842,8 @@ type EC2Instance struct {
 	// compatible, dedicated host available to successfully launch instances.
 	HostId *StringExpr `json:"HostId,omitempty"`
 
-	// The physical ID (resource name) of an instance profile or a reference
-	// to an AWS::IAM::InstanceProfile resource.
+	// The physical ID of an instance profile or a reference to an
+	// AWS::IAM::InstanceProfile resource.
 	IamInstanceProfile *StringExpr `json:"IamInstanceProfile,omitempty"`
 
 	// Provides the unique ID of the Amazon Machine Image (AMI) that was
@@ -3950,8 +3955,10 @@ type IAMInstanceProfile struct {
 	// Access Management User Guide.
 	Path *StringExpr `json:"Path,omitempty"`
 
-	// The roles associated with this IAM instance profile.
-	Roles interface{} `json:"Roles,omitempty"`
+	// The name of an existing IAM role to associate with this instance
+	// profile. Currently, a maximum of one role can be assigned to an
+	// instance profile.
+	Roles *StringListExpr `json:"Roles,omitempty"`
 }
 
 // CfnResourceType returns AWS::IAM::InstanceProfile to implement the ResourceProperties interface
@@ -4619,7 +4626,7 @@ type OpsWorksApp struct {
 	// The information required to retrieve an app from a repository.
 	AppSource *OpsWorksSource `json:"AppSource,omitempty"`
 
-	// One or more user-defined key-value pairs to be added to the stack
+	// One or more user-defined key-value pairs to be added to the app
 	// attributes bag.
 	Attributes interface{} `json:"Attributes,omitempty"`
 
@@ -5136,9 +5143,10 @@ type RDSDBInstance struct {
 	// The allocated storage size, specified in gigabytes (GB).
 	AllocatedStorage *StringExpr `json:"AllocatedStorage,omitempty"`
 
-	// Indicates whether major version upgrades are allowed. Setting this
-	// parameter does not result in an outage, and the change is applied
-	// asynchronously as soon as possible.
+	// If you update the EngineVersion property to a version that's different
+	// from the DB instance's current major version, set this property to
+	// true. For more information, see ModifyDBInstance in the Amazon
+	// Relational Database Service API Reference.
 	AllowMajorVersionUpgrade *BoolExpr `json:"AllowMajorVersionUpgrade,omitempty"`
 
 	// Indicates that minor engine upgrades are applied automatically to the
@@ -5730,7 +5738,7 @@ type Route53RecordSet struct {
 	// your resources and use only health resources to respond to DNS
 	// queries. You cannot create nonfailover resource record sets that have
 	// the same Name and Type property values as failover resource record
-	// sets. For more information, see the Failover element in the Amazon
+	// sets. For more information, see the Failover content in the Amazon
 	// Route 53 API Reference.
 	Failover *StringExpr `json:"Failover,omitempty"`
 
@@ -5778,7 +5786,9 @@ type Route53RecordSet struct {
 	// alias target records, the alias uses a TTL value from the target.
 	TTL *StringExpr `json:"TTL,omitempty"`
 
-	// The type of records to add.
+	// The type of records to add. For valid values, see the Type content in
+	// the Amazon Route 53 API Reference. In AWS CloudFormation, you can't
+	// create records of type NS or SOA.
 	Type *StringExpr `json:"Type,omitempty"`
 
 	// Weighted resource record sets only: Among resource record sets that
@@ -6040,8 +6050,10 @@ func (s SQSQueue) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html
 type SQSQueuePolicy struct {
-	// A policy document containing permissions to add to the specified SQS
-	// queues.
+	// A policy document that contains the permissions for the specified
+	// Amazon SQS queues. For more information about Amazon SQS policies, see
+	// Creating Custom Policies Using the Access Policy Language in the
+	// Amazon Simple Queue Service Developer Guide.
 	PolicyDocument interface{} `json:"PolicyDocument,omitempty"`
 
 	// The URLs of the queues to which you want to add the policy. You can
@@ -6090,8 +6102,8 @@ func (s SSMAssociation) CfnResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html
 type SSMDocument struct {
 	// A JSON object that describes an instance configuration. For more
-	// information, see SSM Documents in the Amazon EC2 Simple Systems
-	// Manager API Reference.
+	// information, see Creating SSM Documents in the Amazon EC2 User Guide
+	// for Linux Instances.
 	Content interface{} `json:"Content,omitempty"`
 
 	// The type of document to create that relates to the purpose of your
