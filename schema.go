@@ -1328,9 +1328,9 @@ func (s CodePipelineCustomAction) CfnResourceType() string {
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
 type CodePipelinePipeline struct {
 	// The Amazon Simple Storage Service (Amazon S3) location where AWS
-	// CodePipeline stores pipeline artifacts. The S3 bucket must have
-	// versioning enabled. For more information, see Create an Amazon S3
-	// Bucket for Your Application in the AWS CodePipeline User Guide.
+	// CodePipeline stores pipeline artifacts. For more information, see
+	// Create an Amazon S3 Bucket for Your Application in the AWS
+	// CodePipeline User Guide.
 	ArtifactStore *CodePipelinePipelineArtifactStore `json:"ArtifactStore,omitempty"`
 
 	// Prevents artifacts in a pipeline from transitioning to the stage that
@@ -1915,11 +1915,11 @@ type EC2Instance struct {
 	// address translation (NAT).
 	SourceDestCheck *BoolExpr `json:"SourceDestCheck,omitempty"`
 
-	// The Amazon EC2 Simple Systems Manager (SSM) document and parameter
-	// values to associate with this instance. To use this property, you must
-	// specify an IAM role for the instance. For more information, see
-	// Prerequisites for Remotely Running Commands on EC2 Instances in the
-	// Amazon EC2 User Guide for Windows Instances.
+	// The Amazon EC2 Systems Manager (SSM) document and parameter values to
+	// associate with this instance. To use this property, you must specify
+	// an IAM role for the instance. For more information, see Prerequisites
+	// for Remotely Running Commands on EC2 Instances in the Amazon EC2 User
+	// Guide for Windows Instances.
 	SsmAssociations *EC2InstanceSsmAssociationsList `json:"SsmAssociations,omitempty"`
 
 	// If you're using Amazon VPC, this property specifies the ID of the
@@ -2808,6 +2808,12 @@ type ECSTaskDefinition struct {
 	// number of 1. Amazon ECS gives sequential revision numbers to each task
 	// definition that you add.
 	Family *StringExpr `json:"Family,omitempty"`
+
+	// The Docker networking mode to use for the containers in the task, such
+	// as none, bridge, or host. For information about network modes, see
+	// NetworkMode in the Task Definition Parameters topic in the Amazon EC2
+	// Container Service Developer Guide.
+	NetworkMode *StringExpr `json:"NetworkMode,omitempty"`
 
 	// The Amazon Resource Name (ARN) of an AWS Identity and Access
 	// Management (IAM) role that grants containers in the task permission to
@@ -5316,6 +5322,12 @@ type RDSDBInstance struct {
 	// An arbitrary set of tags (key–value pairs) for this DB instance.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
+	// The time zone of the DB instance, which you can specify to match the
+	// time zone of your applications. To see which engines supports time
+	// zones, see the Timezone parameter for the CreateDBInstance action in
+	// the Amazon Relational Database Service API Reference.
+	Timezone *StringExpr `json:"Timezone,omitempty"`
+
 	// A list of the VPC security group IDs to assign to the DB instance. The
 	// list can include both the physical IDs of existing VPC security groups
 	// and references to AWS::EC2::SecurityGroup resources created in the
@@ -5760,7 +5772,7 @@ type Route53RecordSet struct {
 
 	// The name of the domain. You must specify a fully qualified domain name
 	// that ends with a period as the last label indication. If you omit the
-	// final period, AWS CloudFormation adds it.
+	// final period, Amazon Route 53 adds it.
 	Name *StringExpr `json:"Name,omitempty"`
 
 	// Latency resource record sets only: The Amazon EC2 region where the
@@ -6084,12 +6096,12 @@ type SSMAssociation struct {
 
 	// A Cron expression that specifies when the association is applied to
 	// the target. For supported expressions, see the ScheduleExpression
-	// parameter for the CreateAssociation action in the Amazon EC2 Simple
-	// Systems Manager API Reference.
+	// parameter for the CreateAssociation action in the Amazon EC2 Systems
+	// Manager API Reference.
 	ScheduleExpression *StringExpr `json:"ScheduleExpression,omitempty"`
 
 	// The targets that the SSM document sends commands to.
-	Targets *EC2SimpleSystemsManagerAssociationTargetsList `json:"Targets,omitempty"`
+	Targets *EC2SystemsManagerAssociationTargetsList `json:"Targets,omitempty"`
 }
 
 // CfnResourceType returns AWS::SSM::Association to implement the ResourceProperties interface
@@ -6109,7 +6121,7 @@ type SSMDocument struct {
 	// The type of document to create that relates to the purpose of your
 	// document, such as running commands, bootstrapping software, or
 	// automating tasks. For valid values, see the CreateDocument action in
-	// the Amazon EC2 Simple Systems Manager API Reference.
+	// the Amazon EC2 Systems Manager API Reference.
 	DocumentType *StringExpr `json:"DocumentType,omitempty"`
 }
 
@@ -10934,6 +10946,14 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 	// terminated.
 	Memory *IntegerExpr `json:"Memory,omitempty"`
 
+	// The number of MiB of memory to reserve for the container. When system
+	// memory is under contention, Docker attempts to keep the container
+	// memory within the limit. If the container requires more memory, it can
+	// consume up to the value specified by the Memory property or all of the
+	// available memory on the container instance, whichever comes first.
+	// This is called a soft limit.
+	MemoryReservation *IntegerExpr `json:"MemoryReservation,omitempty"`
+
 	// The mount points for data volumes in the container.
 	MountPoints *EC2ContainerServiceTaskDefinitionContainerDefinitionsMountPointsList `json:"MountPoints,omitempty"`
 
@@ -13120,8 +13140,14 @@ type IoTFirehoseAction struct {
 	// The delivery stream name.
 	DeliveryStreamName *StringExpr `json:"DeliveryStreamName,omitempty"`
 
-	// The ARN of the IAM role that grants access to the Firehose stream.
+	// The Amazon Resource Name (ARN) of the IAM role that grants access to
+	// the Firehose stream.
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+
+	// A character separator that's used to separate records written to the
+	// Firehose stream. For valid values, see Firehose Action in the AWS IoT
+	// Developer Guide.
+	Separator *StringExpr `json:"Separator,omitempty"`
 }
 
 // IoTFirehoseActionList represents a list of IoTFirehoseAction
@@ -15976,36 +16002,36 @@ func (l *S3WebsiteConfigurationRoutingRulesRoutingRuleConditionPropertyList) Unm
 	return err
 }
 
-// EC2SimpleSystemsManagerAssociationTargets represents Amazon EC2 Simple Systems Manager Association Targets
+// EC2SystemsManagerAssociationTargets represents Amazon EC2 Systems Manager Association Targets
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-targets.html
-type EC2SimpleSystemsManagerAssociationTargets struct {
+type EC2SystemsManagerAssociationTargets struct {
 	// The name of the criteria that EC2 instances must meet. For valid keys,
-	// see the Target data type in the Amazon EC2 Simple Systems Manager API
+	// see the Target data type in the Amazon EC2 Systems Manager API
 	// Reference.
 	Key *StringExpr `json:"Key,omitempty"`
 
 	// The value of the criteria. SSM runs targeted commands on EC2 instances
 	// that match the criteria. For more information, see the Target data
-	// type in the Amazon EC2 Simple Systems Manager API Reference.
+	// type in the Amazon EC2 Systems Manager API Reference.
 	Values *StringListExpr `json:"Values,omitempty"`
 }
 
-// EC2SimpleSystemsManagerAssociationTargetsList represents a list of EC2SimpleSystemsManagerAssociationTargets
-type EC2SimpleSystemsManagerAssociationTargetsList []EC2SimpleSystemsManagerAssociationTargets
+// EC2SystemsManagerAssociationTargetsList represents a list of EC2SystemsManagerAssociationTargets
+type EC2SystemsManagerAssociationTargetsList []EC2SystemsManagerAssociationTargets
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *EC2SimpleSystemsManagerAssociationTargetsList) UnmarshalJSON(buf []byte) error {
+func (l *EC2SystemsManagerAssociationTargetsList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := EC2SimpleSystemsManagerAssociationTargets{}
+	item := EC2SystemsManagerAssociationTargets{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = EC2SimpleSystemsManagerAssociationTargetsList{item}
+		*l = EC2SystemsManagerAssociationTargetsList{item}
 		return nil
 	}
-	list := []EC2SimpleSystemsManagerAssociationTargets{}
+	list := []EC2SystemsManagerAssociationTargets{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = EC2SimpleSystemsManagerAssociationTargetsList(list)
+		*l = EC2SystemsManagerAssociationTargetsList(list)
 		return nil
 	}
 	return err

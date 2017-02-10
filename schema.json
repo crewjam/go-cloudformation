@@ -1919,7 +1919,7 @@
           "Type": "AWS CodePipeline Pipeline ArtifactStore",
           "TypeHref": "aws-properties-codepipeline-pipeline-artifactstore.html",
           "TypeName": "",
-          "DocString": "The Amazon Simple Storage Service (Amazon S3) location where AWS\nCodePipeline stores pipeline artifacts. The S3 bucket must have\nversioning enabled. For more information, see Create an Amazon S3\nBucket for Your Application in the AWS CodePipeline User Guide.",
+          "DocString": "The Amazon Simple Storage Service (Amazon S3) location where AWS\nCodePipeline stores pipeline artifacts. For more information, see\nCreate an Amazon S3 Bucket for Your Application in the AWS\nCodePipeline User Guide.",
           "SyntaxExpression": "ArtifactStore"
         },
         {
@@ -2763,7 +2763,7 @@
           "Type": "List of Amazon EC2 Instance SsmAssociations",
           "TypeHref": "aws-properties-ec2-instance-ssmassociations.html",
           "TypeName": "",
-          "DocString": "The Amazon EC2 Simple Systems Manager (SSM) document and parameter\nvalues to associate with this instance. To use this property, you must\nspecify an IAM role for the instance. For more information, see\nPrerequisites for Remotely Running Commands on EC2 Instances in the\nAmazon EC2 User Guide for Windows Instances.",
+          "DocString": "The Amazon EC2 Systems Manager (SSM) document and parameter values to\nassociate with this instance. To use this property, you must specify\nan IAM role for the instance. For more information, see Prerequisites\nfor Remotely Running Commands on EC2 Instances in the Amazon EC2 User\nGuide for Windows Instances.",
           "SyntaxExpression": "[ SSMAssociation, ... ]"
         },
         {
@@ -4026,6 +4026,14 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of a family that this task definition is registered to. A\nfamily groups multiple versions of a task definition. Amazon ECS gives\nthe first task definition that you registered to a family a revision\nnumber of 1. Amazon ECS gives sequential revision numbers to each task\ndefinition that you add.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "NetworkMode",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Docker networking mode to use for the containers in the task, such\nas none, bridge, or host. For information about network modes, see\nNetworkMode in the Task Definition Parameters topic in the Amazon EC2\nContainer Service Developer Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -7863,6 +7871,14 @@
           "SyntaxExpression": "[ Resource Tag, ... ]"
         },
         {
+          "Name": "Timezone",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The time zone of the DB instance, which you can specify to match the\ntime zone of your applications. To see which engines supports time\nzones, see the Timezone parameter for the CreateDBInstance action in\nthe Amazon Relational Database Service API Reference.",
+          "SyntaxExpression": "String"
+        },
+        {
           "Name": "VPCSecurityGroups",
           "Type": "List of strings",
           "TypeHref": "",
@@ -8551,7 +8567,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the domain. You must specify a fully qualified domain name\nthat ends with a period as the last label indication. If you omit the\nfinal period, AWS CloudFormation adds it.",
+          "DocString": "The name of the domain. You must specify a fully qualified domain name\nthat ends with a period as the last label indication. If you omit the\nfinal period, Amazon Route 53 adds it.",
           "SyntaxExpression": "String"
         },
         {
@@ -8971,12 +8987,12 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A Cron expression that specifies when the association is applied to\nthe target. For supported expressions, see the ScheduleExpression\nparameter for the CreateAssociation action in the Amazon EC2 Simple\nSystems Manager API Reference.",
+          "DocString": "A Cron expression that specifies when the association is applied to\nthe target. For supported expressions, see the ScheduleExpression\nparameter for the CreateAssociation action in the Amazon EC2 Systems\nManager API Reference.",
           "SyntaxExpression": "String"
         },
         {
           "Name": "Targets",
-          "Type": "List of Amazon EC2 Simple Systems Manager Association Targets",
+          "Type": "List of Amazon EC2 Systems Manager Association Targets",
           "TypeHref": "aws-properties-ssm-association-targets.html",
           "TypeName": "",
           "DocString": "The targets that the SSM document sends commands to.",
@@ -9001,7 +9017,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of document to create that relates to the purpose of your\ndocument, such as running commands, bootstrapping software, or\nautomating tasks. For valid values, see the CreateDocument action in\nthe Amazon EC2 Simple Systems Manager API Reference.",
+          "DocString": "The type of document to create that relates to the purpose of your\ndocument, such as running commands, bootstrapping software, or\nautomating tasks. For valid values, see the CreateDocument action in\nthe Amazon EC2 Systems Manager API Reference.",
           "SyntaxExpression": "String"
         }
       ]
@@ -13346,6 +13362,14 @@
           "SyntaxExpression": "Integer"
         },
         {
+          "Name": "MemoryReservation",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of MiB of memory to reserve for the container. When system\nmemory is under contention, Docker attempts to keep the container\nmemory within the limit. If the container requires more memory, it can\nconsume up to the value specified by the Memory property or all of the\navailable memory on the container instance, whichever comes first.\nThis is called a soft limit.",
+          "SyntaxExpression": "Integer"
+        },
+        {
           "Name": "MountPoints",
           "Type": "List of Amazon EC2 Container Service TaskDefinition ContainerDefinitions MountPoints",
           "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html",
@@ -15204,7 +15228,15 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ARN of the IAM role that grants access to the Firehose stream.",
+          "DocString": "The Amazon Resource Name (ARN) of the IAM role that grants access to\nthe Firehose stream.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Separator",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A character separator that's used to separate records written to the\nFirehose stream. For valid values, see Firehose Action in the AWS IoT\nDeveloper Guide.",
           "SyntaxExpression": "String"
         }
       ]
@@ -17479,7 +17511,7 @@
       ]
     },
     {
-      "Name": "Amazon EC2 Simple Systems Manager Association Targets",
+      "Name": "Amazon EC2 Systems Manager Association Targets",
       "Href": "aws-properties-ssm-association-targets.html",
       "Properties": [
         {
@@ -17487,7 +17519,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of the criteria that EC2 instances must meet. For valid keys,\nsee the Target data type in the Amazon EC2 Simple Systems Manager API\nReference.",
+          "DocString": "The name of the criteria that EC2 instances must meet. For valid keys,\nsee the Target data type in the Amazon EC2 Systems Manager API\nReference.",
           "SyntaxExpression": "String"
         },
         {
@@ -17495,7 +17527,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The value of the criteria. SSM runs targeted commands on EC2 instances\nthat match the criteria. For more information, see the Target data\ntype in the Amazon EC2 Simple Systems Manager API Reference.",
+          "DocString": "The value of the criteria. SSM runs targeted commands on EC2 instances\nthat match the criteria. For more information, see the Target data\ntype in the Amazon EC2 Systems Manager API Reference.",
           "SyntaxExpression": "[ String, ... ]"
         }
       ]
