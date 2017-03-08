@@ -4691,7 +4691,7 @@
           "Type": "A list of OptionSettings",
           "TypeHref": "aws-properties-beanstalk-option-settings.html",
           "TypeName": "",
-          "DocString": "A list of OptionSettings for this Elastic Beanstalk configuration. For\na complete list of Elastic Beanstalk configuration options, see Option\nValues, in the AWS Elastic Beanstalk Developer Guide.",
+          "DocString": "A list of OptionSettings for this Elastic Beanstalk configuration,\nsuch as the instance type. For a complete list of Elastic Beanstalk\nconfiguration options, see Option Values, in the AWS Elastic Beanstalk\nDeveloper Guide.",
           "SyntaxExpression": "[ OptionSetting, ... ]"
         },
         {
@@ -4753,7 +4753,7 @@
           "Type": "A list of OptionSettings",
           "TypeHref": "aws-properties-beanstalk-option-settings.html",
           "TypeName": "",
-          "DocString": "Key-value pairs defining configuration options for this environment.\nThese options override the values that are defined in the solution\nstack or the configuration template. If you remove any options during\na stack update, the removed options revert to default values.",
+          "DocString": "Key-value pairs defining configuration options for this environment,\nsuch as the instance type. These options override the values that are\ndefined in the solution stack or the configuration template. If you\nremove any options during a stack update, the removed options revert\nto default values.",
           "SyntaxExpression": "[ OptionSettings, ... ]"
         },
         {
@@ -9023,6 +9023,42 @@
       ]
     },
     {
+      "Name": "AWS::StepFunctions::Activity",
+      "Href": "aws-resource-stepfunctions-activity.html",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the activity to create. This name must be unique for your\nAWS account and region.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::StepFunctions::StateMachine",
+      "Href": "aws-resource-stepfunctions-statemachine.html",
+      "Properties": [
+        {
+          "Name": "DefinitionString",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon States Language definition of the state machine. For more\ninformation, see Amazon States Language in the AWS Step Functions\nDeveloper Guide.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "RoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the IAM role to use for this state\nmachine.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS::WAF::ByteMatchSet",
       "Href": "aws-resource-waf-bytematchset.html",
       "Properties": [
@@ -13238,7 +13274,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The CMD value to pass to the container. For more information about the\nDocker CMD parameter, see\nhttps://docs.docker.com/reference/builder/#cmd.",
+          "DocString": "The CMD value to pass to the container. For more information about the\nDocker CMD parameter, see\nhttps://docs.docker.com/engine/reference/builder/#/cmd.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -14407,7 +14443,7 @@
           "TypeHref": "aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html",
           "TypeName": "",
           "DocString": "The script that the bootstrap action runs.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ScriptBootstrapAction"
         }
       ]
     },

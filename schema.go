@@ -3237,9 +3237,10 @@ type ElasticBeanstalkConfigurationTemplate struct {
 	// specify the SolutionStackName or SourceConfiguration properties.
 	EnvironmentId *StringExpr `json:"EnvironmentId,omitempty"`
 
-	// A list of OptionSettings for this Elastic Beanstalk configuration. For
-	// a complete list of Elastic Beanstalk configuration options, see Option
-	// Values, in the AWS Elastic Beanstalk Developer Guide.
+	// A list of OptionSettings for this Elastic Beanstalk configuration,
+	// such as the instance type. For a complete list of Elastic Beanstalk
+	// configuration options, see Option Values, in the AWS Elastic Beanstalk
+	// Developer Guide.
 	OptionSettings *ElasticBeanstalkOptionSettingsList `json:"OptionSettings,omitempty"`
 
 	// The name of an Elastic Beanstalk solution stack that this
@@ -3281,10 +3282,11 @@ type ElasticBeanstalkEnvironment struct {
 	// ID for the environment name. For more information, see Name Type.
 	EnvironmentName *StringExpr `json:"EnvironmentName,omitempty"`
 
-	// Key-value pairs defining configuration options for this environment.
-	// These options override the values that are defined in the solution
-	// stack or the configuration template. If you remove any options during
-	// a stack update, the removed options revert to default values.
+	// Key-value pairs defining configuration options for this environment,
+	// such as the instance type. These options override the values that are
+	// defined in the solution stack or the configuration template. If you
+	// remove any options during a stack update, the removed options revert
+	// to default values.
 	OptionSettings *ElasticBeanstalkOptionSettingsList `json:"OptionSettings,omitempty"`
 
 	// The name of an Elastic Beanstalk solution stack that this
@@ -6128,6 +6130,39 @@ type SSMDocument struct {
 // CfnResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
 func (s SSMDocument) CfnResourceType() string {
 	return "AWS::SSM::Document"
+}
+
+// StepFunctionsActivity represents AWS::StepFunctions::Activity
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html
+type StepFunctionsActivity struct {
+	// The name of the activity to create. This name must be unique for your
+	// AWS account and region.
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// CfnResourceType returns AWS::StepFunctions::Activity to implement the ResourceProperties interface
+func (s StepFunctionsActivity) CfnResourceType() string {
+	return "AWS::StepFunctions::Activity"
+}
+
+// StepFunctionsStateMachine represents AWS::StepFunctions::StateMachine
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html
+type StepFunctionsStateMachine struct {
+	// The Amazon States Language definition of the state machine. For more
+	// information, see Amazon States Language in the AWS Step Functions
+	// Developer Guide.
+	DefinitionString *StringExpr `json:"DefinitionString,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the IAM role to use for this state
+	// machine.
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+}
+
+// CfnResourceType returns AWS::StepFunctions::StateMachine to implement the ResourceProperties interface
+func (s StepFunctionsStateMachine) CfnResourceType() string {
+	return "AWS::StepFunctions::StateMachine"
 }
 
 // WAFByteMatchSet represents AWS::WAF::ByteMatchSet
@@ -10875,7 +10910,7 @@ func (l *EC2ContainerServiceServiceLoadBalancersList) UnmarshalJSON(buf []byte) 
 type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 	// The CMD value to pass to the container. For more information about the
 	// Docker CMD parameter, see
-	// https://docs.docker.com/reference/builder/#cmd.
+	// https://docs.docker.com/engine/reference/builder/#/cmd.
 	Command *StringListExpr `json:"Command,omitempty"`
 
 	// The minimum number of CPU units to reserve for the container.
@@ -16915,6 +16950,10 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SSMAssociation{}
 	case "AWS::SSM::Document":
 		return &SSMDocument{}
+	case "AWS::StepFunctions::Activity":
+		return &StepFunctionsActivity{}
+	case "AWS::StepFunctions::StateMachine":
+		return &StepFunctionsStateMachine{}
 	case "AWS::WAF::ByteMatchSet":
 		return &WAFByteMatchSet{}
 	case "AWS::WAF::IPSet":
