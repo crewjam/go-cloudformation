@@ -39,11 +39,11 @@ func (testSuite *StringTest) TestString(c *C) {
 
 	inputBuf = `{"A": false}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, ErrorMatches, "json: cannot unmarshal bool into Go value of type string")
+	c.Assert(err, ErrorMatches, "json: cannot unmarshal bool into Go struct field .A of type string")
 
 	inputBuf = `{"A": 1}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, ErrorMatches, "json: cannot unmarshal number into Go value of type string")
+	c.Assert(err, ErrorMatches, "json: cannot unmarshal number into Go struct field .A of type string")
 
 	inputBuf = `{"A": {"Fn::Missing": "hello"}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)

@@ -37,7 +37,7 @@ func (testSuite *IntegerTest) TestInteger(c *C) {
 
 	inputBuf = `{"A": "invalid"}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, ErrorMatches, "json: cannot unmarshal string into Go value of type int64")
+	c.Assert(err, ErrorMatches, "json: cannot unmarshal string into Go struct field .A of type int64")
 
 	inputBuf = `{"A": {"Fn::Missing": "invalid"}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
