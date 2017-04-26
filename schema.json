@@ -10,7 +10,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an IAM role that has write access to\nCloudWatch Logs in your account.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\": [\"CloudWatchRole\", \"Arn\"] }"
         }
       ]
     },
@@ -24,7 +24,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the purpose of the API key.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "CloudFormation API Key V1"
         },
         {
           "Name": "Enabled",
@@ -32,7 +32,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Indicates whether the API key can be used by clients.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "true"
         },
         {
           "Name": "Name",
@@ -40,7 +40,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the API key. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nAPI key name. For more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TestApiKey"
         },
         {
           "Name": "StageKeys",
@@ -48,7 +48,7 @@
           "TypeHref": "aws-properties-apitgateway-apikey-stagekey.html",
           "TypeName": "",
           "DocString": "A list of stages to associated with this API key.",
-          "SyntaxExpression": "[ StageKey, ... ]"
+          "SyntaxExpression": "[{"
         }
       ]
     },
@@ -62,7 +62,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The credentials required for the authorizer. To specify an AWS\nIdentity and Access Management (IAM) role that API Gateway assumes,\nspecify the role's Amazon Resource Name (ARN). To use resource-based\npermissions on the AWS Lambda (Lambda) function, specify null.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\": [\"LambdaInvocationRole\", \"Arn\"] }"
         },
         {
           "Name": "AuthorizerResultTtlInSeconds",
@@ -70,7 +70,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The time-to-live (TTL) period, in seconds, that specifies how long API\nGateway caches authorizer results. If you specify a value greater than\n0, API Gateway caches the authorizer responses. By default, API\nGateway sets this property to 300. The maximum value is 3600, or 1\nhour.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "300"
         },
         {
           "Name": "AuthorizerUri",
@@ -78,7 +78,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The authorizer's Uniform Resource Identifier (URI). If you specify\nTOKEN for the authorizer's Type property, specify a Lambda function\nURI, which has the form arn:aws:apigateway:region:lambda:path/path.\nThe path usually has the form\n/2015-03-31/functions/LambdaFunctionARN/invocations.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Fn::Join\" : [\"\", ["
         },
         {
           "Name": "IdentitySource",
@@ -86,7 +86,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The source of the identity in an incoming request. If you specify\nTOKEN for the authorizer's Type property, specify a mapping\nexpression. The custom header mapping expression has the form\nmethod.request.header.name, where name is the name of a custom\nauthorization header that clients submit as part of their requests.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "method.request.header.Auth"
         },
         {
           "Name": "IdentityValidationExpression",
@@ -102,7 +102,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the authorizer.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "DefaultAuthorizer"
         },
         {
           "Name": "ProviderARNs",
@@ -118,7 +118,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the RestApi resource in which API Gateway creates the\nauthorizer.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Type",
@@ -126,7 +126,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of authorizer:",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TOKEN"
         }
       ]
     },
@@ -178,7 +178,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the client certificate.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "A test client certificate"
         }
       ]
     },
@@ -316,7 +316,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The content type for the model.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "application/json"
         },
         {
           "Name": "Description",
@@ -324,7 +324,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description that identifies this model.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Schema for Pets example"
         },
         {
           "Name": "Name",
@@ -332,7 +332,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the mode. If you don't specify a name, AWS CloudFormation\ngenerates a unique physical ID and uses that ID for the model name.\nFor more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "PetsModelNoFlatten"
         },
         {
           "Name": "RestApiId",
@@ -340,7 +340,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of a REST API with which to associate this model.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"RestApi\" }"
         },
         {
           "Name": "Schema",
@@ -348,7 +348,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The schema to use to transform data to one or more output formats.\nSpecify null ({}) if you don't want to specify a schema.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -362,7 +362,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "If you want to create a child resource, the ID of the parent resource.\nFor resources without a parent, specify the RestApi root resource ID,\nsuch as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\": [\"MyApi\", \"RootResourceId\"] }"
         },
         {
           "Name": "PathPart",
@@ -370,7 +370,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A path name for the resource.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "stack"
         },
         {
           "Name": "RestApiId",
@@ -378,7 +378,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the RestApi resource in which you want to create this\nresource.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"MyApi\" }"
         }
       ]
     },
@@ -392,7 +392,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An OpenAPI specification that defines a set of RESTful APIs in the\nJSON format. For YAML templates, you can also specify the\nspecification in the YAML format.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "BodyS3Location",
@@ -416,7 +416,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the purpose of this API Gateway RestApi resource.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "A test API"
         },
         {
           "Name": "FailOnWarnings",
@@ -432,7 +432,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the API Gateway RestApi resource.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "MyRestAPI"
         },
         {
           "Name": "Parameters",
@@ -470,7 +470,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The identifier of the client certificate that API Gateway uses to call\nyour integration endpoints in the stage.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"ClientCertificate\" }"
         },
         {
           "Name": "DeploymentId",
@@ -478,7 +478,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the deployment that the stage points to.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"TestDeployment\" }"
         },
         {
           "Name": "Description",
@@ -486,7 +486,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the stage's purpose.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Prod Stage"
         },
         {
           "Name": "MethodSettings",
@@ -494,7 +494,7 @@
           "TypeHref": "aws-properties-apitgateway-stage-methodsetting.html",
           "TypeName": "",
           "DocString": "Settings for all methods in the stage.",
-          "SyntaxExpression": "[ MethodSetting ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "RestApiId",
@@ -502,7 +502,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the RestApi resource that you're deploying with this stage.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"MyRestApi\" }"
         },
         {
           "Name": "StageName",
@@ -510,7 +510,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the stage, which API Gateway uses as the first path\nsegment in the invoke Uniform Resource Identifier (URI).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Prod"
         },
         {
           "Name": "Variables",
@@ -518,7 +518,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A map (string to string map) that defines the stage variables, where\nthe variable name is the key and the variable value is the value.\nVariable names are limited to alphanumeric characters. Values must\nmatch the following regular expression: [A-Za-z0-9-._~:/?#\u0026amp;=,]+.",
-          "SyntaxExpression": "{ String:String, ... }"
+          "SyntaxExpression": "{ \"Stack\": \"Prod\" }"
         }
       ]
     },
@@ -532,7 +532,7 @@
           "TypeHref": "aws-properties-apigateway-usageplan-apistage.html",
           "TypeName": "",
           "DocString": "The APIs and API stages to associate with this usage plan.",
-          "SyntaxExpression": "[ ApiStage, ... ]"
+          "SyntaxExpression": "[ {\"ApiId\" : { \"Ref\" : \"MyRestApi\" }, \"Stage\" : { \"Ref\" : \"Prod\" }} ]"
         },
         {
           "Name": "Description",
@@ -540,7 +540,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The purpose of this usage plan.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Customer ABC's usage plan"
         },
         {
           "Name": "Quota",
@@ -548,7 +548,7 @@
           "TypeHref": "aws-properties-apigateway-usageplan-quotasettings.html",
           "TypeName": "",
           "DocString": "Configures the number of requests that users can make within a given\ninterval.",
-          "SyntaxExpression": "QuotaSettings"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Throttle",
@@ -556,7 +556,7 @@
           "TypeHref": "aws-properties-apigateway-usageplan-throttlesettings.html",
           "TypeName": "",
           "DocString": "Configures the overall request rate (average requests per second) and\nburst capacity.",
-          "SyntaxExpression": "ThrottleSettings"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "UsagePlanName",
@@ -564,7 +564,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for this usage plan.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Plan_ABC"
         }
       ]
     },
@@ -578,7 +578,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The maximum value that Application Auto Scaling can use to scale a\ntarget during a scaling activity.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "2"
         },
         {
           "Name": "MinCapacity",
@@ -586,7 +586,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The minimum value that Application Auto Scaling can use to scale a\ntarget during a scaling activity.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "1"
         },
         {
           "Name": "ResourceId",
@@ -594,7 +594,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The unique resource identifier to associate with this scalable target.\nFor more information, see the ResourceId parameter for the\nRegisterScalableTarget action in the Application Auto Scaling API\nReference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "service/ecsStack-MyECSCluster-AB12CDE3F4GH/ecsStack-MyECSService-AB12CDE3F4GH"
         },
         {
           "Name": "RoleARN",
@@ -602,7 +602,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an AWS Identity and Access\nManagement (IAM) role that allows Application Auto Scaling to modify\nyour scalable target.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Fn::GetAtt\" : [\"ApplicationAutoScalingRole\", \"Arn\"] }"
         },
         {
           "Name": "ScalableDimension",
@@ -610,7 +610,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The scalable dimension associated with the scalable target. Specify\nthe service namespace, resource type, and scaling property, such as\necs:service:DesiredCount for the desired task count of an Amazon EC2\nContainer Service service. For valid values, see the ScalableDimension\ncontent for the ScalingPolicy data type in the Application Auto\nScaling API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ecs:service:DesiredCount"
         },
         {
           "Name": "ServiceNamespace",
@@ -618,7 +618,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS service namespace of the scalable target. For a list of\nservice namespaces, see AWS Service Namespaces in the AWS General\nReference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ecs"
         }
       ]
     },
@@ -632,7 +632,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the scaling policy.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "AStepPolicy"
         },
         {
           "Name": "PolicyType",
@@ -640,7 +640,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An Application Auto Scaling policy type. For valid values, see the\nPolicyType parameter for the PutScalingPolicy action in the\nApplication Auto Scaling API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "StepScaling"
         },
         {
           "Name": "ResourceId",
@@ -672,7 +672,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS CloudFormation-generated ID of an Application Auto Scaling\nscalable target. For more information about the ID, see the Return\nValue section of the AWS::ApplicationAutoScaling::ScalableTarget\nresource.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\": \"scalableTarget\"}"
         },
         {
           "Name": "StepScalingPolicyConfiguration",
@@ -680,7 +680,7 @@
           "TypeHref": "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html",
           "TypeName": "",
           "DocString": "A step policy that configures when Application Auto Scaling scales\nresources up or down, and by how much.",
-          "SyntaxExpression": "StepScalingPolicyConfiguration"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -694,7 +694,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Contains a list of availability zones for the group.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "{ \"Fn::GetAZs\" : { \"Ref\" : \"AWS::Region\" } }"
         },
         {
           "Name": "Cooldown",
@@ -742,7 +742,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies the name of the associated\nAWS::AutoScaling::LaunchConfiguration.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"ASLC\" }"
         },
         {
           "Name": "LoadBalancerNames",
@@ -758,7 +758,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The maximum size of the Auto Scaling group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "3"
         },
         {
           "Name": "MetricsCollection",
@@ -774,7 +774,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The minimum size of the Auto Scaling group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "1"
         },
         {
           "Name": "NotificationConfigurations",
@@ -978,7 +978,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the Auto Scaling group for the lifecycle hook.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"myAutoScalingGroup\" }"
         },
         {
           "Name": "DefaultResult",
@@ -1002,7 +1002,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The state of the Amazon EC2 instance to which you want to attach the\nlifecycle hook. For valid values, see the LifecycleTransition content\nfor the LifecycleHook data type in the Auto Scaling API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "autoscaling:EC2_INSTANCE_TERMINATING"
         },
         {
           "Name": "NotificationMetadata",
@@ -1018,7 +1018,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon resource name (ARN) of the notification target that Auto\nScaling uses to notify you when an instance is in the transition state\nfor the lifecycle hook. You can specify an Amazon SQS queue or an\nAmazon SNS topic. The notification message includes the following\ninformation: lifecycle action token, user account ID, Auto Scaling\ngroup name, lifecycle hook name, instance ID, lifecycle transition,\nand notification metadata.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"lifecycleHookTopic\" }"
         },
         {
           "Name": "RoleARN",
@@ -1026,7 +1026,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ARN of the IAM role that allows the Auto Scaling group to publish\nto the specified notification target. The role requires permissions to\nAmazon SNS and Amazon SQS.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\": [ \"lifecycleHookRole\", \"Arn\" ] }"
         }
       ]
     },
@@ -1118,7 +1118,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name or ARN of the Auto Scaling group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "DesiredCapacity",
@@ -1142,7 +1142,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The maximum number of Amazon EC2 instances in the Auto Scaling group.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "1"
         },
         {
           "Name": "MinSize",
@@ -1150,7 +1150,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The minimum number of Amazon EC2 instances in the Auto Scaling group.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "1"
         },
         {
           "Name": "Recurrence",
@@ -1158,7 +1158,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The time in UTC when recurring future actions will start. You specify\nthe start time by following the Unix cron syntax format. For more\ninformation about cron syntax, go to\nhttp://en.wikipedia.org/wiki/Cron.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "0 19 * * *"
         },
         {
           "Name": "StartTime",
@@ -1180,7 +1180,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Fully qualified domain name (FQDN), such as www.example.com, of the\nsite that you want to secure with the ACM certificate. To protect\nseveral sites in the same domain, use an asterisk (*) to specify a\nwildcard. For example, *.example.com protects www.example.com,\nsite.example.com, and images.example.com.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "example.com"
         },
         {
           "Name": "DomainValidationOptions",
@@ -1188,7 +1188,7 @@
           "TypeHref": "aws-properties-certificatemanager-certificate-domainvalidationoption.html",
           "TypeName": "",
           "DocString": "Domain information that domain name registrars use to verify your\nidentity. For more information and the default values, see Configure\nEmail for Your Domain and Validate Domain Ownership in the AWS\nCertificate Manager User Guide.",
-          "SyntaxExpression": "[ DomainValidationOptions, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "SubjectAlternativeNames",
@@ -1273,7 +1273,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Describes the role for role-based authentication. ",
+          "DocString": "Describes the role for role-based authentication.",
           "SyntaxExpression": "String"
         }
       ]
@@ -1307,7 +1307,7 @@
           "TypeHref": "aws-properties-cloudformation-interface-parametergroup.html",
           "TypeName": "",
           "DocString": "A list of parameter group types, where you specify group names, the\nparameters in each group, and the order in which the parameters are\nshown.",
-          "SyntaxExpression": "[ ParameterGroup, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "ParameterLabels",
@@ -1315,7 +1315,7 @@
           "TypeHref": "aws-properties-cloudformation-interface-parameterlabel.html",
           "TypeName": "",
           "DocString": "A mapping of parameters and their friendly names that the AWS\nCloudFormation console shows when a stack is created or updated.",
-          "SyntaxExpression": "ParameterLabel"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -1456,7 +1456,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Indicates whether the CloudTrail trail is currently logging AWS API\ncalls.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "true"
         },
         {
           "Name": "IsMultiRegionTrail",
@@ -1480,7 +1480,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the Amazon S3 bucket where CloudTrail publishes log files.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\":\"S3Bucket\"}"
         },
         {
           "Name": "S3KeyPrefix",
@@ -1496,7 +1496,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of an Amazon SNS topic that is notified when new log files\nare published.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Fn::GetAtt\":[\"Topic\",\"TopicName\"]}"
         },
         {
           "Name": "Tags",
@@ -1722,7 +1722,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description about the AWS CodeCommit repository. For constraints,\nsee the CreateRepository action in the AWS CodeCommit API Reference.",
-          "SyntaxExpression": "String, required"
+          "SyntaxExpression": "a description"
         },
         {
           "Name": "RepositoryName",
@@ -1730,7 +1730,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the AWS CodeCommit repository.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "MyRepoName"
         },
         {
           "Name": "Triggers",
@@ -1738,7 +1738,7 @@
           "TypeHref": "aws-properties-codecommit-repository-triggers.html",
           "TypeName": "",
           "DocString": "Defines the actions to take in response to events that occur in the\nrepository. For example, you can send email notifications when someone\npushes to the repository.",
-          "SyntaxExpression": "[ Trigger ]"
+          "SyntaxExpression": "["
         }
       ]
     },
@@ -1774,7 +1774,7 @@
           "TypeHref": "aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html",
           "TypeName": "",
           "DocString": "The minimum number of healthy instances that must be available at any\ntime during an AWS CodeDeploy deployment. For example, for a fleet of\nnine instances, if you specify a minimum of six healthy instances, AWS\nCodeDeploy deploys your application up to three instances at a time so\nthat you always have six healthy instances. The deployment succeeds if\nyour application successfully deploys to six or more instances;\notherwise, the deployment fails.",
-          "SyntaxExpression": "MinimumHealthyHosts"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -1858,7 +1858,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The category of the custom action, such as a source action or a build\naction. For valid values, see CreateCustomActionType in the AWS\nCodePipeline API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Build"
         },
         {
           "Name": "ConfigurationProperties",
@@ -1866,7 +1866,7 @@
           "TypeHref": "aws-resource-codepipeline-customactiontype-configurationproperties.html",
           "TypeName": "",
           "DocString": "The configuration properties for the custom action.",
-          "SyntaxExpression": "[ ConfigurationProperties, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "InputArtifactDetails",
@@ -1874,7 +1874,7 @@
           "TypeHref": "aws-resource-codepipeline-customactiontype-artifactdetails.html",
           "TypeName": "",
           "DocString": "The input artifact details for this custom action.",
-          "SyntaxExpression": "ArtifactDetails"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "OutputArtifactDetails",
@@ -1882,7 +1882,7 @@
           "TypeHref": "aws-resource-codepipeline-customactiontype-artifactdetails.html",
           "TypeName": "",
           "DocString": "The output artifact details for this custom action.",
-          "SyntaxExpression": "ArtifactDetails"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Provider",
@@ -1890,7 +1890,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the service provider that AWS CodePipeline uses for this\ncustom action.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "My-Build-Provider-Name"
         },
         {
           "Name": "Settings",
@@ -1898,7 +1898,7 @@
           "TypeHref": "aws-resource-codepipeline-customactiontype-settings.html",
           "TypeName": "",
           "DocString": "URLs that provide users information about this custom action.",
-          "SyntaxExpression": "Settings"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Version",
@@ -1906,7 +1906,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The version number of this custom action.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"Version\" }"
         }
       ]
     },
@@ -1920,7 +1920,7 @@
           "TypeHref": "aws-properties-codepipeline-pipeline-artifactstore.html",
           "TypeName": "",
           "DocString": "The Amazon Simple Storage Service (Amazon S3) location where AWS\nCodePipeline stores pipeline artifacts. For more information, see\nCreate an Amazon S3 Bucket for Your Application in the AWS\nCodePipeline User Guide.",
-          "SyntaxExpression": "ArtifactStore"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "DisableInboundStageTransitions",
@@ -1928,7 +1928,7 @@
           "TypeHref": "aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html",
           "TypeName": "",
           "DocString": "Prevents artifacts in a pipeline from transitioning to the stage that\nyou specified. This enables you to manually control transitions.",
-          "SyntaxExpression": "[ DisableInboundStageTransitions, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "Name",
@@ -1936,7 +1936,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of your AWS CodePipeline pipeline.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "SourceOutput"
         },
         {
           "Name": "RestartExecutionOnUpdate",
@@ -1952,7 +1952,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A service role Amazon Resource Name (ARN) that grants AWS CodePipeline\npermission to make calls to AWS services on your behalf. For more\ninformation, see AWS CodePipeline Access Permissions Reference in the\nAWS CodePipeline User Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"CodePipelineServiceRole\" }"
         },
         {
           "Name": "Stages",
@@ -1960,7 +1960,7 @@
           "TypeHref": "aws-properties-codepipeline-pipeline-stages.html",
           "TypeName": "",
           "DocString": "Defines the AWS CodePipeline pipeline stages.",
-          "SyntaxExpression": "[ Stages, ... ]"
+          "SyntaxExpression": "["
         }
       ]
     },
@@ -2028,7 +2028,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the configuration recorder. If you don't specify a name,\nAWS CloudFormation generates a unique physical ID and uses that ID for\nthe configuration recorder name. For more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "default"
         },
         {
           "Name": "RecordingGroup",
@@ -2036,7 +2036,7 @@
           "TypeHref": "aws-properties-config-configurationrecorder-recordinggroup.html",
           "TypeName": "",
           "DocString": "Indicates whether to record configurations for all supported resources\nor for a list of resource types. The resource types that you list must\nbe supported by AWS Config.",
-          "SyntaxExpression": "Recording group"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "RoleARN",
@@ -2044,7 +2044,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the AWS Identity and Access\nManagement (IAM) role that is used to make read or write requests to\nthe delivery channel that you specify and to get configuration details\nfor supported AWS resources. For more information, see Permissions for\nthe AWS Config IAM Role in the AWS Config Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Fn::GetAtt\": [\"ConfigRole\", \"Arn\"]}"
         }
       ]
     },
@@ -2058,7 +2058,7 @@
           "TypeHref": "aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html",
           "TypeName": "",
           "DocString": "Provides options for how AWS Config delivers configuration snapshots\nto the S3 bucket in your delivery channel.",
-          "SyntaxExpression": "Config snapshot delivery properties"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Name",
@@ -2074,7 +2074,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of an S3 bucket where you want to store configuration history\nfor the delivery channel.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\": \"ConfigBucket\"}"
         },
         {
           "Name": "S3KeyPrefix",
@@ -2090,7 +2090,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the Amazon Simple Notification\nService (Amazon SNS) topic that AWS Config delivers notifications to.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\": \"ConfigTopic\"}"
         }
       ]
     },
@@ -2104,7 +2104,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Indicates whether to validate and start the pipeline or stop an active\npipeline. By default, the value is set to true.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "true"
         },
         {
           "Name": "Description",
@@ -2112,7 +2112,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description for the pipeline.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Pipeline to backup DynamoDB data to S3"
         },
         {
           "Name": "Name",
@@ -2120,7 +2120,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the pipeline. Because AWS CloudFormation assigns each new\npipeline a unique identifier, you can use the same name for multiple\npipelines that are associated with your AWS account.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "EmrClusterForBackup"
         },
         {
           "Name": "ParameterObjects",
@@ -2128,7 +2128,7 @@
           "TypeHref": "aws-properties-datapipeline-pipeline-parameterobjects.html",
           "TypeName": "",
           "DocString": "Defines the variables that are in the pipeline definition. For more\ninformation, see Creating a Pipeline Using Parameterized Templates in\nthe AWS Data Pipeline Developer Guide.",
-          "SyntaxExpression": "[ Parameter object, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "ParameterValues",
@@ -2136,7 +2136,7 @@
           "TypeHref": "aws-properties-datapipeline-pipeline-parametervalues.html",
           "TypeName": "",
           "DocString": "Defines the values for the parameters that are defined in the\nParameterObjects property. For more information, see Creating a\nPipeline Using Parameterized Templates in the AWS Data Pipeline\nDeveloper Guide.",
-          "SyntaxExpression": "[ Parameter value, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "PipelineObjects",
@@ -2144,7 +2144,7 @@
           "TypeHref": "aws-properties-datapipeline-pipeline-pipelineobjects.html",
           "TypeName": "",
           "DocString": "A list of pipeline objects that make up the pipeline. For more\ninformation about pipeline objects and a description of each object,\nsee Pipeline Object Reference in the AWS Data Pipeline Developer\nGuide.",
-          "SyntaxExpression": "[ Pipeline object, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "PipelineTags",
@@ -2182,7 +2182,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The fully qualified name for the Microsoft Active Directory in AWS,\nsuch as corp.example.com. The name doesn't need to be publicly\nresolvable; it will resolve inside your VPC only.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "corp.example.com"
         },
         {
           "Name": "Password",
@@ -2190,7 +2190,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The password for the default administrative user, Admin.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"MicrosoftADPW\" }"
         },
         {
           "Name": "ShortName",
@@ -2198,7 +2198,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The NetBIOS name for your domain, such as CORP. If you don't specify a\nvalue, AWS Directory Service uses the first part of your directory DNS\nserver name. For example, if your directory DNS server name is\ncorp.example.com, AWS Directory Service specifies CORP for the NetBIOS\nname.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"MicrosoftADShortName\" }"
         },
         {
           "Name": "VpcSettings",
@@ -2206,7 +2206,7 @@
           "TypeHref": "aws-properties-directoryservice-microsoftad-vpcsettings.html",
           "TypeName": "",
           "DocString": "Specifies the VPC settings of the Microsoft Active Directory server in\nAWS.",
-          "SyntaxExpression": "VpcSettings"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -2244,7 +2244,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The fully qualified name for the directory, such as corp.example.com.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "corp.example.com"
         },
         {
           "Name": "Password",
@@ -2252,7 +2252,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The password for the directory administrator. AWS Directory Service\ncreates a directory administrator account with the user name\nAdministrator and this password.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"SimpleADPW\" }"
         },
         {
           "Name": "ShortName",
@@ -2268,7 +2268,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The size of the directory. For valid values, see CreateDirectory in\nthe AWS Directory Service API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Small"
         },
         {
           "Name": "VpcSettings",
@@ -2276,7 +2276,7 @@
           "TypeHref": "aws-properties-directoryservice-simplead-vpcsettings.html",
           "TypeName": "",
           "DocString": "Specifies the VPC settings of the directory server.",
-          "SyntaxExpression": "VpcSettings"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -2290,7 +2290,7 @@
           "TypeHref": "aws-properties-dynamodb-attributedef.html",
           "TypeName": "",
           "DocString": "A list of AttributeName and AttributeType objects that describe the\nkey schema for the table and indexes.",
-          "SyntaxExpression": "[ AttributeDefinitions, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "GlobalSecondaryIndexes",
@@ -2298,7 +2298,7 @@
           "TypeHref": "aws-properties-dynamodb-gsi.html",
           "TypeName": "",
           "DocString": "Global secondary indexes to be created on the table. You can create up\nto 5 global secondary indexes.",
-          "SyntaxExpression": "[ GlobalSecondaryIndexes, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "KeySchema",
@@ -2306,7 +2306,7 @@
           "TypeHref": "aws-properties-dynamodb-keyschema.html",
           "TypeName": "",
           "DocString": "Specifies the attributes that make up the primary key for the table.\nThe attributes in the KeySchema property must also be defined in the\nAttributeDefinitions property.",
-          "SyntaxExpression": "[ KeySchema, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "LocalSecondaryIndexes",
@@ -2314,7 +2314,7 @@
           "TypeHref": "aws-properties-dynamodb-lsi.html",
           "TypeName": "",
           "DocString": "Local secondary indexes to be created on the table. You can create up\nto 5 local secondary indexes. Each index is scoped to a given hash key\nvalue. The size of each hash key can be up to 10 gigabytes.",
-          "SyntaxExpression": "[ LocalSecondaryIndexes, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "ProvisionedThroughput",
@@ -2322,7 +2322,7 @@
           "TypeHref": "aws-properties-dynamodb-provisionedthroughput.html",
           "TypeName": "",
           "DocString": "Throughput for the specified table, consisting of values for\nReadCapacityUnits and WriteCapacityUnits. For more information about\nthe contents of a provisioned throughput structure, see DynamoDB\nProvisioned Throughput.",
-          "SyntaxExpression": "ProvisionedThroughput"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "StreamSpecification",
@@ -2338,7 +2338,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the table. If you don't specify a name, AWS CloudFormation\ngenerates a unique physical ID and uses that ID for the table name.\nFor more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "myTableName"
         }
       ]
     },
@@ -2352,7 +2352,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The customer gateway's Border Gateway Protocol (BGP) Autonomous System\nNumber (ASN).",
-          "SyntaxExpression": "Number"
+          "SyntaxExpression": "64000"
         },
         {
           "Name": "IpAddress",
@@ -2360,7 +2360,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The internet-routable IP address for the customer gateway's outside\ninterface. The address must be static.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "1.1.1.1"
         },
         {
           "Name": "Tags",
@@ -2376,7 +2376,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of VPN connection that this customer gateway supports.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ipsec.1"
         }
       ]
     },
@@ -2390,7 +2390,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A domain name of your choice.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "example.com"
         },
         {
           "Name": "DomainNameServers",
@@ -2398,7 +2398,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IP (IPv4) address of a domain name server. You can specify up to\nfour addresses.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ \"AmazonProvidedDNS\" ]"
         },
         {
           "Name": "NetbiosNameServers",
@@ -2406,7 +2406,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IP address (IPv4) of a NetBIOS name server. You can specify up to\nfour addresses.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ \"10.2.5.1\" ]"
         },
         {
           "Name": "NetbiosNodeType",
@@ -2414,7 +2414,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An integer value indicating the NetBIOS node type:",
-          "SyntaxExpression": "Number"
+          "SyntaxExpression": "2"
         },
         {
           "Name": "NtpServers",
@@ -2422,7 +2422,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IP address (IPv4) of a Network Time Protocol (NTP) server. You can\nspecify up to four addresses.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ \"10.2.5.1\" ]"
         },
         {
           "Name": "Tags",
@@ -2430,7 +2430,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this resource.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ { \"Key\" : \"foo\", \"Value\" : \"bar\" } ]"
         }
       ]
     },
@@ -2466,7 +2466,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "[EC2-VPC] Allocation ID for the VPC Elastic IP address you want to\nassociate with an Amazon EC2 instance in your VPC.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "!GetAtt WebPortAddress.AllocationId"
         },
         {
           "Name": "EIP",
@@ -2490,7 +2490,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "[EC2-VPC] The ID of the network interface to associate with the\nElastic IP address. If the instance has more than one network\ninterface, you must specify a network interface ID.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "!Ref webXface"
         },
         {
           "Name": "PrivateIpAddress",
@@ -2512,7 +2512,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an AWS Identity and Access\nManagement (IAM) role that permits Amazon EC2 to publish flow logs to\na CloudWatch Logs log group in your account.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [\"FlowLogRole\", \"Arn\"] }"
         },
         {
           "Name": "LogGroupName",
@@ -2520,7 +2520,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of a new or existing CloudWatch Logs log group where Amazon\nEC2 publishes your flow logs.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "FlowLogsGroup"
         },
         {
           "Name": "ResourceId",
@@ -2528,7 +2528,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the subnet, network interface, or VPC for which you want to\ncreate a flow log.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"MyVPC\" }"
         },
         {
           "Name": "ResourceType",
@@ -2536,7 +2536,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of resource that you specified in the ResourceId property.\nFor example, if you specified a VPC ID for the ResourceId property,\nspecify VPC for this property. For valid values, see the ResourceType\nparameter for the CreateFlowLogs action in the Amazon EC2 API\nReference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "VPC"
         },
         {
           "Name": "TrafficType",
@@ -2544,7 +2544,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of traffic to log. You can log traffic that the resource\naccepts or rejects, or all traffic. For valid values, see the\nTrafficType parameter for the CreateFlowLogs action in the Amazon EC2\nAPI Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ALL"
         }
       ]
     },
@@ -2558,7 +2558,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Indicates if the host accepts EC2 instances with only matching\nconfigurations or if instances must also specify the host ID.\nInstances that don't specify a host ID can't launch onto a host with\nAutoPlacement set to off. By default, AWS CloudFormation sets this\nproperty to on. For more information, see Understanding Instance\nPlacement and Host Affinity in the Amazon EC2 User Guide for Linux\nInstances.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "on"
         },
         {
           "Name": "AvailabilityZone",
@@ -2566,7 +2566,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Availability Zone (AZ) in which to launch the dedicated host.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "us-east-1a"
         },
         {
           "Name": "InstanceType",
@@ -2574,7 +2574,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The instance type that the dedicated host accepts. Only instances of\nthis type can be launched onto the host. For more information, see\nSupported Instance Types in the Amazon EC2 User Guide for Linux\nInstances.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "c3.large"
         }
       ]
     },
@@ -2826,7 +2826,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this resource.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ {\"Key\" : \"foo\", \"Value\" : \"bar\"}]"
         }
       ]
     },
@@ -2840,7 +2840,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The allocation ID of an Elastic IP address to associate with the NAT\ngateway. If the Elastic IP address is associated with another\nresource, you must first disassociate it.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [\"EIP\", \"AllocationId\"]}"
         },
         {
           "Name": "SubnetId",
@@ -2848,7 +2848,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The public subnet in which to create the NAT gateway.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"Subnet\"}"
         }
       ]
     },
@@ -2862,7 +2862,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this ACL.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ { \"Key\" : \"foo\", \"Value\" : \"bar\" } ]"
         },
         {
           "Name": "VpcId",
@@ -2870,7 +2870,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC where the network ACL will be created.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myVPC\" }"
         }
       ]
     },
@@ -2884,7 +2884,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IPv4 CIDR range to allow or deny, in CIDR notation (e.g.,\n172.16.0.0/24).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "172.16.0.0/24"
         },
         {
           "Name": "Egress",
@@ -2892,7 +2892,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Whether this rule applies to egress traffic from the subnet (true) or\ningress traffic to the subnet (false). By default, AWS CloudFormation\nspecifies false.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "true"
         },
         {
           "Name": "Icmp",
@@ -2900,7 +2900,7 @@
           "TypeHref": "aws-properties-ec2-networkaclentry-icmp.html",
           "TypeName": "",
           "DocString": "The Internet Control Message Protocol (ICMP) code and type.",
-          "SyntaxExpression": "EC2 ICMP"
+          "SyntaxExpression": "{ \"Code\" : \"-1\", \"Type\" : \"-1\" }"
         },
         {
           "Name": "Ipv6CidrBlock",
@@ -2916,7 +2916,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "ID of the ACL where the entry will be created.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myNetworkAcl\" }"
         },
         {
           "Name": "PortRange",
@@ -2924,7 +2924,7 @@
           "TypeHref": "aws-properties-ec2-networkaclentry-portrange.html",
           "TypeName": "",
           "DocString": "The range of port numbers for the UDP/TCP protocol.",
-          "SyntaxExpression": "EC2 PortRange"
+          "SyntaxExpression": "{ \"From\" : \"53\", \"To\" : \"53\" }"
         },
         {
           "Name": "Protocol",
@@ -2932,7 +2932,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IP protocol that the rule applies to. You must specify -1 or a\nprotocol number (go to Protocol Numbers at iana.org). You can specify\n-1 for all protocols.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "-1"
         },
         {
           "Name": "RuleAction",
@@ -2940,7 +2940,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Whether to allow or deny traffic that matches the rule; valid values\nare \"allow\" or \"deny\".",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "allow"
         },
         {
           "Name": "RuleNumber",
@@ -2948,7 +2948,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Rule number to assign to the entry, such as 100. ACL entries are\nprocessed in ascending order by rule number. Entries can't use the\nsame rule number unless one is an egress rule and the other is an\ningress rule. For valid values, see the CreateNetworkAclEntry action\nin the Amazon EC2 API Reference.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "100"
         }
       ]
     },
@@ -3056,7 +3056,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The network interface's position in the attachment order. For example,\nthe first attached network interface has a DeviceIndex of 0.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "1"
         },
         {
           "Name": "InstanceId",
@@ -3064,7 +3064,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the instance to which you will attach the ENI.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"MyInstance\"}"
         },
         {
           "Name": "NetworkInterfaceId",
@@ -3072,7 +3072,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the ENI that you want to attach.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"MyNetworkInterface\"}"
         }
       ]
     },
@@ -3100,7 +3100,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IPv4 CIDR address block used for the destination match. For\nexample, 0.0.0.0/0. Routing decisions are based on the most specific\nmatch.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "0.0.0.0/0"
         },
         {
           "Name": "DestinationIpv6CidrBlock",
@@ -3116,7 +3116,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of an Internet gateway or virtual private gateway that is\nattached to your VPC. For example: igw-eaad4883.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myInternetGateway\" }"
         },
         {
           "Name": "InstanceId",
@@ -3148,7 +3148,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the route table where the route will be added.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myRouteTable\" }"
         },
         {
           "Name": "VpcPeeringConnectionId",
@@ -3170,7 +3170,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC where the route table will be created.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myVPC\" }"
         },
         {
           "Name": "Tags",
@@ -3178,7 +3178,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this route table.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ { \"Key\" : \"foo\", \"Value\" : \"bar\" } ]"
         }
       ]
     },
@@ -3262,7 +3262,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies the group ID of the destination Amazon VPC security group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "FromPort",
@@ -3270,7 +3270,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Start of port range for the TCP and UDP protocols, or an ICMP type\nnumber. If you specify icmp for the IpProtocol property, you can\nspecify -1 as a wildcard (i.e., any ICMP type number).",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "0"
         },
         {
           "Name": "GroupId",
@@ -3278,7 +3278,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "ID of the Amazon VPC security group to modify. This value can be a\nreference to an AWS::EC2::SecurityGroup resource that has a valid\nVpcId property or the ID of an existing Amazon VPC security group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "IpProtocol",
@@ -3286,7 +3286,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "IP protocol name or number. For valid values, see the IpProtocol\nparameter in AuthorizeSecurityGroupIngress",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "tcp"
         },
         {
           "Name": "ToPort",
@@ -3294,7 +3294,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "End of port range for the TCP and UDP protocols, or an ICMP code. If\nyou specify icmp for the IpProtocol property, you can specify -1 as a\nwildcard (i.e., any ICMP code).",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "65535"
         }
       ]
     },
@@ -3394,7 +3394,7 @@
           "TypeHref": "aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html",
           "TypeName": "",
           "DocString": "The configuration for a Spot fleet request.",
-          "SyntaxExpression": "SpotFleetRequestConfigData"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -3408,7 +3408,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The availability zone in which you want the subnet. Default: AWS\nselects a zone for you (recommended).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "us-east-1a"
         },
         {
           "Name": "CidrBlock",
@@ -3416,7 +3416,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The CIDR block that you want the subnet to cover (for example,\n\"10.0.0.0/24\").",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "10.0.0.0/24"
         },
         {
           "Name": "MapPublicIpOnLaunch",
@@ -3432,7 +3432,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this subnet.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ { \"Key\" : \"foo\", \"Value\" : \"bar\" } ]"
         },
         {
           "Name": "VpcId",
@@ -3440,7 +3440,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A Ref structure that contains the ID of the VPC on which you want to\ncreate the subnet. The VPC ID is provided as the value of the \"Ref\"\nproperty, as: { \"Ref\": \"VPCID\" }.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myVPC\" }"
         }
       ]
     },
@@ -3454,7 +3454,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IPv6 CIDR block for the subnet. The CIDR block must have a prefix\nlength of /64.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"Ipv6SubnetCidrBlock\" }"
         },
         {
           "Name": "SubnetId",
@@ -3462,7 +3462,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the subnet to associate the IPv6 CIDR block with.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"Ipv6TestSubnet\" }"
         }
       ]
     },
@@ -3476,7 +3476,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID representing the current association between the original\nnetwork ACL and the subnet.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"mySubnet\" }"
         },
         {
           "Name": "NetworkAclId",
@@ -3484,7 +3484,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the new ACL to associate with the subnet.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myNetworkAcl\" }"
         }
       ]
     },
@@ -3498,7 +3498,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the route table. This is commonly written as a reference to\na route table declared elsewhere in the template. For example:",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myRouteTable\" }"
         },
         {
           "Name": "SubnetId",
@@ -3506,7 +3506,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the subnet. This is commonly written as a reference to a\nsubnet declared elsewhere in the template. For example:",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"mySubnet\" }"
         }
       ]
     },
@@ -3598,7 +3598,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "How the device is exposed to the instance (e.g., /dev/sdh, or xvdh).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "/dev/sdh"
         },
         {
           "Name": "InstanceId",
@@ -3606,7 +3606,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the instance to which the volume attaches. This value can be\na reference to an AWS::EC2::Instance resource, or it can be the\nphysical ID of an existing EC2 instance.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"Ec2Instance\" }"
         },
         {
           "Name": "VolumeId",
@@ -3614,7 +3614,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the Amazon EBS volume. The volume and instance must be\nwithin the same Availability Zone. This value can be a reference to an\nAWS::EC2::Volume resource, or it can be the volume ID of an existing\nAmazon EBS volume.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"NewVolume\" }"
         }
       ]
     },
@@ -3628,7 +3628,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The CIDR block you want the VPC to cover. For example: \"10.0.0.0/16\".",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "10.0.0.0/16"
         },
         {
           "Name": "EnableDnsSupport",
@@ -3651,8 +3651,8 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The allowed tenancy of instances launched into the VPC. ",
-          "SyntaxExpression": "String"
+          "DocString": "The allowed tenancy of instances launched into the VPC.",
+          "SyntaxExpression": "dedicated"
         },
         {
           "Name": "Tags",
@@ -3660,7 +3660,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this VPC. To name a\nVPC resource, specify a value for the Name key.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ {\"Key\" : \"foo\", \"Value\" : \"bar\"} ]"
         }
       ]
     },
@@ -3674,7 +3674,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Whether to request an Amazon-provided IPv6 CIDR block with a /56\nprefix length for the VPC. You can't specify the range of IPv6\naddresses or the size of the CIDR block.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "true"
         },
         {
           "Name": "VpcId",
@@ -3682,7 +3682,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC to associate the Amazon-provided IPv6 CIDR block\nwith.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"TestVPCIpv6\" }"
         }
       ]
     },
@@ -3696,7 +3696,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the DHCP options you want to associate with the VPC. Specify\ndefault if you want the VPC to use no DHCP options.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"myDHCPOptions\"}"
         },
         {
           "Name": "VpcId",
@@ -3704,7 +3704,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC to associate with this DHCP options set.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"myVPC\"}"
         }
       ]
     },
@@ -3718,7 +3718,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A policy to attach to the endpoint that controls access to the\nservice. The policy must be valid JSON. The default policy allows full\naccess to the AWS service. For more information, see Controlling\nAccess to Services in the Amazon VPC User Guide.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "RouteTableIds",
@@ -3726,7 +3726,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "One or more route table IDs that are used by the VPC to reach the\nendpoint.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ {\"Ref\" : \"routetableA\"}, {\"Ref\" : \"routetableB\"} ]"
         },
         {
           "Name": "ServiceName",
@@ -3734,7 +3734,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS service to which you want to establish a connection. Specify\nthe service name in the form of com.amazonaws.region.service.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::Join\": [ \"\", [ \"com.amazonaws.\", { \"Ref\": \"AWS::Region\" }, \".s3\" ] ] }"
         },
         {
           "Name": "VpcId",
@@ -3742,7 +3742,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC in which the endpoint is used.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"VPCID\"}"
         }
       ]
     },
@@ -3756,7 +3756,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the Internet gateway.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myInternetGateway\" }"
         },
         {
           "Name": "VpcId",
@@ -3764,7 +3764,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC to associate with this gateway.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"VPC\" }"
         },
         {
           "Name": "VpnGatewayId",
@@ -3772,7 +3772,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the virtual private network (VPN) gateway to attach to the\nVPC.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"myVPNGateway\" }"
         }
       ]
     },
@@ -3786,7 +3786,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC with which you are creating the peering connection.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\": \"myPrivateVPC\"}"
         },
         {
           "Name": "Tags",
@@ -3802,7 +3802,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPC that is requesting a peering connection.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\": \"myVPC\"}"
         }
       ]
     },
@@ -3816,7 +3816,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of VPN connection this virtual private gateway supports.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ipsec.1"
         },
         {
           "Name": "CustomerGatewayId",
@@ -3824,7 +3824,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the customer gateway. This can either be an embedded JSON\nobject or a reference to a Gateway ID.",
-          "SyntaxExpression": "GatewayID"
+          "SyntaxExpression": "{\"Ref\" : \"myCustomerGateway\"}"
         },
         {
           "Name": "StaticRoutesOnly",
@@ -3848,7 +3848,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the virtual private gateway. This can either be an embedded\nJSON object or a reference to a Gateway ID.",
-          "SyntaxExpression": "GatewayID"
+          "SyntaxExpression": "{\"Ref\" : \"myVPNGateway\"}"
         }
       ]
     },
@@ -3862,7 +3862,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The CIDR block that is associated with the local subnet of the\ncustomer network.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "10.0.0.0/16"
         },
         {
           "Name": "VpnConnectionId",
@@ -3870,7 +3870,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the VPN connection.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"Connection0\"}"
         }
       ]
     },
@@ -3884,7 +3884,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of VPN connection this virtual private gateway supports. The\nonly valid value is \"ipsec.1\".",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ipsec.1"
         },
         {
           "Name": "Tags",
@@ -3892,7 +3892,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this resource.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ { \"Key\" : \"Use\", \"Value\" : \"Test\" } ]"
         }
       ]
     },
@@ -3906,7 +3906,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of routing table IDs that are associated with a VPC. The\nrouting tables must be associated with the same VPC that the virtual\nprivate gateway is attached to.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[{\"Ref\" : \"PrivateRouteTable\"}]"
         },
         {
           "Name": "VpnGatewayId",
@@ -3914,7 +3914,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the virtual private gateway that is attached to a VPC. The\nvirtual private gateway must be attached to the same VPC that the\nrouting tables are associated with.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"VPNGateway\"}"
         }
       ]
     },
@@ -3928,7 +3928,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the image repository. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nrepository name. For more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "test-repository"
         },
         {
           "Name": "RepositoryPolicyText",
@@ -3936,7 +3936,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A policy that controls who has access to the repository and which\nactions they can perform on it. For more information, see Amazon ECR\nRepository Policies in the Amazon EC2 Container Registry User Guide.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -4018,7 +4018,7 @@
           "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions.html",
           "TypeName": "",
           "DocString": "A list of container definitions in JSON format that describe the\ncontainers that make up your task.",
-          "SyntaxExpression": "[ Container Definition, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "Family",
@@ -4050,7 +4050,7 @@
           "TypeHref": "aws-properties-ecs-taskdefinition-volumes.html",
           "TypeName": "",
           "DocString": "A list of volume definitions in JSON format for volumes that you can\nuse in your container definitions.",
-          "SyntaxExpression": "[ Volume Definition, ... ]"
+          "SyntaxExpression": "["
         }
       ]
     },
@@ -4064,7 +4064,7 @@
           "TypeHref": "aws-properties-efs-filesystem-filesystemtags.html",
           "TypeName": "",
           "DocString": "Tags to associate with the file system.",
-          "SyntaxExpression": "[ FileSystemTags, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "PerformanceMode",
@@ -4086,7 +4086,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the file system for which you want to create the mount\ntarget.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"FileSystem\" }"
         },
         {
           "Name": "IpAddress",
@@ -4102,7 +4102,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A maximum of five VPC security group IDs that are in the same VPC as\nthe subnet that is specified in the SubnetId property. For more\ninformation about security groups and mount targets, see Security in\nthe Amazon Elastic File System User Guide.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ { \"Ref\": \"MountTargetSecurityGroup\" } ]"
         },
         {
           "Name": "SubnetId",
@@ -4110,7 +4110,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the subnet in which you want to add the mount target.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"Subnet\" }"
         }
       ]
     },
@@ -4298,7 +4298,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the cache parameter group family that the cache parameter\ngroup can be used with.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "memcached1.4"
         },
         {
           "Name": "Description",
@@ -4306,7 +4306,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The description for the Cache Parameter Group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "MyNewParameterGroup"
         },
         {
           "Name": "Properties",
@@ -4314,7 +4314,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A comma-delimited list of parameter name/value pairs. For more\ninformation, go to ModifyCacheParameterGroup in the Amazon ElastiCache\nAPI Reference Guide.",
-          "SyntaxExpression": "{ String:String, ... }"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -4594,7 +4594,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The description for the cache subnet group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Cache Subnet Group"
         },
         {
           "Name": "SubnetIds",
@@ -4602,7 +4602,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon EC2 subnet IDs for the cache subnet group.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ { \"Ref\" : \"Subnet1\" }, { \"Ref\" : \"Subnet2\" } ]"
         }
       ]
     },
@@ -4616,7 +4616,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the Elastic Beanstalk application. If you don't specify a\nname, AWS CloudFormation generates a unique physical ID and uses that\nID for the application name. For more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "SampleAWSElasticBeanstalkApplication"
         },
         {
           "Name": "Description",
@@ -4624,7 +4624,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An optional description of this application.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "AWS Elastic Beanstalk PHP Sample Application"
         }
       ]
     },
@@ -4638,7 +4638,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Name of the Elastic Beanstalk application that is associated with this\napplication version.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"myApp\"}"
         },
         {
           "Name": "Description",
@@ -4646,7 +4646,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of this application version.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "my sample version"
         },
         {
           "Name": "SourceBundle",
@@ -4654,7 +4654,7 @@
           "TypeHref": "aws-properties-beanstalk-sourcebundle.html",
           "TypeName": "",
           "DocString": "The location of the source bundle for this version.",
-          "SyntaxExpression": "{ SourceBundle }"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -4668,7 +4668,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Name of the Elastic Beanstalk application that is associated with this\nconfiguration template.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"mySecondApp\"}"
         },
         {
           "Name": "Description",
@@ -4676,7 +4676,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An optional description for this configuration.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "my sample configuration template"
         },
         {
           "Name": "EnvironmentId",
@@ -4684,7 +4684,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An environment whose settings you want to use to create the\nconfiguration template. You must specify this property if you don't\nspecify the SolutionStackName or SourceConfiguration properties.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": ""
         },
         {
           "Name": "OptionSettings",
@@ -4692,7 +4692,7 @@
           "TypeHref": "aws-properties-beanstalk-option-settings.html",
           "TypeName": "",
           "DocString": "A list of OptionSettings for this Elastic Beanstalk configuration,\nsuch as the instance type. For a complete list of Elastic Beanstalk\nconfiguration options, see Option Values, in the AWS Elastic Beanstalk\nDeveloper Guide.",
-          "SyntaxExpression": "[ OptionSetting, ... ]"
+          "SyntaxExpression": "[ {"
         },
         {
           "Name": "SolutionStackName",
@@ -4700,7 +4700,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of an Elastic Beanstalk solution stack that this\nconfiguration will use. A solution stack specifies the operating\nsystem, architecture, and application server for a configuration\ntemplate, such as 64bit Amazon Linux 2013.09 running Tomcat 7 Java 7.\nFor more information, see Supported Platforms in the AWS Elastic\nBeanstalk Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "64bit Amazon Linux running PHP 5.3"
         },
         {
           "Name": "SourceConfiguration",
@@ -4708,7 +4708,7 @@
           "TypeHref": "aws-properties-beanstalk-configurationtemplate-sourceconfiguration.html",
           "TypeName": "",
           "DocString": "A configuration template that is associated with another Elastic\nBeanstalk application. If you specify the SolutionStackName property\nand the SourceConfiguration property, the solution stack in the source\nconfiguration template must match the value that you specified for the\nSolutionStackName property.",
-          "SyntaxExpression": "Source configuration"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -4950,7 +4950,7 @@
           "TypeHref": "aws-properties-elasticloadbalancingv2-listener-defaultactions.html",
           "TypeName": "",
           "DocString": "The default actions that the listener takes when handling incoming\nrequests.",
-          "SyntaxExpression": "[ DefaultActions, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "LoadBalancerArn",
@@ -4958,7 +4958,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the load balancer to associate with\nthe listener.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"myLoadBalancer\" }"
         },
         {
           "Name": "Port",
@@ -4966,7 +4966,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The port on which the listener listens for requests.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "8000"
         },
         {
           "Name": "Protocol",
@@ -4974,7 +4974,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The protocol that clients must use to send requests to the listener.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "HTTP"
         },
         {
           "Name": "SslPolicy",
@@ -4996,7 +4996,7 @@
           "TypeHref": "aws-properties-elasticloadbalancingv2-listenerrule-actions.html",
           "TypeName": "",
           "DocString": "The action that the listener takes when a request meets the specified\ncondition.",
-          "SyntaxExpression": "[ Actions, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "Conditions",
@@ -5004,7 +5004,7 @@
           "TypeHref": "aws-properties-elasticloadbalancingv2-listenerrule-conditions.html",
           "TypeName": "",
           "DocString": "The conditions under which a rule takes effect.",
-          "SyntaxExpression": "[ Conditions, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "ListenerArn",
@@ -5012,7 +5012,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the listener that the rule applies\nto.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"Listener\" }"
         },
         {
           "Name": "Priority",
@@ -5020,7 +5020,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The priority for the rule. Elastic Load Balancing evaluates rules in\npriority order, from the lowest value to the highest value. If a\nrequest satisfies a rule, Elastic Load Balancing ignores all\nsubsequent rules.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "1"
         }
       ]
     },
@@ -5034,7 +5034,7 @@
           "TypeHref": "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",
           "TypeName": "",
           "DocString": "Specifies the load balancer configuration.",
-          "SyntaxExpression": "[ LoadBalancerAttributes, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "Name",
@@ -5049,8 +5049,8 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies whether the load balancer is internal or Internet-facing. An\ninternal load balancer routes requests to targets using private IP\naddresses. An Internet-facing load balancer routes requests from\nclients over the Internet to targets in your public subnets. ",
-          "SyntaxExpression": "String"
+          "DocString": "Specifies whether the load balancer is internal or Internet-facing. An\ninternal load balancer routes requests to targets using private IP\naddresses. An Internet-facing load balancer routes requests from\nclients over the Internet to targets in your public subnets.",
+          "SyntaxExpression": "internal"
         },
         {
           "Name": "SecurityGroups",
@@ -5058,7 +5058,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies a list of the IDs of the security groups to assign to the\nload balancer.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[{\"Ref\": \"SecurityGroup1\"}, {\"Ref\" : \"SecurityGroup2\"}]"
         },
         {
           "Name": "Subnets",
@@ -5066,7 +5066,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Specifies a list of at least two IDs of the subnets to associate with\nthe load balancer. The subnets must be in different Availability\nZones.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ {\"Ref\": \"SubnetAZ1\"}, {\"Ref\" : \"SubnetAZ2\"}]"
         },
         {
           "Name": "Tags",
@@ -5074,7 +5074,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "Specifies an arbitrary set of tags (key–value pairs) to associate\nwith this load balancer. Use tags to manage your resources.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "["
         }
       ]
     },
@@ -5222,7 +5222,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An AWS Identity and Access Management (IAM) policy document that\nspecifies who can access the Amazon ES domain and their permissions.\nFor more information, see Configuring Access Policies in the Amazon\nElasticsearch Service Developer Guide.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "AdvancedOptions",
@@ -5230,7 +5230,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Additional options to specify for the Amazon ES domain. For more\ninformation, see Configuring Advanced Options in the Amazon\nElasticsearch Service Developer Guide.",
-          "SyntaxExpression": "Advanced Options"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "DomainName",
@@ -5238,7 +5238,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the Amazon ES domain. For valid values, see the DomainName\ndata type in the Amazon Elasticsearch Service Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "test"
         },
         {
           "Name": "EBSOptions",
@@ -5246,7 +5246,7 @@
           "TypeHref": "aws-properties-elasticsearch-domain-ebsoptions.html",
           "TypeName": "",
           "DocString": "The configurations of Amazon Elastic Block Store (Amazon EBS) volumes\nthat are attached to data nodes in the Amazon ES domain. For more\ninformation, see Configuring EBS-based Storage in the Amazon\nElasticsearch Service Developer Guide.",
-          "SyntaxExpression": "EBS Options"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "ElasticsearchClusterConfig",
@@ -5254,7 +5254,7 @@
           "TypeHref": "aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html",
           "TypeName": "",
           "DocString": "The cluster configuration for the Amazon ES domain. You can specify\noptions such as the instance type and the number of instances. For\nmore information, see Configuring Amazon ES Domains in the Amazon\nElasticsearch Service Developer Guide.",
-          "SyntaxExpression": "Elasticsearch Cluster Config"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "ElasticsearchVersion",
@@ -5270,7 +5270,7 @@
           "TypeHref": "aws-properties-elasticsearch-domain-snapshotoptions.html",
           "TypeName": "",
           "DocString": "The automated snapshot configuration for the Amazon ES domain indices.",
-          "SyntaxExpression": "Snapshot Options"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Tags",
@@ -5331,7 +5331,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Also called instance profile and EC2 role. Accepts an instance profile\nassociated with the role that you want to use. All EC2 instances in\nthe cluster assume this role. ",
+          "DocString": "Also called instance profile and EC2 role. Accepts an instance profile\nassociated with the role that you want to use. All EC2 instances in\nthe cluster assume this role.",
           "SyntaxExpression": "String"
         },
         {
@@ -5418,7 +5418,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of instances to launch in the instance group.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "2"
         },
         {
           "Name": "InstanceRole",
@@ -5426,7 +5426,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The role of the servers in the Amazon EMR cluster, such as TASK. For\nmore information, see Instance Groups in the Amazon EMR Management\nGuide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TASK"
         },
         {
           "Name": "InstanceType",
@@ -5434,7 +5434,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The EC2 instance type for all instances in the instance group. For\nmore information, see Instance Configurations in the Amazon EMR\nManagement Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "m3.xlarge"
         },
         {
           "Name": "JobFlowId",
@@ -5442,7 +5442,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of an Amazon EMR cluster that you want to associate this\ninstance group with.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Market",
@@ -5450,7 +5450,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of marketplace from which your instances are provisioned into\nthis group, either ON_DEMAND or SPOT. For more information, see Amazon\nEC2 Purchasing Options.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ON_DEMAND"
         },
         {
           "Name": "Name",
@@ -5458,7 +5458,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the instance group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "cfnTask2"
         }
       ]
     },
@@ -5472,7 +5472,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The action to take if the job flow step fails. Currently, AWS\nCloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more\ninformation, see Managing Cluster Termination in the Amazon EMR\nManagement Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "CONTINUE"
         },
         {
           "Name": "HadoopJarStep",
@@ -5480,7 +5480,7 @@
           "TypeHref": "aws-properties-emr-step-hadoopjarstepconfig.html",
           "TypeName": "",
           "DocString": "The JAR file that includes the main function that Amazon EMR executes.",
-          "SyntaxExpression": "HadoopJarStepConfig"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "JobFlowId",
@@ -5488,7 +5488,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of a cluster in which you want to run this job flow step.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Name",
@@ -5496,7 +5496,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the job flow step.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TestStep"
         }
       ]
     },
@@ -5572,7 +5572,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Information that helps you identify the purpose of this alias.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "A terminal alias"
         },
         {
           "Name": "Name",
@@ -5580,7 +5580,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An identifier to associate with this alias. Alias names don't need to\nbe unique.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TerminalAlias"
         },
         {
           "Name": "RoutingStrategy",
@@ -5588,7 +5588,7 @@
           "TypeHref": "aws-properties-gamelift-alias-routingstrategy.html",
           "TypeName": "",
           "DocString": "A routing configuration that specifies where traffic is directed for\nthis alias, such as to a fleet or to a message.",
-          "SyntaxExpression": "RoutingStrategy"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -5602,7 +5602,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An identifier to associate with this build. Build names don't need to\nbe unique.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "MyGameServerBuild"
         },
         {
           "Name": "StorageLocation",
@@ -5610,7 +5610,7 @@
           "TypeHref": "aws-properties-gamelift-build-storagelocation.html",
           "TypeName": "",
           "DocString": "The Amazon Simple Storage Service (Amazon S3) location where your\nbuild package files are located.",
-          "SyntaxExpression": "StorageLocation"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Version",
@@ -5618,7 +5618,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A version to associate with this build. Version is useful if you want\nto track updates to your build package files. Versions don't need to\nbe unique.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "2012-10-17"
         }
       ]
     },
@@ -5632,7 +5632,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The unique identifier for the build that you want to use with this\nfleet.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"BuildResource\" }"
         },
         {
           "Name": "Description",
@@ -5640,7 +5640,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Information that helps you identify the purpose of this fleet.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "A fleet for my game"
         },
         {
           "Name": "DesiredEC2Instances",
@@ -5648,7 +5648,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of EC2 instances that you want in this fleet.",
-          "SyntaxExpression": "Integer"
+          "SyntaxExpression": "2"
         },
         {
           "Name": "EC2InboundPermissions",
@@ -5656,7 +5656,7 @@
           "TypeHref": "aws-properties-gamelift-fleet-ec2inboundpermission.html",
           "TypeName": "",
           "DocString": "The incoming traffic, expressed as IP ranges and port numbers, that is\npermitted to access the game server. If you don't specify values, no\ntraffic is permitted to your game servers.",
-          "SyntaxExpression": "[ EC2InboundPermission, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "EC2InstanceType",
@@ -5664,7 +5664,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of EC2 instances that the fleet uses. EC2 instance types\ndefine the CPU, memory, storage, and networking capacity of the\nfleet's hosts. For more information about the instance types that are\nsupported by GameLift, see the EC2InstanceType parameter in the Amazon\nGameLift API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "t2.small"
         },
         {
           "Name": "LogPaths",
@@ -5672,7 +5672,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The path to game-session log files that are generated by your game\nserver, with the slashes (\\) escaped. After a game session has been\nterminated, GameLift captures and stores the logs in an S3 bucket.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "MaxSize",
@@ -5696,7 +5696,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An identifier to associate with this fleet. Fleet names don't need to\nbe unique.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "MyGameFleet"
         },
         {
           "Name": "ServerLaunchParameters",
@@ -5712,7 +5712,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The location of your game server that GameLift launches. You must\nescape the slashes (\\) and use the following pattern:\nC:\\\\game\\\\launchpath. For example, if your game server files are in\nthe MyGame folder, the path should be C:\\\\game\\\\MyGame\\\\server.exe.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "c:\\\\game\\\\TestApplicationServer.exe"
         }
       ]
     },
@@ -5816,7 +5816,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the policy. For example, you can describe the\npermissions that are defined in the policy.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Policy for creating a test database"
         },
         {
           "Name": "Groups",
@@ -5824,7 +5824,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The names of groups to attach to this policy.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[\"TestDBGroup\"]"
         },
         {
           "Name": "Path",
@@ -5832,7 +5832,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The path for the policy. By default, the path is /. For more\ninformation, see IAM Identifiers in the IAM User Guide guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "/"
         },
         {
           "Name": "PolicyDocument",
@@ -5840,7 +5840,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Policies that define the permissions for this managed policy. For more\ninformation about policy syntax, see IAM Policy Elements Reference in\nIAM User Guide.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Roles",
@@ -6038,7 +6038,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The certificate signing request (CSR).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Status",
@@ -6046,7 +6046,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The status of the certificate.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -6060,7 +6060,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The JSON document that describes the policy.",
-          "SyntaxExpression": "JSON object"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "PolicyName",
@@ -6068,7 +6068,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name (the physical ID) of the AWS IoT policy.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -6082,7 +6082,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the policy.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Principal",
@@ -6090,7 +6090,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The principal, which can be a certificate ARN (as returned from the\nCreateCertificate operation) or an Amazon Cognito ID.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "arn:aws:iot:ap-southeast-2:123456789012:cert/a1234567b89c012d3e4fg567hij8k9l01mno1p23q45678901rs234567890t1u2"
         }
       ]
     },
@@ -6104,7 +6104,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A JSON string that contains up to three key-value pairs, for example:\n{ \"attributes\": { \"string1\":\"string2\" } }.",
-          "SyntaxExpression": "{ String:String, ... }"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "ThingName",
@@ -6112,7 +6112,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name (the physical ID) of the AWS IoT thing.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -6126,7 +6126,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The principal, which can be a certificate ARN (as returned from the\nCreateCertificate operation) or an Amazon Cognito ID.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "arn:aws:iot:ap-southeast-2:123456789012:cert/a1234567b89c012d3e4fg567hij8k9l01mno1p23q45678901rs234567890t1u2"
         },
         {
           "Name": "ThingName",
@@ -6134,7 +6134,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the AWS IoT thing.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -6148,7 +6148,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name (the physical ID) of the AWS IoT rule.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "TopicRulePayload",
@@ -6156,7 +6156,7 @@
           "TypeHref": "aws-properties-iot-topicrulepayload.html",
           "TypeName": "",
           "DocString": "The actions associated with the AWS IoT rule.",
-          "SyntaxExpression": "TopicRulePayLoad"
+          "SyntaxExpression": "{"
         }
       ]
     },
@@ -6208,7 +6208,7 @@
           "TypeHref": "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html",
           "TypeName": "",
           "DocString": "An Amazon ES destination for the delivery stream.",
-          "SyntaxExpression": "ElasticsearchDestinationConfiguration"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "RedshiftDestinationConfiguration",
@@ -6238,7 +6238,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the alias. The name must start with alias followed by a\nforward slash, such as alias/. You can't specify aliases that begin\nwith alias/AWS. These aliases are reserved.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "alias/myKeyAlias"
         },
         {
           "Name": "TargetKeyId",
@@ -6246,7 +6246,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the key for which you are creating the alias. Specify the\nkey's globally unique identifier or Amazon Resource Name (ARN). You\ncan't specify another alias.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\":\"myKey\"}"
         }
       ]
     },
@@ -6314,7 +6314,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB\nstream that is the source of events. Any record added to this stream\ncan invoke the Lambda function. For more information, see\nCreateEventSourceMapping in the AWS Lambda Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::Join\" : [ \"\", [ \"arn:aws:kinesis:\", { \"Ref\" : \"AWS::Region\" }, \":\", { \"Ref\" : \"AWS::AccountId\" }, \":stream/\", { \"Ref\" : \"KinesisStream\" }] ] }"
         },
         {
           "Name": "FunctionName",
@@ -6322,7 +6322,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name or ARN of a Lambda function to invoke when Lambda detects an\nevent on the stream.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [\"LambdaFunction\", \"Arn\"] }"
         },
         {
           "Name": "StartingPosition",
@@ -6330,7 +6330,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The position in the stream where Lambda starts reading. For valid\nvalues, see CreateEventSourceMapping in the AWS Lambda Developer\nGuide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TRIM_HORIZON"
         }
       ]
     },
@@ -6352,7 +6352,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Lambda function that you want to associate with this alias. You\ncan specify the function's name or its Amazon Resource Name (ARN).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"MyFunction\" }"
         },
         {
           "Name": "FunctionVersion",
@@ -6360,7 +6360,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The version of the Lambda function that you want to associate with\nthis alias.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [ \"TestingNewFeature\", \"Version\" ] }"
         },
         {
           "Name": "Name",
@@ -6368,7 +6368,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the alias.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TestingForMyApp"
         }
       ]
     },
@@ -6382,7 +6382,7 @@
           "TypeHref": "aws-properties-lambda-function-code.html",
           "TypeName": "",
           "DocString": "The source code of your Lambda function. You can point to a file in an\nAmazon Simple Storage Service (Amazon S3) bucket or specify your\nsource code as inline text.",
-          "SyntaxExpression": "Code"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Description",
@@ -6414,7 +6414,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the function (within your source code) that Lambda calls\nto start running your code. For more information, see the Handler\nproperty in the AWS Lambda Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "index.handler"
         },
         {
           "Name": "KmsKeyArn",
@@ -6438,7 +6438,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the AWS Identity and Access\nManagement (IAM) execution role that Lambda assumes when it runs your\ncode to access AWS services.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [\"LambdaExecutionRole\", \"Arn\"] }"
         },
         {
           "Name": "Runtime",
@@ -6446,15 +6446,15 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The runtime environment for the Lambda function that you are\nuploading. For valid values, see the Runtime property in the AWS\nLambda Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "nodejs4.3"
         },
         {
           "Name": "Timeout",
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The function execution time (in seconds) after which Lambda terminates\nthe function. Because the execution time affects cost, set this value\nbased on the function's expected execution time. By default, Timeout\nis set to 3 seconds. ",
-          "SyntaxExpression": "Integer"
+          "DocString": "The function execution time (in seconds) after which Lambda terminates\nthe function. Because the execution time affects cost, set this value\nbased on the function's expected execution time. By default, Timeout\nis set to 3 seconds.",
+          "SyntaxExpression": "25"
         },
         {
           "Name": "VpcConfig",
@@ -6476,7 +6476,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Lambda actions that you want to allow in this statement. For\nexample, you can specify lambda:CreateFunction to specify a certain\naction, or use a wildcard (lambda:*) to grant permission to all Lambda\nactions. For a list of actions, see Actions and Condition Context Keys\nfor AWS Lambda in the IAM User Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "lambda:InvokeFunction"
         },
         {
           "Name": "FunctionName",
@@ -6484,7 +6484,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name (physical ID), Amazon Resource Name (ARN), or alias ARN of\nthe Lambda function that you want to associate with this statement.\nLambda adds this statement to the function's access policy.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [\"MyLambdaFunction\", \"Arn\"] }"
         },
         {
           "Name": "Principal",
@@ -6492,7 +6492,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The entity for which you are granting permission to invoke the Lambda\nfunction. This entity can be any valid AWS service principal, such as\ns3.amazonaws.com or sns.amazonaws.com, or, if you are granting\ncross-account permission, an AWS account ID. For example, you might\nwant to allow a custom application in another AWS account to push\nevents to Lambda by invoking your function.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "s3.amazonaws.com"
         },
         {
           "Name": "SourceAccount",
@@ -6500,7 +6500,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS account ID (without hyphens) of the source owner. For example,\nif you specify an S3 bucket in the SourceArn property, this value is\nthe bucket owner's account ID. You can use this property to ensure\nthat all source principals are owned by a specific account.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"AWS::AccountId\" }"
         },
         {
           "Name": "SourceArn",
@@ -6521,7 +6521,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The SHA-256 hash of the deployment package that you want to publish.\nThis value must match the SHA-256 hash of the $LATEST version of the\nfunction. Specify this property to validate that you are publishing\nthe correct package. ",
+          "DocString": "The SHA-256 hash of the deployment package that you want to publish.\nThis value must match the SHA-256 hash of the $LATEST version of the\nfunction. Specify this property to validate that you are publishing\nthe correct package.",
           "SyntaxExpression": "String"
         },
         {
@@ -6530,7 +6530,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the version you are publishing. If you don't specify\na value, Lambda copies the description from the $LATEST version of the\nfunction.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "A test version of MyFunction"
         },
         {
           "Name": "FunctionName",
@@ -6538,7 +6538,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Lambda function for which you want to publish a version. You can\nspecify the function's name or its Amazon Resource Name (ARN).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"MyFunction\" }"
         }
       ]
     },
@@ -6552,7 +6552,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the CloudWatch Logs destination.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "TestDestination"
         },
         {
           "Name": "DestinationPolicy",
@@ -6560,7 +6560,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An AWS Identity and Access Management (IAM) policy that specifies who\ncan write to your destination.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\\\"Version\\\" : \\\"2012-10-17\\\",\\\"Statement\\\" : [{\\\"Effect\\\" : \\\"Allow\\\", \\\"Principal\\\" : {\\\"AWS\\\" : \\\"arn:aws:iam::234567890123:user/logger\\\"}"
         },
         {
           "Name": "RoleArn",
@@ -6568,7 +6568,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an IAM role that permits CloudWatch\nLogs to send data to the specified AWS resource (TargetArn).",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "arn:aws:iam::123456789012:role/LogKinesisRole"
         },
         {
           "Name": "TargetArn",
@@ -6576,7 +6576,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ARN of the AWS resource that receives log events. Currently, you\ncan specify only an Amazon Kinesis stream.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "arn:aws:kinesis:us-east-1:123456789012:stream/TestStream"
         }
       ]
     },
@@ -6664,7 +6664,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Lambda\nfunction that you want to use as the subscription feed destination.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [ \"KinesisStream\", \"Arn\" ] }"
         },
         {
           "Name": "FilterPattern",
@@ -6672,7 +6672,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The filtering expressions that restrict what gets delivered to the\ndestination AWS resource. For more information about the filter\npattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch\nUser Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{$.userIdentity.type = Root}"
         },
         {
           "Name": "LogGroupName",
@@ -6680,7 +6680,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The log group to associate with the subscription filter. All log\nevents that are uploaded to this log group are filtered and delivered\nto the specified AWS resource if the filter pattern matches the log\nevents.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"LogGroup\" }"
         },
         {
           "Name": "RoleArn",
@@ -6688,7 +6688,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "An IAM role that grants CloudWatch Logs permission to put data into\nthe specified Amazon Kinesis stream. For Lambda and CloudWatch Logs\ndestinations, don't specify this property because CloudWatch Logs gets\nthe necessary permissions from the destination resource.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::GetAtt\" : [ \"CloudWatchIAMRole\", \"Arn\" ] }"
         }
       ]
     },
@@ -6702,7 +6702,7 @@
           "TypeHref": "aws-properties-opsworks-stack-source.html",
           "TypeName": "",
           "DocString": "The information required to retrieve an app from a repository.",
-          "SyntaxExpression": "Source"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Attributes",
@@ -6758,7 +6758,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the AWS OpsWorks app.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "myPHPapp"
         },
         {
           "Name": "Shortname",
@@ -6782,7 +6782,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the AWS OpsWorks stack to associate this app with.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\":\"myStack\"}"
         },
         {
           "Name": "Type",
@@ -6790,7 +6790,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The app type. Each supported type is associated with a particular\nlayer. For more information, see CreateApp in the AWS OpsWorks Stacks\nAPI Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "git"
         }
       ]
     },
@@ -6804,7 +6804,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Elastic Load Balancing load balancer name.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"ELB\" }"
         },
         {
           "Name": "LayerId",
@@ -6812,7 +6812,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS OpsWorks layer ID that the Elastic Load Balancing load\nbalancer will be attached to.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"Layer\" }"
         }
       ]
     },
@@ -6953,7 +6953,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of the instance's subnet. If the stack is running in a VPC, you\ncan use this parameter to override the stack's default subnet ID value\nand direct AWS OpsWorks to launch the instance in a different subnet. ",
+          "DocString": "The ID of the instance's subnet. If the stack is running in a VPC, you\ncan use this parameter to override the stack's default subnet ID value\nand direct AWS OpsWorks to launch the instance in a different subnet.",
           "SyntaxExpression": "String"
         },
         {
@@ -7103,7 +7103,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The layer short name, which is used internally by AWS OpsWorks and by\nChef recipes. The short name is also used as the name for the\ndirectory where your app files are installed. ",
+          "DocString": "The layer short name, which is used internally by AWS OpsWorks and by\nChef recipes. The short name is also used as the name for the\ndirectory where your app files are installed.",
           "SyntaxExpression": "String"
         },
         {
@@ -7214,7 +7214,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an IAM instance profile that is the\ndefault profile for all of the stack's Amazon EC2 instances.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::Join\": [\"\", [\"arn:aws:iam::\", {\"Ref\":\"AWS::AccountId\"}, \":instance-profile/aws-opsworks-ec2-role\"]] }"
         },
         {
           "Name": "DefaultOs",
@@ -7238,7 +7238,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A default SSH key for the stack instances. You can override this value\nwhen you create or update an instance.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\":\"KeyName\"}"
         },
         {
           "Name": "DefaultSubnetId",
@@ -7278,7 +7278,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the AWS OpsWorks stack.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\":\"OpsWorksStackName\"}"
         },
         {
           "Name": "RdsDbInstances",
@@ -7294,7 +7294,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The AWS Identity and Access Management (IAM) role that AWS OpsWorks\nuses to work with AWS resources on your behalf. You must specify an\nAmazon Resource Name (ARN) for an existing IAM role.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Fn::Join\": [\"\", [\"arn:aws:iam::\", {\"Ref\":\"AWS::AccountId\"}, \":role/aws-opsworks-service-role\"]] }"
         },
         {
           "Name": "SourceStackId",
@@ -7340,7 +7340,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Indicates whether users can use the AWS OpsWorks My Settings page to\nspecify their own SSH public key. For more information, see Setting an\nIAM User's Public SSH Key in the AWS OpsWorks User Guide.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "true"
         },
         {
           "Name": "IamUserArn",
@@ -7348,7 +7348,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the AWS Identity and Access\nManagement (IAM) user to associate with this configuration.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "SshPublicKey",
@@ -7356,7 +7356,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The public SSH key that is associated with the IAM user. The IAM user\nmust have or be given the corresponding private key to access\ninstances.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "xyz1234567890"
         }
       ]
     },
@@ -7370,7 +7370,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the Amazon EBS volume to register with the AWS OpsWorks\nstack.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"ec2volume\" }"
         },
         {
           "Name": "MountPoint",
@@ -7378,7 +7378,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The mount point for the Amazon EBS volume, such as /mnt/disk1.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "/dev/sdb"
         },
         {
           "Name": "Name",
@@ -7386,7 +7386,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the Amazon EBS volume.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "testOpsWorksVolume"
         },
         {
           "Name": "StackId",
@@ -7394,7 +7394,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The ID of the AWS OpsWorks stack that AWS OpsWorks registers the\nvolume to.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"opsworksstack\" }"
         }
       ]
     },
@@ -7432,7 +7432,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the DB cluster parameter group to associate with this DB\ncluster. For the default value, see the DBClusterParameterGroupName\nparameter of the CreateDBCluster action in the Amazon Relational\nDatabase Service API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"RDSDBClusterParameterGroup\" }"
         },
         {
           "Name": "DBSubnetGroupName",
@@ -7440,7 +7440,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A DB subnet group that you want to associate with this DB cluster.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Engine",
@@ -7448,7 +7448,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the database engine that you want to use for this DB\ncluster.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "aurora"
         },
         {
           "Name": "EngineVersion",
@@ -7472,7 +7472,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The master user name for the DB instance.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"username\" }"
         },
         {
           "Name": "MasterUserPassword",
@@ -7480,7 +7480,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The password for the master database user.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"password\" }"
         },
         {
           "Name": "Port",
@@ -7550,7 +7550,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A friendly description for this DB cluster parameter group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "A sample parameter group"
         },
         {
           "Name": "Family",
@@ -7558,7 +7558,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The database family of this DB cluster parameter group, such as\naurora5.6.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "aurora5.6"
         },
         {
           "Name": "Parameters",
@@ -7566,7 +7566,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The parameters to set for this DB cluster parameter group. For a list\nof parameter keys, see Appendix: DB Cluster and DB Instance Parameters\nin the Amazon Relational Database Service User Guide.",
-          "SyntaxExpression": "DBParameters"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Tags",
@@ -7619,7 +7619,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of days during which automatic DB snapshots are retained. ",
+          "DocString": "The number of days during which automatic DB snapshots are retained.",
           "SyntaxExpression": "String"
         },
         {
@@ -7835,7 +7835,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether the DB instance is an Internet-facing instance. If\nyou specify true, AWS CloudFormation creates an instance with a\npublicly resolvable DNS name, which resolves to a public IP address.\nIf you specify false, AWS CloudFormation creates an internal instance\nwith a DNS name that resolves to a private IP address. ",
+          "DocString": "Indicates whether the DB instance is an Internet-facing instance. If\nyou specify true, AWS CloudFormation creates an instance with a\npublicly resolvable DNS name, which resolves to a public IP address.\nIf you specify false, AWS CloudFormation creates an internal instance\nwith a DNS name that resolves to a private IP address.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -7898,7 +7898,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A friendly description of the RDS parameter group. For example, \"My\nParameter Group\".",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "CloudFormation Sample Parameter Group"
         },
         {
           "Name": "Family",
@@ -7906,7 +7906,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The database family of this RDS parameter group. For example,\n\"MySQL5.1\".",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "aurora5.6"
         },
         {
           "Name": "Parameters",
@@ -7914,7 +7914,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The parameters to set for this RDS parameter group.",
-          "SyntaxExpression": "DBParameters"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Tags",
@@ -8020,7 +8020,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The description for the DB Subnet Group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "description"
         },
         {
           "Name": "SubnetIds",
@@ -8028,7 +8028,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The EC2 Subnet IDs for the DB Subnet Group.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[ \"subnet-7b5b4112\", \"subnet-7b5b4115\" ]"
         },
         {
           "Name": "Tags",
@@ -8036,7 +8036,7 @@
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
           "DocString": "The tags that you want to attach to the RDS database subnet group.",
-          "SyntaxExpression": "[ Resource Tag, ... ]"
+          "SyntaxExpression": "[ {\"Key\" : \"String\", \"Value\" : \"String\"} ]"
         }
       ]
     },
@@ -8050,7 +8050,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Indicates whether to activate the subscription. If you don't specify\nthis property, AWS CloudFormation activates the subscription.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "false"
         },
         {
           "Name": "EventCategories",
@@ -8058,7 +8058,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of event categories that you want to subscribe to for a given\nsource type. If you don't specify this property, you are notified\nabout all event categories. For more information, see Using Amazon RDS\nEvent Notification in the Amazon Relational Database Service User\nGuide.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[\"configuration change\", \"failure\", \"deletion\"]"
         },
         {
           "Name": "SnsTopicArn",
@@ -8066,7 +8066,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of an Amazon SNS topic that you want to\nsend event notifications to.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "arn:aws:sns:us-west-2:123456789012:example-topic"
         },
         {
           "Name": "SourceIds",
@@ -8074,7 +8074,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of identifiers for which Amazon RDS provides notification\nevents.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[\"db-instance-1\", { \"Ref\" : \"myDBInstance\" }]"
         },
         {
           "Name": "SourceType",
@@ -8082,7 +8082,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of source for which Amazon RDS provides notification events.\nFor example, if you want to be notified of events generated by a\ndatabase instance, set this parameter to db-instance. If you don't\nspecify a value, notifications are provided for all source types. For\nvalid values, see the SourceType parameter for the\nCreateEventSubscription action in the Amazon Relational Database\nService API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "db-instance"
         }
       ]
     },
@@ -8190,7 +8190,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of cluster. You can specify single-node or multi-node.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "single-node"
         },
         {
           "Name": "ClusterVersion",
@@ -8206,7 +8206,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the first database that is created when the cluster is\ncreated.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "mydb"
         },
         {
           "Name": "ElasticIp",
@@ -8254,7 +8254,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The user name that is associated with the master user account for this\ncluster.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "master"
         },
         {
           "Name": "MasterUserPassword",
@@ -8262,7 +8262,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The password associated with the master user account for this cluster.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"MasterUserPassword\" }"
         },
         {
           "Name": "NodeType",
@@ -8270,7 +8270,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The node type that is provisioned for this cluster.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "dw.hs1.xlarge"
         },
         {
           "Name": "NumberOfNodes",
@@ -8355,7 +8355,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Amazon Redshift engine version that applies to this cluster\nparameter group. The cluster engine version determines the set of\nparameters that you can specify in the Parameters property. ",
+          "DocString": "The Amazon Redshift engine version that applies to this cluster\nparameter group. The cluster engine version determines the set of\nparameters that you can specify in the Parameters property.",
           "SyntaxExpression": "String"
         },
         {
@@ -8378,7 +8378,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the security group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Security group to determine where connections to the Amazon Redshift cluster can come from"
         }
       ]
     },
@@ -8392,7 +8392,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the Amazon Redshift security group that will be associated\nwith the ingress rule.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\":\"myClusterSecurityGroup\"}"
         },
         {
           "Name": "CIDRIP",
@@ -8400,7 +8400,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IP address range that has inbound access to the Amazon Redshift\nsecurity group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "10.0.0.0/16"
         },
         {
           "Name": "EC2SecurityGroupName",
@@ -8430,7 +8430,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A description of the subnet group.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "My ClusterSubnetGroup"
         },
         {
           "Name": "SubnetIds",
@@ -8438,7 +8438,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of VPC subnet IDs. You can modify a maximum of 20 subnets.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[\"subnet-7fbc2813\"]"
         }
       ]
     },
@@ -8452,7 +8452,7 @@
           "TypeHref": "aws-properties-route53-healthcheck-healthcheckconfig.html",
           "TypeName": "",
           "DocString": "An Amazon Route 53 health check.",
-          "SyntaxExpression": "HealthCheckConfig"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "HealthCheckTags",
@@ -8460,7 +8460,7 @@
           "TypeHref": "aws-properties-route53-healthcheck-healthchecktags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this health check.",
-          "SyntaxExpression": "[ HealthCheckTags, ... ]"
+          "SyntaxExpression": "[{"
         }
       ]
     },
@@ -8474,7 +8474,7 @@
           "TypeHref": "aws-properties-route53-hostedzone-hostedzoneconfig.html",
           "TypeName": "",
           "DocString": "A complex type that contains an optional comment about your hosted\nzone.",
-          "SyntaxExpression": "HostedZoneConfig"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "HostedZoneTags",
@@ -8482,7 +8482,7 @@
           "TypeHref": "aws-properties-route53-hostedzone-hostedzonetags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this hosted zone.",
-          "SyntaxExpression": "[  HostedZoneTags, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "Name",
@@ -8490,7 +8490,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the domain. For resource record types that include a\ndomain name, specify a fully qualified domain name.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "example.com"
         },
         {
           "Name": "VPCs",
@@ -8498,7 +8498,7 @@
           "TypeHref": "aws-resource-route53-hostedzone-hostedzonevpcs.html",
           "TypeName": "",
           "DocString": "One or more VPCs that you want to associate with this hosted zone.\nWhen you specify this property, AWS CloudFormation creates a private\nhosted zone.",
-          "SyntaxExpression": "[ HostedZoneVPCs, ... ]"
+          "SyntaxExpression": "[{"
         }
       ]
     },
@@ -8650,7 +8650,7 @@
         },
         {
           "Name": "RecordSets",
-          "Type": "List of AWS::Route53::RecordSet objects, as shown in the following example: ",
+          "Type": "List of AWS::Route53::RecordSet objects, as shown in the following example:",
           "TypeHref": "aws-properties-route53-recordset.html",
           "TypeName": "",
           "DocString": "List of resource record sets to add.",
@@ -8716,7 +8716,7 @@
           "TypeHref": "aws-properties-s3-bucket-replicationconfiguration.html",
           "TypeName": "",
           "DocString": "Configuration for replicating objects in an S3 bucket. To enable\nreplication, you must also enable versioning by using the\nVersioningConfiguration property.",
-          "SyntaxExpression": "Replication Configuration"
+          "SyntaxExpression": ""
         },
         {
           "Name": "Tags",
@@ -8732,7 +8732,7 @@
           "TypeHref": "aws-properties-s3-bucket-versioningconfig.html",
           "TypeName": "",
           "DocString": "Enables multiple variants of all objects in this bucket. You might\nenable versioning to prevent objects from being deleted or overwritten\nby mistake or to archive objects so that you can retrieve previous\nversions of them.",
-          "SyntaxExpression": "Versioning Configuration"
+          "SyntaxExpression": ""
         },
         {
           "Name": "WebsiteConfiguration",
@@ -8790,7 +8790,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The endpoint that receives notifications from the Amazon SNS topic.\nThe endpoint value depends on the protocol that you specify. For more\ninformation, see the Subscribe Endpoint parameter in the Amazon Simple\nNotification Service API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "test@email.com"
         },
         {
           "Name": "Protocol",
@@ -8798,7 +8798,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The subscription's protocol. For more information, see the Subscribe\nProtocol parameter in the Amazon Simple Notification Service API\nReference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "email"
         },
         {
           "Name": "TopicArn",
@@ -8806,7 +8806,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the topic to subscribe to.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{\"Ref\" : \"MySNSTopic\"}"
         }
       ]
     },
@@ -8828,7 +8828,7 @@
           "TypeHref": "aws-properties-sns-subscription.html",
           "TypeName": "",
           "DocString": "The SNS subscriptions (endpoints) for this topic.",
-          "SyntaxExpression": "[ SNS Subscription, ... ]"
+          "SyntaxExpression": "["
         },
         {
           "Name": "TopicName",
@@ -8836,7 +8836,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for the topic. If you don't specify a name, AWS CloudFormation\ngenerates a unique physical ID and uses that ID for the topic name.\nFor more information, see Name Type.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "SampleTopic"
         }
       ]
     },
@@ -9032,7 +9032,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the activity to create. This name must be unique for your\nAWS account and region.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "myActivity"
         }
       ]
     },
@@ -9046,7 +9046,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon States Language definition of the state machine. For more\ninformation, see Amazon States Language in the AWS Step Functions\nDeveloper Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "RoleArn",
@@ -9054,7 +9054,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the IAM role to use for this state\nmachine.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "arn:aws:iam::111122223333:role/service-role/StatesExecutionRole-us-east-1"
         }
       ]
     },
@@ -10144,7 +10144,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The key name of the tag.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "MyTag2"
         },
         {
           "Name": "Value",
@@ -10152,7 +10152,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The value for the tag.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "Hello World 2"
         },
         {
           "Name": "PropagateAtLaunch",
@@ -10160,7 +10160,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Set to true if you want AWS CloudFormation to copy the tag to EC2\ninstances that are launched as part of the auto scaling group. Set to\nfalse if you want the tag attached only to the auto scaling group and\nnot copied to any instances launched as part of the auto scaling\ngroup.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "false"
         }
       ]
     },
@@ -10927,7 +10927,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the dimension, from 1–255 characters in length.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "AutoScalingGroupName"
         },
         {
           "Name": "Value",
@@ -10935,7 +10935,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The value representing the dimension measurement, from 1–255\ncharacters in length.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\": \"WebServerGroup\" }"
         }
       ]
     },
@@ -11792,7 +11792,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ID of an AWS resource that you want AWS Config to evaluate against\na rule. If you specify an ID, you must also specify a resource type\nfor the ComplianceResourceTypes property. ",
+          "DocString": "The ID of an AWS resource that you want AWS Config to evaluate against\na rule. If you specify an ID, you must also specify a resource type\nfor the ComplianceResourceTypes property.",
           "SyntaxExpression": "String"
         },
         {
@@ -12313,7 +12313,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the device within Amazon EC2.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "/dev/sde"
         },
         {
           "Name": "Ebs",
@@ -12321,7 +12321,7 @@
           "TypeHref": "aws-properties-ec2-blockdev-template.html",
           "TypeName": "",
           "DocString": "Required: Conditional You can specify either VirtualName or Ebs, but\nnot both.",
-          "SyntaxExpression": "EC2 EBS Block Device"
+          "SyntaxExpression": "{ \"VolumeSize\" : \"100\" }"
         },
         {
           "Name": "NoDevice",
@@ -12337,7 +12337,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the virtual device. The name must be in the form\nephemeralX where X is a number starting from zero (0); for example,\nephemeral0.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ephemeral0"
         }
       ]
     },
@@ -12351,7 +12351,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "Determines whether to delete the volume on instance termination. The\ndefault value is true.",
-          "SyntaxExpression": "Boolean"
+          "SyntaxExpression": "false"
         },
         {
           "Name": "Encrypted",
@@ -12367,7 +12367,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The number of I/O operations per second (IOPS) that the volume\nsupports. This can be an integer from 100 – 2000.",
-          "SyntaxExpression": "Number"
+          "SyntaxExpression": "1000"
         },
         {
           "Name": "SnapshotId",
@@ -12375,7 +12375,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The snapshot ID of the volume to use to create a block device.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "snap-xxxxxx"
         },
         {
           "Name": "VolumeSize",
@@ -12383,7 +12383,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The volume size, in gibibytes (GiB). For valid values, see the Size\nparameter for the CreateVolume action in the Amazon EC2 API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "50"
         },
         {
           "Name": "VolumeType",
@@ -12391,7 +12391,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The volume type. If you set the type to io1, you must also set the\nIops property. For valid values, see the VolumeType parameter for the\nCreateVolume action in the Amazon EC2 API Reference.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "io1"
         }
       ]
     },
@@ -13540,7 +13540,7 @@
           "Type": "Key-value pairs, with the option name as the key and the option value as the value",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The configuration options to send to the log driver. This parameter\nrequires that your container instance uses Docker Remote API Version\n1.18 or greater. ",
+          "DocString": "The configuration options to send to the log driver. This parameter\nrequires that your container instance uses Docker Remote API Version\n1.18 or greater.",
           "SyntaxExpression": "{ String:String, ... }"
         }
       ]
@@ -14085,7 +14085,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of arbitrary attributes for this policy. If you don't need to\nspecify any policy attributes, specify an empty list ([]).",
-          "SyntaxExpression": "[ { \"Name\" : String, \"Value\" : String }, ... ]"
+          "SyntaxExpression": "[{"
         },
         {
           "Name": "InstancePorts",
@@ -14093,7 +14093,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A list of instance ports for the policy. These are the ports\nassociated with the back-end server.",
-          "SyntaxExpression": "[ String, ... ]"
+          "SyntaxExpression": "[{\"Ref\" : \"WebServerPort\"}]"
         },
         {
           "Name": "LoadBalancerPorts",
@@ -14109,7 +14109,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "A name for this policy that is unique to the load balancer.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "ELBSecurityPolicyName"
         },
         {
           "Name": "PolicyType",
@@ -14117,7 +14117,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the policy type for this policy. This must be one of the\ntypes reported by the Elastic Load Balancing\nDescribeLoadBalancerPolicyTypes action.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "SSLNegotiationPolicyType"
         }
       ]
     },
@@ -14232,7 +14232,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The HTTP codes that a healthy target must use when responding to a\nhealth check, such as 200,202 or 200-399. ",
+          "DocString": "The HTTP codes that a healthy target must use when responding to a\nhealth check, such as 200,202 or 200-399.",
           "SyntaxExpression": "String"
         }
       ]
@@ -14904,7 +14904,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ending value for a range of allowed port numbers. This value must\nbe higher than the FromPort value. ",
+          "DocString": "The ending value for a range of allowed port numbers. This value must\nbe higher than the FromPort value.",
           "SyntaxExpression": "Integer"
         }
       ]
@@ -15574,7 +15574,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The condition under which Firehose delivers data to Amazon Simple\nStorage Service (Amazon S3). You can send Amazon S3 all documents (all\ndata) or only the documents that Firehose could not deliver to the\nAmazon ES destination. For more information and valid values, see the\nS3BackupMode content for the ElasticsearchDestinationConfiguration\ndata type in the Amazon Kinesis Firehose API Reference. ",
+          "DocString": "The condition under which Firehose delivers data to Amazon Simple\nStorage Service (Amazon S3). You can send Amazon S3 all documents (all\ndata) or only the documents that Firehose could not deliver to the\nAmazon ES destination. For more information and valid values, see the\nS3BackupMode content for the ElasticsearchDestinationConfiguration\ndata type in the Amazon Kinesis Firehose API Reference.",
           "SyntaxExpression": "String"
         },
         {
@@ -16241,7 +16241,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Custom recipe names to be run following a Shutdown event. This event\noccurs after you direct AWS OpsWorks to shut an instance down before\nthe associated Amazon EC2 instance is actually terminated. ",
+          "DocString": "Custom recipe names to be run following a Shutdown event. This event\noccurs after you direct AWS OpsWorks to shut an instance down before\nthe associated Amazon EC2 instance is actually terminated.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -16747,7 +16747,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of consecutive health checks that an endpoint must pass or\nfail for Amazon Route 53 to change the current status of the endpoint\nfrom unhealthy to healthy or healthy to unhealthy. For more\ninformation, see How Amazon Route 53 Determines Whether an Endpoint\nIs Healthy in the Amazon Route 53 Developer Guide. ",
+          "DocString": "The number of consecutive health checks that an endpoint must pass or\nfail for Amazon Route 53 to change the current status of the endpoint\nfrom unhealthy to healthy or healthy to unhealthy. For more\ninformation, see How Amazon Route 53 Determines Whether an Endpoint\nIs Healthy in the Amazon Route 53 Developer Guide.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -16787,7 +16787,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The path that you want Amazon Route 53 to request when performing\nhealth checks. The path can be any value for which your endpoint\nreturns an HTTP status code of 2xx or 3xx when the endpoint is\nhealthy, such as /docs/route53-health-check.html. ",
+          "DocString": "The path that you want Amazon Route 53 to request when performing\nhealth checks. The path can be any value for which your endpoint\nreturns an HTTP status code of 2xx or 3xx when the endpoint is\nhealthy, such as /docs/route53-health-check.html.",
           "SyntaxExpression": "String"
         },
         {
@@ -17220,7 +17220,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The S3 bucket event for which to invoke the Lambda function. For more\ninformation, see Supported Event Types in the Amazon Simple Storage\nService Developer Guide.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "s3:ObjectCreated:*"
         },
         {
           "Name": "Filter",
@@ -17228,7 +17228,7 @@
           "TypeHref": "aws-properties-s3-bucket-notificationconfiguration-config-filter.html",
           "TypeName": "",
           "DocString": "The filtering rules that determine which objects invoke the Lambda\nfunction. For example, you can create a filter so that only image\nfiles with a .jpg extension invoke the function when they are added to\nthe S3 bucket.",
-          "SyntaxExpression": "Filter"
+          "SyntaxExpression": "{"
         },
         {
           "Name": "Function",
@@ -17236,7 +17236,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The Amazon Resource Name (ARN) of the Lambda function that Amazon S3\ninvokes when the specified event type occurs.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "{ \"Ref\" : \"LambdaDeploymentArn\" }"
         }
       ]
     },
@@ -17406,7 +17406,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the error document for the website.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "error.html"
         },
         {
           "Name": "IndexDocument",
@@ -17414,7 +17414,7 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The name of the index document for the website.",
-          "SyntaxExpression": "String"
+          "SyntaxExpression": "index.html"
         },
         {
           "Name": "RedirectAllRequestsTo",

@@ -220,8 +220,20 @@ func (r *Resource) Load() error {
 	// An element with the class 'variablelist' immediately preceeded by an
 	// element with the text "Properties" is what we're looking for.
 	doc.Find(".variablelist").Each(func(i int, varList *goquery.Selection) {
-		tileText := strings.TrimSpace(varList.Parent().Find(".titlepage").First().Text())
-		switch tileText {
+		h2 := varList.Prev()
+		for {
+			if h2.Length() == 0 {
+				return
+			}
+			if goquery.NodeName(h2) != "h2" {
+				h2 = h2.Prev()
+				continue
+			}
+			break
+		}
+
+		titleText := strings.TrimSpace(h2.Text())
+		switch titleText {
 		case "Properties":
 		case "Parameters":
 		case "Members":
@@ -239,19 +251,22 @@ func (r *Resource) Load() error {
 
 			property.DocString = dd.Find("p").First().Text()
 			property.DocString = regexp.MustCompile("\\s+").ReplaceAllString(property.DocString, " ")
+			property.DocString = strings.TrimSpace(property.DocString)
 			property.DocString = wordwrap.WrapString(property.DocString, 70)
 
 			// Somewhere inside the <DD> element there is a span that starts
 			// with `Type: ` which is our type. Grab it along with the href
 			// from an anchor (for complex types, this tells us which type it
 			// refers to)
-			dd.Find("span").Each(func(j int, span *goquery.Selection) {
+			dd.Find("em").Each(func(j int, span *goquery.Selection) {
 				if span.Text() == "Type" {
 					property.Type = span.Parent().Text()
 					property.Type = strings.TrimPrefix(property.Type, "Type: ")
 					property.Type = strings.TrimPrefix(property.Type, "Type:: ") // a typo in AWS::Route53::RecordSetGroup
 					property.Type = regexp.MustCompile("\\s+").ReplaceAllString(property.Type, " ")
+					property.Type = strings.TrimSpace(property.Type)
 					property.Type = strings.TrimSuffix(property.Type, ".")
+					property.Type = strings.TrimSpace(property.Type)
 
 					span.Parent().Find("a").Each(func(j int, a *goquery.Selection) {
 						property.TypeHref, _ = a.Attr("href")
@@ -298,11 +313,11 @@ func (r *Resource) Load() error {
 	// the syntax of each property in the SyntaxExpression field of the corresponding
 	// property.
 	doc.Find(".programlisting").Each(func(i int, varList *goquery.Selection) {
-		headlineText := varList.Parent().Find(".titlepage").First().Text()
+		headlineText := varList.Parent().Find("h3").First().Text()
 		if headlineText != "JSON" {
 			return
 		}
-		nextHeadlineText := varList.Parent().Parent().Find(".titlepage").First().Text()
+		nextHeadlineText := varList.Parent().Parent().Find("h2").First().Text()
 		if !strings.HasPrefix(nextHeadlineText, "Syntax") {
 			return
 		}
@@ -434,6 +449,7 @@ func (p *Property) GoType(tr *TemplateReference) string {
 	if strings.HasPrefix(p.Type, "A list of") ||
 		strings.HasPrefix(p.Type, "List of") ||
 		strings.HasPrefix(p.Type, "list of") ||
+		strings.HasPrefix(p.Type, "Array of") ||
 		strings.HasPrefix(p.SyntaxExpression, "[") {
 		isMaybeList = true
 	}
