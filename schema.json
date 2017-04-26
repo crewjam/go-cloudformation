@@ -531,7 +531,7 @@
           "Type": "List of Amazon API Gateway UsagePlan ApiStage",
           "TypeHref": "aws-properties-apigateway-usageplan-apistage.html",
           "TypeName": "",
-          "DocString": "The APIs and API stages to associate with this usage plan.",
+          "DocString": "The API stages to associate with this usage plan.",
           "SyntaxExpression": "[ {\"ApiId\" : { \"Ref\" : \"MyRestApi\" }, \"Stage\" : { \"Ref\" : \"Prod\" }} ]"
         },
         {
@@ -565,6 +565,36 @@
           "TypeName": "",
           "DocString": "A name for this usage plan.",
           "SyntaxExpression": "Plan_ABC"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::ApiGateway::UsagePlanKey",
+      "Href": "aws-resource-apigateway-usageplankey.html",
+      "Properties": [
+        {
+          "Name": "KeyId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The ID of the usage plan key.",
+          "SyntaxExpression": "{\"Ref\" : \"myApiKey\"}"
+        },
+        {
+          "Name": "KeyType",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of usage plan key. Currently, the valid key type is API_KEY.",
+          "SyntaxExpression": "API_KEY"
+        },
+        {
+          "Name": "UsagePlanId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The value of the usage plan key.",
+          "SyntaxExpression": "{\"Ref\" : \"myUsagePlan\"}"
         }
       ]
     },
@@ -3363,7 +3393,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies the name of the Amazon EC2 security group (non-VPC security\ngroup) to allow access or uses the Ref intrinsic function to refer to\nthe logical name of a security group defined in the same template. For\ninstances in a VPC, specify the SourceSecurityGroupId property.",
+          "DocString": "Specifies the name of the Amazon EC2 security group (non-VPC security\ngroup) to allow access or use the Ref intrinsic function to refer to\nthe logical ID of a security group defined in the same template. For\ninstances in a VPC, specify the SourceSecurityGroupId property.",
           "SyntaxExpression": "String"
         },
         {
@@ -3803,6 +3833,22 @@
           "TypeName": "",
           "DocString": "The ID of the VPC that is requesting a peering connection.",
           "SyntaxExpression": "{\"Ref\": \"myVPC\"}"
+        },
+        {
+          "Name": "PeerOwnerId",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The AWS account ID of the owner of the VPC that you want to peer with.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "PeerRoleArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of the VPC peer role for the peering\nconnection in another AWS account.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -3979,7 +4025,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of simultaneous tasks, which you specify by using the\nTaskDefinition property, that you want to run on the cluster.",
+          "DocString": "The number of simultaneous tasks that you want to run on the cluster.\nSpecify the tasks with the TaskDefinition property,",
           "SyntaxExpression": "Integer"
         },
         {
@@ -4003,7 +4049,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ARN of the task definition (including the revision number) that\nyou want to run on the cluster, such as\narn:aws:ecs:us-east-1:123456789012:task-definition/mytask:3. You can't\nuse :latest to specify a revision because it's ambiguous. For example,\nif AWS CloudFormation needed to rollback an update, it wouldn't know\nwhich revision to rollback to.",
+          "DocString": "The ARN of the task definition (including the revision number) that\nyou want to run on the cluster, such as\narn:aws:ecs:us-east-1:123456789012:task-definition/mytask:3. You can't\nuse :latest to specify a revision because it's ambiguous. For example,\nif AWS CloudFormation needed to roll back an update, it wouldn't know\nwhich revision to roll back to.",
           "SyntaxExpression": "String"
         }
       ]
@@ -4013,11 +4059,11 @@
       "Href": "aws-resource-ecs-taskdefinition.html",
       "Properties": [
         {
-          "Name": "ContainerDefinitions",
-          "Type": "List of Amazon EC2 Container Service TaskDefinition ContainerDefinitions",
-          "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions.html",
+          "Name": "Volumes",
+          "Type": "List of Amazon EC2 Container Service TaskDefinition Volumes",
+          "TypeHref": "aws-properties-ecs-taskdefinition-volumes.html",
           "TypeName": "",
-          "DocString": "A list of container definitions in JSON format that describe the\ncontainers that make up your task.",
+          "DocString": "A list of volume definitions in JSON format for volumes that you can\nuse in your container definitions.",
           "SyntaxExpression": "["
         },
         {
@@ -4045,11 +4091,11 @@
           "SyntaxExpression": "String"
         },
         {
-          "Name": "Volumes",
-          "Type": "List of Amazon EC2 Container Service TaskDefinition Volumes",
-          "TypeHref": "aws-properties-ecs-taskdefinition-volumes.html",
+          "Name": "ContainerDefinitions",
+          "Type": "List of Amazon EC2 Container Service TaskDefinition ContainerDefinitions",
+          "TypeHref": "aws-properties-ecs-taskdefinition-containerdefinitions.html",
           "TypeName": "",
-          "DocString": "A list of volume definitions in JSON format for volumes that you can\nuse in your container definitions.",
+          "DocString": "A list of container definitions in JSON format that describe the\ncontainers that make up your task.",
           "SyntaxExpression": "["
         }
       ]
@@ -5179,14 +5225,6 @@
           "SyntaxExpression": "[ TargetGroupAttributes, ... ]"
         },
         {
-          "Name": "TargetGroupFullName",
-          "Type": "String",
-          "TypeHref": "",
-          "TypeName": "",
-          "DocString": "The full name of the target group.",
-          "SyntaxExpression": "String"
-        },
-        {
           "Name": "Targets",
           "Type": "List of Elastic Load Balancing TargetGroup TargetDescription",
           "TypeHref": "aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html",
@@ -5801,8 +5839,16 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The name of an existing IAM role to associate with this instance\nprofile. Currently, a maximum of one role can be assigned to an\ninstance profile.",
+          "DocString": "The name of an existing IAM role to associate with this instance\nprofile. Currently, you can assign a maximum of one role to an\ninstance profile.",
           "SyntaxExpression": "[ IAM Roles ]"
+        },
+        {
+          "Name": "InstanceProfileName",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the instance profile that you want to create. This\nparameter allows (per its regex pattern) a string consisting of upper\nand lowercase alphanumeric characters with no spaces. You can also\ninclude any of the following characters: = , . @ -.",
+          "SyntaxExpression": "String"
         }
       ]
     },
@@ -6385,6 +6431,14 @@
           "SyntaxExpression": "{"
         },
         {
+          "Name": "DeadLetterConfig",
+          "Type": "AWS Lambda Function DeadLetterConfig",
+          "TypeHref": "aws-properties-lambda-function-deadletterconfig.html",
+          "TypeName": "",
+          "DocString": "Configures how Lambda handles events that it can't process. If you\ndon't specify a Dead Letter Queue (DLQ) configuration, Lambda discards\nevents after the maximum number of retries. For more information, see\nDead Letter Queues in the AWS Lambda Developer Guide.",
+          "SyntaxExpression": "DeadLetterConfig"
+        },
+        {
           "Name": "Description",
           "Type": "String",
           "TypeHref": "",
@@ -6589,7 +6643,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the log group. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\ntable name. For more information, see Name Type.",
+          "DocString": "A name for the log group. If you don't specify a name, AWS\nCloudFormation generates a unique physical ID and uses that ID for the\nlog group. For more information, see Name Type.",
           "SyntaxExpression": "String"
         },
         {
@@ -8141,7 +8195,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "When a new version of the Amazon Redshift is released, indicates\nwhether upgrades can be applied to the engine that is running on the\ncluster. The upgrades are applied during the maintenance window.",
+          "DocString": "When a new version of the Amazon Redshift is released, tells whether\nupgrades can be applied to the engine that is running on the cluster.\nThe upgrades are applied during the maintenance window.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -8157,7 +8211,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The Amazon EC2 Availability Zone in which you want to provision your\nAmazon Redshift cluster. For example, if you have several Amazon EC2\ninstances running in a specific Availability Zone, you might want the\ncluster to be provisioned in the same zone in order to decrease\nnetwork latency.",
+          "DocString": "The Amazon Elastic Compute Cloud (Amazon EC2) Availability Zone in\nwhich you want to provision your Amazon Redshift cluster. For example,\nif you have several EC2 instances running in a specific Availability\nZone, you might want the cluster to be provisioned in the same zone in\norder to decrease network latency.",
           "SyntaxExpression": "String"
         },
         {
@@ -8237,7 +8291,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies the name of the HSM configuration that contains the\ninformation that the Amazon Redshift cluster can use to retrieve and\nstore keys in an HSM.",
+          "DocString": "Specifies the name of the hardware security module (HSM) configuration\nthat contains the information that the Amazon Redshift cluster can use\nto retrieve and store keys in an HSM.",
           "SyntaxExpression": "String"
         },
         {
@@ -8456,7 +8510,7 @@
         },
         {
           "Name": "HealthCheckTags",
-          "Type": "List of Amazon Route 53 HealthCheckTags",
+          "Type": "A list of Amazon Route 53 HealthCheckTags",
           "TypeHref": "aws-properties-route53-healthcheck-healthchecktags.html",
           "TypeName": "",
           "DocString": "An arbitrary set of tags (key–value pairs) for this health check.",
@@ -8667,7 +8721,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A canned access control list (ACL) that grants predefined permissions\nto the bucket. For more information about canned ACLs, see Canned ACLs\nin the Amazon S3 documentation.",
+          "DocString": "A canned access control list (ACL) that grants predefined permissions\nto the bucket. For more information about canned ACLs, see Canned ACLs\nin the Amazon S3 documentation in the Amazon Simple Storage Service\nDeveloper Guide..",
           "SyntaxExpression": "String"
         },
         {
@@ -8699,7 +8753,7 @@
           "Type": "Amazon S3 Logging Configuration",
           "TypeHref": "aws-properties-s3-bucket-loggingconfig.html",
           "TypeName": "",
-          "DocString": "Settings that defines where logs are stored.",
+          "DocString": "Settings that define where logs are stored.",
           "SyntaxExpression": "Logging Configuration"
         },
         {
@@ -8723,7 +8777,7 @@
           "Type": "AWS CloudFormation Resource Tags",
           "TypeHref": "aws-properties-resource-tags.html",
           "TypeName": "",
-          "DocString": "An arbitrary set of tags (key-value pairs) for this Amazon S3 bucket.",
+          "DocString": "An arbitrary set of tags (key-value pairs) for this S3 bucket.",
           "SyntaxExpression": "[ Resource Tag, ... ]"
         },
         {
@@ -8867,19 +8921,35 @@
       "Href": "aws-properties-sqs-queues.html",
       "Properties": [
         {
+          "Name": "ContentBasedDeduplication",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "For First-In-First-Out (FIFO) queues, specifies whether to enable\ncontent-based deduplication. During the deduplication interval, Amazon\nSQS treats messages that are sent with identical content as duplicates\nand delivers only one copy of the message. For more information, see\nthe ContentBasedDeduplication attribute for the CreateQueue action in\nthe Amazon Simple Queue Service API Reference.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
           "Name": "DelaySeconds",
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The time in seconds that the delivery of all messages in the queue\nwill be delayed. You can specify an integer value of 0 to 900 (15\nminutes). The default value is 0.",
+          "DocString": "The time in seconds that the delivery of all messages in the queue is\ndelayed. You can specify an integer value of 0 to 900 (15 minutes).\nThe default value is 0.",
           "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "FifoQueue",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Indicates whether this queue is a FIFO queue. For more information,\nsee FIFO (First-In-First-Out) Queues in the Amazon Simple Queue\nService Developer Guide.",
+          "SyntaxExpression": "Boolean"
         },
         {
           "Name": "MaximumMessageSize",
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The limit of how many bytes a message can contain before Amazon SQS\nrejects it. You can specify an integer value from 1024 bytes (1 KiB)\nto 262144 bytes (256 KiB). The default value is 262144 (256 KiB).",
+          "DocString": "The limit of how many bytes that a message can contain before Amazon\nSQS rejects it. You can specify an integer value from 1024 bytes (1\nKiB) to 262144 bytes (256 KiB). The default value is 262144 (256 KiB).",
           "SyntaxExpression": "Integer"
         },
         {
@@ -8887,7 +8957,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of seconds Amazon SQS retains a message. You can specify an\ninteger value from 60 seconds (1 minute) to 1209600 seconds (14 days).\nThe default value is 345600 seconds (4 days).",
+          "DocString": "The number of seconds that Amazon SQS retains a message. You can\nspecify an integer value from 60 seconds (1 minute) to 1209600 seconds\n(14 days). The default value is 345600 seconds (4 days).",
           "SyntaxExpression": "Integer"
         },
         {
@@ -8895,7 +8965,7 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "A name for the queue. If you don't specify a name, AWS CloudFormation\ngenerates a unique physical ID and uses that ID for the queue name.\nFor more information, see Name Type.",
+          "DocString": "A name for the queue. To create a FIFO queue, the name of your FIFO\nqueue must end with the .fifo suffix. For more information, see FIFO\n(First-In-First-Out) Queues in the Amazon Simple Queue Service\nDeveloper Guide.",
           "SyntaxExpression": "String"
         },
         {
@@ -8919,7 +8989,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The length of time during which a message will be unavailable once a\nmessage is delivered from the queue. This blocks other components from\nreceiving the same message and gives the initial component time to\nprocess and delete the message from the queue.",
+          "DocString": "The length of time during which a message will be unavailable after a\nmessage is delivered from the queue. This blocks other components from\nreceiving the same message and gives the initial component time to\nprocess and delete the message from the queue.",
           "SyntaxExpression": "Integer"
         }
       ]
@@ -9018,6 +9088,44 @@
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The type of document to create that relates to the purpose of your\ndocument, such as running commands, bootstrapping software, or\nautomating tasks. For valid values, see the CreateDocument action in\nthe Amazon EC2 Systems Manager API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "AWS::SSM::Parameter",
+      "Href": "aws-resource-ssm-parameter.html",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the parameter. Names must not be prefixed with aws or ssm.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Description",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Information about the parameter that you want to add to the system.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Type",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The type of parameter. Valid values include the following: String or\nStringList.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Value",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The parameter value. Value must not nest another parameter. Do not use\n{{}} in the value.",
           "SyntaxExpression": "String"
         }
       ]
@@ -10882,7 +10990,7 @@
           "Type": "Boolean",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Indicates whether you want CloudFront to forward query strings to the\norigin that is associated with this cache behavior. If so, specify\ntrue; if not, specify false. For more information, see Configuring\nCloudFront to Cache Based on Query String Parameters in the Amazon\nCloudFront Developer Guide.",
+          "DocString": "Indicates whether you want CloudFront to forward query strings to the\norigin that is associated with this cache behavior. If so, specify\ntrue; if not, specify false. For more information about forwarding\nquery strings, see the QueryString parameter for the ForwardedValues\ntype in the Amazon CloudFront API Reference.",
           "SyntaxExpression": "Boolean"
         },
         {
@@ -12652,7 +12760,15 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "Specifies a CIDR range.",
+          "DocString": "Specifies an IPv4 CIDR range.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "CidrIpv6",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies an IPv6 CIDR range.",
           "SyntaxExpression": "String"
         },
         {
@@ -13274,7 +13390,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The CMD value to pass to the container. For more information about the\nDocker CMD parameter, see\nhttps://docs.docker.com/engine/reference/builder/#/cmd.",
+          "DocString": "The CMD value to pass to the container. For more information about the\nDocker CMD parameter, see\nhttps://docs.docker.com/engine/reference/builder/#cmd.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -13330,7 +13446,7 @@
           "Type": "List of strings",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The ENTRYPOINT value to pass to the container. For more information\nabout the Docker ENTRYPOINT parameter, see\nhttps://docs.docker.com/reference/builder/#entrypoint.",
+          "DocString": "The ENTRYPOINT value to pass to the container. For more information\nabout the Docker ENTRYPOINT parameter, see\nhttps://docs.docker.com/engine/reference/builder/#entrypoint.",
           "SyntaxExpression": "[ String, ... ]"
         },
         {
@@ -14683,7 +14799,7 @@
       "Properties": [
         {
           "Name": "EbsBlockDeviceConfigs",
-          "Type": "List of Amazon EMR EbsConfiguration",
+          "Type": "List of Amazon EMR EbsConfiguration EbsBlockDeviceConfigs",
           "TypeHref": "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
           "TypeName": "",
           "DocString": "Configures the block storage devices that are associated with your EMR\ninstances.",
@@ -15844,6 +15960,20 @@
       ]
     },
     {
+      "Name": "AWS Lambda Function DeadLetterConfig",
+      "Href": "aws-properties-lambda-function-deadletterconfig.html",
+      "Properties": [
+        {
+          "Name": "TargetArn",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The Amazon Resource Name (ARN) of a resource where Lambda delivers\nunprocessed events, such as an Amazon SNS topic or Amazon Simple Queue\nService (Amazon SQS) queue. For the Lambda function execution role,\nyou must explicitly provide the relevant permissions so that access to\nyour DLQ resource is part of the execution role for your Lambda\nfunction.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
       "Name": "AWS Lambda Function Environment",
       "Href": "aws-properties-lambda-function-environment.html",
       "Properties": [
@@ -16743,6 +16873,30 @@
       "Href": "aws-properties-route53-healthcheck-healthcheckconfig.html",
       "Properties": [
         {
+          "Name": "AlarmIdentifier",
+          "Type": "Amazon Route 53 AlarmIdentifier",
+          "TypeHref": "aws-properties-route53-healthcheck-healthcheckconfig-alarmidentifier.html",
+          "TypeName": "",
+          "DocString": "Identifies the CloudWatch alarm that you want Amazon Route 53 health\ncheckers to use to determine whether this health check is healthy.",
+          "SyntaxExpression": "AlarmIdentifier"
+        },
+        {
+          "Name": "ChildHealthChecks",
+          "Type": "List of strings",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "(CALCULATED Health Checks Only) A complex type that contains one\nChildHealthCheck element for each health check that you want to\nassociate with a CALCULATED health check.",
+          "SyntaxExpression": "[ String, ... ]"
+        },
+        {
+          "Name": "EnableSNI",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies whether you want Amazon Route 53 to send the value of\nFullyQualifiedDomainName to the endpoint in the client_hello message\nduring TLS negotiation. This allows the endpoint to respond to HTTPS\nhealth check requests with the applicable SSL/TLS certificate. For\nmore information, see\nhttp://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
           "Name": "FailureThreshold",
           "Type": "Integer",
           "TypeHref": "",
@@ -16759,12 +16913,44 @@
           "SyntaxExpression": "String"
         },
         {
+          "Name": "HealthThreshold",
+          "Type": "Integer",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The number of child health checks that are associated with a\nCALCULATED health that Amazon Route 53 must consider healthy for the\nCALCULATED health check to be considered healthy.",
+          "SyntaxExpression": "Integer"
+        },
+        {
+          "Name": "InsufficientDataHealthStatus",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "When Amazon CloudWatch has insufficient data about the metric to\ndetermine the alarm state, the status that you want Amazon Route 53\nto assign to the health check (Healthy, Unhealthy, or\nLastKnownStatus).",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Inverted",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies whether you want Amazon Route 53 to invert the status of a\nhealth check, for example, to consider a health check unhealthy when\nit otherwise would be considered healthy.",
+          "SyntaxExpression": "Boolean"
+        },
+        {
           "Name": "IPAddress",
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
           "DocString": "The IPv4 IP address of the endpoint on which you want Amazon Route 53\nto perform health checks. If you don't specify an IP address, Amazon\nRoute 53 sends a DNS request to resolve the domain name that you\nspecify in the FullyQualifiedDomainName property.",
           "SyntaxExpression": "String"
+        },
+        {
+          "Name": "MeasureLatency",
+          "Type": "Boolean",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "Specifies whether you want Amazon Route 53 to measure the latency\nbetween health checkers in multiple AWS regions and your endpoint and\ndisplay CloudWatch latency graphs on the Health Checks page in the\nAmazon Route 53 console.",
+          "SyntaxExpression": "Boolean"
         },
         {
           "Name": "Port",
@@ -16779,7 +16965,7 @@
           "Type": "Integer",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The number of seconds between the time that Amazon Route 53 gets a\nresponse from your endpoint and the time that it sends the next\nhealth-check request. Each Amazon Route 53 health checker makes\nrequests at this interval. For valid values, see the RequestInterval\nelement in the Amazon Route 53 API Reference.",
+          "DocString": "The number of seconds between the time that Amazon Route 53 gets a\nresponse from your endpoint and the time that it sends the next health\ncheck request. Each Amazon Route 53 health checker makes requests at\nthis interval. For valid values, see the RequestInterval element in\nthe Amazon Route 53 API Reference.",
           "SyntaxExpression": "Integer"
         },
         {
@@ -16803,7 +16989,29 @@
           "Type": "String",
           "TypeHref": "",
           "TypeName": "",
-          "DocString": "The type of health check that you want to create, which indicates how\nAmazon Route 53 determines whether an endpoint is healthy. You can\nspecify HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH, or TCP. For\ninformation about the different types, see the Type element in the\nAmazon Route 53 API Reference.",
+          "DocString": "The type of health check that you want to create. This indicates how\nAmazon Route 53 determines whether an endpoint is healthy. You can\nspecify HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH, or TCP. For\ninformation about the different types, see the Type element in the\nAmazon Route 53 API Reference.",
+          "SyntaxExpression": "String"
+        }
+      ]
+    },
+    {
+      "Name": "Amazon Route 53 AlarmIdentifier",
+      "Href": "aws-properties-route53-healthcheck-healthcheckconfig-alarmidentifier.html",
+      "Properties": [
+        {
+          "Name": "Name",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "The name of the Amazon CloudWatch alarm that you want Amazon Route 53\nhealth checkers to use to determine whether this health check is\nhealthy.",
+          "SyntaxExpression": "String"
+        },
+        {
+          "Name": "Region",
+          "Type": "String",
+          "TypeHref": "",
+          "TypeName": "",
+          "DocString": "A complex type that identifies the CloudWatch alarm that you want\nAmazon Route 53 health checkers to use to determine whether this\nhealth check is healthy. For example, us-west-2.",
           "SyntaxExpression": "String"
         }
       ]

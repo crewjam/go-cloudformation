@@ -358,7 +358,7 @@ func (s ApiGatewayStage) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html
 type ApiGatewayUsagePlan struct {
-	// The APIs and API stages to associate with this usage plan.
+	// The API stages to associate with this usage plan.
 	ApiStages *APIGatewayUsagePlanApiStageList `json:"ApiStages,omitempty"`
 
 	// The purpose of this usage plan.
@@ -379,6 +379,25 @@ type ApiGatewayUsagePlan struct {
 // CfnResourceType returns AWS::ApiGateway::UsagePlan to implement the ResourceProperties interface
 func (s ApiGatewayUsagePlan) CfnResourceType() string {
 	return "AWS::ApiGateway::UsagePlan"
+}
+
+// ApiGatewayUsagePlanKey represents AWS::ApiGateway::UsagePlanKey
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html
+type ApiGatewayUsagePlanKey struct {
+	// The ID of the usage plan key.
+	KeyId *StringExpr `json:"KeyId,omitempty"`
+
+	// The type of usage plan key. Currently, the valid key type is API_KEY.
+	KeyType *StringExpr `json:"KeyType,omitempty"`
+
+	// The value of the usage plan key.
+	UsagePlanId *StringExpr `json:"UsagePlanId,omitempty"`
+}
+
+// CfnResourceType returns AWS::ApiGateway::UsagePlanKey to implement the ResourceProperties interface
+func (s ApiGatewayUsagePlanKey) CfnResourceType() string {
+	return "AWS::ApiGateway::UsagePlanKey"
 }
 
 // ApplicationAutoScalingScalableTarget represents AWS::ApplicationAutoScaling::ScalableTarget
@@ -2301,8 +2320,8 @@ type EC2SecurityGroupIngress struct {
 	SourceSecurityGroupId *StringExpr `json:"SourceSecurityGroupId,omitempty"`
 
 	// Specifies the name of the Amazon EC2 security group (non-VPC security
-	// group) to allow access or uses the Ref intrinsic function to refer to
-	// the logical name of a security group defined in the same template. For
+	// group) to allow access or use the Ref intrinsic function to refer to
+	// the logical ID of a security group defined in the same template. For
 	// instances in a VPC, specify the SourceSecurityGroupId property.
 	SourceSecurityGroupName *StringExpr `json:"SourceSecurityGroupName,omitempty"`
 
@@ -2630,6 +2649,13 @@ type EC2VPCPeeringConnection struct {
 
 	// The ID of the VPC that is requesting a peering connection.
 	VpcId *StringExpr `json:"VpcId,omitempty"`
+
+	// The AWS account ID of the owner of the VPC that you want to peer with.
+	PeerOwnerId *StringExpr `json:"PeerOwnerId,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the VPC peer role for the peering
+	// connection in another AWS account.
+	PeerRoleArn *StringExpr `json:"PeerRoleArn,omitempty"`
 }
 
 // CfnResourceType returns AWS::EC2::VPCPeeringConnection to implement the ResourceProperties interface
@@ -2765,8 +2791,8 @@ type ECSService struct {
 	// Configures how many tasks run during a deployment.
 	DeploymentConfiguration *EC2ContainerServiceServiceDeploymentConfiguration `json:"DeploymentConfiguration,omitempty"`
 
-	// The number of simultaneous tasks, which you specify by using the
-	// TaskDefinition property, that you want to run on the cluster.
+	// The number of simultaneous tasks that you want to run on the cluster.
+	// Specify the tasks with the TaskDefinition property,
 	DesiredCount *IntegerExpr `json:"DesiredCount,omitempty"`
 
 	// A list of load balancer objects to associate with the cluster. For
@@ -2784,8 +2810,8 @@ type ECSService struct {
 	// you want to run on the cluster, such as
 	// arn:aws:ecs:us-east-1:123456789012:task-definition/mytask:3. You can't
 	// use :latest to specify a revision because it's ambiguous. For example,
-	// if AWS CloudFormation needed to rollback an update, it wouldn't know
-	// which revision to rollback to.
+	// if AWS CloudFormation needed to roll back an update, it wouldn't know
+	// which revision to roll back to.
 	TaskDefinition *StringExpr `json:"TaskDefinition,omitempty"`
 }
 
@@ -2798,9 +2824,9 @@ func (s ECSService) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html
 type ECSTaskDefinition struct {
-	// A list of container definitions in JSON format that describe the
-	// containers that make up your task.
-	ContainerDefinitions *EC2ContainerServiceTaskDefinitionContainerDefinitionsList `json:"ContainerDefinitions,omitempty"`
+	// A list of volume definitions in JSON format for volumes that you can
+	// use in your container definitions.
+	Volumes *EC2ContainerServiceTaskDefinitionVolumesList `json:"Volumes,omitempty"`
 
 	// The name of a family that this task definition is registered to. A
 	// family groups multiple versions of a task definition. Amazon ECS gives
@@ -2821,9 +2847,9 @@ type ECSTaskDefinition struct {
 	// Tasks in the Amazon EC2 Container Service Developer Guide.
 	TaskRoleArn *StringExpr `json:"TaskRoleArn,omitempty"`
 
-	// A list of volume definitions in JSON format for volumes that you can
-	// use in your container definitions.
-	Volumes *EC2ContainerServiceTaskDefinitionVolumesList `json:"Volumes,omitempty"`
+	// A list of container definitions in JSON format that describe the
+	// containers that make up your task.
+	ContainerDefinitions *EC2ContainerServiceTaskDefinitionContainerDefinitionsList `json:"ContainerDefinitions,omitempty"`
 }
 
 // CfnResourceType returns AWS::ECS::TaskDefinition to implement the ResourceProperties interface
@@ -3550,9 +3576,6 @@ type ElasticLoadBalancingV2TargetGroup struct {
 	// Target group configurations.
 	TargetGroupAttributes *ElasticLoadBalancingTargetGroupTargetGroupAttributesList `json:"TargetGroupAttributes,omitempty"`
 
-	// The full name of the target group.
-	TargetGroupFullName *StringExpr `json:"TargetGroupFullName,omitempty"`
-
 	// The targets to add to this target group.
 	Targets *ElasticLoadBalancingTargetGroupTargetDescriptionList `json:"Targets,omitempty"`
 
@@ -3964,9 +3987,15 @@ type IAMInstanceProfile struct {
 	Path *StringExpr `json:"Path,omitempty"`
 
 	// The name of an existing IAM role to associate with this instance
-	// profile. Currently, a maximum of one role can be assigned to an
+	// profile. Currently, you can assign a maximum of one role to an
 	// instance profile.
 	Roles *StringListExpr `json:"Roles,omitempty"`
+
+	// The name of the instance profile that you want to create. This
+	// parameter allows (per its regex pattern) a string consisting of upper
+	// and lowercase alphanumeric characters with no spaces. You can also
+	// include any of the following characters: = , . @ -.
+	InstanceProfileName *StringExpr `json:"InstanceProfileName,omitempty"`
 }
 
 // CfnResourceType returns AWS::IAM::InstanceProfile to implement the ResourceProperties interface
@@ -4374,6 +4403,12 @@ type LambdaFunction struct {
 	// source code as inline text.
 	Code *LambdaFunctionCode `json:"Code,omitempty"`
 
+	// Configures how Lambda handles events that it can't process. If you
+	// don't specify a Dead Letter Queue (DLQ) configuration, Lambda discards
+	// events after the maximum number of retries. For more information, see
+	// Dead Letter Queues in the AWS Lambda Developer Guide.
+	DeadLetterConfig *LambdaFunctionDeadLetterConfig `json:"DeadLetterConfig,omitempty"`
+
 	// A description of the function.
 	Description *StringExpr `json:"Description,omitempty"`
 
@@ -4537,7 +4572,7 @@ func (s LogsDestination) CfnResourceType() string {
 type LogsLogGroup struct {
 	// A name for the log group. If you don't specify a name, AWS
 	// CloudFormation generates a unique physical ID and uses that ID for the
-	// table name. For more information, see Name Type.
+	// log group. For more information, see Name Type.
 	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
 
 	// The number of days log events are kept in CloudWatch Logs. When a log
@@ -5506,20 +5541,20 @@ func (s RDSOptionGroup) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html
 type RedshiftCluster struct {
-	// When a new version of the Amazon Redshift is released, indicates
-	// whether upgrades can be applied to the engine that is running on the
-	// cluster. The upgrades are applied during the maintenance window.
+	// When a new version of the Amazon Redshift is released, tells whether
+	// upgrades can be applied to the engine that is running on the cluster.
+	// The upgrades are applied during the maintenance window.
 	AllowVersionUpgrade *BoolExpr `json:"AllowVersionUpgrade,omitempty"`
 
 	// The number of days that automated snapshots are retained. If you set
 	// the value to 0, automated snapshots are disabled.
 	AutomatedSnapshotRetentionPeriod *IntegerExpr `json:"AutomatedSnapshotRetentionPeriod,omitempty"`
 
-	// The Amazon EC2 Availability Zone in which you want to provision your
-	// Amazon Redshift cluster. For example, if you have several Amazon EC2
-	// instances running in a specific Availability Zone, you might want the
-	// cluster to be provisioned in the same zone in order to decrease
-	// network latency.
+	// The Amazon Elastic Compute Cloud (Amazon EC2) Availability Zone in
+	// which you want to provision your Amazon Redshift cluster. For example,
+	// if you have several EC2 instances running in a specific Availability
+	// Zone, you might want the cluster to be provisioned in the same zone in
+	// order to decrease network latency.
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 
 	// The name of the parameter group that you want to associate with this
@@ -5556,9 +5591,9 @@ type RedshiftCluster struct {
 	// an HSM.
 	HsmClientCertificateIdentifier *StringExpr `json:"HsmClientCertificateIdentifier,omitempty"`
 
-	// Specifies the name of the HSM configuration that contains the
-	// information that the Amazon Redshift cluster can use to retrieve and
-	// store keys in an HSM.
+	// Specifies the name of the hardware security module (HSM) configuration
+	// that contains the information that the Amazon Redshift cluster can use
+	// to retrieve and store keys in an HSM.
 	HsmConfigurationIdentifier *StringExpr `json:"HsmConfigurationIdentifier,omitempty"`
 
 	// The AWS Key Management Service (AWS KMS) key ID that you want to use
@@ -5866,7 +5901,8 @@ func (s Route53RecordSetGroup) CfnResourceType() string {
 type S3Bucket struct {
 	// A canned access control list (ACL) that grants predefined permissions
 	// to the bucket. For more information about canned ACLs, see Canned ACLs
-	// in the Amazon S3 documentation.
+	// in the Amazon S3 documentation in the Amazon Simple Storage Service
+	// Developer Guide..
 	AccessControl *StringExpr `json:"AccessControl,omitempty"`
 
 	// A name for the bucket. If you don't specify a name, AWS CloudFormation
@@ -5885,7 +5921,7 @@ type S3Bucket struct {
 	// Simple Storage Service Developer Guide.
 	LifecycleConfiguration *S3LifecycleConfiguration `json:"LifecycleConfiguration,omitempty"`
 
-	// Settings that defines where logs are stored.
+	// Settings that define where logs are stored.
 	LoggingConfiguration *S3LoggingConfiguration `json:"LoggingConfiguration,omitempty"`
 
 	// Configuration that defines how Amazon S3 handles bucket notifications.
@@ -5896,7 +5932,7 @@ type S3Bucket struct {
 	// VersioningConfiguration property.
 	ReplicationConfiguration *S3ReplicationConfiguration `json:"ReplicationConfiguration,omitempty"`
 
-	// An arbitrary set of tags (key-value pairs) for this Amazon S3 bucket.
+	// An arbitrary set of tags (key-value pairs) for this S3 bucket.
 	Tags []ResourceTag `json:"Tags,omitempty"`
 
 	// Enables multiple variants of all objects in this bucket. You might
@@ -6015,24 +6051,38 @@ func (s SNSTopicPolicy) CfnResourceType() string {
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html
 type SQSQueue struct {
-	// The time in seconds that the delivery of all messages in the queue
-	// will be delayed. You can specify an integer value of 0 to 900 (15
-	// minutes). The default value is 0.
+	// For First-In-First-Out (FIFO) queues, specifies whether to enable
+	// content-based deduplication. During the deduplication interval, Amazon
+	// SQS treats messages that are sent with identical content as duplicates
+	// and delivers only one copy of the message. For more information, see
+	// the ContentBasedDeduplication attribute for the CreateQueue action in
+	// the Amazon Simple Queue Service API Reference.
+	ContentBasedDeduplication *BoolExpr `json:"ContentBasedDeduplication,omitempty"`
+
+	// The time in seconds that the delivery of all messages in the queue is
+	// delayed. You can specify an integer value of 0 to 900 (15 minutes).
+	// The default value is 0.
 	DelaySeconds *IntegerExpr `json:"DelaySeconds,omitempty"`
 
-	// The limit of how many bytes a message can contain before Amazon SQS
-	// rejects it. You can specify an integer value from 1024 bytes (1 KiB)
-	// to 262144 bytes (256 KiB). The default value is 262144 (256 KiB).
+	// Indicates whether this queue is a FIFO queue. For more information,
+	// see FIFO (First-In-First-Out) Queues in the Amazon Simple Queue
+	// Service Developer Guide.
+	FifoQueue *BoolExpr `json:"FifoQueue,omitempty"`
+
+	// The limit of how many bytes that a message can contain before Amazon
+	// SQS rejects it. You can specify an integer value from 1024 bytes (1
+	// KiB) to 262144 bytes (256 KiB). The default value is 262144 (256 KiB).
 	MaximumMessageSize *IntegerExpr `json:"MaximumMessageSize,omitempty"`
 
-	// The number of seconds Amazon SQS retains a message. You can specify an
-	// integer value from 60 seconds (1 minute) to 1209600 seconds (14 days).
-	// The default value is 345600 seconds (4 days).
+	// The number of seconds that Amazon SQS retains a message. You can
+	// specify an integer value from 60 seconds (1 minute) to 1209600 seconds
+	// (14 days). The default value is 345600 seconds (4 days).
 	MessageRetentionPeriod *IntegerExpr `json:"MessageRetentionPeriod,omitempty"`
 
-	// A name for the queue. If you don't specify a name, AWS CloudFormation
-	// generates a unique physical ID and uses that ID for the queue name.
-	// For more information, see Name Type.
+	// A name for the queue. To create a FIFO queue, the name of your FIFO
+	// queue must end with the .fifo suffix. For more information, see FIFO
+	// (First-In-First-Out) Queues in the Amazon Simple Queue Service
+	// Developer Guide.
 	QueueName *StringExpr `json:"QueueName,omitempty"`
 
 	// Specifies the duration, in seconds, that the ReceiveMessage action
@@ -6048,7 +6098,7 @@ type SQSQueue struct {
 	// number of times.
 	RedrivePolicy *SQSRedrivePolicy `json:"RedrivePolicy,omitempty"`
 
-	// The length of time during which a message will be unavailable once a
+	// The length of time during which a message will be unavailable after a
 	// message is delivered from the queue. This blocks other components from
 	// receiving the same message and gives the initial component time to
 	// process and delete the message from the queue.
@@ -6130,6 +6180,30 @@ type SSMDocument struct {
 // CfnResourceType returns AWS::SSM::Document to implement the ResourceProperties interface
 func (s SSMDocument) CfnResourceType() string {
 	return "AWS::SSM::Document"
+}
+
+// SSMParameter represents AWS::SSM::Parameter
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
+type SSMParameter struct {
+	// The name of the parameter. Names must not be prefixed with aws or ssm.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// Information about the parameter that you want to add to the system.
+	Description *StringExpr `json:"Description,omitempty"`
+
+	// The type of parameter. Valid values include the following: String or
+	// StringList.
+	Type *StringExpr `json:"Type,omitempty"`
+
+	// The parameter value. Value must not nest another parameter. Do not use
+	// {{}} in the value.
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// CfnResourceType returns AWS::SSM::Parameter to implement the ResourceProperties interface
+func (s SSMParameter) CfnResourceType() string {
+	return "AWS::SSM::Parameter"
 }
 
 // StepFunctionsActivity represents AWS::StepFunctions::Activity
@@ -8069,9 +8143,9 @@ type CloudFrontForwardedValues struct {
 
 	// Indicates whether you want CloudFront to forward query strings to the
 	// origin that is associated with this cache behavior. If so, specify
-	// true; if not, specify false. For more information, see Configuring
-	// CloudFront to Cache Based on Query String Parameters in the Amazon
-	// CloudFront Developer Guide.
+	// true; if not, specify false. For more information about forwarding
+	// query strings, see the QueryString parameter for the ForwardedValues
+	// type in the Amazon CloudFront API Reference.
 	QueryString *BoolExpr `json:"QueryString,omitempty"`
 
 	// If you forward query strings to the origin, specifies the query string
@@ -10285,8 +10359,11 @@ func (l *EC2NetworkInterfacePrivateIPSpecificationList) UnmarshalJSON(buf []byte
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html
 type EC2SecurityGroupRule struct {
-	// Specifies a CIDR range.
+	// Specifies an IPv4 CIDR range.
 	CidrIp *StringExpr `json:"CidrIp,omitempty"`
+
+	// Specifies an IPv6 CIDR range.
+	CidrIpv6 *StringExpr `json:"CidrIpv6,omitempty"`
 
 	// The AWS service prefix of an Amazon VPC endpoint. For more
 	// information, see VPC Endpoints in the Amazon VPC User Guide.
@@ -10910,7 +10987,7 @@ func (l *EC2ContainerServiceServiceLoadBalancersList) UnmarshalJSON(buf []byte) 
 type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 	// The CMD value to pass to the container. For more information about the
 	// Docker CMD parameter, see
-	// https://docs.docker.com/engine/reference/builder/#/cmd.
+	// https://docs.docker.com/engine/reference/builder/#cmd.
 	Command *StringListExpr `json:"Command,omitempty"`
 
 	// The minimum number of CPU units to reserve for the container.
@@ -10942,7 +11019,7 @@ type EC2ContainerServiceTaskDefinitionContainerDefinitions struct {
 
 	// The ENTRYPOINT value to pass to the container. For more information
 	// about the Docker ENTRYPOINT parameter, see
-	// https://docs.docker.com/reference/builder/#entrypoint.
+	// https://docs.docker.com/engine/reference/builder/#entrypoint.
 	EntryPoint *StringListExpr `json:"EntryPoint,omitempty"`
 
 	// The environment variables to pass to the container.
@@ -13874,6 +13951,39 @@ func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfig
 	return err
 }
 
+// LambdaFunctionDeadLetterConfig represents AWS Lambda Function DeadLetterConfig
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html
+type LambdaFunctionDeadLetterConfig struct {
+	// The Amazon Resource Name (ARN) of a resource where Lambda delivers
+	// unprocessed events, such as an Amazon SNS topic or Amazon Simple Queue
+	// Service (Amazon SQS) queue. For the Lambda function execution role,
+	// you must explicitly provide the relevant permissions so that access to
+	// your DLQ resource is part of the execution role for your Lambda
+	// function.
+	TargetArn *StringExpr `json:"TargetArn,omitempty"`
+}
+
+// LambdaFunctionDeadLetterConfigList represents a list of LambdaFunctionDeadLetterConfig
+type LambdaFunctionDeadLetterConfigList []LambdaFunctionDeadLetterConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *LambdaFunctionDeadLetterConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := LambdaFunctionDeadLetterConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = LambdaFunctionDeadLetterConfigList{item}
+		return nil
+	}
+	list := []LambdaFunctionDeadLetterConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = LambdaFunctionDeadLetterConfigList(list)
+		return nil
+	}
+	return err
+}
+
 // LambdaFunctionEnvironment represents AWS Lambda Function Environment
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html
@@ -14956,6 +15066,23 @@ func (l *Route53RecordSetGeoLocationPropertyList) UnmarshalJSON(buf []byte) erro
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html
 type Route53HealthCheckConfig struct {
+	// Identifies the CloudWatch alarm that you want Amazon Route 53 health
+	// checkers to use to determine whether this health check is healthy.
+	AlarmIdentifier *Route53AlarmIdentifier `json:"AlarmIdentifier,omitempty"`
+
+	// (CALCULATED Health Checks Only) A complex type that contains one
+	// ChildHealthCheck element for each health check that you want to
+	// associate with a CALCULATED health check.
+	ChildHealthChecks *StringListExpr `json:"ChildHealthChecks,omitempty"`
+
+	// Specifies whether you want Amazon Route 53 to send the value of
+	// FullyQualifiedDomainName to the endpoint in the client_hello message
+	// during TLS negotiation. This allows the endpoint to respond to HTTPS
+	// health check requests with the applicable SSL/TLS certificate. For
+	// more information, see
+	// http://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html.
+	EnableSNI *BoolExpr `json:"EnableSNI,omitempty"`
+
 	// The number of consecutive health checks that an endpoint must pass or
 	// fail for Amazon Route 53 to change the current status of the endpoint
 	// from unhealthy to healthy or healthy to unhealthy. For more
@@ -14971,21 +15098,43 @@ type Route53HealthCheckConfig struct {
 	// endpoint.
 	FullyQualifiedDomainName *StringExpr `json:"FullyQualifiedDomainName,omitempty"`
 
+	// The number of child health checks that are associated with a
+	// CALCULATED health that Amazon Route 53 must consider healthy for the
+	// CALCULATED health check to be considered healthy.
+	HealthThreshold *IntegerExpr `json:"HealthThreshold,omitempty"`
+
+	// When Amazon CloudWatch has insufficient data about the metric to
+	// determine the alarm state, the status that you want Amazon Route 53
+	// to assign to the health check (Healthy, Unhealthy, or
+	// LastKnownStatus).
+	InsufficientDataHealthStatus *StringExpr `json:"InsufficientDataHealthStatus,omitempty"`
+
+	// Specifies whether you want Amazon Route 53 to invert the status of a
+	// health check, for example, to consider a health check unhealthy when
+	// it otherwise would be considered healthy.
+	Inverted *BoolExpr `json:"Inverted,omitempty"`
+
 	// The IPv4 IP address of the endpoint on which you want Amazon Route 53
 	// to perform health checks. If you don't specify an IP address, Amazon
 	// Route 53 sends a DNS request to resolve the domain name that you
 	// specify in the FullyQualifiedDomainName property.
 	IPAddress *StringExpr `json:"IPAddress,omitempty"`
 
+	// Specifies whether you want Amazon Route 53 to measure the latency
+	// between health checkers in multiple AWS regions and your endpoint and
+	// display CloudWatch latency graphs on the Health Checks page in the
+	// Amazon Route 53 console.
+	MeasureLatency *BoolExpr `json:"MeasureLatency,omitempty"`
+
 	// The port on the endpoint on which you want Amazon Route 53 to perform
 	// health checks.
 	Port *IntegerExpr `json:"Port,omitempty"`
 
 	// The number of seconds between the time that Amazon Route 53 gets a
-	// response from your endpoint and the time that it sends the next
-	// health-check request. Each Amazon Route 53 health checker makes
-	// requests at this interval. For valid values, see the RequestInterval
-	// element in the Amazon Route 53 API Reference.
+	// response from your endpoint and the time that it sends the next health
+	// check request. Each Amazon Route 53 health checker makes requests at
+	// this interval. For valid values, see the RequestInterval element in
+	// the Amazon Route 53 API Reference.
 	RequestInterval *IntegerExpr `json:"RequestInterval,omitempty"`
 
 	// The path that you want Amazon Route 53 to request when performing
@@ -15001,7 +15150,7 @@ type Route53HealthCheckConfig struct {
 	// healthy.
 	SearchString *StringExpr `json:"SearchString,omitempty"`
 
-	// The type of health check that you want to create, which indicates how
+	// The type of health check that you want to create. This indicates how
 	// Amazon Route 53 determines whether an endpoint is healthy. You can
 	// specify HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH, or TCP. For
 	// information about the different types, see the Type element in the
@@ -15024,6 +15173,41 @@ func (l *Route53HealthCheckConfigList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = Route53HealthCheckConfigList(list)
+		return nil
+	}
+	return err
+}
+
+// Route53AlarmIdentifier represents Amazon Route 53 AlarmIdentifier
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig-alarmidentifier.html
+type Route53AlarmIdentifier struct {
+	// The name of the Amazon CloudWatch alarm that you want Amazon Route 53
+	// health checkers to use to determine whether this health check is
+	// healthy.
+	Name *StringExpr `json:"Name,omitempty"`
+
+	// A complex type that identifies the CloudWatch alarm that you want
+	// Amazon Route 53 health checkers to use to determine whether this
+	// health check is healthy. For example, us-west-2.
+	Region *StringExpr `json:"Region,omitempty"`
+}
+
+// Route53AlarmIdentifierList represents a list of Route53AlarmIdentifier
+type Route53AlarmIdentifierList []Route53AlarmIdentifier
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *Route53AlarmIdentifierList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := Route53AlarmIdentifier{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = Route53AlarmIdentifierList{item}
+		return nil
+	}
+	list := []Route53AlarmIdentifier{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = Route53AlarmIdentifierList(list)
 		return nil
 	}
 	return err
@@ -16630,6 +16814,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ApiGatewayStage{}
 	case "AWS::ApiGateway::UsagePlan":
 		return &ApiGatewayUsagePlan{}
+	case "AWS::ApiGateway::UsagePlanKey":
+		return &ApiGatewayUsagePlanKey{}
 	case "AWS::ApplicationAutoScaling::ScalableTarget":
 		return &ApplicationAutoScalingScalableTarget{}
 	case "AWS::ApplicationAutoScaling::ScalingPolicy":
@@ -16950,6 +17136,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SSMAssociation{}
 	case "AWS::SSM::Document":
 		return &SSMDocument{}
+	case "AWS::SSM::Parameter":
+		return &SSMParameter{}
 	case "AWS::StepFunctions::Activity":
 		return &StepFunctionsActivity{}
 	case "AWS::StepFunctions::StateMachine":
