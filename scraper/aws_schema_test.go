@@ -433,10 +433,8 @@ func writePropertyTypesDefinition(t *testing.T, propertyTypes map[string]Propert
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Write top level resources
-////////////////////////////////////////////////////////////////////////////////
-func writeResourceTypesDefinition(t *testing.T, resourceTypes map[string]ResourceTypes, w io.Writer) {
+// Utility function to sort the resource names
+func sortedResourceNames(resourceTypes map[string]ResourceTypes) []string {
 	// Sort the property names
 	sortedResourceNames := make([]string, 0)
 	for eachName := range resourceTypes {
@@ -445,7 +443,14 @@ func writeResourceTypesDefinition(t *testing.T, resourceTypes map[string]Resourc
 	sort.Slice(sortedResourceNames, func(lhs, rhs int) bool {
 		return sortedResourceNames[lhs] < sortedResourceNames[rhs]
 	})
+	return sortedResourceNames
+}
 
+////////////////////////////////////////////////////////////////////////////////
+// Write top level resources
+////////////////////////////////////////////////////////////////////////////////
+func writeResourceTypesDefinition(t *testing.T, resourceTypes map[string]ResourceTypes, w io.Writer) {
+	sortedResourceNames := sortedResourceNames(resourceTypes)
 	fmt.Fprintf(w, `
 //
 //  ____
@@ -470,7 +475,9 @@ func NewResourceByType(typeName string) ResourceProperties {
 	switch typeName {
 `)
 
-	for eachName := range resourceTypes {
+	// Again, sort the names please
+	sortedResourceNames := sortedResourceNames(resourceTypes)
+	for _, eachName := range sortedResourceNames {
 		fmt.Fprintf(w, `	case "%s":
 		return &%s{}
 `,
