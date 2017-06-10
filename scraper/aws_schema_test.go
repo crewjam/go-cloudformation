@@ -17,12 +17,15 @@ import (
 	"time"
 )
 
+// Top level resources must comply with the ResourceProperties interface
 const topLevelTemplate = `// CfnResourceType returns {{.AWSTypeName}} to implement the ResourceProperties interface
 func (s {{.GoTypeName}}) CfnResourceType() string {
 	return "{{.AWSTypeName}}"
 }
 `
 
+// Non-top level properties must have a custom Unmarshaller to handle
+// heterogeneous types
 const nonTopLevelTemplate = `// {{.GoTypeName}}List represents a list of {{.GoTypeName}}
 type {{.GoTypeName}}List []{{.GoTypeName}}
 
@@ -65,6 +68,8 @@ var golintTransformations = map[string]string{
 	"Vpc":     "VPC",
 }
 
+// download the latest CloudFormation JSON schema for the given AWS_REGION,
+// defaulting to us-east-1 if that isn't set
 func getLatestSchema(t *testing.T) string {
 	tmpFile, tmpFileErr := ioutil.TempFile("", "cloudformation")
 	if nil != tmpFileErr {
@@ -118,6 +123,28 @@ func getLatestSchema(t *testing.T) string {
 	}
 	t.Logf("Downloaded %s schema to: %s", schemaURL, tmpFile.Name())
 	return tmpFile.Name()
+}
+
+// Utility function to create an output file in the package
+// root with the given name and contents
+func writeOutputFile(t *testing.T, filename string, contents []byte) error {
+	gopath := os.Getenv("GOPATH")
+	if "" == gopath {
+		gopath = os.ExpandEnv("${HOME}/go")
+	}
+	outputFilepath := filepath.Join(gopath,
+		"src",
+		"github.com",
+		"mweagle",
+		"go-cloudformation",
+		filename)
+	ioWriteErr := ioutil.WriteFile(outputFilepath, contents, 0644)
+	if nil != ioWriteErr {
+		t.Logf("WARN: Failed to write %s output\n", outputFilepath)
+	} else {
+		t.Logf("Created output file: %s\n", outputFilepath)
+	}
+	return ioWriteErr
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -251,11 +278,8 @@ func writePropertyFieldDefinition(t *testing.T,
 			}
 		default:
 			{
-				// Subproperty name. We need to get the canonical internal name
-				// If there's a period in the cloudformation name, then we're in
-				// property scope.
-
-				// subproperty name. If the parent item is another property, we need to tweak some things
+				// Subproperty name, which could be defined the context of an
+				// existing property or a top level Resource
 				golangType = fmt.Sprintf("*%s", golangComplexValueType())
 			}
 		}
@@ -297,9 +321,8 @@ func writePropertyDefinition(t *testing.T,
 		return sortedPropertyNames[lhs] < sortedPropertyNames[rhs]
 	})
 
-	// In this one we're going to create the type struct for this
+	//Create the type struct entry
 	golangTypename := canonicalGoTypename(t, cloudFormationPropertyTypeName, isTopLevel)
-	// TODO - comment block
 	modifierText := "resource type"
 	if !isTopLevel {
 		modifierText = "property type"
@@ -467,25 +490,6 @@ func NewResourceByType(typeName string) ResourceProperties {
 }`)
 }
 
-func writeOutputFile(t *testing.T, filename string, contents []byte) {
-	gopath := os.Getenv("GOPATH")
-	if "" == gopath {
-		gopath = os.ExpandEnv("${HOME}/go")
-	}
-	outputFilepath := filepath.Join(gopath,
-		"src",
-		"github.com",
-		"mweagle",
-		"go-cloudformation",
-		filename)
-	ioWriteErr := ioutil.WriteFile(outputFilepath, contents, 0644)
-	if nil != ioWriteErr {
-		t.Logf("WARN: Failed to write %s output\n", outputFilepath)
-	} else {
-		t.Logf("Created output file: %s\n", outputFilepath)
-	}
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 // ███████╗ ██████╗██╗  ██╗███████╗███╗   ███╗ █████╗
 // ██╔════╝██╔════╝██║  ██║██╔════╝████╗ ████║██╔══██╗
@@ -496,8 +500,7 @@ func writeOutputFile(t *testing.T, filename string, contents []byte) {
 ////////////////////////////////////////////////////////////////////////////////
 
 func TestSchema(t *testing.T) {
-	// Go get the latest JSON file, if there's a region then use that, otherwise
-	// get the latest one from Virginia
+	// Go get the latest JSON file
 	schemaFile := getLatestSchema(t)
 	schemaInput, schemaInputErr := ioutil.ReadFile(schemaFile)
 	if nil != schemaInputErr {
