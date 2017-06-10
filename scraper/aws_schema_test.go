@@ -71,11 +71,35 @@ func getLatestSchema(t *testing.T) string {
 	}
 	defer tmpFile.Close()
 
+	// URLs posted to: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html
 	schemaURL := ""
 	switch os.Getenv("AWS_REGION") {
+	case "us-east-2":
+		schemaURL = "https://dnwj8swjjbsbt.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "us-west-1":
+		schemaURL = "https://d68hl49wbnanq.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
 	case "us-west-2":
 		schemaURL = "https://d201a2mn26r7lk.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "ap-south-1":
+		schemaURL = "https://d2senuesg1djtx.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "ap-northeast-2":
+		schemaURL = "https://d1ane3fvebulky.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "ap-southeast-1":
+		schemaURL = "https://doigdx0kgq9el.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "ap-southeast-2":
+		schemaURL = "https://d2stg8d246z9di.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "ap-northeast-1":
+		schemaURL = "https://d33vqc0rt9ld30.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "eu-central-1":
+		schemaURL = "https://d1mta8qj7i28i2.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "eu-west-1":
+		schemaURL = "https://d3teyb21fexa9r.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "eu-west-2":
+		schemaURL = "https://d1742qcu2c1ncx.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+	case "sa-east-1":
+		schemaURL = "https://d3c9jyj3w509b0.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
 	default:
+		// Virginia
 		schemaURL = "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
 	}
 
