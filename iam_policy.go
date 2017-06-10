@@ -8,6 +8,16 @@ type IAMPolicyDocument struct {
 	Statement []IAMPolicyStatement
 }
 
+// Avoid infinite loops when we just want to unmarshal the struct normally.
+type iamPolicyDocumentCopy IAMPolicyDocument
+
+// iamPolicyDocumentSingleStatement is used for parsing policy documents with a
+// single statement.
+type iamPolicyDocumentSingleStatement struct {
+	Version   string `json:",omitempty"`
+	Statement IAMPolicyStatement
+}
+
 // ToJSON returns the JSON representation of the policy document or
 // panics if the object cannot be marshaled.
 func (i IAMPolicyDocument) ToJSON() string {
@@ -16,6 +26,31 @@ func (i IAMPolicyDocument) ToJSON() string {
 		panic(err)
 	}
 	return string(buf)
+}
+
+// UnmarshalJSON sets the object from the provided JSON representation. This has
+// been added to handle the special case of a single statement versus an array.
+func (i *IAMPolicyDocument) UnmarshalJSON(data []byte) error {
+	// Handle single statement policy documents
+	var v iamPolicyDocumentSingleStatement
+	err := json.Unmarshal(data, &v)
+	if err == nil {
+		i.Version = v.Version
+		i.Statement = []IAMPolicyStatement{v.Statement}
+		return nil
+	}
+
+	// Handle multiple statements
+	var v2 iamPolicyDocumentCopy
+	err = json.Unmarshal(data, &v2)
+	if err != nil {
+		return err
+	}
+
+	i.Version = v2.Version
+	i.Statement = v2.Statement
+
+	return nil
 }
 
 // IAMPrincipal represents a principal in an IAM policy
@@ -38,7 +73,7 @@ type IAMPolicyStatement struct {
 	Condition    interface{}     `json:",omitempty"`
 }
 
-// Avoid infinite loops when we just want to marshal the struct normally
+// Avoid infinite loops when we just want to marshal the struct normally.
 type iamPrincipalCopy IAMPrincipal
 
 // MarshalJSON returns a JSON representation of the object. This has been added
