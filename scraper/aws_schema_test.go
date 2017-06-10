@@ -20,6 +20,11 @@ import (
 // Top level resources must comply with the ResourceProperties interface
 const topLevelTemplate = `// CfnResourceType returns {{.AWSTypeName}} to implement the ResourceProperties interface
 func (s {{.GoTypeName}}) CfnResourceType() string {
+	{{if .IsCustomResource -}}
+	if "" != s.ResourceTypeName {
+ 		return s.ResourceTypeName
+	}
+	{{- end}}
 	return "{{.AWSTypeName}}"
 }
 `
@@ -341,15 +346,28 @@ func writePropertyDefinition(t *testing.T,
 			isTopLevel,
 			w)
 	}
+
+	// Special case the CustomResource
+	// Issue: https://github.com/crewjam/go-cloudformation/issues/9
+	if "AWS::CloudFormation::CustomResource" == cloudFormationPropertyTypeName {
+		fmt.Fprintf(w, `
+	// The user-defined Custom::* name to use for the resource.  If empty,
+	// the default "AWS::CloudFormation::CustomResource" value will be used.
+	// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html
+	ResourceTypeName string
+`)
+	}
 	fmt.Fprintf(w, "}\n\n")
 
 	// Write out the ResourceProperties function
 	templateParams := struct {
-		AWSTypeName string
-		GoTypeName  string
+		AWSTypeName      string
+		GoTypeName       string
+		IsCustomResource bool
 	}{
 		cloudFormationPropertyTypeName,
 		golangTypename,
+		cloudFormationPropertyTypeName == "AWS::CloudFormation::CustomResource",
 	}
 
 	// Property level items should always have Lists created for them
