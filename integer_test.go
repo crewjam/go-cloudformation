@@ -41,5 +41,5 @@ func (testSuite *IntegerTest) TestInteger(c *C) {
 
 	inputBuf = `{"A": {"Fn::Missing": "invalid"}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, NotNil)
+	c.Assert(err, ErrorMatches, "unknown function Fn::Missing")
 }
