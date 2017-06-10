@@ -37,9 +37,9 @@ func (testSuite *BoolTest) TestBool(c *C) {
 
 	inputBuf = `{"A": "invalid"}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, ErrorMatches, "json: cannot unmarshal string into Go value of type bool")
+	c.Assert(err, NotNil)
 
 	inputBuf = `{"A": {"Fn::Missing": "invalid"}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, ErrorMatches, "unknown function Fn::Missing")
+	c.Assert(err, NotNil)
 }
