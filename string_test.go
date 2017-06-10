@@ -47,5 +47,5 @@ func (testSuite *StringTest) TestString(c *C) {
 
 	inputBuf = `{"A": {"Fn::Missing": "hello"}}`
 	err = json.Unmarshal([]byte(inputBuf), &v)
-	c.Assert(err, NotNil)
+	c.Assert(err, ErrorMatches, "unknown function Fn::Missing")
 }
