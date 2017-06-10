@@ -425,6 +425,7 @@ func writePropertyTypesDefinition(t *testing.T, propertyTypes map[string]Propert
 // |_|   |_|  \___/| .__/ \___|_|   \__|_|\___||___/
 //                 |_|
 //
+
 `)
 
 	for _, eachPropertyName := range sortedPropertyNames {
@@ -459,6 +460,7 @@ func writeResourceTypesDefinition(t *testing.T, resourceTypes map[string]Resourc
 // |  _ <  __/\__ \ (_) | |_| | | | (_|  __/\__ \
 // |_| \_\___||___/\___/ \__,_|_|  \___\___||___/
 //
+
 `)
 	for _, eachResourceName := range sortedResourceNames {
 		eachResourceType := resourceTypes[eachResourceName]
