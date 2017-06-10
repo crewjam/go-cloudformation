@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 	"testing"
 	"time"
@@ -287,6 +288,15 @@ func writePropertyDefinition(t *testing.T,
 	isTopLevel bool,
 	w io.Writer) {
 
+	// Sort the property names
+	sortedPropertyNames := make([]string, 0)
+	for eachName := range propertyTypes {
+		sortedPropertyNames = append(sortedPropertyNames, eachName)
+	}
+	sort.Slice(sortedPropertyNames, func(lhs, rhs int) bool {
+		return sortedPropertyNames[lhs] < sortedPropertyNames[rhs]
+	})
+
 	// In this one we're going to create the type struct for this
 	golangTypename := canonicalGoTypename(t, cloudFormationPropertyTypeName, isTopLevel)
 	// TODO - comment block
@@ -300,11 +310,11 @@ func writePropertyDefinition(t *testing.T,
 		modifierText)
 	fmt.Fprintf(w, "// See %s \n", documentationURL)
 	fmt.Fprintf(w, "type %s struct {\n", golangTypename)
-	for eachProp, eachPropDefinition := range propertyTypes {
+	for _, eachSortedProp := range sortedPropertyNames {
 		writePropertyFieldDefinition(t,
 			cloudFormationPropertyTypeName,
-			eachProp,
-			eachPropDefinition,
+			eachSortedProp,
+			propertyTypes[eachSortedProp],
 			isTopLevel,
 			w)
 	}
@@ -374,8 +384,29 @@ func RegisterCustomResourceProvider(provider CustomResourceProvider) {
 // Write referenced properties
 ////////////////////////////////////////////////////////////////////////////////
 func writePropertyTypesDefinition(t *testing.T, propertyTypes map[string]PropertyTypes, w io.Writer) {
-	for eachKey, eachProp := range propertyTypes {
-		writePropertyDefinition(t, eachKey, eachProp.Properties, eachProp.Documentation, false, w)
+
+	// Sort the property names
+	sortedPropertyNames := make([]string, 0)
+	for eachName := range propertyTypes {
+		sortedPropertyNames = append(sortedPropertyNames, eachName)
+	}
+	sort.Slice(sortedPropertyNames, func(lhs, rhs int) bool {
+		return sortedPropertyNames[lhs] < sortedPropertyNames[rhs]
+	})
+	fmt.Fprintf(w, `
+//
+//  ____                            _   _
+// |  _ \ _ __ ___  _ __   ___ _ __| |_(_) ___  ___
+// | |_) | '__/ _ \| '_ \ / _ \ '__| __| |/ _ \/ __|
+// |  __/| | | (_) | |_) |  __/ |  | |_| |  __/\__ \
+// |_|   |_|  \___/| .__/ \___|_|   \__|_|\___||___/
+//                 |_|
+//
+`)
+
+	for _, eachPropertyName := range sortedPropertyNames {
+		eachProp := propertyTypes[eachPropertyName]
+		writePropertyDefinition(t, eachPropertyName, eachProp.Properties, eachProp.Documentation, false, w)
 	}
 }
 
@@ -383,9 +414,27 @@ func writePropertyTypesDefinition(t *testing.T, propertyTypes map[string]Propert
 // Write top level resources
 ////////////////////////////////////////////////////////////////////////////////
 func writeResourceTypesDefinition(t *testing.T, resourceTypes map[string]ResourceTypes, w io.Writer) {
-	for eachProp, eachResourceType := range resourceTypes {
-		// Sort the keys so that the properties are alphabatized
-		writePropertyDefinition(t, eachProp, eachResourceType.Properties, eachResourceType.Documentation, true, w)
+	// Sort the property names
+	sortedResourceNames := make([]string, 0)
+	for eachName := range resourceTypes {
+		sortedResourceNames = append(sortedResourceNames, eachName)
+	}
+	sort.Slice(sortedResourceNames, func(lhs, rhs int) bool {
+		return sortedResourceNames[lhs] < sortedResourceNames[rhs]
+	})
+
+	fmt.Fprintf(w, `
+//
+//  ____
+// |  _ \ ___  ___  ___  _   _ _ __ ___ ___  ___
+// | |_) / _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
+// |  _ <  __/\__ \ (_) | |_| | | | (_|  __/\__ \
+// |_| \_\___||___/\___/ \__,_|_|  \___\___||___/
+//
+`)
+	for _, eachResourceName := range sortedResourceNames {
+		eachResourceType := resourceTypes[eachResourceName]
+		writePropertyDefinition(t, eachResourceName, eachResourceType.Properties, eachResourceType.Documentation, true, w)
 	}
 }
 
