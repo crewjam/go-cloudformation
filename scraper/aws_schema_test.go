@@ -181,8 +181,15 @@ func canonicalGoTypename(t *testing.T, awsName string, isTopLevel bool) string {
 	// Special case "AWS::RDS::DBSecurityGroup.Ingress", which is defined
 	// as both property and resource
 	canonicalName := strings.Join(nameParts, "")
-	if "RDSDBSecurityGroupIngress" == canonicalName && !isTopLevel {
-		canonicalName = fmt.Sprintf("%sProperty", canonicalName)
+	if !isTopLevel {
+		switch canonicalName {
+		case "RDSDBSecurityGroupIngress",
+			"EC2SecurityGroupIngress",
+			"EC2SecurityGroupEgress":
+			canonicalName = fmt.Sprintf("%sProperty", canonicalName)
+		default:
+			// NOP
+		}
 	}
 	// Any transformations to apply?
 	return golintTransformedIdentifier(canonicalName)
@@ -551,4 +558,7 @@ func TestSchema(t *testing.T) {
 
 	// Write it out
 	writeOutputFile(t, "schema.go", output.Bytes())
+
+	// Format it...
+
 }
