@@ -76,6 +76,7 @@ var golintTransformations = map[string]string{
 // download the latest CloudFormation JSON schema for the given AWS_REGION,
 // defaulting to us-east-1 if that isn't set
 func getLatestSchema(t *testing.T) string {
+
 	tmpFile, tmpFileErr := ioutil.TempFile("", "cloudformation")
 	if nil != tmpFileErr {
 		t.Fatalf("Failed to create temp file")
@@ -242,8 +243,8 @@ func writePropertyFieldDefinition(t *testing.T,
 		internalSubType := ""
 		if "" != propertyTypeProperties.ItemType {
 			internalSubType = propertyTypeProperties.ItemType
-		} else if "" != propertyTypeProperties.Type {
-			internalSubType = propertyTypeProperties.Type
+		} else if "" != propertyTypeProperties.Type.Scalar {
+			internalSubType = propertyTypeProperties.Type.Scalar
 		} else {
 			t.Fatalf("Failed to find type for entry %s.%s", cloudFormationPropertyTypeName, propertyTypeName)
 		}
@@ -253,9 +254,9 @@ func writePropertyFieldDefinition(t *testing.T,
 	}
 	// Implementation
 	golangType := ""
-	if "" != propertyTypeProperties.Type {
+	if "" != propertyTypeProperties.Type.Scalar {
 		// It's either a list, a map, or another property type
-		switch propertyTypeProperties.Type {
+		switch propertyTypeProperties.Type.Scalar {
 		case "List":
 			{
 				if "Tag" == propertyTypeProperties.ItemType {
@@ -541,13 +542,13 @@ func TestSchema(t *testing.T) {
 		t.Error(schemaInputErr)
 	}
 	// Log the schema to output
-	t.Logf("CloudFormation Schema:\n%s", string(schemaInput))
+	t.Logf("Latest CloudFormation Schema:\n%s", string(schemaInput))
 	writeOutputFile(t, "schema.json", schemaInput)
 
 	var data CloudFormationSchema
 	unmarshalErr := json.Unmarshal(schemaInput, &data)
 	if nil != unmarshalErr {
-		t.Error(schemaInputErr)
+		t.Error(unmarshalErr)
 	}
 	// For each property, make the necessary property statement
 	var output bytes.Buffer
