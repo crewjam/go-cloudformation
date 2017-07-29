@@ -270,7 +270,7 @@ func writePropertyFieldDefinition(t *testing.T,
 					// Create the internal type.
 					golangType = fmt.Sprintf("*%s%s",
 						golangComplexValueType(),
-						propertyTypeProperties.Type)
+						propertyTypeProperties.Type.Scalar)
 
 					// Special case the DBIngressRule, as the Go typename is both a
 					// property name and a top level resource name
@@ -281,7 +281,7 @@ func writePropertyFieldDefinition(t *testing.T,
 							fmt.Sprintf("%s.%s", cloudFormationPropertyTypeName, propertyTypeProperties.ItemType),
 							false)
 						// And add the list, since it's a list...
-						golangType = fmt.Sprintf("%s%s", golangType, propertyTypeProperties.Type)
+						golangType = fmt.Sprintf("%s%s", golangType, propertyTypeProperties.Type.Scalar)
 					}
 				}
 			}
@@ -559,7 +559,5 @@ func TestSchema(t *testing.T) {
 
 	// Write it out
 	writeOutputFile(t, "schema.go", output.Bytes())
-
-	// Format it...
 
 }
