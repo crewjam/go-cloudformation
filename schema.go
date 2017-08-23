@@ -1,7 +1,6 @@
 package cloudformation
-
-// RESOURCE SPECIFICATION VERSION: 1.4.2
-// GENERATED: 2017-07-29 08:05:54.591677907 -0700 PDT
+// RESOURCE SPECIFICATION VERSION: 1.5.0
+// GENERATED: 2017-08-23 16:53:27.548695037 -0700 PDT
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -58,7 +57,6 @@ func (l *APIGatewayAPIKeyStageKeyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayDeploymentMethodSetting represents the AWS::ApiGateway::Deployment.MethodSetting CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html
 type APIGatewayDeploymentMethodSetting struct {
@@ -103,7 +101,6 @@ func (l *APIGatewayDeploymentMethodSettingList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // APIGatewayDeploymentStageDescription represents the AWS::ApiGateway::Deployment.StageDescription CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html
 type APIGatewayDeploymentStageDescription struct {
@@ -160,7 +157,6 @@ func (l *APIGatewayDeploymentStageDescriptionList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // APIGatewayDocumentationPartLocation represents the AWS::ApiGateway::DocumentationPart.Location CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-documentationpart-location.html
 type APIGatewayDocumentationPartLocation struct {
@@ -195,7 +191,6 @@ func (l *APIGatewayDocumentationPartLocationList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // APIGatewayMethodIntegration represents the AWS::ApiGateway::Method.Integration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html
 type APIGatewayMethodIntegration struct {
@@ -240,7 +235,6 @@ func (l *APIGatewayMethodIntegrationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayMethodIntegrationResponse represents the AWS::ApiGateway::Method.IntegrationResponse CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html
 type APIGatewayMethodIntegrationResponse struct {
@@ -273,7 +267,6 @@ func (l *APIGatewayMethodIntegrationResponseList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // APIGatewayMethodMethodResponse represents the AWS::ApiGateway::Method.MethodResponse CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-methodresponse.html
 type APIGatewayMethodMethodResponse struct {
@@ -304,7 +297,6 @@ func (l *APIGatewayMethodMethodResponseList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayRestAPIS3Location represents the AWS::ApiGateway::RestApi.S3Location CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-restapi-bodys3location.html
 type APIGatewayRestAPIS3Location struct {
@@ -337,7 +329,6 @@ func (l *APIGatewayRestAPIS3LocationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayStageMethodSetting represents the AWS::ApiGateway::Stage.MethodSetting CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html
 type APIGatewayStageMethodSetting struct {
@@ -382,7 +373,6 @@ func (l *APIGatewayStageMethodSettingList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayUsagePlanAPIStage represents the AWS::ApiGateway::UsagePlan.ApiStage CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html
 type APIGatewayUsagePlanAPIStage struct {
@@ -411,7 +401,6 @@ func (l *APIGatewayUsagePlanAPIStageList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayUsagePlanQuotaSettings represents the AWS::ApiGateway::UsagePlan.QuotaSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html
 type APIGatewayUsagePlanQuotaSettings struct {
@@ -442,7 +431,6 @@ func (l *APIGatewayUsagePlanQuotaSettingsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // APIGatewayUsagePlanThrottleSettings represents the AWS::ApiGateway::UsagePlan.ThrottleSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html
 type APIGatewayUsagePlanThrottleSettings struct {
@@ -471,7 +459,6 @@ func (l *APIGatewayUsagePlanThrottleSettingsList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // ApplicationAutoScalingScalingPolicyCustomizedMetricSpecification represents the AWS::ApplicationAutoScaling::ScalingPolicy.CustomizedMetricSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html
 type ApplicationAutoScalingScalingPolicyCustomizedMetricSpecification struct {
@@ -506,7 +493,6 @@ func (l *ApplicationAutoScalingScalingPolicyCustomizedMetricSpecificationList) U
 	}
 	return err
 }
-
 // ApplicationAutoScalingScalingPolicyMetricDimension represents the AWS::ApplicationAutoScaling::ScalingPolicy.MetricDimension CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-metricdimension.html
 type ApplicationAutoScalingScalingPolicyMetricDimension struct {
@@ -535,7 +521,6 @@ func (l *ApplicationAutoScalingScalingPolicyMetricDimensionList) UnmarshalJSON(b
 	}
 	return err
 }
-
 // ApplicationAutoScalingScalingPolicyPredefinedMetricSpecification represents the AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predefinedmetricspecification.html
 type ApplicationAutoScalingScalingPolicyPredefinedMetricSpecification struct {
@@ -564,7 +549,6 @@ func (l *ApplicationAutoScalingScalingPolicyPredefinedMetricSpecificationList) U
 	}
 	return err
 }
-
 // ApplicationAutoScalingScalingPolicyStepAdjustment represents the AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html
 type ApplicationAutoScalingScalingPolicyStepAdjustment struct {
@@ -595,7 +579,6 @@ func (l *ApplicationAutoScalingScalingPolicyStepAdjustmentList) UnmarshalJSON(bu
 	}
 	return err
 }
-
 // ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration represents the AWS::ApplicationAutoScaling::ScalingPolicy.StepScalingPolicyConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html
 type ApplicationAutoScalingScalingPolicyStepScalingPolicyConfiguration struct {
@@ -630,7 +613,6 @@ func (l *ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationList) 
 	}
 	return err
 }
-
 // ApplicationAutoScalingScalingPolicyTargetTrackingScalingPolicyConfiguration represents the AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingScalingPolicyConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingscalingpolicyconfiguration.html
 type ApplicationAutoScalingScalingPolicyTargetTrackingScalingPolicyConfiguration struct {
@@ -665,7 +647,6 @@ func (l *ApplicationAutoScalingScalingPolicyTargetTrackingScalingPolicyConfigura
 	}
 	return err
 }
-
 // AutoScalingAutoScalingGroupMetricsCollection represents the AWS::AutoScaling::AutoScalingGroup.MetricsCollection CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-metricscollection.html
 type AutoScalingAutoScalingGroupMetricsCollection struct {
@@ -694,7 +675,6 @@ func (l *AutoScalingAutoScalingGroupMetricsCollectionList) UnmarshalJSON(buf []b
 	}
 	return err
 }
-
 // AutoScalingAutoScalingGroupNotificationConfiguration represents the AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html
 type AutoScalingAutoScalingGroupNotificationConfiguration struct {
@@ -723,7 +703,6 @@ func (l *AutoScalingAutoScalingGroupNotificationConfigurationList) UnmarshalJSON
 	}
 	return err
 }
-
 // AutoScalingAutoScalingGroupTagProperty represents the AWS::AutoScaling::AutoScalingGroup.TagProperty CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html
 type AutoScalingAutoScalingGroupTagProperty struct {
@@ -754,7 +733,6 @@ func (l *AutoScalingAutoScalingGroupTagPropertyList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // AutoScalingLaunchConfigurationBlockDevice represents the AWS::AutoScaling::LaunchConfiguration.BlockDevice CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html
 type AutoScalingLaunchConfigurationBlockDevice struct {
@@ -791,7 +769,6 @@ func (l *AutoScalingLaunchConfigurationBlockDeviceList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // AutoScalingLaunchConfigurationBlockDeviceMapping represents the AWS::AutoScaling::LaunchConfiguration.BlockDeviceMapping CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html
 type AutoScalingLaunchConfigurationBlockDeviceMapping struct {
@@ -824,7 +801,6 @@ func (l *AutoScalingLaunchConfigurationBlockDeviceMappingList) UnmarshalJSON(buf
 	}
 	return err
 }
-
 // AutoScalingScalingPolicyCustomizedMetricSpecification represents the AWS::AutoScaling::ScalingPolicy.CustomizedMetricSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-customizedmetricspecification.html
 type AutoScalingScalingPolicyCustomizedMetricSpecification struct {
@@ -859,7 +835,6 @@ func (l *AutoScalingScalingPolicyCustomizedMetricSpecificationList) UnmarshalJSO
 	}
 	return err
 }
-
 // AutoScalingScalingPolicyMetricDimension represents the AWS::AutoScaling::ScalingPolicy.MetricDimension CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html
 type AutoScalingScalingPolicyMetricDimension struct {
@@ -888,7 +863,6 @@ func (l *AutoScalingScalingPolicyMetricDimensionList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // AutoScalingScalingPolicyPredefinedMetricSpecification represents the AWS::AutoScaling::ScalingPolicy.PredefinedMetricSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predefinedmetricspecification.html
 type AutoScalingScalingPolicyPredefinedMetricSpecification struct {
@@ -917,7 +891,6 @@ func (l *AutoScalingScalingPolicyPredefinedMetricSpecificationList) UnmarshalJSO
 	}
 	return err
 }
-
 // AutoScalingScalingPolicyStepAdjustment represents the AWS::AutoScaling::ScalingPolicy.StepAdjustment CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html
 type AutoScalingScalingPolicyStepAdjustment struct {
@@ -948,7 +921,6 @@ func (l *AutoScalingScalingPolicyStepAdjustmentList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // AutoScalingScalingPolicyTargetTrackingConfiguration represents the AWS::AutoScaling::ScalingPolicy.TargetTrackingConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingconfiguration.html
 type AutoScalingScalingPolicyTargetTrackingConfiguration struct {
@@ -981,7 +953,300 @@ func (l *AutoScalingScalingPolicyTargetTrackingConfigurationList) UnmarshalJSON(
 	}
 	return err
 }
+// BatchComputeEnvironmentComputeResources represents the AWS::Batch::ComputeEnvironment.ComputeResources CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html
+type BatchComputeEnvironmentComputeResources struct {
+	// BidPercentage docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-bidpercentage
+	BidPercentage *IntegerExpr `json:"BidPercentage,omitempty"`
+	// DesiredvCPUs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-desiredvcpus
+	DesiredvCPUs *IntegerExpr `json:"DesiredvCpus,omitempty"`
+	// Ec2KeyPair docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-ec2keypair
+	Ec2KeyPair *StringExpr `json:"Ec2KeyPair,omitempty"`
+	// ImageID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-imageid
+	ImageID *StringExpr `json:"ImageId,omitempty"`
+	// InstanceRole docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-instancerole
+	InstanceRole *StringExpr `json:"InstanceRole,omitempty" validate:"dive,required"`
+	// InstanceTypes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-instancetypes
+	InstanceTypes *StringListExpr `json:"InstanceTypes,omitempty" validate:"dive,required"`
+	// MaxvCPUs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-maxvcpus
+	MaxvCPUs *IntegerExpr `json:"MaxvCpus,omitempty" validate:"dive,required"`
+	// MinvCPUs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-minvcpus
+	MinvCPUs *IntegerExpr `json:"MinvCpus,omitempty" validate:"dive,required"`
+	// SecurityGroupIDs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-securitygroupids
+	SecurityGroupIDs *StringListExpr `json:"SecurityGroupIds,omitempty" validate:"dive,required"`
+	// SpotIamFleetRole docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-spotiamfleetrole
+	SpotIamFleetRole *StringExpr `json:"SpotIamFleetRole,omitempty"`
+	// Subnets docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-subnets
+	Subnets *StringListExpr `json:"Subnets,omitempty" validate:"dive,required"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-tags
+	Tags interface{} `json:"Tags,omitempty"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-type
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
+}
 
+// BatchComputeEnvironmentComputeResourcesList represents a list of BatchComputeEnvironmentComputeResources
+type BatchComputeEnvironmentComputeResourcesList []BatchComputeEnvironmentComputeResources
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchComputeEnvironmentComputeResourcesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchComputeEnvironmentComputeResources{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchComputeEnvironmentComputeResourcesList{item}
+		return nil
+	}
+	list := []BatchComputeEnvironmentComputeResources{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchComputeEnvironmentComputeResourcesList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionContainerProperties represents the AWS::Batch::JobDefinition.ContainerProperties CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html
+type BatchJobDefinitionContainerProperties struct {
+	// Command docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-command
+	Command *StringListExpr `json:"Command,omitempty"`
+	// Environment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-environment
+	Environment *BatchJobDefinitionEnvironmentList `json:"Environment,omitempty"`
+	// Image docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-image
+	Image *StringExpr `json:"Image,omitempty" validate:"dive,required"`
+	// JobRoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-jobrolearn
+	JobRoleArn *StringExpr `json:"JobRoleArn,omitempty"`
+	// Memory docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-memory
+	Memory *IntegerExpr `json:"Memory,omitempty" validate:"dive,required"`
+	// MountPoints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-mountpoints
+	MountPoints *BatchJobDefinitionMountPointsList `json:"MountPoints,omitempty"`
+	// Privileged docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-privileged
+	Privileged *BoolExpr `json:"Privileged,omitempty"`
+	// ReadonlyRootFilesystem docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-readonlyrootfilesystem
+	ReadonlyRootFilesystem *BoolExpr `json:"ReadonlyRootFilesystem,omitempty"`
+	// Ulimits docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-ulimits
+	Ulimits *BatchJobDefinitionUlimitList `json:"Ulimits,omitempty"`
+	// User docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-user
+	User *StringExpr `json:"User,omitempty"`
+	// Vcpus docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-vcpus
+	Vcpus *IntegerExpr `json:"Vcpus,omitempty" validate:"dive,required"`
+	// Volumes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-volumes
+	Volumes *BatchJobDefinitionVolumesList `json:"Volumes,omitempty"`
+}
+
+// BatchJobDefinitionContainerPropertiesList represents a list of BatchJobDefinitionContainerProperties
+type BatchJobDefinitionContainerPropertiesList []BatchJobDefinitionContainerProperties
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionContainerPropertiesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionContainerProperties{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionContainerPropertiesList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionContainerProperties{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionContainerPropertiesList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionEnvironment represents the AWS::Batch::JobDefinition.Environment CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html
+type BatchJobDefinitionEnvironment struct {
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html#cfn-batch-jobdefinition-environment-name
+	Name *StringExpr `json:"Name,omitempty"`
+	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html#cfn-batch-jobdefinition-environment-value
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// BatchJobDefinitionEnvironmentList represents a list of BatchJobDefinitionEnvironment
+type BatchJobDefinitionEnvironmentList []BatchJobDefinitionEnvironment
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionEnvironmentList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionEnvironment{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionEnvironmentList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionEnvironment{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionEnvironmentList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionMountPoints represents the AWS::Batch::JobDefinition.MountPoints CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html
+type BatchJobDefinitionMountPoints struct {
+	// ContainerPath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html#cfn-batch-jobdefinition-mountpoints-containerpath
+	ContainerPath *StringExpr `json:"ContainerPath,omitempty"`
+	// ReadOnly docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html#cfn-batch-jobdefinition-mountpoints-readonly
+	ReadOnly *BoolExpr `json:"ReadOnly,omitempty"`
+	// SourceVolume docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html#cfn-batch-jobdefinition-mountpoints-sourcevolume
+	SourceVolume *StringExpr `json:"SourceVolume,omitempty"`
+}
+
+// BatchJobDefinitionMountPointsList represents a list of BatchJobDefinitionMountPoints
+type BatchJobDefinitionMountPointsList []BatchJobDefinitionMountPoints
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionMountPointsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionMountPoints{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionMountPointsList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionMountPoints{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionMountPointsList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionRetryStrategy represents the AWS::Batch::JobDefinition.RetryStrategy CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html
+type BatchJobDefinitionRetryStrategy struct {
+	// Attempts docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html#cfn-batch-jobdefinition-retrystrategy-attempts
+	Attempts *IntegerExpr `json:"Attempts,omitempty"`
+}
+
+// BatchJobDefinitionRetryStrategyList represents a list of BatchJobDefinitionRetryStrategy
+type BatchJobDefinitionRetryStrategyList []BatchJobDefinitionRetryStrategy
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionRetryStrategyList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionRetryStrategy{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionRetryStrategyList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionRetryStrategy{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionRetryStrategyList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionUlimit represents the AWS::Batch::JobDefinition.Ulimit CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html
+type BatchJobDefinitionUlimit struct {
+	// HardLimit docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html#cfn-batch-jobdefinition-ulimit-hardlimit
+	HardLimit *IntegerExpr `json:"HardLimit,omitempty" validate:"dive,required"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html#cfn-batch-jobdefinition-ulimit-name
+	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// SoftLimit docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html#cfn-batch-jobdefinition-ulimit-softlimit
+	SoftLimit *IntegerExpr `json:"SoftLimit,omitempty" validate:"dive,required"`
+}
+
+// BatchJobDefinitionUlimitList represents a list of BatchJobDefinitionUlimit
+type BatchJobDefinitionUlimitList []BatchJobDefinitionUlimit
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionUlimitList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionUlimit{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionUlimitList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionUlimit{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionUlimitList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionVolumes represents the AWS::Batch::JobDefinition.Volumes CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html
+type BatchJobDefinitionVolumes struct {
+	// Host docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html#cfn-batch-jobdefinition-volumes-host
+	Host *BatchJobDefinitionVolumesHost `json:"Host,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html#cfn-batch-jobdefinition-volumes-name
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// BatchJobDefinitionVolumesList represents a list of BatchJobDefinitionVolumes
+type BatchJobDefinitionVolumesList []BatchJobDefinitionVolumes
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionVolumesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionVolumes{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionVolumesList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionVolumes{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionVolumesList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobDefinitionVolumesHost represents the AWS::Batch::JobDefinition.VolumesHost CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html
+type BatchJobDefinitionVolumesHost struct {
+	// SourcePath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html#cfn-batch-jobdefinition-volumeshost-sourcepath
+	SourcePath *StringExpr `json:"SourcePath,omitempty"`
+}
+
+// BatchJobDefinitionVolumesHostList represents a list of BatchJobDefinitionVolumesHost
+type BatchJobDefinitionVolumesHostList []BatchJobDefinitionVolumesHost
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobDefinitionVolumesHostList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobDefinitionVolumesHost{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobDefinitionVolumesHostList{item}
+		return nil
+	}
+	list := []BatchJobDefinitionVolumesHost{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobDefinitionVolumesHostList(list)
+		return nil
+	}
+	return err
+}
+// BatchJobQueueComputeEnvironmentOrder represents the AWS::Batch::JobQueue.ComputeEnvironmentOrder CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html
+type BatchJobQueueComputeEnvironmentOrder struct {
+	// ComputeEnvironment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html#cfn-batch-jobqueue-computeenvironmentorder-computeenvironment
+	ComputeEnvironment *StringExpr `json:"ComputeEnvironment,omitempty" validate:"dive,required"`
+	// Order docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html#cfn-batch-jobqueue-computeenvironmentorder-order
+	Order *IntegerExpr `json:"Order,omitempty" validate:"dive,required"`
+}
+
+// BatchJobQueueComputeEnvironmentOrderList represents a list of BatchJobQueueComputeEnvironmentOrder
+type BatchJobQueueComputeEnvironmentOrderList []BatchJobQueueComputeEnvironmentOrder
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *BatchJobQueueComputeEnvironmentOrderList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := BatchJobQueueComputeEnvironmentOrder{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = BatchJobQueueComputeEnvironmentOrderList{item}
+		return nil
+	}
+	list := []BatchJobQueueComputeEnvironmentOrder{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = BatchJobQueueComputeEnvironmentOrderList(list)
+		return nil
+	}
+	return err
+}
 // CertificateManagerCertificateDomainValidationOption represents the AWS::CertificateManager::Certificate.DomainValidationOption CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html
 type CertificateManagerCertificateDomainValidationOption struct {
@@ -1010,7 +1275,6 @@ func (l *CertificateManagerCertificateDomainValidationOptionList) UnmarshalJSON(
 	}
 	return err
 }
-
 // CloudFrontDistributionCacheBehavior represents the AWS::CloudFront::Distribution.CacheBehavior CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachebehavior.html
 type CloudFrontDistributionCacheBehavior struct {
@@ -1059,7 +1323,6 @@ func (l *CloudFrontDistributionCacheBehaviorList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // CloudFrontDistributionCookies represents the AWS::CloudFront::Distribution.Cookies CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-forwardedvalues-cookies.html
 type CloudFrontDistributionCookies struct {
@@ -1088,7 +1351,6 @@ func (l *CloudFrontDistributionCookiesList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CloudFrontDistributionCustomErrorResponse represents the AWS::CloudFront::Distribution.CustomErrorResponse CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributionconfig-customerrorresponse.html
 type CloudFrontDistributionCustomErrorResponse struct {
@@ -1121,7 +1383,6 @@ func (l *CloudFrontDistributionCustomErrorResponseList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // CloudFrontDistributionCustomOriginConfig represents the AWS::CloudFront::Distribution.CustomOriginConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-customorigin.html
 type CloudFrontDistributionCustomOriginConfig struct {
@@ -1154,7 +1415,6 @@ func (l *CloudFrontDistributionCustomOriginConfigList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // CloudFrontDistributionDefaultCacheBehavior represents the AWS::CloudFront::Distribution.DefaultCacheBehavior CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-defaultcachebehavior.html
 type CloudFrontDistributionDefaultCacheBehavior struct {
@@ -1201,7 +1461,6 @@ func (l *CloudFrontDistributionDefaultCacheBehaviorList) UnmarshalJSON(buf []byt
 	}
 	return err
 }
-
 // CloudFrontDistributionDistributionConfig represents the AWS::CloudFront::Distribution.DistributionConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributionconfig.html
 type CloudFrontDistributionDistributionConfig struct {
@@ -1254,7 +1513,6 @@ func (l *CloudFrontDistributionDistributionConfigList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // CloudFrontDistributionForwardedValues represents the AWS::CloudFront::Distribution.ForwardedValues CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-forwardedvalues.html
 type CloudFrontDistributionForwardedValues struct {
@@ -1287,7 +1545,6 @@ func (l *CloudFrontDistributionForwardedValuesList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // CloudFrontDistributionGeoRestriction represents the AWS::CloudFront::Distribution.GeoRestriction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributionconfig-restrictions-georestriction.html
 type CloudFrontDistributionGeoRestriction struct {
@@ -1316,7 +1573,6 @@ func (l *CloudFrontDistributionGeoRestrictionList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // CloudFrontDistributionLogging represents the AWS::CloudFront::Distribution.Logging CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-logging.html
 type CloudFrontDistributionLogging struct {
@@ -1347,7 +1603,6 @@ func (l *CloudFrontDistributionLoggingList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CloudFrontDistributionOrigin represents the AWS::CloudFront::Distribution.Origin CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-origin.html
 type CloudFrontDistributionOrigin struct {
@@ -1384,7 +1639,6 @@ func (l *CloudFrontDistributionOriginList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CloudFrontDistributionOriginCustomHeader represents the AWS::CloudFront::Distribution.OriginCustomHeader CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-origin-origincustomheader.html
 type CloudFrontDistributionOriginCustomHeader struct {
@@ -1413,7 +1667,6 @@ func (l *CloudFrontDistributionOriginCustomHeaderList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // CloudFrontDistributionRestrictions represents the AWS::CloudFront::Distribution.Restrictions CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributionconfig-restrictions.html
 type CloudFrontDistributionRestrictions struct {
@@ -1440,7 +1693,6 @@ func (l *CloudFrontDistributionRestrictionsList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // CloudFrontDistributionS3OriginConfig represents the AWS::CloudFront::Distribution.S3OriginConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-s3origin.html
 type CloudFrontDistributionS3OriginConfig struct {
@@ -1467,7 +1719,6 @@ func (l *CloudFrontDistributionS3OriginConfigList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // CloudFrontDistributionViewerCertificate represents the AWS::CloudFront::Distribution.ViewerCertificate CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distributionconfig-viewercertificate.html
 type CloudFrontDistributionViewerCertificate struct {
@@ -1502,7 +1753,6 @@ func (l *CloudFrontDistributionViewerCertificateList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // CloudTrailTrailDataResource represents the AWS::CloudTrail::Trail.DataResource CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html
 type CloudTrailTrailDataResource struct {
@@ -1531,7 +1781,6 @@ func (l *CloudTrailTrailDataResourceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CloudTrailTrailEventSelector represents the AWS::CloudTrail::Trail.EventSelector CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html
 type CloudTrailTrailEventSelector struct {
@@ -1562,7 +1811,6 @@ func (l *CloudTrailTrailEventSelectorList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CloudWatchAlarmDimension represents the AWS::CloudWatch::Alarm.Dimension CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-dimension.html
 type CloudWatchAlarmDimension struct {
@@ -1591,7 +1839,6 @@ func (l *CloudWatchAlarmDimensionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodeBuildProjectArtifacts represents the AWS::CodeBuild::Project.Artifacts CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html
 type CodeBuildProjectArtifacts struct {
@@ -1628,7 +1875,6 @@ func (l *CodeBuildProjectArtifactsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodeBuildProjectEnvironment represents the AWS::CodeBuild::Project.Environment CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html
 type CodeBuildProjectEnvironment struct {
@@ -1663,7 +1909,6 @@ func (l *CodeBuildProjectEnvironmentList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodeBuildProjectEnvironmentVariable represents the AWS::CodeBuild::Project.EnvironmentVariable CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html
 type CodeBuildProjectEnvironmentVariable struct {
@@ -1692,7 +1937,6 @@ func (l *CodeBuildProjectEnvironmentVariableList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // CodeBuildProjectSource represents the AWS::CodeBuild::Project.Source CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
 type CodeBuildProjectSource struct {
@@ -1725,14 +1969,13 @@ func (l *CodeBuildProjectSourceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodeBuildProjectSourceAuth represents the AWS::CodeBuild::Project.SourceAuth CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html
 type CodeBuildProjectSourceAuth struct {
 	// Resource docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html#cfn-codebuild-project-sourceauth-resource
 	Resource *StringExpr `json:"Resource,omitempty"`
 	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html#cfn-codebuild-project-sourceauth-type
-	Type *StringExpr `json:"Type,omitempty"`
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
 }
 
 // CodeBuildProjectSourceAuthList represents a list of CodeBuildProjectSourceAuth
@@ -1754,7 +1997,6 @@ func (l *CodeBuildProjectSourceAuthList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodeCommitRepositoryRepositoryTrigger represents the AWS::CodeCommit::Repository.RepositoryTrigger CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-repositorytrigger.html
 type CodeCommitRepositoryRepositoryTrigger struct {
@@ -1789,7 +2031,6 @@ func (l *CodeCommitRepositoryRepositoryTriggerList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // CodeDeployDeploymentConfigMinimumHealthyHosts represents the AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHosts CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html
 type CodeDeployDeploymentConfigMinimumHealthyHosts struct {
@@ -1818,7 +2059,6 @@ func (l *CodeDeployDeploymentConfigMinimumHealthyHostsList) UnmarshalJSON(buf []
 	}
 	return err
 }
-
 // CodeDeployDeploymentGroupAlarm represents the AWS::CodeDeploy::DeploymentGroup.Alarm CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarm.html
 type CodeDeployDeploymentGroupAlarm struct {
@@ -1845,7 +2085,6 @@ func (l *CodeDeployDeploymentGroupAlarmList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodeDeployDeploymentGroupAlarmConfiguration represents the AWS::CodeDeploy::DeploymentGroup.AlarmConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html
 type CodeDeployDeploymentGroupAlarmConfiguration struct {
@@ -1876,7 +2115,34 @@ func (l *CodeDeployDeploymentGroupAlarmConfigurationList) UnmarshalJSON(buf []by
 	}
 	return err
 }
+// CodeDeployDeploymentGroupAutoRollbackConfiguration represents the AWS::CodeDeploy::DeploymentGroup.AutoRollbackConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html
+type CodeDeployDeploymentGroupAutoRollbackConfiguration struct {
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html#cfn-codedeploy-deploymentgroup-autorollbackconfiguration-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+	// Events docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html#cfn-codedeploy-deploymentgroup-autorollbackconfiguration-events
+	Events *StringListExpr `json:"Events,omitempty"`
+}
 
+// CodeDeployDeploymentGroupAutoRollbackConfigurationList represents a list of CodeDeployDeploymentGroupAutoRollbackConfiguration
+type CodeDeployDeploymentGroupAutoRollbackConfigurationList []CodeDeployDeploymentGroupAutoRollbackConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupAutoRollbackConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupAutoRollbackConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupAutoRollbackConfigurationList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupAutoRollbackConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupAutoRollbackConfigurationList(list)
+		return nil
+	}
+	return err
+}
 // CodeDeployDeploymentGroupDeployment represents the AWS::CodeDeploy::DeploymentGroup.Deployment CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html
 type CodeDeployDeploymentGroupDeployment struct {
@@ -1907,7 +2173,32 @@ func (l *CodeDeployDeploymentGroupDeploymentList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
+// CodeDeployDeploymentGroupDeploymentStyle represents the AWS::CodeDeploy::DeploymentGroup.DeploymentStyle CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html
+type CodeDeployDeploymentGroupDeploymentStyle struct {
+	// DeploymentOption docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html#cfn-codedeploy-deploymentgroup-deploymentstyle-deploymentoption
+	DeploymentOption *StringExpr `json:"DeploymentOption,omitempty"`
+}
 
+// CodeDeployDeploymentGroupDeploymentStyleList represents a list of CodeDeployDeploymentGroupDeploymentStyle
+type CodeDeployDeploymentGroupDeploymentStyleList []CodeDeployDeploymentGroupDeploymentStyle
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupDeploymentStyleList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupDeploymentStyle{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentStyleList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupDeploymentStyle{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupDeploymentStyleList(list)
+		return nil
+	}
+	return err
+}
 // CodeDeployDeploymentGroupEC2TagFilter represents the AWS::CodeDeploy::DeploymentGroup.EC2TagFilter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html
 type CodeDeployDeploymentGroupEC2TagFilter struct {
@@ -1938,7 +2229,32 @@ func (l *CodeDeployDeploymentGroupEC2TagFilterList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
+// CodeDeployDeploymentGroupELBInfo represents the AWS::CodeDeploy::DeploymentGroup.ELBInfo CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html
+type CodeDeployDeploymentGroupELBInfo struct {
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html#cfn-codedeploy-deploymentgroup-elbinfo-name
+	Name *StringExpr `json:"Name,omitempty"`
+}
 
+// CodeDeployDeploymentGroupELBInfoList represents a list of CodeDeployDeploymentGroupELBInfo
+type CodeDeployDeploymentGroupELBInfoList []CodeDeployDeploymentGroupELBInfo
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupELBInfoList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupELBInfo{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupELBInfoList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupELBInfo{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupELBInfoList(list)
+		return nil
+	}
+	return err
+}
 // CodeDeployDeploymentGroupGitHubLocation represents the AWS::CodeDeploy::DeploymentGroup.GitHubLocation CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html
 type CodeDeployDeploymentGroupGitHubLocation struct {
@@ -1967,7 +2283,32 @@ func (l *CodeDeployDeploymentGroupGitHubLocationList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
+// CodeDeployDeploymentGroupLoadBalancerInfo represents the AWS::CodeDeploy::DeploymentGroup.LoadBalancerInfo CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html
+type CodeDeployDeploymentGroupLoadBalancerInfo struct {
+	// ElbInfoList docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo-elbinfolist
+	ElbInfoList *CodeDeployDeploymentGroupELBInfoList `json:"ElbInfoList,omitempty"`
+}
 
+// CodeDeployDeploymentGroupLoadBalancerInfoList represents a list of CodeDeployDeploymentGroupLoadBalancerInfo
+type CodeDeployDeploymentGroupLoadBalancerInfoList []CodeDeployDeploymentGroupLoadBalancerInfo
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeDeployDeploymentGroupLoadBalancerInfoList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeDeployDeploymentGroupLoadBalancerInfo{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeDeployDeploymentGroupLoadBalancerInfoList{item}
+		return nil
+	}
+	list := []CodeDeployDeploymentGroupLoadBalancerInfo{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeDeployDeploymentGroupLoadBalancerInfoList(list)
+		return nil
+	}
+	return err
+}
 // CodeDeployDeploymentGroupRevisionLocation represents the AWS::CodeDeploy::DeploymentGroup.RevisionLocation CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html
 type CodeDeployDeploymentGroupRevisionLocation struct {
@@ -1998,7 +2339,6 @@ func (l *CodeDeployDeploymentGroupRevisionLocationList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // CodeDeployDeploymentGroupS3Location represents the AWS::CodeDeploy::DeploymentGroup.S3Location CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html
 type CodeDeployDeploymentGroupS3Location struct {
@@ -2033,7 +2373,6 @@ func (l *CodeDeployDeploymentGroupS3LocationList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // CodeDeployDeploymentGroupTagFilter represents the AWS::CodeDeploy::DeploymentGroup.TagFilter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html
 type CodeDeployDeploymentGroupTagFilter struct {
@@ -2064,7 +2403,6 @@ func (l *CodeDeployDeploymentGroupTagFilterList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // CodeDeployDeploymentGroupTriggerConfig represents the AWS::CodeDeploy::DeploymentGroup.TriggerConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html
 type CodeDeployDeploymentGroupTriggerConfig struct {
@@ -2095,7 +2433,6 @@ func (l *CodeDeployDeploymentGroupTriggerConfigList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // CodePipelineCustomActionTypeArtifactDetails represents the AWS::CodePipeline::CustomActionType.ArtifactDetails CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html
 type CodePipelineCustomActionTypeArtifactDetails struct {
@@ -2124,7 +2461,6 @@ func (l *CodePipelineCustomActionTypeArtifactDetailsList) UnmarshalJSON(buf []by
 	}
 	return err
 }
-
 // CodePipelineCustomActionTypeConfigurationProperties represents the AWS::CodePipeline::CustomActionType.ConfigurationProperties CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html
 type CodePipelineCustomActionTypeConfigurationProperties struct {
@@ -2163,7 +2499,6 @@ func (l *CodePipelineCustomActionTypeConfigurationPropertiesList) UnmarshalJSON(
 	}
 	return err
 }
-
 // CodePipelineCustomActionTypeSettings represents the AWS::CodePipeline::CustomActionType.Settings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html
 type CodePipelineCustomActionTypeSettings struct {
@@ -2196,7 +2531,6 @@ func (l *CodePipelineCustomActionTypeSettingsList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // CodePipelinePipelineActionDeclaration represents the AWS::CodePipeline::Pipeline.ActionDeclaration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html
 type CodePipelinePipelineActionDeclaration struct {
@@ -2235,7 +2569,6 @@ func (l *CodePipelinePipelineActionDeclarationList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // CodePipelinePipelineActionTypeID represents the AWS::CodePipeline::Pipeline.ActionTypeId CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html
 type CodePipelinePipelineActionTypeID struct {
@@ -2268,7 +2601,6 @@ func (l *CodePipelinePipelineActionTypeIDList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CodePipelinePipelineArtifactStore represents the AWS::CodePipeline::Pipeline.ArtifactStore CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html
 type CodePipelinePipelineArtifactStore struct {
@@ -2299,7 +2631,6 @@ func (l *CodePipelinePipelineArtifactStoreList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // CodePipelinePipelineBlockerDeclaration represents the AWS::CodePipeline::Pipeline.BlockerDeclaration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html
 type CodePipelinePipelineBlockerDeclaration struct {
@@ -2328,7 +2659,6 @@ func (l *CodePipelinePipelineBlockerDeclarationList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // CodePipelinePipelineEncryptionKey represents the AWS::CodePipeline::Pipeline.EncryptionKey CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html
 type CodePipelinePipelineEncryptionKey struct {
@@ -2357,7 +2687,6 @@ func (l *CodePipelinePipelineEncryptionKeyList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // CodePipelinePipelineInputArtifact represents the AWS::CodePipeline::Pipeline.InputArtifact CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html
 type CodePipelinePipelineInputArtifact struct {
@@ -2384,7 +2713,6 @@ func (l *CodePipelinePipelineInputArtifactList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // CodePipelinePipelineOutputArtifact represents the AWS::CodePipeline::Pipeline.OutputArtifact CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html
 type CodePipelinePipelineOutputArtifact struct {
@@ -2411,7 +2739,6 @@ func (l *CodePipelinePipelineOutputArtifactList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // CodePipelinePipelineStageDeclaration represents the AWS::CodePipeline::Pipeline.StageDeclaration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html
 type CodePipelinePipelineStageDeclaration struct {
@@ -2442,7 +2769,6 @@ func (l *CodePipelinePipelineStageDeclarationList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // CodePipelinePipelineStageTransition represents the AWS::CodePipeline::Pipeline.StageTransition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html
 type CodePipelinePipelineStageTransition struct {
@@ -2471,7 +2797,6 @@ func (l *CodePipelinePipelineStageTransitionList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // CognitoIDentityPoolCognitoIDentityProvider represents the AWS::Cognito::IdentityPool.CognitoIdentityProvider CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html
 type CognitoIDentityPoolCognitoIDentityProvider struct {
@@ -2502,7 +2827,6 @@ func (l *CognitoIDentityPoolCognitoIDentityProviderList) UnmarshalJSON(buf []byt
 	}
 	return err
 }
-
 // CognitoIDentityPoolCognitoStreams represents the AWS::Cognito::IdentityPool.CognitoStreams CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html
 type CognitoIDentityPoolCognitoStreams struct {
@@ -2533,7 +2857,6 @@ func (l *CognitoIDentityPoolCognitoStreamsList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // CognitoIDentityPoolPushSync represents the AWS::Cognito::IdentityPool.PushSync CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html
 type CognitoIDentityPoolPushSync struct {
@@ -2562,7 +2885,6 @@ func (l *CognitoIDentityPoolPushSyncList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CognitoIDentityPoolRoleAttachmentMappingRule represents the AWS::Cognito::IdentityPoolRoleAttachment.MappingRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-mappingrule.html
 type CognitoIDentityPoolRoleAttachmentMappingRule struct {
@@ -2595,7 +2917,6 @@ func (l *CognitoIDentityPoolRoleAttachmentMappingRuleList) UnmarshalJSON(buf []b
 	}
 	return err
 }
-
 // CognitoIDentityPoolRoleAttachmentRoleMapping represents the AWS::Cognito::IdentityPoolRoleAttachment.RoleMapping CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rolemapping.html
 type CognitoIDentityPoolRoleAttachmentRoleMapping struct {
@@ -2626,7 +2947,6 @@ func (l *CognitoIDentityPoolRoleAttachmentRoleMappingList) UnmarshalJSON(buf []b
 	}
 	return err
 }
-
 // CognitoIDentityPoolRoleAttachmentRulesConfigurationType represents the AWS::Cognito::IdentityPoolRoleAttachment.RulesConfigurationType CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html
 type CognitoIDentityPoolRoleAttachmentRulesConfigurationType struct {
@@ -2651,7 +2971,6 @@ func (l *CognitoIDentityPoolRoleAttachmentRulesConfigurationTypeList) UnmarshalJ
 	}
 	return err
 }
-
 // CognitoUserPoolAdminCreateUserConfig represents the AWS::Cognito::UserPool.AdminCreateUserConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-admincreateuserconfig.html
 type CognitoUserPoolAdminCreateUserConfig struct {
@@ -2682,7 +3001,6 @@ func (l *CognitoUserPoolAdminCreateUserConfigList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // CognitoUserPoolDeviceConfiguration represents the AWS::Cognito::UserPool.DeviceConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html
 type CognitoUserPoolDeviceConfiguration struct {
@@ -2711,7 +3029,6 @@ func (l *CognitoUserPoolDeviceConfigurationList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // CognitoUserPoolEmailConfiguration represents the AWS::Cognito::UserPool.EmailConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html
 type CognitoUserPoolEmailConfiguration struct {
@@ -2740,7 +3057,6 @@ func (l *CognitoUserPoolEmailConfigurationList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // CognitoUserPoolInviteMessageTemplate represents the AWS::Cognito::UserPool.InviteMessageTemplate CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html
 type CognitoUserPoolInviteMessageTemplate struct {
@@ -2771,7 +3087,6 @@ func (l *CognitoUserPoolInviteMessageTemplateList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // CognitoUserPoolLambdaConfig represents the AWS::Cognito::UserPool.LambdaConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html
 type CognitoUserPoolLambdaConfig struct {
@@ -2812,7 +3127,6 @@ func (l *CognitoUserPoolLambdaConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CognitoUserPoolNumberAttributeConstraints represents the AWS::Cognito::UserPool.NumberAttributeConstraints CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html
 type CognitoUserPoolNumberAttributeConstraints struct {
@@ -2841,7 +3155,6 @@ func (l *CognitoUserPoolNumberAttributeConstraintsList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // CognitoUserPoolPasswordPolicy represents the AWS::Cognito::UserPool.PasswordPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html
 type CognitoUserPoolPasswordPolicy struct {
@@ -2876,7 +3189,6 @@ func (l *CognitoUserPoolPasswordPolicyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CognitoUserPoolPolicies represents the AWS::Cognito::UserPool.Policies CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html
 type CognitoUserPoolPolicies struct {
@@ -2903,7 +3215,6 @@ func (l *CognitoUserPoolPoliciesList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CognitoUserPoolSchemaAttribute represents the AWS::Cognito::UserPool.SchemaAttribute CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html
 type CognitoUserPoolSchemaAttribute struct {
@@ -2942,7 +3253,6 @@ func (l *CognitoUserPoolSchemaAttributeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CognitoUserPoolSmsConfiguration represents the AWS::Cognito::UserPool.SmsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html
 type CognitoUserPoolSmsConfiguration struct {
@@ -2971,7 +3281,6 @@ func (l *CognitoUserPoolSmsConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // CognitoUserPoolStringAttributeConstraints represents the AWS::Cognito::UserPool.StringAttributeConstraints CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html
 type CognitoUserPoolStringAttributeConstraints struct {
@@ -3000,7 +3309,6 @@ func (l *CognitoUserPoolStringAttributeConstraintsList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // CognitoUserPoolUserAttributeType represents the AWS::Cognito::UserPoolUser.AttributeType CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html
 type CognitoUserPoolUserAttributeType struct {
@@ -3029,7 +3337,6 @@ func (l *CognitoUserPoolUserAttributeTypeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ConfigConfigRuleScope represents the AWS::Config::ConfigRule.Scope CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html
 type ConfigConfigRuleScope struct {
@@ -3062,7 +3369,6 @@ func (l *ConfigConfigRuleScopeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ConfigConfigRuleSource represents the AWS::Config::ConfigRule.Source CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html
 type ConfigConfigRuleSource struct {
@@ -3093,7 +3399,6 @@ func (l *ConfigConfigRuleSourceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ConfigConfigRuleSourceDetail represents the AWS::Config::ConfigRule.SourceDetail CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html
 type ConfigConfigRuleSourceDetail struct {
@@ -3124,7 +3429,6 @@ func (l *ConfigConfigRuleSourceDetailList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ConfigConfigurationRecorderRecordingGroup represents the AWS::Config::ConfigurationRecorder.RecordingGroup CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html
 type ConfigConfigurationRecorderRecordingGroup struct {
@@ -3155,7 +3459,6 @@ func (l *ConfigConfigurationRecorderRecordingGroupList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // ConfigDeliveryChannelConfigSnapshotDeliveryProperties represents the AWS::Config::DeliveryChannel.ConfigSnapshotDeliveryProperties CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html
 type ConfigDeliveryChannelConfigSnapshotDeliveryProperties struct {
@@ -3182,7 +3485,6 @@ func (l *ConfigDeliveryChannelConfigSnapshotDeliveryPropertiesList) UnmarshalJSO
 	}
 	return err
 }
-
 // DMSEndpointDynamoDbSettings represents the AWS::DMS::Endpoint.DynamoDbSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html
 type DMSEndpointDynamoDbSettings struct {
@@ -3209,7 +3511,6 @@ func (l *DMSEndpointDynamoDbSettingsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DMSEndpointMongoDbSettings represents the AWS::DMS::Endpoint.MongoDbSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html
 type DMSEndpointMongoDbSettings struct {
@@ -3256,7 +3557,6 @@ func (l *DMSEndpointMongoDbSettingsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DMSEndpointS3Settings represents the AWS::DMS::Endpoint.S3Settings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html
 type DMSEndpointS3Settings struct {
@@ -3295,7 +3595,6 @@ func (l *DMSEndpointS3SettingsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DataPipelinePipelineField represents the AWS::DataPipeline::Pipeline.Field CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects-fields.html
 type DataPipelinePipelineField struct {
@@ -3326,7 +3625,6 @@ func (l *DataPipelinePipelineFieldList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DataPipelinePipelineParameterAttribute represents the AWS::DataPipeline::Pipeline.ParameterAttribute CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html
 type DataPipelinePipelineParameterAttribute struct {
@@ -3355,7 +3653,6 @@ func (l *DataPipelinePipelineParameterAttributeList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // DataPipelinePipelineParameterObject represents the AWS::DataPipeline::Pipeline.ParameterObject CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html
 type DataPipelinePipelineParameterObject struct {
@@ -3384,7 +3681,6 @@ func (l *DataPipelinePipelineParameterObjectList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // DataPipelinePipelineParameterValue represents the AWS::DataPipeline::Pipeline.ParameterValue CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalues.html
 type DataPipelinePipelineParameterValue struct {
@@ -3413,7 +3709,6 @@ func (l *DataPipelinePipelineParameterValueList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // DataPipelinePipelinePipelineObject represents the AWS::DataPipeline::Pipeline.PipelineObject CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html
 type DataPipelinePipelinePipelineObject struct {
@@ -3444,7 +3739,6 @@ func (l *DataPipelinePipelinePipelineObjectList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // DataPipelinePipelinePipelineTag represents the AWS::DataPipeline::Pipeline.PipelineTag CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetags.html
 type DataPipelinePipelinePipelineTag struct {
@@ -3473,7 +3767,6 @@ func (l *DataPipelinePipelinePipelineTagList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DirectoryServiceMicrosoftADVPCSettings represents the AWS::DirectoryService::MicrosoftAD.VpcSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html
 type DirectoryServiceMicrosoftADVPCSettings struct {
@@ -3502,7 +3795,6 @@ func (l *DirectoryServiceMicrosoftADVPCSettingsList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // DirectoryServiceSimpleADVPCSettings represents the AWS::DirectoryService::SimpleAD.VpcSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html
 type DirectoryServiceSimpleADVPCSettings struct {
@@ -3531,7 +3823,6 @@ func (l *DirectoryServiceSimpleADVPCSettingsList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // DynamoDBTableAttributeDefinition represents the AWS::DynamoDB::Table.AttributeDefinition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html
 type DynamoDBTableAttributeDefinition struct {
@@ -3560,7 +3851,6 @@ func (l *DynamoDBTableAttributeDefinitionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DynamoDBTableGlobalSecondaryIndex represents the AWS::DynamoDB::Table.GlobalSecondaryIndex CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html
 type DynamoDBTableGlobalSecondaryIndex struct {
@@ -3593,7 +3883,6 @@ func (l *DynamoDBTableGlobalSecondaryIndexList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // DynamoDBTableKeySchema represents the AWS::DynamoDB::Table.KeySchema CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html
 type DynamoDBTableKeySchema struct {
@@ -3622,7 +3911,6 @@ func (l *DynamoDBTableKeySchemaList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DynamoDBTableLocalSecondaryIndex represents the AWS::DynamoDB::Table.LocalSecondaryIndex CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html
 type DynamoDBTableLocalSecondaryIndex struct {
@@ -3653,7 +3941,6 @@ func (l *DynamoDBTableLocalSecondaryIndexList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DynamoDBTableProjection represents the AWS::DynamoDB::Table.Projection CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html
 type DynamoDBTableProjection struct {
@@ -3682,7 +3969,6 @@ func (l *DynamoDBTableProjectionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // DynamoDBTableProvisionedThroughput represents the AWS::DynamoDB::Table.ProvisionedThroughput CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html
 type DynamoDBTableProvisionedThroughput struct {
@@ -3711,7 +3997,6 @@ func (l *DynamoDBTableProvisionedThroughputList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // DynamoDBTableStreamSpecification represents the AWS::DynamoDB::Table.StreamSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html
 type DynamoDBTableStreamSpecification struct {
@@ -3738,7 +4023,34 @@ func (l *DynamoDBTableStreamSpecificationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// DynamoDBTableTimeToLiveSpecification represents the AWS::DynamoDB::Table.TimeToLiveSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html
+type DynamoDBTableTimeToLiveSpecification struct {
+	// AttributeName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html#cfn-dynamodb-timetolivespecification-attributename
+	AttributeName *StringExpr `json:"AttributeName,omitempty" validate:"dive,required"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html#cfn-dynamodb-timetolivespecification-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
+}
 
+// DynamoDBTableTimeToLiveSpecificationList represents a list of DynamoDBTableTimeToLiveSpecification
+type DynamoDBTableTimeToLiveSpecificationList []DynamoDBTableTimeToLiveSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *DynamoDBTableTimeToLiveSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := DynamoDBTableTimeToLiveSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = DynamoDBTableTimeToLiveSpecificationList{item}
+		return nil
+	}
+	list := []DynamoDBTableTimeToLiveSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = DynamoDBTableTimeToLiveSpecificationList(list)
+		return nil
+	}
+	return err
+}
 // EC2InstanceAssociationParameter represents the AWS::EC2::Instance.AssociationParameter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations-associationparameters.html
 type EC2InstanceAssociationParameter struct {
@@ -3767,7 +4079,6 @@ func (l *EC2InstanceAssociationParameterList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstanceBlockDeviceMapping represents the AWS::EC2::Instance.BlockDeviceMapping CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-mapping.html
 type EC2InstanceBlockDeviceMapping struct {
@@ -3800,7 +4111,6 @@ func (l *EC2InstanceBlockDeviceMappingList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstanceEbs represents the AWS::EC2::Instance.Ebs CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html
 type EC2InstanceEbs struct {
@@ -3837,7 +4147,6 @@ func (l *EC2InstanceEbsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstanceInstanceIPv6Address represents the AWS::EC2::Instance.InstanceIpv6Address CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-instanceipv6address.html
 type EC2InstanceInstanceIPv6Address struct {
@@ -3864,7 +4173,6 @@ func (l *EC2InstanceInstanceIPv6AddressList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstanceNetworkInterface represents the AWS::EC2::Instance.NetworkInterface CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-iface-embedded.html
 type EC2InstanceNetworkInterface struct {
@@ -3913,7 +4221,6 @@ func (l *EC2InstanceNetworkInterfaceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstanceNoDevice represents the AWS::EC2::Instance.NoDevice CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-nodevice.html
 type EC2InstanceNoDevice struct {
@@ -3938,7 +4245,6 @@ func (l *EC2InstanceNoDeviceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstancePrivateIPAddressSpecification represents the AWS::EC2::Instance.PrivateIpAddressSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html
 type EC2InstancePrivateIPAddressSpecification struct {
@@ -3967,7 +4273,6 @@ func (l *EC2InstancePrivateIPAddressSpecificationList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // EC2InstanceSsmAssociation represents the AWS::EC2::Instance.SsmAssociation CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html
 type EC2InstanceSsmAssociation struct {
@@ -3996,7 +4301,6 @@ func (l *EC2InstanceSsmAssociationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2InstanceVolume represents the AWS::EC2::Instance.Volume CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-mount-point.html
 type EC2InstanceVolume struct {
@@ -4025,7 +4329,6 @@ func (l *EC2InstanceVolumeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2NetworkACLEntryIcmp represents the AWS::EC2::NetworkAclEntry.Icmp CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html
 type EC2NetworkACLEntryIcmp struct {
@@ -4054,7 +4357,6 @@ func (l *EC2NetworkACLEntryIcmpList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2NetworkACLEntryPortRange represents the AWS::EC2::NetworkAclEntry.PortRange CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html
 type EC2NetworkACLEntryPortRange struct {
@@ -4083,7 +4385,6 @@ func (l *EC2NetworkACLEntryPortRangeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2NetworkInterfaceInstanceIPv6Address represents the AWS::EC2::NetworkInterface.InstanceIpv6Address CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-instanceipv6address.html
 type EC2NetworkInterfaceInstanceIPv6Address struct {
@@ -4110,7 +4411,6 @@ func (l *EC2NetworkInterfaceInstanceIPv6AddressList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // EC2NetworkInterfacePrivateIPAddressSpecification represents the AWS::EC2::NetworkInterface.PrivateIpAddressSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html
 type EC2NetworkInterfacePrivateIPAddressSpecification struct {
@@ -4139,7 +4439,6 @@ func (l *EC2NetworkInterfacePrivateIPAddressSpecificationList) UnmarshalJSON(buf
 	}
 	return err
 }
-
 // EC2SecurityGroupEgressProperty represents the AWS::EC2::SecurityGroup.Egress CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html
 type EC2SecurityGroupEgressProperty struct {
@@ -4178,7 +4477,6 @@ func (l *EC2SecurityGroupEgressPropertyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SecurityGroupIngressProperty represents the AWS::EC2::SecurityGroup.Ingress CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html
 type EC2SecurityGroupIngressProperty struct {
@@ -4219,7 +4517,6 @@ func (l *EC2SecurityGroupIngressPropertyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SpotFleetBlockDeviceMapping represents the AWS::EC2::SpotFleet.BlockDeviceMapping CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html
 type EC2SpotFleetBlockDeviceMapping struct {
@@ -4252,7 +4549,6 @@ func (l *EC2SpotFleetBlockDeviceMappingList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SpotFleetEbsBlockDevice represents the AWS::EC2::SpotFleet.EbsBlockDevice CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html
 type EC2SpotFleetEbsBlockDevice struct {
@@ -4289,7 +4585,6 @@ func (l *EC2SpotFleetEbsBlockDeviceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SpotFleetGroupIDentifier represents the AWS::EC2::SpotFleet.GroupIdentifier CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html
 type EC2SpotFleetGroupIDentifier struct {
@@ -4316,7 +4611,6 @@ func (l *EC2SpotFleetGroupIDentifierList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SpotFleetIamInstanceProfileSpecification represents the AWS::EC2::SpotFleet.IamInstanceProfileSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html
 type EC2SpotFleetIamInstanceProfileSpecification struct {
@@ -4343,7 +4637,6 @@ func (l *EC2SpotFleetIamInstanceProfileSpecificationList) UnmarshalJSON(buf []by
 	}
 	return err
 }
-
 // EC2SpotFleetInstanceIPv6Address represents the AWS::EC2::SpotFleet.InstanceIpv6Address CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html
 type EC2SpotFleetInstanceIPv6Address struct {
@@ -4370,7 +4663,6 @@ func (l *EC2SpotFleetInstanceIPv6AddressList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SpotFleetInstanceNetworkInterfaceSpecification represents the AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html
 type EC2SpotFleetInstanceNetworkInterfaceSpecification struct {
@@ -4417,7 +4709,6 @@ func (l *EC2SpotFleetInstanceNetworkInterfaceSpecificationList) UnmarshalJSON(bu
 	}
 	return err
 }
-
 // EC2SpotFleetPrivateIPAddressSpecification represents the AWS::EC2::SpotFleet.PrivateIpAddressSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html
 type EC2SpotFleetPrivateIPAddressSpecification struct {
@@ -4446,7 +4737,6 @@ func (l *EC2SpotFleetPrivateIPAddressSpecificationList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // EC2SpotFleetSpotFleetLaunchSpecification represents the AWS::EC2::SpotFleet.SpotFleetLaunchSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html
 type EC2SpotFleetSpotFleetLaunchSpecification struct {
@@ -4503,7 +4793,6 @@ func (l *EC2SpotFleetSpotFleetLaunchSpecificationList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // EC2SpotFleetSpotFleetMonitoring represents the AWS::EC2::SpotFleet.SpotFleetMonitoring CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html
 type EC2SpotFleetSpotFleetMonitoring struct {
@@ -4530,7 +4819,6 @@ func (l *EC2SpotFleetSpotFleetMonitoringList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EC2SpotFleetSpotFleetRequestConfigData represents the AWS::EC2::SpotFleet.SpotFleetRequestConfigData CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html
 type EC2SpotFleetSpotFleetRequestConfigData struct {
@@ -4577,7 +4865,6 @@ func (l *EC2SpotFleetSpotFleetRequestConfigDataList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // EC2SpotFleetSpotPlacement represents the AWS::EC2::SpotFleet.SpotPlacement CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html
 type EC2SpotFleetSpotPlacement struct {
@@ -4606,7 +4893,6 @@ func (l *EC2SpotFleetSpotPlacementList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSServiceDeploymentConfiguration represents the AWS::ECS::Service.DeploymentConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html
 type ECSServiceDeploymentConfiguration struct {
@@ -4635,7 +4921,6 @@ func (l *ECSServiceDeploymentConfigurationList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // ECSServiceLoadBalancer represents the AWS::ECS::Service.LoadBalancer CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html
 type ECSServiceLoadBalancer struct {
@@ -4668,7 +4953,6 @@ func (l *ECSServiceLoadBalancerList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSServicePlacementConstraint represents the AWS::ECS::Service.PlacementConstraint CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html
 type ECSServicePlacementConstraint struct {
@@ -4697,7 +4981,6 @@ func (l *ECSServicePlacementConstraintList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSServicePlacementStrategy represents the AWS::ECS::Service.PlacementStrategy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html
 type ECSServicePlacementStrategy struct {
@@ -4726,7 +5009,6 @@ func (l *ECSServicePlacementStrategyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionContainerDefinition represents the AWS::ECS::TaskDefinition.ContainerDefinition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
 type ECSTaskDefinitionContainerDefinition struct {
@@ -4803,7 +5085,6 @@ func (l *ECSTaskDefinitionContainerDefinitionList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // ECSTaskDefinitionHostEntry represents the AWS::ECS::TaskDefinition.HostEntry CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html
 type ECSTaskDefinitionHostEntry struct {
@@ -4832,7 +5113,6 @@ func (l *ECSTaskDefinitionHostEntryList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionHostVolumeProperties represents the AWS::ECS::TaskDefinition.HostVolumeProperties CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes-host.html
 type ECSTaskDefinitionHostVolumeProperties struct {
@@ -4859,7 +5139,6 @@ func (l *ECSTaskDefinitionHostVolumePropertiesList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // ECSTaskDefinitionKeyValuePair represents the AWS::ECS::TaskDefinition.KeyValuePair CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html
 type ECSTaskDefinitionKeyValuePair struct {
@@ -4888,7 +5167,6 @@ func (l *ECSTaskDefinitionKeyValuePairList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionLogConfiguration represents the AWS::ECS::TaskDefinition.LogConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html
 type ECSTaskDefinitionLogConfiguration struct {
@@ -4917,7 +5195,6 @@ func (l *ECSTaskDefinitionLogConfigurationList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // ECSTaskDefinitionMountPoint represents the AWS::ECS::TaskDefinition.MountPoint CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html
 type ECSTaskDefinitionMountPoint struct {
@@ -4948,7 +5225,6 @@ func (l *ECSTaskDefinitionMountPointList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionPortMapping represents the AWS::ECS::TaskDefinition.PortMapping CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html
 type ECSTaskDefinitionPortMapping struct {
@@ -4979,7 +5255,6 @@ func (l *ECSTaskDefinitionPortMappingList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionTaskDefinitionPlacementConstraint represents the AWS::ECS::TaskDefinition.TaskDefinitionPlacementConstraint CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-taskdefinitionplacementconstraint.html
 type ECSTaskDefinitionTaskDefinitionPlacementConstraint struct {
@@ -5008,7 +5283,6 @@ func (l *ECSTaskDefinitionTaskDefinitionPlacementConstraintList) UnmarshalJSON(b
 	}
 	return err
 }
-
 // ECSTaskDefinitionUlimit represents the AWS::ECS::TaskDefinition.Ulimit CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html
 type ECSTaskDefinitionUlimit struct {
@@ -5039,7 +5313,6 @@ func (l *ECSTaskDefinitionUlimitList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionVolume represents the AWS::ECS::TaskDefinition.Volume CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html
 type ECSTaskDefinitionVolume struct {
@@ -5068,7 +5341,6 @@ func (l *ECSTaskDefinitionVolumeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ECSTaskDefinitionVolumeFrom represents the AWS::ECS::TaskDefinition.VolumeFrom CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html
 type ECSTaskDefinitionVolumeFrom struct {
@@ -5097,7 +5369,6 @@ func (l *ECSTaskDefinitionVolumeFromList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EFSFileSystemElasticFileSystemTag represents the AWS::EFS::FileSystem.ElasticFileSystemTag CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemtags.html
 type EFSFileSystemElasticFileSystemTag struct {
@@ -5126,7 +5397,6 @@ func (l *EFSFileSystemElasticFileSystemTagList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // EMRClusterApplication represents the AWS::EMR::Cluster.Application CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-application.html
 type EMRClusterApplication struct {
@@ -5159,7 +5429,6 @@ func (l *EMRClusterApplicationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterAutoScalingPolicy represents the AWS::EMR::Cluster.AutoScalingPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoscalingpolicy.html
 type EMRClusterAutoScalingPolicy struct {
@@ -5188,7 +5457,6 @@ func (l *EMRClusterAutoScalingPolicyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterBootstrapActionConfig represents the AWS::EMR::Cluster.BootstrapActionConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig.html
 type EMRClusterBootstrapActionConfig struct {
@@ -5217,7 +5485,6 @@ func (l *EMRClusterBootstrapActionConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterCloudWatchAlarmDefinition represents the AWS::EMR::Cluster.CloudWatchAlarmDefinition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-cloudwatchalarmdefinition.html
 type EMRClusterCloudWatchAlarmDefinition struct {
@@ -5260,7 +5527,6 @@ func (l *EMRClusterCloudWatchAlarmDefinitionList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // EMRClusterConfiguration represents the AWS::EMR::Cluster.Configuration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html
 type EMRClusterConfiguration struct {
@@ -5291,7 +5557,6 @@ func (l *EMRClusterConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterEbsBlockDeviceConfig represents the AWS::EMR::Cluster.EbsBlockDeviceConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
 type EMRClusterEbsBlockDeviceConfig struct {
@@ -5320,7 +5585,6 @@ func (l *EMRClusterEbsBlockDeviceConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterEbsConfiguration represents the AWS::EMR::Cluster.EbsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html
 type EMRClusterEbsConfiguration struct {
@@ -5349,7 +5613,6 @@ func (l *EMRClusterEbsConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterInstanceFleetConfig represents the AWS::EMR::Cluster.InstanceFleetConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html
 type EMRClusterInstanceFleetConfig struct {
@@ -5384,7 +5647,6 @@ func (l *EMRClusterInstanceFleetConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterInstanceFleetProvisioningSpecifications represents the AWS::EMR::Cluster.InstanceFleetProvisioningSpecifications CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html
 type EMRClusterInstanceFleetProvisioningSpecifications struct {
@@ -5411,7 +5673,6 @@ func (l *EMRClusterInstanceFleetProvisioningSpecificationsList) UnmarshalJSON(bu
 	}
 	return err
 }
-
 // EMRClusterInstanceGroupConfig represents the AWS::EMR::Cluster.InstanceGroupConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html
 type EMRClusterInstanceGroupConfig struct {
@@ -5452,7 +5713,6 @@ func (l *EMRClusterInstanceGroupConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterInstanceTypeConfig represents the AWS::EMR::Cluster.InstanceTypeConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html
 type EMRClusterInstanceTypeConfig struct {
@@ -5489,7 +5749,6 @@ func (l *EMRClusterInstanceTypeConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterJobFlowInstancesConfig represents the AWS::EMR::Cluster.JobFlowInstancesConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig.html
 type EMRClusterJobFlowInstancesConfig struct {
@@ -5542,7 +5801,6 @@ func (l *EMRClusterJobFlowInstancesConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterMetricDimension represents the AWS::EMR::Cluster.MetricDimension CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-metricdimension.html
 type EMRClusterMetricDimension struct {
@@ -5571,7 +5829,6 @@ func (l *EMRClusterMetricDimensionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterPlacementType represents the AWS::EMR::Cluster.PlacementType CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-placementtype.html
 type EMRClusterPlacementType struct {
@@ -5598,7 +5855,6 @@ func (l *EMRClusterPlacementTypeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterScalingAction represents the AWS::EMR::Cluster.ScalingAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingaction.html
 type EMRClusterScalingAction struct {
@@ -5627,7 +5883,6 @@ func (l *EMRClusterScalingActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterScalingConstraints represents the AWS::EMR::Cluster.ScalingConstraints CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingconstraints.html
 type EMRClusterScalingConstraints struct {
@@ -5656,7 +5911,6 @@ func (l *EMRClusterScalingConstraintsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterScalingRule represents the AWS::EMR::Cluster.ScalingRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingrule.html
 type EMRClusterScalingRule struct {
@@ -5689,7 +5943,6 @@ func (l *EMRClusterScalingRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterScalingTrigger represents the AWS::EMR::Cluster.ScalingTrigger CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingtrigger.html
 type EMRClusterScalingTrigger struct {
@@ -5716,7 +5969,6 @@ func (l *EMRClusterScalingTriggerList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRClusterScriptBootstrapActionConfig represents the AWS::EMR::Cluster.ScriptBootstrapActionConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html
 type EMRClusterScriptBootstrapActionConfig struct {
@@ -5745,7 +5997,6 @@ func (l *EMRClusterScriptBootstrapActionConfigList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // EMRClusterSimpleScalingPolicyConfiguration represents the AWS::EMR::Cluster.SimpleScalingPolicyConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-simplescalingpolicyconfiguration.html
 type EMRClusterSimpleScalingPolicyConfiguration struct {
@@ -5776,7 +6027,6 @@ func (l *EMRClusterSimpleScalingPolicyConfigurationList) UnmarshalJSON(buf []byt
 	}
 	return err
 }
-
 // EMRClusterSpotProvisioningSpecification represents the AWS::EMR::Cluster.SpotProvisioningSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html
 type EMRClusterSpotProvisioningSpecification struct {
@@ -5807,7 +6057,6 @@ func (l *EMRClusterSpotProvisioningSpecificationList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // EMRClusterVolumeSpecification represents the AWS::EMR::Cluster.VolumeSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html
 type EMRClusterVolumeSpecification struct {
@@ -5838,7 +6087,6 @@ func (l *EMRClusterVolumeSpecificationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigConfiguration represents the AWS::EMR::InstanceFleetConfig.Configuration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-configuration.html
 type EMRInstanceFleetConfigConfiguration struct {
@@ -5869,7 +6117,6 @@ func (l *EMRInstanceFleetConfigConfigurationList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigEbsBlockDeviceConfig represents the AWS::EMR::InstanceFleetConfig.EbsBlockDeviceConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html
 type EMRInstanceFleetConfigEbsBlockDeviceConfig struct {
@@ -5898,7 +6145,6 @@ func (l *EMRInstanceFleetConfigEbsBlockDeviceConfigList) UnmarshalJSON(buf []byt
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigEbsConfiguration represents the AWS::EMR::InstanceFleetConfig.EbsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsconfiguration.html
 type EMRInstanceFleetConfigEbsConfiguration struct {
@@ -5927,7 +6173,6 @@ func (l *EMRInstanceFleetConfigEbsConfigurationList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigInstanceFleetProvisioningSpecifications represents the AWS::EMR::InstanceFleetConfig.InstanceFleetProvisioningSpecifications CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html
 type EMRInstanceFleetConfigInstanceFleetProvisioningSpecifications struct {
@@ -5954,7 +6199,6 @@ func (l *EMRInstanceFleetConfigInstanceFleetProvisioningSpecificationsList) Unma
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigInstanceTypeConfig represents the AWS::EMR::InstanceFleetConfig.InstanceTypeConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html
 type EMRInstanceFleetConfigInstanceTypeConfig struct {
@@ -5991,7 +6235,6 @@ func (l *EMRInstanceFleetConfigInstanceTypeConfigList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigSpotProvisioningSpecification represents the AWS::EMR::InstanceFleetConfig.SpotProvisioningSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html
 type EMRInstanceFleetConfigSpotProvisioningSpecification struct {
@@ -6022,7 +6265,6 @@ func (l *EMRInstanceFleetConfigSpotProvisioningSpecificationList) UnmarshalJSON(
 	}
 	return err
 }
-
 // EMRInstanceFleetConfigVolumeSpecification represents the AWS::EMR::InstanceFleetConfig.VolumeSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html
 type EMRInstanceFleetConfigVolumeSpecification struct {
@@ -6053,7 +6295,6 @@ func (l *EMRInstanceFleetConfigVolumeSpecificationList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigAutoScalingPolicy represents the AWS::EMR::InstanceGroupConfig.AutoScalingPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-autoscalingpolicy.html
 type EMRInstanceGroupConfigAutoScalingPolicy struct {
@@ -6082,7 +6323,6 @@ func (l *EMRInstanceGroupConfigAutoScalingPolicyList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigCloudWatchAlarmDefinition represents the AWS::EMR::InstanceGroupConfig.CloudWatchAlarmDefinition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-cloudwatchalarmdefinition.html
 type EMRInstanceGroupConfigCloudWatchAlarmDefinition struct {
@@ -6125,7 +6365,6 @@ func (l *EMRInstanceGroupConfigCloudWatchAlarmDefinitionList) UnmarshalJSON(buf 
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigConfiguration represents the AWS::EMR::InstanceGroupConfig.Configuration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html
 type EMRInstanceGroupConfigConfiguration struct {
@@ -6156,7 +6395,6 @@ func (l *EMRInstanceGroupConfigConfigurationList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigEbsBlockDeviceConfig represents the AWS::EMR::InstanceGroupConfig.EbsBlockDeviceConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
 type EMRInstanceGroupConfigEbsBlockDeviceConfig struct {
@@ -6185,7 +6423,6 @@ func (l *EMRInstanceGroupConfigEbsBlockDeviceConfigList) UnmarshalJSON(buf []byt
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigEbsConfiguration represents the AWS::EMR::InstanceGroupConfig.EbsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html
 type EMRInstanceGroupConfigEbsConfiguration struct {
@@ -6214,7 +6451,6 @@ func (l *EMRInstanceGroupConfigEbsConfigurationList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigMetricDimension represents the AWS::EMR::InstanceGroupConfig.MetricDimension CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-metricdimension.html
 type EMRInstanceGroupConfigMetricDimension struct {
@@ -6243,7 +6479,6 @@ func (l *EMRInstanceGroupConfigMetricDimensionList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigScalingAction represents the AWS::EMR::InstanceGroupConfig.ScalingAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingaction.html
 type EMRInstanceGroupConfigScalingAction struct {
@@ -6272,7 +6507,6 @@ func (l *EMRInstanceGroupConfigScalingActionList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigScalingConstraints represents the AWS::EMR::InstanceGroupConfig.ScalingConstraints CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingconstraints.html
 type EMRInstanceGroupConfigScalingConstraints struct {
@@ -6301,7 +6535,6 @@ func (l *EMRInstanceGroupConfigScalingConstraintsList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigScalingRule represents the AWS::EMR::InstanceGroupConfig.ScalingRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingrule.html
 type EMRInstanceGroupConfigScalingRule struct {
@@ -6334,7 +6567,6 @@ func (l *EMRInstanceGroupConfigScalingRuleList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigScalingTrigger represents the AWS::EMR::InstanceGroupConfig.ScalingTrigger CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingtrigger.html
 type EMRInstanceGroupConfigScalingTrigger struct {
@@ -6361,7 +6593,6 @@ func (l *EMRInstanceGroupConfigScalingTriggerList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigSimpleScalingPolicyConfiguration represents the AWS::EMR::InstanceGroupConfig.SimpleScalingPolicyConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration.html
 type EMRInstanceGroupConfigSimpleScalingPolicyConfiguration struct {
@@ -6392,7 +6623,6 @@ func (l *EMRInstanceGroupConfigSimpleScalingPolicyConfigurationList) UnmarshalJS
 	}
 	return err
 }
-
 // EMRInstanceGroupConfigVolumeSpecification represents the AWS::EMR::InstanceGroupConfig.VolumeSpecification CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html
 type EMRInstanceGroupConfigVolumeSpecification struct {
@@ -6423,7 +6653,6 @@ func (l *EMRInstanceGroupConfigVolumeSpecificationList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // EMRStepHadoopJarStepConfig represents the AWS::EMR::Step.HadoopJarStepConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html
 type EMRStepHadoopJarStepConfig struct {
@@ -6456,7 +6685,6 @@ func (l *EMRStepHadoopJarStepConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // EMRStepKeyValue represents the AWS::EMR::Step.KeyValue CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html
 type EMRStepKeyValue struct {
@@ -6485,7 +6713,6 @@ func (l *EMRStepKeyValueList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ElastiCacheReplicationGroupNodeGroupConfiguration represents the AWS::ElastiCache::ReplicationGroup.NodeGroupConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html
 type ElastiCacheReplicationGroupNodeGroupConfiguration struct {
@@ -6518,7 +6745,6 @@ func (l *ElastiCacheReplicationGroupNodeGroupConfigurationList) UnmarshalJSON(bu
 	}
 	return err
 }
-
 // ElasticBeanstalkApplicationVersionSourceBundle represents the AWS::ElasticBeanstalk::ApplicationVersion.SourceBundle CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-sourcebundle.html
 type ElasticBeanstalkApplicationVersionSourceBundle struct {
@@ -6547,7 +6773,6 @@ func (l *ElasticBeanstalkApplicationVersionSourceBundleList) UnmarshalJSON(buf [
 	}
 	return err
 }
-
 // ElasticBeanstalkConfigurationTemplateConfigurationOptionSetting represents the AWS::ElasticBeanstalk::ConfigurationTemplate.ConfigurationOptionSetting CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html
 type ElasticBeanstalkConfigurationTemplateConfigurationOptionSetting struct {
@@ -6578,7 +6803,6 @@ func (l *ElasticBeanstalkConfigurationTemplateConfigurationOptionSettingList) Un
 	}
 	return err
 }
-
 // ElasticBeanstalkConfigurationTemplateSourceConfiguration represents the AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-configurationtemplate-sourceconfiguration.html
 type ElasticBeanstalkConfigurationTemplateSourceConfiguration struct {
@@ -6607,7 +6831,6 @@ func (l *ElasticBeanstalkConfigurationTemplateSourceConfigurationList) Unmarshal
 	}
 	return err
 }
-
 // ElasticBeanstalkEnvironmentOptionSettings represents the AWS::ElasticBeanstalk::Environment.OptionSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html
 type ElasticBeanstalkEnvironmentOptionSettings struct {
@@ -6638,7 +6861,6 @@ func (l *ElasticBeanstalkEnvironmentOptionSettingsList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // ElasticBeanstalkEnvironmentTier represents the AWS::ElasticBeanstalk::Environment.Tier CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html
 type ElasticBeanstalkEnvironmentTier struct {
@@ -6669,7 +6891,6 @@ func (l *ElasticBeanstalkEnvironmentTierList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerAccessLoggingPolicy represents the AWS::ElasticLoadBalancing::LoadBalancer.AccessLoggingPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html
 type ElasticLoadBalancingLoadBalancerAccessLoggingPolicy struct {
@@ -6702,7 +6923,6 @@ func (l *ElasticLoadBalancingLoadBalancerAccessLoggingPolicyList) UnmarshalJSON(
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerAppCookieStickinessPolicy represents the AWS::ElasticLoadBalancing::LoadBalancer.AppCookieStickinessPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-AppCookieStickinessPolicy.html
 type ElasticLoadBalancingLoadBalancerAppCookieStickinessPolicy struct {
@@ -6731,7 +6951,6 @@ func (l *ElasticLoadBalancingLoadBalancerAppCookieStickinessPolicyList) Unmarsha
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerConnectionDrainingPolicy represents the AWS::ElasticLoadBalancing::LoadBalancer.ConnectionDrainingPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html
 type ElasticLoadBalancingLoadBalancerConnectionDrainingPolicy struct {
@@ -6760,7 +6979,6 @@ func (l *ElasticLoadBalancingLoadBalancerConnectionDrainingPolicyList) Unmarshal
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerConnectionSettings represents the AWS::ElasticLoadBalancing::LoadBalancer.ConnectionSettings CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html
 type ElasticLoadBalancingLoadBalancerConnectionSettings struct {
@@ -6787,7 +7005,6 @@ func (l *ElasticLoadBalancingLoadBalancerConnectionSettingsList) UnmarshalJSON(b
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerHealthCheck represents the AWS::ElasticLoadBalancing::LoadBalancer.HealthCheck CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html
 type ElasticLoadBalancingLoadBalancerHealthCheck struct {
@@ -6822,7 +7039,6 @@ func (l *ElasticLoadBalancingLoadBalancerHealthCheckList) UnmarshalJSON(buf []by
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerLBCookieStickinessPolicy represents the AWS::ElasticLoadBalancing::LoadBalancer.LBCookieStickinessPolicy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-LBCookieStickinessPolicy.html
 type ElasticLoadBalancingLoadBalancerLBCookieStickinessPolicy struct {
@@ -6851,7 +7067,6 @@ func (l *ElasticLoadBalancingLoadBalancerLBCookieStickinessPolicyList) Unmarshal
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerListeners represents the AWS::ElasticLoadBalancing::LoadBalancer.Listeners CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html
 type ElasticLoadBalancingLoadBalancerListeners struct {
@@ -6888,7 +7103,6 @@ func (l *ElasticLoadBalancingLoadBalancerListenersList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // ElasticLoadBalancingLoadBalancerPolicies represents the AWS::ElasticLoadBalancing::LoadBalancer.Policies CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html
 type ElasticLoadBalancingLoadBalancerPolicies struct {
@@ -6923,7 +7137,6 @@ func (l *ElasticLoadBalancingLoadBalancerPoliciesList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2ListenerAction represents the AWS::ElasticLoadBalancingV2::Listener.Action CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html
 type ElasticLoadBalancingV2ListenerAction struct {
@@ -6952,7 +7165,6 @@ func (l *ElasticLoadBalancingV2ListenerActionList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2ListenerCertificate represents the AWS::ElasticLoadBalancingV2::Listener.Certificate CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html
 type ElasticLoadBalancingV2ListenerCertificate struct {
@@ -6979,7 +7191,6 @@ func (l *ElasticLoadBalancingV2ListenerCertificateList) UnmarshalJSON(buf []byte
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2ListenerRuleAction represents the AWS::ElasticLoadBalancingV2::ListenerRule.Action CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html
 type ElasticLoadBalancingV2ListenerRuleAction struct {
@@ -7008,7 +7219,6 @@ func (l *ElasticLoadBalancingV2ListenerRuleActionList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2ListenerRuleRuleCondition represents the AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html
 type ElasticLoadBalancingV2ListenerRuleRuleCondition struct {
@@ -7037,7 +7247,6 @@ func (l *ElasticLoadBalancingV2ListenerRuleRuleConditionList) UnmarshalJSON(buf 
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2LoadBalancerLoadBalancerAttribute represents the AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html
 type ElasticLoadBalancingV2LoadBalancerLoadBalancerAttribute struct {
@@ -7066,7 +7275,6 @@ func (l *ElasticLoadBalancingV2LoadBalancerLoadBalancerAttributeList) UnmarshalJ
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2TargetGroupMatcher represents the AWS::ElasticLoadBalancingV2::TargetGroup.Matcher CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html
 type ElasticLoadBalancingV2TargetGroupMatcher struct {
@@ -7093,7 +7301,6 @@ func (l *ElasticLoadBalancingV2TargetGroupMatcherList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2TargetGroupTargetDescription represents the AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html
 type ElasticLoadBalancingV2TargetGroupTargetDescription struct {
@@ -7122,7 +7329,6 @@ func (l *ElasticLoadBalancingV2TargetGroupTargetDescriptionList) UnmarshalJSON(b
 	}
 	return err
 }
-
 // ElasticLoadBalancingV2TargetGroupTargetGroupAttribute represents the AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html
 type ElasticLoadBalancingV2TargetGroupTargetGroupAttribute struct {
@@ -7151,7 +7357,6 @@ func (l *ElasticLoadBalancingV2TargetGroupTargetGroupAttributeList) UnmarshalJSO
 	}
 	return err
 }
-
 // ElasticsearchDomainEBSOptions represents the AWS::Elasticsearch::Domain.EBSOptions CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html
 type ElasticsearchDomainEBSOptions struct {
@@ -7184,7 +7389,6 @@ func (l *ElasticsearchDomainEBSOptionsList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // ElasticsearchDomainElasticsearchClusterConfig represents the AWS::Elasticsearch::Domain.ElasticsearchClusterConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html
 type ElasticsearchDomainElasticsearchClusterConfig struct {
@@ -7221,7 +7425,6 @@ func (l *ElasticsearchDomainElasticsearchClusterConfigList) UnmarshalJSON(buf []
 	}
 	return err
 }
-
 // ElasticsearchDomainSnapshotOptions represents the AWS::Elasticsearch::Domain.SnapshotOptions CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html
 type ElasticsearchDomainSnapshotOptions struct {
@@ -7248,7 +7451,6 @@ func (l *ElasticsearchDomainSnapshotOptionsList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // EventsRuleTarget represents the AWS::Events::Rule.Target CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html
 type EventsRuleTarget struct {
@@ -7283,7 +7485,6 @@ func (l *EventsRuleTargetList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // GameLiftAliasRoutingStrategy represents the AWS::GameLift::Alias.RoutingStrategy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html
 type GameLiftAliasRoutingStrategy struct {
@@ -7314,7 +7515,6 @@ func (l *GameLiftAliasRoutingStrategyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // GameLiftBuildS3Location represents the AWS::GameLift::Build.S3Location CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html
 type GameLiftBuildS3Location struct {
@@ -7345,7 +7545,6 @@ func (l *GameLiftBuildS3LocationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // GameLiftFleetIPPermission represents the AWS::GameLift::Fleet.IpPermission CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ec2inboundpermission.html
 type GameLiftFleetIPPermission struct {
@@ -7378,7 +7577,6 @@ func (l *GameLiftFleetIPPermissionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IAMGroupPolicy represents the AWS::IAM::Group.Policy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html
 type IAMGroupPolicy struct {
@@ -7407,7 +7605,6 @@ func (l *IAMGroupPolicyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IAMRolePolicy represents the AWS::IAM::Role.Policy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html
 type IAMRolePolicy struct {
@@ -7436,7 +7633,6 @@ func (l *IAMRolePolicyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IAMUserLoginProfile represents the AWS::IAM::User.LoginProfile CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html
 type IAMUserLoginProfile struct {
@@ -7465,7 +7661,6 @@ func (l *IAMUserLoginProfileList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IAMUserPolicy represents the AWS::IAM::User.Policy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html
 type IAMUserPolicy struct {
@@ -7494,7 +7689,6 @@ func (l *IAMUserPolicyList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTThingAttributePayload represents the AWS::IoT::Thing.AttributePayload CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thing-attributepayload.html
 type IoTThingAttributePayload struct {
@@ -7521,7 +7715,6 @@ func (l *IoTThingAttributePayloadList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleAction represents the AWS::IoT::TopicRule.Action CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html
 type IoTTopicRuleAction struct {
@@ -7531,6 +7724,8 @@ type IoTTopicRuleAction struct {
 	CloudwatchMetric *IoTTopicRuleCloudwatchMetricAction `json:"CloudwatchMetric,omitempty"`
 	// DynamoDB docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-dynamodb
 	DynamoDB *IoTTopicRuleDynamoDBAction `json:"DynamoDB,omitempty"`
+	// DynamoDBv2 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-dynamodbv2
+	DynamoDBv2 *IoTTopicRuleDynamoDBv2Action `json:"DynamoDBv2,omitempty"`
 	// Elasticsearch docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-elasticsearch
 	Elasticsearch *IoTTopicRuleElasticsearchAction `json:"Elasticsearch,omitempty"`
 	// Firehose docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-firehose
@@ -7568,7 +7763,6 @@ func (l *IoTTopicRuleActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleCloudwatchAlarmAction represents the AWS::IoT::TopicRule.CloudwatchAlarmAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html
 type IoTTopicRuleCloudwatchAlarmAction struct {
@@ -7601,7 +7795,6 @@ func (l *IoTTopicRuleCloudwatchAlarmActionList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // IoTTopicRuleCloudwatchMetricAction represents the AWS::IoT::TopicRule.CloudwatchMetricAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html
 type IoTTopicRuleCloudwatchMetricAction struct {
@@ -7638,7 +7831,6 @@ func (l *IoTTopicRuleCloudwatchMetricActionList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // IoTTopicRuleDynamoDBAction represents the AWS::IoT::TopicRule.DynamoDBAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html
 type IoTTopicRuleDynamoDBAction struct {
@@ -7681,7 +7873,34 @@ func (l *IoTTopicRuleDynamoDBActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// IoTTopicRuleDynamoDBv2Action represents the AWS::IoT::TopicRule.DynamoDBv2Action CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodbv2.html
+type IoTTopicRuleDynamoDBv2Action struct {
+	// PutItem docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodbv2.html#cfn-iot-dynamodbv2-putitem
+	PutItem *IoTTopicRulePutItemInput `json:"PutItem,omitempty"`
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodbv2.html#cfn-iot-dynamodbv2-rolearn
+	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+}
 
+// IoTTopicRuleDynamoDBv2ActionList represents a list of IoTTopicRuleDynamoDBv2Action
+type IoTTopicRuleDynamoDBv2ActionList []IoTTopicRuleDynamoDBv2Action
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTTopicRuleDynamoDBv2ActionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTTopicRuleDynamoDBv2Action{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTTopicRuleDynamoDBv2ActionList{item}
+		return nil
+	}
+	list := []IoTTopicRuleDynamoDBv2Action{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTTopicRuleDynamoDBv2ActionList(list)
+		return nil
+	}
+	return err
+}
 // IoTTopicRuleElasticsearchAction represents the AWS::IoT::TopicRule.ElasticsearchAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html
 type IoTTopicRuleElasticsearchAction struct {
@@ -7716,7 +7935,6 @@ func (l *IoTTopicRuleElasticsearchActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleFirehoseAction represents the AWS::IoT::TopicRule.FirehoseAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html
 type IoTTopicRuleFirehoseAction struct {
@@ -7747,7 +7965,6 @@ func (l *IoTTopicRuleFirehoseActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleKinesisAction represents the AWS::IoT::TopicRule.KinesisAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html
 type IoTTopicRuleKinesisAction struct {
@@ -7778,7 +7995,6 @@ func (l *IoTTopicRuleKinesisActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleLambdaAction represents the AWS::IoT::TopicRule.LambdaAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-lambda.html
 type IoTTopicRuleLambdaAction struct {
@@ -7805,7 +8021,32 @@ func (l *IoTTopicRuleLambdaActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// IoTTopicRulePutItemInput represents the AWS::IoT::TopicRule.PutItemInput CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-iot-dynamodbv2-putitem.html
+type IoTTopicRulePutItemInput struct {
+	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-iot-dynamodbv2-putitem.html#cfn-iot-dynamodbv2-putitem-tablename
+	TableName *StringExpr `json:"TableName,omitempty" validate:"dive,required"`
+}
 
+// IoTTopicRulePutItemInputList represents a list of IoTTopicRulePutItemInput
+type IoTTopicRulePutItemInputList []IoTTopicRulePutItemInput
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *IoTTopicRulePutItemInputList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := IoTTopicRulePutItemInput{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = IoTTopicRulePutItemInputList{item}
+		return nil
+	}
+	list := []IoTTopicRulePutItemInput{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = IoTTopicRulePutItemInputList(list)
+		return nil
+	}
+	return err
+}
 // IoTTopicRuleRepublishAction represents the AWS::IoT::TopicRule.RepublishAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-republish.html
 type IoTTopicRuleRepublishAction struct {
@@ -7834,7 +8075,6 @@ func (l *IoTTopicRuleRepublishActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleS3Action represents the AWS::IoT::TopicRule.S3Action CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html
 type IoTTopicRuleS3Action struct {
@@ -7865,7 +8105,6 @@ func (l *IoTTopicRuleS3ActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleSnsAction represents the AWS::IoT::TopicRule.SnsAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html
 type IoTTopicRuleSnsAction struct {
@@ -7896,7 +8135,6 @@ func (l *IoTTopicRuleSnsActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleSqsAction represents the AWS::IoT::TopicRule.SqsAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html
 type IoTTopicRuleSqsAction struct {
@@ -7927,7 +8165,6 @@ func (l *IoTTopicRuleSqsActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // IoTTopicRuleTopicRulePayload represents the AWS::IoT::TopicRule.TopicRulePayload CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html
 type IoTTopicRuleTopicRulePayload struct {
@@ -7962,7 +8199,6 @@ func (l *IoTTopicRuleTopicRulePayloadList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationCSVMappingParameters represents the AWS::KinesisAnalytics::Application.CSVMappingParameters CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-csvmappingparameters.html
 type KinesisAnalyticsApplicationCSVMappingParameters struct {
@@ -7991,7 +8227,6 @@ func (l *KinesisAnalyticsApplicationCSVMappingParametersList) UnmarshalJSON(buf 
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationInput represents the AWS::KinesisAnalytics::Application.Input CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html
 type KinesisAnalyticsApplicationInput struct {
@@ -8026,7 +8261,6 @@ func (l *KinesisAnalyticsApplicationInputList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationInputParallelism represents the AWS::KinesisAnalytics::Application.InputParallelism CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html
 type KinesisAnalyticsApplicationInputParallelism struct {
@@ -8053,7 +8287,6 @@ func (l *KinesisAnalyticsApplicationInputParallelismList) UnmarshalJSON(buf []by
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationInputSchema represents the AWS::KinesisAnalytics::Application.InputSchema CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputschema.html
 type KinesisAnalyticsApplicationInputSchema struct {
@@ -8084,7 +8317,6 @@ func (l *KinesisAnalyticsApplicationInputSchemaList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationJSONMappingParameters represents the AWS::KinesisAnalytics::Application.JSONMappingParameters CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-jsonmappingparameters.html
 type KinesisAnalyticsApplicationJSONMappingParameters struct {
@@ -8111,7 +8343,6 @@ func (l *KinesisAnalyticsApplicationJSONMappingParametersList) UnmarshalJSON(buf
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationKinesisFirehoseInput represents the AWS::KinesisAnalytics::Application.KinesisFirehoseInput CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisfirehoseinput.html
 type KinesisAnalyticsApplicationKinesisFirehoseInput struct {
@@ -8140,7 +8371,6 @@ func (l *KinesisAnalyticsApplicationKinesisFirehoseInputList) UnmarshalJSON(buf 
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationKinesisStreamsInput represents the AWS::KinesisAnalytics::Application.KinesisStreamsInput CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisstreamsinput.html
 type KinesisAnalyticsApplicationKinesisStreamsInput struct {
@@ -8169,7 +8399,6 @@ func (l *KinesisAnalyticsApplicationKinesisStreamsInputList) UnmarshalJSON(buf [
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationMappingParameters represents the AWS::KinesisAnalytics::Application.MappingParameters CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-mappingparameters.html
 type KinesisAnalyticsApplicationMappingParameters struct {
@@ -8198,7 +8427,6 @@ func (l *KinesisAnalyticsApplicationMappingParametersList) UnmarshalJSON(buf []b
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationRecordColumn represents the AWS::KinesisAnalytics::Application.RecordColumn CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordcolumn.html
 type KinesisAnalyticsApplicationRecordColumn struct {
@@ -8229,7 +8457,6 @@ func (l *KinesisAnalyticsApplicationRecordColumnList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationRecordFormat represents the AWS::KinesisAnalytics::Application.RecordFormat CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordformat.html
 type KinesisAnalyticsApplicationRecordFormat struct {
@@ -8258,7 +8485,6 @@ func (l *KinesisAnalyticsApplicationRecordFormatList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationOutputDestinationSchema represents the AWS::KinesisAnalytics::ApplicationOutput.DestinationSchema CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-destinationschema.html
 type KinesisAnalyticsApplicationOutputDestinationSchema struct {
@@ -8285,7 +8511,6 @@ func (l *KinesisAnalyticsApplicationOutputDestinationSchemaList) UnmarshalJSON(b
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationOutputKinesisFirehoseOutput represents the AWS::KinesisAnalytics::ApplicationOutput.KinesisFirehoseOutput CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisfirehoseoutput.html
 type KinesisAnalyticsApplicationOutputKinesisFirehoseOutput struct {
@@ -8314,7 +8539,6 @@ func (l *KinesisAnalyticsApplicationOutputKinesisFirehoseOutputList) UnmarshalJS
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationOutputKinesisStreamsOutput represents the AWS::KinesisAnalytics::ApplicationOutput.KinesisStreamsOutput CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisstreamsoutput.html
 type KinesisAnalyticsApplicationOutputKinesisStreamsOutput struct {
@@ -8343,7 +8567,6 @@ func (l *KinesisAnalyticsApplicationOutputKinesisStreamsOutputList) UnmarshalJSO
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationOutputOutput represents the AWS::KinesisAnalytics::ApplicationOutput.Output CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html
 type KinesisAnalyticsApplicationOutputOutput struct {
@@ -8376,7 +8599,6 @@ func (l *KinesisAnalyticsApplicationOutputOutputList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceCSVMappingParameters represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.CSVMappingParameters CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-csvmappingparameters.html
 type KinesisAnalyticsApplicationReferenceDataSourceCSVMappingParameters struct {
@@ -8405,7 +8627,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceCSVMappingParametersList)
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceJSONMappingParameters represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.JSONMappingParameters CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-jsonmappingparameters.html
 type KinesisAnalyticsApplicationReferenceDataSourceJSONMappingParameters struct {
@@ -8432,7 +8653,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceJSONMappingParametersList
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceMappingParameters represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.MappingParameters CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-mappingparameters.html
 type KinesisAnalyticsApplicationReferenceDataSourceMappingParameters struct {
@@ -8461,7 +8681,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceMappingParametersList) Un
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceRecordColumn represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordColumn CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordcolumn.html
 type KinesisAnalyticsApplicationReferenceDataSourceRecordColumn struct {
@@ -8492,7 +8711,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceRecordColumnList) Unmarsh
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceRecordFormat represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordFormat CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordformat.html
 type KinesisAnalyticsApplicationReferenceDataSourceRecordFormat struct {
@@ -8521,7 +8739,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceRecordFormatList) Unmarsh
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceReferenceDataSource represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceDataSource CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referencedatasource.html
 type KinesisAnalyticsApplicationReferenceDataSourceReferenceDataSource struct {
@@ -8552,7 +8769,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceReferenceDataSourceList) 
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceReferenceSchema represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceSchema CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referenceschema.html
 type KinesisAnalyticsApplicationReferenceDataSourceReferenceSchema struct {
@@ -8583,7 +8799,6 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceReferenceSchemaList) Unma
 	}
 	return err
 }
-
 // KinesisAnalyticsApplicationReferenceDataSourceS3ReferenceDataSource represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource.S3ReferenceDataSource CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-s3referencedatasource.html
 type KinesisAnalyticsApplicationReferenceDataSourceS3ReferenceDataSource struct {
@@ -8614,13 +8829,12 @@ func (l *KinesisAnalyticsApplicationReferenceDataSourceS3ReferenceDataSourceList
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamBufferingHints represents the AWS::KinesisFirehose::DeliveryStream.BufferingHints CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html
 type KinesisFirehoseDeliveryStreamBufferingHints struct {
-	// IntervalInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints-intervalinseconds
+	// IntervalInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html#cfn-kinesisfirehose-deliverystream-bufferinghints-intervalinseconds
 	IntervalInSeconds *IntegerExpr `json:"IntervalInSeconds,omitempty" validate:"dive,required"`
-	// SizeInMBs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints-sizeinmbs
+	// SizeInMBs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html#cfn-kinesisfirehose-deliverystream-bufferinghints-sizeinmbs
 	SizeInMBs *IntegerExpr `json:"SizeInMBs,omitempty" validate:"dive,required"`
 }
 
@@ -8643,15 +8857,14 @@ func (l *KinesisFirehoseDeliveryStreamBufferingHintsList) UnmarshalJSON(buf []by
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamCloudWatchLoggingOptions represents the AWS::KinesisFirehose::DeliveryStream.CloudWatchLoggingOptions CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html
 type KinesisFirehoseDeliveryStreamCloudWatchLoggingOptions struct {
-	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html#cfn-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions-enabled
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html#cfn-kinesisfirehose-deliverystream-cloudwatchloggingoptions-enabled
 	Enabled *BoolExpr `json:"Enabled,omitempty"`
-	// LogGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html#cfn-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions-loggroupname
+	// LogGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html#cfn-kinesisfirehose-deliverystream-cloudwatchloggingoptions-loggroupname
 	LogGroupName *StringExpr `json:"LogGroupName,omitempty"`
-	// LogStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html#cfn-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions-logstreamname
+	// LogStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html#cfn-kinesisfirehose-deliverystream-cloudwatchloggingoptions-logstreamname
 	LogStreamName *StringExpr `json:"LogStreamName,omitempty"`
 }
 
@@ -8674,15 +8887,14 @@ func (l *KinesisFirehoseDeliveryStreamCloudWatchLoggingOptionsList) UnmarshalJSO
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamCopyCommand represents the AWS::KinesisFirehose::DeliveryStream.CopyCommand CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html
 type KinesisFirehoseDeliveryStreamCopyCommand struct {
-	// CopyOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand-copyoptions
+	// CopyOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html#cfn-kinesisfirehose-deliverystream-copycommand-copyoptions
 	CopyOptions *StringExpr `json:"CopyOptions,omitempty"`
-	// DataTableColumns docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand-datatablecolumns
+	// DataTableColumns docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html#cfn-kinesisfirehose-deliverystream-copycommand-datatablecolumns
 	DataTableColumns *StringExpr `json:"DataTableColumns,omitempty"`
-	// DataTableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand-datatablename
+	// DataTableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html#cfn-kinesisfirehose-deliverystream-copycommand-datatablename
 	DataTableName *StringExpr `json:"DataTableName,omitempty" validate:"dive,required"`
 }
 
@@ -8705,13 +8917,12 @@ func (l *KinesisFirehoseDeliveryStreamCopyCommandList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamElasticsearchBufferingHints represents the AWS::KinesisFirehose::DeliveryStream.ElasticsearchBufferingHints CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html
 type KinesisFirehoseDeliveryStreamElasticsearchBufferingHints struct {
-	// IntervalInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints-intervalinseconds
+	// IntervalInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html#cfn-kinesisfirehose-deliverystream-elasticsearchbufferinghints-intervalinseconds
 	IntervalInSeconds *IntegerExpr `json:"IntervalInSeconds,omitempty" validate:"dive,required"`
-	// SizeInMBs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints-sizeinmbs
+	// SizeInMBs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html#cfn-kinesisfirehose-deliverystream-elasticsearchbufferinghints-sizeinmbs
 	SizeInMBs *IntegerExpr `json:"SizeInMBs,omitempty" validate:"dive,required"`
 }
 
@@ -8734,31 +8945,30 @@ func (l *KinesisFirehoseDeliveryStreamElasticsearchBufferingHintsList) Unmarshal
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration represents the AWS::KinesisFirehose::DeliveryStream.ElasticsearchDestinationConfiguration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html
 type KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration struct {
-	// BufferingHints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints
+	// BufferingHints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-bufferinghints
 	BufferingHints *KinesisFirehoseDeliveryStreamElasticsearchBufferingHints `json:"BufferingHints,omitempty" validate:"dive,required"`
-	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-cloudwatchloggingoptions
+	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-cloudwatchloggingoptions
 	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
-	// DomainARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-domainarn
+	// DomainARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-domainarn
 	DomainARN *StringExpr `json:"DomainARN,omitempty" validate:"dive,required"`
-	// IndexName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-indexname
+	// IndexName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-indexname
 	IndexName *StringExpr `json:"IndexName,omitempty" validate:"dive,required"`
-	// IndexRotationPeriod docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-indexrotationperiod
+	// IndexRotationPeriod docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-indexrotationperiod
 	IndexRotationPeriod *StringExpr `json:"IndexRotationPeriod,omitempty" validate:"dive,required"`
-	// ProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration
+	// ProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-processingconfiguration
 	ProcessingConfiguration *KinesisFirehoseDeliveryStreamProcessingConfiguration `json:"ProcessingConfiguration,omitempty"`
-	// RetryOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions
+	// RetryOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-retryoptions
 	RetryOptions *KinesisFirehoseDeliveryStreamElasticsearchRetryOptions `json:"RetryOptions,omitempty" validate:"dive,required"`
-	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-rolearn
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-rolearn
 	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
-	// S3BackupMode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-s3backupmode
+	// S3BackupMode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-s3backupmode
 	S3BackupMode *StringExpr `json:"S3BackupMode,omitempty" validate:"dive,required"`
-	// S3Configuration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-s3configuration
+	// S3Configuration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-s3configuration
 	S3Configuration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3Configuration,omitempty" validate:"dive,required"`
-	// TypeName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-typename
+	// TypeName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration-typename
 	TypeName *StringExpr `json:"TypeName,omitempty" validate:"dive,required"`
 }
 
@@ -8781,11 +8991,10 @@ func (l *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfigurationList)
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamElasticsearchRetryOptions represents the AWS::KinesisFirehose::DeliveryStream.ElasticsearchRetryOptions CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchretryoptions.html
 type KinesisFirehoseDeliveryStreamElasticsearchRetryOptions struct {
-	// DurationInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions.html#cfn-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions-durationinseconds
+	// DurationInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchretryoptions.html#cfn-kinesisfirehose-deliverystream-elasticsearchretryoptions-durationinseconds
 	DurationInSeconds *IntegerExpr `json:"DurationInSeconds,omitempty" validate:"dive,required"`
 }
 
@@ -8808,13 +9017,12 @@ func (l *KinesisFirehoseDeliveryStreamElasticsearchRetryOptionsList) UnmarshalJS
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamEncryptionConfiguration represents the AWS::KinesisFirehose::DeliveryStream.EncryptionConfiguration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-encryptionconfiguration.html
 type KinesisFirehoseDeliveryStreamEncryptionConfiguration struct {
-	// KMSEncryptionConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig
+	// KMSEncryptionConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-encryptionconfiguration.html#cfn-kinesisfirehose-deliverystream-encryptionconfiguration-kmsencryptionconfig
 	KMSEncryptionConfig *KinesisFirehoseDeliveryStreamKMSEncryptionConfig `json:"KMSEncryptionConfig,omitempty"`
-	// NoEncryptionConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-noencryptionconfig
+	// NoEncryptionConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-encryptionconfiguration.html#cfn-kinesisfirehose-deliverystream-encryptionconfiguration-noencryptionconfig
 	NoEncryptionConfig *StringExpr `json:"NoEncryptionConfig,omitempty"`
 }
 
@@ -8837,29 +9045,28 @@ func (l *KinesisFirehoseDeliveryStreamEncryptionConfigurationList) UnmarshalJSON
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamExtendedS3DestinationConfiguration represents the AWS::KinesisFirehose::DeliveryStream.ExtendedS3DestinationConfiguration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html
 type KinesisFirehoseDeliveryStreamExtendedS3DestinationConfiguration struct {
-	// BucketARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bucketarn
+	// BucketARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-bucketarn
 	BucketARN *StringExpr `json:"BucketARN,omitempty" validate:"dive,required"`
-	// BufferingHints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints
+	// BufferingHints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-bufferinghints
 	BufferingHints *KinesisFirehoseDeliveryStreamBufferingHints `json:"BufferingHints,omitempty" validate:"dive,required"`
-	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-cloudwatchloggingoptions
+	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-cloudwatchloggingoptions
 	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
-	// CompressionFormat docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-compressionformat
+	// CompressionFormat docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-compressionformat
 	CompressionFormat *StringExpr `json:"CompressionFormat,omitempty" validate:"dive,required"`
-	// EncryptionConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration
+	// EncryptionConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-encryptionconfiguration
 	EncryptionConfiguration *KinesisFirehoseDeliveryStreamEncryptionConfiguration `json:"EncryptionConfiguration,omitempty"`
-	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-prefix
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-prefix
 	Prefix *StringExpr `json:"Prefix,omitempty" validate:"dive,required"`
-	// ProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration
+	// ProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-processingconfiguration
 	ProcessingConfiguration *KinesisFirehoseDeliveryStreamProcessingConfiguration `json:"ProcessingConfiguration,omitempty"`
-	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-rolearn
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-rolearn
 	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
-	// S3BackupConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration
+	// S3BackupConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-s3backupconfiguration
 	S3BackupConfiguration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3BackupConfiguration,omitempty"`
-	// S3BackupMode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3backupmode
+	// S3BackupMode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-s3backupmode
 	S3BackupMode *StringExpr `json:"S3BackupMode,omitempty"`
 }
 
@@ -8882,11 +9089,10 @@ func (l *KinesisFirehoseDeliveryStreamExtendedS3DestinationConfigurationList) Un
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamKMSEncryptionConfig represents the AWS::KinesisFirehose::DeliveryStream.KMSEncryptionConfig CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kmsencryptionconfig.html
 type KinesisFirehoseDeliveryStreamKMSEncryptionConfig struct {
-	// AWSKMSKeyARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig-awskmskeyarn
+	// AWSKMSKeyARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kmsencryptionconfig.html#cfn-kinesisfirehose-deliverystream-kmsencryptionconfig-awskmskeyarn
 	AWSKMSKeyARN *StringExpr `json:"AWSKMSKeyARN,omitempty" validate:"dive,required"`
 }
 
@@ -8909,13 +9115,12 @@ func (l *KinesisFirehoseDeliveryStreamKMSEncryptionConfigList) UnmarshalJSON(buf
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamProcessingConfiguration represents the AWS::KinesisFirehose::DeliveryStream.ProcessingConfiguration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-processingconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html
 type KinesisFirehoseDeliveryStreamProcessingConfiguration struct {
-	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-processingconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration-enabled
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html#cfn-kinesisfirehose-deliverystream-processingconfiguration-enabled
 	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
-	// Processors docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-processingconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration-processors
+	// Processors docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html#cfn-kinesisfirehose-deliverystream-processingconfiguration-processors
 	Processors *KinesisFirehoseDeliveryStreamProcessorList `json:"Processors,omitempty" validate:"dive,required"`
 }
 
@@ -8938,13 +9143,12 @@ func (l *KinesisFirehoseDeliveryStreamProcessingConfigurationList) UnmarshalJSON
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamProcessor represents the AWS::KinesisFirehose::DeliveryStream.Processor CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-processingConfiguration-processor.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processor.html
 type KinesisFirehoseDeliveryStreamProcessor struct {
-	// Parameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-processingConfiguration-processor.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration-processor-parameter
+	// Parameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processor.html#cfn-kinesisfirehose-deliverystream-processor-parameters
 	Parameters *KinesisFirehoseDeliveryStreamProcessorParameterList `json:"Parameters,omitempty" validate:"dive,required"`
-	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-processingConfiguration-processor.html#cfn-kinesisfirehose-kinesisdeliverystream-processingConfiguration-processor-type
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processor.html#cfn-kinesisfirehose-deliverystream-processor-type
 	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
 }
 
@@ -8967,13 +9171,12 @@ func (l *KinesisFirehoseDeliveryStreamProcessorList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamProcessorParameter represents the AWS::KinesisFirehose::DeliveryStream.ProcessorParameter CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-ProcessingConfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processorparameter.html
 type KinesisFirehoseDeliveryStreamProcessorParameter struct {
-	// ParameterName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-ProcessingConfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration-processor-parameter-parameterName
+	// ParameterName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processorparameter.html#cfn-kinesisfirehose-deliverystream-processorparameter-parametername
 	ParameterName *StringExpr `json:"ParameterName,omitempty" validate:"dive,required"`
-	// ParameterValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-ProcessingConfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration-processor-parameter-parameterValue
+	// ParameterValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processorparameter.html#cfn-kinesisfirehose-deliverystream-processorparameter-parametervalue
 	ParameterValue *StringExpr `json:"ParameterValue,omitempty" validate:"dive,required"`
 }
 
@@ -8996,25 +9199,24 @@ func (l *KinesisFirehoseDeliveryStreamProcessorParameterList) UnmarshalJSON(buf 
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration represents the AWS::KinesisFirehose::DeliveryStream.RedshiftDestinationConfiguration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html
 type KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration struct {
-	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-cloudwatchloggingoptions
+	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-cloudwatchloggingoptions
 	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
-	// ClusterJDBCURL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-clusterjdbcurl
+	// ClusterJDBCURL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-clusterjdbcurl
 	ClusterJDBCURL *StringExpr `json:"ClusterJDBCURL,omitempty" validate:"dive,required"`
-	// CopyCommand docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand
+	// CopyCommand docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-copycommand
 	CopyCommand *KinesisFirehoseDeliveryStreamCopyCommand `json:"CopyCommand,omitempty" validate:"dive,required"`
-	// Password docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-password
+	// Password docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-password
 	Password *StringExpr `json:"Password,omitempty" validate:"dive,required"`
-	// ProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-processingconfiguration
+	// ProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-processingconfiguration
 	ProcessingConfiguration *KinesisFirehoseDeliveryStreamProcessingConfiguration `json:"ProcessingConfiguration,omitempty"`
-	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-rolearn
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-rolearn
 	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
-	// S3Configuration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-s3configuration
+	// S3Configuration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-s3configuration
 	S3Configuration *KinesisFirehoseDeliveryStreamS3DestinationConfiguration `json:"S3Configuration,omitempty" validate:"dive,required"`
-	// Username docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-usename
+	// Username docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration-username
 	Username *StringExpr `json:"Username,omitempty" validate:"dive,required"`
 }
 
@@ -9037,23 +9239,22 @@ func (l *KinesisFirehoseDeliveryStreamRedshiftDestinationConfigurationList) Unma
 	}
 	return err
 }
-
 // KinesisFirehoseDeliveryStreamS3DestinationConfiguration represents the AWS::KinesisFirehose::DeliveryStream.S3DestinationConfiguration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html
 type KinesisFirehoseDeliveryStreamS3DestinationConfiguration struct {
-	// BucketARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bucketarn
+	// BucketARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-bucketarn
 	BucketARN *StringExpr `json:"BucketARN,omitempty" validate:"dive,required"`
-	// BufferingHints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints
+	// BufferingHints docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-bufferinghints
 	BufferingHints *KinesisFirehoseDeliveryStreamBufferingHints `json:"BufferingHints,omitempty" validate:"dive,required"`
-	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-cloudwatchloggingoptions
+	// CloudWatchLoggingOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-cloudwatchloggingoptions
 	CloudWatchLoggingOptions *KinesisFirehoseDeliveryStreamCloudWatchLoggingOptions `json:"CloudWatchLoggingOptions,omitempty"`
-	// CompressionFormat docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-compressionformat
+	// CompressionFormat docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-compressionformat
 	CompressionFormat *StringExpr `json:"CompressionFormat,omitempty" validate:"dive,required"`
-	// EncryptionConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration
+	// EncryptionConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-encryptionconfiguration
 	EncryptionConfiguration *KinesisFirehoseDeliveryStreamEncryptionConfiguration `json:"EncryptionConfiguration,omitempty"`
-	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-prefix
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-prefix
 	Prefix *StringExpr `json:"Prefix,omitempty" validate:"dive,required"`
-	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-rolearn
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration-rolearn
 	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
 }
 
@@ -9076,7 +9277,6 @@ func (l *KinesisFirehoseDeliveryStreamS3DestinationConfigurationList) UnmarshalJ
 	}
 	return err
 }
-
 // LambdaFunctionCode represents the AWS::Lambda::Function.Code CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
 type LambdaFunctionCode struct {
@@ -9109,7 +9309,6 @@ func (l *LambdaFunctionCodeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // LambdaFunctionDeadLetterConfig represents the AWS::Lambda::Function.DeadLetterConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html
 type LambdaFunctionDeadLetterConfig struct {
@@ -9136,7 +9335,6 @@ func (l *LambdaFunctionDeadLetterConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // LambdaFunctionEnvironment represents the AWS::Lambda::Function.Environment CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html
 type LambdaFunctionEnvironment struct {
@@ -9163,7 +9361,6 @@ func (l *LambdaFunctionEnvironmentList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // LambdaFunctionTracingConfig represents the AWS::Lambda::Function.TracingConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html
 type LambdaFunctionTracingConfig struct {
@@ -9190,7 +9387,6 @@ func (l *LambdaFunctionTracingConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // LambdaFunctionVPCConfig represents the AWS::Lambda::Function.VpcConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html
 type LambdaFunctionVPCConfig struct {
@@ -9219,7 +9415,6 @@ func (l *LambdaFunctionVPCConfigList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // LogsMetricFilterMetricTransformation represents the AWS::Logs::MetricFilter.MetricTransformation CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html
 type LogsMetricFilterMetricTransformation struct {
@@ -9250,7 +9445,6 @@ func (l *LogsMetricFilterMetricTransformationList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // OpsWorksAppDataSource represents the AWS::OpsWorks::App.DataSource CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html
 type OpsWorksAppDataSource struct {
@@ -9281,7 +9475,6 @@ func (l *OpsWorksAppDataSourceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksAppEnvironmentVariable represents the AWS::OpsWorks::App.EnvironmentVariable CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html
 type OpsWorksAppEnvironmentVariable struct {
@@ -9312,7 +9505,6 @@ func (l *OpsWorksAppEnvironmentVariableList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksAppSource represents the AWS::OpsWorks::App.Source CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html
 type OpsWorksAppSource struct {
@@ -9349,7 +9541,6 @@ func (l *OpsWorksAppSourceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksAppSslConfiguration represents the AWS::OpsWorks::App.SslConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html
 type OpsWorksAppSslConfiguration struct {
@@ -9380,7 +9571,6 @@ func (l *OpsWorksAppSslConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksInstanceBlockDeviceMapping represents the AWS::OpsWorks::Instance.BlockDeviceMapping CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html
 type OpsWorksInstanceBlockDeviceMapping struct {
@@ -9413,7 +9603,6 @@ func (l *OpsWorksInstanceBlockDeviceMappingList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // OpsWorksInstanceEbsBlockDevice represents the AWS::OpsWorks::Instance.EbsBlockDevice CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html
 type OpsWorksInstanceEbsBlockDevice struct {
@@ -9448,7 +9637,6 @@ func (l *OpsWorksInstanceEbsBlockDeviceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksInstanceTimeBasedAutoScaling represents the AWS::OpsWorks::Instance.TimeBasedAutoScaling CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html
 type OpsWorksInstanceTimeBasedAutoScaling struct {
@@ -9487,7 +9675,6 @@ func (l *OpsWorksInstanceTimeBasedAutoScalingList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-
 // OpsWorksLayerAutoScalingThresholds represents the AWS::OpsWorks::Layer.AutoScalingThresholds CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html
 type OpsWorksLayerAutoScalingThresholds struct {
@@ -9524,7 +9711,6 @@ func (l *OpsWorksLayerAutoScalingThresholdsList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // OpsWorksLayerLifecycleEventConfiguration represents the AWS::OpsWorks::Layer.LifecycleEventConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html
 type OpsWorksLayerLifecycleEventConfiguration struct {
@@ -9551,7 +9737,6 @@ func (l *OpsWorksLayerLifecycleEventConfigurationList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // OpsWorksLayerLoadBasedAutoScaling represents the AWS::OpsWorks::Layer.LoadBasedAutoScaling CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html
 type OpsWorksLayerLoadBasedAutoScaling struct {
@@ -9582,7 +9767,6 @@ func (l *OpsWorksLayerLoadBasedAutoScalingList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // OpsWorksLayerRecipes represents the AWS::OpsWorks::Layer.Recipes CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html
 type OpsWorksLayerRecipes struct {
@@ -9617,7 +9801,6 @@ func (l *OpsWorksLayerRecipesList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksLayerShutdownEventConfiguration represents the AWS::OpsWorks::Layer.ShutdownEventConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html
 type OpsWorksLayerShutdownEventConfiguration struct {
@@ -9646,7 +9829,6 @@ func (l *OpsWorksLayerShutdownEventConfigurationList) UnmarshalJSON(buf []byte) 
 	}
 	return err
 }
-
 // OpsWorksLayerVolumeConfiguration represents the AWS::OpsWorks::Layer.VolumeConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html
 type OpsWorksLayerVolumeConfiguration struct {
@@ -9683,7 +9865,6 @@ func (l *OpsWorksLayerVolumeConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksStackChefConfiguration represents the AWS::OpsWorks::Stack.ChefConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-chefconfiguration.html
 type OpsWorksStackChefConfiguration struct {
@@ -9712,7 +9893,6 @@ func (l *OpsWorksStackChefConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksStackElasticIP represents the AWS::OpsWorks::Stack.ElasticIp CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html
 type OpsWorksStackElasticIP struct {
@@ -9741,7 +9921,6 @@ func (l *OpsWorksStackElasticIPList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksStackRdsDbInstance represents the AWS::OpsWorks::Stack.RdsDbInstance CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html
 type OpsWorksStackRdsDbInstance struct {
@@ -9772,7 +9951,6 @@ func (l *OpsWorksStackRdsDbInstanceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksStackSource represents the AWS::OpsWorks::Stack.Source CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html
 type OpsWorksStackSource struct {
@@ -9809,7 +9987,6 @@ func (l *OpsWorksStackSourceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // OpsWorksStackStackConfigurationManager represents the AWS::OpsWorks::Stack.StackConfigurationManager CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html
 type OpsWorksStackStackConfigurationManager struct {
@@ -9838,7 +10015,6 @@ func (l *OpsWorksStackStackConfigurationManagerList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // RDSDBSecurityGroupIngressProperty represents the AWS::RDS::DBSecurityGroup.Ingress CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group-rule.html
 type RDSDBSecurityGroupIngressProperty struct {
@@ -9871,7 +10047,6 @@ func (l *RDSDBSecurityGroupIngressPropertyList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // RDSOptionGroupOptionConfiguration represents the AWS::RDS::OptionGroup.OptionConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations.html
 type RDSOptionGroupOptionConfiguration struct {
@@ -9906,7 +10081,6 @@ func (l *RDSOptionGroupOptionConfigurationList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // RDSOptionGroupOptionSetting represents the AWS::RDS::OptionGroup.OptionSetting CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations-optionsettings.html
 type RDSOptionGroupOptionSetting struct {
@@ -9935,7 +10109,6 @@ func (l *RDSOptionGroupOptionSettingList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // RedshiftClusterLoggingProperties represents the AWS::Redshift::Cluster.LoggingProperties CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-loggingproperties.html
 type RedshiftClusterLoggingProperties struct {
@@ -9964,7 +10137,6 @@ func (l *RedshiftClusterLoggingPropertiesList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // RedshiftClusterParameterGroupParameter represents the AWS::Redshift::ClusterParameterGroup.Parameter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-property-redshift-clusterparametergroup-parameter.html
 type RedshiftClusterParameterGroupParameter struct {
@@ -9993,7 +10165,6 @@ func (l *RedshiftClusterParameterGroupParameterList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // Route53HealthCheckAlarmIDentifier represents the AWS::Route53::HealthCheck.AlarmIdentifier CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html
 type Route53HealthCheckAlarmIDentifier struct {
@@ -10022,7 +10193,6 @@ func (l *Route53HealthCheckAlarmIDentifierList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // Route53HealthCheckHealthCheckConfig represents the AWS::Route53::HealthCheck.HealthCheckConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html
 type Route53HealthCheckHealthCheckConfig struct {
@@ -10077,7 +10247,6 @@ func (l *Route53HealthCheckHealthCheckConfigList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // Route53HealthCheckHealthCheckTag represents the AWS::Route53::HealthCheck.HealthCheckTag CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html
 type Route53HealthCheckHealthCheckTag struct {
@@ -10106,7 +10275,6 @@ func (l *Route53HealthCheckHealthCheckTagList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53HostedZoneHostedZoneConfig represents the AWS::Route53::HostedZone.HostedZoneConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzoneconfig.html
 type Route53HostedZoneHostedZoneConfig struct {
@@ -10133,7 +10301,6 @@ func (l *Route53HostedZoneHostedZoneConfigList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // Route53HostedZoneHostedZoneTag represents the AWS::Route53::HostedZone.HostedZoneTag CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html
 type Route53HostedZoneHostedZoneTag struct {
@@ -10162,7 +10329,6 @@ func (l *Route53HostedZoneHostedZoneTagList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53HostedZoneVPC represents the AWS::Route53::HostedZone.VPC CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html
 type Route53HostedZoneVPC struct {
@@ -10191,7 +10357,6 @@ func (l *Route53HostedZoneVPCList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53RecordSetAliasTarget represents the AWS::Route53::RecordSet.AliasTarget CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
 type Route53RecordSetAliasTarget struct {
@@ -10222,7 +10387,6 @@ func (l *Route53RecordSetAliasTargetList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53RecordSetGeoLocation represents the AWS::Route53::RecordSet.GeoLocation CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html
 type Route53RecordSetGeoLocation struct {
@@ -10253,7 +10417,6 @@ func (l *Route53RecordSetGeoLocationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53RecordSetGroupAliasTarget represents the AWS::Route53::RecordSetGroup.AliasTarget CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
 type Route53RecordSetGroupAliasTarget struct {
@@ -10284,7 +10447,6 @@ func (l *Route53RecordSetGroupAliasTargetList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53RecordSetGroupGeoLocation represents the AWS::Route53::RecordSetGroup.GeoLocation CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html
 type Route53RecordSetGroupGeoLocation struct {
@@ -10315,7 +10477,6 @@ func (l *Route53RecordSetGroupGeoLocationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // Route53RecordSetGroupRecordSet represents the AWS::Route53::RecordSetGroup.RecordSet CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html
 type Route53RecordSetGroupRecordSet struct {
@@ -10368,7 +10529,6 @@ func (l *Route53RecordSetGroupRecordSetList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketAbortIncompleteMultipartUpload represents the AWS::S3::Bucket.AbortIncompleteMultipartUpload CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html
 type S3BucketAbortIncompleteMultipartUpload struct {
@@ -10395,7 +10555,6 @@ func (l *S3BucketAbortIncompleteMultipartUploadList) UnmarshalJSON(buf []byte) e
 	}
 	return err
 }
-
 // S3BucketAccelerateConfiguration represents the AWS::S3::Bucket.AccelerateConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accelerateconfiguration.html
 type S3BucketAccelerateConfiguration struct {
@@ -10422,7 +10581,6 @@ func (l *S3BucketAccelerateConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketCorsConfiguration represents the AWS::S3::Bucket.CorsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html
 type S3BucketCorsConfiguration struct {
@@ -10449,7 +10607,6 @@ func (l *S3BucketCorsConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketCorsRule represents the AWS::S3::Bucket.CorsRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors-corsrule.html
 type S3BucketCorsRule struct {
@@ -10486,7 +10643,6 @@ func (l *S3BucketCorsRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketFilterRule represents the AWS::S3::Bucket.FilterRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html
 type S3BucketFilterRule struct {
@@ -10515,7 +10671,6 @@ func (l *S3BucketFilterRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketLambdaConfiguration represents the AWS::S3::Bucket.LambdaConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-lambdaconfig.html
 type S3BucketLambdaConfiguration struct {
@@ -10546,7 +10701,6 @@ func (l *S3BucketLambdaConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketLifecycleConfiguration represents the AWS::S3::Bucket.LifecycleConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig.html
 type S3BucketLifecycleConfiguration struct {
@@ -10573,7 +10727,6 @@ func (l *S3BucketLifecycleConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketLoggingConfiguration represents the AWS::S3::Bucket.LoggingConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfig.html
 type S3BucketLoggingConfiguration struct {
@@ -10602,7 +10755,36 @@ func (l *S3BucketLoggingConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// S3BucketMetricsConfiguration represents the AWS::S3::Bucket.MetricsConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html
+type S3BucketMetricsConfiguration struct {
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html#cfn-s3-bucket-metricsconfiguration-id
+	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html#cfn-s3-bucket-metricsconfiguration-prefix
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+	// TagFilters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html#cfn-s3-bucket-metricsconfiguration-tagfilters
+	TagFilters *S3BucketTagFilterList `json:"TagFilters,omitempty"`
+}
 
+// S3BucketMetricsConfigurationList represents a list of S3BucketMetricsConfiguration
+type S3BucketMetricsConfigurationList []S3BucketMetricsConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketMetricsConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketMetricsConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketMetricsConfigurationList{item}
+		return nil
+	}
+	list := []S3BucketMetricsConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketMetricsConfigurationList(list)
+		return nil
+	}
+	return err
+}
 // S3BucketNoncurrentVersionTransition represents the AWS::S3::Bucket.NoncurrentVersionTransition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html
 type S3BucketNoncurrentVersionTransition struct {
@@ -10631,7 +10813,6 @@ func (l *S3BucketNoncurrentVersionTransitionList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // S3BucketNotificationConfiguration represents the AWS::S3::Bucket.NotificationConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html
 type S3BucketNotificationConfiguration struct {
@@ -10662,7 +10843,6 @@ func (l *S3BucketNotificationConfigurationList) UnmarshalJSON(buf []byte) error 
 	}
 	return err
 }
-
 // S3BucketNotificationFilter represents the AWS::S3::Bucket.NotificationFilter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter.html
 type S3BucketNotificationFilter struct {
@@ -10689,7 +10869,6 @@ func (l *S3BucketNotificationFilterList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketQueueConfiguration represents the AWS::S3::Bucket.QueueConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-queueconfig.html
 type S3BucketQueueConfiguration struct {
@@ -10720,7 +10899,6 @@ func (l *S3BucketQueueConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketRedirectAllRequestsTo represents the AWS::S3::Bucket.RedirectAllRequestsTo CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-redirectallrequeststo.html
 type S3BucketRedirectAllRequestsTo struct {
@@ -10749,7 +10927,6 @@ func (l *S3BucketRedirectAllRequestsToList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketRedirectRule represents the AWS::S3::Bucket.RedirectRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-redirectrule.html
 type S3BucketRedirectRule struct {
@@ -10784,7 +10961,6 @@ func (l *S3BucketRedirectRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketReplicationConfiguration represents the AWS::S3::Bucket.ReplicationConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html
 type S3BucketReplicationConfiguration struct {
@@ -10813,7 +10989,6 @@ func (l *S3BucketReplicationConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketReplicationDestination represents the AWS::S3::Bucket.ReplicationDestination CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html
 type S3BucketReplicationDestination struct {
@@ -10842,7 +11017,6 @@ func (l *S3BucketReplicationDestinationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketReplicationRule represents the AWS::S3::Bucket.ReplicationRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html
 type S3BucketReplicationRule struct {
@@ -10875,7 +11049,6 @@ func (l *S3BucketReplicationRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketRoutingRule represents the AWS::S3::Bucket.RoutingRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html
 type S3BucketRoutingRule struct {
@@ -10904,7 +11077,6 @@ func (l *S3BucketRoutingRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketRoutingRuleCondition represents the AWS::S3::Bucket.RoutingRuleCondition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-routingrulecondition.html
 type S3BucketRoutingRuleCondition struct {
@@ -10933,7 +11105,6 @@ func (l *S3BucketRoutingRuleConditionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketRule represents the AWS::S3::Bucket.Rule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html
 type S3BucketRule struct {
@@ -10982,7 +11153,6 @@ func (l *S3BucketRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketS3KeyFilter represents the AWS::S3::Bucket.S3KeyFilter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key.html
 type S3BucketS3KeyFilter struct {
@@ -11009,7 +11179,6 @@ func (l *S3BucketS3KeyFilterList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketTagFilter represents the AWS::S3::Bucket.TagFilter CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html
 type S3BucketTagFilter struct {
@@ -11038,7 +11207,6 @@ func (l *S3BucketTagFilterList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketTopicConfiguration represents the AWS::S3::Bucket.TopicConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-topicconfig.html
 type S3BucketTopicConfiguration struct {
@@ -11069,7 +11237,6 @@ func (l *S3BucketTopicConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketTransition represents the AWS::S3::Bucket.Transition CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-transition.html
 type S3BucketTransition struct {
@@ -11100,7 +11267,6 @@ func (l *S3BucketTransitionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketVersioningConfiguration represents the AWS::S3::Bucket.VersioningConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html
 type S3BucketVersioningConfiguration struct {
@@ -11127,7 +11293,6 @@ func (l *S3BucketVersioningConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // S3BucketWebsiteConfiguration represents the AWS::S3::Bucket.WebsiteConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html
 type S3BucketWebsiteConfiguration struct {
@@ -11160,7 +11325,6 @@ func (l *S3BucketWebsiteConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // SNSTopicSubscription represents the AWS::SNS::Topic.Subscription CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html
 type SNSTopicSubscription struct {
@@ -11189,7 +11353,6 @@ func (l *SNSTopicSubscriptionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // SSMAssociationParameterValues represents the AWS::SSM::Association.ParameterValues CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-parametervalues.html
 type SSMAssociationParameterValues struct {
@@ -11216,7 +11379,6 @@ func (l *SSMAssociationParameterValuesList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // SSMAssociationTarget represents the AWS::SSM::Association.Target CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html
 type SSMAssociationTarget struct {
@@ -11245,7 +11407,6 @@ func (l *SSMAssociationTargetList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFByteMatchSetByteMatchTuple represents the AWS::WAF::ByteMatchSet.ByteMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples.html
 type WAFByteMatchSetByteMatchTuple struct {
@@ -11280,7 +11441,6 @@ func (l *WAFByteMatchSetByteMatchTupleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFByteMatchSetFieldToMatch represents the AWS::WAF::ByteMatchSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html
 type WAFByteMatchSetFieldToMatch struct {
@@ -11309,7 +11469,6 @@ func (l *WAFByteMatchSetFieldToMatchList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFIPSetIPSetDescriptor represents the AWS::WAF::IPSet.IPSetDescriptor CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-ipset-ipsetdescriptors.html
 type WAFIPSetIPSetDescriptor struct {
@@ -11338,7 +11497,6 @@ func (l *WAFIPSetIPSetDescriptorList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFRulePredicate represents the AWS::WAF::Rule.Predicate CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-rule-predicates.html
 type WAFRulePredicate struct {
@@ -11369,7 +11527,6 @@ func (l *WAFRulePredicateList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFSizeConstraintSetFieldToMatch represents the AWS::WAF::SizeConstraintSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint-fieldtomatch.html
 type WAFSizeConstraintSetFieldToMatch struct {
@@ -11398,7 +11555,6 @@ func (l *WAFSizeConstraintSetFieldToMatchList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFSizeConstraintSetSizeConstraint represents the AWS::WAF::SizeConstraintSet.SizeConstraint CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint.html
 type WAFSizeConstraintSetSizeConstraint struct {
@@ -11431,7 +11587,6 @@ func (l *WAFSizeConstraintSetSizeConstraintList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // WAFSQLInjectionMatchSetFieldToMatch represents the AWS::WAF::SqlInjectionMatchSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html
 type WAFSQLInjectionMatchSetFieldToMatch struct {
@@ -11460,7 +11615,6 @@ func (l *WAFSQLInjectionMatchSetFieldToMatchList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // WAFSQLInjectionMatchSetSQLInjectionMatchTuple represents the AWS::WAF::SqlInjectionMatchSet.SqlInjectionMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples.html
 type WAFSQLInjectionMatchSetSQLInjectionMatchTuple struct {
@@ -11489,7 +11643,6 @@ func (l *WAFSQLInjectionMatchSetSQLInjectionMatchTupleList) UnmarshalJSON(buf []
 	}
 	return err
 }
-
 // WAFWebACLActivatedRule represents the AWS::WAF::WebACL.ActivatedRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-rules.html
 type WAFWebACLActivatedRule struct {
@@ -11520,7 +11673,6 @@ func (l *WAFWebACLActivatedRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFWebACLWafAction represents the AWS::WAF::WebACL.WafAction CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-action.html
 type WAFWebACLWafAction struct {
@@ -11547,7 +11699,6 @@ func (l *WAFWebACLWafActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFXSSMatchSetFieldToMatch represents the AWS::WAF::XssMatchSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple-fieldtomatch.html
 type WAFXSSMatchSetFieldToMatch struct {
@@ -11576,7 +11727,6 @@ func (l *WAFXSSMatchSetFieldToMatchList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFXSSMatchSetXSSMatchTuple represents the AWS::WAF::XssMatchSet.XssMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple.html
 type WAFXSSMatchSetXSSMatchTuple struct {
@@ -11605,7 +11755,6 @@ func (l *WAFXSSMatchSetXSSMatchTupleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFRegionalByteMatchSetByteMatchTuple represents the AWS::WAFRegional::ByteMatchSet.ByteMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-bytematchtuple.html
 type WAFRegionalByteMatchSetByteMatchTuple struct {
@@ -11640,7 +11789,6 @@ func (l *WAFRegionalByteMatchSetByteMatchTupleList) UnmarshalJSON(buf []byte) er
 	}
 	return err
 }
-
 // WAFRegionalByteMatchSetFieldToMatch represents the AWS::WAFRegional::ByteMatchSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-fieldtomatch.html
 type WAFRegionalByteMatchSetFieldToMatch struct {
@@ -11669,7 +11817,6 @@ func (l *WAFRegionalByteMatchSetFieldToMatchList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // WAFRegionalIPSetIPSetDescriptor represents the AWS::WAFRegional::IPSet.IPSetDescriptor CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-ipset-ipsetdescriptor.html
 type WAFRegionalIPSetIPSetDescriptor struct {
@@ -11698,7 +11845,6 @@ func (l *WAFRegionalIPSetIPSetDescriptorList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFRegionalRulePredicate represents the AWS::WAFRegional::Rule.Predicate CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-rule-predicate.html
 type WAFRegionalRulePredicate struct {
@@ -11729,7 +11875,6 @@ func (l *WAFRegionalRulePredicateList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFRegionalSizeConstraintSetFieldToMatch represents the AWS::WAFRegional::SizeConstraintSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-fieldtomatch.html
 type WAFRegionalSizeConstraintSetFieldToMatch struct {
@@ -11758,7 +11903,6 @@ func (l *WAFRegionalSizeConstraintSetFieldToMatchList) UnmarshalJSON(buf []byte)
 	}
 	return err
 }
-
 // WAFRegionalSizeConstraintSetSizeConstraint represents the AWS::WAFRegional::SizeConstraintSet.SizeConstraint CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-sizeconstraint.html
 type WAFRegionalSizeConstraintSetSizeConstraint struct {
@@ -11791,7 +11935,6 @@ func (l *WAFRegionalSizeConstraintSetSizeConstraintList) UnmarshalJSON(buf []byt
 	}
 	return err
 }
-
 // WAFRegionalSQLInjectionMatchSetFieldToMatch represents the AWS::WAFRegional::SqlInjectionMatchSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-fieldtomatch.html
 type WAFRegionalSQLInjectionMatchSetFieldToMatch struct {
@@ -11820,7 +11963,6 @@ func (l *WAFRegionalSQLInjectionMatchSetFieldToMatchList) UnmarshalJSON(buf []by
 	}
 	return err
 }
-
 // WAFRegionalSQLInjectionMatchSetSQLInjectionMatchTuple represents the AWS::WAFRegional::SqlInjectionMatchSet.SqlInjectionMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-sqlinjectionmatchtuple.html
 type WAFRegionalSQLInjectionMatchSetSQLInjectionMatchTuple struct {
@@ -11849,7 +11991,6 @@ func (l *WAFRegionalSQLInjectionMatchSetSQLInjectionMatchTupleList) UnmarshalJSO
 	}
 	return err
 }
-
 // WAFRegionalWebACLAction represents the AWS::WAFRegional::WebACL.Action CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-action.html
 type WAFRegionalWebACLAction struct {
@@ -11876,7 +12017,6 @@ func (l *WAFRegionalWebACLActionList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFRegionalWebACLRule represents the AWS::WAFRegional::WebACL.Rule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-rule.html
 type WAFRegionalWebACLRule struct {
@@ -11907,7 +12047,6 @@ func (l *WAFRegionalWebACLRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-
 // WAFRegionalXSSMatchSetFieldToMatch represents the AWS::WAFRegional::XssMatchSet.FieldToMatch CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-fieldtomatch.html
 type WAFRegionalXSSMatchSetFieldToMatch struct {
@@ -11936,7 +12075,6 @@ func (l *WAFRegionalXSSMatchSetFieldToMatchList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
-
 // WAFRegionalXSSMatchSetXSSMatchTuple represents the AWS::WAFRegional::XssMatchSet.XssMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-xssmatchtuple.html
 type WAFRegionalXSSMatchSetXSSMatchTuple struct {
@@ -11965,7 +12103,6 @@ func (l *WAFRegionalXSSMatchSetXSSMatchTupleList) UnmarshalJSON(buf []byte) erro
 	}
 	return err
 }
-
 // Tag represents the Tag CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html
 type Tag struct {
@@ -12015,7 +12152,6 @@ func (s APIGatewayAccount) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Account"
 }
-
 // APIGatewayAPIKey represents the AWS::ApiGateway::ApiKey CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html
 type APIGatewayAPIKey struct {
@@ -12034,7 +12170,6 @@ func (s APIGatewayAPIKey) CfnResourceType() string {
 
 	return "AWS::ApiGateway::ApiKey"
 }
-
 // APIGatewayAuthorizer represents the AWS::ApiGateway::Authorizer CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html
 type APIGatewayAuthorizer struct {
@@ -12063,7 +12198,6 @@ func (s APIGatewayAuthorizer) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Authorizer"
 }
-
 // APIGatewayBasePathMapping represents the AWS::ApiGateway::BasePathMapping CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html
 type APIGatewayBasePathMapping struct {
@@ -12082,7 +12216,6 @@ func (s APIGatewayBasePathMapping) CfnResourceType() string {
 
 	return "AWS::ApiGateway::BasePathMapping"
 }
-
 // APIGatewayClientCertificate represents the AWS::ApiGateway::ClientCertificate CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html
 type APIGatewayClientCertificate struct {
@@ -12095,7 +12228,6 @@ func (s APIGatewayClientCertificate) CfnResourceType() string {
 
 	return "AWS::ApiGateway::ClientCertificate"
 }
-
 // APIGatewayDeployment represents the AWS::ApiGateway::Deployment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html
 type APIGatewayDeployment struct {
@@ -12114,7 +12246,6 @@ func (s APIGatewayDeployment) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Deployment"
 }
-
 // APIGatewayDocumentationPart represents the AWS::ApiGateway::DocumentationPart CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html
 type APIGatewayDocumentationPart struct {
@@ -12131,7 +12262,6 @@ func (s APIGatewayDocumentationPart) CfnResourceType() string {
 
 	return "AWS::ApiGateway::DocumentationPart"
 }
-
 // APIGatewayDocumentationVersion represents the AWS::ApiGateway::DocumentationVersion CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html
 type APIGatewayDocumentationVersion struct {
@@ -12148,7 +12278,6 @@ func (s APIGatewayDocumentationVersion) CfnResourceType() string {
 
 	return "AWS::ApiGateway::DocumentationVersion"
 }
-
 // APIGatewayDomainName represents the AWS::ApiGateway::DomainName CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html
 type APIGatewayDomainName struct {
@@ -12163,7 +12292,26 @@ func (s APIGatewayDomainName) CfnResourceType() string {
 
 	return "AWS::ApiGateway::DomainName"
 }
+// APIGatewayGatewayResponse represents the AWS::ApiGateway::GatewayResponse CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html
+type APIGatewayGatewayResponse struct {
+	// ResponseParameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html#cfn-apigateway-gatewayresponse-responseparameters
+	ResponseParameters interface{} `json:"ResponseParameters,omitempty"`
+	// ResponseTemplates docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html#cfn-apigateway-gatewayresponse-responsetemplates
+	ResponseTemplates interface{} `json:"ResponseTemplates,omitempty"`
+	// ResponseType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html#cfn-apigateway-gatewayresponse-responsetype
+	ResponseType *StringExpr `json:"ResponseType,omitempty" validate:"dive,required"`
+	// RestAPIID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html#cfn-apigateway-gatewayresponse-restapiid
+	RestAPIID *StringExpr `json:"RestApiId,omitempty" validate:"dive,required"`
+	// StatusCode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html#cfn-apigateway-gatewayresponse-statuscode
+	StatusCode *StringExpr `json:"StatusCode,omitempty"`
+}
 
+// CfnResourceType returns AWS::ApiGateway::GatewayResponse to implement the ResourceProperties interface
+func (s APIGatewayGatewayResponse) CfnResourceType() string {
+
+	return "AWS::ApiGateway::GatewayResponse"
+}
 // APIGatewayMethod represents the AWS::ApiGateway::Method CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html
 type APIGatewayMethod struct {
@@ -12194,7 +12342,6 @@ func (s APIGatewayMethod) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Method"
 }
-
 // APIGatewayModel represents the AWS::ApiGateway::Model CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html
 type APIGatewayModel struct {
@@ -12215,7 +12362,6 @@ func (s APIGatewayModel) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Model"
 }
-
 // APIGatewayRequestValidator represents the AWS::ApiGateway::RequestValidator CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html
 type APIGatewayRequestValidator struct {
@@ -12234,7 +12380,6 @@ func (s APIGatewayRequestValidator) CfnResourceType() string {
 
 	return "AWS::ApiGateway::RequestValidator"
 }
-
 // APIGatewayResource represents the AWS::ApiGateway::Resource CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html
 type APIGatewayResource struct {
@@ -12251,7 +12396,6 @@ func (s APIGatewayResource) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Resource"
 }
-
 // APIGatewayRestAPI represents the AWS::ApiGateway::RestApi CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
 type APIGatewayRestAPI struct {
@@ -12280,7 +12424,6 @@ func (s APIGatewayRestAPI) CfnResourceType() string {
 
 	return "AWS::ApiGateway::RestApi"
 }
-
 // APIGatewayStage represents the AWS::ApiGateway::Stage CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html
 type APIGatewayStage struct {
@@ -12311,7 +12454,6 @@ func (s APIGatewayStage) CfnResourceType() string {
 
 	return "AWS::ApiGateway::Stage"
 }
-
 // APIGatewayUsagePlan represents the AWS::ApiGateway::UsagePlan CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html
 type APIGatewayUsagePlan struct {
@@ -12332,7 +12474,6 @@ func (s APIGatewayUsagePlan) CfnResourceType() string {
 
 	return "AWS::ApiGateway::UsagePlan"
 }
-
 // APIGatewayUsagePlanKey represents the AWS::ApiGateway::UsagePlanKey CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html
 type APIGatewayUsagePlanKey struct {
@@ -12349,7 +12490,6 @@ func (s APIGatewayUsagePlanKey) CfnResourceType() string {
 
 	return "AWS::ApiGateway::UsagePlanKey"
 }
-
 // ApplicationAutoScalingScalableTarget represents the AWS::ApplicationAutoScaling::ScalableTarget CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html
 type ApplicationAutoScalingScalableTarget struct {
@@ -12372,7 +12512,6 @@ func (s ApplicationAutoScalingScalableTarget) CfnResourceType() string {
 
 	return "AWS::ApplicationAutoScaling::ScalableTarget"
 }
-
 // ApplicationAutoScalingScalingPolicy represents the AWS::ApplicationAutoScaling::ScalingPolicy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html
 type ApplicationAutoScalingScalingPolicy struct {
@@ -12399,7 +12538,6 @@ func (s ApplicationAutoScalingScalingPolicy) CfnResourceType() string {
 
 	return "AWS::ApplicationAutoScaling::ScalingPolicy"
 }
-
 // AutoScalingAutoScalingGroup represents the AWS::AutoScaling::AutoScalingGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html
 type AutoScalingAutoScalingGroup struct {
@@ -12444,7 +12582,6 @@ func (s AutoScalingAutoScalingGroup) CfnResourceType() string {
 
 	return "AWS::AutoScaling::AutoScalingGroup"
 }
-
 // AutoScalingLaunchConfiguration represents the AWS::AutoScaling::LaunchConfiguration CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html
 type AutoScalingLaunchConfiguration struct {
@@ -12489,7 +12626,6 @@ func (s AutoScalingLaunchConfiguration) CfnResourceType() string {
 
 	return "AWS::AutoScaling::LaunchConfiguration"
 }
-
 // AutoScalingLifecycleHook represents the AWS::AutoScaling::LifecycleHook CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html
 type AutoScalingLifecycleHook struct {
@@ -12514,7 +12650,6 @@ func (s AutoScalingLifecycleHook) CfnResourceType() string {
 
 	return "AWS::AutoScaling::LifecycleHook"
 }
-
 // AutoScalingScalingPolicy represents the AWS::AutoScaling::ScalingPolicy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html
 type AutoScalingScalingPolicy struct {
@@ -12545,7 +12680,6 @@ func (s AutoScalingScalingPolicy) CfnResourceType() string {
 
 	return "AWS::AutoScaling::ScalingPolicy"
 }
-
 // AutoScalingScheduledAction represents the AWS::AutoScaling::ScheduledAction CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html
 type AutoScalingScheduledAction struct {
@@ -12570,7 +12704,64 @@ func (s AutoScalingScheduledAction) CfnResourceType() string {
 
 	return "AWS::AutoScaling::ScheduledAction"
 }
+// BatchComputeEnvironment represents the AWS::Batch::ComputeEnvironment CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html
+type BatchComputeEnvironment struct {
+	// ComputeEnvironmentName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-computeenvironmentname
+	ComputeEnvironmentName *StringExpr `json:"ComputeEnvironmentName,omitempty"`
+	// ComputeResources docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-computeresources
+	ComputeResources *BatchComputeEnvironmentComputeResources `json:"ComputeResources,omitempty" validate:"dive,required"`
+	// ServiceRole docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-servicerole
+	ServiceRole *StringExpr `json:"ServiceRole,omitempty" validate:"dive,required"`
+	// State docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-state
+	State *StringExpr `json:"State,omitempty"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-type
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
+}
 
+// CfnResourceType returns AWS::Batch::ComputeEnvironment to implement the ResourceProperties interface
+func (s BatchComputeEnvironment) CfnResourceType() string {
+
+	return "AWS::Batch::ComputeEnvironment"
+}
+// BatchJobDefinition represents the AWS::Batch::JobDefinition CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html
+type BatchJobDefinition struct {
+	// ContainerProperties docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-containerproperties
+	ContainerProperties *BatchJobDefinitionContainerProperties `json:"ContainerProperties,omitempty" validate:"dive,required"`
+	// JobDefinitionName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-jobdefinitionname
+	JobDefinitionName *StringExpr `json:"JobDefinitionName,omitempty"`
+	// Parameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-parameters
+	Parameters interface{} `json:"Parameters,omitempty"`
+	// RetryStrategy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-retrystrategy
+	RetryStrategy *BatchJobDefinitionRetryStrategy `json:"RetryStrategy,omitempty"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-type
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::Batch::JobDefinition to implement the ResourceProperties interface
+func (s BatchJobDefinition) CfnResourceType() string {
+
+	return "AWS::Batch::JobDefinition"
+}
+// BatchJobQueue represents the AWS::Batch::JobQueue CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html
+type BatchJobQueue struct {
+	// ComputeEnvironmentOrder docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-computeenvironmentorder
+	ComputeEnvironmentOrder *BatchJobQueueComputeEnvironmentOrderList `json:"ComputeEnvironmentOrder,omitempty" validate:"dive,required"`
+	// JobQueueName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-jobqueuename
+	JobQueueName *StringExpr `json:"JobQueueName,omitempty"`
+	// Priority docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-priority
+	Priority *IntegerExpr `json:"Priority,omitempty" validate:"dive,required"`
+	// State docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-state
+	State *StringExpr `json:"State,omitempty"`
+}
+
+// CfnResourceType returns AWS::Batch::JobQueue to implement the ResourceProperties interface
+func (s BatchJobQueue) CfnResourceType() string {
+
+	return "AWS::Batch::JobQueue"
+}
 // CertificateManagerCertificate represents the AWS::CertificateManager::Certificate CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html
 type CertificateManagerCertificate struct {
@@ -12589,7 +12780,6 @@ func (s CertificateManagerCertificate) CfnResourceType() string {
 
 	return "AWS::CertificateManager::Certificate"
 }
-
 // CloudFormationCustomResource represents the AWS::CloudFormation::CustomResource CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
 type CloudFormationCustomResource struct {
@@ -12605,11 +12795,10 @@ type CloudFormationCustomResource struct {
 // CfnResourceType returns AWS::CloudFormation::CustomResource to implement the ResourceProperties interface
 func (s CloudFormationCustomResource) CfnResourceType() string {
 	if "" != s.ResourceTypeName {
-		return s.ResourceTypeName
+ 		return s.ResourceTypeName
 	}
 	return "AWS::CloudFormation::CustomResource"
 }
-
 // CloudFormationStack represents the AWS::CloudFormation::Stack CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html
 type CloudFormationStack struct {
@@ -12630,7 +12819,6 @@ func (s CloudFormationStack) CfnResourceType() string {
 
 	return "AWS::CloudFormation::Stack"
 }
-
 // CloudFormationWaitCondition represents the AWS::CloudFormation::WaitCondition CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html
 type CloudFormationWaitCondition struct {
@@ -12647,7 +12835,6 @@ func (s CloudFormationWaitCondition) CfnResourceType() string {
 
 	return "AWS::CloudFormation::WaitCondition"
 }
-
 // CloudFormationWaitConditionHandle represents the AWS::CloudFormation::WaitConditionHandle CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html
 type CloudFormationWaitConditionHandle struct {
@@ -12658,7 +12845,6 @@ func (s CloudFormationWaitConditionHandle) CfnResourceType() string {
 
 	return "AWS::CloudFormation::WaitConditionHandle"
 }
-
 // CloudFrontDistribution represents the AWS::CloudFront::Distribution CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution.html
 type CloudFrontDistribution struct {
@@ -12671,7 +12857,6 @@ func (s CloudFrontDistribution) CfnResourceType() string {
 
 	return "AWS::CloudFront::Distribution"
 }
-
 // CloudTrailTrail represents the AWS::CloudTrail::Trail CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html
 type CloudTrailTrail struct {
@@ -12708,7 +12893,6 @@ func (s CloudTrailTrail) CfnResourceType() string {
 
 	return "AWS::CloudTrail::Trail"
 }
-
 // CloudWatchAlarm represents the AWS::CloudWatch::Alarm CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html
 type CloudWatchAlarm struct {
@@ -12755,7 +12939,6 @@ func (s CloudWatchAlarm) CfnResourceType() string {
 
 	return "AWS::CloudWatch::Alarm"
 }
-
 // CloudWatchDashboard represents the AWS::CloudWatch::Dashboard CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html
 type CloudWatchDashboard struct {
@@ -12770,7 +12953,6 @@ func (s CloudWatchDashboard) CfnResourceType() string {
 
 	return "AWS::CloudWatch::Dashboard"
 }
-
 // CodeBuildProject represents the AWS::CodeBuild::Project CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
 type CodeBuildProject struct {
@@ -12799,7 +12981,6 @@ func (s CodeBuildProject) CfnResourceType() string {
 
 	return "AWS::CodeBuild::Project"
 }
-
 // CodeCommitRepository represents the AWS::CodeCommit::Repository CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html
 type CodeCommitRepository struct {
@@ -12816,7 +12997,6 @@ func (s CodeCommitRepository) CfnResourceType() string {
 
 	return "AWS::CodeCommit::Repository"
 }
-
 // CodeDeployApplication represents the AWS::CodeDeploy::Application CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html
 type CodeDeployApplication struct {
@@ -12829,7 +13009,6 @@ func (s CodeDeployApplication) CfnResourceType() string {
 
 	return "AWS::CodeDeploy::Application"
 }
-
 // CodeDeployDeploymentConfig represents the AWS::CodeDeploy::DeploymentConfig CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html
 type CodeDeployDeploymentConfig struct {
@@ -12844,7 +13023,6 @@ func (s CodeDeployDeploymentConfig) CfnResourceType() string {
 
 	return "AWS::CodeDeploy::DeploymentConfig"
 }
-
 // CodeDeployDeploymentGroup represents the AWS::CodeDeploy::DeploymentGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html
 type CodeDeployDeploymentGroup struct {
@@ -12852,6 +13030,8 @@ type CodeDeployDeploymentGroup struct {
 	AlarmConfiguration *CodeDeployDeploymentGroupAlarmConfiguration `json:"AlarmConfiguration,omitempty"`
 	// ApplicationName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-applicationname
 	ApplicationName *StringExpr `json:"ApplicationName,omitempty" validate:"dive,required"`
+	// AutoRollbackConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-autorollbackconfiguration
+	AutoRollbackConfiguration *CodeDeployDeploymentGroupAutoRollbackConfiguration `json:"AutoRollbackConfiguration,omitempty"`
 	// AutoScalingGroups docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-autoscalinggroups
 	AutoScalingGroups *StringListExpr `json:"AutoScalingGroups,omitempty"`
 	// Deployment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-deployment
@@ -12860,8 +13040,12 @@ type CodeDeployDeploymentGroup struct {
 	DeploymentConfigName *StringExpr `json:"DeploymentConfigName,omitempty"`
 	// DeploymentGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-deploymentgroupname
 	DeploymentGroupName *StringExpr `json:"DeploymentGroupName,omitempty"`
+	// DeploymentStyle docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-deploymentstyle
+	DeploymentStyle *CodeDeployDeploymentGroupDeploymentStyle `json:"DeploymentStyle,omitempty"`
 	// Ec2TagFilters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-ec2tagfilters
 	Ec2TagFilters *CodeDeployDeploymentGroupEC2TagFilterList `json:"Ec2TagFilters,omitempty"`
+	// LoadBalancerInfo docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo
+	LoadBalancerInfo *CodeDeployDeploymentGroupLoadBalancerInfo `json:"LoadBalancerInfo,omitempty"`
 	// OnPremisesInstanceTagFilters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-onpremisesinstancetagfilters
 	OnPremisesInstanceTagFilters *CodeDeployDeploymentGroupTagFilterList `json:"OnPremisesInstanceTagFilters,omitempty"`
 	// ServiceRoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-servicerolearn
@@ -12875,7 +13059,6 @@ func (s CodeDeployDeploymentGroup) CfnResourceType() string {
 
 	return "AWS::CodeDeploy::DeploymentGroup"
 }
-
 // CodePipelineCustomActionType represents the AWS::CodePipeline::CustomActionType CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html
 type CodePipelineCustomActionType struct {
@@ -12900,7 +13083,6 @@ func (s CodePipelineCustomActionType) CfnResourceType() string {
 
 	return "AWS::CodePipeline::CustomActionType"
 }
-
 // CodePipelinePipeline represents the AWS::CodePipeline::Pipeline CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
 type CodePipelinePipeline struct {
@@ -12923,7 +13105,6 @@ func (s CodePipelinePipeline) CfnResourceType() string {
 
 	return "AWS::CodePipeline::Pipeline"
 }
-
 // CognitoIDentityPool represents the AWS::Cognito::IdentityPool CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html
 type CognitoIDentityPool struct {
@@ -12954,7 +13135,6 @@ func (s CognitoIDentityPool) CfnResourceType() string {
 
 	return "AWS::Cognito::IdentityPool"
 }
-
 // CognitoIDentityPoolRoleAttachment represents the AWS::Cognito::IdentityPoolRoleAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html
 type CognitoIDentityPoolRoleAttachment struct {
@@ -12971,7 +13151,6 @@ func (s CognitoIDentityPoolRoleAttachment) CfnResourceType() string {
 
 	return "AWS::Cognito::IdentityPoolRoleAttachment"
 }
-
 // CognitoUserPool represents the AWS::Cognito::UserPool CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
 type CognitoUserPool struct {
@@ -13014,7 +13193,6 @@ func (s CognitoUserPool) CfnResourceType() string {
 
 	return "AWS::Cognito::UserPool"
 }
-
 // CognitoUserPoolClient represents the AWS::Cognito::UserPoolClient CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
 type CognitoUserPoolClient struct {
@@ -13039,7 +13217,6 @@ func (s CognitoUserPoolClient) CfnResourceType() string {
 
 	return "AWS::Cognito::UserPoolClient"
 }
-
 // CognitoUserPoolGroup represents the AWS::Cognito::UserPoolGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html
 type CognitoUserPoolGroup struct {
@@ -13060,7 +13237,6 @@ func (s CognitoUserPoolGroup) CfnResourceType() string {
 
 	return "AWS::Cognito::UserPoolGroup"
 }
-
 // CognitoUserPoolUser represents the AWS::Cognito::UserPoolUser CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html
 type CognitoUserPoolUser struct {
@@ -13085,7 +13261,6 @@ func (s CognitoUserPoolUser) CfnResourceType() string {
 
 	return "AWS::Cognito::UserPoolUser"
 }
-
 // CognitoUserPoolUserToGroupAttachment represents the AWS::Cognito::UserPoolUserToGroupAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html
 type CognitoUserPoolUserToGroupAttachment struct {
@@ -13102,7 +13277,6 @@ func (s CognitoUserPoolUserToGroupAttachment) CfnResourceType() string {
 
 	return "AWS::Cognito::UserPoolUserToGroupAttachment"
 }
-
 // ConfigConfigRule represents the AWS::Config::ConfigRule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html
 type ConfigConfigRule struct {
@@ -13125,7 +13299,6 @@ func (s ConfigConfigRule) CfnResourceType() string {
 
 	return "AWS::Config::ConfigRule"
 }
-
 // ConfigConfigurationRecorder represents the AWS::Config::ConfigurationRecorder CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html
 type ConfigConfigurationRecorder struct {
@@ -13142,7 +13315,6 @@ func (s ConfigConfigurationRecorder) CfnResourceType() string {
 
 	return "AWS::Config::ConfigurationRecorder"
 }
-
 // ConfigDeliveryChannel represents the AWS::Config::DeliveryChannel CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html
 type ConfigDeliveryChannel struct {
@@ -13163,7 +13335,72 @@ func (s ConfigDeliveryChannel) CfnResourceType() string {
 
 	return "AWS::Config::DeliveryChannel"
 }
+// DAXCluster represents the AWS::DAX::Cluster CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html
+type DAXCluster struct {
+	// AvailabilityZones docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-availabilityzones
+	AvailabilityZones *StringListExpr `json:"AvailabilityZones,omitempty"`
+	// ClusterName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-clustername
+	ClusterName *StringExpr `json:"ClusterName,omitempty"`
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// IAMRoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-iamrolearn
+	IAMRoleARN *StringExpr `json:"IAMRoleARN,omitempty" validate:"dive,required"`
+	// NodeType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-nodetype
+	NodeType *StringExpr `json:"NodeType,omitempty" validate:"dive,required"`
+	// NotificationTopicARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-notificationtopicarn
+	NotificationTopicARN *StringExpr `json:"NotificationTopicARN,omitempty"`
+	// ParameterGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-parametergroupname
+	ParameterGroupName *StringExpr `json:"ParameterGroupName,omitempty"`
+	// PreferredMaintenanceWindow docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-preferredmaintenancewindow
+	PreferredMaintenanceWindow *StringExpr `json:"PreferredMaintenanceWindow,omitempty"`
+	// ReplicationFactor docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-replicationfactor
+	ReplicationFactor *IntegerExpr `json:"ReplicationFactor,omitempty" validate:"dive,required"`
+	// SecurityGroupIDs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-securitygroupids
+	SecurityGroupIDs *StringListExpr `json:"SecurityGroupIds,omitempty"`
+	// SubnetGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-subnetgroupname
+	SubnetGroupName *StringExpr `json:"SubnetGroupName,omitempty"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-tags
+	Tags interface{} `json:"Tags,omitempty"`
+}
 
+// CfnResourceType returns AWS::DAX::Cluster to implement the ResourceProperties interface
+func (s DAXCluster) CfnResourceType() string {
+
+	return "AWS::DAX::Cluster"
+}
+// DAXParameterGroup represents the AWS::DAX::ParameterGroup CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html
+type DAXParameterGroup struct {
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html#cfn-dax-parametergroup-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// ParameterGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html#cfn-dax-parametergroup-parametergroupname
+	ParameterGroupName *StringExpr `json:"ParameterGroupName,omitempty"`
+	// ParameterNameValues docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html#cfn-dax-parametergroup-parameternamevalues
+	ParameterNameValues interface{} `json:"ParameterNameValues,omitempty"`
+}
+
+// CfnResourceType returns AWS::DAX::ParameterGroup to implement the ResourceProperties interface
+func (s DAXParameterGroup) CfnResourceType() string {
+
+	return "AWS::DAX::ParameterGroup"
+}
+// DAXSubnetGroup represents the AWS::DAX::SubnetGroup CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html
+type DAXSubnetGroup struct {
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html#cfn-dax-subnetgroup-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// SubnetGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html#cfn-dax-subnetgroup-subnetgroupname
+	SubnetGroupName *StringExpr `json:"SubnetGroupName,omitempty"`
+	// SubnetIDs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html#cfn-dax-subnetgroup-subnetids
+	SubnetIDs *StringListExpr `json:"SubnetIds,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::DAX::SubnetGroup to implement the ResourceProperties interface
+func (s DAXSubnetGroup) CfnResourceType() string {
+
+	return "AWS::DAX::SubnetGroup"
+}
 // DMSCertificate represents the AWS::DMS::Certificate CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html
 type DMSCertificate struct {
@@ -13180,7 +13417,6 @@ func (s DMSCertificate) CfnResourceType() string {
 
 	return "AWS::DMS::Certificate"
 }
-
 // DMSEndpoint represents the AWS::DMS::Endpoint CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html
 type DMSEndpoint struct {
@@ -13223,7 +13459,6 @@ func (s DMSEndpoint) CfnResourceType() string {
 
 	return "AWS::DMS::Endpoint"
 }
-
 // DMSEventSubscription represents the AWS::DMS::EventSubscription CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html
 type DMSEventSubscription struct {
@@ -13248,7 +13483,6 @@ func (s DMSEventSubscription) CfnResourceType() string {
 
 	return "AWS::DMS::EventSubscription"
 }
-
 // DMSReplicationInstance represents the AWS::DMS::ReplicationInstance CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html
 type DMSReplicationInstance struct {
@@ -13287,7 +13521,6 @@ func (s DMSReplicationInstance) CfnResourceType() string {
 
 	return "AWS::DMS::ReplicationInstance"
 }
-
 // DMSReplicationSubnetGroup represents the AWS::DMS::ReplicationSubnetGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html
 type DMSReplicationSubnetGroup struct {
@@ -13306,7 +13539,6 @@ func (s DMSReplicationSubnetGroup) CfnResourceType() string {
 
 	return "AWS::DMS::ReplicationSubnetGroup"
 }
-
 // DMSReplicationTask represents the AWS::DMS::ReplicationTask CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html
 type DMSReplicationTask struct {
@@ -13335,7 +13567,6 @@ func (s DMSReplicationTask) CfnResourceType() string {
 
 	return "AWS::DMS::ReplicationTask"
 }
-
 // DataPipelinePipeline represents the AWS::DataPipeline::Pipeline CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html
 type DataPipelinePipeline struct {
@@ -13360,7 +13591,6 @@ func (s DataPipelinePipeline) CfnResourceType() string {
 
 	return "AWS::DataPipeline::Pipeline"
 }
-
 // DirectoryServiceMicrosoftAD represents the AWS::DirectoryService::MicrosoftAD CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html
 type DirectoryServiceMicrosoftAD struct {
@@ -13383,7 +13613,6 @@ func (s DirectoryServiceMicrosoftAD) CfnResourceType() string {
 
 	return "AWS::DirectoryService::MicrosoftAD"
 }
-
 // DirectoryServiceSimpleAD represents the AWS::DirectoryService::SimpleAD CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html
 type DirectoryServiceSimpleAD struct {
@@ -13410,12 +13639,11 @@ func (s DirectoryServiceSimpleAD) CfnResourceType() string {
 
 	return "AWS::DirectoryService::SimpleAD"
 }
-
 // DynamoDBTable represents the AWS::DynamoDB::Table CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
 type DynamoDBTable struct {
 	// AttributeDefinitions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef
-	AttributeDefinitions *DynamoDBTableAttributeDefinitionList `json:"AttributeDefinitions,omitempty" validate:"dive,required"`
+	AttributeDefinitions *DynamoDBTableAttributeDefinitionList `json:"AttributeDefinitions,omitempty"`
 	// GlobalSecondaryIndexes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-gsi
 	GlobalSecondaryIndexes *DynamoDBTableGlobalSecondaryIndexList `json:"GlobalSecondaryIndexes,omitempty"`
 	// KeySchema docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-keyschema
@@ -13428,6 +13656,10 @@ type DynamoDBTable struct {
 	StreamSpecification *DynamoDBTableStreamSpecification `json:"StreamSpecification,omitempty"`
 	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tablename
 	TableName *StringExpr `json:"TableName,omitempty"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tags
+	Tags *TagList `json:"Tags,omitempty"`
+	// TimeToLiveSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-timetolivespecification
+	TimeToLiveSpecification *DynamoDBTableTimeToLiveSpecification `json:"TimeToLiveSpecification,omitempty"`
 }
 
 // CfnResourceType returns AWS::DynamoDB::Table to implement the ResourceProperties interface
@@ -13435,7 +13667,6 @@ func (s DynamoDBTable) CfnResourceType() string {
 
 	return "AWS::DynamoDB::Table"
 }
-
 // EC2CustomerGateway represents the AWS::EC2::CustomerGateway CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html
 type EC2CustomerGateway struct {
@@ -13454,7 +13685,6 @@ func (s EC2CustomerGateway) CfnResourceType() string {
 
 	return "AWS::EC2::CustomerGateway"
 }
-
 // EC2DHCPOptions represents the AWS::EC2::DHCPOptions CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-dhcp-options.html
 type EC2DHCPOptions struct {
@@ -13477,7 +13707,6 @@ func (s EC2DHCPOptions) CfnResourceType() string {
 
 	return "AWS::EC2::DHCPOptions"
 }
-
 // EC2EIP represents the AWS::EC2::EIP CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html
 type EC2EIP struct {
@@ -13492,7 +13721,6 @@ func (s EC2EIP) CfnResourceType() string {
 
 	return "AWS::EC2::EIP"
 }
-
 // EC2EIPAssociation represents the AWS::EC2::EIPAssociation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip-association.html
 type EC2EIPAssociation struct {
@@ -13513,7 +13741,6 @@ func (s EC2EIPAssociation) CfnResourceType() string {
 
 	return "AWS::EC2::EIPAssociation"
 }
-
 // EC2EgressOnlyInternetGateway represents the AWS::EC2::EgressOnlyInternetGateway CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html
 type EC2EgressOnlyInternetGateway struct {
@@ -13526,7 +13753,6 @@ func (s EC2EgressOnlyInternetGateway) CfnResourceType() string {
 
 	return "AWS::EC2::EgressOnlyInternetGateway"
 }
-
 // EC2FlowLog represents the AWS::EC2::FlowLog CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html
 type EC2FlowLog struct {
@@ -13547,7 +13773,6 @@ func (s EC2FlowLog) CfnResourceType() string {
 
 	return "AWS::EC2::FlowLog"
 }
-
 // EC2Host represents the AWS::EC2::Host CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html
 type EC2Host struct {
@@ -13564,7 +13789,6 @@ func (s EC2Host) CfnResourceType() string {
 
 	return "AWS::EC2::Host"
 }
-
 // EC2Instance represents the AWS::EC2::Instance CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html
 type EC2Instance struct {
@@ -13633,7 +13857,6 @@ func (s EC2Instance) CfnResourceType() string {
 
 	return "AWS::EC2::Instance"
 }
-
 // EC2InternetGateway represents the AWS::EC2::InternetGateway CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html
 type EC2InternetGateway struct {
@@ -13646,7 +13869,6 @@ func (s EC2InternetGateway) CfnResourceType() string {
 
 	return "AWS::EC2::InternetGateway"
 }
-
 // EC2NatGateway represents the AWS::EC2::NatGateway CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html
 type EC2NatGateway struct {
@@ -13661,7 +13883,6 @@ func (s EC2NatGateway) CfnResourceType() string {
 
 	return "AWS::EC2::NatGateway"
 }
-
 // EC2NetworkACL represents the AWS::EC2::NetworkAcl CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl.html
 type EC2NetworkACL struct {
@@ -13676,7 +13897,6 @@ func (s EC2NetworkACL) CfnResourceType() string {
 
 	return "AWS::EC2::NetworkAcl"
 }
-
 // EC2NetworkACLEntry represents the AWS::EC2::NetworkAclEntry CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html
 type EC2NetworkACLEntry struct {
@@ -13705,7 +13925,6 @@ func (s EC2NetworkACLEntry) CfnResourceType() string {
 
 	return "AWS::EC2::NetworkAclEntry"
 }
-
 // EC2NetworkInterface represents the AWS::EC2::NetworkInterface CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface.html
 type EC2NetworkInterface struct {
@@ -13738,7 +13957,6 @@ func (s EC2NetworkInterface) CfnResourceType() string {
 
 	return "AWS::EC2::NetworkInterface"
 }
-
 // EC2NetworkInterfaceAttachment represents the AWS::EC2::NetworkInterfaceAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface-attachment.html
 type EC2NetworkInterfaceAttachment struct {
@@ -13757,7 +13975,6 @@ func (s EC2NetworkInterfaceAttachment) CfnResourceType() string {
 
 	return "AWS::EC2::NetworkInterfaceAttachment"
 }
-
 // EC2NetworkInterfacePermission represents the AWS::EC2::NetworkInterfacePermission CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfacepermission.html
 type EC2NetworkInterfacePermission struct {
@@ -13774,7 +13991,6 @@ func (s EC2NetworkInterfacePermission) CfnResourceType() string {
 
 	return "AWS::EC2::NetworkInterfacePermission"
 }
-
 // EC2PlacementGroup represents the AWS::EC2::PlacementGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html
 type EC2PlacementGroup struct {
@@ -13787,7 +14003,6 @@ func (s EC2PlacementGroup) CfnResourceType() string {
 
 	return "AWS::EC2::PlacementGroup"
 }
-
 // EC2Route represents the AWS::EC2::Route CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html
 type EC2Route struct {
@@ -13814,7 +14029,6 @@ func (s EC2Route) CfnResourceType() string {
 
 	return "AWS::EC2::Route"
 }
-
 // EC2RouteTable represents the AWS::EC2::RouteTable CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html
 type EC2RouteTable struct {
@@ -13829,7 +14043,6 @@ func (s EC2RouteTable) CfnResourceType() string {
 
 	return "AWS::EC2::RouteTable"
 }
-
 // EC2SecurityGroup represents the AWS::EC2::SecurityGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html
 type EC2SecurityGroup struct {
@@ -13852,7 +14065,6 @@ func (s EC2SecurityGroup) CfnResourceType() string {
 
 	return "AWS::EC2::SecurityGroup"
 }
-
 // EC2SecurityGroupEgress represents the AWS::EC2::SecurityGroupEgress CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html
 type EC2SecurityGroupEgress struct {
@@ -13879,7 +14091,6 @@ func (s EC2SecurityGroupEgress) CfnResourceType() string {
 
 	return "AWS::EC2::SecurityGroupEgress"
 }
-
 // EC2SecurityGroupIngress represents the AWS::EC2::SecurityGroupIngress CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html
 type EC2SecurityGroupIngress struct {
@@ -13910,7 +14121,6 @@ func (s EC2SecurityGroupIngress) CfnResourceType() string {
 
 	return "AWS::EC2::SecurityGroupIngress"
 }
-
 // EC2SpotFleet represents the AWS::EC2::SpotFleet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html
 type EC2SpotFleet struct {
@@ -13923,7 +14133,6 @@ func (s EC2SpotFleet) CfnResourceType() string {
 
 	return "AWS::EC2::SpotFleet"
 }
-
 // EC2Subnet represents the AWS::EC2::Subnet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
 type EC2Subnet struct {
@@ -13948,7 +14157,6 @@ func (s EC2Subnet) CfnResourceType() string {
 
 	return "AWS::EC2::Subnet"
 }
-
 // EC2SubnetCidrBlock represents the AWS::EC2::SubnetCidrBlock CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html
 type EC2SubnetCidrBlock struct {
@@ -13963,7 +14171,6 @@ func (s EC2SubnetCidrBlock) CfnResourceType() string {
 
 	return "AWS::EC2::SubnetCidrBlock"
 }
-
 // EC2SubnetNetworkACLAssociation represents the AWS::EC2::SubnetNetworkAclAssociation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-network-acl-assoc.html
 type EC2SubnetNetworkACLAssociation struct {
@@ -13978,7 +14185,6 @@ func (s EC2SubnetNetworkACLAssociation) CfnResourceType() string {
 
 	return "AWS::EC2::SubnetNetworkAclAssociation"
 }
-
 // EC2SubnetRouteTableAssociation represents the AWS::EC2::SubnetRouteTableAssociation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html
 type EC2SubnetRouteTableAssociation struct {
@@ -13993,7 +14199,6 @@ func (s EC2SubnetRouteTableAssociation) CfnResourceType() string {
 
 	return "AWS::EC2::SubnetRouteTableAssociation"
 }
-
 // EC2TrunkInterfaceAssociation represents the AWS::EC2::TrunkInterfaceAssociation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html
 type EC2TrunkInterfaceAssociation struct {
@@ -14012,7 +14217,6 @@ func (s EC2TrunkInterfaceAssociation) CfnResourceType() string {
 
 	return "AWS::EC2::TrunkInterfaceAssociation"
 }
-
 // EC2VPC represents the AWS::EC2::VPC CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html
 type EC2VPC struct {
@@ -14033,7 +14237,6 @@ func (s EC2VPC) CfnResourceType() string {
 
 	return "AWS::EC2::VPC"
 }
-
 // EC2VPCCidrBlock represents the AWS::EC2::VPCCidrBlock CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html
 type EC2VPCCidrBlock struct {
@@ -14048,7 +14251,6 @@ func (s EC2VPCCidrBlock) CfnResourceType() string {
 
 	return "AWS::EC2::VPCCidrBlock"
 }
-
 // EC2VPCDHCPOptionsAssociation represents the AWS::EC2::VPCDHCPOptionsAssociation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-dhcp-options-assoc.html
 type EC2VPCDHCPOptionsAssociation struct {
@@ -14063,7 +14265,6 @@ func (s EC2VPCDHCPOptionsAssociation) CfnResourceType() string {
 
 	return "AWS::EC2::VPCDHCPOptionsAssociation"
 }
-
 // EC2VPCEndpoint represents the AWS::EC2::VPCEndpoint CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html
 type EC2VPCEndpoint struct {
@@ -14082,7 +14283,6 @@ func (s EC2VPCEndpoint) CfnResourceType() string {
 
 	return "AWS::EC2::VPCEndpoint"
 }
-
 // EC2VPCGatewayAttachment represents the AWS::EC2::VPCGatewayAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html
 type EC2VPCGatewayAttachment struct {
@@ -14099,7 +14299,6 @@ func (s EC2VPCGatewayAttachment) CfnResourceType() string {
 
 	return "AWS::EC2::VPCGatewayAttachment"
 }
-
 // EC2VPCPeeringConnection represents the AWS::EC2::VPCPeeringConnection CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html
 type EC2VPCPeeringConnection struct {
@@ -14120,7 +14319,6 @@ func (s EC2VPCPeeringConnection) CfnResourceType() string {
 
 	return "AWS::EC2::VPCPeeringConnection"
 }
-
 // EC2VPNConnection represents the AWS::EC2::VPNConnection CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html
 type EC2VPNConnection struct {
@@ -14141,7 +14339,6 @@ func (s EC2VPNConnection) CfnResourceType() string {
 
 	return "AWS::EC2::VPNConnection"
 }
-
 // EC2VPNConnectionRoute represents the AWS::EC2::VPNConnectionRoute CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection-route.html
 type EC2VPNConnectionRoute struct {
@@ -14156,7 +14353,6 @@ func (s EC2VPNConnectionRoute) CfnResourceType() string {
 
 	return "AWS::EC2::VPNConnectionRoute"
 }
-
 // EC2VPNGateway represents the AWS::EC2::VPNGateway CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gateway.html
 type EC2VPNGateway struct {
@@ -14171,7 +14367,6 @@ func (s EC2VPNGateway) CfnResourceType() string {
 
 	return "AWS::EC2::VPNGateway"
 }
-
 // EC2VPNGatewayRoutePropagation represents the AWS::EC2::VPNGatewayRoutePropagation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html
 type EC2VPNGatewayRoutePropagation struct {
@@ -14186,7 +14381,6 @@ func (s EC2VPNGatewayRoutePropagation) CfnResourceType() string {
 
 	return "AWS::EC2::VPNGatewayRoutePropagation"
 }
-
 // EC2Volume represents the AWS::EC2::Volume CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html
 type EC2Volume struct {
@@ -14215,7 +14409,6 @@ func (s EC2Volume) CfnResourceType() string {
 
 	return "AWS::EC2::Volume"
 }
-
 // EC2VolumeAttachment represents the AWS::EC2::VolumeAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html
 type EC2VolumeAttachment struct {
@@ -14232,7 +14425,6 @@ func (s EC2VolumeAttachment) CfnResourceType() string {
 
 	return "AWS::EC2::VolumeAttachment"
 }
-
 // ECRRepository represents the AWS::ECR::Repository CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html
 type ECRRepository struct {
@@ -14247,7 +14439,6 @@ func (s ECRRepository) CfnResourceType() string {
 
 	return "AWS::ECR::Repository"
 }
-
 // ECSCluster represents the AWS::ECS::Cluster CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html
 type ECSCluster struct {
@@ -14260,7 +14451,6 @@ func (s ECSCluster) CfnResourceType() string {
 
 	return "AWS::ECS::Cluster"
 }
-
 // ECSService represents the AWS::ECS::Service CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html
 type ECSService struct {
@@ -14289,7 +14479,6 @@ func (s ECSService) CfnResourceType() string {
 
 	return "AWS::ECS::Service"
 }
-
 // ECSTaskDefinition represents the AWS::ECS::TaskDefinition CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html
 type ECSTaskDefinition struct {
@@ -14312,12 +14501,15 @@ func (s ECSTaskDefinition) CfnResourceType() string {
 
 	return "AWS::ECS::TaskDefinition"
 }
-
 // EFSFileSystem represents the AWS::EFS::FileSystem CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html
 type EFSFileSystem struct {
+	// Encrypted docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-encrypted
+	Encrypted *BoolExpr `json:"Encrypted,omitempty"`
 	// FileSystemTags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-filesystemtags
 	FileSystemTags *EFSFileSystemElasticFileSystemTagList `json:"FileSystemTags,omitempty"`
+	// KmsKeyID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-kmskeyid
+	KmsKeyID *StringExpr `json:"KmsKeyId,omitempty"`
 	// PerformanceMode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-performancemode
 	PerformanceMode *StringExpr `json:"PerformanceMode,omitempty"`
 }
@@ -14327,7 +14519,6 @@ func (s EFSFileSystem) CfnResourceType() string {
 
 	return "AWS::EFS::FileSystem"
 }
-
 // EFSMountTarget represents the AWS::EFS::MountTarget CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html
 type EFSMountTarget struct {
@@ -14346,7 +14537,6 @@ func (s EFSMountTarget) CfnResourceType() string {
 
 	return "AWS::EFS::MountTarget"
 }
-
 // EMRCluster represents the AWS::EMR::Cluster CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-cluster.html
 type EMRCluster struct {
@@ -14387,7 +14577,6 @@ func (s EMRCluster) CfnResourceType() string {
 
 	return "AWS::EMR::Cluster"
 }
-
 // EMRInstanceFleetConfig represents the AWS::EMR::InstanceFleetConfig CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-instancefleetconfig.html
 type EMRInstanceFleetConfig struct {
@@ -14412,7 +14601,6 @@ func (s EMRInstanceFleetConfig) CfnResourceType() string {
 
 	return "AWS::EMR::InstanceFleetConfig"
 }
-
 // EMRInstanceGroupConfig represents the AWS::EMR::InstanceGroupConfig CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html
 type EMRInstanceGroupConfig struct {
@@ -14443,7 +14631,6 @@ func (s EMRInstanceGroupConfig) CfnResourceType() string {
 
 	return "AWS::EMR::InstanceGroupConfig"
 }
-
 // EMRSecurityConfiguration represents the AWS::EMR::SecurityConfiguration CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html
 type EMRSecurityConfiguration struct {
@@ -14458,7 +14645,6 @@ func (s EMRSecurityConfiguration) CfnResourceType() string {
 
 	return "AWS::EMR::SecurityConfiguration"
 }
-
 // EMRStep represents the AWS::EMR::Step CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html
 type EMRStep struct {
@@ -14477,7 +14663,6 @@ func (s EMRStep) CfnResourceType() string {
 
 	return "AWS::EMR::Step"
 }
-
 // ElastiCacheCacheCluster represents the AWS::ElastiCache::CacheCluster CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html
 type ElastiCacheCacheCluster struct {
@@ -14530,7 +14715,6 @@ func (s ElastiCacheCacheCluster) CfnResourceType() string {
 
 	return "AWS::ElastiCache::CacheCluster"
 }
-
 // ElastiCacheParameterGroup represents the AWS::ElastiCache::ParameterGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html
 type ElastiCacheParameterGroup struct {
@@ -14547,7 +14731,6 @@ func (s ElastiCacheParameterGroup) CfnResourceType() string {
 
 	return "AWS::ElastiCache::ParameterGroup"
 }
-
 // ElastiCacheReplicationGroup represents the AWS::ElastiCache::ReplicationGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html
 type ElastiCacheReplicationGroup struct {
@@ -14610,7 +14793,6 @@ func (s ElastiCacheReplicationGroup) CfnResourceType() string {
 
 	return "AWS::ElastiCache::ReplicationGroup"
 }
-
 // ElastiCacheSecurityGroup represents the AWS::ElastiCache::SecurityGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html
 type ElastiCacheSecurityGroup struct {
@@ -14623,7 +14805,6 @@ func (s ElastiCacheSecurityGroup) CfnResourceType() string {
 
 	return "AWS::ElastiCache::SecurityGroup"
 }
-
 // ElastiCacheSecurityGroupIngress represents the AWS::ElastiCache::SecurityGroupIngress CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html
 type ElastiCacheSecurityGroupIngress struct {
@@ -14640,7 +14821,6 @@ func (s ElastiCacheSecurityGroupIngress) CfnResourceType() string {
 
 	return "AWS::ElastiCache::SecurityGroupIngress"
 }
-
 // ElastiCacheSubnetGroup represents the AWS::ElastiCache::SubnetGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html
 type ElastiCacheSubnetGroup struct {
@@ -14657,7 +14837,6 @@ func (s ElastiCacheSubnetGroup) CfnResourceType() string {
 
 	return "AWS::ElastiCache::SubnetGroup"
 }
-
 // ElasticBeanstalkApplication represents the AWS::ElasticBeanstalk::Application CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html
 type ElasticBeanstalkApplication struct {
@@ -14672,7 +14851,6 @@ func (s ElasticBeanstalkApplication) CfnResourceType() string {
 
 	return "AWS::ElasticBeanstalk::Application"
 }
-
 // ElasticBeanstalkApplicationVersion represents the AWS::ElasticBeanstalk::ApplicationVersion CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html
 type ElasticBeanstalkApplicationVersion struct {
@@ -14689,7 +14867,6 @@ func (s ElasticBeanstalkApplicationVersion) CfnResourceType() string {
 
 	return "AWS::ElasticBeanstalk::ApplicationVersion"
 }
-
 // ElasticBeanstalkConfigurationTemplate represents the AWS::ElasticBeanstalk::ConfigurationTemplate CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-beanstalk-configurationtemplate.html
 type ElasticBeanstalkConfigurationTemplate struct {
@@ -14712,7 +14889,6 @@ func (s ElasticBeanstalkConfigurationTemplate) CfnResourceType() string {
 
 	return "AWS::ElasticBeanstalk::ConfigurationTemplate"
 }
-
 // ElasticBeanstalkEnvironment represents the AWS::ElasticBeanstalk::Environment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html
 type ElasticBeanstalkEnvironment struct {
@@ -14743,7 +14919,6 @@ func (s ElasticBeanstalkEnvironment) CfnResourceType() string {
 
 	return "AWS::ElasticBeanstalk::Environment"
 }
-
 // ElasticLoadBalancingLoadBalancer represents the AWS::ElasticLoadBalancing::LoadBalancer CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html
 type ElasticLoadBalancingLoadBalancer struct {
@@ -14786,7 +14961,6 @@ func (s ElasticLoadBalancingLoadBalancer) CfnResourceType() string {
 
 	return "AWS::ElasticLoadBalancing::LoadBalancer"
 }
-
 // ElasticLoadBalancingV2Listener represents the AWS::ElasticLoadBalancingV2::Listener CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html
 type ElasticLoadBalancingV2Listener struct {
@@ -14809,7 +14983,6 @@ func (s ElasticLoadBalancingV2Listener) CfnResourceType() string {
 
 	return "AWS::ElasticLoadBalancingV2::Listener"
 }
-
 // ElasticLoadBalancingV2ListenerRule represents the AWS::ElasticLoadBalancingV2::ListenerRule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html
 type ElasticLoadBalancingV2ListenerRule struct {
@@ -14828,7 +15001,6 @@ func (s ElasticLoadBalancingV2ListenerRule) CfnResourceType() string {
 
 	return "AWS::ElasticLoadBalancingV2::ListenerRule"
 }
-
 // ElasticLoadBalancingV2LoadBalancer represents the AWS::ElasticLoadBalancingV2::LoadBalancer CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
 type ElasticLoadBalancingV2LoadBalancer struct {
@@ -14853,7 +15025,6 @@ func (s ElasticLoadBalancingV2LoadBalancer) CfnResourceType() string {
 
 	return "AWS::ElasticLoadBalancingV2::LoadBalancer"
 }
-
 // ElasticLoadBalancingV2TargetGroup represents the AWS::ElasticLoadBalancingV2::TargetGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
 type ElasticLoadBalancingV2TargetGroup struct {
@@ -14894,7 +15065,6 @@ func (s ElasticLoadBalancingV2TargetGroup) CfnResourceType() string {
 
 	return "AWS::ElasticLoadBalancingV2::TargetGroup"
 }
-
 // ElasticsearchDomain represents the AWS::Elasticsearch::Domain CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
 type ElasticsearchDomain struct {
@@ -14921,7 +15091,6 @@ func (s ElasticsearchDomain) CfnResourceType() string {
 
 	return "AWS::Elasticsearch::Domain"
 }
-
 // EventsRule represents the AWS::Events::Rule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html
 type EventsRule struct {
@@ -14946,7 +15115,6 @@ func (s EventsRule) CfnResourceType() string {
 
 	return "AWS::Events::Rule"
 }
-
 // GameLiftAlias represents the AWS::GameLift::Alias CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html
 type GameLiftAlias struct {
@@ -14963,7 +15131,6 @@ func (s GameLiftAlias) CfnResourceType() string {
 
 	return "AWS::GameLift::Alias"
 }
-
 // GameLiftBuild represents the AWS::GameLift::Build CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html
 type GameLiftBuild struct {
@@ -14980,7 +15147,6 @@ func (s GameLiftBuild) CfnResourceType() string {
 
 	return "AWS::GameLift::Build"
 }
-
 // GameLiftFleet represents the AWS::GameLift::Fleet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html
 type GameLiftFleet struct {
@@ -15013,7 +15179,6 @@ func (s GameLiftFleet) CfnResourceType() string {
 
 	return "AWS::GameLift::Fleet"
 }
-
 // IAMAccessKey represents the AWS::IAM::AccessKey CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html
 type IAMAccessKey struct {
@@ -15030,7 +15195,6 @@ func (s IAMAccessKey) CfnResourceType() string {
 
 	return "AWS::IAM::AccessKey"
 }
-
 // IAMGroup represents the AWS::IAM::Group CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html
 type IAMGroup struct {
@@ -15049,7 +15213,6 @@ func (s IAMGroup) CfnResourceType() string {
 
 	return "AWS::IAM::Group"
 }
-
 // IAMInstanceProfile represents the AWS::IAM::InstanceProfile CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html
 type IAMInstanceProfile struct {
@@ -15066,7 +15229,6 @@ func (s IAMInstanceProfile) CfnResourceType() string {
 
 	return "AWS::IAM::InstanceProfile"
 }
-
 // IAMManagedPolicy represents the AWS::IAM::ManagedPolicy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html
 type IAMManagedPolicy struct {
@@ -15091,7 +15253,6 @@ func (s IAMManagedPolicy) CfnResourceType() string {
 
 	return "AWS::IAM::ManagedPolicy"
 }
-
 // IAMPolicy represents the AWS::IAM::Policy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html
 type IAMPolicy struct {
@@ -15112,7 +15273,6 @@ func (s IAMPolicy) CfnResourceType() string {
 
 	return "AWS::IAM::Policy"
 }
-
 // IAMRole represents the AWS::IAM::Role CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
 type IAMRole struct {
@@ -15133,7 +15293,6 @@ func (s IAMRole) CfnResourceType() string {
 
 	return "AWS::IAM::Role"
 }
-
 // IAMUser represents the AWS::IAM::User CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html
 type IAMUser struct {
@@ -15156,7 +15315,6 @@ func (s IAMUser) CfnResourceType() string {
 
 	return "AWS::IAM::User"
 }
-
 // IAMUserToGroupAddition represents the AWS::IAM::UserToGroupAddition CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html
 type IAMUserToGroupAddition struct {
@@ -15171,7 +15329,6 @@ func (s IAMUserToGroupAddition) CfnResourceType() string {
 
 	return "AWS::IAM::UserToGroupAddition"
 }
-
 // IoTCertificate represents the AWS::IoT::Certificate CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html
 type IoTCertificate struct {
@@ -15186,7 +15343,6 @@ func (s IoTCertificate) CfnResourceType() string {
 
 	return "AWS::IoT::Certificate"
 }
-
 // IoTPolicy represents the AWS::IoT::Policy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html
 type IoTPolicy struct {
@@ -15201,7 +15357,6 @@ func (s IoTPolicy) CfnResourceType() string {
 
 	return "AWS::IoT::Policy"
 }
-
 // IoTPolicyPrincipalAttachment represents the AWS::IoT::PolicyPrincipalAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policyprincipalattachment.html
 type IoTPolicyPrincipalAttachment struct {
@@ -15216,7 +15371,6 @@ func (s IoTPolicyPrincipalAttachment) CfnResourceType() string {
 
 	return "AWS::IoT::PolicyPrincipalAttachment"
 }
-
 // IoTThing represents the AWS::IoT::Thing CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html
 type IoTThing struct {
@@ -15231,7 +15385,6 @@ func (s IoTThing) CfnResourceType() string {
 
 	return "AWS::IoT::Thing"
 }
-
 // IoTThingPrincipalAttachment represents the AWS::IoT::ThingPrincipalAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html
 type IoTThingPrincipalAttachment struct {
@@ -15246,7 +15399,6 @@ func (s IoTThingPrincipalAttachment) CfnResourceType() string {
 
 	return "AWS::IoT::ThingPrincipalAttachment"
 }
-
 // IoTTopicRule represents the AWS::IoT::TopicRule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html
 type IoTTopicRule struct {
@@ -15261,7 +15413,6 @@ func (s IoTTopicRule) CfnResourceType() string {
 
 	return "AWS::IoT::TopicRule"
 }
-
 // KMSAlias represents the AWS::KMS::Alias CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html
 type KMSAlias struct {
@@ -15276,7 +15427,6 @@ func (s KMSAlias) CfnResourceType() string {
 
 	return "AWS::KMS::Alias"
 }
-
 // KMSKey represents the AWS::KMS::Key CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html
 type KMSKey struct {
@@ -15297,7 +15447,6 @@ func (s KMSKey) CfnResourceType() string {
 
 	return "AWS::KMS::Key"
 }
-
 // KinesisStream represents the AWS::Kinesis::Stream CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html
 type KinesisStream struct {
@@ -15316,7 +15465,6 @@ func (s KinesisStream) CfnResourceType() string {
 
 	return "AWS::Kinesis::Stream"
 }
-
 // KinesisAnalyticsApplication represents the AWS::KinesisAnalytics::Application CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-application.html
 type KinesisAnalyticsApplication struct {
@@ -15335,7 +15483,6 @@ func (s KinesisAnalyticsApplication) CfnResourceType() string {
 
 	return "AWS::KinesisAnalytics::Application"
 }
-
 // KinesisAnalyticsApplicationOutput represents the AWS::KinesisAnalytics::ApplicationOutput CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationoutput.html
 type KinesisAnalyticsApplicationOutput struct {
@@ -15350,7 +15497,6 @@ func (s KinesisAnalyticsApplicationOutput) CfnResourceType() string {
 
 	return "AWS::KinesisAnalytics::ApplicationOutput"
 }
-
 // KinesisAnalyticsApplicationReferenceDataSource represents the AWS::KinesisAnalytics::ApplicationReferenceDataSource CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationreferencedatasource.html
 type KinesisAnalyticsApplicationReferenceDataSource struct {
@@ -15365,13 +15511,12 @@ func (s KinesisAnalyticsApplicationReferenceDataSource) CfnResourceType() string
 
 	return "AWS::KinesisAnalytics::ApplicationReferenceDataSource"
 }
-
 // KinesisFirehoseDeliveryStream represents the AWS::KinesisFirehose::DeliveryStream CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html
 type KinesisFirehoseDeliveryStream struct {
-	// DeliveryStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverstream-deliverystreamname
+	// DeliveryStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-deliverystreamname
 	DeliveryStreamName *StringExpr `json:"DeliveryStreamName,omitempty"`
-	// ElasticsearchDestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverstream-elasticsearchdestinationconfiguration
+	// ElasticsearchDestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration
 	ElasticsearchDestinationConfiguration *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration `json:"ElasticsearchDestinationConfiguration,omitempty"`
 	// ExtendedS3DestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration
 	ExtendedS3DestinationConfiguration *KinesisFirehoseDeliveryStreamExtendedS3DestinationConfiguration `json:"ExtendedS3DestinationConfiguration,omitempty"`
@@ -15386,7 +15531,6 @@ func (s KinesisFirehoseDeliveryStream) CfnResourceType() string {
 
 	return "AWS::KinesisFirehose::DeliveryStream"
 }
-
 // LambdaAlias represents the AWS::Lambda::Alias CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html
 type LambdaAlias struct {
@@ -15405,7 +15549,6 @@ func (s LambdaAlias) CfnResourceType() string {
 
 	return "AWS::Lambda::Alias"
 }
-
 // LambdaEventSourceMapping represents the AWS::Lambda::EventSourceMapping CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html
 type LambdaEventSourceMapping struct {
@@ -15426,7 +15569,6 @@ func (s LambdaEventSourceMapping) CfnResourceType() string {
 
 	return "AWS::Lambda::EventSourceMapping"
 }
-
 // LambdaFunction represents the AWS::Lambda::Function CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
 type LambdaFunction struct {
@@ -15465,12 +15607,13 @@ func (s LambdaFunction) CfnResourceType() string {
 
 	return "AWS::Lambda::Function"
 }
-
 // LambdaPermission represents the AWS::Lambda::Permission CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html
 type LambdaPermission struct {
 	// Action docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-action
 	Action *StringExpr `json:"Action,omitempty" validate:"dive,required"`
+	// EventSourceToken docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-eventsourcetoken
+	EventSourceToken *StringExpr `json:"EventSourceToken,omitempty"`
 	// FunctionName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-functionname
 	FunctionName *StringExpr `json:"FunctionName,omitempty" validate:"dive,required"`
 	// Principal docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-principal
@@ -15486,7 +15629,6 @@ func (s LambdaPermission) CfnResourceType() string {
 
 	return "AWS::Lambda::Permission"
 }
-
 // LambdaVersion represents the AWS::Lambda::Version CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html
 type LambdaVersion struct {
@@ -15503,7 +15645,6 @@ func (s LambdaVersion) CfnResourceType() string {
 
 	return "AWS::Lambda::Version"
 }
-
 // LogsDestination represents the AWS::Logs::Destination CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html
 type LogsDestination struct {
@@ -15522,7 +15663,6 @@ func (s LogsDestination) CfnResourceType() string {
 
 	return "AWS::Logs::Destination"
 }
-
 // LogsLogGroup represents the AWS::Logs::LogGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
 type LogsLogGroup struct {
@@ -15537,7 +15677,6 @@ func (s LogsLogGroup) CfnResourceType() string {
 
 	return "AWS::Logs::LogGroup"
 }
-
 // LogsLogStream represents the AWS::Logs::LogStream CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html
 type LogsLogStream struct {
@@ -15552,7 +15691,6 @@ func (s LogsLogStream) CfnResourceType() string {
 
 	return "AWS::Logs::LogStream"
 }
-
 // LogsMetricFilter represents the AWS::Logs::MetricFilter CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html
 type LogsMetricFilter struct {
@@ -15569,7 +15707,6 @@ func (s LogsMetricFilter) CfnResourceType() string {
 
 	return "AWS::Logs::MetricFilter"
 }
-
 // LogsSubscriptionFilter represents the AWS::Logs::SubscriptionFilter CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
 type LogsSubscriptionFilter struct {
@@ -15588,7 +15725,6 @@ func (s LogsSubscriptionFilter) CfnResourceType() string {
 
 	return "AWS::Logs::SubscriptionFilter"
 }
-
 // OpsWorksApp represents the AWS::OpsWorks::App CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html
 type OpsWorksApp struct {
@@ -15623,7 +15759,6 @@ func (s OpsWorksApp) CfnResourceType() string {
 
 	return "AWS::OpsWorks::App"
 }
-
 // OpsWorksElasticLoadBalancerAttachment represents the AWS::OpsWorks::ElasticLoadBalancerAttachment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html
 type OpsWorksElasticLoadBalancerAttachment struct {
@@ -15638,7 +15773,6 @@ func (s OpsWorksElasticLoadBalancerAttachment) CfnResourceType() string {
 
 	return "AWS::OpsWorks::ElasticLoadBalancerAttachment"
 }
-
 // OpsWorksInstance represents the AWS::OpsWorks::Instance CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html
 type OpsWorksInstance struct {
@@ -15691,7 +15825,6 @@ func (s OpsWorksInstance) CfnResourceType() string {
 
 	return "AWS::OpsWorks::Instance"
 }
-
 // OpsWorksLayer represents the AWS::OpsWorks::Layer CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html
 type OpsWorksLayer struct {
@@ -15738,7 +15871,6 @@ func (s OpsWorksLayer) CfnResourceType() string {
 
 	return "AWS::OpsWorks::Layer"
 }
-
 // OpsWorksStack represents the AWS::OpsWorks::Stack CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html
 type OpsWorksStack struct {
@@ -15797,7 +15929,6 @@ func (s OpsWorksStack) CfnResourceType() string {
 
 	return "AWS::OpsWorks::Stack"
 }
-
 // OpsWorksUserProfile represents the AWS::OpsWorks::UserProfile CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html
 type OpsWorksUserProfile struct {
@@ -15816,7 +15947,6 @@ func (s OpsWorksUserProfile) CfnResourceType() string {
 
 	return "AWS::OpsWorks::UserProfile"
 }
-
 // OpsWorksVolume represents the AWS::OpsWorks::Volume CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html
 type OpsWorksVolume struct {
@@ -15835,7 +15965,6 @@ func (s OpsWorksVolume) CfnResourceType() string {
 
 	return "AWS::OpsWorks::Volume"
 }
-
 // RDSDBCluster represents the AWS::RDS::DBCluster CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html
 type RDSDBCluster struct {
@@ -15882,7 +16011,6 @@ func (s RDSDBCluster) CfnResourceType() string {
 
 	return "AWS::RDS::DBCluster"
 }
-
 // RDSDBClusterParameterGroup represents the AWS::RDS::DBClusterParameterGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html
 type RDSDBClusterParameterGroup struct {
@@ -15901,7 +16029,6 @@ func (s RDSDBClusterParameterGroup) CfnResourceType() string {
 
 	return "AWS::RDS::DBClusterParameterGroup"
 }
-
 // RDSDBInstance represents the AWS::RDS::DBInstance CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
 type RDSDBInstance struct {
@@ -15988,7 +16115,6 @@ func (s RDSDBInstance) CfnResourceType() string {
 
 	return "AWS::RDS::DBInstance"
 }
-
 // RDSDBParameterGroup represents the AWS::RDS::DBParameterGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html
 type RDSDBParameterGroup struct {
@@ -16007,7 +16133,6 @@ func (s RDSDBParameterGroup) CfnResourceType() string {
 
 	return "AWS::RDS::DBParameterGroup"
 }
-
 // RDSDBSecurityGroup represents the AWS::RDS::DBSecurityGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html
 type RDSDBSecurityGroup struct {
@@ -16026,7 +16151,6 @@ func (s RDSDBSecurityGroup) CfnResourceType() string {
 
 	return "AWS::RDS::DBSecurityGroup"
 }
-
 // RDSDBSecurityGroupIngress represents the AWS::RDS::DBSecurityGroupIngress CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html
 type RDSDBSecurityGroupIngress struct {
@@ -16047,7 +16171,6 @@ func (s RDSDBSecurityGroupIngress) CfnResourceType() string {
 
 	return "AWS::RDS::DBSecurityGroupIngress"
 }
-
 // RDSDBSubnetGroup represents the AWS::RDS::DBSubnetGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html
 type RDSDBSubnetGroup struct {
@@ -16064,7 +16187,6 @@ func (s RDSDBSubnetGroup) CfnResourceType() string {
 
 	return "AWS::RDS::DBSubnetGroup"
 }
-
 // RDSEventSubscription represents the AWS::RDS::EventSubscription CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html
 type RDSEventSubscription struct {
@@ -16085,7 +16207,6 @@ func (s RDSEventSubscription) CfnResourceType() string {
 
 	return "AWS::RDS::EventSubscription"
 }
-
 // RDSOptionGroup represents the AWS::RDS::OptionGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html
 type RDSOptionGroup struct {
@@ -16106,7 +16227,6 @@ func (s RDSOptionGroup) CfnResourceType() string {
 
 	return "AWS::RDS::OptionGroup"
 }
-
 // RedshiftCluster represents the AWS::Redshift::Cluster CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html
 type RedshiftCluster struct {
@@ -16173,7 +16293,6 @@ func (s RedshiftCluster) CfnResourceType() string {
 
 	return "AWS::Redshift::Cluster"
 }
-
 // RedshiftClusterParameterGroup represents the AWS::Redshift::ClusterParameterGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html
 type RedshiftClusterParameterGroup struct {
@@ -16192,7 +16311,6 @@ func (s RedshiftClusterParameterGroup) CfnResourceType() string {
 
 	return "AWS::Redshift::ClusterParameterGroup"
 }
-
 // RedshiftClusterSecurityGroup represents the AWS::Redshift::ClusterSecurityGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroup.html
 type RedshiftClusterSecurityGroup struct {
@@ -16207,7 +16325,6 @@ func (s RedshiftClusterSecurityGroup) CfnResourceType() string {
 
 	return "AWS::Redshift::ClusterSecurityGroup"
 }
-
 // RedshiftClusterSecurityGroupIngress represents the AWS::Redshift::ClusterSecurityGroupIngress CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroupingress.html
 type RedshiftClusterSecurityGroupIngress struct {
@@ -16226,7 +16343,6 @@ func (s RedshiftClusterSecurityGroupIngress) CfnResourceType() string {
 
 	return "AWS::Redshift::ClusterSecurityGroupIngress"
 }
-
 // RedshiftClusterSubnetGroup represents the AWS::Redshift::ClusterSubnetGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html
 type RedshiftClusterSubnetGroup struct {
@@ -16243,7 +16359,6 @@ func (s RedshiftClusterSubnetGroup) CfnResourceType() string {
 
 	return "AWS::Redshift::ClusterSubnetGroup"
 }
-
 // Route53HealthCheck represents the AWS::Route53::HealthCheck CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html
 type Route53HealthCheck struct {
@@ -16258,7 +16373,6 @@ func (s Route53HealthCheck) CfnResourceType() string {
 
 	return "AWS::Route53::HealthCheck"
 }
-
 // Route53HostedZone represents the AWS::Route53::HostedZone CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html
 type Route53HostedZone struct {
@@ -16277,7 +16391,6 @@ func (s Route53HostedZone) CfnResourceType() string {
 
 	return "AWS::Route53::HostedZone"
 }
-
 // Route53RecordSet represents the AWS::Route53::RecordSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html
 type Route53RecordSet struct {
@@ -16316,7 +16429,6 @@ func (s Route53RecordSet) CfnResourceType() string {
 
 	return "AWS::Route53::RecordSet"
 }
-
 // Route53RecordSetGroup represents the AWS::Route53::RecordSetGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html
 type Route53RecordSetGroup struct {
@@ -16335,7 +16447,6 @@ func (s Route53RecordSetGroup) CfnResourceType() string {
 
 	return "AWS::Route53::RecordSetGroup"
 }
-
 // S3Bucket represents the AWS::S3::Bucket CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
 type S3Bucket struct {
@@ -16351,6 +16462,8 @@ type S3Bucket struct {
 	LifecycleConfiguration *S3BucketLifecycleConfiguration `json:"LifecycleConfiguration,omitempty"`
 	// LoggingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig
 	LoggingConfiguration *S3BucketLoggingConfiguration `json:"LoggingConfiguration,omitempty"`
+	// MetricsConfigurations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-metricsconfigurations
+	MetricsConfigurations *S3BucketMetricsConfigurationList `json:"MetricsConfigurations,omitempty"`
 	// NotificationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-notification
 	NotificationConfiguration *S3BucketNotificationConfiguration `json:"NotificationConfiguration,omitempty"`
 	// ReplicationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-replicationconfiguration
@@ -16368,7 +16481,6 @@ func (s S3Bucket) CfnResourceType() string {
 
 	return "AWS::S3::Bucket"
 }
-
 // S3BucketPolicy represents the AWS::S3::BucketPolicy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html
 type S3BucketPolicy struct {
@@ -16383,7 +16495,6 @@ func (s S3BucketPolicy) CfnResourceType() string {
 
 	return "AWS::S3::BucketPolicy"
 }
-
 // SDBDomain represents the AWS::SDB::Domain CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html
 type SDBDomain struct {
@@ -16396,7 +16507,6 @@ func (s SDBDomain) CfnResourceType() string {
 
 	return "AWS::SDB::Domain"
 }
-
 // SNSSubscription represents the AWS::SNS::Subscription CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html
 type SNSSubscription struct {
@@ -16413,7 +16523,6 @@ func (s SNSSubscription) CfnResourceType() string {
 
 	return "AWS::SNS::Subscription"
 }
-
 // SNSTopic represents the AWS::SNS::Topic CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html
 type SNSTopic struct {
@@ -16430,7 +16539,6 @@ func (s SNSTopic) CfnResourceType() string {
 
 	return "AWS::SNS::Topic"
 }
-
 // SNSTopicPolicy represents the AWS::SNS::TopicPolicy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html
 type SNSTopicPolicy struct {
@@ -16445,7 +16553,6 @@ func (s SNSTopicPolicy) CfnResourceType() string {
 
 	return "AWS::SNS::TopicPolicy"
 }
-
 // SQSQueue represents the AWS::SQS::Queue CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html
 type SQSQueue struct {
@@ -16478,7 +16585,6 @@ func (s SQSQueue) CfnResourceType() string {
 
 	return "AWS::SQS::Queue"
 }
-
 // SQSQueuePolicy represents the AWS::SQS::QueuePolicy CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html
 type SQSQueuePolicy struct {
@@ -16493,7 +16599,6 @@ func (s SQSQueuePolicy) CfnResourceType() string {
 
 	return "AWS::SQS::QueuePolicy"
 }
-
 // SSMAssociation represents the AWS::SSM::Association CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html
 type SSMAssociation struct {
@@ -16516,7 +16621,6 @@ func (s SSMAssociation) CfnResourceType() string {
 
 	return "AWS::SSM::Association"
 }
-
 // SSMDocument represents the AWS::SSM::Document CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html
 type SSMDocument struct {
@@ -16531,10 +16635,11 @@ func (s SSMDocument) CfnResourceType() string {
 
 	return "AWS::SSM::Document"
 }
-
 // SSMParameter represents the AWS::SSM::Parameter CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
 type SSMParameter struct {
+	// AllowedPattern docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html#cfn-ssm-parameter-allowedpattern
+	AllowedPattern *StringExpr `json:"AllowedPattern,omitempty"`
 	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html#cfn-ssm-parameter-description
 	Description *StringExpr `json:"Description,omitempty"`
 	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html#cfn-ssm-parameter-name
@@ -16550,7 +16655,6 @@ func (s SSMParameter) CfnResourceType() string {
 
 	return "AWS::SSM::Parameter"
 }
-
 // StepFunctionsActivity represents the AWS::StepFunctions::Activity CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html
 type StepFunctionsActivity struct {
@@ -16563,7 +16667,6 @@ func (s StepFunctionsActivity) CfnResourceType() string {
 
 	return "AWS::StepFunctions::Activity"
 }
-
 // StepFunctionsStateMachine represents the AWS::StepFunctions::StateMachine CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html
 type StepFunctionsStateMachine struct {
@@ -16578,7 +16681,6 @@ func (s StepFunctionsStateMachine) CfnResourceType() string {
 
 	return "AWS::StepFunctions::StateMachine"
 }
-
 // WAFByteMatchSet represents the AWS::WAF::ByteMatchSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-bytematchset.html
 type WAFByteMatchSet struct {
@@ -16593,7 +16695,6 @@ func (s WAFByteMatchSet) CfnResourceType() string {
 
 	return "AWS::WAF::ByteMatchSet"
 }
-
 // WAFIPSet represents the AWS::WAF::IPSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-ipset.html
 type WAFIPSet struct {
@@ -16608,7 +16709,6 @@ func (s WAFIPSet) CfnResourceType() string {
 
 	return "AWS::WAF::IPSet"
 }
-
 // WAFRule represents the AWS::WAF::Rule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html
 type WAFRule struct {
@@ -16625,7 +16725,6 @@ func (s WAFRule) CfnResourceType() string {
 
 	return "AWS::WAF::Rule"
 }
-
 // WAFSizeConstraintSet represents the AWS::WAF::SizeConstraintSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sizeconstraintset.html
 type WAFSizeConstraintSet struct {
@@ -16640,7 +16739,6 @@ func (s WAFSizeConstraintSet) CfnResourceType() string {
 
 	return "AWS::WAF::SizeConstraintSet"
 }
-
 // WAFSQLInjectionMatchSet represents the AWS::WAF::SqlInjectionMatchSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sqlinjectionmatchset.html
 type WAFSQLInjectionMatchSet struct {
@@ -16655,7 +16753,6 @@ func (s WAFSQLInjectionMatchSet) CfnResourceType() string {
 
 	return "AWS::WAF::SqlInjectionMatchSet"
 }
-
 // WAFWebACL represents the AWS::WAF::WebACL CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html
 type WAFWebACL struct {
@@ -16674,7 +16771,6 @@ func (s WAFWebACL) CfnResourceType() string {
 
 	return "AWS::WAF::WebACL"
 }
-
 // WAFXSSMatchSet represents the AWS::WAF::XssMatchSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-xssmatchset.html
 type WAFXSSMatchSet struct {
@@ -16689,7 +16785,6 @@ func (s WAFXSSMatchSet) CfnResourceType() string {
 
 	return "AWS::WAF::XssMatchSet"
 }
-
 // WAFRegionalByteMatchSet represents the AWS::WAFRegional::ByteMatchSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-bytematchset.html
 type WAFRegionalByteMatchSet struct {
@@ -16704,7 +16799,6 @@ func (s WAFRegionalByteMatchSet) CfnResourceType() string {
 
 	return "AWS::WAFRegional::ByteMatchSet"
 }
-
 // WAFRegionalIPSet represents the AWS::WAFRegional::IPSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-ipset.html
 type WAFRegionalIPSet struct {
@@ -16719,7 +16813,6 @@ func (s WAFRegionalIPSet) CfnResourceType() string {
 
 	return "AWS::WAFRegional::IPSet"
 }
-
 // WAFRegionalRule represents the AWS::WAFRegional::Rule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-rule.html
 type WAFRegionalRule struct {
@@ -16736,7 +16829,6 @@ func (s WAFRegionalRule) CfnResourceType() string {
 
 	return "AWS::WAFRegional::Rule"
 }
-
 // WAFRegionalSizeConstraintSet represents the AWS::WAFRegional::SizeConstraintSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sizeconstraintset.html
 type WAFRegionalSizeConstraintSet struct {
@@ -16751,7 +16843,6 @@ func (s WAFRegionalSizeConstraintSet) CfnResourceType() string {
 
 	return "AWS::WAFRegional::SizeConstraintSet"
 }
-
 // WAFRegionalSQLInjectionMatchSet represents the AWS::WAFRegional::SqlInjectionMatchSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sqlinjectionmatchset.html
 type WAFRegionalSQLInjectionMatchSet struct {
@@ -16766,7 +16857,6 @@ func (s WAFRegionalSQLInjectionMatchSet) CfnResourceType() string {
 
 	return "AWS::WAFRegional::SqlInjectionMatchSet"
 }
-
 // WAFRegionalWebACL represents the AWS::WAFRegional::WebACL CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webacl.html
 type WAFRegionalWebACL struct {
@@ -16785,7 +16875,6 @@ func (s WAFRegionalWebACL) CfnResourceType() string {
 
 	return "AWS::WAFRegional::WebACL"
 }
-
 // WAFRegionalWebACLAssociation represents the AWS::WAFRegional::WebACLAssociation CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html
 type WAFRegionalWebACLAssociation struct {
@@ -16800,7 +16889,6 @@ func (s WAFRegionalWebACLAssociation) CfnResourceType() string {
 
 	return "AWS::WAFRegional::WebACLAssociation"
 }
-
 // WAFRegionalXSSMatchSet represents the AWS::WAFRegional::XssMatchSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-xssmatchset.html
 type WAFRegionalXSSMatchSet struct {
@@ -16815,7 +16903,6 @@ func (s WAFRegionalXSSMatchSet) CfnResourceType() string {
 
 	return "AWS::WAFRegional::XssMatchSet"
 }
-
 // WorkSpacesWorkspace represents the AWS::WorkSpaces::Workspace CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html
 type WorkSpacesWorkspace struct {
@@ -16838,7 +16925,6 @@ func (s WorkSpacesWorkspace) CfnResourceType() string {
 
 	return "AWS::WorkSpaces::Workspace"
 }
-
 // NewResourceByType returns a new resource object correspoding with the provided type
 func NewResourceByType(typeName string) ResourceProperties {
 	switch typeName {
@@ -16860,6 +16946,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &APIGatewayDocumentationVersion{}
 	case "AWS::ApiGateway::DomainName":
 		return &APIGatewayDomainName{}
+	case "AWS::ApiGateway::GatewayResponse":
+		return &APIGatewayGatewayResponse{}
 	case "AWS::ApiGateway::Method":
 		return &APIGatewayMethod{}
 	case "AWS::ApiGateway::Model":
@@ -16890,6 +16978,12 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &AutoScalingScalingPolicy{}
 	case "AWS::AutoScaling::ScheduledAction":
 		return &AutoScalingScheduledAction{}
+	case "AWS::Batch::ComputeEnvironment":
+		return &BatchComputeEnvironment{}
+	case "AWS::Batch::JobDefinition":
+		return &BatchJobDefinition{}
+	case "AWS::Batch::JobQueue":
+		return &BatchJobQueue{}
 	case "AWS::CertificateManager::Certificate":
 		return &CertificateManagerCertificate{}
 	case "AWS::CloudFormation::CustomResource":
@@ -16942,6 +17036,12 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ConfigConfigurationRecorder{}
 	case "AWS::Config::DeliveryChannel":
 		return &ConfigDeliveryChannel{}
+	case "AWS::DAX::Cluster":
+		return &DAXCluster{}
+	case "AWS::DAX::ParameterGroup":
+		return &DAXParameterGroup{}
+	case "AWS::DAX::SubnetGroup":
+		return &DAXSubnetGroup{}
 	case "AWS::DMS::Certificate":
 		return &DMSCertificate{}
 	case "AWS::DMS::Endpoint":
