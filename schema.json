@@ -15754,6 +15754,10 @@
         "CidrBlock": {
           "PrimitiveType": "String"
         },
+        "CidrBlockAssociations": {
+          "PrimitiveItemType": "String",
+          "Type": "List"
+        },
         "DefaultNetworkAcl": {
           "PrimitiveType": "String"
         },
@@ -19058,6 +19062,12 @@
         "AmazonProvidedIpv6CidrBlock": {
           "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html#cfn-ec2-vpccidrblock-amazonprovidedipv6cidrblock",
           "PrimitiveType": "Boolean",
+          "Required": false,
+          "UpdateType": "Immutable"
+        },
+        "CidrBlock": {
+          "Documentation": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html#cfn-ec2-vpccidrblock-cidrblock",
+          "PrimitiveType": "String",
           "Required": false,
           "UpdateType": "Immutable"
         },
