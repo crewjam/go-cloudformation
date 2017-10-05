@@ -1,6 +1,6 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 1.5.0
-// GENERATED: 2017-09-05 20:45:56.132489899 -0700 PDT m=+0.203210143
+// RESOURCE SPECIFICATION VERSION: 1.7.0
+// GENERATED: 2017-10-05 07:22:23.539637413 -0700 PDT m=+0.580974814
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -1914,6 +1914,8 @@ func (l *CodeBuildProjectEnvironmentList) UnmarshalJSON(buf []byte) error {
 type CodeBuildProjectEnvironmentVariable struct {
 	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html#cfn-codebuild-project-environmentvariable-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html#cfn-codebuild-project-environmentvariable-type
+	Type *StringExpr `json:"Type,omitempty"`
 	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html#cfn-codebuild-project-environmentvariable-value
 	Value *StringExpr `json:"Value,omitempty" validate:"dive,required"`
 }
@@ -2950,6 +2952,8 @@ func (l *CognitoIDentityPoolRoleAttachmentRoleMappingList) UnmarshalJSON(buf []b
 // CognitoIDentityPoolRoleAttachmentRulesConfigurationType represents the AWS::Cognito::IdentityPoolRoleAttachment.RulesConfigurationType CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html 
 type CognitoIDentityPoolRoleAttachmentRulesConfigurationType struct {
+	// Rules docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html#cfn-cognito-identitypoolroleattachment-rulesconfigurationtype-rules
+	Rules *CognitoIDentityPoolRoleAttachmentMappingRuleList `json:"Rules,omitempty" validate:"dive,required"`
 }
 
 // CognitoIDentityPoolRoleAttachmentRulesConfigurationTypeList represents a list of CognitoIDentityPoolRoleAttachmentRulesConfigurationType
@@ -3658,7 +3662,7 @@ func (l *DataPipelinePipelineParameterAttributeList) UnmarshalJSON(buf []byte) e
 type DataPipelinePipelineParameterObject struct {
 	// Attributes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html#cfn-datapipeline-pipeline-parameterobjects-attributes
 	Attributes *DataPipelinePipelineParameterAttributeList `json:"Attributes,omitempty" validate:"dive,required"`
-	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html#cfn-datapipeline-pipeline-parameterobject-id
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html#cfn-datapipeline-pipeline-parameterobjects-id
 	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
 }
 
@@ -6745,6 +6749,122 @@ func (l *ElastiCacheReplicationGroupNodeGroupConfigurationList) UnmarshalJSON(bu
 	}
 	return err
 }
+// ElasticBeanstalkApplicationApplicationResourceLifecycleConfig represents the AWS::ElasticBeanstalk::Application.ApplicationResourceLifecycleConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html 
+type ElasticBeanstalkApplicationApplicationResourceLifecycleConfig struct {
+	// ServiceRole docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html#cfn-elasticbeanstalk-application-applicationresourcelifecycleconfig-servicerole
+	ServiceRole *StringExpr `json:"ServiceRole,omitempty"`
+	// VersionLifecycleConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html#cfn-elasticbeanstalk-application-applicationresourcelifecycleconfig-versionlifecycleconfig
+	VersionLifecycleConfig *ElasticBeanstalkApplicationApplicationVersionLifecycleConfig `json:"VersionLifecycleConfig,omitempty"`
+}
+
+// ElasticBeanstalkApplicationApplicationResourceLifecycleConfigList represents a list of ElasticBeanstalkApplicationApplicationResourceLifecycleConfig
+type ElasticBeanstalkApplicationApplicationResourceLifecycleConfigList []ElasticBeanstalkApplicationApplicationResourceLifecycleConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticBeanstalkApplicationApplicationResourceLifecycleConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticBeanstalkApplicationApplicationResourceLifecycleConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticBeanstalkApplicationApplicationResourceLifecycleConfigList{item}
+		return nil
+	}
+	list := []ElasticBeanstalkApplicationApplicationResourceLifecycleConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticBeanstalkApplicationApplicationResourceLifecycleConfigList(list)
+		return nil
+	}
+	return err
+}
+// ElasticBeanstalkApplicationApplicationVersionLifecycleConfig represents the AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html 
+type ElasticBeanstalkApplicationApplicationVersionLifecycleConfig struct {
+	// MaxAgeRule docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html#cfn-elasticbeanstalk-application-applicationversionlifecycleconfig-maxagerule
+	MaxAgeRule *ElasticBeanstalkApplicationMaxAgeRule `json:"MaxAgeRule,omitempty"`
+	// MaxCountRule docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html#cfn-elasticbeanstalk-application-applicationversionlifecycleconfig-maxcountrule
+	MaxCountRule *ElasticBeanstalkApplicationMaxCountRule `json:"MaxCountRule,omitempty"`
+}
+
+// ElasticBeanstalkApplicationApplicationVersionLifecycleConfigList represents a list of ElasticBeanstalkApplicationApplicationVersionLifecycleConfig
+type ElasticBeanstalkApplicationApplicationVersionLifecycleConfigList []ElasticBeanstalkApplicationApplicationVersionLifecycleConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticBeanstalkApplicationApplicationVersionLifecycleConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticBeanstalkApplicationApplicationVersionLifecycleConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticBeanstalkApplicationApplicationVersionLifecycleConfigList{item}
+		return nil
+	}
+	list := []ElasticBeanstalkApplicationApplicationVersionLifecycleConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticBeanstalkApplicationApplicationVersionLifecycleConfigList(list)
+		return nil
+	}
+	return err
+}
+// ElasticBeanstalkApplicationMaxAgeRule represents the AWS::ElasticBeanstalk::Application.MaxAgeRule CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html 
+type ElasticBeanstalkApplicationMaxAgeRule struct {
+	// DeleteSourceFromS3 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html#cfn-elasticbeanstalk-application-maxagerule-deletesourcefroms3
+	DeleteSourceFromS3 *BoolExpr `json:"DeleteSourceFromS3,omitempty"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html#cfn-elasticbeanstalk-application-maxagerule-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+	// MaxAgeInDays docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html#cfn-elasticbeanstalk-application-maxagerule-maxageindays
+	MaxAgeInDays *IntegerExpr `json:"MaxAgeInDays,omitempty"`
+}
+
+// ElasticBeanstalkApplicationMaxAgeRuleList represents a list of ElasticBeanstalkApplicationMaxAgeRule
+type ElasticBeanstalkApplicationMaxAgeRuleList []ElasticBeanstalkApplicationMaxAgeRule
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticBeanstalkApplicationMaxAgeRuleList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticBeanstalkApplicationMaxAgeRule{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticBeanstalkApplicationMaxAgeRuleList{item}
+		return nil
+	}
+	list := []ElasticBeanstalkApplicationMaxAgeRule{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticBeanstalkApplicationMaxAgeRuleList(list)
+		return nil
+	}
+	return err
+}
+// ElasticBeanstalkApplicationMaxCountRule represents the AWS::ElasticBeanstalk::Application.MaxCountRule CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html 
+type ElasticBeanstalkApplicationMaxCountRule struct {
+	// DeleteSourceFromS3 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html#cfn-elasticbeanstalk-application-maxcountrule-deletesourcefroms3
+	DeleteSourceFromS3 *BoolExpr `json:"DeleteSourceFromS3,omitempty"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html#cfn-elasticbeanstalk-application-maxcountrule-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+	// MaxCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html#cfn-elasticbeanstalk-application-maxcountrule-maxcount
+	MaxCount *IntegerExpr `json:"MaxCount,omitempty"`
+}
+
+// ElasticBeanstalkApplicationMaxCountRuleList represents a list of ElasticBeanstalkApplicationMaxCountRule
+type ElasticBeanstalkApplicationMaxCountRuleList []ElasticBeanstalkApplicationMaxCountRule
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticBeanstalkApplicationMaxCountRuleList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticBeanstalkApplicationMaxCountRule{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticBeanstalkApplicationMaxCountRuleList{item}
+		return nil
+	}
+	list := []ElasticBeanstalkApplicationMaxCountRule{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticBeanstalkApplicationMaxCountRuleList(list)
+		return nil
+	}
+	return err
+}
 // ElasticBeanstalkApplicationVersionSourceBundle represents the AWS::ElasticBeanstalk::ApplicationVersion.SourceBundle CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-sourcebundle.html 
 type ElasticBeanstalkApplicationVersionSourceBundle struct {
@@ -6781,7 +6901,7 @@ type ElasticBeanstalkConfigurationTemplateConfigurationOptionSetting struct {
 	// OptionName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html#cfn-beanstalk-optionsettings-optionname
 	OptionName *StringExpr `json:"OptionName,omitempty" validate:"dive,required"`
 	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html#cfn-beanstalk-optionsettings-value
-	Value *StringExpr `json:"Value,omitempty" validate:"dive,required"`
+	Value *StringExpr `json:"Value,omitempty"`
 }
 
 // ElasticBeanstalkConfigurationTemplateConfigurationOptionSettingList represents a list of ElasticBeanstalkConfigurationTemplateConfigurationOptionSetting
@@ -6831,32 +6951,32 @@ func (l *ElasticBeanstalkConfigurationTemplateSourceConfigurationList) Unmarshal
 	}
 	return err
 }
-// ElasticBeanstalkEnvironmentOptionSettings represents the AWS::ElasticBeanstalk::Environment.OptionSettings CloudFormation property type
+// ElasticBeanstalkEnvironmentOptionSetting represents the AWS::ElasticBeanstalk::Environment.OptionSetting CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html 
-type ElasticBeanstalkEnvironmentOptionSettings struct {
+type ElasticBeanstalkEnvironmentOptionSetting struct {
 	// Namespace docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html#cfn-beanstalk-optionsettings-namespace
 	Namespace *StringExpr `json:"Namespace,omitempty" validate:"dive,required"`
 	// OptionName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html#cfn-beanstalk-optionsettings-optionname
 	OptionName *StringExpr `json:"OptionName,omitempty" validate:"dive,required"`
 	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html#cfn-beanstalk-optionsettings-value
-	Value *StringExpr `json:"Value,omitempty" validate:"dive,required"`
+	Value *StringExpr `json:"Value,omitempty"`
 }
 
-// ElasticBeanstalkEnvironmentOptionSettingsList represents a list of ElasticBeanstalkEnvironmentOptionSettings
-type ElasticBeanstalkEnvironmentOptionSettingsList []ElasticBeanstalkEnvironmentOptionSettings
+// ElasticBeanstalkEnvironmentOptionSettingList represents a list of ElasticBeanstalkEnvironmentOptionSetting
+type ElasticBeanstalkEnvironmentOptionSettingList []ElasticBeanstalkEnvironmentOptionSetting
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticBeanstalkEnvironmentOptionSettingsList) UnmarshalJSON(buf []byte) error {
+func (l *ElasticBeanstalkEnvironmentOptionSettingList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticBeanstalkEnvironmentOptionSettings{}
+	item := ElasticBeanstalkEnvironmentOptionSetting{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticBeanstalkEnvironmentOptionSettingsList{item}
+		*l = ElasticBeanstalkEnvironmentOptionSettingList{item}
 		return nil
 	}
-	list := []ElasticBeanstalkEnvironmentOptionSettings{}
+	list := []ElasticBeanstalkEnvironmentOptionSetting{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticBeanstalkEnvironmentOptionSettingsList(list)
+		*l = ElasticBeanstalkEnvironmentOptionSettingList(list)
 		return nil
 	}
 	return err
@@ -7165,28 +7285,54 @@ func (l *ElasticLoadBalancingV2ListenerActionList) UnmarshalJSON(buf []byte) err
 	}
 	return err
 }
-// ElasticLoadBalancingV2ListenerCertificate represents the AWS::ElasticLoadBalancingV2::Listener.Certificate CloudFormation property type
+// ElasticLoadBalancingV2ListenerCertificateProperty represents the AWS::ElasticLoadBalancingV2::Listener.Certificate CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html 
-type ElasticLoadBalancingV2ListenerCertificate struct {
+type ElasticLoadBalancingV2ListenerCertificateProperty struct {
 	// CertificateArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html#cfn-elasticloadbalancingv2-listener-certificates-certificatearn
 	CertificateArn *StringExpr `json:"CertificateArn,omitempty"`
 }
 
-// ElasticLoadBalancingV2ListenerCertificateList represents a list of ElasticLoadBalancingV2ListenerCertificate
-type ElasticLoadBalancingV2ListenerCertificateList []ElasticLoadBalancingV2ListenerCertificate
+// ElasticLoadBalancingV2ListenerCertificatePropertyList represents a list of ElasticLoadBalancingV2ListenerCertificateProperty
+type ElasticLoadBalancingV2ListenerCertificatePropertyList []ElasticLoadBalancingV2ListenerCertificateProperty
 
 // UnmarshalJSON sets the object from the provided JSON representation
-func (l *ElasticLoadBalancingV2ListenerCertificateList) UnmarshalJSON(buf []byte) error {
+func (l *ElasticLoadBalancingV2ListenerCertificatePropertyList) UnmarshalJSON(buf []byte) error {
 	// Cloudformation allows a single object when a list of objects is expected
-	item := ElasticLoadBalancingV2ListenerCertificate{}
+	item := ElasticLoadBalancingV2ListenerCertificateProperty{}
 	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = ElasticLoadBalancingV2ListenerCertificateList{item}
+		*l = ElasticLoadBalancingV2ListenerCertificatePropertyList{item}
 		return nil
 	}
-	list := []ElasticLoadBalancingV2ListenerCertificate{}
+	list := []ElasticLoadBalancingV2ListenerCertificateProperty{}
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
-		*l = ElasticLoadBalancingV2ListenerCertificateList(list)
+		*l = ElasticLoadBalancingV2ListenerCertificatePropertyList(list)
+		return nil
+	}
+	return err
+}
+// ElasticLoadBalancingV2ListenerCertificateCertificate represents the AWS::ElasticLoadBalancingV2::ListenerCertificate.Certificate CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html 
+type ElasticLoadBalancingV2ListenerCertificateCertificate struct {
+	// CertificateArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html#cfn-elasticloadbalancingv2-listener-certificates-certificatearn
+	CertificateArn *StringExpr `json:"CertificateArn,omitempty"`
+}
+
+// ElasticLoadBalancingV2ListenerCertificateCertificateList represents a list of ElasticLoadBalancingV2ListenerCertificateCertificate
+type ElasticLoadBalancingV2ListenerCertificateCertificateList []ElasticLoadBalancingV2ListenerCertificateCertificate
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingV2ListenerCertificateCertificateList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingV2ListenerCertificateCertificate{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingV2ListenerCertificateCertificateList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingV2ListenerCertificateCertificate{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingV2ListenerCertificateCertificateList(list)
 		return nil
 	}
 	return err
@@ -7275,6 +7421,34 @@ func (l *ElasticLoadBalancingV2LoadBalancerLoadBalancerAttributeList) UnmarshalJ
 	}
 	return err
 }
+// ElasticLoadBalancingV2LoadBalancerSubnetMapping represents the AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html 
+type ElasticLoadBalancingV2LoadBalancerSubnetMapping struct {
+	// AllocationID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html#cfn-elasticloadbalancingv2-loadbalancer-subnetmapping-allocationid
+	AllocationID *StringExpr `json:"AllocationId,omitempty" validate:"dive,required"`
+	// SubnetID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html#cfn-elasticloadbalancingv2-loadbalancer-subnetmapping-subnetid
+	SubnetID *StringExpr `json:"SubnetId,omitempty" validate:"dive,required"`
+}
+
+// ElasticLoadBalancingV2LoadBalancerSubnetMappingList represents a list of ElasticLoadBalancingV2LoadBalancerSubnetMapping
+type ElasticLoadBalancingV2LoadBalancerSubnetMappingList []ElasticLoadBalancingV2LoadBalancerSubnetMapping
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ElasticLoadBalancingV2LoadBalancerSubnetMappingList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ElasticLoadBalancingV2LoadBalancerSubnetMapping{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ElasticLoadBalancingV2LoadBalancerSubnetMappingList{item}
+		return nil
+	}
+	list := []ElasticLoadBalancingV2LoadBalancerSubnetMapping{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ElasticLoadBalancingV2LoadBalancerSubnetMappingList(list)
+		return nil
+	}
+	return err
+}
 // ElasticLoadBalancingV2TargetGroupMatcher represents the AWS::ElasticLoadBalancingV2::TargetGroup.Matcher CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html 
 type ElasticLoadBalancingV2TargetGroupMatcher struct {
@@ -7304,6 +7478,8 @@ func (l *ElasticLoadBalancingV2TargetGroupMatcherList) UnmarshalJSON(buf []byte)
 // ElasticLoadBalancingV2TargetGroupTargetDescription represents the AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html 
 type ElasticLoadBalancingV2TargetGroupTargetDescription struct {
+	// AvailabilityZone docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html#cfn-elasticloadbalancingv2-targetgroup-targetdescription-availabilityzone
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html#cfn-elasticloadbalancingv2-targetgroup-targetdescription-id
 	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
 	// Port docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html#cfn-elasticloadbalancingv2-targetgroup-targetdescription-port
@@ -7330,11 +7506,11 @@ func (l *ElasticLoadBalancingV2TargetGroupTargetDescriptionList) UnmarshalJSON(b
 	return err
 }
 // ElasticLoadBalancingV2TargetGroupTargetGroupAttribute represents the AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html 
 type ElasticLoadBalancingV2TargetGroupTargetGroupAttribute struct {
-	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html#cfn-elasticloadbalancingv2-targetgroup-targetgroupattributes-key
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html#cfn-elasticloadbalancingv2-targetgroup-targetgroupattribute-key
 	Key *StringExpr `json:"Key,omitempty"`
-	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html#cfn-elasticloadbalancingv2-targetgroup-targetgroupattributes-value
+	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html#cfn-elasticloadbalancingv2-targetgroup-targetgroupattribute-value
 	Value *StringExpr `json:"Value,omitempty"`
 }
 
@@ -7451,19 +7627,163 @@ func (l *ElasticsearchDomainSnapshotOptionsList) UnmarshalJSON(buf []byte) error
 	}
 	return err
 }
+// EventsRuleEcsParameters represents the AWS::Events::Rule.EcsParameters CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html 
+type EventsRuleEcsParameters struct {
+	// TaskCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html#cfn-events-rule-ecsparameters-taskcount
+	TaskCount *IntegerExpr `json:"TaskCount,omitempty"`
+	// TaskDefinitionArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html#cfn-events-rule-ecsparameters-taskdefinitionarn
+	TaskDefinitionArn *StringExpr `json:"TaskDefinitionArn,omitempty" validate:"dive,required"`
+}
+
+// EventsRuleEcsParametersList represents a list of EventsRuleEcsParameters
+type EventsRuleEcsParametersList []EventsRuleEcsParameters
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EventsRuleEcsParametersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EventsRuleEcsParameters{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EventsRuleEcsParametersList{item}
+		return nil
+	}
+	list := []EventsRuleEcsParameters{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EventsRuleEcsParametersList(list)
+		return nil
+	}
+	return err
+}
+// EventsRuleInputTransformer represents the AWS::Events::Rule.InputTransformer CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html 
+type EventsRuleInputTransformer struct {
+	// InputPathsMap docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html#cfn-events-rule-inputtransformer-inputpathsmap
+	InputPathsMap interface{} `json:"InputPathsMap,omitempty"`
+	// InputTemplate docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html#cfn-events-rule-inputtransformer-inputtemplate
+	InputTemplate *StringExpr `json:"InputTemplate,omitempty" validate:"dive,required"`
+}
+
+// EventsRuleInputTransformerList represents a list of EventsRuleInputTransformer
+type EventsRuleInputTransformerList []EventsRuleInputTransformer
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EventsRuleInputTransformerList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EventsRuleInputTransformer{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EventsRuleInputTransformerList{item}
+		return nil
+	}
+	list := []EventsRuleInputTransformer{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EventsRuleInputTransformerList(list)
+		return nil
+	}
+	return err
+}
+// EventsRuleKinesisParameters represents the AWS::Events::Rule.KinesisParameters CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html 
+type EventsRuleKinesisParameters struct {
+	// PartitionKeyPath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html#cfn-events-rule-kinesisparameters-partitionkeypath
+	PartitionKeyPath *StringExpr `json:"PartitionKeyPath,omitempty" validate:"dive,required"`
+}
+
+// EventsRuleKinesisParametersList represents a list of EventsRuleKinesisParameters
+type EventsRuleKinesisParametersList []EventsRuleKinesisParameters
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EventsRuleKinesisParametersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EventsRuleKinesisParameters{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EventsRuleKinesisParametersList{item}
+		return nil
+	}
+	list := []EventsRuleKinesisParameters{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EventsRuleKinesisParametersList(list)
+		return nil
+	}
+	return err
+}
+// EventsRuleRunCommandParameters represents the AWS::Events::Rule.RunCommandParameters CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html 
+type EventsRuleRunCommandParameters struct {
+	// RunCommandTargets docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html#cfn-events-rule-runcommandparameters-runcommandtargets
+	RunCommandTargets *EventsRuleRunCommandTargetList `json:"RunCommandTargets,omitempty" validate:"dive,required"`
+}
+
+// EventsRuleRunCommandParametersList represents a list of EventsRuleRunCommandParameters
+type EventsRuleRunCommandParametersList []EventsRuleRunCommandParameters
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EventsRuleRunCommandParametersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EventsRuleRunCommandParameters{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EventsRuleRunCommandParametersList{item}
+		return nil
+	}
+	list := []EventsRuleRunCommandParameters{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EventsRuleRunCommandParametersList(list)
+		return nil
+	}
+	return err
+}
+// EventsRuleRunCommandTarget represents the AWS::Events::Rule.RunCommandTarget CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html 
+type EventsRuleRunCommandTarget struct {
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html#cfn-events-rule-runcommandtarget-key
+	Key *StringExpr `json:"Key,omitempty" validate:"dive,required"`
+	// Values docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html#cfn-events-rule-runcommandtarget-values
+	Values *StringListExpr `json:"Values,omitempty" validate:"dive,required"`
+}
+
+// EventsRuleRunCommandTargetList represents a list of EventsRuleRunCommandTarget
+type EventsRuleRunCommandTargetList []EventsRuleRunCommandTarget
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EventsRuleRunCommandTargetList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EventsRuleRunCommandTarget{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EventsRuleRunCommandTargetList{item}
+		return nil
+	}
+	list := []EventsRuleRunCommandTarget{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EventsRuleRunCommandTargetList(list)
+		return nil
+	}
+	return err
+}
 // EventsRuleTarget represents the AWS::Events::Rule.Target CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html 
 type EventsRuleTarget struct {
 	// Arn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-arn
 	Arn *StringExpr `json:"Arn,omitempty" validate:"dive,required"`
+	// EcsParameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-ecsparameters
+	EcsParameters *EventsRuleEcsParameters `json:"EcsParameters,omitempty"`
 	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-id
 	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
 	// Input docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-input
 	Input *StringExpr `json:"Input,omitempty"`
 	// InputPath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-inputpath
 	InputPath *StringExpr `json:"InputPath,omitempty"`
+	// InputTransformer docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-inputtransformer
+	InputTransformer *EventsRuleInputTransformer `json:"InputTransformer,omitempty"`
+	// KinesisParameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-kinesisparameters
+	KinesisParameters *EventsRuleKinesisParameters `json:"KinesisParameters,omitempty"`
 	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
+	// RunCommandParameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-runcommandparameters
+	RunCommandParameters *EventsRuleRunCommandParameters `json:"RunCommandParameters,omitempty"`
 }
 
 // EventsRuleTargetList represents a list of EventsRuleTarget
@@ -7716,31 +8036,31 @@ func (l *IoTThingAttributePayloadList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleAction represents the AWS::IoT::TopicRule.Action CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html 
 type IoTTopicRuleAction struct {
-	// CloudwatchAlarm docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-cloudwatchalarm
+	// CloudwatchAlarm docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-cloudwatchalarm
 	CloudwatchAlarm *IoTTopicRuleCloudwatchAlarmAction `json:"CloudwatchAlarm,omitempty"`
-	// CloudwatchMetric docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-cloudwatchmetric
+	// CloudwatchMetric docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-cloudwatchmetric
 	CloudwatchMetric *IoTTopicRuleCloudwatchMetricAction `json:"CloudwatchMetric,omitempty"`
-	// DynamoDB docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-dynamodb
+	// DynamoDB docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-dynamodb
 	DynamoDB *IoTTopicRuleDynamoDBAction `json:"DynamoDB,omitempty"`
-	// DynamoDBv2 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-dynamodbv2
+	// DynamoDBv2 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-dynamodbv2
 	DynamoDBv2 *IoTTopicRuleDynamoDBv2Action `json:"DynamoDBv2,omitempty"`
-	// Elasticsearch docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-elasticsearch
+	// Elasticsearch docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-elasticsearch
 	Elasticsearch *IoTTopicRuleElasticsearchAction `json:"Elasticsearch,omitempty"`
-	// Firehose docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-firehose
+	// Firehose docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-firehose
 	Firehose *IoTTopicRuleFirehoseAction `json:"Firehose,omitempty"`
-	// Kinesis docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-kinesis
+	// Kinesis docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-kinesis
 	Kinesis *IoTTopicRuleKinesisAction `json:"Kinesis,omitempty"`
-	// Lambda docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-lambda
+	// Lambda docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-lambda
 	Lambda *IoTTopicRuleLambdaAction `json:"Lambda,omitempty"`
-	// Republish docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-republish
+	// Republish docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-republish
 	Republish *IoTTopicRuleRepublishAction `json:"Republish,omitempty"`
-	// S3 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-s3
+	// S3 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-s3
 	S3 *IoTTopicRuleS3Action `json:"S3,omitempty"`
-	// Sns docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-sns
+	// Sns docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-sns
 	Sns *IoTTopicRuleSnsAction `json:"Sns,omitempty"`
-	// Sqs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html#cfn-iot-action-sqs
+	// Sqs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-sqs
 	Sqs *IoTTopicRuleSqsAction `json:"Sqs,omitempty"`
 }
 
@@ -7764,15 +8084,15 @@ func (l *IoTTopicRuleActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleCloudwatchAlarmAction represents the AWS::IoT::TopicRule.CloudwatchAlarmAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html 
 type IoTTopicRuleCloudwatchAlarmAction struct {
-	// AlarmName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html#cfn-iot-cloudwatchalarm-alarmname
+	// AlarmName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html#cfn-iot-topicrule-cloudwatchalarmaction-alarmname
 	AlarmName *StringExpr `json:"AlarmName,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html#cfn-iot-cloudwatchalarm-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html#cfn-iot-topicrule-cloudwatchalarmaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// StateReason docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html#cfn-iot-cloudwatchalarm-statereason
+	// StateReason docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html#cfn-iot-topicrule-cloudwatchalarmaction-statereason
 	StateReason *StringExpr `json:"StateReason,omitempty" validate:"dive,required"`
-	// StateValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html#cfn-iot-cloudwatchalarm-statevalue
+	// StateValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html#cfn-iot-topicrule-cloudwatchalarmaction-statevalue
 	StateValue *StringExpr `json:"StateValue,omitempty" validate:"dive,required"`
 }
 
@@ -7796,19 +8116,19 @@ func (l *IoTTopicRuleCloudwatchAlarmActionList) UnmarshalJSON(buf []byte) error 
 	return err
 }
 // IoTTopicRuleCloudwatchMetricAction represents the AWS::IoT::TopicRule.CloudwatchMetricAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html 
 type IoTTopicRuleCloudwatchMetricAction struct {
-	// MetricName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html#cfn-iot-cloudwatchmetric-metricname
+	// MetricName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-metricname
 	MetricName *StringExpr `json:"MetricName,omitempty" validate:"dive,required"`
-	// MetricNamespace docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html#cfn-iot-cloudwatchmetric-metricnamespace
+	// MetricNamespace docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-metricnamespace
 	MetricNamespace *StringExpr `json:"MetricNamespace,omitempty" validate:"dive,required"`
-	// MetricTimestamp docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html#cfn-iot-cloudwatchmetric-metrictimestamp
+	// MetricTimestamp docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-metrictimestamp
 	MetricTimestamp *StringExpr `json:"MetricTimestamp,omitempty"`
-	// MetricUnit docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html#cfn-iot-cloudwatchmetric-metricunit
+	// MetricUnit docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-metricunit
 	MetricUnit *StringExpr `json:"MetricUnit,omitempty" validate:"dive,required"`
-	// MetricValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html#cfn-iot-cloudwatchmetric-metricvalue
+	// MetricValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-metricvalue
 	MetricValue *StringExpr `json:"MetricValue,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html#cfn-iot-cloudwatchmetric-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
 }
 
@@ -7832,25 +8152,25 @@ func (l *IoTTopicRuleCloudwatchMetricActionList) UnmarshalJSON(buf []byte) error
 	return err
 }
 // IoTTopicRuleDynamoDBAction represents the AWS::IoT::TopicRule.DynamoDBAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html 
 type IoTTopicRuleDynamoDBAction struct {
-	// HashKeyField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-hashkeyfield
+	// HashKeyField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-hashkeyfield
 	HashKeyField *StringExpr `json:"HashKeyField,omitempty" validate:"dive,required"`
-	// HashKeyType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-hashkeytype
+	// HashKeyType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-hashkeytype
 	HashKeyType *StringExpr `json:"HashKeyType,omitempty"`
-	// HashKeyValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-hashkeyvalue
+	// HashKeyValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-hashkeyvalue
 	HashKeyValue *StringExpr `json:"HashKeyValue,omitempty" validate:"dive,required"`
-	// PayloadField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-payloadfield
+	// PayloadField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-payloadfield
 	PayloadField *StringExpr `json:"PayloadField,omitempty"`
-	// RangeKeyField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-rangekeyfield
+	// RangeKeyField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rangekeyfield
 	RangeKeyField *StringExpr `json:"RangeKeyField,omitempty" validate:"dive,required"`
-	// RangeKeyType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-rangeKeytype
+	// RangeKeyType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rangekeytype
 	RangeKeyType *StringExpr `json:"RangeKeyType,omitempty"`
-	// RangeKeyValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-rangekeyvalue
+	// RangeKeyValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rangekeyvalue
 	RangeKeyValue *StringExpr `json:"RangeKeyValue,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html#cfn-iot-dynamodb-tablename
+	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-tablename
 	TableName *StringExpr `json:"TableName,omitempty" validate:"dive,required"`
 }
 
@@ -7874,11 +8194,11 @@ func (l *IoTTopicRuleDynamoDBActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleDynamoDBv2Action represents the AWS::IoT::TopicRule.DynamoDBv2Action CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodbv2.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html 
 type IoTTopicRuleDynamoDBv2Action struct {
-	// PutItem docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodbv2.html#cfn-iot-dynamodbv2-putitem
+	// PutItem docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html#cfn-iot-topicrule-dynamodbv2action-putitem
 	PutItem *IoTTopicRulePutItemInput `json:"PutItem,omitempty"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodbv2.html#cfn-iot-dynamodbv2-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html#cfn-iot-topicrule-dynamodbv2action-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
 }
 
@@ -7902,17 +8222,17 @@ func (l *IoTTopicRuleDynamoDBv2ActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleElasticsearchAction represents the AWS::IoT::TopicRule.ElasticsearchAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html 
 type IoTTopicRuleElasticsearchAction struct {
-	// Endpoint docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html#cfn-iot-elasticsearch-endpoint
+	// Endpoint docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html#cfn-iot-topicrule-elasticsearchaction-endpoint
 	Endpoint *StringExpr `json:"Endpoint,omitempty" validate:"dive,required"`
-	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html#cfn-iot-elasticsearch-id
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html#cfn-iot-topicrule-elasticsearchaction-id
 	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
-	// Index docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html#cfn-iot-elasticsearch-index
+	// Index docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html#cfn-iot-topicrule-elasticsearchaction-index
 	Index *StringExpr `json:"Index,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html#cfn-iot-elasticsearch-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html#cfn-iot-topicrule-elasticsearchaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html#cfn-iot-elasticsearch-type
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html#cfn-iot-topicrule-elasticsearchaction-type
 	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
 }
 
@@ -7936,13 +8256,13 @@ func (l *IoTTopicRuleElasticsearchActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleFirehoseAction represents the AWS::IoT::TopicRule.FirehoseAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html 
 type IoTTopicRuleFirehoseAction struct {
-	// DeliveryStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html#cfn-iot-firehose-deliverystreamname
+	// DeliveryStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html#cfn-iot-topicrule-firehoseaction-deliverystreamname
 	DeliveryStreamName *StringExpr `json:"DeliveryStreamName,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html#cfn-iot-firehose-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html#cfn-iot-topicrule-firehoseaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// Separator docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html#cfn-iot-firehose-separator
+	// Separator docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html#cfn-iot-topicrule-firehoseaction-separator
 	Separator *StringExpr `json:"Separator,omitempty"`
 }
 
@@ -7966,13 +8286,13 @@ func (l *IoTTopicRuleFirehoseActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleKinesisAction represents the AWS::IoT::TopicRule.KinesisAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html 
 type IoTTopicRuleKinesisAction struct {
-	// PartitionKey docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html#cfn-iot-kinesis-partitionkey
+	// PartitionKey docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html#cfn-iot-topicrule-kinesisaction-partitionkey
 	PartitionKey *StringExpr `json:"PartitionKey,omitempty"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html#cfn-iot-kinesis-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html#cfn-iot-topicrule-kinesisaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// StreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html#cfn-iot-kinesis-streamname
+	// StreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html#cfn-iot-topicrule-kinesisaction-streamname
 	StreamName *StringExpr `json:"StreamName,omitempty" validate:"dive,required"`
 }
 
@@ -7996,10 +8316,10 @@ func (l *IoTTopicRuleKinesisActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleLambdaAction represents the AWS::IoT::TopicRule.LambdaAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-lambda.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-lambdaaction.html 
 type IoTTopicRuleLambdaAction struct {
-	// FunctionArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-lambda.html#cfn-iot-lambda-functionarn
-	FunctionArn *StringExpr `json:"FunctionArn,omitempty" validate:"dive,required"`
+	// FunctionArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-lambdaaction.html#cfn-iot-topicrule-lambdaaction-functionarn
+	FunctionArn *StringExpr `json:"FunctionArn,omitempty"`
 }
 
 // IoTTopicRuleLambdaActionList represents a list of IoTTopicRuleLambdaAction
@@ -8022,9 +8342,9 @@ func (l *IoTTopicRuleLambdaActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRulePutItemInput represents the AWS::IoT::TopicRule.PutItemInput CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-iot-dynamodbv2-putitem.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html 
 type IoTTopicRulePutItemInput struct {
-	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-iot-dynamodbv2-putitem.html#cfn-iot-dynamodbv2-putitem-tablename
+	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html#cfn-iot-topicrule-putiteminput-tablename
 	TableName *StringExpr `json:"TableName,omitempty" validate:"dive,required"`
 }
 
@@ -8048,11 +8368,11 @@ func (l *IoTTopicRulePutItemInputList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleRepublishAction represents the AWS::IoT::TopicRule.RepublishAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-republish.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html 
 type IoTTopicRuleRepublishAction struct {
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-republish.html#cfn-iot-republish-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html#cfn-iot-topicrule-republishaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// Topic docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-republish.html#cfn-iot-republish-topic
+	// Topic docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html#cfn-iot-topicrule-republishaction-topic
 	Topic *StringExpr `json:"Topic,omitempty" validate:"dive,required"`
 }
 
@@ -8076,13 +8396,13 @@ func (l *IoTTopicRuleRepublishActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleS3Action represents the AWS::IoT::TopicRule.S3Action CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html 
 type IoTTopicRuleS3Action struct {
-	// BucketName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html#cfn-iot-s3-bucketname
+	// BucketName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html#cfn-iot-topicrule-s3action-bucketname
 	BucketName *StringExpr `json:"BucketName,omitempty" validate:"dive,required"`
-	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html#cfn-iot-s3-key
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html#cfn-iot-topicrule-s3action-key
 	Key *StringExpr `json:"Key,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html#cfn-iot-s3-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html#cfn-iot-topicrule-s3action-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
 }
 
@@ -8106,13 +8426,13 @@ func (l *IoTTopicRuleS3ActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleSnsAction represents the AWS::IoT::TopicRule.SnsAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html 
 type IoTTopicRuleSnsAction struct {
-	// MessageFormat docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html#cfn-iot-sns-snsaction
+	// MessageFormat docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html#cfn-iot-topicrule-snsaction-messageformat
 	MessageFormat *StringExpr `json:"MessageFormat,omitempty"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html#cfn-iot-sns-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html#cfn-iot-topicrule-snsaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// TargetArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html#cfn-iot-sns-targetarn
+	// TargetArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html#cfn-iot-topicrule-snsaction-targetarn
 	TargetArn *StringExpr `json:"TargetArn,omitempty" validate:"dive,required"`
 }
 
@@ -8136,13 +8456,13 @@ func (l *IoTTopicRuleSnsActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleSqsAction represents the AWS::IoT::TopicRule.SqsAction CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html 
 type IoTTopicRuleSqsAction struct {
-	// QueueURL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html#cfn-iot-sqs-queueurl
+	// QueueURL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html#cfn-iot-topicrule-sqsaction-queueurl
 	QueueURL *StringExpr `json:"QueueUrl,omitempty" validate:"dive,required"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html#cfn-iot-sqs-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html#cfn-iot-topicrule-sqsaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
-	// UseBase64 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html#cfn-iot-sqs-usebase64
+	// UseBase64 docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html#cfn-iot-topicrule-sqsaction-usebase64
 	UseBase64 *BoolExpr `json:"UseBase64,omitempty"`
 }
 
@@ -8166,17 +8486,17 @@ func (l *IoTTopicRuleSqsActionList) UnmarshalJSON(buf []byte) error {
 	return err
 }
 // IoTTopicRuleTopicRulePayload represents the AWS::IoT::TopicRule.TopicRulePayload CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html 
 type IoTTopicRuleTopicRulePayload struct {
-	// Actions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html#cfn-iot-topicrulepayload-actions
+	// Actions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html#cfn-iot-topicrule-topicrulepayload-actions
 	Actions *IoTTopicRuleActionList `json:"Actions,omitempty" validate:"dive,required"`
-	// AwsIotSQLVersion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html#cfn-iot-topicrulepayload-awsiotsqlversion
+	// AwsIotSQLVersion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html#cfn-iot-topicrule-topicrulepayload-awsiotsqlversion
 	AwsIotSQLVersion *StringExpr `json:"AwsIotSqlVersion,omitempty"`
-	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html#cfn-iot-topicrulepayload-description
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html#cfn-iot-topicrule-topicrulepayload-description
 	Description *StringExpr `json:"Description,omitempty"`
-	// RuleDisabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html#cfn-iot-topicrulepayload-ruledisabled
+	// RuleDisabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html#cfn-iot-topicrule-topicrulepayload-ruledisabled
 	RuleDisabled *BoolExpr `json:"RuleDisabled,omitempty" validate:"dive,required"`
-	// SQL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html#cfn-iot-topicrulepayload-sql
+	// SQL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html#cfn-iot-topicrule-topicrulepayload-sql
 	SQL *StringExpr `json:"Sql,omitempty" validate:"dive,required"`
 }
 
@@ -9111,6 +9431,34 @@ func (l *KinesisFirehoseDeliveryStreamKMSEncryptionConfigList) UnmarshalJSON(buf
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = KinesisFirehoseDeliveryStreamKMSEncryptionConfigList(list)
+		return nil
+	}
+	return err
+}
+// KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration represents the AWS::KinesisFirehose::DeliveryStream.KinesisStreamSourceConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration.html 
+type KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration struct {
+	// KinesisStreamARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration.html#cfn-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration-kinesisstreamarn
+	KinesisStreamARN *StringExpr `json:"KinesisStreamARN,omitempty" validate:"dive,required"`
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration.html#cfn-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration-rolearn
+	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
+}
+
+// KinesisFirehoseDeliveryStreamKinesisStreamSourceConfigurationList represents a list of KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration
+type KinesisFirehoseDeliveryStreamKinesisStreamSourceConfigurationList []KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisFirehoseDeliveryStreamKinesisStreamSourceConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisFirehoseDeliveryStreamKinesisStreamSourceConfigurationList{item}
+		return nil
+	}
+	list := []KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisFirehoseDeliveryStreamKinesisStreamSourceConfigurationList(list)
 		return nil
 	}
 	return err
@@ -10581,6 +10929,38 @@ func (l *S3BucketAccelerateConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// S3BucketAnalyticsConfiguration represents the AWS::S3::Bucket.AnalyticsConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html 
+type S3BucketAnalyticsConfiguration struct {
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html#cfn-s3-bucket-analyticsconfiguration-id
+	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html#cfn-s3-bucket-analyticsconfiguration-prefix
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+	// StorageClassAnalysis docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html#cfn-s3-bucket-analyticsconfiguration-storageclassanalysis
+	StorageClassAnalysis *S3BucketStorageClassAnalysis `json:"StorageClassAnalysis,omitempty" validate:"dive,required"`
+	// TagFilters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html#cfn-s3-bucket-analyticsconfiguration-tagfilters
+	TagFilters *S3BucketTagFilterList `json:"TagFilters,omitempty"`
+}
+
+// S3BucketAnalyticsConfigurationList represents a list of S3BucketAnalyticsConfiguration
+type S3BucketAnalyticsConfigurationList []S3BucketAnalyticsConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketAnalyticsConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketAnalyticsConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketAnalyticsConfigurationList{item}
+		return nil
+	}
+	list := []S3BucketAnalyticsConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketAnalyticsConfigurationList(list)
+		return nil
+	}
+	return err
+}
 // S3BucketCorsConfiguration represents the AWS::S3::Bucket.CorsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html 
 type S3BucketCorsConfiguration struct {
@@ -10643,6 +11023,66 @@ func (l *S3BucketCorsRuleList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// S3BucketDataExport represents the AWS::S3::Bucket.DataExport CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html 
+type S3BucketDataExport struct {
+	// Destination docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html#cfn-s3-bucket-dataexport-destination
+	Destination *S3BucketDestination `json:"Destination,omitempty" validate:"dive,required"`
+	// OutputSchemaVersion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html#cfn-s3-bucket-dataexport-outputschemaversion
+	OutputSchemaVersion *StringExpr `json:"OutputSchemaVersion,omitempty" validate:"dive,required"`
+}
+
+// S3BucketDataExportList represents a list of S3BucketDataExport
+type S3BucketDataExportList []S3BucketDataExport
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketDataExportList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketDataExport{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketDataExportList{item}
+		return nil
+	}
+	list := []S3BucketDataExport{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketDataExportList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketDestination represents the AWS::S3::Bucket.Destination CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html 
+type S3BucketDestination struct {
+	// BucketAccountID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html#cfn-s3-bucket-destination-bucketaccountid
+	BucketAccountID *StringExpr `json:"BucketAccountId,omitempty"`
+	// BucketArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html#cfn-s3-bucket-destination-bucketarn
+	BucketArn *StringExpr `json:"BucketArn,omitempty" validate:"dive,required"`
+	// Format docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html#cfn-s3-bucket-destination-format
+	Format *StringExpr `json:"Format,omitempty" validate:"dive,required"`
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html#cfn-s3-bucket-destination-prefix
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+}
+
+// S3BucketDestinationList represents a list of S3BucketDestination
+type S3BucketDestinationList []S3BucketDestination
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketDestinationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketDestination{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketDestinationList{item}
+		return nil
+	}
+	list := []S3BucketDestination{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketDestinationList(list)
+		return nil
+	}
+	return err
+}
 // S3BucketFilterRule represents the AWS::S3::Bucket.FilterRule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html 
 type S3BucketFilterRule struct {
@@ -10667,6 +11107,44 @@ func (l *S3BucketFilterRuleList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = S3BucketFilterRuleList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketInventoryConfiguration represents the AWS::S3::Bucket.InventoryConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html 
+type S3BucketInventoryConfiguration struct {
+	// Destination docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-destination
+	Destination *S3BucketDestination `json:"Destination,omitempty" validate:"dive,required"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-id
+	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
+	// IncludedObjectVersions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-includedobjectversions
+	IncludedObjectVersions *StringExpr `json:"IncludedObjectVersions,omitempty" validate:"dive,required"`
+	// OptionalFields docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-optionalfields
+	OptionalFields *StringListExpr `json:"OptionalFields,omitempty"`
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-prefix
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+	// ScheduleFrequency docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-schedulefrequency
+	ScheduleFrequency *StringExpr `json:"ScheduleFrequency,omitempty" validate:"dive,required"`
+}
+
+// S3BucketInventoryConfigurationList represents a list of S3BucketInventoryConfiguration
+type S3BucketInventoryConfigurationList []S3BucketInventoryConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketInventoryConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketInventoryConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketInventoryConfigurationList{item}
+		return nil
+	}
+	list := []S3BucketInventoryConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketInventoryConfigurationList(list)
 		return nil
 	}
 	return err
@@ -11175,6 +11653,32 @@ func (l *S3BucketS3KeyFilterList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = S3BucketS3KeyFilterList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketStorageClassAnalysis represents the AWS::S3::Bucket.StorageClassAnalysis CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html 
+type S3BucketStorageClassAnalysis struct {
+	// DataExport docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html#cfn-s3-bucket-storageclassanalysis-dataexport
+	DataExport *S3BucketDataExport `json:"DataExport,omitempty"`
+}
+
+// S3BucketStorageClassAnalysisList represents a list of S3BucketStorageClassAnalysis
+type S3BucketStorageClassAnalysisList []S3BucketStorageClassAnalysis
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketStorageClassAnalysisList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketStorageClassAnalysis{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketStorageClassAnalysisList{item}
+		return nil
+	}
+	list := []S3BucketStorageClassAnalysis{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketStorageClassAnalysisList(list)
 		return nil
 	}
 	return err
@@ -13876,6 +14380,8 @@ type EC2NatGateway struct {
 	AllocationID *StringExpr `json:"AllocationId,omitempty" validate:"dive,required"`
 	// SubnetID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-subnetid
 	SubnetID *StringExpr `json:"SubnetId,omitempty" validate:"dive,required"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-tags
+	Tags *TagList `json:"Tags,omitempty"`
 }
 
 // CfnResourceType returns AWS::EC2::NatGateway to implement the ResourceProperties interface
@@ -14846,6 +15352,8 @@ type ElasticBeanstalkApplication struct {
 	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
 	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html#cfn-elasticbeanstalk-application-description
 	Description *StringExpr `json:"Description,omitempty"`
+	// ResourceLifecycleConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html#cfn-elasticbeanstalk-application-resourcelifecycleconfig
+	ResourceLifecycleConfig *ElasticBeanstalkApplicationApplicationResourceLifecycleConfig `json:"ResourceLifecycleConfig,omitempty"`
 }
 
 // CfnResourceType returns AWS::ElasticBeanstalk::Application to implement the ResourceProperties interface
@@ -14880,6 +15388,8 @@ type ElasticBeanstalkConfigurationTemplate struct {
 	EnvironmentID *StringExpr `json:"EnvironmentId,omitempty"`
 	// OptionSettings docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-beanstalk-configurationtemplate.html#cfn-elasticbeanstalk-configurationtemplate-optionsettings
 	OptionSettings *ElasticBeanstalkConfigurationTemplateConfigurationOptionSettingList `json:"OptionSettings,omitempty"`
+	// PlatformArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-beanstalk-configurationtemplate.html#cfn-elasticbeanstalk-configurationtemplate-platformarn
+	PlatformArn *StringExpr `json:"PlatformArn,omitempty"`
 	// SolutionStackName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-beanstalk-configurationtemplate.html#cfn-elasticbeanstalk-configurationtemplate-solutionstackname
 	SolutionStackName *StringExpr `json:"SolutionStackName,omitempty"`
 	// SourceConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-beanstalk-configurationtemplate.html#cfn-elasticbeanstalk-configurationtemplate-sourceconfiguration
@@ -14903,7 +15413,9 @@ type ElasticBeanstalkEnvironment struct {
 	// EnvironmentName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-name
 	EnvironmentName *StringExpr `json:"EnvironmentName,omitempty"`
 	// OptionSettings docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-optionsettings
-	OptionSettings *ElasticBeanstalkEnvironmentOptionSettingsList `json:"OptionSettings,omitempty"`
+	OptionSettings *ElasticBeanstalkEnvironmentOptionSettingList `json:"OptionSettings,omitempty"`
+	// PlatformArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-platformarn
+	PlatformArn *StringExpr `json:"PlatformArn,omitempty"`
 	// SolutionStackName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-solutionstackname
 	SolutionStackName *StringExpr `json:"SolutionStackName,omitempty"`
 	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-elasticbeanstalk-environment-tags
@@ -14967,7 +15479,7 @@ func (s ElasticLoadBalancingLoadBalancer) CfnResourceType() string {
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html 
 type ElasticLoadBalancingV2Listener struct {
 	// Certificates docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-certificates
-	Certificates *ElasticLoadBalancingV2ListenerCertificateList `json:"Certificates,omitempty"`
+	Certificates *ElasticLoadBalancingV2ListenerCertificatePropertyList `json:"Certificates,omitempty"`
 	// DefaultActions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-defaultactions
 	DefaultActions *ElasticLoadBalancingV2ListenerActionList `json:"DefaultActions,omitempty" validate:"dive,required"`
 	// LoadBalancerArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-loadbalancerarn
@@ -14984,6 +15496,20 @@ type ElasticLoadBalancingV2Listener struct {
 func (s ElasticLoadBalancingV2Listener) CfnResourceType() string {
 	
 	return "AWS::ElasticLoadBalancingV2::Listener"
+}
+// ElasticLoadBalancingV2ListenerCertificate represents the AWS::ElasticLoadBalancingV2::ListenerCertificate CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html 
+type ElasticLoadBalancingV2ListenerCertificate struct {
+	// Certificates docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html#cfn-elasticloadbalancingv2-listenercertificate-certificates
+	Certificates *ElasticLoadBalancingV2ListenerCertificateCertificateList `json:"Certificates,omitempty" validate:"dive,required"`
+	// ListenerArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html#cfn-elasticloadbalancingv2-listenercertificate-listenerarn
+	ListenerArn *StringExpr `json:"ListenerArn,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::ElasticLoadBalancingV2::ListenerCertificate to implement the ResourceProperties interface
+func (s ElasticLoadBalancingV2ListenerCertificate) CfnResourceType() string {
+	
+	return "AWS::ElasticLoadBalancingV2::ListenerCertificate"
 }
 // ElasticLoadBalancingV2ListenerRule represents the AWS::ElasticLoadBalancingV2::ListenerRule CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html 
@@ -15016,10 +15542,14 @@ type ElasticLoadBalancingV2LoadBalancer struct {
 	Scheme *StringExpr `json:"Scheme,omitempty"`
 	// SecurityGroups docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-securitygroups
 	SecurityGroups *StringListExpr `json:"SecurityGroups,omitempty"`
+	// SubnetMappings docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-subnetmappings
+	SubnetMappings *ElasticLoadBalancingV2LoadBalancerSubnetMappingList `json:"SubnetMappings,omitempty"`
 	// Subnets docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-subnets
 	Subnets *StringListExpr `json:"Subnets,omitempty"`
 	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-tags
 	Tags *TagList `json:"Tags,omitempty"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-type
+	Type *StringExpr `json:"Type,omitempty"`
 }
 
 // CfnResourceType returns AWS::ElasticLoadBalancingV2::LoadBalancer to implement the ResourceProperties interface
@@ -15054,6 +15584,8 @@ type ElasticLoadBalancingV2TargetGroup struct {
 	Tags *TagList `json:"Tags,omitempty"`
 	// TargetGroupAttributes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-targetgroupattributes
 	TargetGroupAttributes *ElasticLoadBalancingV2TargetGroupTargetGroupAttributeList `json:"TargetGroupAttributes,omitempty"`
+	// TargetType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-targettype
+	TargetType *StringExpr `json:"TargetType,omitempty"`
 	// Targets docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-targets
 	Targets *ElasticLoadBalancingV2TargetGroupTargetDescriptionList `json:"Targets,omitempty"`
 	// UnhealthyThresholdCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-unhealthythresholdcount
@@ -15442,6 +15974,8 @@ type KMSKey struct {
 	KeyPolicy interface{} `json:"KeyPolicy,omitempty" validate:"dive,required"`
 	// KeyUsage docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keyusage
 	KeyUsage *StringExpr `json:"KeyUsage,omitempty"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-tags
+	Tags *TagList `json:"Tags,omitempty"`
 }
 
 // CfnResourceType returns AWS::KMS::Key to implement the ResourceProperties interface
@@ -15518,10 +16052,14 @@ func (s KinesisAnalyticsApplicationReferenceDataSource) CfnResourceType() string
 type KinesisFirehoseDeliveryStream struct {
 	// DeliveryStreamName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-deliverystreamname
 	DeliveryStreamName *StringExpr `json:"DeliveryStreamName,omitempty"`
+	// DeliveryStreamType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-deliverystreamtype
+	DeliveryStreamType *StringExpr `json:"DeliveryStreamType,omitempty"`
 	// ElasticsearchDestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration
 	ElasticsearchDestinationConfiguration *KinesisFirehoseDeliveryStreamElasticsearchDestinationConfiguration `json:"ElasticsearchDestinationConfiguration,omitempty"`
 	// ExtendedS3DestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration
 	ExtendedS3DestinationConfiguration *KinesisFirehoseDeliveryStreamExtendedS3DestinationConfiguration `json:"ExtendedS3DestinationConfiguration,omitempty"`
+	// KinesisStreamSourceConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration
+	KinesisStreamSourceConfiguration *KinesisFirehoseDeliveryStreamKinesisStreamSourceConfiguration `json:"KinesisStreamSourceConfiguration,omitempty"`
 	// RedshiftDestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-redshiftdestinationconfiguration
 	RedshiftDestinationConfiguration *KinesisFirehoseDeliveryStreamRedshiftDestinationConfiguration `json:"RedshiftDestinationConfiguration,omitempty"`
 	// S3DestinationConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-s3destinationconfiguration
@@ -16456,10 +16994,14 @@ type S3Bucket struct {
 	AccelerateConfiguration *S3BucketAccelerateConfiguration `json:"AccelerateConfiguration,omitempty"`
 	// AccessControl docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-accesscontrol
 	AccessControl *StringExpr `json:"AccessControl,omitempty"`
+	// AnalyticsConfigurations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-analyticsconfigurations
+	AnalyticsConfigurations *S3BucketAnalyticsConfigurationList `json:"AnalyticsConfigurations,omitempty"`
 	// BucketName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-name
 	BucketName *StringExpr `json:"BucketName,omitempty"`
 	// CorsConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-crossoriginconfig
 	CorsConfiguration *S3BucketCorsConfiguration `json:"CorsConfiguration,omitempty"`
+	// InventoryConfigurations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-inventoryconfigurations
+	InventoryConfigurations *S3BucketInventoryConfigurationList `json:"InventoryConfigurations,omitempty"`
 	// LifecycleConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-lifecycleconfig
 	LifecycleConfiguration *S3BucketLifecycleConfiguration `json:"LifecycleConfiguration,omitempty"`
 	// LoggingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig
@@ -17188,6 +17730,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &ElasticLoadBalancingLoadBalancer{}
 	case "AWS::ElasticLoadBalancingV2::Listener":
 		return &ElasticLoadBalancingV2Listener{}
+	case "AWS::ElasticLoadBalancingV2::ListenerCertificate":
+		return &ElasticLoadBalancingV2ListenerCertificate{}
 	case "AWS::ElasticLoadBalancingV2::ListenerRule":
 		return &ElasticLoadBalancingV2ListenerRule{}
 	case "AWS::ElasticLoadBalancingV2::LoadBalancer":

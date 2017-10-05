@@ -186,7 +186,8 @@ func canonicalGoTypename(t *testing.T, awsName string, isTopLevel bool) string {
 		switch canonicalName {
 		case "RDSDBSecurityGroupIngress",
 			"EC2SecurityGroupIngress",
-			"EC2SecurityGroupEgress":
+			"EC2SecurityGroupEgress",
+			"ElasticLoadBalancingV2ListenerCertificate":
 			canonicalName = fmt.Sprintf("%sProperty", canonicalName)
 		default:
 			// NOP
