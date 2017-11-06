@@ -1,6 +1,6 @@
 package cloudformation
 // RESOURCE SPECIFICATION VERSION: 1.8.0
-// GENERATED: 2017-10-27 12:20:06.58648124 -0700 PDT m=+0.353825932
+// GENERATED: 2017-11-05 17:00:15.720230909 -0800 PST m=+0.371248076
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -1311,6 +1311,740 @@ func (l *CertificateManagerCertificateDomainValidationOptionList) UnmarshalJSON(
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = CertificateManagerCertificateDomainValidationOptionList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig represents the AWS::CloudFront::CloudFrontOriginAccessIdentity.CloudFrontOriginAccessIdentityConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html 
+type CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig struct {
+	// Comment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html#cfn-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig-comment
+	Comment *StringExpr `json:"Comment,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfigList represents a list of CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig
+type CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfigList []CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfigList{item}
+		return nil
+	}
+	list := []CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfigList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionCacheBehavior represents the AWS::CloudFront::Distribution.CacheBehavior CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html 
+type CloudFrontDistributionCacheBehavior struct {
+	// AllowedMethods docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-allowedmethods
+	AllowedMethods *StringListExpr `json:"AllowedMethods,omitempty"`
+	// CachedMethods docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-cachedmethods
+	CachedMethods *StringListExpr `json:"CachedMethods,omitempty"`
+	// Compress docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-compress
+	Compress *BoolExpr `json:"Compress,omitempty"`
+	// DefaultTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-defaultttl
+	DefaultTTL *IntegerExpr `json:"DefaultTTL,omitempty"`
+	// ForwardedValues docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-forwardedvalues
+	ForwardedValues *CloudFrontDistributionForwardedValues `json:"ForwardedValues,omitempty" validate:"dive,required"`
+	// LambdaFunctionAssociations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-lambdafunctionassociations
+	LambdaFunctionAssociations *CloudFrontDistributionLambdaFunctionAssociationList `json:"LambdaFunctionAssociations,omitempty"`
+	// MaxTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-maxttl
+	MaxTTL *IntegerExpr `json:"MaxTTL,omitempty"`
+	// MinTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-minttl
+	MinTTL *IntegerExpr `json:"MinTTL,omitempty"`
+	// PathPattern docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-pathpattern
+	PathPattern *StringExpr `json:"PathPattern,omitempty" validate:"dive,required"`
+	// SmoothStreaming docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-smoothstreaming
+	SmoothStreaming *BoolExpr `json:"SmoothStreaming,omitempty"`
+	// TargetOriginID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-targetoriginid
+	TargetOriginID *StringExpr `json:"TargetOriginId,omitempty" validate:"dive,required"`
+	// TrustedSigners docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-trustedsigners
+	TrustedSigners *StringListExpr `json:"TrustedSigners,omitempty"`
+	// ViewerProtocolPolicy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-viewerprotocolpolicy
+	ViewerProtocolPolicy *StringExpr `json:"ViewerProtocolPolicy,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontDistributionCacheBehaviorList represents a list of CloudFrontDistributionCacheBehavior
+type CloudFrontDistributionCacheBehaviorList []CloudFrontDistributionCacheBehavior
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionCacheBehaviorList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionCacheBehavior{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionCacheBehaviorList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionCacheBehavior{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionCacheBehaviorList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionCookies represents the AWS::CloudFront::Distribution.Cookies CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html 
+type CloudFrontDistributionCookies struct {
+	// Forward docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html#cfn-cloudfront-distribution-cookies-forward
+	Forward *StringExpr `json:"Forward,omitempty" validate:"dive,required"`
+	// WhitelistedNames docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html#cfn-cloudfront-distribution-cookies-whitelistednames
+	WhitelistedNames *StringListExpr `json:"WhitelistedNames,omitempty"`
+}
+
+// CloudFrontDistributionCookiesList represents a list of CloudFrontDistributionCookies
+type CloudFrontDistributionCookiesList []CloudFrontDistributionCookies
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionCookiesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionCookies{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionCookiesList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionCookies{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionCookiesList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionCustomErrorResponse represents the AWS::CloudFront::Distribution.CustomErrorResponse CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html 
+type CloudFrontDistributionCustomErrorResponse struct {
+	// ErrorCachingMinTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html#cfn-cloudfront-distribution-customerrorresponse-errorcachingminttl
+	ErrorCachingMinTTL *IntegerExpr `json:"ErrorCachingMinTTL,omitempty"`
+	// ErrorCode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html#cfn-cloudfront-distribution-customerrorresponse-errorcode
+	ErrorCode *IntegerExpr `json:"ErrorCode,omitempty" validate:"dive,required"`
+	// ResponseCode docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html#cfn-cloudfront-distribution-customerrorresponse-responsecode
+	ResponseCode *IntegerExpr `json:"ResponseCode,omitempty"`
+	// ResponsePagePath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html#cfn-cloudfront-distribution-customerrorresponse-responsepagepath
+	ResponsePagePath *StringExpr `json:"ResponsePagePath,omitempty"`
+}
+
+// CloudFrontDistributionCustomErrorResponseList represents a list of CloudFrontDistributionCustomErrorResponse
+type CloudFrontDistributionCustomErrorResponseList []CloudFrontDistributionCustomErrorResponse
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionCustomErrorResponseList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionCustomErrorResponse{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionCustomErrorResponseList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionCustomErrorResponse{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionCustomErrorResponseList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionCustomOriginConfig represents the AWS::CloudFront::Distribution.CustomOriginConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html 
+type CloudFrontDistributionCustomOriginConfig struct {
+	// HTTPPort docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-httpport
+	HTTPPort *IntegerExpr `json:"HTTPPort,omitempty"`
+	// HTTPSPort docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-httpsport
+	HTTPSPort *IntegerExpr `json:"HTTPSPort,omitempty"`
+	// OriginKeepaliveTimeout docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-originkeepalivetimeout
+	OriginKeepaliveTimeout *IntegerExpr `json:"OriginKeepaliveTimeout,omitempty"`
+	// OriginProtocolPolicy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-originprotocolpolicy
+	OriginProtocolPolicy *StringExpr `json:"OriginProtocolPolicy,omitempty" validate:"dive,required"`
+	// OriginReadTimeout docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-originreadtimeout
+	OriginReadTimeout *IntegerExpr `json:"OriginReadTimeout,omitempty"`
+	// OriginSSLProtocols docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-originsslprotocols
+	OriginSSLProtocols *StringListExpr `json:"OriginSSLProtocols,omitempty"`
+}
+
+// CloudFrontDistributionCustomOriginConfigList represents a list of CloudFrontDistributionCustomOriginConfig
+type CloudFrontDistributionCustomOriginConfigList []CloudFrontDistributionCustomOriginConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionCustomOriginConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionCustomOriginConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionCustomOriginConfigList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionCustomOriginConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionCustomOriginConfigList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionDefaultCacheBehavior represents the AWS::CloudFront::Distribution.DefaultCacheBehavior CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html 
+type CloudFrontDistributionDefaultCacheBehavior struct {
+	// AllowedMethods docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-allowedmethods
+	AllowedMethods *StringListExpr `json:"AllowedMethods,omitempty"`
+	// CachedMethods docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-cachedmethods
+	CachedMethods *StringListExpr `json:"CachedMethods,omitempty"`
+	// Compress docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-compress
+	Compress *BoolExpr `json:"Compress,omitempty"`
+	// DefaultTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-defaultttl
+	DefaultTTL *IntegerExpr `json:"DefaultTTL,omitempty"`
+	// ForwardedValues docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-forwardedvalues
+	ForwardedValues *CloudFrontDistributionForwardedValues `json:"ForwardedValues,omitempty" validate:"dive,required"`
+	// LambdaFunctionAssociations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-lambdafunctionassociations
+	LambdaFunctionAssociations *CloudFrontDistributionLambdaFunctionAssociationList `json:"LambdaFunctionAssociations,omitempty"`
+	// MaxTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-maxttl
+	MaxTTL *IntegerExpr `json:"MaxTTL,omitempty"`
+	// MinTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-minttl
+	MinTTL *IntegerExpr `json:"MinTTL,omitempty"`
+	// SmoothStreaming docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-smoothstreaming
+	SmoothStreaming *BoolExpr `json:"SmoothStreaming,omitempty"`
+	// TargetOriginID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-targetoriginid
+	TargetOriginID *StringExpr `json:"TargetOriginId,omitempty" validate:"dive,required"`
+	// TrustedSigners docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-trustedsigners
+	TrustedSigners *StringListExpr `json:"TrustedSigners,omitempty"`
+	// ViewerProtocolPolicy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-viewerprotocolpolicy
+	ViewerProtocolPolicy *StringExpr `json:"ViewerProtocolPolicy,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontDistributionDefaultCacheBehaviorList represents a list of CloudFrontDistributionDefaultCacheBehavior
+type CloudFrontDistributionDefaultCacheBehaviorList []CloudFrontDistributionDefaultCacheBehavior
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionDefaultCacheBehaviorList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionDefaultCacheBehavior{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionDefaultCacheBehaviorList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionDefaultCacheBehavior{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionDefaultCacheBehaviorList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionDistributionConfig represents the AWS::CloudFront::Distribution.DistributionConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html 
+type CloudFrontDistributionDistributionConfig struct {
+	// Aliases docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases
+	Aliases *StringListExpr `json:"Aliases,omitempty"`
+	// CNAMEs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-cnames
+	CNAMEs *StringListExpr `json:"CNAMEs,omitempty"`
+	// CacheBehaviors docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-cachebehaviors
+	CacheBehaviors *CloudFrontDistributionCacheBehaviorList `json:"CacheBehaviors,omitempty"`
+	// Comment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-comment
+	Comment *StringExpr `json:"Comment,omitempty"`
+	// CustomErrorResponses docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-customerrorresponses
+	CustomErrorResponses *CloudFrontDistributionCustomErrorResponseList `json:"CustomErrorResponses,omitempty"`
+	// CustomOrigin docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-customorigin
+	CustomOrigin *CloudFrontDistributionLegacyCustomOrigin `json:"CustomOrigin,omitempty"`
+	// DefaultCacheBehavior docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-defaultcachebehavior
+	DefaultCacheBehavior *CloudFrontDistributionDefaultCacheBehavior `json:"DefaultCacheBehavior,omitempty"`
+	// DefaultRootObject docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-defaultrootobject
+	DefaultRootObject *StringExpr `json:"DefaultRootObject,omitempty"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
+	// HTTPVersion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-httpversion
+	HTTPVersion *StringExpr `json:"HttpVersion,omitempty"`
+	// IPV6Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-ipv6enabled
+	IPV6Enabled *BoolExpr `json:"IPV6Enabled,omitempty"`
+	// Logging docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-logging
+	Logging *CloudFrontDistributionLogging `json:"Logging,omitempty"`
+	// Origins docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-origins
+	Origins *CloudFrontDistributionOriginList `json:"Origins,omitempty"`
+	// PriceClass docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-priceclass
+	PriceClass *StringExpr `json:"PriceClass,omitempty"`
+	// Restrictions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-restrictions
+	Restrictions *CloudFrontDistributionRestrictions `json:"Restrictions,omitempty"`
+	// S3Origin docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-s3origin
+	S3Origin *CloudFrontDistributionLegacyS3Origin `json:"S3Origin,omitempty"`
+	// ViewerCertificate docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-viewercertificate
+	ViewerCertificate *CloudFrontDistributionViewerCertificate `json:"ViewerCertificate,omitempty"`
+	// WebACLID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-webaclid
+	WebACLID *StringExpr `json:"WebACLId,omitempty"`
+}
+
+// CloudFrontDistributionDistributionConfigList represents a list of CloudFrontDistributionDistributionConfig
+type CloudFrontDistributionDistributionConfigList []CloudFrontDistributionDistributionConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionDistributionConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionDistributionConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionDistributionConfigList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionDistributionConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionDistributionConfigList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionForwardedValues represents the AWS::CloudFront::Distribution.ForwardedValues CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html 
+type CloudFrontDistributionForwardedValues struct {
+	// Cookies docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html#cfn-cloudfront-distribution-forwardedvalues-cookies
+	Cookies *CloudFrontDistributionCookies `json:"Cookies,omitempty"`
+	// Headers docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html#cfn-cloudfront-distribution-forwardedvalues-headers
+	Headers *StringListExpr `json:"Headers,omitempty"`
+	// QueryString docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html#cfn-cloudfront-distribution-forwardedvalues-querystring
+	QueryString *BoolExpr `json:"QueryString,omitempty" validate:"dive,required"`
+	// QueryStringCacheKeys docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html#cfn-cloudfront-distribution-forwardedvalues-querystringcachekeys
+	QueryStringCacheKeys *StringListExpr `json:"QueryStringCacheKeys,omitempty"`
+}
+
+// CloudFrontDistributionForwardedValuesList represents a list of CloudFrontDistributionForwardedValues
+type CloudFrontDistributionForwardedValuesList []CloudFrontDistributionForwardedValues
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionForwardedValuesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionForwardedValues{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionForwardedValuesList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionForwardedValues{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionForwardedValuesList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionGeoRestriction represents the AWS::CloudFront::Distribution.GeoRestriction CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html 
+type CloudFrontDistributionGeoRestriction struct {
+	// Locations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html#cfn-cloudfront-distribution-georestriction-locations
+	Locations *StringListExpr `json:"Locations,omitempty"`
+	// RestrictionType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html#cfn-cloudfront-distribution-georestriction-restrictiontype
+	RestrictionType *StringExpr `json:"RestrictionType,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontDistributionGeoRestrictionList represents a list of CloudFrontDistributionGeoRestriction
+type CloudFrontDistributionGeoRestrictionList []CloudFrontDistributionGeoRestriction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionGeoRestrictionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionGeoRestriction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionGeoRestrictionList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionGeoRestriction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionGeoRestrictionList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionLambdaFunctionAssociation represents the AWS::CloudFront::Distribution.LambdaFunctionAssociation CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html 
+type CloudFrontDistributionLambdaFunctionAssociation struct {
+	// EventType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html#cfn-cloudfront-distribution-lambdafunctionassociation-eventtype
+	EventType *StringExpr `json:"EventType,omitempty"`
+	// LambdaFunctionARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html#cfn-cloudfront-distribution-lambdafunctionassociation-lambdafunctionarn
+	LambdaFunctionARN *StringExpr `json:"LambdaFunctionARN,omitempty"`
+}
+
+// CloudFrontDistributionLambdaFunctionAssociationList represents a list of CloudFrontDistributionLambdaFunctionAssociation
+type CloudFrontDistributionLambdaFunctionAssociationList []CloudFrontDistributionLambdaFunctionAssociation
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionLambdaFunctionAssociationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionLambdaFunctionAssociation{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionLambdaFunctionAssociationList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionLambdaFunctionAssociation{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionLambdaFunctionAssociationList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionLegacyCustomOrigin represents the AWS::CloudFront::Distribution.LegacyCustomOrigin CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html 
+type CloudFrontDistributionLegacyCustomOrigin struct {
+	// DNSName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-dnsname
+	DNSName *StringExpr `json:"DNSName,omitempty" validate:"dive,required"`
+	// HTTPPort docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-httpport
+	HTTPPort *IntegerExpr `json:"HTTPPort,omitempty"`
+	// HTTPSPort docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-httpsport
+	HTTPSPort *IntegerExpr `json:"HTTPSPort,omitempty"`
+	// OriginProtocolPolicy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-originprotocolpolicy
+	OriginProtocolPolicy *StringExpr `json:"OriginProtocolPolicy,omitempty" validate:"dive,required"`
+	// OriginSSLProtocols docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-originsslprotocols
+	OriginSSLProtocols *StringListExpr `json:"OriginSSLProtocols,omitempty"`
+}
+
+// CloudFrontDistributionLegacyCustomOriginList represents a list of CloudFrontDistributionLegacyCustomOrigin
+type CloudFrontDistributionLegacyCustomOriginList []CloudFrontDistributionLegacyCustomOrigin
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionLegacyCustomOriginList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionLegacyCustomOrigin{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionLegacyCustomOriginList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionLegacyCustomOrigin{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionLegacyCustomOriginList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionLegacyS3Origin represents the AWS::CloudFront::Distribution.LegacyS3Origin CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html 
+type CloudFrontDistributionLegacyS3Origin struct {
+	// DNSName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html#cfn-cloudfront-distribution-legacys3origin-dnsname
+	DNSName *StringExpr `json:"DNSName,omitempty" validate:"dive,required"`
+	// OriginAccessIDentity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html#cfn-cloudfront-distribution-legacys3origin-originaccessidentity
+	OriginAccessIDentity *StringExpr `json:"OriginAccessIdentity,omitempty"`
+}
+
+// CloudFrontDistributionLegacyS3OriginList represents a list of CloudFrontDistributionLegacyS3Origin
+type CloudFrontDistributionLegacyS3OriginList []CloudFrontDistributionLegacyS3Origin
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionLegacyS3OriginList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionLegacyS3Origin{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionLegacyS3OriginList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionLegacyS3Origin{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionLegacyS3OriginList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionLogging represents the AWS::CloudFront::Distribution.Logging CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html 
+type CloudFrontDistributionLogging struct {
+	// Bucket docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html#cfn-cloudfront-distribution-logging-bucket
+	Bucket *StringExpr `json:"Bucket,omitempty" validate:"dive,required"`
+	// IncludeCookies docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html#cfn-cloudfront-distribution-logging-includecookies
+	IncludeCookies *BoolExpr `json:"IncludeCookies,omitempty"`
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html#cfn-cloudfront-distribution-logging-prefix
+	Prefix *StringExpr `json:"Prefix,omitempty"`
+}
+
+// CloudFrontDistributionLoggingList represents a list of CloudFrontDistributionLogging
+type CloudFrontDistributionLoggingList []CloudFrontDistributionLogging
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionLoggingList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionLogging{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionLoggingList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionLogging{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionLoggingList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionOrigin represents the AWS::CloudFront::Distribution.Origin CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html 
+type CloudFrontDistributionOrigin struct {
+	// CustomOriginConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-customoriginconfig
+	CustomOriginConfig *CloudFrontDistributionCustomOriginConfig `json:"CustomOriginConfig,omitempty"`
+	// DomainName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-domainname
+	DomainName *StringExpr `json:"DomainName,omitempty" validate:"dive,required"`
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-id
+	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
+	// OriginCustomHeaders docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-origincustomheaders
+	OriginCustomHeaders *CloudFrontDistributionOriginCustomHeaderList `json:"OriginCustomHeaders,omitempty"`
+	// OriginPath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-originpath
+	OriginPath *StringExpr `json:"OriginPath,omitempty"`
+	// S3OriginConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-s3originconfig
+	S3OriginConfig *CloudFrontDistributionS3OriginConfig `json:"S3OriginConfig,omitempty"`
+}
+
+// CloudFrontDistributionOriginList represents a list of CloudFrontDistributionOrigin
+type CloudFrontDistributionOriginList []CloudFrontDistributionOrigin
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionOriginList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionOrigin{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionOriginList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionOrigin{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionOriginList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionOriginCustomHeader represents the AWS::CloudFront::Distribution.OriginCustomHeader CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html 
+type CloudFrontDistributionOriginCustomHeader struct {
+	// HeaderName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html#cfn-cloudfront-distribution-origincustomheader-headername
+	HeaderName *StringExpr `json:"HeaderName,omitempty" validate:"dive,required"`
+	// HeaderValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html#cfn-cloudfront-distribution-origincustomheader-headervalue
+	HeaderValue *StringExpr `json:"HeaderValue,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontDistributionOriginCustomHeaderList represents a list of CloudFrontDistributionOriginCustomHeader
+type CloudFrontDistributionOriginCustomHeaderList []CloudFrontDistributionOriginCustomHeader
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionOriginCustomHeaderList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionOriginCustomHeader{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionOriginCustomHeaderList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionOriginCustomHeader{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionOriginCustomHeaderList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionRestrictions represents the AWS::CloudFront::Distribution.Restrictions CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html 
+type CloudFrontDistributionRestrictions struct {
+	// GeoRestriction docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html#cfn-cloudfront-distribution-restrictions-georestriction
+	GeoRestriction *CloudFrontDistributionGeoRestriction `json:"GeoRestriction,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontDistributionRestrictionsList represents a list of CloudFrontDistributionRestrictions
+type CloudFrontDistributionRestrictionsList []CloudFrontDistributionRestrictions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionRestrictionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionRestrictions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionRestrictionsList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionRestrictions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionRestrictionsList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionS3OriginConfig represents the AWS::CloudFront::Distribution.S3OriginConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html 
+type CloudFrontDistributionS3OriginConfig struct {
+	// OriginAccessIDentity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html#cfn-cloudfront-distribution-s3originconfig-originaccessidentity
+	OriginAccessIDentity *StringExpr `json:"OriginAccessIdentity,omitempty"`
+}
+
+// CloudFrontDistributionS3OriginConfigList represents a list of CloudFrontDistributionS3OriginConfig
+type CloudFrontDistributionS3OriginConfigList []CloudFrontDistributionS3OriginConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionS3OriginConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionS3OriginConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionS3OriginConfigList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionS3OriginConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionS3OriginConfigList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontDistributionViewerCertificate represents the AWS::CloudFront::Distribution.ViewerCertificate CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html 
+type CloudFrontDistributionViewerCertificate struct {
+	// AcmCertificateArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html#cfn-cloudfront-distribution-viewercertificate-acmcertificatearn
+	AcmCertificateArn *StringExpr `json:"AcmCertificateArn,omitempty"`
+	// CloudFrontDefaultCertificate docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html#cfn-cloudfront-distribution-viewercertificate-cloudfrontdefaultcertificate
+	CloudFrontDefaultCertificate *BoolExpr `json:"CloudFrontDefaultCertificate,omitempty"`
+	// IamCertificateID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html#cfn-cloudfront-distribution-viewercertificate-iamcertificateid
+	IamCertificateID *StringExpr `json:"IamCertificateId,omitempty"`
+	// MinimumProtocolVersion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html#cfn-cloudfront-distribution-viewercertificate-minimumprotocolversion
+	MinimumProtocolVersion *StringExpr `json:"MinimumProtocolVersion,omitempty"`
+	// SslSupportMethod docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html#cfn-cloudfront-distribution-viewercertificate-sslsupportmethod
+	SslSupportMethod *StringExpr `json:"SslSupportMethod,omitempty"`
+}
+
+// CloudFrontDistributionViewerCertificateList represents a list of CloudFrontDistributionViewerCertificate
+type CloudFrontDistributionViewerCertificateList []CloudFrontDistributionViewerCertificate
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontDistributionViewerCertificateList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontDistributionViewerCertificate{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontDistributionViewerCertificateList{item}
+		return nil
+	}
+	list := []CloudFrontDistributionViewerCertificate{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontDistributionViewerCertificateList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontStreamingDistributionLogging represents the AWS::CloudFront::StreamingDistribution.Logging CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html 
+type CloudFrontStreamingDistributionLogging struct {
+	// Bucket docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html#cfn-cloudfront-streamingdistribution-logging-bucket
+	Bucket *StringExpr `json:"Bucket,omitempty" validate:"dive,required"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html#cfn-cloudfront-streamingdistribution-logging-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
+	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html#cfn-cloudfront-streamingdistribution-logging-prefix
+	Prefix *StringExpr `json:"Prefix,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontStreamingDistributionLoggingList represents a list of CloudFrontStreamingDistributionLogging
+type CloudFrontStreamingDistributionLoggingList []CloudFrontStreamingDistributionLogging
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontStreamingDistributionLoggingList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontStreamingDistributionLogging{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontStreamingDistributionLoggingList{item}
+		return nil
+	}
+	list := []CloudFrontStreamingDistributionLogging{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontStreamingDistributionLoggingList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontStreamingDistributionS3Origin represents the AWS::CloudFront::StreamingDistribution.S3Origin CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html 
+type CloudFrontStreamingDistributionS3Origin struct {
+	// DomainName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html#cfn-cloudfront-streamingdistribution-s3origin-domainname
+	DomainName *StringExpr `json:"DomainName,omitempty" validate:"dive,required"`
+	// OriginAccessIDentity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html#cfn-cloudfront-streamingdistribution-s3origin-originaccessidentity
+	OriginAccessIDentity *StringExpr `json:"OriginAccessIdentity,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontStreamingDistributionS3OriginList represents a list of CloudFrontStreamingDistributionS3Origin
+type CloudFrontStreamingDistributionS3OriginList []CloudFrontStreamingDistributionS3Origin
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontStreamingDistributionS3OriginList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontStreamingDistributionS3Origin{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontStreamingDistributionS3OriginList{item}
+		return nil
+	}
+	list := []CloudFrontStreamingDistributionS3Origin{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontStreamingDistributionS3OriginList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontStreamingDistributionStreamingDistributionConfig represents the AWS::CloudFront::StreamingDistribution.StreamingDistributionConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html 
+type CloudFrontStreamingDistributionStreamingDistributionConfig struct {
+	// Aliases docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-aliases
+	Aliases *StringListExpr `json:"Aliases,omitempty"`
+	// Comment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-comment
+	Comment *StringExpr `json:"Comment,omitempty" validate:"dive,required"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
+	// Logging docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-logging
+	Logging *CloudFrontStreamingDistributionLogging `json:"Logging,omitempty"`
+	// PriceClass docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-priceclass
+	PriceClass *StringExpr `json:"PriceClass,omitempty"`
+	// S3Origin docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-s3origin
+	S3Origin *CloudFrontStreamingDistributionS3Origin `json:"S3Origin,omitempty" validate:"dive,required"`
+	// TrustedSigners docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-trustedsigners
+	TrustedSigners *CloudFrontStreamingDistributionTrustedSigners `json:"TrustedSigners,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontStreamingDistributionStreamingDistributionConfigList represents a list of CloudFrontStreamingDistributionStreamingDistributionConfig
+type CloudFrontStreamingDistributionStreamingDistributionConfigList []CloudFrontStreamingDistributionStreamingDistributionConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontStreamingDistributionStreamingDistributionConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontStreamingDistributionStreamingDistributionConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontStreamingDistributionStreamingDistributionConfigList{item}
+		return nil
+	}
+	list := []CloudFrontStreamingDistributionStreamingDistributionConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontStreamingDistributionStreamingDistributionConfigList(list)
+		return nil
+	}
+	return err
+}
+// CloudFrontStreamingDistributionTrustedSigners represents the AWS::CloudFront::StreamingDistribution.TrustedSigners CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html 
+type CloudFrontStreamingDistributionTrustedSigners struct {
+	// AwsAccountNumbers docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html#cfn-cloudfront-streamingdistribution-trustedsigners-awsaccountnumbers
+	AwsAccountNumbers *StringListExpr `json:"AwsAccountNumbers,omitempty"`
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html#cfn-cloudfront-streamingdistribution-trustedsigners-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty" validate:"dive,required"`
+}
+
+// CloudFrontStreamingDistributionTrustedSignersList represents a list of CloudFrontStreamingDistributionTrustedSigners
+type CloudFrontStreamingDistributionTrustedSignersList []CloudFrontStreamingDistributionTrustedSigners
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CloudFrontStreamingDistributionTrustedSignersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CloudFrontStreamingDistributionTrustedSigners{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CloudFrontStreamingDistributionTrustedSignersList{item}
+		return nil
+	}
+	list := []CloudFrontStreamingDistributionTrustedSigners{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CloudFrontStreamingDistributionTrustedSignersList(list)
 		return nil
 	}
 	return err
@@ -8131,7 +8865,7 @@ type GlueTableOrder struct {
 	// Column docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html#cfn-glue-table-order-column
 	Column *StringExpr `json:"Column,omitempty" validate:"dive,required"`
 	// SortOrder docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html#cfn-glue-table-order-sortorder
-	SortOrder *IntegerExpr `json:"SortOrder,omitempty"`
+	SortOrder *IntegerExpr `json:"SortOrder,omitempty" validate:"dive,required"`
 }
 
 // GlueTableOrderList represents a list of GlueTableOrder
@@ -9046,6 +9780,8 @@ func (l *KinesisAnalyticsApplicationCSVMappingParametersList) UnmarshalJSON(buf 
 type KinesisAnalyticsApplicationInput struct {
 	// InputParallelism docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html#cfn-kinesisanalytics-application-input-inputparallelism
 	InputParallelism *KinesisAnalyticsApplicationInputParallelism `json:"InputParallelism,omitempty"`
+	// InputProcessingConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html#cfn-kinesisanalytics-application-input-inputprocessingconfiguration
+	InputProcessingConfiguration *KinesisAnalyticsApplicationInputProcessingConfiguration `json:"InputProcessingConfiguration,omitempty"`
 	// InputSchema docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html#cfn-kinesisanalytics-application-input-inputschema
 	InputSchema *KinesisAnalyticsApplicationInputSchema `json:"InputSchema,omitempty" validate:"dive,required"`
 	// KinesisFirehoseInput docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html#cfn-kinesisanalytics-application-input-kinesisfirehoseinput
@@ -9075,6 +9811,34 @@ func (l *KinesisAnalyticsApplicationInputList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// KinesisAnalyticsApplicationInputLambdaProcessor represents the AWS::KinesisAnalytics::Application.InputLambdaProcessor CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputlambdaprocessor.html 
+type KinesisAnalyticsApplicationInputLambdaProcessor struct {
+	// ResourceARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputlambdaprocessor.html#cfn-kinesisanalytics-application-inputlambdaprocessor-resourcearn
+	ResourceARN *StringExpr `json:"ResourceARN,omitempty" validate:"dive,required"`
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputlambdaprocessor.html#cfn-kinesisanalytics-application-inputlambdaprocessor-rolearn
+	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
+}
+
+// KinesisAnalyticsApplicationInputLambdaProcessorList represents a list of KinesisAnalyticsApplicationInputLambdaProcessor
+type KinesisAnalyticsApplicationInputLambdaProcessorList []KinesisAnalyticsApplicationInputLambdaProcessor
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisAnalyticsApplicationInputLambdaProcessorList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisAnalyticsApplicationInputLambdaProcessor{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisAnalyticsApplicationInputLambdaProcessorList{item}
+		return nil
+	}
+	list := []KinesisAnalyticsApplicationInputLambdaProcessor{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisAnalyticsApplicationInputLambdaProcessorList(list)
+		return nil
+	}
+	return err
+}
 // KinesisAnalyticsApplicationInputParallelism represents the AWS::KinesisAnalytics::Application.InputParallelism CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html 
 type KinesisAnalyticsApplicationInputParallelism struct {
@@ -9097,6 +9861,32 @@ func (l *KinesisAnalyticsApplicationInputParallelismList) UnmarshalJSON(buf []by
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = KinesisAnalyticsApplicationInputParallelismList(list)
+		return nil
+	}
+	return err
+}
+// KinesisAnalyticsApplicationInputProcessingConfiguration represents the AWS::KinesisAnalytics::Application.InputProcessingConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputprocessingconfiguration.html 
+type KinesisAnalyticsApplicationInputProcessingConfiguration struct {
+	// InputLambdaProcessor docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputprocessingconfiguration.html#cfn-kinesisanalytics-application-inputprocessingconfiguration-inputlambdaprocessor
+	InputLambdaProcessor *KinesisAnalyticsApplicationInputLambdaProcessor `json:"InputLambdaProcessor,omitempty"`
+}
+
+// KinesisAnalyticsApplicationInputProcessingConfigurationList represents a list of KinesisAnalyticsApplicationInputProcessingConfiguration
+type KinesisAnalyticsApplicationInputProcessingConfigurationList []KinesisAnalyticsApplicationInputProcessingConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisAnalyticsApplicationInputProcessingConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisAnalyticsApplicationInputProcessingConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisAnalyticsApplicationInputProcessingConfigurationList{item}
+		return nil
+	}
+	list := []KinesisAnalyticsApplicationInputProcessingConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisAnalyticsApplicationInputProcessingConfigurationList(list)
 		return nil
 	}
 	return err
@@ -12763,30 +13553,6 @@ func (l *SSMPatchBaselinePatchFilterGroupList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
-// SSMPatchBaselinePatchGroup represents the AWS::SSM::PatchBaseline.PatchGroup CloudFormation property type
-// See  
-type SSMPatchBaselinePatchGroup struct {
-}
-
-// SSMPatchBaselinePatchGroupList represents a list of SSMPatchBaselinePatchGroup
-type SSMPatchBaselinePatchGroupList []SSMPatchBaselinePatchGroup
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *SSMPatchBaselinePatchGroupList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := SSMPatchBaselinePatchGroup{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = SSMPatchBaselinePatchGroupList{item}
-		return nil
-	}
-	list := []SSMPatchBaselinePatchGroup{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = SSMPatchBaselinePatchGroupList(list)
-		return nil
-	}
-	return err
-}
 // SSMPatchBaselineRule represents the AWS::SSM::PatchBaseline.Rule CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html 
 type SSMPatchBaselineRule struct {
@@ -14308,6 +15074,46 @@ type CloudFormationWaitConditionHandle struct {
 func (s CloudFormationWaitConditionHandle) CfnResourceType() string {
 	
 	return "AWS::CloudFormation::WaitConditionHandle"
+}
+// CloudFrontCloudFrontOriginAccessIDentity represents the AWS::CloudFront::CloudFrontOriginAccessIdentity CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html 
+type CloudFrontCloudFrontOriginAccessIDentity struct {
+	// CloudFrontOriginAccessIDentityConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html#cfn-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig
+	CloudFrontOriginAccessIDentityConfig *CloudFrontCloudFrontOriginAccessIDentityCloudFrontOriginAccessIDentityConfig `json:"CloudFrontOriginAccessIdentityConfig,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::CloudFront::CloudFrontOriginAccessIdentity to implement the ResourceProperties interface
+func (s CloudFrontCloudFrontOriginAccessIDentity) CfnResourceType() string {
+	
+	return "AWS::CloudFront::CloudFrontOriginAccessIdentity"
+}
+// CloudFrontDistribution represents the AWS::CloudFront::Distribution CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html 
+type CloudFrontDistribution struct {
+	// DistributionConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html#cfn-cloudfront-distribution-distributionconfig
+	DistributionConfig *CloudFrontDistributionDistributionConfig `json:"DistributionConfig,omitempty" validate:"dive,required"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html#cfn-cloudfront-distribution-tags
+	Tags *TagList `json:"Tags,omitempty"`
+}
+
+// CfnResourceType returns AWS::CloudFront::Distribution to implement the ResourceProperties interface
+func (s CloudFrontDistribution) CfnResourceType() string {
+	
+	return "AWS::CloudFront::Distribution"
+}
+// CloudFrontStreamingDistribution represents the AWS::CloudFront::StreamingDistribution CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html 
+type CloudFrontStreamingDistribution struct {
+	// StreamingDistributionConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig
+	StreamingDistributionConfig *CloudFrontStreamingDistributionStreamingDistributionConfig `json:"StreamingDistributionConfig,omitempty" validate:"dive,required"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html#cfn-cloudfront-streamingdistribution-tags
+	Tags *TagList `json:"Tags,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::CloudFront::StreamingDistribution to implement the ResourceProperties interface
+func (s CloudFrontStreamingDistribution) CfnResourceType() string {
+	
+	return "AWS::CloudFront::StreamingDistribution"
 }
 // CloudTrailTrail represents the AWS::CloudTrail::Trail CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html 
@@ -18335,7 +19141,7 @@ type SSMMaintenanceWindowTask struct {
 	// LoggingInfo docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html#cfn-ssm-maintenancewindowtask-logginginfo
 	LoggingInfo *SSMMaintenanceWindowTaskLoggingInfo `json:"LoggingInfo,omitempty"`
 	// MaxConcurrency docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html#cfn-ssm-maintenancewindowtask-maxconcurrency
-	MaxConcurrency *StringExpr `json:"MaxConcurrency,omitempty"`
+	MaxConcurrency *StringExpr `json:"MaxConcurrency,omitempty" validate:"dive,required"`
 	// MaxErrors docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html#cfn-ssm-maintenancewindowtask-maxerrors
 	MaxErrors *StringExpr `json:"MaxErrors,omitempty" validate:"dive,required"`
 	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html#cfn-ssm-maintenancewindowtask-name
@@ -18401,7 +19207,7 @@ type SSMPatchBaseline struct {
 	// OperatingSystem docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html#cfn-ssm-patchbaseline-operatingsystem
 	OperatingSystem *StringExpr `json:"OperatingSystem,omitempty"`
 	// PatchGroups docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html#cfn-ssm-patchbaseline-patchgroups
-	PatchGroups *SSMPatchBaselinePatchGroupList `json:"PatchGroups,omitempty"`
+	PatchGroups *StringListExpr `json:"PatchGroups,omitempty"`
 	// RejectedPatches docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html#cfn-ssm-patchbaseline-rejectedpatches
 	RejectedPatches *StringListExpr `json:"RejectedPatches,omitempty"`
 }
@@ -18752,6 +19558,12 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &CloudFormationWaitCondition{}
 	case "AWS::CloudFormation::WaitConditionHandle":
 		return &CloudFormationWaitConditionHandle{}
+	case "AWS::CloudFront::CloudFrontOriginAccessIdentity":
+		return &CloudFrontCloudFrontOriginAccessIDentity{}
+	case "AWS::CloudFront::Distribution":
+		return &CloudFrontDistribution{}
+	case "AWS::CloudFront::StreamingDistribution":
+		return &CloudFrontStreamingDistribution{}
 	case "AWS::CloudTrail::Trail":
 		return &CloudTrailTrail{}
 	case "AWS::CloudWatch::Alarm":
