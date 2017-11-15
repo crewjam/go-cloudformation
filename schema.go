@@ -1,6 +1,6 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 1.8.0
-// GENERATED: 2017-11-05 17:00:15.720230909 -0800 PST m=+0.371248076
+// RESOURCE SPECIFICATION VERSION: 1.9.1
+// GENERATED: 2017-11-14 20:07:36.776895781 -0800 PST m=+0.390829370
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -14767,8 +14767,6 @@ func (s AthenaNamedQuery) CfnResourceType() string {
 // AutoScalingAutoScalingGroup represents the AWS::AutoScaling::AutoScalingGroup CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html 
 type AutoScalingAutoScalingGroup struct {
-	// AsTags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-tags
-	AsTags *AutoScalingAutoScalingGroupTagPropertyList `json:"AsTags,omitempty"`
 	// AvailabilityZones docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-availabilityzones
 	AvailabilityZones *StringListExpr `json:"AvailabilityZones,omitempty"`
 	// Cooldown docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-cooldown
@@ -14797,6 +14795,8 @@ type AutoScalingAutoScalingGroup struct {
 	NotificationConfigurations *AutoScalingAutoScalingGroupNotificationConfigurationList `json:"NotificationConfigurations,omitempty"`
 	// PlacementGroup docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-placementgroup
 	PlacementGroup *StringExpr `json:"PlacementGroup,omitempty"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-tags
+	Tags *AutoScalingAutoScalingGroupTagPropertyList `json:"Tags,omitempty"`
 	// TargetGroupARNs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-targetgrouparns
 	TargetGroupARNs *StringListExpr `json:"TargetGroupARNs,omitempty"`
 	// TerminationPolicies docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-termpolicy
