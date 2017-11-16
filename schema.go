@@ -1,6 +1,6 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 1.9.1
-// GENERATED: 2017-11-14 20:07:36.776895781 -0800 PST m=+0.390829370
+// RESOURCE SPECIFICATION VERSION: 1.10.0
+// GENERATED: 2017-11-15 22:27:57.249747199 -0800 PST m=+0.372829718
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -19236,6 +19236,8 @@ type StepFunctionsStateMachine struct {
 	DefinitionString *StringExpr `json:"DefinitionString,omitempty" validate:"dive,required"`
 	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
+	// StateMachineName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-statemachinename
+	StateMachineName *StringExpr `json:"StateMachineName,omitempty"`
 }
 
 // CfnResourceType returns AWS::StepFunctions::StateMachine to implement the ResourceProperties interface
