@@ -3464,6 +3464,25 @@ func (s ElasticLoadBalancingV2Listener) CfnResourceType() string {
 	return "AWS::ElasticLoadBalancingV2::Listener"
 }
 
+// ElasticLoadBalancingV2ListenerCertificate represents AWS::ElasticLoadBalancingV2::ListenerCertificate
+//
+// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html
+type ElasticLoadBalancingV2ListenerCertificate struct {
+	// The SSL server certificate for the listener. With a certificate, you
+	// can encrypt traffic between the load balancer and the clients that
+	// initiate HTTPS sessions, and traffic between the load balancer and
+	// your targets.
+	Certificates *ElasticLoadBalancingListenerCertificatesList `json:"Certificates,omitempty"`
+
+	// The Amazon Resource Name (ARN) of the listener.
+	ListenerArn *StringExpr `json:"ListenerArn,omitempty"`
+}
+
+// CfnResourceType returns AWS::ElasticLoadBalancingV2::ListenerCertificate to implement the ResourceProperties interface
+func (s ElasticLoadBalancingV2ListenerCertificate) CfnResourceType() string {
+	return "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+}
+
 // ElasticLoadBalancingV2ListenerRule represents AWS::ElasticLoadBalancingV2::ListenerRule
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html
