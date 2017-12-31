@@ -1,6 +1,6 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 1.11.0
-// GENERATED: 2017-12-01 21:25:43.711624402 -0800 PST m=+0.304615490
+// RESOURCE SPECIFICATION VERSION: 1.12.0
+// GENERATED: 2017-12-31 06:48:29.337396489 -0800 PST m=+0.338607942
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -1682,16 +1682,12 @@ func (l *CloudFrontDistributionDefaultCacheBehaviorList) UnmarshalJSON(buf []byt
 type CloudFrontDistributionDistributionConfig struct {
 	// Aliases docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases
 	Aliases *StringListExpr `json:"Aliases,omitempty"`
-	// CNAMEs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-cnames
-	CNAMEs *StringListExpr `json:"CNAMEs,omitempty"`
 	// CacheBehaviors docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-cachebehaviors
 	CacheBehaviors *CloudFrontDistributionCacheBehaviorList `json:"CacheBehaviors,omitempty"`
 	// Comment docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-comment
 	Comment *StringExpr `json:"Comment,omitempty"`
 	// CustomErrorResponses docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-customerrorresponses
 	CustomErrorResponses *CloudFrontDistributionCustomErrorResponseList `json:"CustomErrorResponses,omitempty"`
-	// CustomOrigin docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-customorigin
-	CustomOrigin *CloudFrontDistributionLegacyCustomOrigin `json:"CustomOrigin,omitempty"`
 	// DefaultCacheBehavior docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-defaultcachebehavior
 	DefaultCacheBehavior *CloudFrontDistributionDefaultCacheBehavior `json:"DefaultCacheBehavior,omitempty"`
 	// DefaultRootObject docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-defaultrootobject
@@ -1710,8 +1706,6 @@ type CloudFrontDistributionDistributionConfig struct {
 	PriceClass *StringExpr `json:"PriceClass,omitempty"`
 	// Restrictions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-restrictions
 	Restrictions *CloudFrontDistributionRestrictions `json:"Restrictions,omitempty"`
-	// S3Origin docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-s3origin
-	S3Origin *CloudFrontDistributionLegacyS3Origin `json:"S3Origin,omitempty"`
 	// ViewerCertificate docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-viewercertificate
 	ViewerCertificate *CloudFrontDistributionViewerCertificate `json:"ViewerCertificate,omitempty"`
 	// WebACLID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-webaclid
@@ -1821,68 +1815,6 @@ func (l *CloudFrontDistributionLambdaFunctionAssociationList) UnmarshalJSON(buf 
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = CloudFrontDistributionLambdaFunctionAssociationList(list)
-		return nil
-	}
-	return err
-}
-// CloudFrontDistributionLegacyCustomOrigin represents the AWS::CloudFront::Distribution.LegacyCustomOrigin CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html 
-type CloudFrontDistributionLegacyCustomOrigin struct {
-	// DNSName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-dnsname
-	DNSName *StringExpr `json:"DNSName,omitempty" validate:"dive,required"`
-	// HTTPPort docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-httpport
-	HTTPPort *IntegerExpr `json:"HTTPPort,omitempty"`
-	// HTTPSPort docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-httpsport
-	HTTPSPort *IntegerExpr `json:"HTTPSPort,omitempty"`
-	// OriginProtocolPolicy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-originprotocolpolicy
-	OriginProtocolPolicy *StringExpr `json:"OriginProtocolPolicy,omitempty" validate:"dive,required"`
-	// OriginSSLProtocols docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-originsslprotocols
-	OriginSSLProtocols *StringListExpr `json:"OriginSSLProtocols,omitempty"`
-}
-
-// CloudFrontDistributionLegacyCustomOriginList represents a list of CloudFrontDistributionLegacyCustomOrigin
-type CloudFrontDistributionLegacyCustomOriginList []CloudFrontDistributionLegacyCustomOrigin
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *CloudFrontDistributionLegacyCustomOriginList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := CloudFrontDistributionLegacyCustomOrigin{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = CloudFrontDistributionLegacyCustomOriginList{item}
-		return nil
-	}
-	list := []CloudFrontDistributionLegacyCustomOrigin{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = CloudFrontDistributionLegacyCustomOriginList(list)
-		return nil
-	}
-	return err
-}
-// CloudFrontDistributionLegacyS3Origin represents the AWS::CloudFront::Distribution.LegacyS3Origin CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html 
-type CloudFrontDistributionLegacyS3Origin struct {
-	// DNSName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html#cfn-cloudfront-distribution-legacys3origin-dnsname
-	DNSName *StringExpr `json:"DNSName,omitempty" validate:"dive,required"`
-	// OriginAccessIDentity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html#cfn-cloudfront-distribution-legacys3origin-originaccessidentity
-	OriginAccessIDentity *StringExpr `json:"OriginAccessIdentity,omitempty"`
-}
-
-// CloudFrontDistributionLegacyS3OriginList represents a list of CloudFrontDistributionLegacyS3Origin
-type CloudFrontDistributionLegacyS3OriginList []CloudFrontDistributionLegacyS3Origin
-
-// UnmarshalJSON sets the object from the provided JSON representation
-func (l *CloudFrontDistributionLegacyS3OriginList) UnmarshalJSON(buf []byte) error {
-	// Cloudformation allows a single object when a list of objects is expected
-	item := CloudFrontDistributionLegacyS3Origin{}
-	if err := json.Unmarshal(buf, &item); err == nil {
-		*l = CloudFrontDistributionLegacyS3OriginList{item}
-		return nil
-	}
-	list := []CloudFrontDistributionLegacyS3Origin{}
-	err := json.Unmarshal(buf, &list)
-	if err == nil {
-		*l = CloudFrontDistributionLegacyS3OriginList(list)
 		return nil
 	}
 	return err
@@ -14039,6 +13971,92 @@ func (l *SSMPatchBaselineRuleGroupList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// ServiceDiscoveryServiceDNSConfig represents the AWS::ServiceDiscovery::Service.DnsConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html 
+type ServiceDiscoveryServiceDNSConfig struct {
+	// DNSRecords docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html#cfn-servicediscovery-service-dnsconfig-dnsrecords
+	DNSRecords *ServiceDiscoveryServiceDNSRecordList `json:"DnsRecords,omitempty"`
+	// NamespaceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html#cfn-servicediscovery-service-dnsconfig-namespaceid
+	NamespaceID *StringExpr `json:"NamespaceId,omitempty" validate:"dive,required"`
+}
+
+// ServiceDiscoveryServiceDNSConfigList represents a list of ServiceDiscoveryServiceDNSConfig
+type ServiceDiscoveryServiceDNSConfigList []ServiceDiscoveryServiceDNSConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ServiceDiscoveryServiceDNSConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ServiceDiscoveryServiceDNSConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ServiceDiscoveryServiceDNSConfigList{item}
+		return nil
+	}
+	list := []ServiceDiscoveryServiceDNSConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ServiceDiscoveryServiceDNSConfigList(list)
+		return nil
+	}
+	return err
+}
+// ServiceDiscoveryServiceDNSRecord represents the AWS::ServiceDiscovery::Service.DnsRecord CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html 
+type ServiceDiscoveryServiceDNSRecord struct {
+	// TTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html#cfn-servicediscovery-service-dnsrecord-ttl
+	TTL *StringExpr `json:"TTL,omitempty" validate:"dive,required"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html#cfn-servicediscovery-service-dnsrecord-type
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
+}
+
+// ServiceDiscoveryServiceDNSRecordList represents a list of ServiceDiscoveryServiceDNSRecord
+type ServiceDiscoveryServiceDNSRecordList []ServiceDiscoveryServiceDNSRecord
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ServiceDiscoveryServiceDNSRecordList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ServiceDiscoveryServiceDNSRecord{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ServiceDiscoveryServiceDNSRecordList{item}
+		return nil
+	}
+	list := []ServiceDiscoveryServiceDNSRecord{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ServiceDiscoveryServiceDNSRecordList(list)
+		return nil
+	}
+	return err
+}
+// ServiceDiscoveryServiceHealthCheckConfig represents the AWS::ServiceDiscovery::Service.HealthCheckConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html 
+type ServiceDiscoveryServiceHealthCheckConfig struct {
+	// FailureThreshold docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html#cfn-servicediscovery-service-healthcheckconfig-failurethreshold
+	FailureThreshold *IntegerExpr `json:"FailureThreshold,omitempty"`
+	// ResourcePath docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html#cfn-servicediscovery-service-healthcheckconfig-resourcepath
+	ResourcePath *StringExpr `json:"ResourcePath,omitempty"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html#cfn-servicediscovery-service-healthcheckconfig-type
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
+}
+
+// ServiceDiscoveryServiceHealthCheckConfigList represents a list of ServiceDiscoveryServiceHealthCheckConfig
+type ServiceDiscoveryServiceHealthCheckConfigList []ServiceDiscoveryServiceHealthCheckConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ServiceDiscoveryServiceHealthCheckConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ServiceDiscoveryServiceHealthCheckConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ServiceDiscoveryServiceHealthCheckConfigList{item}
+		return nil
+	}
+	list := []ServiceDiscoveryServiceHealthCheckConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ServiceDiscoveryServiceHealthCheckConfigList(list)
+		return nil
+	}
+	return err
+}
 // WAFByteMatchSetByteMatchTuple represents the AWS::WAF::ByteMatchSet.ByteMatchTuple CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples.html 
 type WAFByteMatchSetByteMatchTuple struct {
@@ -18363,6 +18381,52 @@ func (s IAMUserToGroupAddition) CfnResourceType() string {
 	
 	return "AWS::IAM::UserToGroupAddition"
 }
+// InspectorAssessmentTarget represents the AWS::Inspector::AssessmentTarget CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html 
+type InspectorAssessmentTarget struct {
+	// AssessmentTargetName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html#cfn-inspector-assessmenttarget-assessmenttargetname
+	AssessmentTargetName *StringExpr `json:"AssessmentTargetName,omitempty"`
+	// ResourceGroupArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html#cfn-inspector-assessmenttarget-resourcegrouparn
+	ResourceGroupArn *StringExpr `json:"ResourceGroupArn,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::Inspector::AssessmentTarget to implement the ResourceProperties interface
+func (s InspectorAssessmentTarget) CfnResourceType() string {
+	
+	return "AWS::Inspector::AssessmentTarget"
+}
+// InspectorAssessmentTemplate represents the AWS::Inspector::AssessmentTemplate CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html 
+type InspectorAssessmentTemplate struct {
+	// AssessmentTargetArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-assessmenttargetarn
+	AssessmentTargetArn *StringExpr `json:"AssessmentTargetArn,omitempty" validate:"dive,required"`
+	// AssessmentTemplateName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-assessmenttemplatename
+	AssessmentTemplateName *StringExpr `json:"AssessmentTemplateName,omitempty"`
+	// DurationInSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-durationinseconds
+	DurationInSeconds *IntegerExpr `json:"DurationInSeconds,omitempty" validate:"dive,required"`
+	// RulesPackageArns docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-rulespackagearns
+	RulesPackageArns *StringListExpr `json:"RulesPackageArns,omitempty" validate:"dive,required"`
+	// UserAttributesForFindings docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-userattributesforfindings
+	UserAttributesForFindings *TagList `json:"UserAttributesForFindings,omitempty"`
+}
+
+// CfnResourceType returns AWS::Inspector::AssessmentTemplate to implement the ResourceProperties interface
+func (s InspectorAssessmentTemplate) CfnResourceType() string {
+	
+	return "AWS::Inspector::AssessmentTemplate"
+}
+// InspectorResourceGroup represents the AWS::Inspector::ResourceGroup CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html 
+type InspectorResourceGroup struct {
+	// ResourceGroupTags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html#cfn-inspector-resourcegroup-resourcegrouptags
+	ResourceGroupTags *TagList `json:"ResourceGroupTags,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::Inspector::ResourceGroup to implement the ResourceProperties interface
+func (s InspectorResourceGroup) CfnResourceType() string {
+	
+	return "AWS::Inspector::ResourceGroup"
+}
 // IoTCertificate represents the AWS::IoT::Certificate CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html 
 type IoTCertificate struct {
@@ -19773,6 +19837,70 @@ func (s SSMPatchBaseline) CfnResourceType() string {
 	
 	return "AWS::SSM::PatchBaseline"
 }
+// ServiceDiscoveryInstance represents the AWS::ServiceDiscovery::Instance CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html 
+type ServiceDiscoveryInstance struct {
+	// InstanceAttributes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html#cfn-servicediscovery-instance-instanceattributes
+	InstanceAttributes interface{} `json:"InstanceAttributes,omitempty" validate:"dive,required"`
+	// InstanceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html#cfn-servicediscovery-instance-instanceid
+	InstanceID *StringExpr `json:"InstanceId,omitempty"`
+	// ServiceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html#cfn-servicediscovery-instance-serviceid
+	ServiceID *StringExpr `json:"ServiceId,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::ServiceDiscovery::Instance to implement the ResourceProperties interface
+func (s ServiceDiscoveryInstance) CfnResourceType() string {
+	
+	return "AWS::ServiceDiscovery::Instance"
+}
+// ServiceDiscoveryPrivateDNSNamespace represents the AWS::ServiceDiscovery::PrivateDnsNamespace CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html 
+type ServiceDiscoveryPrivateDNSNamespace struct {
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html#cfn-servicediscovery-privatednsnamespace-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html#cfn-servicediscovery-privatednsnamespace-name
+	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// VPC docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html#cfn-servicediscovery-privatednsnamespace-vpc
+	VPC *StringExpr `json:"Vpc,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::ServiceDiscovery::PrivateDnsNamespace to implement the ResourceProperties interface
+func (s ServiceDiscoveryPrivateDNSNamespace) CfnResourceType() string {
+	
+	return "AWS::ServiceDiscovery::PrivateDnsNamespace"
+}
+// ServiceDiscoveryPublicDNSNamespace represents the AWS::ServiceDiscovery::PublicDnsNamespace CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html 
+type ServiceDiscoveryPublicDNSNamespace struct {
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html#cfn-servicediscovery-publicdnsnamespace-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html#cfn-servicediscovery-publicdnsnamespace-name
+	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::ServiceDiscovery::PublicDnsNamespace to implement the ResourceProperties interface
+func (s ServiceDiscoveryPublicDNSNamespace) CfnResourceType() string {
+	
+	return "AWS::ServiceDiscovery::PublicDnsNamespace"
+}
+// ServiceDiscoveryService represents the AWS::ServiceDiscovery::Service CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html 
+type ServiceDiscoveryService struct {
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html#cfn-servicediscovery-service-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// DNSConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html#cfn-servicediscovery-service-dnsconfig
+	DNSConfig *ServiceDiscoveryServiceDNSConfig `json:"DnsConfig,omitempty" validate:"dive,required"`
+	// HealthCheckConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html#cfn-servicediscovery-service-healthcheckconfig
+	HealthCheckConfig *ServiceDiscoveryServiceHealthCheckConfig `json:"HealthCheckConfig,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html#cfn-servicediscovery-service-name
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// CfnResourceType returns AWS::ServiceDiscovery::Service to implement the ResourceProperties interface
+func (s ServiceDiscoveryService) CfnResourceType() string {
+	
+	return "AWS::ServiceDiscovery::Service"
+}
 // StepFunctionsActivity represents the AWS::StepFunctions::Activity CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html 
 type StepFunctionsActivity struct {
@@ -20372,6 +20500,12 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &IAMUser{}
 	case "AWS::IAM::UserToGroupAddition":
 		return &IAMUserToGroupAddition{}
+	case "AWS::Inspector::AssessmentTarget":
+		return &InspectorAssessmentTarget{}
+	case "AWS::Inspector::AssessmentTemplate":
+		return &InspectorAssessmentTemplate{}
+	case "AWS::Inspector::ResourceGroup":
+		return &InspectorResourceGroup{}
 	case "AWS::IoT::Certificate":
 		return &IoTCertificate{}
 	case "AWS::IoT::Policy":
@@ -20494,6 +20628,14 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SSMParameter{}
 	case "AWS::SSM::PatchBaseline":
 		return &SSMPatchBaseline{}
+	case "AWS::ServiceDiscovery::Instance":
+		return &ServiceDiscoveryInstance{}
+	case "AWS::ServiceDiscovery::PrivateDnsNamespace":
+		return &ServiceDiscoveryPrivateDNSNamespace{}
+	case "AWS::ServiceDiscovery::PublicDnsNamespace":
+		return &ServiceDiscoveryPublicDNSNamespace{}
+	case "AWS::ServiceDiscovery::Service":
+		return &ServiceDiscoveryService{}
 	case "AWS::StepFunctions::Activity":
 		return &StepFunctionsActivity{}
 	case "AWS::StepFunctions::StateMachine":
