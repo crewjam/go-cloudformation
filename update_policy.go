@@ -4,8 +4,29 @@ package cloudformation
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html
 type UpdatePolicy struct {
-	AutoScalingRollingUpdate   *UpdatePolicyAutoScalingRollingUpdate   `json:"AutoScalingRollingUpdate,omitempty"`
-	AutoScalingScheduledAction *UpdatePolicyAutoScalingScheduledAction `json:"AutoScalingScheduledAction,omitempty"`
+	AutoScalingRollingUpdate    *UpdatePolicyAutoScalingRollingUpdate    `json:"AutoScalingRollingUpdate,omitempty"`
+	AutoScalingScheduledAction  *UpdatePolicyAutoScalingScheduledAction  `json:"AutoScalingScheduledAction,omitempty"`
+	CodeDeployLambdaAliasUpdate *UpdatePolicyCodeDeployLambdaAliasUpdate `json:"CodeDeployLambdaAliasUpdate,omitempty"`
+}
+
+// UpdatePolicyCodeDeployLambdaAliasUpdate represents the CodeDeploy update to a Lambda alias
+//
+// For AWS::Lambda::Alias resources, AWS CloudFormation performs an AWS CodeDeploy
+// deployment when the version changes on the alias. For more information,
+// see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html#cfn-attributes-updatepolicy-codedeploylambdaaliasupdate
+type UpdatePolicyCodeDeployLambdaAliasUpdate struct {
+	// The name of the Lambda function to run after traffic routing completes.
+	// Required: No
+	AfterAllowTrafficHook *StringExpr `json:"AfterAllowTrafficHook,omitempty"`
+	// The name of the AWS CodeDeploy application.
+	// Required: Yes
+	ApplicationName *StringExpr `json:"ApplicationName,omitempty"`
+	// The name of the Lambda function to run before traffic routing starts.
+	// Required: No
+	BeforeAllowTrafficHook *StringExpr `json:"BeforeAllowTrafficHook,omitempty"`
+	// The name of the AWS CodeDeploy deployment group. This is where the traffic-shifting policy is set.
+	// Required: Yes
+	DeploymentGroupName *StringExpr `json:"DeploymentGroupName,omitempty"`
 }
 
 // UpdatePolicyAutoScalingRollingUpdate represents an AutoScalingRollingUpdate
