@@ -1,6 +1,6 @@
 package cloudformation
 // RESOURCE SPECIFICATION VERSION: 1.12.0
-// GENERATED: 2017-12-31 06:48:29.337396489 -0800 PST m=+0.338607942
+// GENERATED: 2018-01-24 20:20:09.080442933 -0800 PST m=+0.290103840
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -4569,6 +4569,32 @@ func (l *EC2InstanceBlockDeviceMappingList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2InstanceBlockDeviceMappingList(list)
+		return nil
+	}
+	return err
+}
+// EC2InstanceCreditSpecification represents the AWS::EC2::Instance.CreditSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html 
+type EC2InstanceCreditSpecification struct {
+	// CPUCredits docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html#cfn-ec2-instance-creditspecification-cpucredits
+	CPUCredits *StringExpr `json:"CPUCredits,omitempty"`
+}
+
+// EC2InstanceCreditSpecificationList represents a list of EC2InstanceCreditSpecification
+type EC2InstanceCreditSpecificationList []EC2InstanceCreditSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2InstanceCreditSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2InstanceCreditSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2InstanceCreditSpecificationList{item}
+		return nil
+	}
+	list := []EC2InstanceCreditSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2InstanceCreditSpecificationList(list)
 		return nil
 	}
 	return err
@@ -9727,11 +9753,11 @@ type IoTTopicRuleDynamoDBAction struct {
 	// PayloadField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-payloadfield
 	PayloadField *StringExpr `json:"PayloadField,omitempty"`
 	// RangeKeyField docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rangekeyfield
-	RangeKeyField *StringExpr `json:"RangeKeyField,omitempty" validate:"dive,required"`
+	RangeKeyField *StringExpr `json:"RangeKeyField,omitempty"`
 	// RangeKeyType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rangekeytype
 	RangeKeyType *StringExpr `json:"RangeKeyType,omitempty"`
 	// RangeKeyValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rangekeyvalue
-	RangeKeyValue *StringExpr `json:"RangeKeyValue,omitempty" validate:"dive,required"`
+	RangeKeyValue *StringExpr `json:"RangeKeyValue,omitempty"`
 	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty" validate:"dive,required"`
 	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-tablename
@@ -10079,6 +10105,34 @@ func (l *IoTTopicRuleTopicRulePayloadList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = IoTTopicRuleTopicRulePayloadList(list)
+		return nil
+	}
+	return err
+}
+// KinesisStreamStreamEncryption represents the AWS::Kinesis::Stream.StreamEncryption CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html 
+type KinesisStreamStreamEncryption struct {
+	// EncryptionType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html#cfn-kinesis-stream-streamencryption-encryptiontype
+	EncryptionType *StringExpr `json:"EncryptionType,omitempty" validate:"dive,required"`
+	// KeyID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html#cfn-kinesis-stream-streamencryption-keyid
+	KeyID *StringExpr `json:"KeyId,omitempty" validate:"dive,required"`
+}
+
+// KinesisStreamStreamEncryptionList represents a list of KinesisStreamStreamEncryption
+type KinesisStreamStreamEncryptionList []KinesisStreamStreamEncryption
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisStreamStreamEncryptionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisStreamStreamEncryption{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisStreamStreamEncryptionList{item}
+		return nil
+	}
+	list := []KinesisStreamStreamEncryption{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisStreamStreamEncryptionList(list)
 		return nil
 	}
 	return err
@@ -10507,6 +10561,34 @@ func (l *KinesisAnalyticsApplicationOutputKinesisStreamsOutputList) UnmarshalJSO
 	}
 	return err
 }
+// KinesisAnalyticsApplicationOutputLambdaOutput represents the AWS::KinesisAnalytics::ApplicationOutput.LambdaOutput CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-lambdaoutput.html 
+type KinesisAnalyticsApplicationOutputLambdaOutput struct {
+	// ResourceARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-lambdaoutput.html#cfn-kinesisanalytics-applicationoutput-lambdaoutput-resourcearn
+	ResourceARN *StringExpr `json:"ResourceARN,omitempty" validate:"dive,required"`
+	// RoleARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-lambdaoutput.html#cfn-kinesisanalytics-applicationoutput-lambdaoutput-rolearn
+	RoleARN *StringExpr `json:"RoleARN,omitempty" validate:"dive,required"`
+}
+
+// KinesisAnalyticsApplicationOutputLambdaOutputList represents a list of KinesisAnalyticsApplicationOutputLambdaOutput
+type KinesisAnalyticsApplicationOutputLambdaOutputList []KinesisAnalyticsApplicationOutputLambdaOutput
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *KinesisAnalyticsApplicationOutputLambdaOutputList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := KinesisAnalyticsApplicationOutputLambdaOutput{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = KinesisAnalyticsApplicationOutputLambdaOutputList{item}
+		return nil
+	}
+	list := []KinesisAnalyticsApplicationOutputLambdaOutput{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = KinesisAnalyticsApplicationOutputLambdaOutputList(list)
+		return nil
+	}
+	return err
+}
 // KinesisAnalyticsApplicationOutputOutput represents the AWS::KinesisAnalytics::ApplicationOutput.Output CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html 
 type KinesisAnalyticsApplicationOutputOutput struct {
@@ -10516,6 +10598,8 @@ type KinesisAnalyticsApplicationOutputOutput struct {
 	KinesisFirehoseOutput *KinesisAnalyticsApplicationOutputKinesisFirehoseOutput `json:"KinesisFirehoseOutput,omitempty"`
 	// KinesisStreamsOutput docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html#cfn-kinesisanalytics-applicationoutput-output-kinesisstreamsoutput
 	KinesisStreamsOutput *KinesisAnalyticsApplicationOutputKinesisStreamsOutput `json:"KinesisStreamsOutput,omitempty"`
+	// LambdaOutput docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html#cfn-kinesisanalytics-applicationoutput-output-lambdaoutput
+	LambdaOutput *KinesisAnalyticsApplicationOutputLambdaOutput `json:"LambdaOutput,omitempty"`
 	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html#cfn-kinesisanalytics-applicationoutput-output-name
 	Name *StringExpr `json:"Name,omitempty"`
 }
@@ -12631,6 +12715,32 @@ func (l *S3BucketAccelerateConfigurationList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// S3BucketAccessControlTranslation represents the AWS::S3::Bucket.AccessControlTranslation CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html 
+type S3BucketAccessControlTranslation struct {
+	// Owner docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html#cfn-s3-bucket-accesscontroltranslation-owner
+	Owner *StringExpr `json:"Owner,omitempty" validate:"dive,required"`
+}
+
+// S3BucketAccessControlTranslationList represents a list of S3BucketAccessControlTranslation
+type S3BucketAccessControlTranslationList []S3BucketAccessControlTranslation
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketAccessControlTranslationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketAccessControlTranslation{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketAccessControlTranslationList{item}
+		return nil
+	}
+	list := []S3BucketAccessControlTranslation{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketAccessControlTranslationList(list)
+		return nil
+	}
+	return err
+}
 // S3BucketAnalyticsConfiguration represents the AWS::S3::Bucket.AnalyticsConfiguration CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html 
 type S3BucketAnalyticsConfiguration struct {
@@ -12659,6 +12769,32 @@ func (l *S3BucketAnalyticsConfigurationList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = S3BucketAnalyticsConfigurationList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketBucketEncryption represents the AWS::S3::Bucket.BucketEncryption CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html 
+type S3BucketBucketEncryption struct {
+	// ServerSideEncryptionConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html#cfn-s3-bucket-bucketencryption-serversideencryptionconfiguration
+	ServerSideEncryptionConfiguration *S3BucketServerSideEncryptionRuleList `json:"ServerSideEncryptionConfiguration,omitempty" validate:"dive,required"`
+}
+
+// S3BucketBucketEncryptionList represents a list of S3BucketBucketEncryption
+type S3BucketBucketEncryptionList []S3BucketBucketEncryption
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketBucketEncryptionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketBucketEncryption{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketBucketEncryptionList{item}
+		return nil
+	}
+	list := []S3BucketBucketEncryption{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketBucketEncryptionList(list)
 		return nil
 	}
 	return err
@@ -12781,6 +12917,32 @@ func (l *S3BucketDestinationList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = S3BucketDestinationList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketEncryptionConfiguration represents the AWS::S3::Bucket.EncryptionConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html 
+type S3BucketEncryptionConfiguration struct {
+	// ReplicaKmsKeyID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html#cfn-s3-bucket-encryptionconfiguration-replicakmskeyid
+	ReplicaKmsKeyID *StringExpr `json:"ReplicaKmsKeyID,omitempty" validate:"dive,required"`
+}
+
+// S3BucketEncryptionConfigurationList represents a list of S3BucketEncryptionConfiguration
+type S3BucketEncryptionConfigurationList []S3BucketEncryptionConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketEncryptionConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketEncryptionConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketEncryptionConfigurationList{item}
+		return nil
+	}
+	list := []S3BucketEncryptionConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketEncryptionConfigurationList(list)
 		return nil
 	}
 	return err
@@ -13172,8 +13334,14 @@ func (l *S3BucketReplicationConfigurationList) UnmarshalJSON(buf []byte) error {
 // S3BucketReplicationDestination represents the AWS::S3::Bucket.ReplicationDestination CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html 
 type S3BucketReplicationDestination struct {
+	// AccessControlTranslation docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html#cfn-s3-bucket-replicationdestination-accesscontroltranslation
+	AccessControlTranslation *S3BucketAccessControlTranslation `json:"AccessControlTranslation,omitempty"`
+	// Account docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html#cfn-s3-bucket-replicationdestination-account
+	Account *StringExpr `json:"Account,omitempty"`
 	// Bucket docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html#cfn-s3-bucket-replicationconfiguration-rules-destination-bucket
 	Bucket *StringExpr `json:"Bucket,omitempty" validate:"dive,required"`
+	// EncryptionConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html#cfn-s3-bucket-replicationdestination-encryptionconfiguration
+	EncryptionConfiguration *S3BucketEncryptionConfiguration `json:"EncryptionConfiguration,omitempty"`
 	// StorageClass docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html#cfn-s3-bucket-replicationconfiguration-rules-destination-storageclass
 	StorageClass *StringExpr `json:"StorageClass,omitempty"`
 }
@@ -13206,6 +13374,8 @@ type S3BucketReplicationRule struct {
 	ID *StringExpr `json:"Id,omitempty"`
 	// Prefix docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html#cfn-s3-bucket-replicationconfiguration-rules-prefix
 	Prefix *StringExpr `json:"Prefix,omitempty" validate:"dive,required"`
+	// SourceSelectionCriteria docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html#cfn-s3-bucket-replicationrule-sourceselectioncriteria
+	SourceSelectionCriteria *S3BucketSourceSelectionCriteria `json:"SourceSelectionCriteria,omitempty"`
 	// Status docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html#cfn-s3-bucket-replicationconfiguration-rules-status
 	Status *StringExpr `json:"Status,omitempty" validate:"dive,required"`
 }
@@ -13355,6 +13525,112 @@ func (l *S3BucketS3KeyFilterList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = S3BucketS3KeyFilterList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketServerSideEncryptionByDefault represents the AWS::S3::Bucket.ServerSideEncryptionByDefault CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html 
+type S3BucketServerSideEncryptionByDefault struct {
+	// KMSMasterKeyID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html#cfn-s3-bucket-serversideencryptionbydefault-kmsmasterkeyid
+	KMSMasterKeyID *StringExpr `json:"KMSMasterKeyID,omitempty"`
+	// SSEAlgorithm docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html#cfn-s3-bucket-serversideencryptionbydefault-ssealgorithm
+	SSEAlgorithm *StringExpr `json:"SSEAlgorithm,omitempty" validate:"dive,required"`
+}
+
+// S3BucketServerSideEncryptionByDefaultList represents a list of S3BucketServerSideEncryptionByDefault
+type S3BucketServerSideEncryptionByDefaultList []S3BucketServerSideEncryptionByDefault
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketServerSideEncryptionByDefaultList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketServerSideEncryptionByDefault{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketServerSideEncryptionByDefaultList{item}
+		return nil
+	}
+	list := []S3BucketServerSideEncryptionByDefault{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketServerSideEncryptionByDefaultList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketServerSideEncryptionRule represents the AWS::S3::Bucket.ServerSideEncryptionRule CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html 
+type S3BucketServerSideEncryptionRule struct {
+	// ServerSideEncryptionByDefault docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#cfn-s3-bucket-serversideencryptionrule-serversideencryptionbydefault
+	ServerSideEncryptionByDefault *S3BucketServerSideEncryptionByDefault `json:"ServerSideEncryptionByDefault,omitempty"`
+}
+
+// S3BucketServerSideEncryptionRuleList represents a list of S3BucketServerSideEncryptionRule
+type S3BucketServerSideEncryptionRuleList []S3BucketServerSideEncryptionRule
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketServerSideEncryptionRuleList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketServerSideEncryptionRule{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketServerSideEncryptionRuleList{item}
+		return nil
+	}
+	list := []S3BucketServerSideEncryptionRule{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketServerSideEncryptionRuleList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketSourceSelectionCriteria represents the AWS::S3::Bucket.SourceSelectionCriteria CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html 
+type S3BucketSourceSelectionCriteria struct {
+	// SseKmsEncryptedObjects docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html#cfn-s3-bucket-sourceselectioncriteria-ssekmsencryptedobjects
+	SseKmsEncryptedObjects *S3BucketSseKmsEncryptedObjects `json:"SseKmsEncryptedObjects,omitempty" validate:"dive,required"`
+}
+
+// S3BucketSourceSelectionCriteriaList represents a list of S3BucketSourceSelectionCriteria
+type S3BucketSourceSelectionCriteriaList []S3BucketSourceSelectionCriteria
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketSourceSelectionCriteriaList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketSourceSelectionCriteria{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketSourceSelectionCriteriaList{item}
+		return nil
+	}
+	list := []S3BucketSourceSelectionCriteria{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketSourceSelectionCriteriaList(list)
+		return nil
+	}
+	return err
+}
+// S3BucketSseKmsEncryptedObjects represents the AWS::S3::Bucket.SseKmsEncryptedObjects CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html 
+type S3BucketSseKmsEncryptedObjects struct {
+	// Status docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html#cfn-s3-bucket-ssekmsencryptedobjects-status
+	Status *StringExpr `json:"Status,omitempty" validate:"dive,required"`
+}
+
+// S3BucketSseKmsEncryptedObjectsList represents a list of S3BucketSseKmsEncryptedObjects
+type S3BucketSseKmsEncryptedObjectsList []S3BucketSseKmsEncryptedObjects
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *S3BucketSseKmsEncryptedObjectsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := S3BucketSseKmsEncryptedObjects{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = S3BucketSseKmsEncryptedObjectsList{item}
+		return nil
+	}
+	list := []S3BucketSseKmsEncryptedObjects{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = S3BucketSseKmsEncryptedObjectsList(list)
 		return nil
 	}
 	return err
@@ -13775,7 +14051,7 @@ func (l *SSMMaintenanceWindowTaskMaintenanceWindowStepFunctionsParametersList) U
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html 
 type SSMMaintenanceWindowTaskNotificationConfig struct {
 	// NotificationArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html#cfn-ssm-maintenancewindowtask-notificationconfig-notificationarn
-	NotificationArn *StringExpr `json:"NotificationArn,omitempty"`
+	NotificationArn *StringExpr `json:"NotificationArn,omitempty" validate:"dive,required"`
 	// NotificationEvents docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html#cfn-ssm-maintenancewindowtask-notificationconfig-notificationevents
 	NotificationEvents *StringListExpr `json:"NotificationEvents,omitempty"`
 	// NotificationType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html#cfn-ssm-maintenancewindowtask-notificationconfig-notificationtype
@@ -13975,7 +14251,7 @@ func (l *SSMPatchBaselineRuleGroupList) UnmarshalJSON(buf []byte) error {
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html 
 type ServiceDiscoveryServiceDNSConfig struct {
 	// DNSRecords docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html#cfn-servicediscovery-service-dnsconfig-dnsrecords
-	DNSRecords *ServiceDiscoveryServiceDNSRecordList `json:"DnsRecords,omitempty"`
+	DNSRecords *ServiceDiscoveryServiceDNSRecordList `json:"DnsRecords,omitempty" validate:"dive,required"`
 	// NamespaceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html#cfn-servicediscovery-service-dnsconfig-namespaceid
 	NamespaceID *StringExpr `json:"NamespaceId,omitempty" validate:"dive,required"`
 }
@@ -16550,6 +16826,8 @@ type EC2Instance struct {
 	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
 	// BlockDeviceMappings docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-blockdevicemappings
 	BlockDeviceMappings *EC2InstanceBlockDeviceMappingList `json:"BlockDeviceMappings,omitempty"`
+	// CreditSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-creditspecification
+	CreditSpecification *EC2InstanceCreditSpecification `json:"CreditSpecification,omitempty"`
 	// DisableAPITermination docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-disableapitermination
 	DisableAPITermination *BoolExpr `json:"DisableApiTermination,omitempty"`
 	// EbsOptimized docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-ebsoptimized
@@ -17228,6 +17506,8 @@ type ECSService struct {
 	DeploymentConfiguration *ECSServiceDeploymentConfiguration `json:"DeploymentConfiguration,omitempty"`
 	// DesiredCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-desiredcount
 	DesiredCount *IntegerExpr `json:"DesiredCount,omitempty"`
+	// HealthCheckGracePeriodSeconds docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-healthcheckgraceperiodseconds
+	HealthCheckGracePeriodSeconds *IntegerExpr `json:"HealthCheckGracePeriodSeconds,omitempty"`
 	// LaunchType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-launchtype
 	LaunchType *StringExpr `json:"LaunchType,omitempty"`
 	// LoadBalancers docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-loadbalancers
@@ -18556,6 +18836,8 @@ type KinesisStream struct {
 	RetentionPeriodHours *IntegerExpr `json:"RetentionPeriodHours,omitempty"`
 	// ShardCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html#cfn-kinesis-stream-shardcount
 	ShardCount *IntegerExpr `json:"ShardCount,omitempty" validate:"dive,required"`
+	// StreamEncryption docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html#cfn-kinesis-stream-streamencryption
+	StreamEncryption *KinesisStreamStreamEncryption `json:"StreamEncryption,omitempty"`
 	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html#cfn-kinesis-stream-tags
 	Tags *TagList `json:"Tags,omitempty"`
 }
@@ -18694,6 +18976,8 @@ type LambdaFunction struct {
 	KmsKeyArn *StringExpr `json:"KmsKeyArn,omitempty"`
 	// MemorySize docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-memorysize
 	MemorySize *IntegerExpr `json:"MemorySize,omitempty"`
+	// ReservedConcurrentExecutions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-reservedconcurrentexecutions
+	ReservedConcurrentExecutions *IntegerExpr `json:"ReservedConcurrentExecutions,omitempty"`
 	// Role docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-role
 	Role *StringExpr `json:"Role,omitempty" validate:"dive,required"`
 	// Runtime docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-runtime
@@ -19288,6 +19572,8 @@ func (s RDSDBSecurityGroupIngress) CfnResourceType() string {
 type RDSDBSubnetGroup struct {
 	// DBSubnetGroupDescription docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html#cfn-rds-dbsubnetgroup-dbsubnetgroupdescription
 	DBSubnetGroupDescription *StringExpr `json:"DBSubnetGroupDescription,omitempty" validate:"dive,required"`
+	// DBSubnetGroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html#cfn-rds-dbsubnetgroup-dbsubnetgroupname
+	DBSubnetGroupName *StringExpr `json:"DBSubnetGroupName,omitempty"`
 	// SubnetIDs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html#cfn-rds-dbsubnetgroup-subnetids
 	SubnetIDs *StringListExpr `json:"SubnetIds,omitempty" validate:"dive,required"`
 	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html#cfn-rds-dbsubnetgroup-tags
@@ -19570,6 +19856,8 @@ type S3Bucket struct {
 	AccessControl *StringExpr `json:"AccessControl,omitempty"`
 	// AnalyticsConfigurations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-analyticsconfigurations
 	AnalyticsConfigurations *S3BucketAnalyticsConfigurationList `json:"AnalyticsConfigurations,omitempty"`
+	// BucketEncryption docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-bucketencryption
+	BucketEncryption *S3BucketBucketEncryption `json:"BucketEncryption,omitempty"`
 	// BucketName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-name
 	BucketName *StringExpr `json:"BucketName,omitempty"`
 	// CorsConfiguration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-crossoriginconfig
@@ -19720,6 +20008,8 @@ func (s SQSQueuePolicy) CfnResourceType() string {
 // SSMAssociation represents the AWS::SSM::Association CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html 
 type SSMAssociation struct {
+	// AssociationName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html#cfn-ssm-association-associationname
+	AssociationName *StringExpr `json:"AssociationName,omitempty"`
 	// DocumentVersion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html#cfn-ssm-association-documentversion
 	DocumentVersion *StringExpr `json:"DocumentVersion,omitempty"`
 	// InstanceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html#cfn-ssm-association-instanceid
