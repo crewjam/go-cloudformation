@@ -1,6 +1,6 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 1.12.0
-// GENERATED: 2018-01-24 20:20:09.080442933 -0800 PST m=+0.290103840
+// RESOURCE SPECIFICATION VERSION: 1.13.0
+// GENERATED: 2018-02-08 20:49:29.471810912 -0800 PST m=+0.741291992
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -2344,6 +2344,10 @@ type CodeBuildProjectSource struct {
 	Auth *CodeBuildProjectSourceAuth `json:"Auth,omitempty"`
 	// BuildSpec docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html#cfn-codebuild-project-source-buildspec
 	BuildSpec *StringExpr `json:"BuildSpec,omitempty"`
+	// GitCloneDepth docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html#cfn-codebuild-project-source-gitclonedepth
+	GitCloneDepth *IntegerExpr `json:"GitCloneDepth,omitempty"`
+	// InsecureSsl docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html#cfn-codebuild-project-source-insecuressl
+	InsecureSsl *BoolExpr `json:"InsecureSsl,omitempty"`
 	// Location docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html#cfn-codebuild-project-source-location
 	Location *StringExpr `json:"Location,omitempty"`
 	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html#cfn-codebuild-project-source-type
@@ -4455,6 +4459,32 @@ func (l *DynamoDBTableProvisionedThroughputList) UnmarshalJSON(buf []byte) error
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = DynamoDBTableProvisionedThroughputList(list)
+		return nil
+	}
+	return err
+}
+// DynamoDBTableSSESpecification represents the AWS::DynamoDB::Table.SSESpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html 
+type DynamoDBTableSSESpecification struct {
+	// SSEEnabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html#cfn-dynamodb-table-ssespecification-sseenabled
+	SSEEnabled *BoolExpr `json:"SSEEnabled,omitempty" validate:"dive,required"`
+}
+
+// DynamoDBTableSSESpecificationList represents a list of DynamoDBTableSSESpecification
+type DynamoDBTableSSESpecificationList []DynamoDBTableSSESpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *DynamoDBTableSSESpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := DynamoDBTableSSESpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = DynamoDBTableSSESpecificationList{item}
+		return nil
+	}
+	list := []DynamoDBTableSSESpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = DynamoDBTableSSESpecificationList(list)
 		return nil
 	}
 	return err
@@ -16678,6 +16708,8 @@ type DynamoDBTable struct {
 	LocalSecondaryIndexes *DynamoDBTableLocalSecondaryIndexList `json:"LocalSecondaryIndexes,omitempty"`
 	// ProvisionedThroughput docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-provisionedthroughput
 	ProvisionedThroughput *DynamoDBTableProvisionedThroughput `json:"ProvisionedThroughput,omitempty" validate:"dive,required"`
+	// SSESpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-ssespecification
+	SSESpecification *DynamoDBTableSSESpecification `json:"SSESpecification,omitempty"`
 	// StreamSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-streamspecification
 	StreamSpecification *DynamoDBTableStreamSpecification `json:"StreamSpecification,omitempty"`
 	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tablename
