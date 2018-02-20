@@ -1,6 +1,6 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 1.13.0
-// GENERATED: 2018-02-08 20:49:29.471810912 -0800 PST m=+0.741291992
+// RESOURCE SPECIFICATION VERSION: 1.14.0
+// GENERATED: 2018-02-20 07:21:37.200497435 -0800 PST m=+0.331803011
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -2337,6 +2337,32 @@ func (l *CodeBuildProjectProjectCacheList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// CodeBuildProjectProjectTriggers represents the AWS::CodeBuild::Project.ProjectTriggers CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html 
+type CodeBuildProjectProjectTriggers struct {
+	// Webhook docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html#cfn-codebuild-project-projecttriggers-webhook
+	Webhook *BoolExpr `json:"Webhook,omitempty"`
+}
+
+// CodeBuildProjectProjectTriggersList represents a list of CodeBuildProjectProjectTriggers
+type CodeBuildProjectProjectTriggersList []CodeBuildProjectProjectTriggers
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *CodeBuildProjectProjectTriggersList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := CodeBuildProjectProjectTriggers{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = CodeBuildProjectProjectTriggersList{item}
+		return nil
+	}
+	list := []CodeBuildProjectProjectTriggers{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = CodeBuildProjectProjectTriggersList(list)
+		return nil
+	}
+	return err
+}
 // CodeBuildProjectSource represents the AWS::CodeBuild::Project.Source CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html 
 type CodeBuildProjectSource struct {
@@ -2996,21 +3022,21 @@ func (l *CodePipelineCustomActionTypeSettingsList) UnmarshalJSON(buf []byte) err
 	return err
 }
 // CodePipelinePipelineActionDeclaration represents the AWS::CodePipeline::Pipeline.ActionDeclaration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html 
 type CodePipelinePipelineActionDeclaration struct {
-	// ActionTypeID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid
+	// ActionTypeID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-actiontypeid
 	ActionTypeID *CodePipelinePipelineActionTypeID `json:"ActionTypeId,omitempty" validate:"dive,required"`
-	// Configuration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-configuration
+	// Configuration docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-configuration
 	Configuration interface{} `json:"Configuration,omitempty"`
-	// InputArtifacts docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-inputartifacts
+	// InputArtifacts docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-inputartifacts
 	InputArtifacts *CodePipelinePipelineInputArtifactList `json:"InputArtifacts,omitempty"`
-	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-name
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
-	// OutputArtifacts docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-outputartifacts
+	// OutputArtifacts docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-outputartifacts
 	OutputArtifacts *CodePipelinePipelineOutputArtifactList `json:"OutputArtifacts,omitempty"`
-	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-rolearn
+	// RoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-rolearn
 	RoleArn *StringExpr `json:"RoleArn,omitempty"`
-	// RunOrder docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-runorder
+	// RunOrder docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html#cfn-codepipeline-pipeline-actiondeclaration-runorder
 	RunOrder *IntegerExpr `json:"RunOrder,omitempty"`
 }
 
@@ -3034,15 +3060,15 @@ func (l *CodePipelinePipelineActionDeclarationList) UnmarshalJSON(buf []byte) er
 	return err
 }
 // CodePipelinePipelineActionTypeID represents the AWS::CodePipeline::Pipeline.ActionTypeId CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html 
 type CodePipelinePipelineActionTypeID struct {
-	// Category docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid-category
+	// Category docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html#cfn-codepipeline-pipeline-actiontypeid-category
 	Category *StringExpr `json:"Category,omitempty" validate:"dive,required"`
-	// Owner docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid-owner
+	// Owner docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html#cfn-codepipeline-pipeline-actiontypeid-owner
 	Owner *StringExpr `json:"Owner,omitempty" validate:"dive,required"`
-	// Provider docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid-provider
+	// Provider docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html#cfn-codepipeline-pipeline-actiontypeid-provider
 	Provider *StringExpr `json:"Provider,omitempty" validate:"dive,required"`
-	// Version docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid-version
+	// Version docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiontypeid.html#cfn-codepipeline-pipeline-actiontypeid-version
 	Version *StringExpr `json:"Version,omitempty" validate:"dive,required"`
 }
 
@@ -3096,11 +3122,11 @@ func (l *CodePipelinePipelineArtifactStoreList) UnmarshalJSON(buf []byte) error 
 	return err
 }
 // CodePipelinePipelineBlockerDeclaration represents the AWS::CodePipeline::Pipeline.BlockerDeclaration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-blockerdeclaration.html 
 type CodePipelinePipelineBlockerDeclaration struct {
-	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html#cfn-codepipeline-pipeline-stages-blockers-name
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-blockerdeclaration.html#cfn-codepipeline-pipeline-blockerdeclaration-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
-	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html#cfn-codepipeline-pipeline-stages-blockers-type
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-blockerdeclaration.html#cfn-codepipeline-pipeline-blockerdeclaration-type
 	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
 }
 
@@ -3124,11 +3150,11 @@ func (l *CodePipelinePipelineBlockerDeclarationList) UnmarshalJSON(buf []byte) e
 	return err
 }
 // CodePipelinePipelineEncryptionKey represents the AWS::CodePipeline::Pipeline.EncryptionKey CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-encryptionkey.html 
 type CodePipelinePipelineEncryptionKey struct {
-	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html#cfn-codepipeline-pipeline-artifactstore-encryptionkey-id
+	// ID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-encryptionkey.html#cfn-codepipeline-pipeline-encryptionkey-id
 	ID *StringExpr `json:"Id,omitempty" validate:"dive,required"`
-	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html#cfn-codepipeline-pipeline-artifactstore-encryptionkey-type
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-encryptionkey.html#cfn-codepipeline-pipeline-encryptionkey-type
 	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
 }
 
@@ -3152,9 +3178,9 @@ func (l *CodePipelinePipelineEncryptionKeyList) UnmarshalJSON(buf []byte) error 
 	return err
 }
 // CodePipelinePipelineInputArtifact represents the AWS::CodePipeline::Pipeline.InputArtifact CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-inputartifact.html 
 type CodePipelinePipelineInputArtifact struct {
-	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html#cfn-codepipeline-pipeline-stages-actions-inputartifacts-name
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-inputartifact.html#cfn-codepipeline-pipeline-inputartifact-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
 }
 
@@ -3178,9 +3204,9 @@ func (l *CodePipelinePipelineInputArtifactList) UnmarshalJSON(buf []byte) error 
 	return err
 }
 // CodePipelinePipelineOutputArtifact represents the AWS::CodePipeline::Pipeline.OutputArtifact CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-outputartifact.html 
 type CodePipelinePipelineOutputArtifact struct {
-	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html#cfn-codepipeline-pipeline-stages-actions-outputartifacts-name
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-outputartifact.html#cfn-codepipeline-pipeline-outputartifact-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
 }
 
@@ -3204,13 +3230,13 @@ func (l *CodePipelinePipelineOutputArtifactList) UnmarshalJSON(buf []byte) error
 	return err
 }
 // CodePipelinePipelineStageDeclaration represents the AWS::CodePipeline::Pipeline.StageDeclaration CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html 
 type CodePipelinePipelineStageDeclaration struct {
-	// Actions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html#cfn-codepipeline-pipeline-stages-actions
+	// Actions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html#cfn-codepipeline-pipeline-stagedeclaration-actions
 	Actions *CodePipelinePipelineActionDeclarationList `json:"Actions,omitempty" validate:"dive,required"`
-	// Blockers docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html#cfn-codepipeline-pipeline-stages-blockers
+	// Blockers docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html#cfn-codepipeline-pipeline-stagedeclaration-blockers
 	Blockers *CodePipelinePipelineBlockerDeclarationList `json:"Blockers,omitempty"`
-	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html#cfn-codepipeline-pipeline-stages-name
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html#cfn-codepipeline-pipeline-stagedeclaration-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
 }
 
@@ -3234,11 +3260,11 @@ func (l *CodePipelinePipelineStageDeclarationList) UnmarshalJSON(buf []byte) err
 	return err
 }
 // CodePipelinePipelineStageTransition represents the AWS::CodePipeline::Pipeline.StageTransition CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagetransition.html 
 type CodePipelinePipelineStageTransition struct {
-	// Reason docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html#cfn-codepipeline-pipeline-disableinboundstagetransitions-reason
+	// Reason docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagetransition.html#cfn-codepipeline-pipeline-stagetransition-reason
 	Reason *StringExpr `json:"Reason,omitempty" validate:"dive,required"`
-	// StageName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html#cfn-codepipeline-pipeline-disableinboundstagetransitions-stagename
+	// StageName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagetransition.html#cfn-codepipeline-pipeline-stagetransition-stagename
 	StageName *StringExpr `json:"StageName,omitempty" validate:"dive,required"`
 }
 
@@ -16026,6 +16052,8 @@ type CodeBuildProject struct {
 	Tags *TagList `json:"Tags,omitempty"`
 	// TimeoutInMinutes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-timeoutinminutes
 	TimeoutInMinutes *IntegerExpr `json:"TimeoutInMinutes,omitempty"`
+	// Triggers docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-triggers
+	Triggers *CodeBuildProjectProjectTriggers `json:"Triggers,omitempty"`
 	// VPCConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-vpcconfig
 	VPCConfig *CodeBuildProjectVPCConfig `json:"VpcConfig,omitempty"`
 }
