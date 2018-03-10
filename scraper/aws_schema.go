@@ -37,6 +37,7 @@ type ResourceAttribute struct {
 	PrimitiveType string
 }
 
+// PropertyItemType represents the type of a property
 type PropertyItemType struct {
 	Scalar      string
 	MultiValues []string

@@ -406,6 +406,8 @@ import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
 
+const ResourceSpecificationVersion = "%s"
+
 // CustomResourceProvider allows extend the NewResourceByType factory method
 // with their own resource types.
 type CustomResourceProvider func(customResourceType string) ResourceProperties
@@ -422,7 +424,8 @@ func RegisterCustomResourceProvider(provider CustomResourceProvider) {
 }
 `,
 		resourceSpecVersion,
-		time.Now().String())
+		time.Now().String(),
+		resourceSpecVersion)
 
 	_, writeErr := w.Write([]byte(headerText))
 	if nil != writeErr {
