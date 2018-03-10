@@ -62,6 +62,13 @@ func (x *StringListExpr) UnmarshalJSON(data []byte) error {
 			x.Func = stringFunc
 			return nil
 		}
+
+		// Possible that it's a Fn::GetAtt instance?
+		getAttrFunc, ok := funcCall.(GetAttFunc)
+		if ok {
+			x.Func = StringList(getAttrFunc)
+			return nil
+		}
 		return fmt.Errorf("%#v is not a StringListFunc", funcCall)
 	}
 
