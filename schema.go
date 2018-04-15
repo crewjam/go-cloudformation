@@ -5350,6 +5350,9 @@ type RDSDBInstance struct {
 	// the Amazon Relational Database Service Developer Guide.
 	SourceDBInstanceIdentifier *StringExpr `json:"SourceDBInstanceIdentifier,omitempty"`
 
+	// The ID of the region that contains the source DB instance for the read replica.
+	SourceRegion *StringExpr `json:"SourceRegion,omitempty"`
+
 	// Indicates whether the DB instance is encrypted.
 	StorageEncrypted *BoolExpr `json:"StorageEncrypted,omitempty"`
 
@@ -10357,7 +10360,7 @@ func (l *EC2NetworkInterfacePrivateIPSpecificationList) UnmarshalJSON(buf []byte
 
 // EC2SecurityGroupRule represents EC2 Security Group Rule Property Type
 //
-// see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html
+// see http://docs.aws.amazon.com/AWSSecurityGroupEgress only)CloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html
 type EC2SecurityGroupRule struct {
 	// Specifies an IPv4 CIDR range.
 	CidrIp *StringExpr `json:"CidrIp,omitempty"`
@@ -10367,10 +10370,10 @@ type EC2SecurityGroupRule struct {
 
 	// The AWS service prefix of an Amazon VPC endpoint. For more
 	// information, see VPC Endpoints in the Amazon VPC User Guide.
-	DestinationPrefixListIdXXSecurityGroupEgressXOnlyX *StringExpr `json:"DestinationPrefixListId (SecurityGroupEgress only),omitempty"`
+	DestinationPrefixListIdXXSecurityGroupEgressXOnlyX *StringExpr `json:"DestinationPrefixListId,omitempty"`
 
 	// Specifies the GroupId of the destination Amazon VPC security group.
-	DestinationSecurityGroupIdXXSecurityGroupEgressXOnlyX *StringExpr `json:"DestinationSecurityGroupId (SecurityGroupEgress only),omitempty"`
+	DestinationSecurityGroupIdXXSecurityGroupEgressXOnlyX *StringExpr `json:"DestinationSecurityGroupId,omitempty"`
 
 	// The start of port range for the TCP and UDP protocols, or an ICMP type
 	// number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP
@@ -10385,17 +10388,17 @@ type EC2SecurityGroupRule struct {
 	// Security Group to allow access. You can use the Ref intrinsic function
 	// to refer to the logical ID of a security group defined in the same
 	// template.
-	SourceSecurityGroupIdXXSecurityGroupIngressXOnlyX *StringExpr `json:"SourceSecurityGroupId (SecurityGroupIngress only),omitempty"`
+	SourceSecurityGroupIdXXSecurityGroupIngressXOnlyX *StringExpr `json:"SourceSecurityGroupId,omitempty"`
 
 	// For non-VPC security groups only. Specifies the name of the Amazon EC2
 	// Security Group to use for access. You can use the Ref intrinsic
 	// function to refer to the logical name of a security group that is
 	// defined in the same template.
-	SourceSecurityGroupNameXXSecurityGroupIngressXOnlyX *StringExpr `json:"SourceSecurityGroupName (SecurityGroupIngress only),omitempty"`
+	SourceSecurityGroupNameXXSecurityGroupIngressXOnlyX *StringExpr `json:"SourceSecurityGroupName,omitempty"`
 
 	// Specifies the AWS Account ID of the owner of the Amazon EC2 Security
 	// Group that is specified in the SourceSecurityGroupName property.
-	SourceSecurityGroupOwnerIdXXSecurityGroupIngressXOnlyX *StringExpr `json:"SourceSecurityGroupOwnerId (SecurityGroupIngress only),omitempty"`
+	SourceSecurityGroupOwnerIdXXSecurityGroupIngressXOnlyX *StringExpr `json:"SourceSecurityGroupOwnerId,omitempty"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code.
 	// An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).
