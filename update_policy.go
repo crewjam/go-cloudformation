@@ -4,8 +4,17 @@ package cloudformation
 //
 // see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatepolicy.html
 type UpdatePolicy struct {
+	AutoScalingReplacingUpdate *UpdatePolicyAutoScalingReplacingUpdate `json:"AutoScalingReplacingUpdate,omitempty"`
 	AutoScalingRollingUpdate   *UpdatePolicyAutoScalingRollingUpdate   `json:"AutoScalingRollingUpdate,omitempty"`
 	AutoScalingScheduledAction *UpdatePolicyAutoScalingScheduledAction `json:"AutoScalingScheduledAction,omitempty"`
+}
+
+// UpdatePolicyAutoScalingReplacingUpdate represents an AutoScalingReplacingUpdate
+//
+// You can use the AutoScalingReplacingUpdate policy to specify whether AWS CloudFormation replaces an Auto Scaling group with a new one or replaces only the instances in the Auto Scaling group.
+type UpdatePolicyAutoScalingReplacingUpdate struct {
+	// Specifies whether an Auto Scaling group and the instances it contains are replaced during an update. During replacement, AWS CloudFormation retains the old group until it finishes creating the new one. If the update fails, AWS CloudFormation can roll back to the old Auto Scaling group and delete the new Auto Scaling group.
+	WillReplace *BoolExpr `json:"WillReplace,omitempty"`
 }
 
 // UpdatePolicyAutoScalingRollingUpdate represents an AutoScalingRollingUpdate
@@ -49,3 +58,4 @@ type UpdatePolicyAutoScalingScheduledAction struct {
 	// During a stack update, indicates whether AWS CloudFormation ignores any group size property differences between your current Auto Scaling group and the Auto Scaling group that is described in the AWS::AutoScaling::AutoScalingGroup resource of your template. However, if you modified any group size property values in your template, AWS CloudFormation will always use the modified values and update your Auto Scaling group.
 	IgnoreUnmodifiedGroupSizeProperties *BoolExpr `json:"IgnoreUnmodifiedGroupSizeProperties,omitempty"`
 }
+
