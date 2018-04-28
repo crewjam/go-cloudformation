@@ -1,6 +1,6 @@
 package cloudformation
 // RESOURCE SPECIFICATION VERSION: 2.0.0
-// GENERATED: 2018-03-10 14:47:31.01648885 -0800 PST m=+0.795964622
+// GENERATED: 2018-04-27 22:16:03.470405136 -0700 PDT m=+0.491010912
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
@@ -511,6 +511,150 @@ func (l *APIGatewayUsagePlanThrottleSettingsList) UnmarshalJSON(buf []byte) erro
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = APIGatewayUsagePlanThrottleSettingsList(list)
+		return nil
+	}
+	return err
+}
+// AppSyncDataSourceDynamoDBConfig represents the AWS::AppSync::DataSource.DynamoDBConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-dynamodbconfig.html 
+type AppSyncDataSourceDynamoDBConfig struct {
+	// AwsRegion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-dynamodbconfig.html#cfn-appsync-datasource-dynamodbconfig-awsregion
+	AwsRegion *StringExpr `json:"AwsRegion,omitempty" validate:"dive,required"`
+	// TableName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-dynamodbconfig.html#cfn-appsync-datasource-dynamodbconfig-tablename
+	TableName *StringExpr `json:"TableName,omitempty" validate:"dive,required"`
+	// UseCallerCredentials docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-dynamodbconfig.html#cfn-appsync-datasource-dynamodbconfig-usecallercredentials
+	UseCallerCredentials *BoolExpr `json:"UseCallerCredentials,omitempty"`
+}
+
+// AppSyncDataSourceDynamoDBConfigList represents a list of AppSyncDataSourceDynamoDBConfig
+type AppSyncDataSourceDynamoDBConfigList []AppSyncDataSourceDynamoDBConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AppSyncDataSourceDynamoDBConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AppSyncDataSourceDynamoDBConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AppSyncDataSourceDynamoDBConfigList{item}
+		return nil
+	}
+	list := []AppSyncDataSourceDynamoDBConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AppSyncDataSourceDynamoDBConfigList(list)
+		return nil
+	}
+	return err
+}
+// AppSyncDataSourceElasticsearchConfig represents the AWS::AppSync::DataSource.ElasticsearchConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-elasticsearchconfig.html 
+type AppSyncDataSourceElasticsearchConfig struct {
+	// AwsRegion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-elasticsearchconfig.html#cfn-appsync-datasource-elasticsearchconfig-awsregion
+	AwsRegion *StringExpr `json:"AwsRegion,omitempty" validate:"dive,required"`
+	// Endpoint docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-elasticsearchconfig.html#cfn-appsync-datasource-elasticsearchconfig-endpoint
+	Endpoint *StringExpr `json:"Endpoint,omitempty" validate:"dive,required"`
+}
+
+// AppSyncDataSourceElasticsearchConfigList represents a list of AppSyncDataSourceElasticsearchConfig
+type AppSyncDataSourceElasticsearchConfigList []AppSyncDataSourceElasticsearchConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AppSyncDataSourceElasticsearchConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AppSyncDataSourceElasticsearchConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AppSyncDataSourceElasticsearchConfigList{item}
+		return nil
+	}
+	list := []AppSyncDataSourceElasticsearchConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AppSyncDataSourceElasticsearchConfigList(list)
+		return nil
+	}
+	return err
+}
+// AppSyncDataSourceLambdaConfig represents the AWS::AppSync::DataSource.LambdaConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-lambdaconfig.html 
+type AppSyncDataSourceLambdaConfig struct {
+	// LambdaFunctionArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-lambdaconfig.html#cfn-appsync-datasource-lambdaconfig-lambdafunctionarn
+	LambdaFunctionArn *StringExpr `json:"LambdaFunctionArn,omitempty" validate:"dive,required"`
+}
+
+// AppSyncDataSourceLambdaConfigList represents a list of AppSyncDataSourceLambdaConfig
+type AppSyncDataSourceLambdaConfigList []AppSyncDataSourceLambdaConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AppSyncDataSourceLambdaConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AppSyncDataSourceLambdaConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AppSyncDataSourceLambdaConfigList{item}
+		return nil
+	}
+	list := []AppSyncDataSourceLambdaConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AppSyncDataSourceLambdaConfigList(list)
+		return nil
+	}
+	return err
+}
+// AppSyncGraphQLAPILogConfig represents the AWS::AppSync::GraphQLApi.LogConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-logconfig.html 
+type AppSyncGraphQLAPILogConfig struct {
+	// CloudWatchLogsRoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-logconfig.html#cfn-appsync-graphqlapi-logconfig-cloudwatchlogsrolearn
+	CloudWatchLogsRoleArn *StringExpr `json:"CloudWatchLogsRoleArn,omitempty"`
+	// FieldLogLevel docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-logconfig.html#cfn-appsync-graphqlapi-logconfig-fieldloglevel
+	FieldLogLevel *StringExpr `json:"FieldLogLevel,omitempty"`
+}
+
+// AppSyncGraphQLAPILogConfigList represents a list of AppSyncGraphQLAPILogConfig
+type AppSyncGraphQLAPILogConfigList []AppSyncGraphQLAPILogConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AppSyncGraphQLAPILogConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AppSyncGraphQLAPILogConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AppSyncGraphQLAPILogConfigList{item}
+		return nil
+	}
+	list := []AppSyncGraphQLAPILogConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AppSyncGraphQLAPILogConfigList(list)
+		return nil
+	}
+	return err
+}
+// AppSyncGraphQLAPIUserPoolConfig represents the AWS::AppSync::GraphQLApi.UserPoolConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html 
+type AppSyncGraphQLAPIUserPoolConfig struct {
+	// AppIDClientRegex docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html#cfn-appsync-graphqlapi-userpoolconfig-appidclientregex
+	AppIDClientRegex *StringExpr `json:"AppIdClientRegex,omitempty"`
+	// AwsRegion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html#cfn-appsync-graphqlapi-userpoolconfig-awsregion
+	AwsRegion *StringExpr `json:"AwsRegion,omitempty"`
+	// DefaultAction docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html#cfn-appsync-graphqlapi-userpoolconfig-defaultaction
+	DefaultAction *StringExpr `json:"DefaultAction,omitempty"`
+	// UserPoolID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html#cfn-appsync-graphqlapi-userpoolconfig-userpoolid
+	UserPoolID *StringExpr `json:"UserPoolId,omitempty"`
+}
+
+// AppSyncGraphQLAPIUserPoolConfigList represents a list of AppSyncGraphQLAPIUserPoolConfig
+type AppSyncGraphQLAPIUserPoolConfigList []AppSyncGraphQLAPIUserPoolConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AppSyncGraphQLAPIUserPoolConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AppSyncGraphQLAPIUserPoolConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AppSyncGraphQLAPIUserPoolConfigList{item}
+		return nil
+	}
+	list := []AppSyncGraphQLAPIUserPoolConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AppSyncGraphQLAPIUserPoolConfigList(list)
 		return nil
 	}
 	return err
@@ -4903,6 +5047,468 @@ func (l *EC2InstanceVolumeList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// EC2LaunchTemplateBlockDeviceMapping represents the AWS::EC2::LaunchTemplate.BlockDeviceMapping CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html 
+type EC2LaunchTemplateBlockDeviceMapping struct {
+	// DeviceName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-devicename
+	DeviceName *StringExpr `json:"DeviceName,omitempty"`
+	// Ebs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs
+	Ebs *EC2LaunchTemplateEbs `json:"Ebs,omitempty"`
+	// NoDevice docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-nodevice
+	NoDevice *StringExpr `json:"NoDevice,omitempty"`
+	// VirtualName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-virtualname
+	VirtualName *StringExpr `json:"VirtualName,omitempty"`
+}
+
+// EC2LaunchTemplateBlockDeviceMappingList represents a list of EC2LaunchTemplateBlockDeviceMapping
+type EC2LaunchTemplateBlockDeviceMappingList []EC2LaunchTemplateBlockDeviceMapping
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateBlockDeviceMappingList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateBlockDeviceMapping{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateBlockDeviceMappingList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateBlockDeviceMapping{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateBlockDeviceMappingList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateCreditSpecification represents the AWS::EC2::LaunchTemplate.CreditSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-creditspecification.html 
+type EC2LaunchTemplateCreditSpecification struct {
+	// CPUCredits docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-creditspecification.html#cfn-ec2-launchtemplate-launchtemplatedata-creditspecification-cpucredits
+	CPUCredits *StringExpr `json:"CpuCredits,omitempty"`
+}
+
+// EC2LaunchTemplateCreditSpecificationList represents a list of EC2LaunchTemplateCreditSpecification
+type EC2LaunchTemplateCreditSpecificationList []EC2LaunchTemplateCreditSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateCreditSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateCreditSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateCreditSpecificationList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateCreditSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateCreditSpecificationList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateEbs represents the AWS::EC2::LaunchTemplate.Ebs CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html 
+type EC2LaunchTemplateEbs struct {
+	// DeleteOnTermination docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-deleteontermination
+	DeleteOnTermination *BoolExpr `json:"DeleteOnTermination,omitempty"`
+	// Encrypted docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-encrypted
+	Encrypted *BoolExpr `json:"Encrypted,omitempty"`
+	// Iops docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-iops
+	Iops *IntegerExpr `json:"Iops,omitempty"`
+	// KmsKeyID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-kmskeyid
+	KmsKeyID *StringExpr `json:"KmsKeyId,omitempty"`
+	// SnapshotID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-snapshotid
+	SnapshotID *StringExpr `json:"SnapshotId,omitempty"`
+	// VolumeSize docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-volumesize
+	VolumeSize *IntegerExpr `json:"VolumeSize,omitempty"`
+	// VolumeType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-volumetype
+	VolumeType *StringExpr `json:"VolumeType,omitempty"`
+}
+
+// EC2LaunchTemplateEbsList represents a list of EC2LaunchTemplateEbs
+type EC2LaunchTemplateEbsList []EC2LaunchTemplateEbs
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateEbsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateEbs{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateEbsList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateEbs{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateEbsList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateElasticGpuSpecification represents the AWS::EC2::LaunchTemplate.ElasticGpuSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-elasticgpuspecification.html 
+type EC2LaunchTemplateElasticGpuSpecification struct {
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-elasticgpuspecification.html#cfn-ec2-launchtemplate-elasticgpuspecification-type
+	Type *StringExpr `json:"Type,omitempty"`
+}
+
+// EC2LaunchTemplateElasticGpuSpecificationList represents a list of EC2LaunchTemplateElasticGpuSpecification
+type EC2LaunchTemplateElasticGpuSpecificationList []EC2LaunchTemplateElasticGpuSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateElasticGpuSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateElasticGpuSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateElasticGpuSpecificationList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateElasticGpuSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateElasticGpuSpecificationList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateIamInstanceProfile represents the AWS::EC2::LaunchTemplate.IamInstanceProfile CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile.html 
+type EC2LaunchTemplateIamInstanceProfile struct {
+	// Arn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile.html#cfn-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile-arn
+	Arn *StringExpr `json:"Arn,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile.html#cfn-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile-name
+	Name *StringExpr `json:"Name,omitempty"`
+}
+
+// EC2LaunchTemplateIamInstanceProfileList represents a list of EC2LaunchTemplateIamInstanceProfile
+type EC2LaunchTemplateIamInstanceProfileList []EC2LaunchTemplateIamInstanceProfile
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateIamInstanceProfileList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateIamInstanceProfile{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateIamInstanceProfileList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateIamInstanceProfile{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateIamInstanceProfileList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateInstanceMarketOptions represents the AWS::EC2::LaunchTemplate.InstanceMarketOptions CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html 
+type EC2LaunchTemplateInstanceMarketOptions struct {
+	// MarketType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-markettype
+	MarketType *StringExpr `json:"MarketType,omitempty"`
+	// SpotOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions
+	SpotOptions *EC2LaunchTemplateSpotOptions `json:"SpotOptions,omitempty"`
+}
+
+// EC2LaunchTemplateInstanceMarketOptionsList represents a list of EC2LaunchTemplateInstanceMarketOptions
+type EC2LaunchTemplateInstanceMarketOptionsList []EC2LaunchTemplateInstanceMarketOptions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateInstanceMarketOptionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateInstanceMarketOptions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateInstanceMarketOptionsList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateInstanceMarketOptions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateInstanceMarketOptionsList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateIPv6Add represents the AWS::EC2::LaunchTemplate.Ipv6Add CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6add.html 
+type EC2LaunchTemplateIPv6Add struct {
+	// IPv6Address docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6add.html#cfn-ec2-launchtemplate-ipv6add-ipv6address
+	IPv6Address *StringExpr `json:"Ipv6Address,omitempty"`
+}
+
+// EC2LaunchTemplateIPv6AddList represents a list of EC2LaunchTemplateIPv6Add
+type EC2LaunchTemplateIPv6AddList []EC2LaunchTemplateIPv6Add
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateIPv6AddList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateIPv6Add{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateIPv6AddList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateIPv6Add{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateIPv6AddList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateLaunchTemplateData represents the AWS::EC2::LaunchTemplate.LaunchTemplateData CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html 
+type EC2LaunchTemplateLaunchTemplateData struct {
+	// BlockDeviceMappings docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-blockdevicemappings
+	BlockDeviceMappings *EC2LaunchTemplateBlockDeviceMappingList `json:"BlockDeviceMappings,omitempty"`
+	// CreditSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-creditspecification
+	CreditSpecification *EC2LaunchTemplateCreditSpecification `json:"CreditSpecification,omitempty"`
+	// DisableAPITermination docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-disableapitermination
+	DisableAPITermination *BoolExpr `json:"DisableApiTermination,omitempty"`
+	// EbsOptimized docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-ebsoptimized
+	EbsOptimized *BoolExpr `json:"EbsOptimized,omitempty"`
+	// ElasticGpuSpecifications docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-elasticgpuspecifications
+	ElasticGpuSpecifications *EC2LaunchTemplateElasticGpuSpecificationList `json:"ElasticGpuSpecifications,omitempty"`
+	// IamInstanceProfile docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile
+	IamInstanceProfile *EC2LaunchTemplateIamInstanceProfile `json:"IamInstanceProfile,omitempty"`
+	// ImageID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-imageid
+	ImageID *StringExpr `json:"ImageId,omitempty"`
+	// InstanceInitiatedShutdownBehavior docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-instanceinitiatedshutdownbehavior
+	InstanceInitiatedShutdownBehavior *StringExpr `json:"InstanceInitiatedShutdownBehavior,omitempty"`
+	// InstanceMarketOptions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions
+	InstanceMarketOptions *EC2LaunchTemplateInstanceMarketOptions `json:"InstanceMarketOptions,omitempty"`
+	// InstanceType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-instancetype
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+	// KernelID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-kernelid
+	KernelID *StringExpr `json:"KernelId,omitempty"`
+	// KeyName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-keyname
+	KeyName *StringExpr `json:"KeyName,omitempty"`
+	// Monitoring docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-monitoring
+	Monitoring *EC2LaunchTemplateMonitoring `json:"Monitoring,omitempty"`
+	// NetworkInterfaces docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-networkinterfaces
+	NetworkInterfaces *EC2LaunchTemplateNetworkInterfaceList `json:"NetworkInterfaces,omitempty"`
+	// Placement docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-placement
+	Placement *EC2LaunchTemplatePlacement `json:"Placement,omitempty"`
+	// RAMDiskID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-ramdiskid
+	RAMDiskID *StringExpr `json:"RamDiskId,omitempty"`
+	// SecurityGroupIDs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-securitygroupids
+	SecurityGroupIDs *StringListExpr `json:"SecurityGroupIds,omitempty"`
+	// SecurityGroups docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-securitygroups
+	SecurityGroups *StringListExpr `json:"SecurityGroups,omitempty"`
+	// TagSpecifications docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications
+	TagSpecifications *EC2LaunchTemplateTagSpecificationList `json:"TagSpecifications,omitempty"`
+	// UserData docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-userdata
+	UserData *StringExpr `json:"UserData,omitempty"`
+}
+
+// EC2LaunchTemplateLaunchTemplateDataList represents a list of EC2LaunchTemplateLaunchTemplateData
+type EC2LaunchTemplateLaunchTemplateDataList []EC2LaunchTemplateLaunchTemplateData
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateLaunchTemplateDataList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateLaunchTemplateData{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateLaunchTemplateDataList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateLaunchTemplateData{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateLaunchTemplateDataList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateMonitoring represents the AWS::EC2::LaunchTemplate.Monitoring CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-monitoring.html 
+type EC2LaunchTemplateMonitoring struct {
+	// Enabled docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-monitoring.html#cfn-ec2-launchtemplate-launchtemplatedata-monitoring-enabled
+	Enabled *BoolExpr `json:"Enabled,omitempty"`
+}
+
+// EC2LaunchTemplateMonitoringList represents a list of EC2LaunchTemplateMonitoring
+type EC2LaunchTemplateMonitoringList []EC2LaunchTemplateMonitoring
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateMonitoringList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateMonitoring{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateMonitoringList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateMonitoring{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateMonitoringList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateNetworkInterface represents the AWS::EC2::LaunchTemplate.NetworkInterface CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html 
+type EC2LaunchTemplateNetworkInterface struct {
+	// AssociatePublicIPAddress docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-associatepublicipaddress
+	AssociatePublicIPAddress *BoolExpr `json:"AssociatePublicIpAddress,omitempty"`
+	// DeleteOnTermination docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-deleteontermination
+	DeleteOnTermination *BoolExpr `json:"DeleteOnTermination,omitempty"`
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// DeviceIndex docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-deviceindex
+	DeviceIndex *IntegerExpr `json:"DeviceIndex,omitempty"`
+	// Groups docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-groups
+	Groups *StringListExpr `json:"Groups,omitempty"`
+	// IPv6AddressCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-ipv6addresscount
+	IPv6AddressCount *IntegerExpr `json:"Ipv6AddressCount,omitempty"`
+	// IPv6Addresses docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-ipv6addresses
+	IPv6Addresses *EC2LaunchTemplateIPv6AddList `json:"Ipv6Addresses,omitempty"`
+	// NetworkInterfaceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-networkinterfaceid
+	NetworkInterfaceID *StringExpr `json:"NetworkInterfaceId,omitempty"`
+	// PrivateIPAddress docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-privateipaddress
+	PrivateIPAddress *StringExpr `json:"PrivateIpAddress,omitempty"`
+	// PrivateIPAddresses docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-privateipaddresses
+	PrivateIPAddresses *EC2LaunchTemplatePrivateIPAddList `json:"PrivateIpAddresses,omitempty"`
+	// SecondaryPrivateIPAddressCount docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-secondaryprivateipaddresscount
+	SecondaryPrivateIPAddressCount *IntegerExpr `json:"SecondaryPrivateIpAddressCount,omitempty"`
+	// SubnetID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-subnetid
+	SubnetID *StringExpr `json:"SubnetId,omitempty"`
+}
+
+// EC2LaunchTemplateNetworkInterfaceList represents a list of EC2LaunchTemplateNetworkInterface
+type EC2LaunchTemplateNetworkInterfaceList []EC2LaunchTemplateNetworkInterface
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateNetworkInterfaceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateNetworkInterface{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateNetworkInterfaceList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateNetworkInterface{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateNetworkInterfaceList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplatePlacement represents the AWS::EC2::LaunchTemplate.Placement CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html 
+type EC2LaunchTemplatePlacement struct {
+	// Affinity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-affinity
+	Affinity *StringExpr `json:"Affinity,omitempty"`
+	// AvailabilityZone docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-availabilityzone
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
+	// GroupName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-groupname
+	GroupName *StringExpr `json:"GroupName,omitempty"`
+	// HostID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-hostid
+	HostID *StringExpr `json:"HostId,omitempty"`
+	// Tenancy docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-tenancy
+	Tenancy *StringExpr `json:"Tenancy,omitempty"`
+}
+
+// EC2LaunchTemplatePlacementList represents a list of EC2LaunchTemplatePlacement
+type EC2LaunchTemplatePlacementList []EC2LaunchTemplatePlacement
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplatePlacementList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplatePlacement{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplatePlacementList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplatePlacement{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplatePlacementList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplatePrivateIPAdd represents the AWS::EC2::LaunchTemplate.PrivateIpAdd CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html 
+type EC2LaunchTemplatePrivateIPAdd struct {
+	// Primary docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html#cfn-ec2-launchtemplate-privateipadd-primary
+	Primary *BoolExpr `json:"Primary,omitempty"`
+	// PrivateIPAddress docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html#cfn-ec2-launchtemplate-privateipadd-privateipaddress
+	PrivateIPAddress *StringExpr `json:"PrivateIpAddress,omitempty"`
+}
+
+// EC2LaunchTemplatePrivateIPAddList represents a list of EC2LaunchTemplatePrivateIPAdd
+type EC2LaunchTemplatePrivateIPAddList []EC2LaunchTemplatePrivateIPAdd
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplatePrivateIPAddList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplatePrivateIPAdd{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplatePrivateIPAddList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplatePrivateIPAdd{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplatePrivateIPAddList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateSpotOptions represents the AWS::EC2::LaunchTemplate.SpotOptions CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html 
+type EC2LaunchTemplateSpotOptions struct {
+	// InstanceInterruptionBehavior docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-instanceinterruptionbehavior
+	InstanceInterruptionBehavior *StringExpr `json:"InstanceInterruptionBehavior,omitempty"`
+	// MaxPrice docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-maxprice
+	MaxPrice *StringExpr `json:"MaxPrice,omitempty"`
+	// SpotInstanceType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-spotinstancetype
+	SpotInstanceType *StringExpr `json:"SpotInstanceType,omitempty"`
+}
+
+// EC2LaunchTemplateSpotOptionsList represents a list of EC2LaunchTemplateSpotOptions
+type EC2LaunchTemplateSpotOptionsList []EC2LaunchTemplateSpotOptions
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateSpotOptionsList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateSpotOptions{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateSpotOptionsList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateSpotOptions{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateSpotOptionsList(list)
+		return nil
+	}
+	return err
+}
+// EC2LaunchTemplateTagSpecification represents the AWS::EC2::LaunchTemplate.TagSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html 
+type EC2LaunchTemplateTagSpecification struct {
+	// ResourceType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html#cfn-ec2-launchtemplate-tagspecification-resourcetype
+	ResourceType *StringExpr `json:"ResourceType,omitempty"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html#cfn-ec2-launchtemplate-tagspecification-tags
+	Tags *TagList `json:"Tags,omitempty"`
+}
+
+// EC2LaunchTemplateTagSpecificationList represents a list of EC2LaunchTemplateTagSpecification
+type EC2LaunchTemplateTagSpecificationList []EC2LaunchTemplateTagSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2LaunchTemplateTagSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2LaunchTemplateTagSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2LaunchTemplateTagSpecificationList{item}
+		return nil
+	}
+	list := []EC2LaunchTemplateTagSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2LaunchTemplateTagSpecificationList(list)
+		return nil
+	}
+	return err
+}
 // EC2NetworkACLEntryIcmp represents the AWS::EC2::NetworkAclEntry.Icmp CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html 
 type EC2NetworkACLEntryIcmp struct {
@@ -5163,6 +5769,36 @@ func (l *EC2SpotFleetEbsBlockDeviceList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// EC2SpotFleetFleetLaunchTemplateSpecification represents the AWS::EC2::SpotFleet.FleetLaunchTemplateSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html 
+type EC2SpotFleetFleetLaunchTemplateSpecification struct {
+	// LaunchTemplateID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html#cfn-ec2-spotfleet-fleetlaunchtemplatespecification-launchtemplateid
+	LaunchTemplateID *StringExpr `json:"LaunchTemplateId,omitempty"`
+	// LaunchTemplateName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html#cfn-ec2-spotfleet-fleetlaunchtemplatespecification-launchtemplatename
+	LaunchTemplateName *StringExpr `json:"LaunchTemplateName,omitempty"`
+	// Version docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html#cfn-ec2-spotfleet-fleetlaunchtemplatespecification-version
+	Version *StringExpr `json:"Version,omitempty"`
+}
+
+// EC2SpotFleetFleetLaunchTemplateSpecificationList represents a list of EC2SpotFleetFleetLaunchTemplateSpecification
+type EC2SpotFleetFleetLaunchTemplateSpecificationList []EC2SpotFleetFleetLaunchTemplateSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2SpotFleetFleetLaunchTemplateSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2SpotFleetFleetLaunchTemplateSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2SpotFleetFleetLaunchTemplateSpecificationList{item}
+		return nil
+	}
+	list := []EC2SpotFleetFleetLaunchTemplateSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2SpotFleetFleetLaunchTemplateSpecificationList(list)
+		return nil
+	}
+	return err
+}
 // EC2SpotFleetGroupIDentifier represents the AWS::EC2::SpotFleet.GroupIdentifier CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html 
 type EC2SpotFleetGroupIDentifier struct {
@@ -5283,6 +5919,68 @@ func (l *EC2SpotFleetInstanceNetworkInterfaceSpecificationList) UnmarshalJSON(bu
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = EC2SpotFleetInstanceNetworkInterfaceSpecificationList(list)
+		return nil
+	}
+	return err
+}
+// EC2SpotFleetLaunchTemplateConfig represents the AWS::EC2::SpotFleet.LaunchTemplateConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html 
+type EC2SpotFleetLaunchTemplateConfig struct {
+	// LaunchTemplateSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html#cfn-ec2-spotfleet-launchtemplateconfig-launchtemplatespecification
+	LaunchTemplateSpecification *EC2SpotFleetFleetLaunchTemplateSpecification `json:"LaunchTemplateSpecification,omitempty"`
+	// Overrides docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html#cfn-ec2-spotfleet-launchtemplateconfig-overrides
+	Overrides *EC2SpotFleetLaunchTemplateOverridesList `json:"Overrides,omitempty"`
+}
+
+// EC2SpotFleetLaunchTemplateConfigList represents a list of EC2SpotFleetLaunchTemplateConfig
+type EC2SpotFleetLaunchTemplateConfigList []EC2SpotFleetLaunchTemplateConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2SpotFleetLaunchTemplateConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2SpotFleetLaunchTemplateConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2SpotFleetLaunchTemplateConfigList{item}
+		return nil
+	}
+	list := []EC2SpotFleetLaunchTemplateConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2SpotFleetLaunchTemplateConfigList(list)
+		return nil
+	}
+	return err
+}
+// EC2SpotFleetLaunchTemplateOverrides represents the AWS::EC2::SpotFleet.LaunchTemplateOverrides CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html 
+type EC2SpotFleetLaunchTemplateOverrides struct {
+	// AvailabilityZone docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-availabilityzone
+	AvailabilityZone *StringExpr `json:"AvailabilityZone,omitempty"`
+	// InstanceType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-instancetype
+	InstanceType *StringExpr `json:"InstanceType,omitempty"`
+	// SpotPrice docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-spotprice
+	SpotPrice *StringExpr `json:"SpotPrice,omitempty"`
+	// SubnetID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-subnetid
+	SubnetID *StringExpr `json:"SubnetId,omitempty"`
+	// WeightedCapacity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-weightedcapacity
+	WeightedCapacity *IntegerExpr `json:"WeightedCapacity,omitempty"`
+}
+
+// EC2SpotFleetLaunchTemplateOverridesList represents a list of EC2SpotFleetLaunchTemplateOverrides
+type EC2SpotFleetLaunchTemplateOverridesList []EC2SpotFleetLaunchTemplateOverrides
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *EC2SpotFleetLaunchTemplateOverridesList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := EC2SpotFleetLaunchTemplateOverrides{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = EC2SpotFleetLaunchTemplateOverridesList{item}
+		return nil
+	}
+	list := []EC2SpotFleetLaunchTemplateOverrides{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = EC2SpotFleetLaunchTemplateOverridesList(list)
 		return nil
 	}
 	return err
@@ -5409,7 +6107,9 @@ type EC2SpotFleetSpotFleetRequestConfigData struct {
 	// IamFleetRole docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-iamfleetrole
 	IamFleetRole *StringExpr `json:"IamFleetRole,omitempty" validate:"dive,required"`
 	// LaunchSpecifications docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications
-	LaunchSpecifications *EC2SpotFleetSpotFleetLaunchSpecificationList `json:"LaunchSpecifications,omitempty" validate:"dive,required"`
+	LaunchSpecifications *EC2SpotFleetSpotFleetLaunchSpecificationList `json:"LaunchSpecifications,omitempty"`
+	// LaunchTemplateConfigs docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-launchtemplateconfigs
+	LaunchTemplateConfigs *EC2SpotFleetLaunchTemplateConfigList `json:"LaunchTemplateConfigs,omitempty"`
 	// ReplaceUnhealthyInstances docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-replaceunhealthyinstances
 	ReplaceUnhealthyInstances *BoolExpr `json:"ReplaceUnhealthyInstances,omitempty"`
 	// SpotPrice docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-spotprice
@@ -15640,12 +16340,12 @@ func (l *WAFRegionalXSSMatchSetXSSMatchTupleList) UnmarshalJSON(buf []byte) erro
 	return err
 }
 // Tag represents the Tag CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationsubnetgroup-tag.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html 
 type Tag struct {
-	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationsubnetgroup-tag.html#cfn-dms-replicationsubnetgroup-tag-key
-	Key *StringExpr `json:"Key,omitempty"`
-	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationsubnetgroup-tag.html#cfn-dms-replicationsubnetgroup-tag-value
-	Value *StringExpr `json:"Value,omitempty"`
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html#cfn-resource-tags-key
+	Key *StringExpr `json:"Key,omitempty" validate:"dive,required"`
+	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html#cfn-resource-tags-value
+	Value *StringExpr `json:"Value,omitempty" validate:"dive,required"`
 }
 
 // TagList represents a list of Tag
@@ -16059,6 +16759,108 @@ type APIGatewayVPCLink struct {
 func (s APIGatewayVPCLink) CfnResourceType() string {
 	
 	return "AWS::ApiGateway::VpcLink"
+}
+// AppSyncAPIKey represents the AWS::AppSync::ApiKey CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html 
+type AppSyncAPIKey struct {
+	// APIID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html#cfn-appsync-apikey-apiid
+	APIID *StringExpr `json:"ApiId,omitempty" validate:"dive,required"`
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html#cfn-appsync-apikey-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// Expires docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html#cfn-appsync-apikey-expires
+	Expires *IntegerExpr `json:"Expires,omitempty"`
+}
+
+// CfnResourceType returns AWS::AppSync::ApiKey to implement the ResourceProperties interface
+func (s AppSyncAPIKey) CfnResourceType() string {
+	
+	return "AWS::AppSync::ApiKey"
+}
+// AppSyncDataSource represents the AWS::AppSync::DataSource CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html 
+type AppSyncDataSource struct {
+	// APIID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-apiid
+	APIID *StringExpr `json:"ApiId,omitempty" validate:"dive,required"`
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-description
+	Description *StringExpr `json:"Description,omitempty"`
+	// DynamoDBConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-dynamodbconfig
+	DynamoDBConfig *AppSyncDataSourceDynamoDBConfig `json:"DynamoDBConfig,omitempty"`
+	// ElasticsearchConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-elasticsearchconfig
+	ElasticsearchConfig *AppSyncDataSourceElasticsearchConfig `json:"ElasticsearchConfig,omitempty"`
+	// LambdaConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-lambdaconfig
+	LambdaConfig *AppSyncDataSourceLambdaConfig `json:"LambdaConfig,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-name
+	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// ServiceRoleArn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-servicerolearn
+	ServiceRoleArn *StringExpr `json:"ServiceRoleArn,omitempty"`
+	// Type docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-type
+	Type *StringExpr `json:"Type,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::AppSync::DataSource to implement the ResourceProperties interface
+func (s AppSyncDataSource) CfnResourceType() string {
+	
+	return "AWS::AppSync::DataSource"
+}
+// AppSyncGraphQLAPI represents the AWS::AppSync::GraphQLApi CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html 
+type AppSyncGraphQLAPI struct {
+	// AuthenticationType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-authenticationtype
+	AuthenticationType *StringExpr `json:"AuthenticationType,omitempty" validate:"dive,required"`
+	// LogConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-logconfig
+	LogConfig *AppSyncGraphQLAPILogConfig `json:"LogConfig,omitempty"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-name
+	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// UserPoolConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-userpoolconfig
+	UserPoolConfig *AppSyncGraphQLAPIUserPoolConfig `json:"UserPoolConfig,omitempty"`
+}
+
+// CfnResourceType returns AWS::AppSync::GraphQLApi to implement the ResourceProperties interface
+func (s AppSyncGraphQLAPI) CfnResourceType() string {
+	
+	return "AWS::AppSync::GraphQLApi"
+}
+// AppSyncGraphQLSchema represents the AWS::AppSync::GraphQLSchema CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlschema.html 
+type AppSyncGraphQLSchema struct {
+	// APIID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlschema.html#cfn-appsync-graphqlschema-apiid
+	APIID *StringExpr `json:"ApiId,omitempty" validate:"dive,required"`
+	// Definition docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlschema.html#cfn-appsync-graphqlschema-definition
+	Definition *StringExpr `json:"Definition,omitempty"`
+	// DefinitionS3Location docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlschema.html#cfn-appsync-graphqlschema-definitions3location
+	DefinitionS3Location *StringExpr `json:"DefinitionS3Location,omitempty"`
+}
+
+// CfnResourceType returns AWS::AppSync::GraphQLSchema to implement the ResourceProperties interface
+func (s AppSyncGraphQLSchema) CfnResourceType() string {
+	
+	return "AWS::AppSync::GraphQLSchema"
+}
+// AppSyncResolver represents the AWS::AppSync::Resolver CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html 
+type AppSyncResolver struct {
+	// APIID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-apiid
+	APIID *StringExpr `json:"ApiId,omitempty" validate:"dive,required"`
+	// DataSourceName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-datasourcename
+	DataSourceName *StringExpr `json:"DataSourceName,omitempty" validate:"dive,required"`
+	// FieldName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-fieldname
+	FieldName *StringExpr `json:"FieldName,omitempty" validate:"dive,required"`
+	// RequestMappingTemplate docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-requestmappingtemplate
+	RequestMappingTemplate *StringExpr `json:"RequestMappingTemplate,omitempty"`
+	// RequestMappingTemplateS3Location docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-requestmappingtemplates3location
+	RequestMappingTemplateS3Location *StringExpr `json:"RequestMappingTemplateS3Location,omitempty"`
+	// ResponseMappingTemplate docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-responsemappingtemplate
+	ResponseMappingTemplate *StringExpr `json:"ResponseMappingTemplate,omitempty"`
+	// ResponseMappingTemplateS3Location docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-responsemappingtemplates3location
+	ResponseMappingTemplateS3Location *StringExpr `json:"ResponseMappingTemplateS3Location,omitempty"`
+	// TypeName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-typename
+	TypeName *StringExpr `json:"TypeName,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::AppSync::Resolver to implement the ResourceProperties interface
+func (s AppSyncResolver) CfnResourceType() string {
+	
+	return "AWS::AppSync::Resolver"
 }
 // ApplicationAutoScalingScalableTarget represents the AWS::ApplicationAutoScaling::ScalableTarget CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html 
@@ -16844,6 +17646,8 @@ type CognitoUserPool struct {
 	UserPoolName *StringExpr `json:"UserPoolName,omitempty"`
 	// UserPoolTags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-userpooltags
 	UserPoolTags interface{} `json:"UserPoolTags,omitempty"`
+	// UsernameAttributes docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-usernameattributes
+	UsernameAttributes *StringListExpr `json:"UsernameAttributes,omitempty"`
 }
 
 // CfnResourceType returns AWS::Cognito::UserPool to implement the ResourceProperties interface
@@ -17532,6 +18336,20 @@ type EC2InternetGateway struct {
 func (s EC2InternetGateway) CfnResourceType() string {
 	
 	return "AWS::EC2::InternetGateway"
+}
+// EC2LaunchTemplate represents the AWS::EC2::LaunchTemplate CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html 
+type EC2LaunchTemplate struct {
+	// LaunchTemplateData docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-launchtemplatedata
+	LaunchTemplateData *EC2LaunchTemplateLaunchTemplateData `json:"LaunchTemplateData,omitempty"`
+	// LaunchTemplateName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-launchtemplatename
+	LaunchTemplateName *StringExpr `json:"LaunchTemplateName,omitempty"`
+}
+
+// CfnResourceType returns AWS::EC2::LaunchTemplate to implement the ResourceProperties interface
+func (s EC2LaunchTemplate) CfnResourceType() string {
+	
+	return "AWS::EC2::LaunchTemplate"
 }
 // EC2NatGateway represents the AWS::EC2::NatGateway CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html 
@@ -21262,6 +22080,16 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &APIGatewayUsagePlanKey{}
 	case "AWS::ApiGateway::VpcLink":
 		return &APIGatewayVPCLink{}
+	case "AWS::AppSync::ApiKey":
+		return &AppSyncAPIKey{}
+	case "AWS::AppSync::DataSource":
+		return &AppSyncDataSource{}
+	case "AWS::AppSync::GraphQLApi":
+		return &AppSyncGraphQLAPI{}
+	case "AWS::AppSync::GraphQLSchema":
+		return &AppSyncGraphQLSchema{}
+	case "AWS::AppSync::Resolver":
+		return &AppSyncResolver{}
 	case "AWS::ApplicationAutoScaling::ScalableTarget":
 		return &ApplicationAutoScalingScalableTarget{}
 	case "AWS::ApplicationAutoScaling::ScalingPolicy":
@@ -21386,6 +22214,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &EC2Instance{}
 	case "AWS::EC2::InternetGateway":
 		return &EC2InternetGateway{}
+	case "AWS::EC2::LaunchTemplate":
+		return &EC2LaunchTemplate{}
 	case "AWS::EC2::NatGateway":
 		return &EC2NatGateway{}
 	case "AWS::EC2::NetworkAcl":
