@@ -67,6 +67,11 @@ func (f *SelectFunc) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(v.FnSelect[0], &positionSelector); err != nil {
 		return err
 	}
+	// If it's an integer or boolean, there's an issue
+	switch positionSelector.(type) {
+	case bool, int:
+		return &json.UnsupportedValueError{Str: fmt.Sprintf("%v", positionSelector)}
+	}
 	f.Selector = fmt.Sprintf("%v", positionSelector)
 
 	// What about the second one?
