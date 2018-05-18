@@ -1,11 +1,11 @@
 package cloudformation
-// RESOURCE SPECIFICATION VERSION: 2.0.0
-// GENERATED: 2018-04-27 22:16:03.470405136 -0700 PDT m=+0.491010912
+// RESOURCE SPECIFICATION VERSION: 2.2.0
+// GENERATED: 2018-05-18 07:03:03.94673551 -0700 PDT m=+0.473989666
 import "time"
 import "encoding/json"
 import _ "gopkg.in/go-playground/validator.v9" // Used for struct level validation tags
 
-const ResourceSpecificationVersion = "2.0.0"
+const ResourceSpecificationVersion = "2.2.0"
 
 // CustomResourceProvider allows extend the NewResourceByType factory method
 // with their own resource types.
@@ -623,6 +623,38 @@ func (l *AppSyncGraphQLAPILogConfigList) UnmarshalJSON(buf []byte) error {
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = AppSyncGraphQLAPILogConfigList(list)
+		return nil
+	}
+	return err
+}
+// AppSyncGraphQLAPIOpenIDConnectConfig represents the AWS::AppSync::GraphQLApi.OpenIDConnectConfig CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html 
+type AppSyncGraphQLAPIOpenIDConnectConfig struct {
+	// AuthTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html#cfn-appsync-graphqlapi-openidconnectconfig-authttl
+	AuthTTL *IntegerExpr `json:"AuthTTL,omitempty"`
+	// ClientID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html#cfn-appsync-graphqlapi-openidconnectconfig-clientid
+	ClientID *StringExpr `json:"ClientId,omitempty"`
+	// IatTTL docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html#cfn-appsync-graphqlapi-openidconnectconfig-iatttl
+	IatTTL *IntegerExpr `json:"IatTTL,omitempty"`
+	// Issuer docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-openidconnectconfig.html#cfn-appsync-graphqlapi-openidconnectconfig-issuer
+	Issuer *StringExpr `json:"Issuer,omitempty"`
+}
+
+// AppSyncGraphQLAPIOpenIDConnectConfigList represents a list of AppSyncGraphQLAPIOpenIDConnectConfig
+type AppSyncGraphQLAPIOpenIDConnectConfigList []AppSyncGraphQLAPIOpenIDConnectConfig
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AppSyncGraphQLAPIOpenIDConnectConfigList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AppSyncGraphQLAPIOpenIDConnectConfig{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AppSyncGraphQLAPIOpenIDConnectConfigList{item}
+		return nil
+	}
+	list := []AppSyncGraphQLAPIOpenIDConnectConfig{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AppSyncGraphQLAPIOpenIDConnectConfigList(list)
 		return nil
 	}
 	return err
@@ -1251,6 +1283,226 @@ func (l *AutoScalingScalingPolicyTargetTrackingConfigurationList) UnmarshalJSON(
 	err := json.Unmarshal(buf, &list)
 	if err == nil {
 		*l = AutoScalingScalingPolicyTargetTrackingConfigurationList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanApplicationSource represents the AWS::AutoScalingPlans::ScalingPlan.ApplicationSource CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-applicationsource.html 
+type AutoScalingPlansScalingPlanApplicationSource struct {
+	// CloudFormationStackARN docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-applicationsource.html#cfn-autoscalingplans-scalingplan-applicationsource-cloudformationstackarn
+	CloudFormationStackARN *StringExpr `json:"CloudFormationStackARN,omitempty"`
+	// TagFilters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-applicationsource.html#cfn-autoscalingplans-scalingplan-applicationsource-tagfilters
+	TagFilters *AutoScalingPlansScalingPlanTagFilterList `json:"TagFilters,omitempty"`
+}
+
+// AutoScalingPlansScalingPlanApplicationSourceList represents a list of AutoScalingPlansScalingPlanApplicationSource
+type AutoScalingPlansScalingPlanApplicationSourceList []AutoScalingPlansScalingPlanApplicationSource
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanApplicationSourceList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanApplicationSource{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanApplicationSourceList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanApplicationSource{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanApplicationSourceList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification represents the AWS::AutoScalingPlans::ScalingPlan.CustomizedScalingMetricSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html 
+type AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification struct {
+	// Dimensions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-customizedscalingmetricspecification-dimensions
+	Dimensions *AutoScalingPlansScalingPlanMetricDimensionList `json:"Dimensions,omitempty"`
+	// MetricName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-customizedscalingmetricspecification-metricname
+	MetricName *StringExpr `json:"MetricName,omitempty" validate:"dive,required"`
+	// Namespace docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-customizedscalingmetricspecification-namespace
+	Namespace *StringExpr `json:"Namespace,omitempty" validate:"dive,required"`
+	// Statistic docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-customizedscalingmetricspecification-statistic
+	Statistic *StringExpr `json:"Statistic,omitempty" validate:"dive,required"`
+	// Unit docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-customizedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-customizedscalingmetricspecification-unit
+	Unit *StringExpr `json:"Unit,omitempty"`
+}
+
+// AutoScalingPlansScalingPlanCustomizedScalingMetricSpecificationList represents a list of AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification
+type AutoScalingPlansScalingPlanCustomizedScalingMetricSpecificationList []AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanCustomizedScalingMetricSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanCustomizedScalingMetricSpecificationList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanCustomizedScalingMetricSpecificationList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanMetricDimension represents the AWS::AutoScalingPlans::ScalingPlan.MetricDimension CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-metricdimension.html 
+type AutoScalingPlansScalingPlanMetricDimension struct {
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-metricdimension.html#cfn-autoscalingplans-scalingplan-metricdimension-name
+	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-metricdimension.html#cfn-autoscalingplans-scalingplan-metricdimension-value
+	Value *StringExpr `json:"Value,omitempty" validate:"dive,required"`
+}
+
+// AutoScalingPlansScalingPlanMetricDimensionList represents a list of AutoScalingPlansScalingPlanMetricDimension
+type AutoScalingPlansScalingPlanMetricDimensionList []AutoScalingPlansScalingPlanMetricDimension
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanMetricDimensionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanMetricDimension{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanMetricDimensionList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanMetricDimension{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanMetricDimensionList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification represents the AWS::AutoScalingPlans::ScalingPlan.PredefinedScalingMetricSpecification CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedscalingmetricspecification.html 
+type AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification struct {
+	// PredefinedScalingMetricType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-predefinedscalingmetricspecification-predefinedscalingmetrictype
+	PredefinedScalingMetricType *StringExpr `json:"PredefinedScalingMetricType,omitempty" validate:"dive,required"`
+	// ResourceLabel docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-predefinedscalingmetricspecification.html#cfn-autoscalingplans-scalingplan-predefinedscalingmetricspecification-resourcelabel
+	ResourceLabel *StringExpr `json:"ResourceLabel,omitempty"`
+}
+
+// AutoScalingPlansScalingPlanPredefinedScalingMetricSpecificationList represents a list of AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification
+type AutoScalingPlansScalingPlanPredefinedScalingMetricSpecificationList []AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanPredefinedScalingMetricSpecificationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanPredefinedScalingMetricSpecificationList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanPredefinedScalingMetricSpecificationList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanScalingInstruction represents the AWS::AutoScalingPlans::ScalingPlan.ScalingInstruction CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html 
+type AutoScalingPlansScalingPlanScalingInstruction struct {
+	// MaxCapacity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html#cfn-autoscalingplans-scalingplan-scalinginstruction-maxcapacity
+	MaxCapacity *IntegerExpr `json:"MaxCapacity,omitempty" validate:"dive,required"`
+	// MinCapacity docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html#cfn-autoscalingplans-scalingplan-scalinginstruction-mincapacity
+	MinCapacity *IntegerExpr `json:"MinCapacity,omitempty" validate:"dive,required"`
+	// ResourceID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html#cfn-autoscalingplans-scalingplan-scalinginstruction-resourceid
+	ResourceID *StringExpr `json:"ResourceId,omitempty" validate:"dive,required"`
+	// ScalableDimension docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html#cfn-autoscalingplans-scalingplan-scalinginstruction-scalabledimension
+	ScalableDimension *StringExpr `json:"ScalableDimension,omitempty" validate:"dive,required"`
+	// ServiceNamespace docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html#cfn-autoscalingplans-scalingplan-scalinginstruction-servicenamespace
+	ServiceNamespace *StringExpr `json:"ServiceNamespace,omitempty" validate:"dive,required"`
+	// TargetTrackingConfigurations docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-scalinginstruction.html#cfn-autoscalingplans-scalingplan-scalinginstruction-targettrackingconfigurations
+	TargetTrackingConfigurations *AutoScalingPlansScalingPlanTargetTrackingConfigurationList `json:"TargetTrackingConfigurations,omitempty" validate:"dive,required"`
+}
+
+// AutoScalingPlansScalingPlanScalingInstructionList represents a list of AutoScalingPlansScalingPlanScalingInstruction
+type AutoScalingPlansScalingPlanScalingInstructionList []AutoScalingPlansScalingPlanScalingInstruction
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanScalingInstructionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanScalingInstruction{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanScalingInstructionList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanScalingInstruction{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanScalingInstructionList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanTagFilter represents the AWS::AutoScalingPlans::ScalingPlan.TagFilter CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-tagfilter.html 
+type AutoScalingPlansScalingPlanTagFilter struct {
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-tagfilter.html#cfn-autoscalingplans-scalingplan-tagfilter-key
+	Key *StringExpr `json:"Key,omitempty" validate:"dive,required"`
+	// Values docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-tagfilter.html#cfn-autoscalingplans-scalingplan-tagfilter-values
+	Values *StringListExpr `json:"Values,omitempty"`
+}
+
+// AutoScalingPlansScalingPlanTagFilterList represents a list of AutoScalingPlansScalingPlanTagFilter
+type AutoScalingPlansScalingPlanTagFilterList []AutoScalingPlansScalingPlanTagFilter
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanTagFilterList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanTagFilter{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanTagFilterList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanTagFilter{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanTagFilterList(list)
+		return nil
+	}
+	return err
+}
+// AutoScalingPlansScalingPlanTargetTrackingConfiguration represents the AWS::AutoScalingPlans::ScalingPlan.TargetTrackingConfiguration CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html 
+type AutoScalingPlansScalingPlanTargetTrackingConfiguration struct {
+	// CustomizedScalingMetricSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-customizedscalingmetricspecification
+	CustomizedScalingMetricSpecification *AutoScalingPlansScalingPlanCustomizedScalingMetricSpecification `json:"CustomizedScalingMetricSpecification,omitempty"`
+	// DisableScaleIn docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-disablescalein
+	DisableScaleIn *BoolExpr `json:"DisableScaleIn,omitempty"`
+	// EstimatedInstanceWarmup docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-estimatedinstancewarmup
+	EstimatedInstanceWarmup *IntegerExpr `json:"EstimatedInstanceWarmup,omitempty"`
+	// PredefinedScalingMetricSpecification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-predefinedscalingmetricspecification
+	PredefinedScalingMetricSpecification *AutoScalingPlansScalingPlanPredefinedScalingMetricSpecification `json:"PredefinedScalingMetricSpecification,omitempty"`
+	// ScaleInCooldown docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-scaleincooldown
+	ScaleInCooldown *IntegerExpr `json:"ScaleInCooldown,omitempty"`
+	// ScaleOutCooldown docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-scaleoutcooldown
+	ScaleOutCooldown *IntegerExpr `json:"ScaleOutCooldown,omitempty"`
+	// TargetValue docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscalingplans-scalingplan-targettrackingconfiguration.html#cfn-autoscalingplans-scalingplan-targettrackingconfiguration-targetvalue
+	TargetValue *IntegerExpr `json:"TargetValue,omitempty" validate:"dive,required"`
+}
+
+// AutoScalingPlansScalingPlanTargetTrackingConfigurationList represents a list of AutoScalingPlansScalingPlanTargetTrackingConfiguration
+type AutoScalingPlansScalingPlanTargetTrackingConfigurationList []AutoScalingPlansScalingPlanTargetTrackingConfiguration
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *AutoScalingPlansScalingPlanTargetTrackingConfigurationList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := AutoScalingPlansScalingPlanTargetTrackingConfiguration{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = AutoScalingPlansScalingPlanTargetTrackingConfigurationList{item}
+		return nil
+	}
+	list := []AutoScalingPlansScalingPlanTargetTrackingConfiguration{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = AutoScalingPlansScalingPlanTargetTrackingConfigurationList(list)
 		return nil
 	}
 	return err
@@ -10275,6 +10527,68 @@ func (l *GlueTriggerPredicateList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// GuardDutyFilterCondition represents the AWS::GuardDuty::Filter.Condition CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html 
+type GuardDutyFilterCondition struct {
+	// Eq docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html#cfn-guardduty-filter-condition-eq
+	Eq *StringListExpr `json:"Eq,omitempty"`
+	// Gte docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html#cfn-guardduty-filter-condition-gte
+	Gte *IntegerExpr `json:"Gte,omitempty"`
+	// Lt docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html#cfn-guardduty-filter-condition-lt
+	Lt *IntegerExpr `json:"Lt,omitempty"`
+	// Lte docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html#cfn-guardduty-filter-condition-lte
+	Lte *IntegerExpr `json:"Lte,omitempty"`
+	// Neq docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-condition.html#cfn-guardduty-filter-condition-neq
+	Neq *StringListExpr `json:"Neq,omitempty"`
+}
+
+// GuardDutyFilterConditionList represents a list of GuardDutyFilterCondition
+type GuardDutyFilterConditionList []GuardDutyFilterCondition
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *GuardDutyFilterConditionList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := GuardDutyFilterCondition{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = GuardDutyFilterConditionList{item}
+		return nil
+	}
+	list := []GuardDutyFilterCondition{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = GuardDutyFilterConditionList(list)
+		return nil
+	}
+	return err
+}
+// GuardDutyFilterFindingCriteria represents the AWS::GuardDuty::Filter.FindingCriteria CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-findingcriteria.html 
+type GuardDutyFilterFindingCriteria struct {
+	// Criterion docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-findingcriteria.html#cfn-guardduty-filter-findingcriteria-criterion
+	Criterion interface{} `json:"Criterion,omitempty"`
+	// ItemType docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-filter-findingcriteria.html#cfn-guardduty-filter-findingcriteria-itemtype
+	ItemType *GuardDutyFilterCondition `json:"ItemType,omitempty"`
+}
+
+// GuardDutyFilterFindingCriteriaList represents a list of GuardDutyFilterFindingCriteria
+type GuardDutyFilterFindingCriteriaList []GuardDutyFilterFindingCriteria
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *GuardDutyFilterFindingCriteriaList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := GuardDutyFilterFindingCriteria{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = GuardDutyFilterFindingCriteriaList{item}
+		return nil
+	}
+	list := []GuardDutyFilterFindingCriteria{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = GuardDutyFilterFindingCriteriaList(list)
+		return nil
+	}
+	return err
+}
 // IAMGroupPolicy represents the AWS::IAM::Group.Policy CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html 
 type IAMGroupPolicy struct {
@@ -15557,6 +15871,34 @@ func (l *SSMPatchBaselineRuleGroupList) UnmarshalJSON(buf []byte) error {
 	}
 	return err
 }
+// ServiceCatalogCloudFormationProvisionedProductProvisioningParameter represents the AWS::ServiceCatalog::CloudFormationProvisionedProduct.ProvisioningParameter CloudFormation property type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningparameter.html 
+type ServiceCatalogCloudFormationProvisionedProductProvisioningParameter struct {
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningparameter.html#cfn-servicecatalog-cloudformationprovisionedproduct-provisioningparameter-key
+	Key *StringExpr `json:"Key,omitempty"`
+	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningparameter.html#cfn-servicecatalog-cloudformationprovisionedproduct-provisioningparameter-value
+	Value *StringExpr `json:"Value,omitempty"`
+}
+
+// ServiceCatalogCloudFormationProvisionedProductProvisioningParameterList represents a list of ServiceCatalogCloudFormationProvisionedProductProvisioningParameter
+type ServiceCatalogCloudFormationProvisionedProductProvisioningParameterList []ServiceCatalogCloudFormationProvisionedProductProvisioningParameter
+
+// UnmarshalJSON sets the object from the provided JSON representation
+func (l *ServiceCatalogCloudFormationProvisionedProductProvisioningParameterList) UnmarshalJSON(buf []byte) error {
+	// Cloudformation allows a single object when a list of objects is expected
+	item := ServiceCatalogCloudFormationProvisionedProductProvisioningParameter{}
+	if err := json.Unmarshal(buf, &item); err == nil {
+		*l = ServiceCatalogCloudFormationProvisionedProductProvisioningParameterList{item}
+		return nil
+	}
+	list := []ServiceCatalogCloudFormationProvisionedProductProvisioningParameter{}
+	err := json.Unmarshal(buf, &list)
+	if err == nil {
+		*l = ServiceCatalogCloudFormationProvisionedProductProvisioningParameterList(list)
+		return nil
+	}
+	return err
+}
 // ServiceDiscoveryServiceDNSConfig represents the AWS::ServiceDiscovery::Service.DnsConfig CloudFormation property type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html 
 type ServiceDiscoveryServiceDNSConfig struct {
@@ -16340,12 +16682,12 @@ func (l *WAFRegionalXSSMatchSetXSSMatchTupleList) UnmarshalJSON(buf []byte) erro
 	return err
 }
 // Tag represents the Tag CloudFormation property type
-// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html 
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationsubnetgroup-tag.html 
 type Tag struct {
-	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html#cfn-resource-tags-key
-	Key *StringExpr `json:"Key,omitempty" validate:"dive,required"`
-	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html#cfn-resource-tags-value
-	Value *StringExpr `json:"Value,omitempty" validate:"dive,required"`
+	// Key docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationsubnetgroup-tag.html#cfn-dms-replicationsubnetgroup-tag-key
+	Key *StringExpr `json:"Key,omitempty"`
+	// Value docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-replicationsubnetgroup-tag.html#cfn-dms-replicationsubnetgroup-tag-value
+	Value *StringExpr `json:"Value,omitempty"`
 }
 
 // TagList represents a list of Tag
@@ -16811,6 +17153,8 @@ type AppSyncGraphQLAPI struct {
 	LogConfig *AppSyncGraphQLAPILogConfig `json:"LogConfig,omitempty"`
 	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-name
 	Name *StringExpr `json:"Name,omitempty" validate:"dive,required"`
+	// OpenIDConnectConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-openidconnectconfig
+	OpenIDConnectConfig *AppSyncGraphQLAPIOpenIDConnectConfig `json:"OpenIDConnectConfig,omitempty"`
 	// UserPoolConfig docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-userpoolconfig
 	UserPoolConfig *AppSyncGraphQLAPIUserPoolConfig `json:"UserPoolConfig,omitempty"`
 }
@@ -17101,6 +17445,20 @@ type AutoScalingScheduledAction struct {
 func (s AutoScalingScheduledAction) CfnResourceType() string {
 	
 	return "AWS::AutoScaling::ScheduledAction"
+}
+// AutoScalingPlansScalingPlan represents the AWS::AutoScalingPlans::ScalingPlan CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscalingplans-scalingplan.html 
+type AutoScalingPlansScalingPlan struct {
+	// ApplicationSource docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscalingplans-scalingplan.html#cfn-autoscalingplans-scalingplan-applicationsource
+	ApplicationSource *AutoScalingPlansScalingPlanApplicationSource `json:"ApplicationSource,omitempty" validate:"dive,required"`
+	// ScalingInstructions docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscalingplans-scalingplan.html#cfn-autoscalingplans-scalingplan-scalinginstructions
+	ScalingInstructions *AutoScalingPlansScalingPlanScalingInstructionList `json:"ScalingInstructions,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::AutoScalingPlans::ScalingPlan to implement the ResourceProperties interface
+func (s AutoScalingPlansScalingPlan) CfnResourceType() string {
+	
+	return "AWS::AutoScalingPlans::ScalingPlan"
 }
 // BatchComputeEnvironment represents the AWS::Batch::ComputeEnvironment CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html 
@@ -19923,6 +20281,28 @@ func (s GuardDutyDetector) CfnResourceType() string {
 	
 	return "AWS::GuardDuty::Detector"
 }
+// GuardDutyFilter represents the AWS::GuardDuty::Filter CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html 
+type GuardDutyFilter struct {
+	// Action docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html#cfn-guardduty-filter-action
+	Action *StringExpr `json:"Action,omitempty" validate:"dive,required"`
+	// Description docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html#cfn-guardduty-filter-description
+	Description *StringExpr `json:"Description,omitempty" validate:"dive,required"`
+	// DetectorID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html#cfn-guardduty-filter-detectorid
+	DetectorID *StringExpr `json:"DetectorId,omitempty" validate:"dive,required"`
+	// FindingCriteria docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html#cfn-guardduty-filter-findingcriteria
+	FindingCriteria *GuardDutyFilterFindingCriteria `json:"FindingCriteria,omitempty" validate:"dive,required"`
+	// Name docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html#cfn-guardduty-filter-name
+	Name *StringExpr `json:"Name,omitempty"`
+	// Rank docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html#cfn-guardduty-filter-rank
+	Rank *IntegerExpr `json:"Rank,omitempty" validate:"dive,required"`
+}
+
+// CfnResourceType returns AWS::GuardDuty::Filter to implement the ResourceProperties interface
+func (s GuardDutyFilter) CfnResourceType() string {
+	
+	return "AWS::GuardDuty::Filter"
+}
 // GuardDutyIPSet represents the AWS::GuardDuty::IPSet CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html 
 type GuardDutyIPSet struct {
@@ -19964,6 +20344,8 @@ func (s GuardDutyMaster) CfnResourceType() string {
 type GuardDutyMember struct {
 	// DetectorID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html#cfn-guardduty-member-detectorid
 	DetectorID *StringExpr `json:"DetectorId,omitempty" validate:"dive,required"`
+	// DisableEmailNotification docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html#cfn-guardduty-member-disableemailnotification
+	DisableEmailNotification *BoolExpr `json:"DisableEmailNotification,omitempty"`
 	// Email docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html#cfn-guardduty-member-email
 	Email *StringExpr `json:"Email,omitempty" validate:"dive,required"`
 	// MemberID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html#cfn-guardduty-member-memberid
@@ -21703,6 +22085,36 @@ func (s SSMPatchBaseline) CfnResourceType() string {
 	
 	return "AWS::SSM::PatchBaseline"
 }
+// ServiceCatalogCloudFormationProvisionedProduct represents the AWS::ServiceCatalog::CloudFormationProvisionedProduct CloudFormation resource type
+// See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html 
+type ServiceCatalogCloudFormationProvisionedProduct struct {
+	// AcceptLanguage docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-acceptlanguage
+	AcceptLanguage *StringExpr `json:"AcceptLanguage,omitempty"`
+	// NotificationArns docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-notificationarns
+	NotificationArns *StringListExpr `json:"NotificationArns,omitempty"`
+	// PathID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-pathid
+	PathID *StringExpr `json:"PathId,omitempty"`
+	// ProductID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-productid
+	ProductID *StringExpr `json:"ProductId,omitempty"`
+	// ProductName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-productname
+	ProductName *StringExpr `json:"ProductName,omitempty"`
+	// ProvisionedProductName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-provisionedproductname
+	ProvisionedProductName *StringExpr `json:"ProvisionedProductName,omitempty"`
+	// ProvisioningArtifactID docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-provisioningartifactid
+	ProvisioningArtifactID *StringExpr `json:"ProvisioningArtifactId,omitempty"`
+	// ProvisioningArtifactName docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-provisioningartifactname
+	ProvisioningArtifactName *StringExpr `json:"ProvisioningArtifactName,omitempty"`
+	// ProvisioningParameters docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-provisioningparameters
+	ProvisioningParameters *ServiceCatalogCloudFormationProvisionedProductProvisioningParameterList `json:"ProvisioningParameters,omitempty"`
+	// Tags docs: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html#cfn-servicecatalog-cloudformationprovisionedproduct-tags
+	Tags *TagList `json:"Tags,omitempty"`
+}
+
+// CfnResourceType returns AWS::ServiceCatalog::CloudFormationProvisionedProduct to implement the ResourceProperties interface
+func (s ServiceCatalogCloudFormationProvisionedProduct) CfnResourceType() string {
+	
+	return "AWS::ServiceCatalog::CloudFormationProvisionedProduct"
+}
 // ServiceDiscoveryInstance represents the AWS::ServiceDiscovery::Instance CloudFormation resource type
 // See http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html 
 type ServiceDiscoveryInstance struct {
@@ -22106,6 +22518,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &AutoScalingScalingPolicy{}
 	case "AWS::AutoScaling::ScheduledAction":
 		return &AutoScalingScheduledAction{}
+	case "AWS::AutoScalingPlans::ScalingPlan":
+		return &AutoScalingPlansScalingPlan{}
 	case "AWS::Batch::ComputeEnvironment":
 		return &BatchComputeEnvironment{}
 	case "AWS::Batch::JobDefinition":
@@ -22360,6 +22774,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &GlueTrigger{}
 	case "AWS::GuardDuty::Detector":
 		return &GuardDutyDetector{}
+	case "AWS::GuardDuty::Filter":
+		return &GuardDutyFilter{}
 	case "AWS::GuardDuty::IPSet":
 		return &GuardDutyIPSet{}
 	case "AWS::GuardDuty::Master":
@@ -22524,6 +22940,8 @@ func NewResourceByType(typeName string) ResourceProperties {
 		return &SSMParameter{}
 	case "AWS::SSM::PatchBaseline":
 		return &SSMPatchBaseline{}
+	case "AWS::ServiceCatalog::CloudFormationProvisionedProduct":
+		return &ServiceCatalogCloudFormationProvisionedProduct{}
 	case "AWS::ServiceDiscovery::Instance":
 		return &ServiceDiscoveryInstance{}
 	case "AWS::ServiceDiscovery::PrivateDnsNamespace":
