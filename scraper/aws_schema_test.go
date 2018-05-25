@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"sort"
@@ -396,11 +397,13 @@ func writePropertyDefinition(t *testing.T,
 // Write Header
 ////////////////////////////////////////////////////////////////////////////////
 func writeHeader(t *testing.T,
+	buildID string,
 	resourceSpecVersion string,
 	w io.Writer) {
 
 	headerText := fmt.Sprintf(`package cloudformation
 // RESOURCE SPECIFICATION VERSION: %s
+// SOURCE CODE SHA: %s
 // GENERATED: %s
 import "time"
 import "encoding/json"
@@ -424,7 +427,8 @@ func RegisterCustomResourceProvider(provider CustomResourceProvider) {
 }
 `,
 		resourceSpecVersion,
-		time.Now().String(),
+		buildID,
+		time.Now().UTC().String(),
 		resourceSpecVersion)
 
 	_, writeErr := w.Write([]byte(headerText))
@@ -539,6 +543,20 @@ func NewResourceByType(typeName string) ResourceProperties {
 ////////////////////////////////////////////////////////////////////////////////
 
 func TestSchema(t *testing.T) {
+	// Who are we?
+	cmd := exec.Command("git",
+		"rev-parse",
+		"HEAD")
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	cmdErr := cmd.Run()
+	if cmdErr != nil {
+		t.Error(cmdErr)
+	}
+	buildID := strings.TrimSpace(string(stdout.Bytes()))
+
 	// Go get the latest JSON file
 	schemaFile := getLatestSchema(t)
 	schemaInput, schemaInputErr := ioutil.ReadFile(schemaFile)
@@ -556,7 +574,7 @@ func TestSchema(t *testing.T) {
 	}
 	// For each property, make the necessary property statement
 	var output bytes.Buffer
-	writeHeader(t, data.ResourceSpecificationVersion, &output)
+	writeHeader(t, buildID, data.ResourceSpecificationVersion, &output)
 	writePropertyTypesDefinition(t, data.PropertyTypes, &output)
 	writeResourceTypesDefinition(t, data.ResourceTypes, &output)
 	writeFactoryFooter(t, data.ResourceTypes, &output)
