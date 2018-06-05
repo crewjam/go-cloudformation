@@ -151,8 +151,5 @@ func (r *Resource) UnmarshalJSON(buf []byte) error {
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(propertiesBuf, r.Properties); err != nil {
-		return err
-	}
-	return nil
+	return json.Unmarshal(propertiesBuf, r.Properties)
 }

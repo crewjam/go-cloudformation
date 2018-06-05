@@ -1,6 +1,9 @@
 package cloudformation
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type selectArg interface{}
 
@@ -47,9 +50,31 @@ func (f *SelectFunc) UnmarshalJSON(data []byte) error {
 	if len(v.FnSelect) != 2 {
 		return &json.UnsupportedValueError{Str: string(data)}
 	}
-	if err := json.Unmarshal(v.FnSelect[0], &f.Selector); err != nil {
+	// Possible that the second arg is another template, in which case
+	// we need to check for that...Example:
+	/*
+		"Fn::Select": [
+				0,
+				{
+						"Fn::GetAtt": [
+								"ApplicationLoadBalancer",
+								"SecurityGroups"
+						]
+				}
+		]
+	*/
+	var positionSelector interface{}
+	if err := json.Unmarshal(v.FnSelect[0], &positionSelector); err != nil {
 		return err
 	}
+	// If it's an integer or boolean, there's an issue
+	switch positionSelector.(type) {
+	case bool, int:
+		return &json.UnsupportedValueError{Str: fmt.Sprintf("%v", positionSelector)}
+	}
+	f.Selector = fmt.Sprintf("%v", positionSelector)
+
+	// What about the second one?
 	if err := json.Unmarshal(v.FnSelect[1], &f.Items); err != nil {
 		return err
 	}
